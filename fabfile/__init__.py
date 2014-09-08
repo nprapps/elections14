@@ -7,6 +7,7 @@ from termcolor import colored
 import app_config
 
 # Other fabfiles
+import ap
 import assets
 import data
 import issues

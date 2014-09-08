@@ -138,7 +138,7 @@ def get_secrets():
     A method for accessing our secrets.
     """
     secrets = [
-        'EXAMPLE_SECRET'
+        'AP_API_KEY'
     ]
 
     secrets_dict = {}
