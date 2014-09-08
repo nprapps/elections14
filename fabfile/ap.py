@@ -10,16 +10,17 @@ import app_config
 
 SECRETS = app_config.get_secrets()
 
-def _get_ap(endpoint, use_cache=True):
-    url = 'https://api.ap.org/v2/init/%s/2014-11-04' % endpoint
-    params = {}
-    
-    with open('_ap_cache.json') as f:
-        cache = json.load(f)
-
+def _init_ap(endpoint):
+    url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
     headers = {}
+    
+    try:
+        with open('_ap_cache.json') as f:
+            cache = json.load(f)
+    except IOError:
+        cache = {}
 
-    if use_cache:
+    if endpoint in cache:
         url = cache[endpoint]['nextrequest']
         headers['If-Modified-Since'] = cache[endpoint]['Last-Modified']
         headers['If-None-Match'] = cache[endpoint]['Etag']
@@ -29,11 +30,69 @@ def _get_ap(endpoint, use_cache=True):
             'apiKey': SECRETS['AP_API_KEY']
         }
     else:
-        params.update({
+        params = {
             'officeID': 'S,H,G',
             'format': 'json',
             'apiKey': SECRETS['AP_API_KEY']
-        })
+        }
+
+    params = {
+        'officeID': 'S,H,G',
+        'format': 'json',
+        'apiKey': SECRETS['AP_API_KEY']
+    }
+
+    response = requests.get(url, params=params)
+
+    if response.status_code == 304:
+        print '%s: already up to date' % endpoint
+        return
+    elif response.status_code == 403:
+        print '%s: rate-limited' % endpoint
+        return
+    elif response.status_code != 200:
+        print '%s: returned %i' % (endpoint, response.status_code)
+        return
+
+    cache[endpoint] = {
+        'response': response.json(),
+        'nextrequest': response.json()['nextrequest'],
+        'Last-Modified': response.headers['Last-Modified'],
+        'Etag': response.headers['Etag']
+    }
+
+    with open('_ap_cache.json', 'w') as f:
+        json.dump(cache, f, indent=4)
+
+    print '%s: inited' % endpoint
+
+    #sleep(30)
+
+def _update_ap(endpoint, use_cache=True):
+    url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
+    headers = {}
+    
+    try:
+        with open('_ap_cache.json') as f:
+            cache = json.load(f)
+    except IOError:
+        cache = {}
+
+    if endpoint in cache:
+        url = cache[endpoint]['nextrequest']
+        headers['If-Modified-Since'] = cache[endpoint]['Last-Modified']
+        headers['If-None-Match'] = cache[endpoint]['Etag']
+
+        # If using cache, other params have already been added to url
+        params = {
+            'apiKey': SECRETS['AP_API_KEY']
+        }
+    else:
+        params = {
+            'officeID': 'S,H,G',
+            'format': 'json',
+            'apiKey': SECRETS['AP_API_KEY']
+        }
 
     response = requests.get(url, params=params, headers=headers)
 
@@ -48,25 +107,26 @@ def _get_ap(endpoint, use_cache=True):
         return
 
     cache[endpoint] = {
+        'response': response.json(),
         'nextrequest': response.json()['nextrequest'],
         'Last-Modified': response.headers['Last-Modified'],
         'Etag': response.headers['Etag']
     }
 
     with open('_ap_cache.json', 'w') as f:
-        json.dump(cache, f)
+        json.dump(cache, f, indent=4)
 
     print '%s: updated' % endpoint
 
-    sleep(30)
+    #sleep(30)
 
 @task
-def bootstrap():
-    _get_ap('races', False)
-    _get_ap('candidates', False)
+def init():
+    _init_ap('init/races')
+    _init_ap('init/candidates')
 
 @task
 def update():
-    _get_ap('races', True)
-    _get_ap('candidates', True)
+    _update_ap('races')
+    _update_ap('calls')
      
