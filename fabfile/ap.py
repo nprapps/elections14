@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import json
+from time import sleep
 
 from fabric.api import task
 import requests
@@ -9,16 +10,16 @@ import app_config
 
 SECRETS = app_config.get_secrets()
 
-def _get_ap(endpoint, params={}, use_cache=True):
+def _get_ap(endpoint, use_cache=True):
     url = 'https://api.ap.org/v2/init/%s/2014-11-04' % endpoint
+    params = {}
     
-    cache = {}
+    with open('_ap_cache.json') as f:
+        cache = json.load(f)
+
     headers = {}
 
     if use_cache:
-        with open('_ap_cache.json') as f:
-            cache = json.load(f)
-
         url = cache[endpoint]['nextrequest']
         headers['If-Modified-Since'] = cache[endpoint]['Last-Modified']
         headers['If-None-Match'] = cache[endpoint]['Etag']
@@ -29,6 +30,7 @@ def _get_ap(endpoint, params={}, use_cache=True):
         }
     else:
         params.update({
+            'officeID': 'S,H,G',
             'format': 'json',
             'apiKey': SECRETS['AP_API_KEY']
         })
@@ -56,11 +58,15 @@ def _get_ap(endpoint, params={}, use_cache=True):
 
     print '%s: updated' % endpoint
 
+    sleep(30)
+
 @task
 def bootstrap():
-    _get_ap('races', { 'officeID': 'S,H,G' }, False)
+    _get_ap('races', False)
+    _get_ap('candidates', False)
 
 @task
 def update():
-    _get_ap('races', { 'officeID': 'S,H,G' }, True)
+    _get_ap('races', True)
+    _get_ap('candidates', True)
      
