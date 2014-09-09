@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import json
+import os
 from time import sleep
 
 from fabric.api import task
@@ -9,13 +10,14 @@ import requests
 import app_config
 
 SECRETS = app_config.get_secrets()
+CACHE_FILE = '.ap_cache.json'
 
 def _init_ap(endpoint):
     url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
     headers = {}
 
     try:
-        with open('_ap_cache.json') as f:
+        with open(CACHE_FILE) as f:
             cache = json.load(f)
     except IOError:
         cache = {}
@@ -61,19 +63,19 @@ def _init_ap(endpoint):
         'Etag': response.headers['Etag']
     }
 
-    with open('_ap_cache.json', 'w') as f:
+    with open(CACHE_FILE, 'w') as f:
         json.dump(cache, f, indent=4)
 
     print '%s: inited' % endpoint
 
-    #sleep(30)
+    sleep(30)
 
 def _update_ap(endpoint, use_cache=True):
     url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
     headers = {}
 
     try:
-        with open('_ap_cache.json') as f:
+        with open(CACHE_FILE) as f:
             cache = json.load(f)
     except IOError:
         cache = {}
@@ -113,12 +115,12 @@ def _update_ap(endpoint, use_cache=True):
         'Etag': response.headers['Etag']
     }
 
-    with open('_ap_cache.json', 'w') as f:
+    with open(CACHE_FILE, 'w') as f:
         json.dump(cache, f, indent=4)
 
     print '%s: updated' % endpoint
 
-    #sleep(30)
+    sleep(30)
 
 def _write(endpoint):
     with open('_ap_cache.json') as f:
@@ -151,6 +153,11 @@ def _write(endpoint):
 
 @task
 def init():
+    try:
+        os.remove(CACHE_FILE)
+    except OSError:
+        pass
+
     _init_ap('init/races')
     _init_ap('init/candidates')
 
