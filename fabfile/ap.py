@@ -131,21 +131,23 @@ def _write(endpoint):
 
     for race in all_races:
         candidates = [{
-            'candidateID': candidate.get('candidateID'),
-            'last': candidate.get('last'),
-            'party': candidate.get('party'),
-            'first': candidate.get('first'),
+            'candidateID': candidate.get('candidateID', ''),
+            'last': candidate.get('last', ''),
+            'party': candidate.get('party', ''),
+            'first': candidate.get('first', ''),
         } for candidate in race['candidates']]
 
         cleaned_data.append({
-            'seatNum': race.get('seatNum'),
-            'raceID': race.get('raceID'),
-            'officeName': race.get('officeName'),
-            'lastUpdated': race.get('lastUpdated'),
-            'officeID': race.get('officeID'),
-            'seatName': race.get('seatName'),
+            'seatNum': race.get('seatNum', ''),
+            'raceID': race.get('raceID', ''),
+            'officeName': race.get('officeName', ''),
+            'lastUpdated': race.get('lastUpdated', ''),
+            'officeID': race.get('officeID', ''),
+            'seatName': race.get('seatName', ''),
             'candidates': candidates,
         })
+
+        print cleaned_data
 
         with open('www/live-data/ap-init.json', 'w') as f:
             json.dump(cleaned_data, f)

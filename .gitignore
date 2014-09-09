@@ -40,6 +40,7 @@ www/js/*.min.js
 www/js/templates.js
 www/js/app_config.js
 www/js/copy.js
+www/live-data/*
 confs/rendered/*
 data/copy.xls
 data/copy.xlsx

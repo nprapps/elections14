@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
 import json
+import yaml
 
 import argparse
 from flask import Flask, render_template
@@ -24,6 +26,9 @@ def index():
 
     with open('data/featured.json') as f:
         context['featured'] = json.load(f)
+
+    with open('www/live-data/ap-init.json') as f:
+        context['data'] = yaml.load(f)
 
     return render_template('index.html', **context)
 
