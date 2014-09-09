@@ -123,7 +123,7 @@ def _update_ap(endpoint, use_cache=True):
     sleep(30)
 
 def _write(endpoint):
-    with open('_ap_cache.json') as f:
+    with open(CACHE_FILE) as f:
         cache = json.load(f)
 
     cleaned_data = []
