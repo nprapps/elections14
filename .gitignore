@@ -51,4 +51,4 @@ data/gdoc*.csv
 www/comments/index.html
 analytics.json
 analytics.txt
-_ap_cache.json
+.ap_cache.json
