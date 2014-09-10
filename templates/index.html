@@ -24,7 +24,7 @@
     <span class="comment-label">Share / Discuss</span>
 </a>
 
-<a id="chromecast">Chromecast me!</a>
+<a id="chromecast" href="#">Chromecast me!</a>
 
 {% endblock %}
 
@@ -43,7 +43,7 @@
         }
     }
 
-    initializeCastApi = function() {
+    var initializeCastApi = function() {
         var sessionRequest = new chrome.cast.SessionRequest('A6BCDD1E');
         var apiConfig = new chrome.cast.ApiConfig(
             sessionRequest,
@@ -66,11 +66,19 @@
         }
     }
 
+    function onInitSuccess(e) {
+        console.log('init success');
+    }
+
+    function onError(e) {
+        console.log('error:', e);
+    }
+
     $('#cast').click(function(e) {
         e.preventDefault();
 
         chrome.cast.requestSession(onRequestSessionSuccess, onLaunchError);
-    }
+    });
 
     function onRequestSessionSuccess(e) {
         session = e;
