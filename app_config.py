@@ -138,7 +138,10 @@ def get_secrets():
     A method for accessing our secrets.
     """
     secrets = [
-        'AP_API_KEY'
+        'AP_API_KEY',
+        'POSTGRES_PASSWORD',
+        'POSTGRES_HOST',
+        'POSTGRES_PORT'
     ]
 
     secrets_dict = {}

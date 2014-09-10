@@ -5,6 +5,7 @@ from fabric.state import env
 from termcolor import colored
 
 import app_config
+import models
 
 # Other fabfiles
 import ap
@@ -91,6 +92,21 @@ def tests():
     Run Python unit tests.
     """
     local('nosetests')
+
+@task
+def local_reset():
+    """
+    Resets the local environment to a fresh copy of the db and data.
+    """
+    secrets = app_config.get_secrets()
+
+    with settings(warn_only=False):
+        local('dropdb %s' % app_config.PROJECT_SLUG)
+        local('echo "CREATE USER %s WITH PASSWORD \'%s\';" | psql' % (app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']))
+
+    local('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
+    models.Race.create_table()
+    models.Candidate.create_table()
 
 """
 Deployment
