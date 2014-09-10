@@ -122,12 +122,13 @@ def _update_ap(endpoint, use_cache=True):
 
     sleep(30)
 
-def _write(endpoint):
+def _write():
     with open(CACHE_FILE) as f:
         cache = json.load(f)
 
     cleaned_data = []
-    all_races = cache[endpoint]['response']['races']
+    all_races = cache['init/races']['response']['races']
+    all_candidates = cache['init/candidates']['response']['candidates']
 
     for race in all_races:
         candidates = [{
@@ -137,6 +138,17 @@ def _write(endpoint):
             'first': candidate.get('first', ''),
         } for candidate in race['candidates']]
 
+        # Init/races does not include state data. We need to look up the state by
+        # grabbing one of the candidates and matching to the init/candidates data.
+        # This suuuuucks.
+
+        state_candidate = race['candidates'][0]['candidateID']
+
+        for candidate in all_candidates:
+            if candidate['candidateID'] == state_candidate:
+                statePostal = candidate['statePostal']
+                break
+
         cleaned_data.append({
             'seatNum': race.get('seatNum', ''),
             'raceID': race.get('raceID', ''),
@@ -145,12 +157,10 @@ def _write(endpoint):
             'officeID': race.get('officeID', ''),
             'seatName': race.get('seatName', ''),
             'candidates': candidates,
+            'statePostal': statePostal,
         })
-
-        print cleaned_data
-
-        with open('www/live-data/ap-init.json', 'w') as f:
-            json.dump(cleaned_data, f)
+    with open('www/live-data/ap-init.json', 'w') as f:
+        json.dump(cleaned_data, f)
 
 
 @task
@@ -170,4 +180,4 @@ def update():
 
 @task
 def write():
-    _write('init/races')
+    _write()
