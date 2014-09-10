@@ -6,12 +6,29 @@ Commands that update or process the application data.
 from datetime import datetime
 import json
 
-from fabric.api import task
+import copytext
+from fabric.api import local, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
 import app_config
-import copytext
+import models
+
+@task
+def bootstrap():
+    """
+    Resets the local environment to a fresh copy of the db and data.
+    """
+    secrets = app_config.get_secrets()
+
+    with settings(warn_only=True):
+        local('dropdb %s' % app_config.PROJECT_SLUG)
+        local('echo "CREATE USER %s WITH PASSWORD \'%s\';" | psql' % (app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']))
+
+    local('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
+    models.Race.create_table()
+    models.Candidate.create_table()
+
 
 @task(default=True)
 def update():

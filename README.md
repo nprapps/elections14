@@ -87,9 +87,8 @@ cd elections14
 mkvirtualenv --no-site-packages elections14
 pip install -r requirements.txt
 npm install
+fab data.bootstrap
 fab update
-
-fab local_reset
 ```
 
 **Problems installing requirements?** You may need to run the pip command as ``ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install -r requirements.txt`` to work around an issue with OSX.
