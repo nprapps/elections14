@@ -24,7 +24,7 @@
     <span class="comment-label">Share / Discuss</span>
 </a>
 
-<a id="chromecast" href="#">Chromecast me!</a>
+<a id="cast" href="#">Chromecast me!</a>
 
 {% endblock %}
 
@@ -71,7 +71,7 @@
     }
 
     function onError(e) {
-        console.log('error:', e);
+        console.log('init error:', e);
     }
 
     $('#cast').click(function(e) {
@@ -82,6 +82,10 @@
 
     function onRequestSessionSuccess(e) {
         session = e;
+    }
+
+    function onLaunchError(e) {
+        console.log('launch error:', e);
     }
 </script>
 {% endblock %}
