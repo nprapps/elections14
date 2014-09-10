@@ -27,6 +27,13 @@ var onDocumentLoad = function(e) {
 
     renderExampleTemplate();
     getCommentCount(showCommentCount);
+    getUpdates();
+}
+
+var getUpdates = function() {
+    $.getJSON('../live-data/fake.json', function(data) {
+        console.log(data);
+    });
 }
 
 /*
