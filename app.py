@@ -28,7 +28,7 @@ def index():
         context['featured'] = json.load(f)
 
     with open('www/live-data/init.json') as f:
-        context['data'] = f.read()
+        context['races'] = json.load(f)
 
     return render_template('index.html', **context)
 

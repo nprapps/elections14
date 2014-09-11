@@ -31,7 +31,12 @@ var onDocumentLoad = function(e) {
 
 var getUpdates = function() {
     $.getJSON('../live-data/update.json', function(data) {
-        console.log(data);
+        _.each(data, function(race) {
+            _.each(race.candidates, function(candidate) {
+                $('[data-field="' + candidate.slug + '-vote_count"]').text(candidate.vote_count);
+            })
+        });
+
     });
 }
 
