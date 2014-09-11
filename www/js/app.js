@@ -32,11 +32,16 @@ var onDocumentLoad = function(e) {
 var getUpdates = function() {
     $.getJSON('../live-data/update.json', function(data) {
         _.each(data, function(race) {
-            _.each(race.candidates, function(candidate) {
-                $('[data-field="' + candidate.slug + '-vote_count"]').text(candidate.vote_count);
-            })
-        });
+            _.each(race, function(value, key) {
+                $('[data-field="' + race.slug + '-' + key + '"]').text(value);
+            });
 
+            _.each(race.candidates, function(candidate) {
+                _.each(candidate, function(value, key) {
+                    $('[data-field="' + candidate.slug + '-' + key + '"]').text(value);
+                });
+            });
+        });
     });
 }
 

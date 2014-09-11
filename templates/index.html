@@ -9,6 +9,10 @@
 <div class="races">
     {% for race in races %}
         <h2>{{ race.slug }}</h2>
+        <div class="precincts">
+            <p><strong>Precincts Reporting:</strong> <span data-field="{{ race.slug }}-precincts_reporting">{{ race.precincts_reporting }}</span></p>
+            <p><strong>Precincts Total:</strong> <span data-field="{{ race.slug }}-precincts_total">{{ race.precincts_total }}</span></p>
+        </div>
         <table>
             <tr>
                 <th>Candidate Name</th>
