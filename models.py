@@ -94,7 +94,7 @@ class Race(BaseModel):
         return u'%s: %s-%s' % (
             self.office_name,
             self.state_postal,
-            self.district_id
+            self.seat_name
         )
 
 
