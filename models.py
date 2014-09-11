@@ -1,14 +1,11 @@
-import datetime
-import os
 import re
-import time
 
-from flask import json
-from peewee import Model, PostgresqlDatabase, BooleanField, DateField, DateTimeField, ForeignKeyField, IntegerField, TextField, CharField
+from peewee import Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField 
 
 import app_config
 
 secrets = app_config.get_secrets()
+
 db = PostgresqlDatabase(
     app_config.PROJECT_SLUG,
     user=app_config.PROJECT_SLUG,
@@ -28,6 +25,10 @@ class PSQLMODEL(Model):
         database = db
 
 class Race(PSQLMODEL):
+    """
+    Race model.
+    """
+    # data from init
     slug = CharField(max_length=255)
     state_postal = CharField(max_length=255)
     # state_name = CharField(max_length=255)
@@ -74,7 +75,7 @@ class Race(PSQLMODEL):
 
     def slugify(self):
         """
-        Generate a slug for this playground.
+        Generate a slug for this model.
         """
         bits = []
 
@@ -97,8 +98,10 @@ class Race(PSQLMODEL):
 
         self.slug = slug
 
-    @property
-    def winner(self):
+    def get_winner(self):
+        """
+        Return the winner of this race, if any. 
+        """
         for candidate in Candidate.select().where(Candidate.race == self):
             if self.accept_ap_call == True:
                 if candidate.ap_winner == True:
@@ -116,10 +119,13 @@ class Race(PSQLMODEL):
                         return 'd'
                     else:
                         return 'o'
+
         return None
 
-    @property
-    def called(self):
+    def is_called(self):
+        """
+        Has this race been called?
+        """
         if self.accept_ap_call == True:
             return self.ap_called
 
@@ -129,36 +135,37 @@ class Race(PSQLMODEL):
         return False
 
     def has_incumbents(self):
+        """
+        Check if this Race has an incumbent candidate.
+        """
         for candidate in Candidate.select().where(Candidate.race == self):
             if candidate.incumbent == True:
                 return True
 
         return False
 
-    def total_votes(self):
+    def count_votes(self):
+        """
+        Count the total votes cast for all candidates.
+        """
         count = 0
+
         for c in Candidate.select().where(Candidate.race == self):
             count += c.vote_count
+
         return count
-
-    def percent_reporting(self):
-        try:
-            getcontext().prec = 2
-            percent = Decimal(self.precincts_reporting) / Decimal(self.total_precincts)
-            return round(float(percent) * 100, 0)
-        except InvalidOperation:
-            return 0.0
-
 
 class Candidate(PSQLMODEL):
     """
-    Normalizes the candidate data into a candidate model.
+    Candidate model.
     """
-    first_name = CharField(max_length=255)
+    # from init
+    first_name = CharField(max_length=255, null=True,
+        help_text='May be null for ballot initiatives')
     last_name = CharField(max_length=255)
     party = CharField(max_length=255)
     race = ForeignKeyField(Race)
-    candidate_id = CharField(unique=True)
+    candidate_id = CharField(index=True)
 
     # update data
     incumbent = BooleanField(default=False)
@@ -172,10 +179,3 @@ class Candidate(PSQLMODEL):
     def __unicode__(self):
         return u'%s %s (%s)' % (self.first_name, self.last_name, self.party)
 
-    def vote_percent(self):
-        try:
-            getcontext().prec = 2
-            percent = Decimal(self.vote_count) / Decimal(self.race.total_votes())
-            return round(float(percent) * 100, 0)
-        except InvalidOperation:
-            return 0.0

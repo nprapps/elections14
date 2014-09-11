@@ -1,1 +1,3492 @@
-[{"office_id": "H", "seat_name": "District 1", "state_postal": "AL", "last_updated": "2014-09-03T00:51:24", "race_id": "1005", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "AL", "last_updated": "2014-09-03T00:51:24", "race_id": "1011", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "AL", "last_updated": "2014-09-03T00:51:24", "race_id": "1019", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "AL", "last_updated": "2014-09-03T00:51:24", "race_id": "1374", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "AL", "last_updated": "2014-09-03T00:51:24", "race_id": "1375", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "AL", "last_updated": "2014-09-03T00:51:24", "race_id": "1376", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "AL", "last_updated": "2014-09-03T00:51:24", "race_id": "1377", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "AL", "last_updated": "2014-09-03T00:51:24", "race_id": "1378", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "AL", "last_updated": "2014-09-03T00:51:24", "race_id": "1755", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "AR", "last_updated": "2014-09-05T01:50:22", "race_id": "5104", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "AR", "last_updated": "2014-09-05T01:50:22", "race_id": "5105", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "AR", "last_updated": "2014-09-05T01:50:22", "race_id": "5107", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "AR", "last_updated": "2014-09-05T01:50:22", "race_id": "5626", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "AR", "last_updated": "2014-09-05T01:50:22", "race_id": "6092", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "AR", "last_updated": "2014-09-05T01:50:22", "race_id": "6345", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "3004", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "3006", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "3008", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "3010", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "3012", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "3014", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "3544", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "3920", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "3924", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "AZ", "last_updated": "2014-09-08T19:50:50", "race_id": "4173", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5692", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5693", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5694", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5695", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5696", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5697", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5698", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5699", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 11", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5701", "seat_number": "11", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 12", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5702", "seat_number": "12", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 13", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5703", "seat_number": "13", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 14", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5704", "seat_number": "14", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 15", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5705", "seat_number": "15", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 16", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5706", "seat_number": "16", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 17", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5707", "seat_number": "17", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 18", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5708", "seat_number": "18", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 19", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5709", "seat_number": "19", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 20", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5710", "seat_number": "20", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 21", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5711", "seat_number": "21", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 22", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5712", "seat_number": "22", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 23", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5713", "seat_number": "23", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 24", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5714", "seat_number": "24", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 25", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5715", "seat_number": "25", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 26", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5716", "seat_number": "26", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 27", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5717", "seat_number": "27", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 28", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5718", "seat_number": "28", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 29", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5719", "seat_number": "29", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 30", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5720", "seat_number": "30", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 31", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5721", "seat_number": "31", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 32", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5722", "seat_number": "32", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 33", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5723", "seat_number": "33", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 34", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5724", "seat_number": "34", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 35", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5725", "seat_number": "35", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 36", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5726", "seat_number": "36", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 37", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5727", "seat_number": "37", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 38", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5728", "seat_number": "38", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 39", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5729", "seat_number": "39", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 40", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5730", "seat_number": "40", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 41", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5731", "seat_number": "41", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 42", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5732", "seat_number": "42", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 43", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5733", "seat_number": "43", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 44", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5734", "seat_number": "44", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 45", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5735", "seat_number": "45", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 46", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5736", "seat_number": "46", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 47", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5739", "seat_number": "47", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 49", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5741", "seat_number": "49", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 50", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5742", "seat_number": "50", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 51", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5743", "seat_number": "51", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 53", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "5744", "seat_number": "53", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "6123", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "6478", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 52", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "7296", "seat_number": "52", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 48", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "8149", "seat_number": "48", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 10", "state_postal": "CA", "last_updated": "2014-09-02T21:34:35", "race_id": "8514", "seat_number": "10", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "CO", "last_updated": "2014-09-08T15:34:44", "race_id": "6614", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "CO", "last_updated": "2014-09-08T15:34:44", "race_id": "6615", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "CO", "last_updated": "2014-09-08T15:34:44", "race_id": "6616", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "CO", "last_updated": "2014-09-08T15:34:44", "race_id": "6617", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "CO", "last_updated": "2014-09-08T15:34:44", "race_id": "6618", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "CO", "last_updated": "2014-09-08T15:34:44", "race_id": "6619", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "CO", "last_updated": "2014-09-08T15:34:44", "race_id": "6954", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "CO", "last_updated": "2014-09-08T15:34:44", "race_id": "7168", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "CO", "last_updated": "2014-09-08T15:34:44", "race_id": "7191", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10009", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10011", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10013", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10015", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10017", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10019", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10021", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10023", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 10", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10025", "seat_number": "10", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 11", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10027", "seat_number": "11", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 12", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10029", "seat_number": "12", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 13", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10031", "seat_number": "13", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 14", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10033", "seat_number": "14", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 15", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10035", "seat_number": "15", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 16", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10037", "seat_number": "16", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 17", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10039", "seat_number": "17", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 18", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10041", "seat_number": "18", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10045", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 21", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10393", "seat_number": "21", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 22", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10396", "seat_number": "22", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 23", "state_postal": "CA", "last_updated": "2014-09-03T13:31:41", "race_id": "10398", "seat_number": "23", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 20", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "10401", "seat_number": "20", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "11126", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 24", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "11128", "seat_number": "24", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 25", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "11129", "seat_number": "25", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 26", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "11586", "seat_number": "26", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 27", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "11587", "seat_number": "27", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 19", "state_postal": "FL", "last_updated": "2014-09-03T13:31:41", "race_id": "11670", "seat_number": "19", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": "2014", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15800", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15989", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15990", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15992", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15993", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15994", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15995", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15996", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15997", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15998", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 10", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "15999", "seat_number": "10", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 11", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "16000", "seat_number": "11", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 12", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "16001", "seat_number": "12", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 13", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "16002", "seat_number": "13", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 14", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "16003", "seat_number": "14", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 15", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "16004", "seat_number": "15", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 16", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "16005", "seat_number": "16", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 17", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "16006", "seat_number": "17", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 18", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "16007", "seat_number": "18", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "IL", "last_updated": "2014-09-08T13:02:52", "race_id": "16310", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "IN", "last_updated": "2014-09-06T04:56:32", "race_id": "15014", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "IN", "last_updated": "2014-09-06T04:56:32", "race_id": "15017", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "IN", "last_updated": "2014-09-06T04:56:32", "race_id": "15020", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "IN", "last_updated": "2014-09-06T04:56:32", "race_id": "15023", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "IN", "last_updated": "2014-09-06T04:56:32", "race_id": "15026", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "IN", "last_updated": "2014-09-06T04:56:32", "race_id": "15029", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "IN", "last_updated": "2014-09-06T04:56:32", "race_id": "15032", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "IN", "last_updated": "2014-09-06T04:56:32", "race_id": "15035", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "IN", "last_updated": "2014-09-06T04:56:32", "race_id": "15038", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "KY", "last_updated": "2014-09-05T19:00:05", "race_id": "18009", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "KY", "last_updated": "2014-09-05T19:00:05", "race_id": "18013", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "KY", "last_updated": "2014-09-05T19:00:05", "race_id": "18015", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "KY", "last_updated": "2014-09-05T19:00:05", "race_id": "18622", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "KY", "last_updated": "2014-09-05T19:00:05", "race_id": "18624", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "KY", "last_updated": "2014-09-05T19:00:05", "race_id": "18783", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "KY", "last_updated": "2014-09-05T19:00:05", "race_id": "18835", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "LA", "last_updated": "2014-08-28T16:25:05", "race_id": "20048", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "LA", "last_updated": "2014-08-28T16:25:05", "race_id": "20049", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "LA", "last_updated": "2014-08-28T16:25:05", "race_id": "20050", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "LA", "last_updated": "2014-08-28T16:25:05", "race_id": "20051", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "LA", "last_updated": "2014-08-28T16:25:05", "race_id": "20052", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "LA", "last_updated": "2014-08-28T16:25:05", "race_id": "20053", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "LA", "last_updated": "2014-08-28T16:25:05", "race_id": "20157", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "MD", "last_updated": "2014-09-08T22:19:02", "race_id": "21746", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "MD", "last_updated": "2014-09-08T22:19:02", "race_id": "21749", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "MD", "last_updated": "2014-09-08T22:19:02", "race_id": "21752", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "MD", "last_updated": "2014-09-08T22:19:02", "race_id": "21754", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "MD", "last_updated": "2014-09-08T22:19:02", "race_id": "21757", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "MD", "last_updated": "2014-09-08T22:19:02", "race_id": "21760", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "MD", "last_updated": "2014-09-08T22:19:02", "race_id": "21762", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "MD", "last_updated": "2014-09-08T22:19:02", "race_id": "21764", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "MD", "last_updated": "2014-09-08T22:19:02", "race_id": "22091", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "ME", "last_updated": "2014-09-06T19:30:12", "race_id": "20643", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "ME", "last_updated": "2014-09-06T19:30:12", "race_id": "20644", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "ME", "last_updated": "2014-09-06T19:30:12", "race_id": "20645", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "ME", "last_updated": "2014-09-06T19:30:12", "race_id": "20646", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23805", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23806", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23807", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23808", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23809", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23810", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23811", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23812", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23813", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 10", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23814", "seat_number": "10", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 11", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23815", "seat_number": "11", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 12", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23816", "seat_number": "12", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 13", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23817", "seat_number": "13", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 14", "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "23818", "seat_number": "14", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "24074", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "MI", "last_updated": "2014-09-08T20:00:22", "race_id": "24463", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "24007", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "24010", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "24013", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "24016", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "24019", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "24022", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "24025", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "24028", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "24704", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "MN", "last_updated": "2014-09-05T20:11:52", "race_id": "25151", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "MO", "last_updated": "2014-09-08T12:57:41", "race_id": "26023", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "MO", "last_updated": "2014-09-08T12:57:41", "race_id": "26025", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "MO", "last_updated": "2014-09-08T12:57:41", "race_id": "26027", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "MO", "last_updated": "2014-09-08T12:57:41", "race_id": "26029", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "MO", "last_updated": "2014-09-08T12:57:41", "race_id": "26031", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "MO", "last_updated": "2014-09-08T12:57:41", "race_id": "26033", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "MO", "last_updated": "2014-09-08T12:57:41", "race_id": "26035", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "MO", "last_updated": "2014-09-08T12:57:41", "race_id": "27025", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "MS", "last_updated": "2014-09-05T18:26:00", "race_id": "25929", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "MS", "last_updated": "2014-09-05T18:26:00", "race_id": "26486", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "MS", "last_updated": "2014-09-05T18:26:00", "race_id": "26488", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "MS", "last_updated": "2014-09-05T18:26:00", "race_id": "26489", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "MS", "last_updated": "2014-09-05T18:26:00", "race_id": "26692", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "NE", "last_updated": "2014-09-09T18:52:01", "race_id": "28006", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "NE", "last_updated": "2014-09-09T18:52:01", "race_id": "28382", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "NE", "last_updated": "2014-09-09T18:52:01", "race_id": "28384", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "NE", "last_updated": "2014-09-09T18:52:01", "race_id": "28385", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "NE", "last_updated": "2014-09-09T18:52:01", "race_id": "28594", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31202", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31205", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31208", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31211", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31212", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31215", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31216", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31218", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 10", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31220", "seat_number": "10", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 12", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31223", "seat_number": "12", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31226", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 11", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31230", "seat_number": "11", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31296", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "NJ", "last_updated": "2014-09-08T22:32:39", "race_id": "31645", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "NM", "last_updated": "2014-09-08T16:29:16", "race_id": "32005", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "NM", "last_updated": "2014-09-08T16:29:16", "race_id": "32052", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "NM", "last_updated": "2014-09-08T16:29:16", "race_id": "32238", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "NM", "last_updated": "2014-09-08T16:29:16", "race_id": "33279", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "NM", "last_updated": "2014-09-08T16:29:16", "race_id": "33948", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36005", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36015", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36019", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36021", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36023", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36025", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36027", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36029", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36031", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 10", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36033", "seat_number": "10", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 11", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36035", "seat_number": "11", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 12", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36037", "seat_number": "12", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 13", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36039", "seat_number": "13", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 14", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36041", "seat_number": "14", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 15", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36043", "seat_number": "15", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 16", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "36045", "seat_number": "16", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "OH", "last_updated": "2014-09-08T14:52:51", "race_id": "37258", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "OK", "last_updated": "2014-09-09T18:50:07", "race_id": "37030", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "OK", "last_updated": "2014-09-09T18:50:07", "race_id": "37034", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "OK", "last_updated": "2014-09-09T18:50:07", "race_id": "37036", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "OK", "last_updated": "2014-09-09T18:50:07", "race_id": "37855", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "OK", "last_updated": "2014-09-09T18:50:07", "race_id": "37856", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "OK", "last_updated": "2014-09-09T18:50:07", "race_id": "37857", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "S", "seat_name": "2014", "state_postal": "OK", "last_updated": "2014-09-09T18:50:07", "race_id": "37960", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "S", "seat_name": "2010", "state_postal": "OK", "last_updated": "2014-09-09T18:50:07", "race_id": "38145", "seat_number": "2", "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "OR", "last_updated": "2014-09-08T16:27:04", "race_id": "38019", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "OR", "last_updated": "2014-09-08T16:27:04", "race_id": "38529", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "OR", "last_updated": "2014-09-08T16:27:04", "race_id": "38530", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "OR", "last_updated": "2014-09-08T16:27:04", "race_id": "38531", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "OR", "last_updated": "2014-09-08T16:27:04", "race_id": "38532", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "OR", "last_updated": "2014-09-08T16:27:04", "race_id": "38952", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "OR", "last_updated": "2014-09-08T16:27:04", "race_id": "39031", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39008", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39010", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39011", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39012", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39013", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39014", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39015", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 10", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39017", "seat_number": "10", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 11", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39018", "seat_number": "11", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 12", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39019", "seat_number": "12", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 13", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39020", "seat_number": "13", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 14", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39021", "seat_number": "14", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 15", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39022", "seat_number": "15", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 16", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39023", "seat_number": "16", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 17", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39024", "seat_number": "17", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 18", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39025", "seat_number": "18", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39292", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "39303", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "PA", "last_updated": "2014-09-08T22:16:23", "race_id": "40041", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43003", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43007", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43009", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43011", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43013", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43015", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43017", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43019", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43020", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "G", "seat_name": null, "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43440", "seat_number": null, "office_name": "Governor", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "TN", "last_updated": "2014-09-06T03:43:38", "race_id": "43441", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "2", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 9", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "4", "seat_number": "9", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "48008", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "48009", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 4", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "48011", "seat_number": "4", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 5", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "48013", "seat_number": "5", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 6", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "48015", "seat_number": "6", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 7", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "48017", "seat_number": "7", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 8", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "48020", "seat_number": "8", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 10", "state_postal": "WA", "last_updated": "2014-09-09T18:48:11", "race_id": "49358", "seat_number": "10", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "S", "seat_name": null, "state_postal": "WV", "last_updated": "2014-09-01T19:11:27", "race_id": "49137", "seat_number": null, "office_name": "U.S. Senate", "race_type": "G"}, {"office_id": "H", "seat_name": "District 1", "state_postal": "WV", "last_updated": "2014-09-01T19:11:27", "race_id": "49273", "seat_number": "1", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 2", "state_postal": "WV", "last_updated": "2014-09-01T19:11:27", "race_id": "49274", "seat_number": "2", "office_name": "U.S. House", "race_type": "G"}, {"office_id": "H", "seat_name": "District 3", "state_postal": "WV", "last_updated": "2014-09-01T19:11:27", "race_id": "49275", "seat_number": "3", "office_name": "U.S. House", "race_type": "G"}]
+[
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "LA", 
+        "last_updated": "2014-08-28T16:25:05", 
+        "race_id": "20048", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "LA", 
+        "last_updated": "2014-08-28T16:25:05", 
+        "race_id": "20049", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "LA", 
+        "last_updated": "2014-08-28T16:25:05", 
+        "race_id": "20050", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "LA", 
+        "last_updated": "2014-08-28T16:25:05", 
+        "race_id": "20051", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "LA", 
+        "last_updated": "2014-08-28T16:25:05", 
+        "race_id": "20052", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "LA", 
+        "last_updated": "2014-08-28T16:25:05", 
+        "race_id": "20053", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "LA", 
+        "last_updated": "2014-08-28T16:25:05", 
+        "race_id": "20157", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "AR", 
+        "last_updated": "2014-09-05T01:50:22", 
+        "race_id": "6345", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "AL", 
+        "last_updated": "2014-09-03T00:51:24", 
+        "race_id": "1374", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "AL", 
+        "last_updated": "2014-09-03T00:51:24", 
+        "race_id": "1375", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "AL", 
+        "last_updated": "2014-09-03T00:51:24", 
+        "race_id": "1376", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "AL", 
+        "last_updated": "2014-09-03T00:51:24", 
+        "race_id": "1377", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "AL", 
+        "last_updated": "2014-09-03T00:51:24", 
+        "race_id": "1378", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "AL", 
+        "last_updated": "2014-09-03T00:51:24", 
+        "race_id": "1755", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39292", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39303", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "37258", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10009", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10011", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10013", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10015", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10017", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10019", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10021", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10023", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10025", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 11", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10027", 
+        "seat_number": "11", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 12", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10029", 
+        "seat_number": "12", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 13", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10031", 
+        "seat_number": "13", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 14", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10033", 
+        "seat_number": "14", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 15", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10035", 
+        "seat_number": "15", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 16", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10037", 
+        "seat_number": "16", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 17", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10039", 
+        "seat_number": "17", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 18", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10041", 
+        "seat_number": "18", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10045", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 43", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5733", 
+        "seat_number": "43", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 44", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5734", 
+        "seat_number": "44", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 45", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5735", 
+        "seat_number": "45", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 46", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5736", 
+        "seat_number": "46", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 47", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5739", 
+        "seat_number": "47", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 49", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5741", 
+        "seat_number": "49", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 50", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5742", 
+        "seat_number": "50", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 51", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5743", 
+        "seat_number": "51", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 53", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5744", 
+        "seat_number": "53", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "6123", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "6478", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "MO", 
+        "last_updated": "2014-09-08T12:57:41", 
+        "race_id": "26023", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "MO", 
+        "last_updated": "2014-09-08T12:57:41", 
+        "race_id": "26025", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "MO", 
+        "last_updated": "2014-09-08T12:57:41", 
+        "race_id": "26027", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "MO", 
+        "last_updated": "2014-09-08T12:57:41", 
+        "race_id": "26029", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "MO", 
+        "last_updated": "2014-09-08T12:57:41", 
+        "race_id": "26031", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "MO", 
+        "last_updated": "2014-09-08T12:57:41", 
+        "race_id": "26033", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "MO", 
+        "last_updated": "2014-09-08T12:57:41", 
+        "race_id": "26035", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "IN", 
+        "last_updated": "2014-09-06T04:56:32", 
+        "race_id": "15014", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "IN", 
+        "last_updated": "2014-09-06T04:56:32", 
+        "race_id": "15017", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "IN", 
+        "last_updated": "2014-09-06T04:56:32", 
+        "race_id": "15020", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "IN", 
+        "last_updated": "2014-09-06T04:56:32", 
+        "race_id": "15023", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "IN", 
+        "last_updated": "2014-09-06T04:56:32", 
+        "race_id": "15026", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "IN", 
+        "last_updated": "2014-09-06T04:56:32", 
+        "race_id": "15029", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "IN", 
+        "last_updated": "2014-09-06T04:56:32", 
+        "race_id": "15032", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "IN", 
+        "last_updated": "2014-09-06T04:56:32", 
+        "race_id": "15035", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "IN", 
+        "last_updated": "2014-09-06T04:56:32", 
+        "race_id": "15038", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "WV", 
+        "last_updated": "2014-09-01T19:11:27", 
+        "race_id": "49137", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "WV", 
+        "last_updated": "2014-09-01T19:11:27", 
+        "race_id": "49273", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "WV", 
+        "last_updated": "2014-09-01T19:11:27", 
+        "race_id": "49274", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "WV", 
+        "last_updated": "2014-09-01T19:11:27", 
+        "race_id": "49275", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "24007", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "24010", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "24013", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "24016", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "24019", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "24022", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "24025", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "24028", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "AR", 
+        "last_updated": "2014-09-05T01:50:22", 
+        "race_id": "5626", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "AR", 
+        "last_updated": "2014-09-05T01:50:22", 
+        "race_id": "6092", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "KY", 
+        "last_updated": "2014-09-05T19:00:05", 
+        "race_id": "18009", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "KY", 
+        "last_updated": "2014-09-05T19:00:05", 
+        "race_id": "18013", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "KY", 
+        "last_updated": "2014-09-05T19:00:05", 
+        "race_id": "18015", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "OK", 
+        "last_updated": "2014-09-09T21:37:18", 
+        "race_id": "37855", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "OK", 
+        "last_updated": "2014-09-09T21:37:18", 
+        "race_id": "37856", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "OK", 
+        "last_updated": "2014-09-09T21:37:18", 
+        "race_id": "37857", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": "2014", 
+        "state_postal": "OK", 
+        "last_updated": "2014-09-09T21:37:18", 
+        "race_id": "37960", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": "2010", 
+        "state_postal": "OK", 
+        "last_updated": "2014-09-09T21:37:18", 
+        "race_id": "38145", 
+        "seat_number": "2", 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "NE", 
+        "last_updated": "2014-09-10T23:03:39", 
+        "race_id": "28006", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "NE", 
+        "last_updated": "2014-09-10T23:03:39", 
+        "race_id": "28382", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "NE", 
+        "last_updated": "2014-09-10T23:03:39", 
+        "race_id": "28384", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "NE", 
+        "last_updated": "2014-09-10T23:03:39", 
+        "race_id": "28385", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5692", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5693", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5694", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5695", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5696", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5697", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5698", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5699", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 11", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5701", 
+        "seat_number": "11", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 12", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5702", 
+        "seat_number": "12", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 13", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5703", 
+        "seat_number": "13", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 14", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5704", 
+        "seat_number": "14", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 15", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5705", 
+        "seat_number": "15", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 16", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5706", 
+        "seat_number": "16", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 17", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5707", 
+        "seat_number": "17", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 18", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5708", 
+        "seat_number": "18", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 19", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5709", 
+        "seat_number": "19", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 20", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5710", 
+        "seat_number": "20", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 21", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5711", 
+        "seat_number": "21", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 22", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5712", 
+        "seat_number": "22", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 23", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5713", 
+        "seat_number": "23", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 24", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5714", 
+        "seat_number": "24", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 25", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5715", 
+        "seat_number": "25", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 26", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5716", 
+        "seat_number": "26", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 27", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5717", 
+        "seat_number": "27", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 28", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5718", 
+        "seat_number": "28", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 29", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5719", 
+        "seat_number": "29", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 30", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5720", 
+        "seat_number": "30", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 31", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5721", 
+        "seat_number": "31", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 32", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5722", 
+        "seat_number": "32", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 33", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5723", 
+        "seat_number": "33", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 34", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5724", 
+        "seat_number": "34", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 35", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5725", 
+        "seat_number": "35", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 36", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5726", 
+        "seat_number": "36", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 37", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5727", 
+        "seat_number": "37", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 38", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5728", 
+        "seat_number": "38", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 39", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5729", 
+        "seat_number": "39", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 40", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5730", 
+        "seat_number": "40", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 41", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5731", 
+        "seat_number": "41", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 42", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "5732", 
+        "seat_number": "42", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 52", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "7296", 
+        "seat_number": "52", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 48", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "8149", 
+        "seat_number": "48", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-02T21:34:35", 
+        "race_id": "8514", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "AL", 
+        "last_updated": "2014-09-03T00:51:24", 
+        "race_id": "1005", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "AL", 
+        "last_updated": "2014-09-03T00:51:24", 
+        "race_id": "1011", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "AL", 
+        "last_updated": "2014-09-03T00:51:24", 
+        "race_id": "1019", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "24704", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "MN", 
+        "last_updated": "2014-09-05T20:11:52", 
+        "race_id": "25151", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "40041", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "NE", 
+        "last_updated": "2014-09-10T23:03:39", 
+        "race_id": "28594", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47001", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47003", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47007", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47009", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47011", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47013", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47015", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47017", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31202", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31205", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31208", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31211", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31212", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31215", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31216", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31218", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31220", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 12", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31223", 
+        "seat_number": "12", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31226", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 11", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31230", 
+        "seat_number": "11", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31296", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "NJ", 
+        "last_updated": "2014-09-08T22:32:39", 
+        "race_id": "31645", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "49358", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "NV", 
+        "last_updated": "2014-09-10T16:55:32", 
+        "race_id": "3", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43440", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43441", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "2", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "4", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "48008", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "48009", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "48011", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "48013", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "48015", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "48017", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "WA", 
+        "last_updated": "2014-09-09T18:48:11", 
+        "race_id": "48020", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 19", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "11670", 
+        "seat_number": "19", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 21", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10393", 
+        "seat_number": "21", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 22", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10396", 
+        "seat_number": "22", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 23", 
+        "state_postal": "CA", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10398", 
+        "seat_number": "23", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 20", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "10401", 
+        "seat_number": "20", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "11126", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 24", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "11128", 
+        "seat_number": "24", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 25", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "11129", 
+        "seat_number": "25", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 26", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "11586", 
+        "seat_number": "26", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 27", 
+        "state_postal": "FL", 
+        "last_updated": "2014-09-03T13:31:41", 
+        "race_id": "11587", 
+        "seat_number": "27", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "MO", 
+        "last_updated": "2014-09-08T12:57:41", 
+        "race_id": "27025", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39008", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39010", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39011", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39012", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39013", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39014", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39015", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39017", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 11", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39018", 
+        "seat_number": "11", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 12", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39019", 
+        "seat_number": "12", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 13", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39020", 
+        "seat_number": "13", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 14", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39021", 
+        "seat_number": "14", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 15", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39022", 
+        "seat_number": "15", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 16", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39023", 
+        "seat_number": "16", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 17", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39024", 
+        "seat_number": "17", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 18", 
+        "state_postal": "PA", 
+        "last_updated": "2014-09-08T22:16:23", 
+        "race_id": "39025", 
+        "seat_number": "18", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "AR", 
+        "last_updated": "2014-09-05T01:50:22", 
+        "race_id": "5104", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "AR", 
+        "last_updated": "2014-09-05T01:50:22", 
+        "race_id": "5105", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "AR", 
+        "last_updated": "2014-09-05T01:50:22", 
+        "race_id": "5107", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "MS", 
+        "last_updated": "2014-09-05T18:26:00", 
+        "race_id": "25929", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "MS", 
+        "last_updated": "2014-09-05T18:26:00", 
+        "race_id": "26486", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "MS", 
+        "last_updated": "2014-09-05T18:26:00", 
+        "race_id": "26488", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "MS", 
+        "last_updated": "2014-09-05T18:26:00", 
+        "race_id": "26489", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "MS", 
+        "last_updated": "2014-09-05T18:26:00", 
+        "race_id": "26692", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "MD", 
+        "last_updated": "2014-09-08T22:19:02", 
+        "race_id": "21746", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "MD", 
+        "last_updated": "2014-09-08T22:19:02", 
+        "race_id": "21749", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "MD", 
+        "last_updated": "2014-09-08T22:19:02", 
+        "race_id": "21752", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "MD", 
+        "last_updated": "2014-09-08T22:19:02", 
+        "race_id": "21754", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "MD", 
+        "last_updated": "2014-09-08T22:19:02", 
+        "race_id": "21757", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "MD", 
+        "last_updated": "2014-09-08T22:19:02", 
+        "race_id": "21760", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "MD", 
+        "last_updated": "2014-09-08T22:19:02", 
+        "race_id": "21762", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "MD", 
+        "last_updated": "2014-09-08T22:19:02", 
+        "race_id": "21764", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "MD", 
+        "last_updated": "2014-09-08T22:19:02", 
+        "race_id": "22091", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "NV", 
+        "last_updated": "2014-09-10T16:55:32", 
+        "race_id": "29861", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "NV", 
+        "last_updated": "2014-09-10T16:55:32", 
+        "race_id": "30155", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "NV", 
+        "last_updated": "2014-09-10T16:55:32", 
+        "race_id": "30989", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "NV", 
+        "last_updated": "2014-09-10T16:55:32", 
+        "race_id": "30992", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47019", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 11", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47021", 
+        "seat_number": "11", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47917", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "VA", 
+        "last_updated": "2014-09-10T23:43:23", 
+        "race_id": "47942", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "KS", 
+        "last_updated": "2014-09-11T03:29:37", 
+        "race_id": "17007", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "KS", 
+        "last_updated": "2014-09-11T03:29:37", 
+        "race_id": "17009", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "KS", 
+        "last_updated": "2014-09-11T03:29:37", 
+        "race_id": "17010", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "ME", 
+        "last_updated": "2014-09-06T19:30:12", 
+        "race_id": "20643", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "ME", 
+        "last_updated": "2014-09-06T19:30:12", 
+        "race_id": "20644", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "ME", 
+        "last_updated": "2014-09-06T19:30:12", 
+        "race_id": "20645", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "ME", 
+        "last_updated": "2014-09-06T19:30:12", 
+        "race_id": "20646", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "CO", 
+        "last_updated": "2014-09-08T15:34:44", 
+        "race_id": "6614", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "CO", 
+        "last_updated": "2014-09-08T15:34:44", 
+        "race_id": "6615", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "CO", 
+        "last_updated": "2014-09-08T15:34:44", 
+        "race_id": "6616", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "CO", 
+        "last_updated": "2014-09-08T15:34:44", 
+        "race_id": "6617", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "CO", 
+        "last_updated": "2014-09-08T15:34:44", 
+        "race_id": "6618", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "CO", 
+        "last_updated": "2014-09-08T15:34:44", 
+        "race_id": "6619", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "CO", 
+        "last_updated": "2014-09-08T15:34:44", 
+        "race_id": "6954", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "CO", 
+        "last_updated": "2014-09-08T15:34:44", 
+        "race_id": "7168", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "CO", 
+        "last_updated": "2014-09-08T15:34:44", 
+        "race_id": "7191", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "KY", 
+        "last_updated": "2014-09-05T19:00:05", 
+        "race_id": "18622", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "KY", 
+        "last_updated": "2014-09-05T19:00:05", 
+        "race_id": "18624", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "KY", 
+        "last_updated": "2014-09-05T19:00:05", 
+        "race_id": "18783", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "KY", 
+        "last_updated": "2014-09-05T19:00:05", 
+        "race_id": "18835", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35385", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35386", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35387", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35388", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35389", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35390", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35391", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 12", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35419", 
+        "seat_number": "12", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 13", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35753", 
+        "seat_number": "13", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "35984", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 12 Unexp Term", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "36054", 
+        "seat_number": "12", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43003", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43007", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43009", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43011", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43013", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43015", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43017", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43019", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "TN", 
+        "last_updated": "2014-09-06T03:43:38", 
+        "race_id": "43020", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "34969", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "34973", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "34975", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 11", 
+        "state_postal": "NC", 
+        "last_updated": "2014-09-11T01:21:17", 
+        "race_id": "34977", 
+        "seat_number": "11", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "OK", 
+        "last_updated": "2014-09-09T21:37:18", 
+        "race_id": "37030", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "OK", 
+        "last_updated": "2014-09-09T21:37:18", 
+        "race_id": "37034", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "OK", 
+        "last_updated": "2014-09-09T21:37:18", 
+        "race_id": "37036", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "4173", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "24074", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": "2014", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15800", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15989", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15990", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15992", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15993", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15994", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15995", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15996", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15997", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15998", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "15999", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 11", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "16000", 
+        "seat_number": "11", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 12", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "16001", 
+        "seat_number": "12", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 13", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "16002", 
+        "seat_number": "13", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 14", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "16003", 
+        "seat_number": "14", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 15", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "16004", 
+        "seat_number": "15", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 16", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "16005", 
+        "seat_number": "16", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 17", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "16006", 
+        "seat_number": "17", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 18", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "16007", 
+        "seat_number": "18", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "IL", 
+        "last_updated": "2014-09-08T13:02:52", 
+        "race_id": "16310", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36005", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36015", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36019", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36021", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36023", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36025", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36027", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36029", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36031", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36033", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 11", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36035", 
+        "seat_number": "11", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 12", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36037", 
+        "seat_number": "12", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 13", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36039", 
+        "seat_number": "13", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 14", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36041", 
+        "seat_number": "14", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 15", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36043", 
+        "seat_number": "15", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 16", 
+        "state_postal": "OH", 
+        "last_updated": "2014-09-08T14:52:51", 
+        "race_id": "36045", 
+        "seat_number": "16", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "NM", 
+        "last_updated": "2014-09-08T16:29:16", 
+        "race_id": "32005", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "NM", 
+        "last_updated": "2014-09-08T16:29:16", 
+        "race_id": "32052", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "NM", 
+        "last_updated": "2014-09-08T16:29:16", 
+        "race_id": "32238", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "NM", 
+        "last_updated": "2014-09-08T16:29:16", 
+        "race_id": "33279", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "OR", 
+        "last_updated": "2014-09-08T16:27:04", 
+        "race_id": "38019", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "OR", 
+        "last_updated": "2014-09-08T16:27:04", 
+        "race_id": "38529", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "OR", 
+        "last_updated": "2014-09-08T16:27:04", 
+        "race_id": "38530", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "OR", 
+        "last_updated": "2014-09-08T16:27:04", 
+        "race_id": "38531", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "OR", 
+        "last_updated": "2014-09-08T16:27:04", 
+        "race_id": "38532", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "OR", 
+        "last_updated": "2014-09-08T16:27:04", 
+        "race_id": "38952", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "OR", 
+        "last_updated": "2014-09-08T16:27:04", 
+        "race_id": "39031", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "NM", 
+        "last_updated": "2014-09-08T16:29:16", 
+        "race_id": "33948", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23805", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23806", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23807", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23808", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23809", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23810", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23811", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23812", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 9", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23813", 
+        "seat_number": "9", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 10", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23814", 
+        "seat_number": "10", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 11", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23815", 
+        "seat_number": "11", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 12", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23816", 
+        "seat_number": "12", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 13", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23817", 
+        "seat_number": "13", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 14", 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "23818", 
+        "seat_number": "14", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "MI", 
+        "last_updated": "2014-09-10T19:44:23", 
+        "race_id": "24463", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 1", 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "3004", 
+        "seat_number": "1", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "3006", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 3", 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "3008", 
+        "seat_number": "3", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 4", 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "3010", 
+        "seat_number": "4", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 5", 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "3012", 
+        "seat_number": "5", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "3014", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 6", 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "3544", 
+        "seat_number": "6", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 7", 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "3920", 
+        "seat_number": "7", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 8", 
+        "state_postal": "AZ", 
+        "last_updated": "2014-09-08T19:50:50", 
+        "race_id": "3924", 
+        "seat_number": "8", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "H", 
+        "seat_name": "District 2", 
+        "state_postal": "KS", 
+        "last_updated": "2014-09-11T03:29:37", 
+        "race_id": "17355", 
+        "seat_number": "2", 
+        "office_name": "U.S. House", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "G", 
+        "seat_name": null, 
+        "state_postal": "KS", 
+        "last_updated": "2014-09-11T03:29:37", 
+        "race_id": "17559", 
+        "seat_number": null, 
+        "office_name": "Governor", 
+        "race_type": "G"
+    }, 
+    {
+        "office_id": "S", 
+        "seat_name": null, 
+        "state_postal": "KS", 
+        "last_updated": "2014-09-11T03:29:37", 
+        "race_id": "17585", 
+        "seat_number": null, 
+        "office_name": "U.S. Senate", 
+        "race_type": "G"
+    }
+]

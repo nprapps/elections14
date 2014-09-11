@@ -10,7 +10,6 @@ import shutil
 import copytext
 from fabric.api import local, settings, task
 from facebook import GraphAPI
-import slugify
 from twitter import Twitter, OAuth
 
 import app_config
@@ -65,6 +64,7 @@ def update(test=False):
     if test:
         shutil.copyfile('data/fake_update.json', 'data/update.json')
 
+    # NOTE: select candidate by candidate_id AND race_id, since they can appear twice
 
 @task
 def update_featured_social():
