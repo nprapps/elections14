@@ -24,30 +24,69 @@
     <span class="comment-label">Share / Discuss</span>
 </a>
 
-<h2>Example COPY list</h2>
-<dl>
-    {% for row in COPY.example_list %}
-    <dt>{{ row.term }}</dt><dd>{{ row.definition }}</dd>
-    {% endfor %}
-</dl>
+<a id="cast" href="#">Chromecast me!</a>
 
-<h2>JST example</h2>
-<p id="template-example"></p>
-{% endblock %}
-
-
-{% block wide_content %}
-<div class="row">
-    <div class="col-md-12">
-        <h2>{{ COPY.content.footer_title }}</h2>
-        <p>{{ COPY.content.lorem_ipsum }}</p>
-    </div>
-</div>
 {% endblock %}
 
 {% block extra_foot %}
+<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+
 <script type="text/javascript">
     var DATA = {{ data|safe }};
+    var session = null;
+
+    window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
+        if (loaded) {
+            initializeCastApi();
+        } else {
+            console.log(errorInfo);
+        }
+    }
+
+    var initializeCastApi = function() {
+        var sessionRequest = new chrome.cast.SessionRequest('A6BCDD1E');
+        var apiConfig = new chrome.cast.ApiConfig(
+            sessionRequest,
+            sessionListener,
+            receiverListener
+        );
+
+        chrome.cast.initialize(apiConfig, onInitSuccess, onError);
+    };
+
+    function sessionListener(e) {
+        session = e;
+    }
+
+    function receiverListener(e) {
+        if (e === chrome.cast.ReceiverAvailability.AVAILABLE) {
+            console.log('available');
+        } else {
+            console.log('not available');
+        }
+    }
+
+    function onInitSuccess(e) {
+        console.log('init success');
+    }
+
+    function onError(e) {
+        console.log('init error:', e);
+    }
+
+    $('#cast').click(function(e) {
+        e.preventDefault();
+
+        chrome.cast.requestSession(onRequestSessionSuccess, onLaunchError);
+    });
+
+    function onRequestSessionSuccess(e) {
+        session = e;
+    }
+
+    function onLaunchError(e) {
+        console.log('launch error:', e);
+    }
 </script>
 {% endblock %}
 

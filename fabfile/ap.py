@@ -6,7 +6,6 @@ from time import sleep
 
 from fabric.api import task
 import requests
-import slugify
 
 import app_config
 
@@ -166,10 +165,10 @@ def _write():
         })
 
     with open('data/races.json', 'w') as f:
-        json.dump(races, f)
+        json.dump(races, f, indent=4)
 
     with open('data/candidates.json', 'w') as f:
-        json.dump(candidates, f)
+        json.dump(candidates, f, indent=4)
 
 
 @task

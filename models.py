@@ -1,14 +1,11 @@
-import datetime
-import os
 import re
-import time
 
-from flask import json
-from peewee import Model, PostgresqlDatabase, BooleanField, DateField, DateTimeField, ForeignKeyField, IntegerField, TextField, CharField
+from peewee import Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField 
 
 import app_config
 
 secrets = app_config.get_secrets()
+
 db = PostgresqlDatabase(
     app_config.PROJECT_SLUG,
     user=app_config.PROJECT_SLUG,
@@ -17,18 +14,54 @@ db = PostgresqlDatabase(
     port=secrets.get('POSTGRES_PORT', 5432)
 )
 
-class PSQLMODEL(Model):
+class BaseModel(Model):
     """
     Base class for Peewee models. Ensures they all live in the same database.
     """
-    def to_dict(self):
-        return dict(self.__dict__['_data'])
-
     class Meta:
         database = db
 
-class Race(PSQLMODEL):
-    slug = CharField(max_length=255)
+    def save(self, *args, **kwargs):
+        """
+        Slugify before saving!
+        """
+        if not self.slug:
+            self.slugify()
+
+        super(BaseModel, self).save(*args, **kwargs)
+
+    def slugify(self):
+        """
+        Generate a slug for this model.
+        """
+        bits = []
+
+        for field in self.slug_fields:
+            attr = getattr(self, field)
+
+            if attr:
+                attr = attr.lower()
+                attr = re.sub(r"[^\w\s]", '', attr)
+                attr = re.sub(r"\s+", '-', attr)
+                bits.append(attr)
+
+        base_slug = '-'.join(bits)
+        slug = base_slug
+        i = 1
+
+        while Race.select().where(Race.slug == slug).count():
+            i += 1
+            slug = '%s-%i' % (base_slug, i)
+
+        self.slug = slug
+
+class Race(BaseModel):
+    """
+    Race model.
+    """
+    slug_fields = ['state_postal', 'office_name', 'seat_name']
+
+    # data from init
     state_postal = CharField(max_length=255)
     # state_name = CharField(max_length=255)
     office_id = CharField(max_length=255)
@@ -48,6 +81,7 @@ class Race(PSQLMODEL):
     number_in_runoff = CharField(null=True)
 
     # NPR data
+    slug = CharField(max_length=255)
     featured_race = BooleanField(default=False)
     accept_ap_call = BooleanField(default=True)
     poll_closing_time = DateTimeField(null=True)
@@ -60,45 +94,14 @@ class Race(PSQLMODEL):
         return u'%s: %s-%s' % (
             self.office_name,
             self.state_postal,
-            self.district_id
+            self.seat_name
         )
 
-    def save(self, *args, **kwargs):
+
+    def get_winner(self):
         """
-        Slugify before saving!
+        Return the winner of this race, if any. 
         """
-        if not self.slug:
-            self.slugify()
-
-        super(Race, self).save(*args, **kwargs)
-
-    def slugify(self):
-        """
-        Generate a slug for this playground.
-        """
-        bits = []
-
-        for field in ['state_postal', 'office_name', 'seat_name']:
-            attr = getattr(self, field)
-
-            if attr:
-                attr = attr.lower()
-                attr = re.sub(r"[^\w\s]", '', attr)
-                attr = re.sub(r"\s+", '-', attr)
-                bits.append(attr)
-
-        base_slug = '-'.join(bits)
-        slug = base_slug
-        i = 1
-
-        while Race.select().where(Race.slug == slug).count():
-            i += 1
-            slug = '%s-%i' % (base_slug, i)
-
-        self.slug = slug
-
-    @property
-    def winner(self):
         for candidate in Candidate.select().where(Candidate.race == self):
             if self.accept_ap_call == True:
                 if candidate.ap_winner == True:
@@ -116,10 +119,13 @@ class Race(PSQLMODEL):
                         return 'd'
                     else:
                         return 'o'
+
         return None
 
-    @property
-    def called(self):
+    def is_called(self):
+        """
+        Has this race been called?
+        """
         if self.accept_ap_call == True:
             return self.ap_called
 
@@ -129,53 +135,50 @@ class Race(PSQLMODEL):
         return False
 
     def has_incumbents(self):
+        """
+        Check if this Race has an incumbent candidate.
+        """
         for candidate in Candidate.select().where(Candidate.race == self):
             if candidate.incumbent == True:
                 return True
 
         return False
 
-    def total_votes(self):
+    def count_votes(self):
+        """
+        Count the total votes cast for all candidates.
+        """
         count = 0
+
         for c in Candidate.select().where(Candidate.race == self):
             count += c.vote_count
+
         return count
 
-    def percent_reporting(self):
-        try:
-            getcontext().prec = 2
-            percent = Decimal(self.precincts_reporting) / Decimal(self.total_precincts)
-            return round(float(percent) * 100, 0)
-        except InvalidOperation:
-            return 0.0
-
-
-class Candidate(PSQLMODEL):
+class Candidate(BaseModel):
     """
-    Normalizes the candidate data into a candidate model.
+    Candidate model.
     """
-    first_name = CharField(max_length=255)
+    slug_fields = ['first_name', 'last_name', 'candidate_id']
+
+    # from init
+    first_name = CharField(max_length=255, null=True,
+        help_text='May be null for ballot initiatives')
     last_name = CharField(max_length=255)
     party = CharField(max_length=255)
     race = ForeignKeyField(Race)
-    candidate_id = CharField(unique=True)
+    candidate_id = CharField(index=True)
 
     # update data
     incumbent = BooleanField(default=False)
     ballot_order = CharField(null=True)
     vote_count = IntegerField(default=False)
+    ap_winner = BooleanField(default=False)
 
     # NPR data
-    ap_winner = BooleanField(default=False)
+    slug = CharField(max_length=255) 
     npr_winner = BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s %s (%s)' % (self.first_name, self.last_name, self.party)
 
-    def vote_percent(self):
-        try:
-            getcontext().prec = 2
-            percent = Decimal(self.vote_count) / Decimal(self.race.total_votes())
-            return round(float(percent) * 100, 0)
-        except InvalidOperation:
-            return 0.0

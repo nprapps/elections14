@@ -53,3 +53,5 @@ www/comments/index.html
 analytics.json
 analytics.txt
 .ap_cache.json
+www/chromecast
+data/update.json
