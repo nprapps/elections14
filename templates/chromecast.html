@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<h1>CHROMECAST TEST</h1>
+{% endblock %}
+
+{% block extra_foot %}
+<script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+
+<script>
+    window.onload = function() {
+        window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+        window.castReceiverManager.start();
+    }
+</script>
+{% endblock %}

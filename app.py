@@ -32,6 +32,15 @@ def index():
 
     return render_template('index.html', **context)
 
+@app.route('/chromecast/')
+def chromecast():
+    """
+    Custom Chromecast receiver.
+    """
+    context = make_context()
+
+    return render_template('chromecast.html', **context)
+
 @app.route('/comments/')
 def comments():
     """
