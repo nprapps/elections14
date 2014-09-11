@@ -4,6 +4,7 @@ var $commentCount = null;
 
 // Global state
 var firstShareLoad = true;
+var pollingInterval = 30000
 
 /*
  * Run on page load.
@@ -27,6 +28,11 @@ var onDocumentLoad = function(e) {
 
     getCommentCount(showCommentCount);
     getUpdates();
+    pollUpdates();
+}
+
+var pollUpdates = function() {
+    setInterval(getUpdates, pollingInterval)
 }
 
 var getUpdates = function() {
