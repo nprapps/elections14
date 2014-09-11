@@ -4,7 +4,7 @@ var $commentCount = null;
 
 // Global state
 var firstShareLoad = true;
-var pollingInterval = 30000
+var pollingInterval = 30000;
 
 /*
  * Run on page load.
