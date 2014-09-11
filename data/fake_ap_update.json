@@ -1,0 +1,44 @@
+{
+    "electionDate": "2014-11-04",
+    "timestamp": "2014-11-04T13:12:13.520Z",
+    "races": [
+        {
+            "test": "1",
+            "raceID": "1105",
+            "raceTypeID": "G",
+            "officeID": "H",
+            "officeName": "U.S. House",
+            "reportingUnits": [
+                {
+                    "statePostal": "AL",
+                    "stateName": "Alabama",
+                    "level": "state",
+                    "lastUpdated": "2014-11-04T14:12:12.133Z",
+                    "precinctsReporting": 9191,
+                    "precinctsTotal": 9252,
+                    "candidates": [
+                        {
+                            "first": "Burton",
+                            "last": "LeFlore",
+                            "party": "Dem",
+                            "candidateID": "3195",
+                            "polID": "63154",
+                            "voteCount": 464062,
+                            "winner": "X"
+                        },
+                        {
+                            "first": "Bradley",
+                            "last": "Burne",
+                            "party": "GOP",
+                            "candidateID": "1500",
+                            "polID": "52813",
+                            "voteCount": 146745
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "nextrequest":
+    "https://api.ap.org/v2/races/2012-04-24?statePostal=PA&officeID=P&raceTypeID=D,R&minDateTime=2012-04-26T13:12:13.520Z"
+}
