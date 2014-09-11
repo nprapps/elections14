@@ -80,7 +80,7 @@ def update(test=False):
             race_model.save()
 
             for candidate in race['candidates']:
-                # Select candidate by candidate_id AND race_id, since they can appear in multiple races 
+                # Select candidate by candidate_id AND race_id, since they can appear in multiple races
                 candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
                 candidate_model.vote_count = candidate['vote_count']
@@ -96,10 +96,10 @@ def update(test=False):
         update_flat.append(race_model.flatten(update_only=True))
 
     with open('www/live-data/init.json', 'w') as f:
-        json.dump(init_flat, f, indent=4, cls=models.ModelEncoder)
+        json.dump(init_flat, f, cls=models.ModelEncoder)
 
     with open('www/live-data/update.json', 'w') as f:
-        json.dump(update_flat, f, indent=4, cls=models.ModelEncoder)
+        json.dump(update_flat, f, cls=models.ModelEncoder)
 
     print 'Updated %i races' % len(races)
     print 'Updated %i candidates' % sum([len(race['candidates']) for race in races])

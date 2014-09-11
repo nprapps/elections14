@@ -25,30 +25,14 @@ var onDocumentLoad = function(e) {
         clippy.on('aftercopy', onClippyCopy);
     });
 
-    renderExampleTemplate();
     getCommentCount(showCommentCount);
     getUpdates();
 }
 
 var getUpdates = function() {
-    $.getJSON('../live-data/fake.json', function(data) {
+    $.getJSON('../live-data/update.json', function(data) {
         console.log(data);
     });
-}
-
-/*
- * Basic templating example.
- */
-var renderExampleTemplate = function() {
-    var context = $.extend(APP_CONFIG, {
-        'template_path': 'jst/example.html',
-        'config': JSON.stringify(APP_CONFIG, null, 4),
-        'copy': JSON.stringify(COPY, null, 4)
-    });
-
-    var html = JST.example(context);
-
-    $('#template-example').html(html);
 }
 
 /*
