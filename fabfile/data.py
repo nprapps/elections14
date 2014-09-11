@@ -66,8 +66,6 @@ def update(test=False):
     if test:
         shutil.copyfile('data/fake_update.json', 'data/update.json')
 
-    # NOTE: select candidate by candidate_id AND race_id, since they can appear twice
-
     with open('data/update.json') as f:
         races = json.load(f)
 
@@ -82,6 +80,7 @@ def update(test=False):
             race_model.save()
 
             for candidate in race['candidates']:
+                # Select candidate by candidate_id AND race_id, since they can appear in multiple races 
                 candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
                 candidate_model.vote_count = candidate['vote_count']
@@ -89,8 +88,21 @@ def update(test=False):
 
                 candidate_model.save()
 
-        print 'Updated %i races' % len(races)
-        print 'Updated %i candidates' % sum([len(race['candidates']) for race in races])
+    init_flat = []
+    update_flat = []
+
+    for race_model in models.Race.select():
+        init_flat.append(race_model.flatten())
+        update_flat.append(race_model.flatten(update_only=True))
+
+    with open('www/live-data/init.json', 'w') as f:
+        json.dump(init_flat, f, indent=4, cls=models.ModelEncoder)
+
+    with open('www/live-data/update.json', 'w') as f:
+        json.dump(update_flat, f, indent=4, cls=models.ModelEncoder)
+
+    print 'Updated %i races' % len(races)
+    print 'Updated %i candidates' % sum([len(race['candidates']) for race in races])
 
 
 @task

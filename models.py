@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+from datetime import datetime
+import json
 import re
 
 from peewee import Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField 
@@ -13,6 +17,15 @@ db = PostgresqlDatabase(
     host=secrets.get('POSTGRES_HOST', 'localhost'),
     port=secrets.get('POSTGRES_PORT', 5432)
 )
+
+class ModelEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            encoded_object = obj.isoformat() 
+        else:
+            encoded_object = json.JSONEncoder.default(self, obj)
+
+        return encoded_object
 
 class BaseModel(Model):
     """
@@ -97,14 +110,13 @@ class Race(BaseModel):
             self.seat_name
         )
 
-
     def get_winner(self):
         """
         Return the winner of this race, if any. 
         """
         for candidate in Candidate.select().where(Candidate.race == self):
-            if self.accept_ap_call == True:
-                if candidate.ap_winner == True:
+            if self.accept_ap_call:
+                if candidate.ap_winner:
                     if candidate.party == 'GOP':
                         return 'r'
                     elif candidate.party == 'Dem':
@@ -112,7 +124,7 @@ class Race(BaseModel):
                     else:
                         return 'o'
             else:
-                if candidate.npr_winner == True:
+                if candidate.npr_winner:
                     if candidate.party == 'GOP':
                         return 'r'
                     elif candidate.party == 'Dem':
@@ -126,20 +138,28 @@ class Race(BaseModel):
         """
         Has this race been called?
         """
-        if self.accept_ap_call == True:
+        if self.accept_ap_call:
             return self.ap_called
-
         else:
             return self.npr_called
 
         return False
+
+    def get_called_time(self):
+        """
+        Get when this race was called.
+        """
+        if self.accept_ap_call:
+            return self.ap_called_time
+        else:
+            return self.npr_called_time
 
     def has_incumbents(self):
         """
         Check if this Race has an incumbent candidate.
         """
         for candidate in Candidate.select().where(Candidate.race == self):
-            if candidate.incumbent == True:
+            if candidate.incumbent:
                 return True
 
         return False
@@ -155,6 +175,56 @@ class Race(BaseModel):
 
         return count
 
+    def flatten(self, update_only=False):
+        UPDATE_FIELDS = [
+            'id',
+            'precincts_total',
+            'precincts_reporting',
+            'number_in_runoff'
+        ]
+
+        INIT_FIELDS = [
+            'slug',
+            'state_postal',
+            'office_name',
+            'seat_name',
+            'seat_number', 
+            'race_type' ,
+            'last_updated',
+            'office_description',
+            'uncontested',
+            'featured_race',
+            'poll_closing_time',
+        ]
+
+        flat = {
+            'candidates': []
+        }
+
+        for field in UPDATE_FIELDS:
+            flat[field] = getattr(self, field)
+
+        flat['called'] = self.is_called()
+        flat['called_time'] = self.get_called_time()
+
+        if not update_only:
+            for field in INIT_FIELDS:
+                flat[field] = getattr(self, field)
+
+        for candidate in self.candidates:
+            data = candidate.flatten(update_only=update_only)
+
+            if self.accept_ap_call and candidate.ap_winner:
+                data['winner'] = True
+            elif candidate.npr_winner:
+                data['winner'] = True
+            else:
+                data['winner'] = False
+
+            flat['candidates'].append(data)
+
+        return flat
+
 class Candidate(BaseModel):
     """
     Candidate model.
@@ -166,7 +236,7 @@ class Candidate(BaseModel):
         help_text='May be null for ballot initiatives')
     last_name = CharField(max_length=255)
     party = CharField(max_length=255)
-    race = ForeignKeyField(Race)
+    race = ForeignKeyField(Race, related_name='candidates')
     candidate_id = CharField(index=True)
 
     # update data
@@ -181,4 +251,31 @@ class Candidate(BaseModel):
 
     def __unicode__(self):
         return u'%s %s (%s)' % (self.first_name, self.last_name, self.party)
+    
+    def flatten(self, update_only=False):
+        UPDATE_FIELDS = [
+            'id',
+            'vote_count'
+        ]
+
+        INIT_FIELDS = [
+            'slug',
+            'first_name',
+            'last_name',
+            'party',
+            'incumbent',
+            'ballot_order'
+        ]
+
+        flat = {}
+
+        for field in UPDATE_FIELDS:
+            flat[field] = getattr(self, field)
+
+        if not update_only:
+            for field in INIT_FIELDS:
+                flat[field] = getattr(self, field)
+
+        return flat
+
 
