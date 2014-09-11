@@ -35,14 +35,13 @@ class Race(PSQLMODEL):
     office_name = CharField(max_length=255)
     seat_name = CharField(null=True)
     seat_number = IntegerField(null=True)
-    race_id = CharField()
+    race_id = CharField(unique=True)
     race_type = CharField()
     last_updated = DateTimeField()
 
     # data from update
-    total_precincts = IntegerField(null=True)
+    precincts_total = IntegerField(null=True)
     precincts_reporting = IntegerField(null=True)
-    level = CharField(null=True)
     office_description = CharField(null=True)
     uncontested = BooleanField(default=False)
     is_test = BooleanField(default=False)
@@ -159,7 +158,7 @@ class Candidate(PSQLMODEL):
     last_name = CharField(max_length=255)
     party = CharField(max_length=255)
     race = ForeignKeyField(Race)
-    candidate_id = CharField()
+    candidate_id = CharField(unique=True)
 
     # update data
     incumbent = BooleanField(default=False)

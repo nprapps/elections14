@@ -5,6 +5,7 @@ Commands that update or process the application data.
 """
 from datetime import datetime
 import json
+import shutil
 
 import copytext
 from fabric.api import local, settings, task
@@ -56,11 +57,14 @@ def bootstrap():
             )
 
 @task(default=True)
-def update():
+def update(test=False):
     """
     Stub function for updating app-specific data.
     """
     #update_featured_social()
+    if test:
+        shutil.copyfile('data/fake_update.json', 'data/update.json')
+
 
 @task
 def update_featured_social():
