@@ -54,3 +54,4 @@ analytics.json
 analytics.txt
 .ap_cache.json
 www/chromecast
+data/update.json

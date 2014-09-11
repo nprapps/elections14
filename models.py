@@ -173,10 +173,10 @@ class Candidate(BaseModel):
     incumbent = BooleanField(default=False)
     ballot_order = CharField(null=True)
     vote_count = IntegerField(default=False)
+    ap_winner = BooleanField(default=False)
 
     # NPR data
     slug = CharField(max_length=255) 
-    ap_winner = BooleanField(default=False)
     npr_winner = BooleanField(default=False)
 
     def __unicode__(self):

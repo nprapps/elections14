@@ -32,6 +32,7 @@ def bootstrap():
 
     with open('data/races.json') as f:
         races = json.load(f)
+
         for race in races:
             models.Race.create(
                 state_postal = race['state_postal'],
@@ -46,6 +47,7 @@ def bootstrap():
 
     with open('data/candidates.json') as f:
         candidates = json.load(f)
+
         for candidate in candidates:
             models.Candidate.create(
                 first_name = candidate['first_name'],
@@ -65,6 +67,31 @@ def update(test=False):
         shutil.copyfile('data/fake_update.json', 'data/update.json')
 
     # NOTE: select candidate by candidate_id AND race_id, since they can appear twice
+
+    with open('data/update.json') as f:
+        races = json.load(f)
+
+        for race in races:
+            race_model = models.Race.get(models.Race.race_id == race['race_id'])
+
+            race_model.is_test = race['is_test']
+            race_model.precincts_reporting = race['precincts_reporting']
+            race_model.precincts_total = race['precincts_total']
+            race_model.last_updated = race['last_updated']
+
+            race_model.save()
+
+            for candidate in race['candidates']:
+                candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
+
+                candidate_model.vote_count = candidate['vote_count']
+                candidate_model.ap_winner = candidate.get('ap_winner', False)
+
+                candidate_model.save()
+
+        print 'Updated %i races' % len(races)
+        print 'Updated %i candidates' % sum([len(race['candidates']) for race in races])
+
 
 @task
 def update_featured_social():
