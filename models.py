@@ -14,22 +14,54 @@ db = PostgresqlDatabase(
     port=secrets.get('POSTGRES_PORT', 5432)
 )
 
-class PSQLMODEL(Model):
+class BaseModel(Model):
     """
     Base class for Peewee models. Ensures they all live in the same database.
     """
-    def to_dict(self):
-        return dict(self.__dict__['_data'])
-
     class Meta:
         database = db
 
-class Race(PSQLMODEL):
+    def save(self, *args, **kwargs):
+        """
+        Slugify before saving!
+        """
+        if not self.slug:
+            self.slugify()
+
+        super(BaseModel, self).save(*args, **kwargs)
+
+    def slugify(self):
+        """
+        Generate a slug for this model.
+        """
+        bits = []
+
+        for field in self.slug_fields:
+            attr = getattr(self, field)
+
+            if attr:
+                attr = attr.lower()
+                attr = re.sub(r"[^\w\s]", '', attr)
+                attr = re.sub(r"\s+", '-', attr)
+                bits.append(attr)
+
+        base_slug = '-'.join(bits)
+        slug = base_slug
+        i = 1
+
+        while Race.select().where(Race.slug == slug).count():
+            i += 1
+            slug = '%s-%i' % (base_slug, i)
+
+        self.slug = slug
+
+class Race(BaseModel):
     """
     Race model.
     """
+    slug_fields = ['state_postal', 'office_name', 'seat_name']
+
     # data from init
-    slug = CharField(max_length=255)
     state_postal = CharField(max_length=255)
     # state_name = CharField(max_length=255)
     office_id = CharField(max_length=255)
@@ -49,6 +81,7 @@ class Race(PSQLMODEL):
     number_in_runoff = CharField(null=True)
 
     # NPR data
+    slug = CharField(max_length=255)
     featured_race = BooleanField(default=False)
     accept_ap_call = BooleanField(default=True)
     poll_closing_time = DateTimeField(null=True)
@@ -64,39 +97,6 @@ class Race(PSQLMODEL):
             self.district_id
         )
 
-    def save(self, *args, **kwargs):
-        """
-        Slugify before saving!
-        """
-        if not self.slug:
-            self.slugify()
-
-        super(Race, self).save(*args, **kwargs)
-
-    def slugify(self):
-        """
-        Generate a slug for this model.
-        """
-        bits = []
-
-        for field in ['state_postal', 'office_name', 'seat_name']:
-            attr = getattr(self, field)
-
-            if attr:
-                attr = attr.lower()
-                attr = re.sub(r"[^\w\s]", '', attr)
-                attr = re.sub(r"\s+", '-', attr)
-                bits.append(attr)
-
-        base_slug = '-'.join(bits)
-        slug = base_slug
-        i = 1
-
-        while Race.select().where(Race.slug == slug).count():
-            i += 1
-            slug = '%s-%i' % (base_slug, i)
-
-        self.slug = slug
 
     def get_winner(self):
         """
@@ -155,10 +155,12 @@ class Race(PSQLMODEL):
 
         return count
 
-class Candidate(PSQLMODEL):
+class Candidate(BaseModel):
     """
     Candidate model.
     """
+    slug_fields = ['first_name', 'last_name', 'candidate_id']
+
     # from init
     first_name = CharField(max_length=255, null=True,
         help_text='May be null for ballot initiatives')
@@ -173,6 +175,7 @@ class Candidate(PSQLMODEL):
     vote_count = IntegerField(default=False)
 
     # NPR data
+    slug = CharField(max_length=255) 
     ap_winner = BooleanField(default=False)
     npr_winner = BooleanField(default=False)
 
