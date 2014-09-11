@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import json
 import yaml
@@ -27,8 +27,8 @@ def index():
     with open('data/featured.json') as f:
         context['featured'] = json.load(f)
 
-    with open('www/live-data/ap-init.json') as f:
-        context['data'] = yaml.load(f)
+    with open('www/live-data/init.json') as f:
+        context['data'] = f.read()
 
     return render_template('index.html', **context)
 
