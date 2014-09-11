@@ -1,5 +1,6 @@
 import datetime
 import os
+import re
 import time
 
 from flask import json
@@ -29,32 +30,28 @@ class PSQLMODEL(Model):
 class Race(PSQLMODEL):
     slug = CharField(max_length=255)
     state_postal = CharField(max_length=255)
-    state_name = CharField(max_length=255)
-    office_code = CharField(max_length=255)
+    # state_name = CharField(max_length=255)
+    office_id = CharField(max_length=255)
     office_name = CharField(max_length=255)
-    district_id = IntegerField()
-    district_name = CharField(max_length=255, null=True)
-    accept_ap_call = BooleanField(default=True)
-    poll_closing_time = DateTimeField(null=True)
-    # featured_race = BooleanField(default=False)
-    # prediction = CharField(null=True)
-    total_precincts = IntegerField(null=True)
-    is_test = CharField(null=True)
-    election_date = CharField(null=True)
-    county_number = CharField(null=True)
-    fips = CharField(null=True)
-    county_name = CharField(null=True)
-    race_number = CharField(null=True)
-    race_type_id = CharField(null=True)
     seat_name = CharField(null=True)
-    race_type_party = CharField(null=True)
-    race_type = CharField(null=True)
+    seat_number = IntegerField(null=True)
+    race_id = CharField()
+    race_type = CharField()
+    last_updated = DateTimeField()
+
+    # data from update
+    total_precincts = IntegerField(null=True)
+    precincts_reporting = IntegerField(null=True)
+    level = CharField(null=True)
     office_description = CharField(null=True)
-    number_of_winners = CharField(null=True)
+    uncontested = BooleanField(default=False)
+    is_test = BooleanField(default=False)
     number_in_runoff = CharField(null=True)
 
-    # Status
-    precincts_reporting = IntegerField(null=True)
+    # NPR data
+    featured_race = BooleanField(default=False)
+    accept_ap_call = BooleanField(default=True)
+    poll_closing_time = DateTimeField(null=True)
     ap_called = BooleanField(default=False)
     ap_called_time = DateTimeField(null=True)
     npr_called = BooleanField(default=False)
@@ -66,6 +63,40 @@ class Race(PSQLMODEL):
             self.state_postal,
             self.district_id
         )
+
+    def save(self, *args, **kwargs):
+        """
+        Slugify before saving!
+        """
+        if not self.slug:
+            self.slugify()
+
+        super(Race, self).save(*args, **kwargs)
+
+    def slugify(self):
+        """
+        Generate a slug for this playground.
+        """
+        bits = []
+
+        for field in ['state_postal', 'office_name', 'seat_name']:
+            attr = getattr(self, field)
+
+            if attr:
+                attr = attr.lower()
+                attr = re.sub(r"[^\w\s]", '', attr)
+                attr = re.sub(r"\s+", '-', attr)
+                bits.append(attr)
+
+        base_slug = '-'.join(bits)
+        slug = base_slug
+        i = 1
+
+        while Race.select().where(Race.slug == slug).count():
+            i += 1
+            slug = '%s-%i' % (base_slug, i)
+
+        self.slug = slug
 
     @property
     def winner(self):
@@ -126,14 +157,16 @@ class Candidate(PSQLMODEL):
     """
     first_name = CharField(max_length=255)
     last_name = CharField(max_length=255)
-    incumbent = BooleanField(default=False)
     party = CharField(max_length=255)
-    race = ForeignKeyField(Race, null=True)
-    candidate_number = CharField()
-    ballot_order = CharField()
+    race = ForeignKeyField(Race)
+    candidate_id = CharField()
 
-    # Status
+    # update data
+    incumbent = BooleanField(default=False)
+    ballot_order = CharField(null=True)
     vote_count = IntegerField(default=False)
+
+    # NPR data
     ap_winner = BooleanField(default=False)
     npr_winner = BooleanField(default=False)
 

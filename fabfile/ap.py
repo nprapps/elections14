@@ -6,6 +6,7 @@ from time import sleep
 
 from fabric.api import task
 import requests
+import slugify
 
 import app_config
 
@@ -126,17 +127,21 @@ def _write():
     with open(CACHE_FILE) as f:
         cache = json.load(f)
 
-    cleaned_data = []
+    races = []
+    candidates = []
     all_races = cache['init/races']['response']['races']
     all_candidates = cache['init/candidates']['response']['candidates']
 
     for race in all_races:
-        candidates = [{
-            'candidateID': candidate.get('candidateID', ''),
-            'last': candidate.get('last', ''),
-            'party': candidate.get('party', ''),
-            'first': candidate.get('first', ''),
+        race_candidates = [{
+            'candidate_id': candidate.get('candidateID'),
+            'last_name': candidate.get('last'),
+            'party': candidate.get('party'),
+            'first_name': candidate.get('first'),
+            'race_id': race.get('raceID')
         } for candidate in race['candidates']]
+
+        candidates.extend(race_candidates)
 
         # Init/races does not include state data. We need to look up the state by
         # grabbing one of the candidates and matching to the init/candidates data.
@@ -149,18 +154,22 @@ def _write():
                 statePostal = candidate['statePostal']
                 break
 
-        cleaned_data.append({
-            'seatNum': race.get('seatNum', ''),
-            'raceID': race.get('raceID', ''),
-            'officeName': race.get('officeName', ''),
-            'lastUpdated': race.get('lastUpdated', ''),
-            'officeID': race.get('officeID', ''),
-            'seatName': race.get('seatName', ''),
-            'candidates': candidates,
-            'statePostal': statePostal,
+        races.append({
+            'state_postal': statePostal,
+            'office_id': race.get('officeID'),
+            'office_name': race.get('officeName'),
+            'seat_name': race.get('seatName'),
+            'seat_number': race.get('seatNum'),
+            'race_id': race.get('raceID'),
+            'race_type': race.get('raceTypeID'),
+            'last_updated': race.get('lastUpdated'),
         })
-    with open('www/live-data/ap-init.json', 'w') as f:
-        json.dump(cleaned_data, f)
+
+    with open('data/races.json', 'w') as f:
+        json.dump(races, f)
+
+    with open('data/candidates.json', 'w') as f:
+        json.dump(candidates, f)
 
 
 @task
