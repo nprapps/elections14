@@ -32,7 +32,7 @@ var onDocumentLoad = function(e) {
 }
 
 var pollUpdates = function() {
-    setInterval(getUpdates, pollingInterval)
+    setInterval(getUpdates, pollingInterval);
 }
 
 var getUpdates = function() {
