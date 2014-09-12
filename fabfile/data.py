@@ -32,6 +32,7 @@ def bootstrap():
     models.Race.create_table()
     models.Candidate.create_table()
     models.Slide.create_table()
+    models.SlideSequence.create_table()
 
     public_app.auth.User.create_table()
     admin_user = public_app.auth.User(username='admin', email='', admin=True, active=True)

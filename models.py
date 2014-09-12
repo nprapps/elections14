@@ -289,3 +289,17 @@ class Slide(BaseModel):
 
     def __unicode__(self):
         return self.slug
+
+class SlideSequence(Model):
+    """
+    Defines a sequence of slides to play
+    """
+
+    class Meta:
+        database = db
+
+    sequence = IntegerField()
+    slide = ForeignKeyField(Slide)
+
+    def __unicode__(self):
+        return self.slide.__unicode__()
