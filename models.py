@@ -278,4 +278,14 @@ class Candidate(BaseModel):
 
         return flat
 
+class Slide(BaseModel):
+    """
+    Model for a slide in dynamic slide show
+    """
+    slug_fields = ['slug']
 
+    slug = CharField(max_length=255)
+    url = CharField(max_length=255)
+
+    def __unicode__(self):
+        return slug
