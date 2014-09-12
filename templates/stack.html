@@ -27,7 +27,9 @@ var rotateSlide = function(url) {
       $oldSlide.fadeOut(function(){
         $(this).remove();
       });
-      $newSlide.fadeIn();
+      $newSlide.fadeIn(function(){
+        setTimeout(getSlide, 5000);
+      });
       console.log('slides seen so far', slideHistory);
     }
   });
@@ -45,7 +47,6 @@ var getSlide = function() {
 }
 
 getSlide();
-setInterval(getSlide, 5000);
 
 </script>
 {% endblock extra_foot %}

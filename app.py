@@ -78,10 +78,10 @@ def stack_json():
     Serve up pointer to next slide in stack
     """
 
-    if app.stack_number > 4:
-        app.stack_number = 1
+    slides = SlideSequence.select().count()
 
-    #import ipdb; ipdb.set_trace();
+    if app.stack_number > slides:
+        app.stack_number = 1
 
     next_slide = SlideSequence.get(SlideSequence.sequence == app.stack_number)
     app.stack_number += 1
