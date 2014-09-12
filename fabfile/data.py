@@ -14,6 +14,7 @@ from twitter import Twitter, OAuth
 
 import app_config
 import models
+import public_app
 
 @task
 def bootstrap():
@@ -27,8 +28,15 @@ def bootstrap():
         local('echo "CREATE USER %s WITH PASSWORD \'%s\';" | psql' % (app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']))
 
     local('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
+
     models.Race.create_table()
     models.Candidate.create_table()
+    models.Slide.create_table()
+
+    public_app.auth.User.create_table()
+    admin_user = public_app.auth.User(username='admin', email='', admin=True, active=True)
+    admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
+    admin_user.save()
 
     with open('data/races.json') as f:
         races = json.load(f)

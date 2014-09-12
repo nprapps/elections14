@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 import re
 
-from peewee import Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField 
+from peewee import Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField, TextField
 
 import app_config
 
@@ -284,8 +284,8 @@ class Slide(BaseModel):
     """
     slug_fields = ['slug']
 
-    slug = CharField(max_length=255)
-    url = CharField(max_length=255)
+    slug = CharField(max_length=255, primary_key=True)
+    body = TextField()
 
     def __unicode__(self):
-        return slug
+        return self.slug
