@@ -13,9 +13,11 @@
 {% block extra_foot %}
 <script type="text/javascript">
 
-var rotateSlide = function() {
+var slideHistory = [];
+
+var rotateSlide = function(url) {
   $.ajax({
-    url: '/stack_fragment.html',
+    url: url,
     success: function(data) {
       var $oldSlide = $('#stack').find('.slide');
       var $newSlide = $(data);
@@ -26,12 +28,24 @@ var rotateSlide = function() {
         $(this).remove();
       });
       $newSlide.fadeIn();
+      console.log('slides seen so far', slideHistory);
     }
   });
 }
 
-rotateSlide();
-setInterval(rotateSlide, 5000);
+var getSlide = function() {
+  $.ajax({
+    url: '/stack.json',
+    dataType: 'json',
+    success: function(data) {
+      rotateSlide(data.next);
+      slideHistory.push(data.next);
+    }
+  });
+}
+
+getSlide();
+setInterval(getSlide, 5000);
 
 </script>
 {% endblock extra_foot %}

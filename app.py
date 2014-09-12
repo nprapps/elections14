@@ -67,6 +67,13 @@ def test_fragment_stack():
     app.stack_number += 1
     return render_template('_stack_fragment.html', stack_number = app.stack_number)
 
+@app.route('/stack.json')
+def test_stack_json():
+    js = json.dumps({
+        'next': '/stack_fragment.html',
+    })
+    return js, 200, { 'Content-Type': 'application/javascript' }
+
 @app.route('/stack.html')
 def stack():
     return render_template('stack.html', **make_context())
