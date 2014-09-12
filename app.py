@@ -11,7 +11,7 @@ import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter
 import static
 
-from models import Slide
+from models import Slide, SlideSequence
 
 app = Flask(__name__)
 
@@ -77,8 +77,17 @@ def stack_json():
     """
     Serve up pointer to next slide in stack
     """
+
+    if app.stack_number > 2:
+        app.stack_number = 1
+
+    #import ipdb; ipdb.set_trace();
+
+    next_slide = SlideSequence.get(SlideSequence.sequence == app.stack_number)
+    app.stack_number += 1
+
     js = json.dumps({
-        'next': '/stack_fragment.html',
+        'next': '/slides/%s.html' % next_slide.slide.__unicode__(),
     })
     return js, 200, { 'Content-Type': 'application/javascript' }
 
@@ -90,7 +99,7 @@ def stack():
     return render_template('stack.html', **make_context())
 
 
-app.stack_number = 0
+app.stack_number = 1
 app.register_blueprint(static.static)
 
 # Boilerplate
