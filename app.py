@@ -62,6 +62,17 @@ def test_widget():
     """
     return render_template('test_widget.html', **make_context())
 
+@app.route('/stack_fragment.html')
+def test_fragment_stack():
+    app.stack_number += 1
+    return render_template('_stack_fragment.html', stack_number = app.stack_number)
+
+@app.route('/stack.html')
+def stack():
+    return render_template('stack.html', **make_context())
+
+
+app.stack_number = 0
 app.register_blueprint(static.static)
 
 # Boilerplate

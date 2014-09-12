@@ -1,0 +1,37 @@
+{% extends '_base.html' %}
+
+{% block extra_css %}
+{{ CSS.push('less/stack.less') }}
+{% endblock extra_css %}
+
+{% block outer_content %}
+<div id="stack" class="stack">
+
+</div>
+{% endblock outer_content %}
+
+{% block extra_foot %}
+<script type="text/javascript">
+
+var rotateSlide = function() {
+  $.ajax({
+    url: '/stack_fragment.html',
+    success: function(data) {
+      var $oldSlide = $('#stack').find('.slide');
+      var $newSlide = $(data);
+      $oldSlide.fadeOut();
+      $('#stack').append($newSlide);
+
+      $oldSlide.fadeOut(function(){
+        $(this).remove();
+      });
+      $newSlide.fadeIn();
+    }
+  });
+}
+
+rotateSlide();
+setInterval(rotateSlide, 5000);
+
+</script>
+{% endblock extra_foot %}
