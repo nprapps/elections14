@@ -2,11 +2,11 @@
 * Save updated data to DB
 * Write init.json
 * Write update.json
-* Push update.json to S3
+* Push update.json to S3 w/ Last-Modified header
 @ Send push message of changed races to clients
 @ Send push message of called races to clients
 * Rerender index.html page (w/ init.json)
-* Push latest index.html to S3 w/ Last-Modified header
+* Push latest index.html to S3
     (Will this take too long? Could we get behind?)
 
 * Client loads latest index.html
