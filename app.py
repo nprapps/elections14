@@ -78,7 +78,7 @@ def stack_json():
     Serve up pointer to next slide in stack
     """
 
-    if app.stack_number > 2:
+    if app.stack_number > 4:
         app.stack_number = 1
 
     #import ipdb; ipdb.set_trace();
