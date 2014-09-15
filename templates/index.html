@@ -28,6 +28,7 @@
     {% endfor %}
 
 <a id="cast" href="#">Chromecast me!</a>
+<a id="message" href="#">Say hello!</a>
 
 {% endblock %}
 
@@ -35,6 +36,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 
 <script type="text/javascript">
+    var namespace = 'urn:x-cast:com.google.cast.nprviz.elections14';
     var session = null;
 
     window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
@@ -76,6 +78,18 @@
         console.log('init error:', e);
     }
 
+    function onSendError(message) {
+        console.log(message);
+    }
+
+    function onSendSuccess(message) {
+        console.log(message);
+    }
+
+    function sendMessage(message) {
+        session.sendMessage(namespace, message, onSendSuccess, onSendError);
+    }
+
     $('#cast').click(function(e) {
         e.preventDefault();
 
@@ -85,6 +99,12 @@
     function onRequestSessionSuccess(e) {
         session = e;
     }
+
+    $('#message').click(function(e) {
+        e.preventDefault();
+
+        sendMessage('hello!');
+    });
 
     function onLaunchError(e) {
         console.log('launch error:', e);

@@ -2,6 +2,9 @@
 
 {% block content %}
 <h1>CHROMECAST TEST</h1>
+
+<div class="message-handler">
+</div>
 {% endblock %}
 
 {% block extra_foot %}
@@ -9,8 +12,14 @@
 
 <script>
     window.onload = function() {
-        window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
-        window.castReceiverManager.start();
+        var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+        castReceiverManager.start();
+
+        var customMessageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.google.cast.nprviz.elections14');
+
+        customMessageBus.onMessage = function(e) {
+            $('.message-handler').text(e.data);
+        }
     }
 </script>
 {% endblock %}
