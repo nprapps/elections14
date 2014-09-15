@@ -12,6 +12,7 @@ from models import Slide, SlideSequence
 
 import app_config
 from render_utils import make_context
+import static
 
 app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -54,6 +55,20 @@ def index():
     Example view rendering a simple page.
     """
     return render_template('index.html', **make_context(asset_depth=1))
+
+@app.route('/%s/stack/' % app_config.PROJECT_SLUG, methods=['GET'])
+def stack():
+    """
+    Administer a stack of slides.
+    """
+    context = make_context()
+    context.update({
+        'sequence': SlideSequence.select().dicts(),
+        'slides': Slide.select().dicts(),
+    })
+    return render_template('stack_admin.html', **context)
+
+app.register_blueprint(static.static)
 
 # Boilerplate
 if __name__ == '__main__':
