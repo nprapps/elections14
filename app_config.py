@@ -46,7 +46,7 @@ PRODUCTION_S3_BUCKETS = [
 
 STAGING_S3_BUCKETS = [
     {
-        'bucket_name': 'stage-apps.npr.org',
+        'bucket_name': 'stage-elections14',
         'region': 'us-east-1'
     }
 ]
@@ -180,7 +180,7 @@ def configure_targets(deployment_target):
         DEBUG = False
     elif deployment_target == 'staging':
         S3_BUCKETS = STAGING_S3_BUCKETS
-        S3_BASE_URL = 'http://%s/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)
+        S3_BASE_URL = 'http://%s.s3-website-us-east-1.amazonaws.com/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)
         SERVERS = STAGING_SERVERS
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
         DISQUS_SHORTNAME = 'nprviz-test'

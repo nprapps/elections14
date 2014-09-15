@@ -139,7 +139,7 @@ def update():
     """
     text.update()
     assets.sync()
-    data.update()
+    #data.update()
 
 @task
 def deploy(remote='origin'):
