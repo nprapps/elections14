@@ -143,7 +143,9 @@ def get_secrets():
         'AP_API_KEY',
         'POSTGRES_PASSWORD',
         'POSTGRES_HOST',
-        'POSTGRES_PORT'
+        'POSTGRES_PORT',
+        'DYNAMODB_ACCESS_KEY_ID',
+        'DYNAMODB_SECRET_ACCESS_KEY',
     ]
 
     secrets_dict = {}

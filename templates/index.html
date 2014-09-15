@@ -8,9 +8,9 @@
 
 
 <a id="cast" href="#">Chromecast me!</a>
-<a id="message" href="#">Say hello!</a>
 
-<form class="quiz" role="form">
+<form class="register" role="form">
+    <h2>Register your party!</h2>
     <div class="form-group">
         <label for="name">
             What is your username?
@@ -29,25 +29,28 @@
         </label>
     </div>
 
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit Information</button>
+    </div>
+</form>
+<form class="quiz" role="form">
     <div class="question">
-        <p>How many women will be in the U.S. Senate at the end of the night?</p>
-
         <div class="radio">
             <label>
                 <input type="radio" name="answer" value="a">
-                20
+                A: 20
             </label>
         </div>
         <div class="radio">
             <label>
                 <input type="radio" name="answer" value="b">
-                25
+                B: 25
             </label>
         </div>
         <div class="radio">
             <label>
                 <input type="radio" name="answer" value="c">
-                22
+                C: 22
             </label>
         </div>
         <div class="form-group">
@@ -62,6 +65,9 @@
 <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.16.min.js"></script>
 <script type="text/javascript">
+    var DYNAMODB_ACCESS_KEY_ID = '{{ DYNAMODB_ACCESS_KEY_ID }}';
+    var DYNAMODB_SECRET_ACCESS_KEY = '{{ DYNAMODB_SECRET_ACCESS_KEY }}';
+
     var session = null;
 
     window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
@@ -131,20 +137,14 @@
         session = e;
     }
 
-    $('#message').click(function(e) {
-        e.preventDefault();
-
-        sendMessage('hello!');
-    });
-
     function onLaunchError(e) {
         console.log('launch error:', e);
     }
 
-</script>
+    var user = null;
+    var station = null;
 
-<script type="text/javascript">
-    AWS.config.update({accessKeyId: 'AKIAJJB6ZCQL77AYVNPQ', secretAccessKey: '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'});
+    AWS.config.update({accessKeyId: DYNAMODB_ACCESS_KEY_ID, secretAccessKey: DYNAMODB_SECRET_ACCESS_KEY});
 
     AWS.config.region = 'us-west-2';
 
@@ -157,13 +157,23 @@
         });
     }
 
+    $('.register').submit(function(e) {
+        e.preventDefault();
+
+        user = $('#username').val();
+        station = $('#station').val();
+
+        $('.register').fadeOut();
+        $('.quiz').fadeIn();
+
+        sendMessage('showQuestionOne');
+    })
+
     $('.quiz').submit(function(e) {
         e.preventDefault();
 
         var timestamp = new Date().getTime();
         timestamp = timestamp.toString();
-        var user = $('#username').val();
-        var station = $('#station').val();
         var answer = $('input[name="answer"]:checked').val();
 
         var itemParams = {
@@ -189,9 +199,18 @@
             }
         };
         table.putItem(itemParams, function(err) {
-            console.log(err);
+            if (!err){
+                // sendMessage('hightlightAnswer:' + answer)
+            }
+            else {
+                console.log(err);
+            }
         });
     });
+
+</script>
+
+<script type="text/javascript">
 </script>
 {% endblock %}
 
