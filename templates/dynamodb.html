@@ -84,7 +84,7 @@
         var itemParams = {
             Item: {
                 user_id: {
-                    S: guid() 
+                    S: guid()
                 },
                 timestamp: {
                     S: timestamp
@@ -106,7 +106,7 @@
         table.putItem(itemParams, function(err) {
             console.log(err);
         });
-    })
+    });
 </script>
 
 {% endblock %}
