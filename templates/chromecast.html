@@ -13,13 +13,13 @@
 <script>
     window.onload = function() {
         var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
-        castReceiverManager.start();
-
-        var customMessageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.google.cast.nprviz.elections14');
+        var customMessageBus = castReceiverManager.getCastMessageBus(APP_CONFIG.CHROMECAST_NAMESPACE);
 
         customMessageBus.onMessage = function(e) {
             $('.message-handler').text(e.data);
         }
+        
+        castReceiverManager.start();
     }
 </script>
 {% endblock %}
