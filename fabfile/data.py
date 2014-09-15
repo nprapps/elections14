@@ -111,12 +111,9 @@ def update(test=False):
 def get_quiz_answers():
     conn = boto.dynamodb.connect_to_region('us-west-2')
 
-    table = conn.get_table('elections14-game2')
+    table = conn.get_table('elections14-game')
 
-    recent_answers = table.query(
-        hash_key='election-night',
-        range_key_condition=GE('1410799310553')
-    )
+    recent_answers = table.scan({ 'timestamp': GE('1410800598040') })
 
     print recent_answers.count
 
