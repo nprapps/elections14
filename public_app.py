@@ -4,7 +4,7 @@ import argparse
 import datetime
 import logging
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin
@@ -70,6 +70,7 @@ def stack():
 
 @app.route('/%s/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
 def save_stack():
+    from flask import request
     data = request.json
     SlideSequence.delete().execute()
     # rebuild sequence table
