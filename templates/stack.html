@@ -41,7 +41,6 @@ var getSlide = function() {
     dataType: 'json',
     success: function(data) {
       rotateSlide(data.next);
-      slideHistory.push(data.next);
     }
   });
 }
