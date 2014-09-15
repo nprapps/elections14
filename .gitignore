@@ -55,3 +55,4 @@ analytics.txt
 .ap_cache.json
 www/chromecast
 data/update.json
+www/dynamodb
