@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+
+{% block extra_head %}
+  {{ CSS.push('less/admin.less') }}
+  {{ CSS.render('css/admin.min.css') }}
+{% endblock %}
+
+{% block outer_content %}
+<section id="stack-admin">
+    <div class="container">
+        <h1>Stack administrator</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <ol class="sortable js-droppable-and-draggable">
+                    {% for slide in sequence %}
+                    <li data-slide="{{ slide.slide }}">{{ slide.slide }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <div class="col-md-8">
+                <ul class="sortable js-droppable">
+                    {% for slide in slides %}
+                    <li data-slide="{{ slide.slug }}">{{ slide.slug }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_foot %}
+  {{ JS.push('js/lib/jquery-sortable.js') }}
+  {{ JS.push('js/stack.js') }}
+  {{ JS.render('js/admin-app-footer.min.js') }}
+{% endblock %}
