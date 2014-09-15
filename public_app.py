@@ -4,7 +4,7 @@ import argparse
 import datetime
 import logging
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin
@@ -67,6 +67,16 @@ def stack():
         'slides': Slide.select().dicts(),
     })
     return render_template('stack_admin.html', **context)
+
+@app.route('/%s/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
+def save_stack():
+    data = request.json
+    SlideSequence.delete().execute()
+    # rebuild sequence table
+    for i, row in enumerate(data[0]):
+        obj = SlideSequence(slide=row["slide"], sequence = i + 1)
+        obj.save()
+    return "saved sequence"
 
 app.register_blueprint(static.static)
 
