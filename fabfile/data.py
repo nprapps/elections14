@@ -65,6 +65,7 @@ def update(test=False):
     Stub function for updating app-specific data.
     """
     #update_featured_social()
+
     if test:
         shutil.copyfile('data/fake_update.json', 'data/update.json')
 
