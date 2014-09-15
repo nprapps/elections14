@@ -8,7 +8,7 @@ import json
 import shutil
 
 import boto.dynamodb
-from boto.dynamodb.table import Table
+from boto.dynamodb.condition import GE
 import copytext
 from fabric.api import local, settings, task
 from facebook import GraphAPI
@@ -114,14 +114,14 @@ def get_quiz_answers():
     table = conn.get_table('elections14-game2')
 
     recent_answers = table.query(
-        hash_key='1410797492569',
-        range_key='1410797492569'
+        hash_key='election-night',
+        range_key_condition=GE('1410799310553')
     )
 
-    print recent_answers
+    print recent_answers.count
 
-    # for answer in recent_answers:
-    #     print answer
+    for answer in recent_answers:
+        print answer
 
 @task
 def update_featured_social():
