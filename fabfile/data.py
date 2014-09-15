@@ -7,6 +7,8 @@ from datetime import datetime
 import json
 import shutil
 
+import boto.dynamodb
+from boto.dynamodb.table import Table
 import copytext
 from fabric.api import local, settings, task
 from facebook import GraphAPI
@@ -104,6 +106,22 @@ def update(test=False):
     print 'Updated %i races' % len(races)
     print 'Updated %i candidates' % sum([len(race['candidates']) for race in races])
 
+
+@task
+def get_quiz_answers():
+    conn = boto.dynamodb.connect_to_region('us-west-2')
+
+    table = conn.get_table('elections14-game2')
+
+    recent_answers = table.query(
+        hash_key='1410797492569',
+        range_key='1410797492569'
+    )
+
+    print recent_answers
+
+    # for answer in recent_answers:
+    #     print answer
 
 @task
 def update_featured_social():

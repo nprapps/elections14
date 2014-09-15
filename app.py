@@ -41,6 +41,15 @@ def chromecast():
 
     return render_template('chromecast.html', **context)
 
+@app.route('/dynamodb/')
+def dynamodb():
+    """
+    Custom Chromecast receiver.
+    """
+    context = make_context()
+
+    return render_template('dynamodb.html', **context)
+
 @app.route('/comments/')
 def comments():
     """

@@ -1,0 +1,105 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+<h1>DynamoDB</h1>
+
+<div class="display-code"></div>
+    <div class="display-party-name"></div>
+
+    <form class="quiz" role="form">
+        <div class="form-group">
+            <label for="name">
+                What is your username?
+                <input type="text" id="username">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="station">
+                Pick your local station:
+                <select class="form-control" id="station">
+                    <option>WNYC</option>
+                    <option>WBEZ</option>
+                    <option>KPCC</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="question">
+            <p>How many women will be in the U.S. Senate at the end of the night?</p>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" name="answer" value="a">
+                    20
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="answer" value="b">
+                    25
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="answer" value="c">
+                    22
+                </label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Answer Question</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block extra_foot %}
+
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.16.min.js"></script>
+<script type="text/javascript">
+    AWS.config.update({accessKeyId: 'AKIAJJB6ZCQL77AYVNPQ', secretAccessKey: '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'});
+
+    AWS.config.region = 'us-west-2';
+
+    var table = new AWS.DynamoDB({params: {TableName: 'elections14-game2'}});
+
+    $('.quiz').submit(function(e) {
+        e.preventDefault();
+
+        var timestamp = new Date().getTime();
+        timestamp = timestamp.toString();
+        var user = $('#username').val();
+        var station = $('#station').val();
+        var answer = $('input[name="answer"]:checked').val();
+
+        var itemParams = {
+            Item: {
+                id: {
+                    S: 'election-night'
+                },
+                timestamp: {
+                    S: timestamp
+                },
+                question: {
+                    N: '1'
+                },
+                answer: {
+                    S: answer
+                },
+                station: {
+                    S: station
+                },
+                user: {
+                    S: user
+                }
+            }
+        };
+        table.putItem(itemParams, function(err) {
+            console.log(err);
+        });
+    })
+</script>
+
+{% endblock %}
