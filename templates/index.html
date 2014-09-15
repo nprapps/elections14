@@ -60,6 +60,11 @@
 
     function sessionListener(e) {
         session = e;
+        session.addMessageListener(namespace, receiverMessage);
+    }
+
+    function receiverMessage(namespace, message) {
+        console.log('Message from receiver:', message)
     }
 
     function receiverListener(e) {
