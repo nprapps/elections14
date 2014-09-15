@@ -59,54 +59,10 @@
 
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.16.min.js"></script>
 <script type="text/javascript">
-    AWS.config.update({accessKeyId: 'AKIAJJB6ZCQL77AYVNPQ', secretAccessKey: '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'});
-
-    AWS.config.region = 'us-west-2';
-
-    var table = new AWS.DynamoDB({params: {TableName: 'elections14-game'}});
-
-    var guid = function() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-            return v.toString(16);
-        });
-    }
-
-    $('.quiz').submit(function(e) {
-        e.preventDefault();
-
-        var timestamp = new Date().getTime();
-        timestamp = timestamp.toString();
-        var user = $('#username').val();
-        var station = $('#station').val();
-        var answer = $('input[name="answer"]:checked').val();
-
-        var itemParams = {
-            Item: {
-                user_id: {
-                    S: guid()
-                },
-                timestamp: {
-                    S: timestamp
-                },
-                question: {
-                    N: '1'
-                },
-                answer: {
-                    S: answer
-                },
-                station: {
-                    S: station
-                },
-                user: {
-                    S: user
-                }
-            }
-        };
-        table.putItem(itemParams, function(err) {
-            console.log(err);
-        });
-    });
+    var DYNAMODB_ACCESS_KEY_ID = '{{ DYNAMODB_ACCESS_KEY_ID }}';
+    var DYNAMODB_SECRET_ACCESS_KEY = '{{ DYNAMODB_SECRET_ACCESS_KEY }}';
 </script>
+{{ JS.push('js/app.js') }}
+
 
 {% endblock %}

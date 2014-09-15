@@ -35,6 +35,7 @@
 </form>
 <form class="quiz" role="form">
     <div class="question">
+        <p class="question-text">How many women will be in the U.S. Senate at the end of the night?</p>
         <div class="radio">
             <label>
                 <input type="radio" name="answer" value="a">
@@ -67,151 +68,9 @@
 <script type="text/javascript">
     var DYNAMODB_ACCESS_KEY_ID = '{{ DYNAMODB_ACCESS_KEY_ID }}';
     var DYNAMODB_SECRET_ACCESS_KEY = '{{ DYNAMODB_SECRET_ACCESS_KEY }}';
-
-    var session = null;
-
-    window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
-        if (loaded) {
-            initializeCastApi();
-        } else {
-            console.log(errorInfo);
-        }
-    }
-
-    var initializeCastApi = function() {
-        var sessionRequest = new chrome.cast.SessionRequest('A6BCDD1E');
-        var apiConfig = new chrome.cast.ApiConfig(
-            sessionRequest,
-            sessionListener,
-            receiverListener
-        );
-
-        chrome.cast.initialize(apiConfig, onInitSuccess, onError);
-    };
-
-    function sessionListener(e) {
-        session = e;
-        session.addMessageListener(APP_CONFIG.CHROMECAST_NAMESPACE, receiverMessage);
-    }
-
-    function receiverMessage(namespace, message) {
-        console.log('Message from receiver:', message)
-    }
-
-    function receiverListener(e) {
-        if (e === chrome.cast.ReceiverAvailability.AVAILABLE) {
-            console.log('available');
-        } else {
-            console.log('not available');
-        }
-    }
-
-    function onInitSuccess(e) {
-        console.log('init success');
-    }
-
-    function onError(e) {
-        console.log('init error:', e);
-    }
-
-    function onSendError(message) {
-        console.log(message);
-    }
-
-    function onSendSuccess(message) {
-        console.log(message);
-    }
-
-    function sendMessage(message) {
-        console.log(session);
-        session.sendMessage(APP_CONFIG.CHROMECAST_NAMESPACE, message, onSendSuccess, onSendError);
-    }
-
-    $('#cast').click(function(e) {
-        e.preventDefault();
-
-        chrome.cast.requestSession(onRequestSessionSuccess, onLaunchError);
-    });
-
-    function onRequestSessionSuccess(e) {
-        session = e;
-    }
-
-    function onLaunchError(e) {
-        console.log('launch error:', e);
-    }
-
-    var user = null;
-    var station = null;
-
-    AWS.config.update({accessKeyId: DYNAMODB_ACCESS_KEY_ID, secretAccessKey: DYNAMODB_SECRET_ACCESS_KEY});
-
-    AWS.config.region = 'us-west-2';
-
-    var table = new AWS.DynamoDB({params: {TableName: 'elections14-game'}});
-
-    var guid = function() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-            return v.toString(16);
-        });
-    }
-
-    $('.register').submit(function(e) {
-        e.preventDefault();
-
-        user = $('#username').val();
-        station = $('#station').val();
-
-        $('.register').fadeOut();
-        $('.quiz').fadeIn();
-
-        sendMessage('showQuestionOne');
-    })
-
-    $('.quiz').submit(function(e) {
-        e.preventDefault();
-
-        var timestamp = new Date().getTime();
-        timestamp = timestamp.toString();
-        var answer = $('input[name="answer"]:checked').val();
-
-        var itemParams = {
-            Item: {
-                user_id: {
-                    S: guid()
-                },
-                timestamp: {
-                    S: timestamp
-                },
-                question: {
-                    N: '1'
-                },
-                answer: {
-                    S: answer
-                },
-                station: {
-                    S: station
-                },
-                user: {
-                    S: user
-                }
-            }
-        };
-        table.putItem(itemParams, function(err) {
-            if (!err){
-                sendMessage('highlightAnswer:' + answer)
-            }
-            else {
-                console.log(err);
-            }
-        });
-    });
-
 </script>
+<script src="../js/app.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-</script>
 {% endblock %}
 
 {% include '_share_modal.html' %}
