@@ -30,6 +30,11 @@ def index():
     with open('www/live-data/init.json') as f:
         context['races'] = json.load(f)
 
+
+    secrets = app_config.get_secrets()
+    context['DYNAMODB_ACCESS_KEY_ID'] = secrets['DYNAMODB_ACCESS_KEY_ID']
+    context['DYNAMODB_SECRET_ACCESS_KEY'] = secrets['DYNAMODB_SECRET_ACCESS_KEY']
+
     return render_template('index.html', **context)
 
 @app.route('/chromecast/')

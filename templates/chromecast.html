@@ -1,9 +1,27 @@
 {% extends '_base.html' %}
 
 {% block content %}
-<h1>CHROMECAST TEST</h1>
 
-<div class="message-handler">
+<div class="register">
+    <h1>#NPRPARTY</h1>
+
+    <p>Welcome to NPRPARTY, your home for coverage of the 2014 U.S. General Election. Use the Chromecast-connected device to register your party!</p>
+</div>
+
+<div class="quiz">
+    <h2>Question 1</h2>
+    <div class="question">
+        <p>How many women will be in the U.S. Senate at the end of the night?</p>
+        <ol class="answers" type="A">
+            <li class="a">20</li>
+            <li class="b">25</li>
+            <li class="c">22</li>
+        </ol>
+
+        <p>Use your Chromecast-connected device to answer.</p>
+
+        <div class="answered"></div>
+    </div>
 </div>
 {% endblock %}
 
@@ -16,9 +34,32 @@
         var customMessageBus = castReceiverManager.getCastMessageBus(APP_CONFIG.CHROMECAST_NAMESPACE);
 
         customMessageBus.onMessage = function(e) {
-            $('.message-handler').text(e.data);
+            if (e.data == 'showQuestionOne') {
+                showQuestionOne();
+            }
+
+            else if (e.data.startsWith('highlightAnswer')) {
+                highlightAnswer(e.data)
+            }
         }
-        
+
+        if (typeof String.prototype.startsWith != 'function') {
+          String.prototype.startsWith = function (str){
+            return this.slice(0, str.length) == str;
+          };
+        }
+
+        var showQuestionOne = function() {
+            $('.register').fadeOut();
+            $('.quiz').fadeIn();
+        }
+
+        var highlightAnswer = function(message) {
+            var answer = message.substr(message.length - 1)
+
+            $('.answered').text('You answered ' + answer + '.');
+        }
+
         castReceiverManager.start();
     }
 </script>

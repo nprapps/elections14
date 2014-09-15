@@ -6,36 +6,68 @@
 
 {% block content %}
 
-<div class="races">
-    {% for race in races %}
-        <h2>{{ race.slug }}</h2>
-        <div class="precincts">
-            <p><strong>Precincts Reporting:</strong> <span data-field="{{ race.slug }}-precincts_reporting">{{ race.precincts_reporting }}</span></p>
-            <p><strong>Precincts Total:</strong> <span data-field="{{ race.slug }}-precincts_total">{{ race.precincts_total }}</span></p>
-        </div>
-        <table>
-            <tr>
-                <th>Candidate Name</th>
-                <th>Vote Count</th>
-            </tr>
-            {% for candidate in race.candidates %}
-            <tr>
-                <td>{{ candidate.first_name }} {{ candidate.last_name }}</td>
-                <td data-field="{{ candidate.slug }}-vote_count">{{ candidate.vote_count }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    {% endfor %}
 
 <a id="cast" href="#">Chromecast me!</a>
-<a id="message" href="#">Say hello!</a>
+
+<form class="register" role="form">
+    <h2>Register your party!</h2>
+    <div class="form-group">
+        <label for="name">
+            What is your username?
+            <input type="text" id="username">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="station">
+            Pick your local station:
+            <select class="form-control" id="station">
+                <option>WNYC</option>
+                <option>WBEZ</option>
+                <option>KPCC</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit Information</button>
+    </div>
+</form>
+<form class="quiz" role="form">
+    <div class="question">
+        <div class="radio">
+            <label>
+                <input type="radio" name="answer" value="a">
+                A: 20
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="answer" value="b">
+                B: 25
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="answer" value="c">
+                C: 22
+            </label>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Answer Question</button>
+        </div>
+    </div>
+</form>
 
 {% endblock %}
 
 {% block extra_foot %}
 <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
-
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.16.min.js"></script>
 <script type="text/javascript">
+    var DYNAMODB_ACCESS_KEY_ID = '{{ DYNAMODB_ACCESS_KEY_ID }}';
+    var DYNAMODB_SECRET_ACCESS_KEY = '{{ DYNAMODB_SECRET_ACCESS_KEY }}';
+
     var session = null;
 
     window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
@@ -105,15 +137,80 @@
         session = e;
     }
 
-    $('#message').click(function(e) {
-        e.preventDefault();
-
-        sendMessage('hello!');
-    });
-
     function onLaunchError(e) {
         console.log('launch error:', e);
     }
+
+    var user = null;
+    var station = null;
+
+    AWS.config.update({accessKeyId: DYNAMODB_ACCESS_KEY_ID, secretAccessKey: DYNAMODB_SECRET_ACCESS_KEY});
+
+    AWS.config.region = 'us-west-2';
+
+    var table = new AWS.DynamoDB({params: {TableName: 'elections14-game'}});
+
+    var guid = function() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
+    }
+
+    $('.register').submit(function(e) {
+        e.preventDefault();
+
+        user = $('#username').val();
+        station = $('#station').val();
+
+        $('.register').fadeOut();
+        $('.quiz').fadeIn();
+
+        sendMessage('showQuestionOne');
+    })
+
+    $('.quiz').submit(function(e) {
+        e.preventDefault();
+
+        var timestamp = new Date().getTime();
+        timestamp = timestamp.toString();
+        var answer = $('input[name="answer"]:checked').val();
+
+        var itemParams = {
+            Item: {
+                user_id: {
+                    S: guid()
+                },
+                timestamp: {
+                    S: timestamp
+                },
+                question: {
+                    N: '1'
+                },
+                answer: {
+                    S: answer
+                },
+                station: {
+                    S: station
+                },
+                user: {
+                    S: user
+                }
+            }
+        };
+        table.putItem(itemParams, function(err) {
+            if (!err){
+                sendMessage('highlightAnswer:' + answer)
+            }
+            else {
+                console.log(err);
+            }
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
 </script>
 {% endblock %}
 
