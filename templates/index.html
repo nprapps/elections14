@@ -62,8 +62,6 @@
 <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.16.min.js"></script>
 <script type="text/javascript">
-
-    var namespace = 'urn:x-cast:com.google.cast.nprviz.elections14';
     var session = null;
 
     window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
@@ -87,6 +85,11 @@
 
     function sessionListener(e) {
         session = e;
+        session.addMessageListener(APP_CONFIG.CHROMECAST_NAMESPACE, receiverMessage);
+    }
+
+    function receiverMessage(namespace, message) {
+        console.log('Message from receiver:', message)
     }
 
     function receiverListener(e) {
@@ -114,7 +117,8 @@
     }
 
     function sendMessage(message) {
-        session.sendMessage(namespace, message, onSendSuccess, onSendError);
+        console.log(session);
+        session.sendMessage(APP_CONFIG.CHROMECAST_NAMESPACE, message, onSendSuccess, onSendError);
     }
 
     $('#cast').click(function(e) {

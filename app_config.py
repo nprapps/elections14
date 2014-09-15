@@ -130,6 +130,8 @@ GOOGLE_ANALYTICS = {
 DISQUS_API_KEY = 'tIbSzEhGBE9NIptbnQWn4wy1gZ546CsQ2IHHtxJiYAceyyPoAkDkVnQfCifmCaQW'
 DISQUS_UUID = '187d5a38-3768-11e4-8de3-14109fed4b76'
 
+CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14';
+
 """
 Utilities
 """
