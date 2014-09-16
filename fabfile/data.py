@@ -5,12 +5,13 @@ Commands that update or process the application data.
 """
 from datetime import datetime
 import json
+import os
 import shutil
 
 import boto.dynamodb
 from boto.dynamodb.condition import GE
 import copytext
-from fabric.api import env, local, run, settings, task
+from fabric.api import env, local, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
@@ -85,6 +86,9 @@ def update(test=False):
 
     if test:
         shutil.copyfile('data/fake_update.json', 'data/update.json')
+
+    if not os.path.exists('data/update.json'):
+        return
 
     with open('data/update.json') as f:
         races = json.load(f)
