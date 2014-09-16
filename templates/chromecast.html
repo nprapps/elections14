@@ -1,7 +1,10 @@
 {% extends '_base.html' %}
 
-{% block content %}
+{% block extra_css %}
+{{ CSS.render('css/chromecast.min.css') }}
+{% endblock extra_css %}
 
+{% block content %}
 <div class="register">
     <h1>#NPRPARTY</h1>
 
