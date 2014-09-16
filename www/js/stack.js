@@ -2,7 +2,7 @@ var slideHistory = [];
 
 var rotateSlide = function(url) {
   $.ajax({
-    url: APP_CONFIG.S3_BASE_URL + url,
+    url: APP_CONFIG.S3_BASE_URL + '/' + url,
     success: function(data) {
       var $oldSlide = $('#stack').find('.slide');
       var $newSlide = $(data);
