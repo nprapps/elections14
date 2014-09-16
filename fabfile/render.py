@@ -10,7 +10,6 @@ import os
 from fabric.api import local, task
 
 import app
-import models
 
 @task
 def less():
@@ -124,6 +123,8 @@ def render_all():
 
 @task
 def render_slides():
+    import models
+
     slides = models.Slide.select()
     _render_slug_pages(slides, '_slide', '.slides_html', [])
 

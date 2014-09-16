@@ -10,7 +10,6 @@ import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter
 import static
 
-from models import Slide, SlideSequence
 from peewee import fn
 
 app = Flask(__name__)
@@ -82,6 +81,9 @@ def _slide(slug):
     """
     Serve up slide html fragment
     """
+    from models import Slide
+
+
     slide = Slide.get(Slide.slug == slug)
     return render_template('_stack_fragment.html', body=slide.body)
 
@@ -90,6 +92,11 @@ def _stack_json():
     """
     Serve up pointer to next slide in stack
     """
+    from models import SlideSequence
+
+    if not hasattr(app, 'stack_number'):
+        min_sequence = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
+        app.stack_number = min_sequence
 
     max = SlideSequence.select(fn.Max(SlideSequence.sequence)).scalar()
     if app.stack_number > max:
@@ -113,8 +120,6 @@ def stack():
 
     return render_template('stack.html', **context)
 
-min_sequence = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
-app.stack_number = min_sequence
 app.register_blueprint(static.static)
 
 # Boilerplate
