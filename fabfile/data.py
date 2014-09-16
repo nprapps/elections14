@@ -18,6 +18,9 @@ import app_config
 import models
 import public_app
 
+def postgres_command(cmd):
+    local('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT' % (cmd))
+
 @task
 def bootstrap():
     """
@@ -27,8 +30,9 @@ def bootstrap():
 
     if env.settings:
         with settings(warn_only=True):
-            local('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && dropdb %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT' % (app_config.PROJECT_SLUG))
-            local('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && createdb %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT' % (app_config.PROJECT_SLUG))
+            postgres_command('dropdb %s' % app_config.PROJECT_SLUG)
+            postgres_command('psql %s -c "CREATE USER %s WITH PASSWORD \'%s\';"' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']))
+            postgres_command('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
     else:
         with settings(warn_only=True):
             local('dropdb %s' % app_config.PROJECT_SLUG)
