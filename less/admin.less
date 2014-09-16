@@ -1,3 +1,56 @@
+@import "less/lib/bootstrap/bootstrap";
+@import "less/lib/font-awesome/font-awesome";
+
+body {
+	padding-top: 70px + @line-height-computed;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+	z-index: 100;
+	padding: @grid-gutter-width / 2;
+	background: #333;
+
+	h1 {
+		margin: 0;
+		color: #999;
+		font-size: @font-size-base * 2;
+	}
+}
+
+.container-fluid {
+	padding: 0 @grid-gutter-width;
+}
+
+.timeline {
+	.make-md-column(4);
+}
+
+.slides {
+	.make-md-column(8);
+	position: fixed;
+	top: 70px + @line-height-computed;
+	right: 0;
+	padding-right: 0;
+	li {
+		width: 33.33333%;
+		padding: 0 @grid-gutter-width / 2;
+		float: left;
+
+		&.first {
+			margin-left: -15px;
+		}
+
+		&.last {
+			margin-right: -15px;
+		}
+	}
+}
+
 body.dragging, body.dragging * {
   cursor: move !important;
 }
@@ -8,9 +61,29 @@ body.dragging, body.dragging * {
   z-index: 2000;
 }
 
+.sortable li {
+	margin-bottom: @line-height-computed;
+}
+
+.sortable li:after {
+	position: relative;
+	content: ' ';
+	display: block;
+	height: 0;
+	padding-bottom: 56.25%;
+	background: #eee;
+
+}
+
 .sortable li.placeholder {
   position: relative;
 }
+
 .sortable li.placeholder:before {
   position: absolute;
+}
+
+.sortable li.placeholder:after {
+	border: 2px dashed gray;
+	background: #fff;
 }
