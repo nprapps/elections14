@@ -20,8 +20,8 @@ def deploy_json(src, dst):
     """
     Deploy the gzipped stuff to S3.
     """
-    sync = 'aws s3 sync %s/ %s --acl "public-read" ' + exclude_flags + ' --cache-control "max-age=5" --region "%s"'
+    sync = 'aws s3 cp %s %s --acl "public-read" --cache-control "max-age=5" --region "%s"'
 
     for bucket in app_config.S3_BUCKETS:
-        local(sync_gzip % (src, 's3://%s/%s/%s' % (bucket['bucket_name'], app_config.PROJECT_SLUG, dst), bucket['region']))
+        local(sync % (src, 's3://%s/%s/%s' % (bucket['bucket_name'], app_config.PROJECT_SLUG, dst), bucket['region']))
 
