@@ -92,8 +92,8 @@ def _stack_json():
 
     slides = SlideSequence.select().count()
 
-    if app.stack_number > slides:
-        app.stack_number = 1
+    if app.stack_number == slides:
+        app.stack_number = 0
 
     next_slide = SlideSequence.get(SlideSequence.sequence == app.stack_number)
     app.stack_number += 1
