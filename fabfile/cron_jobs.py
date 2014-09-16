@@ -31,8 +31,8 @@ def rotate_slide():
     if stack_number == slides:
         stack_number = 0
 
-    stack_number += 1
     next_slide = SlideSequence.get(SlideSequence.sequence == stack_number)
+    stack_number += 1
 
     with open('www/%s' % app_config.NEXT_SLIDE_FILENAME, 'w') as f:
         json.dump({

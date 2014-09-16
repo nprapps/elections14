@@ -11,6 +11,7 @@ from render_utils import make_context, smarty_filter, urlencode_filter
 import static
 
 from models import Slide, SlideSequence
+from peewee import fn
 
 app = Flask(__name__)
 
@@ -90,10 +91,10 @@ def _stack_json():
     Serve up pointer to next slide in stack
     """
 
-    slides = SlideSequence.select().count()
-
-    if app.stack_number > slides:
-        app.stack_number = 1
+    max = SlideSequence.select(fn.Max(SlideSequence.sequence)).scalar()
+    if app.stack_number > max:
+        min = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
+        app.stack_number = min
 
     next_slide = SlideSequence.get(SlideSequence.sequence == app.stack_number)
     app.stack_number += 1
@@ -112,7 +113,8 @@ def stack():
 
     return render_template('stack.html', **context)
 
-app.stack_number = 1
+min_sequence = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
+app.stack_number = min_sequence
 app.register_blueprint(static.static)
 
 # Boilerplate
