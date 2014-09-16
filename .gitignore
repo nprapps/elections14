@@ -57,3 +57,4 @@ www/chromecast
 data/update.json
 www/dynamodb
 www/game
+.stack_number

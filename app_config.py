@@ -60,7 +60,7 @@ PRODUCTION_SERVERS = ['cron.nprapps.org']
 STAGING_SERVERS = ['50.112.92.131']
 
 # Should code be deployed to the web/cron servers?
-DEPLOY_TO_SERVERS = False
+DEPLOY_TO_SERVERS = True 
 
 SERVER_USER = 'ubuntu'
 SERVER_PYTHON = 'python2.7'
@@ -70,11 +70,11 @@ SERVER_VIRTUALENV_PATH = '%s/virtualenv' % SERVER_PROJECT_PATH
 
 # Should the crontab file be installed on the servers?
 # If True, DEPLOY_TO_SERVERS must also be True
-DEPLOY_CRONTAB = False
+DEPLOY_CRONTAB = True
 
 # Should the service configurations be installed on the servers?
 # If True, DEPLOY_TO_SERVERS must also be True
-DEPLOY_SERVICES = False
+DEPLOY_SERVICES = True
 
 UWSGI_SOCKET_PATH = '/tmp/%s.uwsgi.sock' % PROJECT_FILENAME
 UWSGI_LOG_PATH = '/var/log/%s.uwsgi.log' % PROJECT_FILENAME
@@ -131,7 +131,9 @@ DISQUS_API_KEY = 'tIbSzEhGBE9NIptbnQWn4wy1gZ546CsQ2IHHtxJiYAceyyPoAkDkVnQfCifmCa
 DISQUS_UUID = '187d5a38-3768-11e4-8de3-14109fed4b76'
 
 CHROMECAST_APP_ID = '8408F716'
-CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14';
+CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
+
+NEXT_SLIDE_FILENAME = 'live-data/next-slide.json'
 
 """
 Utilities
