@@ -50,6 +50,8 @@ def bootstrap():
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
 
+    load_slide_fixtures()
+
     with open('data/races.json') as f:
         races = json.load(f)
 
