@@ -16,7 +16,6 @@ from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
 import app_config
-import models
 import public_app
 
 def postgres_command(cmd ):
@@ -39,6 +38,8 @@ def bootstrap():
             local('echo "CREATE USER %s WITH PASSWORD \'%s\';" | psql' % (app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']))
 
         local('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
+
+    import models
 
     models.Race.create_table()
     models.Candidate.create_table()
@@ -84,6 +85,8 @@ def update(test=False):
     """
     Stub function for updating app-specific data.
     """
+    import models
+
     #update_featured_social()
 
     if test:
@@ -287,6 +290,8 @@ def update_featured_social():
 
 @task
 def load_slide_fixtures():
+    import models
+
     path = 'www/assets/slide-mockups/'
     files = [ f for f in os.listdir(path) if os.path.isfile(os.path.join(path,f)) ]
     files.sort()
