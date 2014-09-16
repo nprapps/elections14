@@ -27,8 +27,8 @@ def bootstrap():
 
     if env.settings:
         with settings(warn_only=True):
-            run('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && dropdb %s --username=$electionst14_POSTGRES_USER --host=$MUSICGAME_POSTGRES_HOST --port=$MUSICGAME_POSTGRES_PORT' % (app_config.PROJECT_SLUG))
-            run('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && createdb %s --username=$electionst14_POSTGRES_USER --host=$MUSICGAME_POSTGRES_HOST --port=$MUSICGAME_POSTGRES_PORT' % (app_config.PROJECT_SLUG))
+            local('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && dropdb %s --username=$electionst14_POSTGRES_USER --host=$MUSICGAME_POSTGRES_HOST --port=$MUSICGAME_POSTGRES_PORT' % (app_config.PROJECT_SLUG))
+            local('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && createdb %s --username=$electionst14_POSTGRES_USER --host=$MUSICGAME_POSTGRES_HOST --port=$MUSICGAME_POSTGRES_PORT' % (app_config.PROJECT_SLUG))
     else:
         with settings(warn_only=True):
             local('dropdb %s' % app_config.PROJECT_SLUG)
