@@ -24,19 +24,19 @@ def rotate_slide():
         with open(STACK_NUMBER_FILENAME, 'r') as f:
             stack_number = int(f.read().strip())
     except IOError:
-        stack_number = 0 
+        stack_number = 0
 
     slides = SlideSequence.select().count()
 
     if stack_number == slides:
-        stack_number = 0 
+        stack_number = 0
 
     stack_number += 1
     next_slide = SlideSequence.get(SlideSequence.sequence == stack_number)
 
     with open('www/%s' % app_config.NEXT_SLIDE_FILENAME, 'w') as f:
         json.dump({
-            'next': '/slides/%s.html' % next_slide.slide.__unicode__(),
+            'next': 'slides/%s.html' % next_slide.slide.__unicode__(),
         }, f)
 
     with open(STACK_NUMBER_FILENAME, 'w') as f:
