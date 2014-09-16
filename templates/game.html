@@ -1,7 +1,10 @@
 {% extends '_base.html' %}
 
-{% block content %}
+{% block extra_css %}
+{{ CSS.render('css/game.min.css') }}
+{% endblock extra_css %}
 
+{% block content %}
 <a id="cast" href="#">Chromecast me!</a>
 
 <form class="register" role="form">
@@ -68,4 +71,5 @@
 
 {% block extra_foot_js %}
 {{ JS.push('js/app.js') }}
+{{ JS.render('js/game-footer.min.js') }}
 {% endblock %}
