@@ -282,3 +282,16 @@ def update_featured_social():
 
     with open('data/featured.json', 'w') as f:
         json.dump(output, f)
+
+@task
+def load_slide_fixtures():
+    path = 'www/assets/slide-mockups/'
+    files = [ f for f in os.listdir(path) if os.path.isfile(os.path.join(path,f)) ]
+    files.sort()
+    for i, filename in enumerate(files):
+        body = '<img src="%s"/>' % filename
+        slug = 'test-slide-%s' % filename[0:-4]
+        slide = models.Slide.create(body=body, slug=slug)
+        slide.save()
+        sequence = models.SlideSequence.create(sequence=i, slide=slide)
+        sequence.save()
