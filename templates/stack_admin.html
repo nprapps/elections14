@@ -6,21 +6,26 @@
 {% endblock %}
 
 {% block outer_content %}
+
+<header>
+    <h1>Stack administrator</h1>
+</header>
+
 <section id="stack-admin">
-    <div class="container">
-        <h1>Stack administrator</h1>
+
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
-                <ol class="sortable js-droppable-and-draggable">
+            <div class="timeline">
+                <ol class="sortable list-unstyled js-droppable-and-draggable">
                     {% for slide in sequence %}
                     <li data-slide="{{ slide.slide }}">{{ slide.slide }}</li>
                     {% endfor %}
                 </ol>
             </div>
-            <div class="col-md-8">
-                <ul class="sortable js-droppable">
+            <div class="slides">
+                <ul class="sortable list-unstyled js-droppable">
                     {% for slide in slides %}
-                    <li data-slide="{{ slide.slug }}">{{ slide.slug }}</li>
+                    <li class="{{ loop.cycle('first', 'middle', 'last') }}" data-slide="{{ slide.slug }}">{{ slide.slug }}</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -31,6 +36,6 @@
 
 {% block extra_foot %}
   {{ JS.push('js/lib/jquery-sortable.js') }}
-  {{ JS.push('js/stack.js') }}
+  {{ JS.push('js/stack-admin.js') }}
   {{ JS.render('js/admin-app-footer.min.js') }}
 {% endblock %}
