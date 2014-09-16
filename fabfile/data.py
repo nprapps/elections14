@@ -31,7 +31,7 @@ def bootstrap():
     if env.settings:
         with settings(warn_only=True):
             postgres_command('dropdb', '', app_config.PROJECT_SLUG)
-            postgres_command('psql', '-c "CREATE USER %s WITH PASSWORD \'%s\';"' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']), '')
+            postgres_command('psql', '-c "CREATE USER %s WITH PASSWORD \'%s\';"' % (app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']), '')
             postgres_command('createdb', '-O %s', '%s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
     else:
         with settings(warn_only=True):
