@@ -22,7 +22,7 @@ var rotateSlide = function(url) {
 
 var getSlide = function() {
   $.ajax({
-    url: '/stack.json',
+    url: APP_CONFIG.S3_BASE_URL + '/' + APP_CONFIG.NEXT_SLIDE_FILENAME,
     dataType: 'json',
     success: function(data) {
       rotateSlide(data.next);

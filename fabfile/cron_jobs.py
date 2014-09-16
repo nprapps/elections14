@@ -28,7 +28,7 @@ def rotate_slide():
 
     slides = SlideSequence.select().count()
 
-    if stack_number > slides:
+    if stack_number == slides:
         stack_number = 0 
 
     stack_number += 1

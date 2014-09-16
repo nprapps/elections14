@@ -1,4 +1,6 @@
 {
+    "name": "elections14",
+    "version": "1.0.0",
     "dependencies": {
         "less": "~1.7.0",
         "universal-jst": "~1.0.5"
