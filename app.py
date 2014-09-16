@@ -32,11 +32,6 @@ def index():
     with open('www/live-data/init.json') as f:
         context['races'] = json.load(f)
 
-
-    secrets = app_config.get_secrets()
-    context['DYNAMODB_ACCESS_KEY_ID'] = secrets['DYNAMODB_ACCESS_KEY_ID']
-    context['DYNAMODB_SECRET_ACCESS_KEY'] = secrets['DYNAMODB_SECRET_ACCESS_KEY']
-
     return render_template('index.html', **context)
 
 @app.route('/chromecast/')
@@ -48,14 +43,18 @@ def chromecast():
 
     return render_template('chromecast.html', **context)
 
-@app.route('/dynamodb/')
-def dynamodb():
+@app.route('/game/')
+def game():
     """
     Custom Chromecast receiver.
     """
     context = make_context()
 
-    return render_template('dynamodb.html', **context)
+    secrets = app_config.get_secrets()
+    context['DYNAMODB_ACCESS_KEY_ID'] = secrets['DYNAMODB_ACCESS_KEY_ID']
+    context['DYNAMODB_SECRET_ACCESS_KEY'] = secrets['DYNAMODB_SECRET_ACCESS_KEY']
+
+    return render_template('game.html', **context)
 
 @app.route('/comments/')
 def comments():

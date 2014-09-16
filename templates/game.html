@@ -1,0 +1,71 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+<a id="cast" href="#">Chromecast me!</a>
+
+<form class="register" role="form">
+    <h2>Register your party!</h2>
+    <div class="form-group">
+        <label for="name">
+            What is your username?
+            <input type="text" id="username">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="station">
+            Pick your local station:
+            <select class="form-control" id="station">
+                <option>WNYC</option>
+                <option>WBEZ</option>
+                <option>KPCC</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit Information</button>
+    </div>
+</form>
+<form class="quiz" role="form">
+    <div class="question">
+        <p class="question-text">How many women will be in the U.S. Senate at the end of the night?</p>
+        <div class="radio">
+            <label>
+                <input type="radio" name="answer" value="a">
+                A: 20
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="answer" value="b">
+                B: 25
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="answer" value="c">
+                C: 22
+            </label>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Answer Question</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block extra_foot %}
+<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.16.min.js"></script>
+<script type="text/javascript">
+    var DYNAMODB_ACCESS_KEY_ID = '{{ DYNAMODB_ACCESS_KEY_ID }}';
+    var DYNAMODB_SECRET_ACCESS_KEY = '{{ DYNAMODB_SECRET_ACCESS_KEY }}';
+</script>
+{% endblock %}
+
+{% block extra_foot_js %}
+{{ JS.push('js/app.js') }}
+{% endblock %}
