@@ -26,7 +26,7 @@ app.logger.setLevel(logging.INFO)
 
 # Set up flask peewee db wrapper
 db = Database(app)
-auth = Auth(app, db)
+auth = Auth(app, db, prefix='/%s/accounts' % app_config.PROJECT_SLUG)
 admin = Admin(app, auth, prefix='/%s/admin' % app_config.PROJECT_SLUG)
 admin.register(Slide)
 admin.register(SlideSequence)
