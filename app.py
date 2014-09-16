@@ -103,7 +103,7 @@ def _stack_json():
     })
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-@app.route('/stack')
+@app.route('/stack/')
 def stack():
     """
     Serve shell page for stack

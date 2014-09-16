@@ -58,4 +58,5 @@ data/update.json
 www/dynamodb
 www/game
 www/slides
+www/stack
 .stack_number
