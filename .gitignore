@@ -60,3 +60,5 @@ www/game
 www/slides
 www/stack
 .stack_number
+.slides_gzip
+.slides_html

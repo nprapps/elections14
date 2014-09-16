@@ -10,6 +10,7 @@ import os
 from fabric.api import local, task
 
 import app
+import models
 
 @task
 def less():
@@ -76,7 +77,7 @@ def render_all():
     app_config_js()
     copytext_js()
 
-    compiled_includes = {} 
+    compiled_includes = {}
 
     for rule in app.app.url_map.iter_rules():
         rule_string = rule.rule
@@ -121,3 +122,46 @@ def render_all():
         with open(filename, 'w') as f:
             f.write(content.encode('utf-8'))
 
+@task
+def render_slides():
+    slides = models.Slide.select()
+    _render_slug_pages(slides, '_slide', '.slides_html', [])
+
+def _render_slug_pages(models, view_name, output_path, compiled_includes):
+    """
+    Render pages for SlugModels.
+    """
+    from flask import g, url_for
+
+    for model in models:
+        slug = model.slug
+
+        # Silly fix because url_for require a context
+        with app.app.test_request_context():
+            path = url_for(view_name, slug=slug)
+
+        with app.app.test_request_context(path=path):
+            print 'Rendering %s' % path
+
+            g.compile_includes = True
+            g.compiled_includes = compiled_includes
+
+            view = app.__dict__[view_name]
+            content = view(slug)
+
+            compiled_includes = g.compiled_includes
+
+        path = '%s%s' % (output_path, path)
+
+        # Ensure path exists
+        head = os.path.split(path)[0]
+
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
+
+        with open(path, 'w') as f:
+            f.write(content.encode('utf-8'))
+
+    return compiled_includes

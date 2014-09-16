@@ -99,7 +99,7 @@ def _stack_json():
     app.stack_number += 1
 
     js = json.dumps({
-        'next': '/slides/%s.html' % next_slide.slide.__unicode__(),
+        'next': 'slides/%s.html' % next_slide.slide.__unicode__(),
     })
     return js, 200, { 'Content-Type': 'application/javascript' }
 
