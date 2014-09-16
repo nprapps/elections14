@@ -84,7 +84,7 @@ def _slide(slug):
     slide = Slide.get(Slide.slug == slug)
     return render_template('_stack_fragment.html', body=slide.body)
 
-@app.route('/stack.json')
+@app.route('/live-data/next-slide.json')
 def _stack_json():
     """
     Serve up pointer to next slide in stack
