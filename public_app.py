@@ -49,13 +49,6 @@ from render_utils import urlencode_filter
 app.register_blueprint(static.static, url_prefix='/%s' % app_config.PROJECT_SLUG)
 app.jinja_env.filters['urlencode'] = urlencode_filter
 
-@app.route ('/%s/' % app_config.PROJECT_SLUG, methods=['GET'])
-def index():
-    """
-    Example view rendering a simple page.
-    """
-    return render_template('index.html', **make_context(asset_depth=1))
-
 @app.route('/%s/stack/' % app_config.PROJECT_SLUG, methods=['GET'])
 def stack():
     """
