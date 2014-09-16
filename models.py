@@ -12,7 +12,7 @@ secrets = app_config.get_secrets()
 
 db = PostgresqlDatabase(
     app_config.PROJECT_SLUG,
-    user=app_config.PROJECT_SLUG,
+    user=secrets.get('POSTGRES_USER', None),
     password=secrets.get('POSTGRES_PASSWORD', None),
     host=secrets.get('POSTGRES_HOST', 'localhost'),
     port=secrets.get('POSTGRES_PORT', 5432)
