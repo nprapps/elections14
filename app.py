@@ -77,7 +77,7 @@ def test_widget():
     return render_template('test_widget.html', **make_context())
 
 @app.route('/slides/<slug>.html')
-def slide(slug):
+def _slide(slug):
     """
     Serve up slide html fragment
     """
@@ -85,7 +85,7 @@ def slide(slug):
     return render_template('_stack_fragment.html', body=slide.body)
 
 @app.route('/stack.json')
-def stack_json():
+def _stack_json():
     """
     Serve up pointer to next slide in stack
     """
@@ -109,7 +109,6 @@ def stack():
     Serve shell page for stack
     """
     return render_template('stack.html', **make_context())
-
 
 app.stack_number = 1
 app.register_blueprint(static.static)
