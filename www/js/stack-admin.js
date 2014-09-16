@@ -3,7 +3,7 @@ var group = $(".js-droppable-and-draggable").sortable({
     onDragStart: function (item, container, _super) {
         // Duplicate items of the no drop area
         if(!container.options.drop)
-            item.clone().insertAfter(item)
+            item.clone().insertAfter(item);
         _super(item)
     },
     onDrop: function(item, container, _super) {
@@ -18,12 +18,13 @@ var group = $(".js-droppable-and-draggable").sortable({
         });
         _super(item, container)
     },
-})
+});
+
 $(".js-droppable").sortable({
     group: 'stack',
     drop: false
-})
+});
 
 $(".js-trash").sortable({
     group: 'stack'
-})
+});
