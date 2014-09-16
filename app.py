@@ -108,7 +108,9 @@ def stack():
     """
     Serve shell page for stack
     """
-    return render_template('stack.html', **make_context())
+    context = make_context()
+
+    return render_template('stack.html', **context)
 
 app.stack_number = 1
 app.register_blueprint(static.static)
