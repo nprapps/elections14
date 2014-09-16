@@ -23,3 +23,7 @@ $(".js-droppable").sortable({
     group: 'stack',
     drop: false
 })
+
+$(".js-trash").sortable({
+    group: 'stack'
+})

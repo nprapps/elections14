@@ -87,3 +87,25 @@ body.dragging, body.dragging * {
 	border: 2px dashed gray;
 	background: #fff;
 }
+
+.trash {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: fade(@brand-danger,90%);
+	height: 50px;
+	color: #fff;
+	opacity: 0;
+	text-align: center;
+	.transition(opacity 0.2s ease-in);
+
+	.dragging & {
+		opacity: 1;
+	}
+
+	h2 {
+		margin: 0;
+		line-height: 50px;
+	}
+}
