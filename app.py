@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import json
-import yaml
 
 import argparse
 from flask import Flask, render_template
