@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 import re
 
-from peewee import Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField 
+from peewee import Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField, TextField
 
 import app_config
 
@@ -278,4 +278,28 @@ class Candidate(BaseModel):
 
         return flat
 
+class Slide(BaseModel):
+    """
+    Model for a slide in dynamic slide show
+    """
+    slug_fields = ['slug']
 
+    slug = CharField(max_length=255, primary_key=True)
+    body = TextField()
+
+    def __unicode__(self):
+        return self.slug
+
+class SlideSequence(Model):
+    """
+    Defines a sequence of slides to play
+    """
+
+    class Meta:
+        database = db
+
+    sequence = IntegerField()
+    slide = ForeignKeyField(Slide)
+
+    def __unicode__(self):
+        return self.slide.__unicode__()

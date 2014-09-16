@@ -1,0 +1,51 @@
+{% extends '_base.html' %}
+
+{% block extra_css %}
+{{ CSS.push('less/stack.less') }}
+{% endblock extra_css %}
+
+{% block outer_content %}
+<div id="stack" class="stack">
+
+</div>
+{% endblock outer_content %}
+
+{% block extra_foot %}
+<script type="text/javascript">
+
+var slideHistory = [];
+
+var rotateSlide = function(url) {
+  $.ajax({
+    url: url,
+    success: function(data) {
+      var $oldSlide = $('#stack').find('.slide');
+      var $newSlide = $(data);
+      $oldSlide.fadeOut();
+      $('#stack').append($newSlide);
+
+      $oldSlide.fadeOut(function(){
+        $(this).remove();
+      });
+      $newSlide.fadeIn(function(){
+        setTimeout(getSlide, 5000);
+      });
+      console.log('slides seen so far', slideHistory);
+    }
+  });
+}
+
+var getSlide = function() {
+  $.ajax({
+    url: '/stack.json',
+    dataType: 'json',
+    success: function(data) {
+      rotateSlide(data.next);
+    }
+  });
+}
+
+getSlide();
+
+</script>
+{% endblock extra_foot %}

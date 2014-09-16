@@ -5,17 +5,32 @@ import datetime
 import logging
 
 from flask import Flask, render_template
+from flask_peewee.auth import Auth
+from flask_peewee.db import Database
+from flask_peewee.admin import Admin
+from models import Slide, SlideSequence
 
 import app_config
 from render_utils import make_context
+import static
 
 app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['DATABASE'] = app_config.DATABASE
+app.config['SECRET_KEY'] = 'askfhj3r3j'
 
 file_handler = logging.FileHandler(app_config.APP_LOG_PATH)
 file_handler.setLevel(logging.INFO)
 app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
+
+# Set up flask peewee db wrapper
+db = Database(app)
+auth = Auth(app, db)
+admin = Admin(app, auth)
+admin.register(Slide)
+admin.register(SlideSequence)
+admin.setup()
 
 # Example application views
 @app.route('/%s/test/' % app_config.PROJECT_SLUG, methods=['GET'])
@@ -41,12 +56,37 @@ def index():
     """
     return render_template('index.html', **make_context(asset_depth=1))
 
+@app.route('/%s/stack/' % app_config.PROJECT_SLUG, methods=['GET'])
+def stack():
+    """
+    Administer a stack of slides.
+    """
+    context = make_context()
+    context.update({
+        'sequence': SlideSequence.select().dicts(),
+        'slides': Slide.select().dicts(),
+    })
+    return render_template('stack_admin.html', **context)
+
+@app.route('/%s/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
+def save_stack():
+    from flask import request
+    data = request.json
+    SlideSequence.delete().execute()
+    # rebuild sequence table
+    for i, row in enumerate(data[0]):
+        obj = SlideSequence(slide=row["slide"], sequence = i + 1)
+        obj.save()
+    return "saved sequence"
+
+app.register_blueprint(static.static)
+
 # Boilerplate
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--port')
     args = parser.parse_args()
-    server_port = 8000
+    server_port = 8080
 
     if args.port:
         server_port = int(args.port)

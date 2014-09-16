@@ -141,6 +141,7 @@ def get_secrets():
     A method for accessing our secrets.
     """
     secrets = [
+        'ADMIN_PASSWORD',
         'AP_API_KEY',
         'POSTGRES_PASSWORD',
         'POSTGRES_HOST',
@@ -203,4 +204,18 @@ Run automated configuration
 DEPLOYMENT_TARGET = os.environ.get('DEPLOYMENT_TARGET', None)
 
 configure_targets(DEPLOYMENT_TARGET)
+
+
+"""
+Database
+"""
+secrets = get_secrets()
+DATABASE = {
+    'name': PROJECT_SLUG,
+    'user': PROJECT_SLUG,
+    'engine': 'peewee.PostgresqlDatabase',
+    'password': secrets.get('POSTGRES_PASSWORD', None),
+    'host': secrets.get('POSTGRES_HOST', 'localhost'),
+    'port': secrets.get('POSTGRES_PORT', 5432)
+}
 

@@ -11,6 +11,8 @@ import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter
 import static
 
+from models import Slide, SlideSequence
+
 app = Flask(__name__)
 
 app.jinja_env.filters['smarty'] = smarty_filter
@@ -76,6 +78,42 @@ def test_widget():
     """
     return render_template('test_widget.html', **make_context())
 
+@app.route('/slides/<slug>.html')
+def slide(slug):
+    """
+    Serve up slide html fragment
+    """
+    slide = Slide.get(Slide.slug == slug)
+    return render_template('_stack_fragment.html', body=slide.body)
+
+@app.route('/stack.json')
+def stack_json():
+    """
+    Serve up pointer to next slide in stack
+    """
+
+    slides = SlideSequence.select().count()
+
+    if app.stack_number > slides:
+        app.stack_number = 1
+
+    next_slide = SlideSequence.get(SlideSequence.sequence == app.stack_number)
+    app.stack_number += 1
+
+    js = json.dumps({
+        'next': '/slides/%s.html' % next_slide.slide.__unicode__(),
+    })
+    return js, 200, { 'Content-Type': 'application/javascript' }
+
+@app.route('/stack')
+def stack():
+    """
+    Serve shell page for stack
+    """
+    return render_template('stack.html', **make_context())
+
+
+app.stack_number = 1
 app.register_blueprint(static.static)
 
 # Boilerplate
