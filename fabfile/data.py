@@ -289,7 +289,7 @@ def load_slide_fixtures():
     files = [ f for f in os.listdir(path) if os.path.isfile(os.path.join(path,f)) ]
     files.sort()
     for i, filename in enumerate(files):
-        body = '<img src="%s"/>' % filename
+        body = '<img src="/assets/slide-mockups/%s"/>' % filename
         slug = 'test-slide-%s' % filename[0:-4]
         slide = models.Slide.create(body=body, slug=slug)
         slide.save()
