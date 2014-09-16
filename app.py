@@ -77,40 +77,50 @@ def test_widget():
     """
     return render_template('test_widget.html', **make_context())
 
+@app.route('/slides/question.html')
+def _question():
+    """
+    Serve up question slide html fragment
+    """
+    context = make_context()
+
+    return render_template('_stack_question.html', **context)
+
 @app.route('/slides/<slug>.html')
-def slide(slug):
+def _slide(slug):
     """
     Serve up slide html fragment
     """
+    context = make_context()
+
     slide = Slide.get(Slide.slug == slug)
-    return render_template('_stack_fragment.html', body=slide.body)
+    context['body'] = slide.body
+
+    return render_template('_stack_fragment.html', **context)
 
 @app.route('/stack.json')
 def stack_json():
     """
     Serve up pointer to next slide in stack
     """
-
     slides = SlideSequence.select().count()
 
     if app.stack_number > slides:
         app.stack_number = 1
 
-    next_slide = SlideSequence.get(SlideSequence.sequence == app.stack_number)
+    if app.stack_number == slides:
+        slug = 'question'
+    else:
+        next_slide = SlideSequence.get(SlideSequence.sequence == app.stack_number)
+        slug = unicode(next_slide.slide)
+
     app.stack_number += 1
 
+
     js = json.dumps({
-        'next': '/slides/%s.html' % next_slide.slide.__unicode__(),
+        'next': '/slides/%s.html' % slug,
     })
     return js, 200, { 'Content-Type': 'application/javascript' }
-
-@app.route('/stack')
-def stack():
-    """
-    Serve shell page for stack
-    """
-    return render_template('stack.html', **make_context())
-
 
 app.stack_number = 1
 app.register_blueprint(static.static)

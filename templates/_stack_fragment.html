@@ -1,7 +1,9 @@
 <div class="slide">
-  <div class="slide-inner">
-    <div class="slide-content">
-      {{ body|smarty }}
+    <div class="slide-inner">
+        <div class="slide-content">
+            {% block slide_content %}
+            {{ body|smarty }}
+            {% endblock %}
+        </div>
     </div>
-  </div>
 </div>

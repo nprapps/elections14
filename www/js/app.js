@@ -81,7 +81,7 @@ var getUpdates = function() {
 */
 
 var initializeCastApi = function() {
-    var sessionRequest = new chrome.cast.SessionRequest('A6BCDD1E');
+    var sessionRequest = new chrome.cast.SessionRequest(APP_CONFIG.CHROMECAST_APP_ID);
     var apiConfig = new chrome.cast.ApiConfig(
         sessionRequest,
         sessionListener,

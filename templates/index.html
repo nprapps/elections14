@@ -6,13 +6,24 @@
 {% endblock extra_css %}
 
 {% block outer_content %}
+<a id="cast" href="#">Chromecast me!</a>
 <div id="stack" class="stack">
 
 </div>
 {% endblock outer_content %}
 
+{% block extra_foot %}
+<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.16.min.js"></script>
+<script type="text/javascript">
+    var DYNAMODB_ACCESS_KEY_ID = '{{ DYNAMODB_ACCESS_KEY_ID }}';
+    var DYNAMODB_SECRET_ACCESS_KEY = '{{ DYNAMODB_SECRET_ACCESS_KEY }}';
+</script>
+{% endblock %}
+
 {% block extra_foot_js %}
-  {{ JS.push('js/stack.js') }}
+{{ JS.push('js/app.js') }}
+{{ JS.push('js/stack.js') }}
 {% endblock extra_foot_js %}
 
 {% include '_share_modal.html' %}

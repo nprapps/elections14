@@ -1,0 +1,6 @@
+<p><%= question %></p>
+<ol class="answers" type="A">
+    <% _.each(answers, function(answer) { %>
+        <li class="answer" data-value="<%= answer %>"><%= answer %></li>
+    <% }); %>
+</ol>
