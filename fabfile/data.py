@@ -16,7 +16,7 @@ from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
 import app_config
-import public_app
+import admin_app
 
 def postgres_command(cmd ):
     local('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT' % cmd)
@@ -46,8 +46,8 @@ def bootstrap():
     models.Slide.create_table()
     models.SlideSequence.create_table()
 
-    public_app.auth.User.create_table()
-    admin_user = public_app.auth.User(username='admin', email='', admin=True, active=True)
+    admin_app.auth.User.create_table()
+    admin_user = admin_app.auth.User(username='admin', email='', admin=True, active=True)
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
 
