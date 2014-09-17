@@ -21,18 +21,20 @@
 }
 
 
+
+
 .keyout { padding: 2px; border: 1px solid #CCC; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;  }
 
 h4{margin:0; padding:0;}
 ul {list-style-type: none;padding: 0px; margin: 0px;}
 
 body {
-    font-family:Open Sans Condensed;
+    font-family:'Droid Sans';
     height:600px;
     width:800px;
-    background-color:#111;
+    background-color:white;
     color:#fff;
-    font-weight: bold;
+
     margin-left:auto;
     margin-right:auto;
 }
@@ -40,16 +42,11 @@ body {
 body.studio{height:600px; width:800px; overflow: hidden;}
 
 #banner {
-    background-color:#efefef;
+    background-color:white;
     color:#333;
     height:38px;
     border-bottom:1px solid #999;
     overflow:hidden;
-
-    h1,
-    h2 {
-        font-family:Open Sans Condensed;
-    }
 }
 
 #banner h1 {
@@ -68,7 +65,7 @@ body.studio{height:600px; width:800px; overflow: hidden;}
     padding-left:10px;
     height:50px;
     float:left;
-    color:#333;
+    color:orange;
     list-style:none;
     border-left:1px solid #999;
 }
@@ -98,6 +95,7 @@ li#ind_sec{width:120px;}
     float:left;
     display:block;
     font-weight:700;
+    font-family: 'Inconsolata', sans-serif;
 }
 .column {
     width:400px;float:left;
@@ -118,7 +116,7 @@ li#ind_sec{width:120px;}
     float:left;
 }
 .timezone ul:nth-child(odd){
-	background-color:#333;
+    background-color:#f5f3f3;
 }
 .poll-closing-time{
     position:relative;
@@ -148,8 +146,8 @@ li#ind_sec{width:120px;}
 
 
 .candidate.alt.winner{
-	background-color:#579233;
-	color:#fff;
+    background-color:#579233;
+    color:#fff;
 }
 
 .candidate.incumbent {
@@ -169,319 +167,239 @@ li#ind_sec{width:120px;}
     color:white;
 }
 li.status{
-    overflow: hidden; white-space: nowrap; text-align:right;
+    overflow: hidden; white-space: nowrap; text-align:right; 
 }
 
 
-/* DESKTOP ADDITION */
-
-
-.module-body{
-		width:780px;
-		font-family: Arial,Helvetica,sans-serif;
-		font-size:13px;
-		font-weight: normal;
-		color:#333;
-		padding:10px;
-		display:block;
-		clear:both;
-		background-color: #fff;
-		/*border-top:10px #111 solid;*/
-	}
-	
-	a#npr-logo {
-		background:url('../img/npr_55x38.jpg') no-repeat right top;
-    display:block;
-    height:18px;
-    text-indent:-999px;
-    width:55px;
-}
-	
-	.module-body .header {background-color:#3333; height:50px;}
-	
-	.module-body .desc {border-bottom:1px #999 solid;}
-	
-.module-body .desc h1 {
-	font-family: Georgia, serif;
-	font-size: 2em;
-}
-
-
-
-.module-body .key h1 {
-	font-family: Georgia, serif;
-	font-size:20px;
-	font-weight: normal;
-}
-
-.module-body p{
-	margin-bottom:10px;
-	line-height:16px;
-}
-
-.module-body p.boardType{
-	margin-bottom:20px;
-}
-
-.module-body ul{
-	margin-bottom:10px;
-}
-
-.module-body ul li{
-	line-height:16px;
-	padding-bottom: 5px;
-	color:#666;
-}
-
-.module-body ul li.list-header, .examples h4  {font: bold 1em Arial, Helvetica, sans-serif; text-transform: uppercase; color:#333;}
-
-li strong{font-weight: bold; color:#333}
-
-h1 a {color:#666; font-weight:normal;font-size: 11px; font-family: Arial, Helvetica, sans-serif;}
-h1 a:hover {color:#666;}
-
-ul.rows-general{
-	float:left;	width:345px; border-right: 1px #999 solid; padding-right:15px;
-}
-
-ul.more-markers{position: relative;float:left; width:345px; padding-left:15px;}
-
-.examples {display:block;clear:both;}
-
-.examples p {margin-top:5px;}
-
-.example2, .example3 {border-top:1px dotted #999; padding-top:11px;}
-
-.cntrl{float:right;font-size: 11px; color:#999;}
-
-.credit{color:#999; font-size: 11px; font-style: italic; margin-top:20px; }
-
-
-p.tweetmsg {width:780px; background:#efefef; margin-top: 10px; clear: both; font: bold 18px Arial, Helvetica, sans-serif; color:#333;padding:10px;}
 
 // House
-span.neednum{color:#fff; line-height:20px;padding:0 4px;}
-#banner li span.total { font-size:16px; letter-spacing:-1px;}
-#banner li span.neednum { font-size:16px; letter-spacing:-1px;}
-#banner li#dem_sec span.neednum{background-color:#145c7b;}
-#banner li#gop_sec span.neednum{background-color:#8f0b00;}
-#banner li h2{line-height: 38px;}
-#banner li#dem_sec { width:197px;text-transform: uppercase; }
-#banner li#gop_sec { width:187px; text-transform: uppercase;}
-#banner li#ind_sec{text-transform: uppercase;}
-#banner li#nc_sec { width:155px; text-transform: uppercase; }
-#banner h1 {}
-.district {
-    font-size:16px;
-    float:left;
-    width:37px;
-    display:block;
-    text-indent:2px;
-}
-
-.district span {padding-left:4px;}
-
-#candidates {
-    height:560px;
-    overflow:hidden;
-}
-.candidate {
-    width: 166px;
-    text-indent:4px;
-    line-height:23px;
-    font-size:14px;
-    letter-spacing:0;
-}
-.timezone ul {
-    height:20px;
-    overflow:hidden;
-    width:399px;
-}
-.poll-closing-time-label {
-    height:20px;
-    line-height:20px;
-    font-size:12px;
-}
-
-.first.column {
-    width:399px !important;
-    border-right:2px solid #ccc;
-}
-
-.last.column {
-    width:399px !important;
-}
-
-.status{
-    font-size:12px;
-    width:29px;
-    letter-spacing:-1px;
-    text-align:right;
-    text-indent: 1px;
-    border-right:#666 solid 1px;
-    color:#f9e8af;
-}
-.called.status {
-    background-color:#f2d15f;
-    color:#333;
-    font-size: 11px;
-}
-.vote-percent {
-    font-size:12px;
-    display:block;
-    width:25px;
-    text-align:center;
-}
-.left {
-    float:left;
-}
-.right {
-    float:right;
-}
-li.swap {
-    border:1px solid #fff;
-    height:18px;
-    line-height:18px;
-    width:164px;
-}
-ul.swap .district {
-    background-color:#fff;
-    color:#000;
-    height:20px;
-    line-height:20px;
-}
-
-.candidate-60365,
-.candidate-60423,
-.candidate-61673,
-.candidate-7352,
-.candidate-1507,
-.candidate-5418,
-.candidate-62231
-    {
-    letter-spacing: -1px;
+.results {
+    span.neednum{color:#fff; line-height:20px;padding:0 4px;}
+    #banner li span.total { font-size:16px; letter-spacing:-1px;}
+    #banner li span.neednum { font-size:16px; letter-spacing:-1px;}
+    #banner li#dem_sec span.neednum{background-color:#145c7b;}
+    #banner li#gop_sec span.neednum{background-color:#8f0b00;}
+    #banner li h2{line-height: 38px;}
+    #banner li#dem_sec { width:197px;text-transform: uppercase; }
+    #banner li#gop_sec { width:187px; text-transform: uppercase;}
+    #banner li#ind_sec{text-transform: uppercase;}
+    #banner li#nc_sec { width:155px; text-transform: uppercase; }
+    #banner h1 {}
+    .district {
+        font-size:16px;
+        float:left;
+        width:37px;
+        display:block;
+        text-indent:2px;
     }
 
+    .district span {padding-left:4px;}
 
-
-.candidate-535,
-.candidate-51631,
-.candidate-135,
-.candidate-53539,
-.candidate-61214,
-.candidate-62079,
-.candidate-52562,
-.candidate-62709,
-.candidate-53539,
-.candidate-62158,
-.candidate-51631,
-.candidate-60791, 
-.candidate-1063,
-.candidate-52161,
-.candidate-1581
- {
-    font-size:13px;
-    letter-spacing: -1px;
-}
-
-.candidate-1581,
-.candidate-62231,
-.candidate-1063,
- {
-        font-size: 12px;
+    #candidates {
+        height:560px;
+        overflow:hidden;
+    }
+    .candidate {
+        width: 166px;
+        text-indent:4px;
+        line-height:23px;
+        font-size:14px;
+        letter-spacing:0;
+    }
+    .timezone ul {
+        height:20px;
+        overflow:hidden;
+        width:399px;
+    }
+    .poll-closing-time-label {
+        height:20px;
+        line-height:20px;
+        font-size:12px;
     }
 
-.candidate-55336, 
-.candidate-60930 {
-    font-size: 11px;
+    .first.column {
+        width:399px !important;
+        border-right:2px solid #ccc;
+    }
+
+    .last.column {
+        width:399px !important;
+    }
+
+    .status{
+        font-size:12px;
+        width:29px;
+        letter-spacing:-1px;
+        text-align:right;
+        text-indent: 1px;
+        border-right:#666 solid 1px;
+        color:#f9e8af;
+    }
+    .called.status {
+        background-color:#f2d15f;
+        color:#333;
+        font-size: 11px;
+    }
+    .vote-percent {
+        font-size:12px;
+        display:block;
+        width:25px;
+        text-align:center;
+    }
+    .left {
+        float:left;
+    }
+    .right {
+        float:right;
+    }
+    li.swap {
+        border:1px solid #fff;
+        height:18px;
+        line-height:18px;
+        width:164px;
+    }
+    ul.swap .district {
+        background-color:#fff;
+        color:#000;
+        height:20px;
+        line-height:20px;
+    }
+
+    .candidate-60365,
+    .candidate-60423,
+    .candidate-61673,
+    .candidate-7352,
+    .candidate-1507,
+    .candidate-5418,
+    .candidate-62231
+        {
+        letter-spacing: -1px;
+        }
+
+
+
+    .candidate-535,
+    .candidate-51631,
+    .candidate-135,
+    .candidate-53539,
+    .candidate-61214,
+    .candidate-62079,
+    .candidate-52562,
+    .candidate-62709,
+    .candidate-53539,
+    .candidate-62158,
+    .candidate-51631,
+    .candidate-60791, 
+    .candidate-1063,
+    .candidate-52161,
+    .candidate-1581
+     {
+        font-size:13px;
+        letter-spacing: -1px;
+    }
+
+    .candidate-1581,
+    .candidate-62231,
+    .candidate-1063,
+     {
+            font-size: 12px;
+        }
+
+    .candidate-55336, 
+    .candidate-60930 {
+        font-size: 11px;
+    }
 }
 
 // Senate
-#banner {height:50px;}
-#banner li h2{padding-top:6px; text-transform: uppercase;}
+.senate {
+    #banner {height:50px;}
+    #banner li h2{padding-top:6px; text-transform: uppercase;}
 
-.timezone ul { margin-left:0; }
-.poll-closing-time{ position:relative; }
-.poll-closing-time-label { margin:0; padding:0; width:399px; font-size:14px; height:27px;line-height:27px; }
-.candidate { width:170px; font-size:14px; text-indent: 4px; margin-left: 0px; }
-#candidates ul { width:399px;}
-#candidates ul li { height:27px;line-height:27px; }
-.district{ font-size:12px; width:25px; text-align:center; }
-.status{ width: 33px; font-size:13px; letter-spacing:-1px; text-align:right; color:#f9e8af; border-right:#666 solid 1px;text-indent: 1px; }
-.emptyleft {margin-left: 160px; }
-.called.status {
-    background-color:#f2d15f;
-    color:#333;
-    font-size:12px;
-    letter-spacing: -1px;
+    .timezone ul { margin-left:0; }
+    .poll-closing-time{ position:relative; }
+    .poll-closing-time-label { margin:0; padding:0; width:399px; font-size:14px; height:27px;line-height:27px; }
+    .candidate { width:170px; font-size:14px; text-indent: 4px; margin-left: 0px; }
+    #candidates ul { width:399px;}
+    #candidates ul li { height:27px;line-height:27px; }
+    .district{ font-size:12px; width:25px; text-align:center; }
+    .status{ width: 33px; font-size:13px; letter-spacing:-1px; text-align:right; color:#f9e8af; border-right:#666 solid 1px;text-indent: 1px; }
+    .emptyleft {margin-left: 160px; }
+    .called.status {
+        background-color:#f2d15f;
+        color:#333;
+        font-size:12px;
+        letter-spacing: -1px;
+    }
+    .vote-percent {
+        font-size:13px;
+        float:right;
+        display:block;
+        width:25px;
+        text-align:center;
+    }
+    .left {
+        float:left;
+    }
+    .right {
+        float:right;
+    }
+
+    .first.column {
+        width:399px !important;
+        border-right:2px solid #ccc;
+    }
+    .last.column {
+        width:399px !important;
+    }
+    li.swap {
+        border:1px solid #fff;
+        width:168px;
+        height:25px!important;
+        line-height: 25px!important;
+    }
+    ul.swap .district {
+        background-color:#fff;
+        color:#000;
+    }
+    span.tiny { font-size:12px; text-transform:uppercase; letter-spacing:-2px; }
+    /* Some people have long names. */
+    .candidate-51916, .candidate-49977, .candidate-61823,.candidate-61823 {
+        font-size:14px;
+        letter-spacing: -1px;
+    }
+    /* Super-long names. */
+    .candidate-61671,
+    .candidate-62241,
+    .candidate-57264,
+    .candidate-29135,
+    .candidate-62418,
+    .candidate-1729,
+    .candidate-1704,
+    .candidate-49977,
+    .candidate-1805,
+    .candidate-62244,
+    .candidate-62329,
+    .candidate-1384
+    {
+        font-size:13px;
+        letter-spacing: -1px;
+    }
+
+    .candidate-1445,
+    .candidate-51916 {font-size: 12px;letter-spacing: -1px;}
+
+    /* Really, really long names. */
+    .candidate-40102 {
+        font-size:11px;
+        letter-spacing: -1px;
+    }
+
+    .candidate-62292 {
+        letter-spacing: -2px;
+        font-size: 13px;
+    }
+
+    .candidate-62418 .tiny{font-size: 11px;letter-spacing: -1px;}
 }
-// .vote-percent {
-//     font-size:13px;
-//     float:right;
-//     display:block;
-//     width:25px;
-//     text-align:center;
-// }
-// .left {
-//     float:left;
-// }
-// .right {
-//     float:right;
-// }
 
-// .first.column {
-//     width:399px !important;
-//     border-right:2px solid #ccc;
-// }
-// .last.column {
-//     width:399px !important;
-// }
-// li.swap {
-//     border:1px solid #fff;
-//     width:168px;
-//     height:25px!important;
-//     line-height: 25px!important;
-// }
-// ul.swap .district {
-//     background-color:#fff;
-//     color:#000;
-// }
-// span.tiny { font-size:12px; text-transform:uppercase; letter-spacing:-2px; }
-// /* Some people have long names. */
-// .candidate-51916, .candidate-49977, .candidate-61823,.candidate-61823 {
-//     font-size:14px;
-//     letter-spacing: -1px;
-// }
-// /* Super-long names. */
-// .candidate-61671,
-// .candidate-62241,
-// .candidate-57264,
-// .candidate-29135,
-// .candidate-62418,
-// .candidate-1729,
-// .candidate-1704,
-// .candidate-49977,
-// .candidate-1805,
-// .candidate-62244,
-// .candidate-62329,
-// .candidate-1384
-// {
-//     font-size:13px;
-//     letter-spacing: -1px;
-// }
-
-// .candidate-1445,
-// .candidate-51916 {font-size: 12px;letter-spacing: -1px;}
-
-// /* Really, really long names. */
-// .candidate-40102 {
-//     font-size:11px;
-//     letter-spacing: -1px;
-// }
-
-// .candidate-62292 {
-//     letter-spacing: -2px;
-//     font-size: 13px;
-// }
-
-// .candidate-62418 .tiny{font-size: 11px;letter-spacing: -1px;}

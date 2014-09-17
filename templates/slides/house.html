@@ -1,9 +1,11 @@
-{% extends '_base.html' %}
+{% extends '_base_results.html' %}
 
 {% block extra_css %}
 {{ CSS.push('less/results.less') }}
 {{ CSS.render('css/results.min.css') }}
 {% endblock extra_css %}
+{% block body_class %}house{% endblock body_class %}
+
 
 {% block outer_content %}
 <div id="banner">
