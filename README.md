@@ -65,10 +65,10 @@ The project contains the following folders and important files:
 * ``app_config.py`` -- Global project configuration for scripts, deployment, etc.
 * ``copytext.py`` -- Code supporting the [Editing workflow](#editing-workflow)
 * ``crontab`` -- Cron jobs to be installed as part of the project.
-* ``public_app.py`` -- A [Flask](http://flask.pocoo.org/) app for running server-side code.
+* ``admin_app.py`` -- A [Flask](http://flask.pocoo.org/) app for running server-side, administrative code.
 * ``render_utils.py`` -- Code supporting template rendering.
 * ``requirements.txt`` -- Python requirements.
-* ``static.py`` -- Static Flask views used in both ``app.py`` and ``public_app.py``.
+* ``static.py`` -- Static Flask views used in both ``app.py`` and ``admin_app.py``.
 
 Bootstrap the project
 ---------------------
@@ -291,7 +291,7 @@ fab staging master deploy
 Deploy to EC2
 -------------
 
-You can deploy to EC2 for a variety of reasons. We cover two cases: Running a dynamic web application (`public_app.py`) and executing cron jobs (`crontab`).
+You can deploy to EC2 for a variety of reasons. We cover two cases: Running a dynamic web application (`admin_app.py`) and executing cron jobs (`crontab`).
 
 Servers capable of running the app can be setup using our [servers](https://github.com/nprapps/servers) project.
 
