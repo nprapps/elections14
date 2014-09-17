@@ -55,6 +55,24 @@ def game():
 
     return render_template('game.html', **context)
 
+@app.route('/results/house/')
+def results_house():
+    """
+    House big board
+    """
+    context = make_context()
+
+    return render_template('slides/house.html', **context)
+
+@app.route('/results/senate/')
+def results_senate():
+    """
+    Senate big board
+    """
+    context = make_context()
+
+    return render_template('slides/senate.html', **context)
+
 @app.route('/comments/')
 def comments():
     """
