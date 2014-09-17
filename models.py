@@ -283,13 +283,14 @@ class Slide(BaseModel):
     """
     Model for a slide in dynamic slide show
     """
-    slug_fields = ['slug']
+    slug_fields = ['name']
 
     slug = CharField(max_length=255, primary_key=True)
+    name = CharField(max_length=255)
     body = TextField()
 
     def __unicode__(self):
-        return self.slug
+        return self.name
 
 class SlideSequence(Model):
     """

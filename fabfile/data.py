@@ -297,8 +297,8 @@ def load_slide_fixtures():
     files.sort()
     for i, filename in enumerate(files):
         body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
-        slug = 'test-slide-%s' % filename[0:-4]
-        slide = models.Slide.create(body=body, slug=slug)
+        name = 'Test slide: %s' % filename[0:-4]
+        slide = models.Slide.create(body=body, name=name)
         slide.save()
         sequence = models.SlideSequence.create(sequence=i, slide=slide)
         sequence.save()
