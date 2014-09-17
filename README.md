@@ -80,6 +80,8 @@ brew install node
 curl https://npmjs.org/install.sh | sh
 ```
 
+Before bootstrapping, you will also need to add a new set of credentials to your environment variables. Ask somebody on the team.
+
 Then bootstrap the project:
 
 ```
@@ -87,6 +89,7 @@ cd elections14
 mkvirtualenv --no-site-packages elections14
 pip install -r requirements.txt
 npm install
+fab assets.sync
 fab data.bootstrap
 fab update
 ```
