@@ -11,719 +11,278 @@
 
 
 {% block outer_content %}
-        <div id="banner">
-            <h1>Senate</h1>
-            <ul>
-                <li id="dem_sec">
-                    
-                    <h2>Dem <span class="total">53</span>
-                    <span class="flux">+1</span></h2>
-                    <p><span class="need_num">0</span> needed for majority</p>
-                </li>
-                <li id="gop_sec">
-                    <h2>GOP <span class="total">45</span>
-                    <span class="flux">-2</span></h2>
-                    <p><span class="need_num">6</span> needed for majority</p>
-                </li>
-                <li id="ind_sec">
-                    <h2>Other <span class="total">2</span></h2>
-                </li>
-                <li id="nc_sec">
-                    <h2><span class="total">0</span> <span class="flux">Not called</span></h2>
-                </li>
-            </ul>
-        </div>
-        <div id="candidates"><div class="first column" style="width:50%; float: left;">
-            <div class="timezone">
-                <div class="poll-closing-time">
-                    <div class="poll-closing-time-label">
-                    
-                    7:00
-                    </div>
-                </div>
-                
-                    
-                    <ul class="called swap">
-                    <li class="status in0 called">9:56</li>
-                    <li class="district">IN</li>
-                    
-                        <li class="dem  winner candidate in0 candidate-50000 swap">
-                            Joe&nbsp;Donnelly&nbsp;
-                            <span class="vote-percent right">50</span>
-                        </li>
-                    
-                        <li class="gop   candidate in0 candidate-61671 ">
-                            Richard&nbsp;Mourdock&nbsp;
-                            <span class="vote-percent left">44</span>
-                        </li>
-                    
-                        
+<div class="container">
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status va0 called">11:00</li>
-                    <li class="district">VA</li>
-                    
-                        <li class="dem  winner candidate va0 candidate-51423 ">
-                            Tim&nbsp;Kaine&nbsp;
-                            <span class="vote-percent right">53</span>
-                        </li>
-                    
-                        <li class="gop   candidate va0 candidate-45523 ">
-                            George&nbsp;Allen&nbsp;
-                            <span class="vote-percent left">47</span>
-                        </li>
-                    
-                        
+	<div class="results-header">
+		<h1>Senate</h1>
+		<div class="results-group dem">
+			<h2 class="party">Dem</h2>
+			<p class="total"><span class="percentage">53</span> <span class="change">+1</span></p>
+			<p class="seats-needed" colspan="2">Needs <span class="count">0</span></p>
+		</div>
+		<div class="results-group gop">
+			<h2 class="party">GOP</h2>
+			<p class="total"><span class="percentage">45</span> <span class="change">-2</span></p>
+			<p class="seats-needed" colspan="2">Needs <span class="count">6</td>
+			</tr>
+		</div>
+		<div class="results-group other">
+			<h2 class="party">Other</h2>
+			<p class="total"><span class="percentage">2</span> <span class="change"></span></p>
+		</div>
+		<div class="results-group not-called">
+			<h2>Not Called</h2>
+			<p class="total"><span class="count">0</span></p>
+		</div>
+	</div>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status vt0 called">7:08</li>
-                    <li class="district">VT</li>
-                    
-                        <li class="alt incumbent winner candidate vt0 candidate-1445 ">
-                            Bernie&nbsp;Sanders<span class="tiny">&nbsp;(Ind)</span>&nbsp;
-                            <span class="vote-percent right">71</span>
-                        </li>
-                    
-                        <li class="gop   candidate vt0 candidate-62241 ">
-                            John&nbsp;MacGovern&nbsp;
-                            <span class="vote-percent left">25</span>
-                        </li>
-                    
-                        
+	<div class="results">
 
-                    </ul>
-                
-            </div>
-        
-            <div class="timezone">
-                <div class="poll-closing-time">
-                    <div class="poll-closing-time-label">
-                    
-                    7:30
-                    </div>
-                </div>
-                
-                    
-                    <ul class="called ">
-                    <li class="status oh0 called">9:26</li>
-                    <li class="district">OH</li>
-                    
-                        <li class="dem incumbent winner candidate oh0 candidate-1384 ">
-                            Sherrod&nbsp;Brown&nbsp;
-                            <span class="vote-percent right">50</span>
-                        </li>
-                    
-                        <li class="gop   candidate oh0 candidate-61888 ">
-                            Josh&nbsp;Mandel&nbsp;
-                            <span class="vote-percent left">45</span>
-                        </li>
-                    
-                        
+		<div class="results-col">
+			<h2 class="closing-time-group">7:00</h2>
+			<table class="races">
+				<tr class="race">
+					<td class="closing-time called">9:56</td>
+					<td class="state">IN</td>
+					<td class="candidate dem winner">Joe Donnelly</td>
+					<td class="candidate-total dem winner">50</td>
+					<td class="candidate-total gop">44</td>
+					<td class="candidate gop">Richard Mourdock</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">11:00</td>
+					<td class="state">VA</td>
+					<td class="candidate dem winner">Tim Kaine</td>
+					<td class="candidate-total dem winner">53</td>
+					<td class="candidate-total gop">47</td>
+					<td class="candidate gop">George Allen</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">7:08</td>
+					<td class="state">VT</td>
+					<td class="candidate other winner">Bernie Sanders <span class="party">IND</span></td>
+					<td class="candidate-total other winner">71</td>
+					<td class="candidate-total gop">25</td>
+					<td class="candidate gop">John MacGovern</td>
+				</tr>
+			</table>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status wv0 called">8:40</li>
-                    <li class="district">WV</li>
-                    
-                        <li class="dem incumbent winner candidate wv0 candidate-47450 ">
-                            Joe&nbsp;Manchin&nbsp;
-                            <span class="vote-percent right">61</span>
-                        </li>
-                    
-                        <li class="gop   candidate wv0 candidate-51735 ">
-                            John&nbsp;Raese&nbsp;
-                            <span class="vote-percent left">36</span>
-                        </li>
-                    
-                        
+			<h2 class="closing-time-group">7:00</h2>
+			<table class="races">
+				<tr class="race">
+					<td class="closing-time called">9:56</td>
+					<td class="state">IN</td>
+					<td class="candidate dem winner">Joe Donnelly</td>
+					<td class="candidate-total dem winner">50</td>
+					<td class="candidate-total gop">44</td>
+					<td class="candidate gop">Richard Mourdock</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time called">11:00</td>
+					<td class="state party-change gop">VA</td>
+					<td class="candidate dem">Tim Kaine</td>
+					<td class="candidate-total dem">53</td>
+					<td class="candidate-total gop winner">47</td>
+					<td class="candidate gop winner">George Allen</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">7:08</td>
+					<td class="state">VT</td>
+					<td class="candidate other winner">Bernie Sanders <span class="party">IND</span></td>
+					<td class="candidate-total other winner">71</td>
+					<td class="candidate-total gop">25</td>
+					<td class="candidate gop">John MacGovern</td>
+				</tr>
+			</table>
 
-                    </ul>
-                
-            </div>
-        
-            <div class="timezone">
-                <div class="poll-closing-time">
-                    <div class="poll-closing-time-label">
-                    
-                    8:00
-                    </div>
-                </div>
-                
-                    
-                    <ul class="called ">
-                    <li class="status ct0 called">8:29</li>
-                    <li class="district">CT</li>
-                    
-                        <li class="dem  winner candidate ct0 candidate-52147 ">
-                            Chris&nbsp;Murphy&nbsp;
-                            <span class="vote-percent right">55</span>
-                        </li>
-                    
-                        <li class="gop   candidate ct0 candidate-60572 ">
-                            Linda&nbsp;McMahon&nbsp;
-                            <span class="vote-percent left">43</span>
-                        </li>
-                    
-                        
+			<h2 class="closing-time-group">7:00</h2>
+			<table class="races">
+				<tr class="race">
+					<td class="closing-time">9:56</td>
+					<td class="state">IN</td>
+					<td class="candidate dem winner">Joe Donnelly</td>
+					<td class="candidate-total dem winner">50</td>
+					<td class="candidate-total gop">44</td>
+					<td class="candidate gop">Richard Mourdock</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">11:00</td>
+					<td class="state">VA</td>
+					<td class="candidate dem">Tim Kaine</td>
+					<td class="candidate-total dem">53</td>
+					<td class="candidate-total gop">47</td>
+					<td class="candidate gop">George Allen</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time reporting">48%</td>
+					<td class="state">VT</td>
+					<td class="candidate other incumbent">Bernie Sanders <span class="party">IND</span></td>
+					<td class="candidate-total other">71</td>
+					<td class="candidate-total gop">25</td>
+					<td class="candidate gop">John MacGovern</td>
+				</tr>
+			</table>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status de0 called">8:08</li>
-                    <li class="district">DE</li>
-                    
-                        <li class="dem incumbent winner candidate de0 candidate-1710 ">
-                            Tom&nbsp;Carper&nbsp;
-                            <span class="vote-percent right">66</span>
-                        </li>
-                    
-                        <li class="gop   candidate de0 candidate-62453 ">
-                            Kevin&nbsp;Wade&nbsp;
-                            <span class="vote-percent left">29</span>
-                        </li>
-                    
-                        
+			<h2 class="closing-time-group">7:00</h2>
+			<table class="races">
+				<tr class="race">
+					<td class="closing-time">9:56</td>
+					<td class="state">IN</td>
+					<td class="candidate dem winner">Joe Donnelly</td>
+					<td class="candidate-total dem winner">50</td>
+					<td class="candidate-total gop">44</td>
+					<td class="candidate gop">Richard Mourdock</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">11:00</td>
+					<td class="state party-change dem">VA</td>
+					<td class="candidate dem winner">Tim Kaine</td>
+					<td class="candidate-total dem winner">53</td>
+					<td class="candidate-total gop">47</td>
+					<td class="candidate gop">George Allen</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">7:08</td>
+					<td class="state">VT</td>
+					<td class="candidate other">Bernie Sanders <span class="party">IND</span></td>
+					<td class="candidate-total other">71</td>
+					<td class="candidate-total gop">25</td>
+					<td class="candidate gop">John MacGovern</td>
+				</tr>
+			</table>
+		</div>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status fl0 called">8:02</li>
-                    <li class="district">FL</li>
-                    
-                        <li class="dem incumbent winner candidate fl0 candidate-1711 ">
-                            Bill&nbsp;Nelson&nbsp;
-                            <span class="vote-percent right">55</span>
-                        </li>
-                    
-                        <li class="gop   candidate fl0 candidate-10998 ">
-                            Connie&nbsp;Mack&nbsp;
-                            <span class="vote-percent left">42</span>
-                        </li>
-                    
-                        
+		<div class="results-col">
+			<h2 class="closing-time-group">7:00</h2>
+			<table class="races">
+				<tr class="race">
+					<td class="closing-time">9:56</td>
+					<td class="state">IN</td>
+					<td class="candidate dem">Joe Donnelly</td>
+					<td class="candidate-total dem">50</td>
+					<td class="candidate-total gop winner">44</td>
+					<td class="candidate gop winner">Richard Mourdock</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">11:00</td>
+					<td class="state">VA</td>
+					<td class="candidate dem winner">Tim Kaine</td>
+					<td class="candidate-total dem winner">53</td>
+					<td class="candidate-total gop">47</td>
+					<td class="candidate gop">George Allen</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">7:08</td>
+					<td class="state">VT</td>
+					<td class="candidate other winner">Bernie Sanders <span class="party">IND</span></td>
+					<td class="candidate-total other winner">71</td>
+					<td class="candidate-total gop">25</td>
+					<td class="candidate gop">John MacGovern</td>
+				</tr>
+			</table>
 
-                    </ul>
-                
-                    
-                    <ul class="called swap">
-                    <li class="status ma0 called">10:08</li>
-                    <li class="district">MA</li>
-                    
-                        <li class="dem  winner candidate ma0 candidate-62244 swap">
-                            Elizabeth&nbsp;Warren&nbsp;
-                            <span class="vote-percent right">54</span>
-                        </li>
-                    
-                        <li class="gop incumbent  candidate ma0 candidate-60120 ">
-                            Scott&nbsp;Brown&nbsp;
-                            <span class="vote-percent left">46</span>
-                        </li>
-                    
-                        
+			<h2 class="closing-time-group">7:00</h2>
+			<table class="races">
+				<tr class="race">
+					<td class="closing-time">9:56</td>
+					<td class="state">IN</td>
+					<td class="candidate dem winner">Joe Donnelly</td>
+					<td class="candidate-total dem winner">50</td>
+					<td class="candidate-total gop">44</td>
+					<td class="candidate gop">Richard Mourdock</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">11:00</td>
+					<td class="state">VA</td>
+					<td class="candidate dem">Tim Kaine</td>
+					<td class="candidate-total dem">53</td>
+					<td class="candidate-total gop">47</td>
+					<td class="candidate gop incumbent">George Allen</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">7:08</td>
+					<td class="state">VT</td>
+					<td class="candidate other winner">Bernie Sanders <span class="party">IND</span></td>
+					<td class="candidate-total other winner">71</td>
+					<td class="candidate-total gop">25</td>
+					<td class="candidate gop">John MacGovern</td>
+				</tr>
+			</table>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status md0 called">8:08</li>
-                    <li class="district">MD</li>
-                    
-                        <li class="dem incumbent winner candidate md0 candidate-1057 ">
-                            Ben&nbsp;Cardin&nbsp;
-                            <span class="vote-percent right">55</span>
-                        </li>
-                    
-                        <li class="gop   candidate md0 candidate-61588 ">
-                            Dan&nbsp;Bongino&nbsp;
-                            <span class="vote-percent left">27</span>
-                        </li>
-                    
-                        
+			<h2 class="closing-time-group">7:00</h2>
+			<table class="races">
+				<tr class="race">
+					<td class="closing-time">9:56</td>
+					<td class="state">IN</td>
+					<td class="candidate dem winner">Joe Donnelly</td>
+					<td class="candidate-total dem winner">50</td>
+					<td class="candidate-total gop">44</td>
+					<td class="candidate gop">Richard Mourdock</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">11:00</td>
+					<td class="state">VA</td>
+					<td class="candidate dem">Tim Kaine</td>
+					<td class="candidate-total dem">53</td>
+					<td class="candidate-total gop">47</td>
+					<td class="candidate gop">George Allen</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">7:08</td>
+					<td class="state">VT</td>
+					<td class="candidate other winner">Bernie Sanders <span class="party">IND</span></td>
+					<td class="candidate-total other winner">71</td>
+					<td class="candidate-total gop">25</td>
+					<td class="candidate gop">John MacGovern</td>
+				</tr>
+			</table>
 
-                    </ul>
-                
-                    
-                    <ul class="called swap">
-                    <li class="status me0 called">8:08</li>
-                    <li class="district">ME</li>
-                    
-                        <li class="alt  winner candidate me0 candidate-62418 swap">
-                            Angus&nbsp;King<span class="tiny">&nbsp;(Other)</span>&nbsp;
-                            <span class="vote-percent right">53</span>
-                        </li>
-                    
-                        <li class="gop   candidate me0 candidate-49977 ">
-                            Charlie&nbsp;Summers&nbsp;
-                            <span class="vote-percent left">31</span>
-                        </li>
-                    
-                        
+			<h2 class="closing-time-group">7:00</h2>
+			<table class="races">
+				<tr class="race">
+					<td class="closing-time">9:56</td>
+					<td class="state">IN</td>
+					<td class="candidate dem winner">Joe Donnelly</td>
+					<td class="candidate-total dem winner">50</td>
+					<td class="candidate-total gop">44</td>
+					<td class="candidate gop incumbent">Michael Baumgartner</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">11:00</td>
+					<td class="state">VA</td>
+					<td class="candidate dem">Tim Kaine</td>
+					<td class="candidate-total dem">53</td>
+					<td class="candidate-total gop">47</td>
+					<td class="candidate gop">George Allen</td>
+				</tr>
+				<tr class="race">
+					<td class="closing-time">7:08</td>
+					<td class="state">VT</td>
+					<td class="candidate other">Bernie Sanders <span class="party">IND</span></td>
+					<td class="candidate-total other">71</td>
+					<td class="candidate-total gop">25</td>
+					<td class="candidate gop">John MacGovern</td>
+				</tr>
+			</table>
+		</div>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status mo0 called">10:44</li>
-                    <li class="district">MO</li>
-                    
-                        <li class="dem incumbent winner candidate mo0 candidate-29135 ">
-                            Claire&nbsp;McCaskill&nbsp;
-                            <span class="vote-percent right">55</span>
-                        </li>
-                    
-                        <li class="gop   candidate mo0 candidate-937 ">
-                            Todd&nbsp;Akin&nbsp;
-                            <span class="vote-percent left">39</span>
-                        </li>
-                    
-                        
+<!-- 		<div class="results-col">
+			<h2 class="closing-time-group">9:00</h2>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status ms0 called">9:18</li>
-                    <li class="district">MS</li>
-                    
-                        <li class="dem   candidate ms0 candidate-61536 ">
-                            Albert&nbsp;Gore&nbsp;
-                            <span class="vote-percent right">40</span>
-                        </li>
-                    
-                        <li class="gop incumbent winner candidate ms0 candidate-212 ">
-                            Roger&nbsp;Wicker&nbsp;
-                            <span class="vote-percent left">57</span>
-                        </li>
-                    
-                        
+			<h2 class="closing-time-group">10:00</h2>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status nj0 called">9:16</li>
-                    <li class="district">NJ</li>
-                    
-                        <li class="dem incumbent winner candidate nj0 candidate-386 ">
-                            Bob&nbsp;Menendez&nbsp;
-                            <span class="vote-percent right">58</span>
-                        </li>
-                    
-                        <li class="gop   candidate nj0 candidate-31174 ">
-                            Joe&nbsp;Kyrillos&nbsp;
-                            <span class="vote-percent left">40</span>
-                        </li>
-                    
-                        
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status pa0 called">9:30</li>
-                    <li class="district">PA</li>
-                    
-                        <li class="dem incumbent winner candidate pa0 candidate-39527 ">
-                            Bob&nbsp;Casey&nbsp;
-                            <span class="vote-percent right">54</span>
-                        </li>
-                    
-                        <li class="gop   candidate pa0 candidate-61627 ">
-                            Tom&nbsp;Smith&nbsp;
-                            <span class="vote-percent left">45</span>
-                        </li>
-                    
-                        
+			<h2 class="closing-time-group">11:00</h2>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status ri0 called">8:10</li>
-                    <li class="district">RI</li>
-                    
-                        <li class="dem incumbent winner candidate ri0 candidate-40102 ">
-                            Sheldon&nbsp;Whitehouse&nbsp;
-                            <span class="vote-percent right">65</span>
-                        </li>
-                    
-                        <li class="gop   candidate ri0 candidate-62243 ">
-                            Barry&nbsp;Hinckley&nbsp;
-                            <span class="vote-percent left">35</span>
-                        </li>
-                    
-                        
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status tn0 called">8:08</li>
-                    <li class="district">TN</li>
-                    
-                        <li class="dem   candidate tn0 candidate-59565 ">
-                            Mark&nbsp;Clayton&nbsp;
-                            <span class="vote-percent right">30</span>
-                        </li>
-                    
-                        <li class="gop incumbent winner candidate tn0 candidate-51865 ">
-                            Bob&nbsp;Corker&nbsp;
-                            <span class="vote-percent left">65</span>
-                        </li>
-                    
-                        
+		</div> -->
 
-                    </ul>
-                
-            </div></div><div class="last  column" style="width:50%; float: left;">
-        
-            <div class="timezone">
-                <div class="poll-closing-time">
-                    <div class="poll-closing-time-label">
-                    
-                    9:00
-                    </div>
-                </div>
-                
-                    
-                    <ul class="called ">
-                    <li class="status az0 called">11:54</li>
-                    <li class="district">AZ</li>
-                    
-                        <li class="dem   candidate az0 candidate-62329 ">
-                            Richard&nbsp;Carmona&nbsp;
-                            <span class="vote-percent right">46</span>
-                        </li>
-                    
-                        <li class="gop  winner candidate az0 candidate-1129 ">
-                            Jeff&nbsp;Flake&nbsp;
-                            <span class="vote-percent left">50</span>
-                        </li>
-                    
-                        
+	</div>
 
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status mi0 called">9:08</li>
-                    <li class="district">MI</li>
-                    
-                        <li class="dem incumbent winner candidate mi0 candidate-1729 ">
-                            Debbie&nbsp;Stabenow&nbsp;
-                            <span class="vote-percent right">59</span>
-                        </li>
-                    
-                        <li class="gop   candidate mi0 candidate-777 ">
-                            Pete&nbsp;Hoekstra&nbsp;
-                            <span class="vote-percent left">38</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status mn0 called">9:08</li>
-                    <li class="district">MN</li>
-                    
-                        <li class="dem incumbent winner candidate mn0 candidate-51526 ">
-                            Amy&nbsp;Klobuchar&nbsp;
-                            <span class="vote-percent right">65</span>
-                        </li>
-                    
-                        <li class="gop   candidate mn0 candidate-62376 ">
-                            Kurt&nbsp;Bills&nbsp;
-                            <span class="vote-percent left">31</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status nd0 called">1:58</li>
-                    <li class="district">ND</li>
-                    
-                        <li class="dem  winner candidate nd0 candidate-36149 ">
-                            Heidi&nbsp;Heitkamp&nbsp;
-                            <span class="vote-percent right">50</span>
-                        </li>
-                    
-                        <li class="gop   candidate nd0 candidate-56129 ">
-                            Rick&nbsp;Berg&nbsp;
-                            <span class="vote-percent left">50</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called swap">
-                    <li class="status ne0 called">11:32</li>
-                    <li class="district">NE</li>
-                    
-                        <li class="dem   candidate ne0 candidate-29926 ">
-                            Bob&nbsp;Kerrey&nbsp;
-                            <span class="vote-percent right">42</span>
-                        </li>
-                    
-                        <li class="gop  winner candidate ne0 candidate-61800 swap">
-                            Deb&nbsp;Fischer&nbsp;
-                            <span class="vote-percent left">58</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status nm0 called">12:32</li>
-                    <li class="district">NM</li>
-                    
-                        <li class="dem  winner candidate nm0 candidate-59492 ">
-                            Martin&nbsp;Heinrich&nbsp;
-                            <span class="vote-percent right">51</span>
-                        </li>
-                    
-                        <li class="gop   candidate nm0 candidate-1360 ">
-                            Heather&nbsp;Wilson&nbsp;
-                            <span class="vote-percent left">45</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status ny0 called">9:01</li>
-                    <li class="district">NY</li>
-                    
-                        <li class="dem incumbent winner candidate ny0 candidate-51916 ">
-                            Kirsten&nbsp;Gillibrand&nbsp;
-                            <span class="vote-percent right">72</span>
-                        </li>
-                    
-                        <li class="gop   candidate ny0 candidate-62065 ">
-                            Wendy&nbsp;Long&nbsp;
-                            <span class="vote-percent left">27</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status tx0 called">9:08</li>
-                    <li class="district">TX</li>
-                    
-                        <li class="dem   candidate tx0 candidate-43266 ">
-                            Paul&nbsp;Sadler&nbsp;
-                            <span class="vote-percent right">40</span>
-                        </li>
-                    
-                        <li class="gop  winner candidate tx0 candidate-61815 ">
-                            Ted&nbsp;Cruz&nbsp;
-                            <span class="vote-percent left">57</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status wi0 called">12:31</li>
-                    <li class="district">WI</li>
-                    
-                        <li class="dem  winner candidate wi0 candidate-1092 ">
-                            Tammy&nbsp;Baldwin&nbsp;
-                            <span class="vote-percent right">51</span>
-                        </li>
-                    
-                        <li class="gop   candidate wi0 candidate-57264 ">
-                            Tommy&nbsp;Thompson&nbsp;
-                            <span class="vote-percent left">46</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status wy0 called">9:08</li>
-                    <li class="district">WY</li>
-                    
-                        <li class="dem   candidate wy0 candidate-62372 ">
-                            Tim&nbsp;Chesnut&nbsp;
-                            <span class="vote-percent right">22</span>
-                        </li>
-                    
-                        <li class="gop incumbent winner candidate wy0 candidate-52935 ">
-                            John&nbsp;Barrasso&nbsp;
-                            <span class="vote-percent left">76</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-            </div>
-        
-            <div class="timezone">
-                <div class="poll-closing-time">
-                    <div class="poll-closing-time-label">
-                    
-                    10:00
-                    </div>
-                </div>
-                
-                    
-                    <ul class="called ">
-                    <li class="status mt0 called">11:12</li>
-                    <li class="district">MT</li>
-                    
-                        <li class="dem incumbent winner candidate mt0 candidate-55866 ">
-                            Jon&nbsp;Tester&nbsp;
-                            <span class="vote-percent right">49</span>
-                        </li>
-                    
-                        <li class="gop   candidate mt0 candidate-1162 ">
-                            Denny&nbsp;Rehberg&nbsp;
-                            <span class="vote-percent left">45</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status nv0 called">3:56</li>
-                    <li class="district">NV</li>
-                    
-                        <li class="dem   candidate nv0 candidate-489 ">
-                            Shelley&nbsp;Berkley&nbsp;
-                            <span class="vote-percent right">45</span>
-                        </li>
-                    
-                        <li class="gop incumbent winner candidate nv0 candidate-30423 ">
-                            Dean&nbsp;Heller&nbsp;
-                            <span class="vote-percent left">46</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status ut0 called">10:05</li>
-                    <li class="district">UT</li>
-                    
-                        <li class="dem   candidate ut0 candidate-44336 ">
-                            Scott&nbsp;Howell&nbsp;
-                            <span class="vote-percent right">30</span>
-                        </li>
-                    
-                        <li class="gop incumbent winner candidate ut0 candidate-1758 ">
-                            Orrin&nbsp;Hatch&nbsp;
-                            <span class="vote-percent left">65</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-            </div>
-        
-            <div class="timezone">
-                <div class="poll-closing-time">
-                    <div class="poll-closing-time-label">
-                    
-                    11:00
-                    </div>
-                </div>
-                
-                    
-                    <ul class="called ">
-                    <li class="status ca0 called">11:01</li>
-                    <li class="district">CA</li>
-                    
-                        <li class="dem incumbent winner candidate ca0 candidate-1704 ">
-                            Dianne&nbsp;Feinstein&nbsp;
-                            <span class="vote-percent right">62</span>
-                        </li>
-                    
-                        <li class="gop   candidate ca0 candidate-61823 ">
-                            Elizabeth&nbsp;Emken&nbsp;
-                            <span class="vote-percent left">38</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status hi0 called">11:06</li>
-                    <li class="district">HI</li>
-                    
-                        <li class="dem  winner candidate hi0 candidate-1594 ">
-                            Mazie&nbsp;Hirono&nbsp;
-                            <span class="vote-percent right">63</span>
-                        </li>
-                    
-                        <li class="gop   candidate hi0 candidate-1595 ">
-                            Linda&nbsp;Lingle&nbsp;
-                            <span class="vote-percent left">37</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-                    
-                    <ul class="called ">
-                    <li class="status wa0 called">11:01</li>
-                    <li class="district">WA</li>
-                    
-                        <li class="dem incumbent winner candidate wa0 candidate-1805 ">
-                            Maria&nbsp;Cantwell&nbsp;
-                            <span class="vote-percent right">60</span>
-                        </li>
-                    
-                        <li class="gop   candidate wa0 candidate-62292 ">
-                            Michael&nbsp;Baumgartner&nbsp;
-                            <span class="vote-percent left">40</span>
-                        </li>
-                    
-                        
-
-                    </ul>
-                
-            </div>
-        </div><br style="clear:both;"></div>
+</div>
 {% endblock outer_content %}
 
 {% block extra_foot_js %}
-{{ JS.push('js/analytics.js') }}
+{# {{ JS.push('js/analytics.js') }} #}
 {{ JS.render('js/results-footer.min.js') }}
 {% endblock extra_foot_js %}

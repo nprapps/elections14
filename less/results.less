@@ -1,3 +1,50 @@
+@import "less/lib/bootstrap/_results_variables";
+@import "less/lib/bootstrap/normalize";
+@import "less/lib/bootstrap/type";
+@import "less/lib/bootstrap/mixins";
+
+// Colors
+@blue: #376099;
+@red: #BE0F00;
+@green: #317e62;
+
+
+// Data colors
+@red1       : #6C2315;
+@red2       : #A23520;
+@red3       : #D8472B;
+@red4       : #E27560;
+@red5       : #ECA395;
+@red6       : #F5D1CA;
+
+@orange1    : #714616;
+@orange2    : #AA6A21;
+@orange3    : #E38D2C;
+@orange4    : #EAAA61;
+@orange5    : #F1C696;
+@orange6    : #F8E2CA;
+
+@yellow1    : #77631B;
+@yellow2    : #B39429;
+@yellow3    : #EFC637;
+@yellow4    : #F3D469;
+@yellow5    : #F7E39B;
+@yellow6    : #FBF1CD;
+
+@teal1      : #0B403F;
+@teal2      : #11605E;
+@teal3      : #17807E;
+@teal4      : #51A09E;
+@teal5      : #8BC0BF;
+@teal6      : #C5DFDF;
+
+@blue1      : #28556F;
+@blue2      : #3D7FA6;
+@blue3      : #51AADE;
+@blue4      : #7DBFE6;
+@blue5      : #A8D5EF;
+@blue6      : #D3EAF7;
+
 @font-face {
     font-family: 'Open Sans Condensed';
     src: url('../assets/fonts/opensans-condbold-webfont.eot');
@@ -20,386 +67,198 @@
     font-style: normal;
 }
 
-
-
-
-.keyout { padding: 2px; border: 1px solid #CCC; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;  }
-
-h4{margin:0; padding:0;}
-ul {list-style-type: none;padding: 0px; margin: 0px;}
-
 body {
-    font-family:'Droid Sans';
-    height:600px;
-    width:800px;
-    background-color:white;
-    color:#fff;
-
-    margin-left:auto;
-    margin-right:auto;
+    font-family: 'Open Sans Condensed';
 }
 
-body.studio{height:600px; width:800px; overflow: hidden;}
-
-#banner {
-    background-color:white;
-    color:#333;
-    height:38px;
-    border-bottom:1px solid #999;
-    overflow:hidden;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
 }
 
-#banner h1 {
-    margin:0;
-    padding:0;
-    font-size:24px;
-    line-height:38px;
-    width:90px;
-    float:left;
-    padding-left:5px;
-    font-weight:normal;
+.container {
+    padding: 15px;
 }
 
-#banner li {
-    width:175px;
-    padding-left:10px;
-    height:50px;
-    float:left;
-    color:orange;
-    list-style:none;
-    border-left:1px solid #999;
+.results-header {
+    background: #fff;
+    overflow: hidden;
+    margin-bottom: @line-height-computed / 2;
+
+    h1 {
+        width: 14%;
+        float: left;
+    }
+
+    .results-group {
+
+        &.dem,
+        &.gop {
+            width: 25%;
+        }
+
+        &.other,
+        &.not-called {
+            width: 18%;
+        }
+
+        float: left;
+    }
+
+    h1 {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .results-group {
+        border-left: 1px solid #ccc;
+        box-sizing: border-box;
+        padding-left: 30px;
+
+        h2,
+        p {
+            margin: 0;
+            font-size: 42px;
+        }
+
+        h2 {
+            display: inline-block;
+            font-family: "Open Sans Condensed";
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .total,
+        .seats-needed {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .seats-needed {
+            color: @gray-dark;
+
+            .count {
+                display: inline-block;
+                background: #ddd;
+                color: #333;
+            }
+        }
+    }
+
+    .dem   { color: @blue; }
+    .gop   { color: @red; }
+    .other { color: @green; }
+    .not-called { color: @gray; }
+
+    .dem .percentage   { background: @blue; }
+    .gop .percentage   { background: @red; }
+    .other .percentage { background: @green; }
+    .not-called .count { background: @gray; }
+
+    .percentage,
+    .count {
+        display: inline-block;
+        border-radius: 28px;
+        color: #fff;
+        text-align: center;
+
+        .square(55px);
+    }
 }
 
-#banner h2 {
-    font-size:16px;
-    line-height:22px;
-    margin:0;
-    font-weight:bold;
-}
-
-li#ind_sec{width:120px;}
-
-#banner #gop_sec h2 {color:#be0f00}
-#banner #gop_sec h2 span.total{background-color:#be0f00; color:#fff; padding:1px 4px 0 3px;}
-#banner #dem_sec h2 {color:#4eaed7}
-#banner #dem_sec h2 span.total{background-color:#229acd; color:#fff; padding:1px 4px 0 3px;}
-#banner #ind_sec h2 {color:#579233}
-#banner #ind_sec h2 span.total{background-color:#579233; color:#fff; padding:1px 4px 0 3px;}
-#banner #nc_sec h2 {color:#666}
-#banner #nc_sec h2 span.total{background-color:#bbb; color:#333; padding:1px 4px 0 3px;}
-#banner li p {font-size:11px; color:#666; margin-top:-3px;}
-#banner li p span.need_num {color:#333;}
-
-.district {
-    line-height:20px;
-    float:left;
-    display:block;
-    font-weight:700;
-    font-family: 'Inconsolata', sans-serif;
-}
-.column {
-    width:400px;float:left;
-}
-.timezone {
-    float:left;
-}
-
-.timezone li {
-    display:block;
-    float:left;
-}
-.timezone ul {
-    clear:left;
-    padding:0;
-    margin:0;
-    display:block;
-    float:left;
-}
-.timezone ul:nth-child(odd){
-    background-color:#f5f3f3;
-}
-.poll-closing-time{
-    position:relative;
-}
-.poll-closing-time-label {
-    color:#333;
-    background-color:#ccc;
-    font-weight:bold;
-    text-align:center;
-    margin:0;
-    padding:0;
-    width:400px;
-}
-.candidate {
-    overflow:hidden;
-    white-space:nowrap;
-}
-.candidate.dem {
-    color:#a7d7eb;
-}
-.candidate.gop {
-    color:#f8a199;
-}
-.candidate.alt {
-    color:#85c65e;
-}
-
-
-.candidate.alt.winner{
-    background-color:#579233;
-    color:#fff;
-}
-
-.candidate.incumbent {
-    text-transform:uppercase;
-}
-
-.candidate.gop.winner {
-    background-color:#BE0F00;
-    color:white;
-}
-.candidate.dem.winner {
-    background-color:#1B7BA4;
-    color:white;
-}
-.candidate.other.winner {
-    background-color:#148B34;
-    color:white;
-}
-li.status{
-    overflow: hidden; white-space: nowrap; text-align:right; 
-}
-
-
-
-// House
 .results {
-    span.neednum{color:#fff; line-height:20px;padding:0 4px;}
-    #banner li span.total { font-size:16px; letter-spacing:-1px;}
-    #banner li span.neednum { font-size:16px; letter-spacing:-1px;}
-    #banner li#dem_sec span.neednum{background-color:#145c7b;}
-    #banner li#gop_sec span.neednum{background-color:#8f0b00;}
-    #banner li h2{line-height: 38px;}
-    #banner li#dem_sec { width:197px;text-transform: uppercase; }
-    #banner li#gop_sec { width:187px; text-transform: uppercase;}
-    #banner li#ind_sec{text-transform: uppercase;}
-    #banner li#nc_sec { width:155px; text-transform: uppercase; }
-    #banner h1 {}
-    .district {
-        font-size:16px;
-        float:left;
-        width:37px;
-        display:block;
-        text-indent:2px;
+    .results-col {
+        .senate & {
+            width: 50%;
+            box-sizing: border-box;
+            float: left;
+
+            &:first-child {
+                padding-right: 15px;
+            }
+
+            &:last-child {
+                padding-left: 15px;
+            }
+        }
     }
 
-    .district span {padding-left:4px;}
-
-    #candidates {
-        height:560px;
-        overflow:hidden;
-    }
-    .candidate {
-        width: 166px;
-        text-indent:4px;
-        line-height:23px;
-        font-size:14px;
-        letter-spacing:0;
-    }
-    .timezone ul {
-        height:20px;
-        overflow:hidden;
-        width:399px;
-    }
-    .poll-closing-time-label {
-        height:20px;
-        line-height:20px;
-        font-size:12px;
+    .closing-time-group {
+        font-size: 24px;
+        font-weight: bold;
+        // text-align: center;
+        background: #ccc;
+        margin-bottom: 0;
+        padding: 5px;
     }
 
-    .first.column {
-        width:399px !important;
-        border-right:2px solid #ccc;
-    }
+    .races {
+        width: 100%;
+        font-size: 42px;
+        // font-weight: 700;
 
-    .last.column {
-        width:399px !important;
-    }
-
-    .status{
-        font-size:12px;
-        width:29px;
-        letter-spacing:-1px;
-        text-align:right;
-        text-indent: 1px;
-        border-right:#666 solid 1px;
-        color:#f9e8af;
-    }
-    .called.status {
-        background-color:#f2d15f;
-        color:#333;
-        font-size: 11px;
-    }
-    .vote-percent {
-        font-size:12px;
-        display:block;
-        width:25px;
-        text-align:center;
-    }
-    .left {
-        float:left;
-    }
-    .right {
-        float:right;
-    }
-    li.swap {
-        border:1px solid #fff;
-        height:18px;
-        line-height:18px;
-        width:164px;
-    }
-    ul.swap .district {
-        background-color:#fff;
-        color:#000;
-        height:20px;
-        line-height:20px;
-    }
-
-    .candidate-60365,
-    .candidate-60423,
-    .candidate-61673,
-    .candidate-7352,
-    .candidate-1507,
-    .candidate-5418,
-    .candidate-62231
-        {
-        letter-spacing: -1px;
+        td {
+            vertical-align: top;
+            border-top: 1px solid #ccc;
+            padding: 5px;
         }
 
+        .candidate {
+            width: 35%;
 
+            .party {
+                font-size: 24px;
+                // border: 2px solid @green;
+                // border-radius: 3px;
+                // padding: 0 3px;
+                font-weight: normal;
+                letter-spacing: 0.05em;
+            }
 
-    .candidate-535,
-    .candidate-51631,
-    .candidate-135,
-    .candidate-53539,
-    .candidate-61214,
-    .candidate-62079,
-    .candidate-52562,
-    .candidate-62709,
-    .candidate-53539,
-    .candidate-62158,
-    .candidate-51631,
-    .candidate-60791, 
-    .candidate-1063,
-    .candidate-52161,
-    .candidate-1581
-     {
-        font-size:13px;
-        letter-spacing: -1px;
-    }
-
-    .candidate-1581,
-    .candidate-62231,
-    .candidate-1063,
-     {
-            font-size: 12px;
+            &.incumbent {
+                // font-weight: bold;
+            }
+        }
+        .candidate-total + .candidate {
+            text-align: right;
         }
 
-    .candidate-55336, 
-    .candidate-60930 {
-        font-size: 11px;
+        .dem { color: @blue; }
+        .gop { color: @red; }
+        .other { color: @green; }
+
+        .winner {
+            color: #fff;
+
+            &.dem { background: @blue; }
+            &.gop { background: @red; }
+            &.other { background: @green; }
+        }
+
+        .closing-time {
+            text-align: right;
+
+            &.called {
+                background: @gray-darker;
+                color: #fff;
+            }
+        }
+
+        .state {
+            text-align: center;
+
+            &.party-change {
+                color: #fff;
+                font-weight: bold;
+
+                &.dem { color: @blue; }
+                &.gop { color: @red; }
+                &.other { color: @green; }
+            }
+        }
     }
 }
-
-// Senate
-.senate {
-    #banner {height:50px;}
-    #banner li h2{padding-top:6px; text-transform: uppercase;}
-
-    .timezone ul { margin-left:0; }
-    .poll-closing-time{ position:relative; }
-    .poll-closing-time-label { margin:0; padding:0; width:399px; font-size:14px; height:27px;line-height:27px; }
-    .candidate { width:170px; font-size:14px; text-indent: 4px; margin-left: 0px; }
-    #candidates ul { width:399px;}
-    #candidates ul li { height:27px;line-height:27px; }
-    .district{ font-size:12px; width:25px; text-align:center; }
-    .status{ width: 33px; font-size:13px; letter-spacing:-1px; text-align:right; color:#f9e8af; border-right:#666 solid 1px;text-indent: 1px; }
-    .emptyleft {margin-left: 160px; }
-    .called.status {
-        background-color:#f2d15f;
-        color:#333;
-        font-size:12px;
-        letter-spacing: -1px;
-    }
-    .vote-percent {
-        font-size:13px;
-        float:right;
-        display:block;
-        width:25px;
-        text-align:center;
-    }
-    .left {
-        float:left;
-    }
-    .right {
-        float:right;
-    }
-
-    .first.column {
-        width:399px !important;
-        border-right:2px solid #ccc;
-    }
-    .last.column {
-        width:399px !important;
-    }
-    li.swap {
-        border:1px solid #fff;
-        width:168px;
-        height:25px!important;
-        line-height: 25px!important;
-    }
-    ul.swap .district {
-        background-color:#fff;
-        color:#000;
-    }
-    span.tiny { font-size:12px; text-transform:uppercase; letter-spacing:-2px; }
-    /* Some people have long names. */
-    .candidate-51916, .candidate-49977, .candidate-61823,.candidate-61823 {
-        font-size:14px;
-        letter-spacing: -1px;
-    }
-    /* Super-long names. */
-    .candidate-61671,
-    .candidate-62241,
-    .candidate-57264,
-    .candidate-29135,
-    .candidate-62418,
-    .candidate-1729,
-    .candidate-1704,
-    .candidate-49977,
-    .candidate-1805,
-    .candidate-62244,
-    .candidate-62329,
-    .candidate-1384
-    {
-        font-size:13px;
-        letter-spacing: -1px;
-    }
-
-    .candidate-1445,
-    .candidate-51916 {font-size: 12px;letter-spacing: -1px;}
-
-    /* Really, really long names. */
-    .candidate-40102 {
-        font-size:11px;
-        letter-spacing: -1px;
-    }
-
-    .candidate-62292 {
-        letter-spacing: -2px;
-        font-size: 13px;
-    }
-
-    .candidate-62418 .tiny{font-size: 11px;letter-spacing: -1px;}
-}
-
