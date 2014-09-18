@@ -151,6 +151,10 @@ def get_secrets():
         'POSTGRES_PORT',
         'DYNAMODB_ACCESS_KEY_ID',
         'DYNAMODB_SECRET_ACCESS_KEY',
+        'TUMBLR_CONSUMER_KEY',
+        'TUMBLR_CONSUMER_SECRET',
+        'TUMBLR_TOKEN',
+        'TUMBLR_TOKEN_SECRET',
     ]
 
     secrets_dict = {}
