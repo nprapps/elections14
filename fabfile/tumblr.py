@@ -21,7 +21,7 @@ def get_posts():
         secrets.get('TUMBLR_TOKEN_SECRET')
     )
 
-    resp = client.posts('stage-nprelections')
+    resp = client.posts(app_config.TUMBLR_NAME)
 
     posts = resp['posts']
 

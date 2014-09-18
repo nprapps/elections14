@@ -135,6 +135,8 @@ CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
 NEXT_SLIDE_FILENAME = 'live-data/next-slide.json'
 
+TUMBLR_NAME = 'stage-nprelections'
+
 """
 Utilities
 """
@@ -178,6 +180,7 @@ def configure_targets(deployment_target):
     global DEPLOYMENT_TARGET
     global APP_LOG_PATH
     global DISQUS_SHORTNAME
+    global TUMBLR_NAME
 
 
     if deployment_target == 'production':
@@ -187,6 +190,7 @@ def configure_targets(deployment_target):
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
         DISQUS_SHORTNAME = 'npr-news'
         DEBUG = False
+        TUMBLR_NAME = 'nprpolitics'
     elif deployment_target == 'staging':
         S3_BUCKETS = STAGING_S3_BUCKETS
         S3_BASE_URL = 'http://%s.s3-website-us-east-1.amazonaws.com/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)
