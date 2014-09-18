@@ -36,7 +36,7 @@ def rotate_slide():
 
     with open('www/%s' % app_config.NEXT_SLIDE_FILENAME, 'w') as f:
         json.dump({
-            'next': 'slides/%s.html' % next_slide.slide.__unicode__(),
+            'next': 'slides/%s.html' % next_slide.slide.slug,
         }, f)
 
     with open(STACK_NUMBER_FILENAME, 'w') as f:
