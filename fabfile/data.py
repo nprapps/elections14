@@ -18,8 +18,12 @@ from twitter import Twitter, OAuth
 
 import app_config
 import admin_app
+import servers
 
-def postgres_command(cmd ):
+def server_postgres_command(cmd ):
+    """
+    Run a postgres command on the server.
+    """
     local('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT' % cmd)
 
 @task
@@ -31,8 +35,13 @@ def bootstrap():
 
     if env.settings:
         with settings(warn_only=True):
-            postgres_command('dropdb %s' % app_config.PROJECT_SLUG)
-            postgres_command('createdb %s' % app_config.PROJECT_SLUG)
+            service_name = servers._get_installed_service_name('uwsgi')
+            local('sudo service %s stop' % service_name)
+
+            server_postgres_command('dropdb %s' % app_config.PROJECT_SLUG)
+            server_postgres_command('createdb %s' % app_config.PROJECT_SLUG)
+
+            local('sudo service %s start' % service_name)
     else:
         with settings(warn_only=True):
             local('dropdb %s' % app_config.PROJECT_SLUG)
