@@ -146,23 +146,25 @@ def _write():
         # grabbing one of the candidates and matching to the init/candidates data.
         # This suuuuucks.
 
-        state_candidate = race['candidates'][0]['candidateID']
+        if not race['candidates']:
+            print race
+        else:
+            state_candidate = race['candidates'][0]['candidateID']
+            for candidate in all_candidates:
+                if candidate['candidateID'] == state_candidate:
+                    statePostal = candidate['statePostal']
+                    break
 
-        for candidate in all_candidates:
-            if candidate['candidateID'] == state_candidate:
-                statePostal = candidate['statePostal']
-                break
-
-        races.append({
-            'state_postal': statePostal,
-            'office_id': race.get('officeID'),
-            'office_name': race.get('officeName'),
-            'seat_name': race.get('seatName'),
-            'seat_number': race.get('seatNum'),
-            'race_id': race.get('raceID'),
-            'race_type': race.get('raceTypeID'),
-            'last_updated': race.get('lastUpdated'),
-        })
+            races.append({
+                'state_postal': statePostal,
+                'office_id': race.get('officeID'),
+                'office_name': race.get('officeName'),
+                'seat_name': race.get('seatName'),
+                'seat_number': race.get('seatNum'),
+                'race_id': race.get('raceID'),
+                'race_type': race.get('raceTypeID'),
+                'last_updated': race.get('lastUpdated'),
+            })
 
     with open('data/races.json', 'w') as f:
         json.dump(races, f, indent=4)
