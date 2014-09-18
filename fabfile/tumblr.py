@@ -4,7 +4,7 @@ from pprint import pprint as pp
 
 from fabric.api import local, task
 from jinja2 import Template
-from peewee import fn, IntegrityError
+from peewee import fn
 import pytumblr
 
 import app
@@ -26,8 +26,27 @@ def get_posts():
     posts = resp['posts']
 
     for post in posts:
-        pp(post)
         _create_slide(post)
+
+def _create_slide(post):
+    rendered_post = _render_post(post)
+    slug = 'tumblr-%i' % post['id']
+    post_title = post['slug']
+    
+    try:
+        slide = models.Slide.get(slug=slug)
+        print 'Updating post %s' % slug
+        slide.name = post_title
+        slide.body = rendered_post
+        slide.save()
+    except models.Slide.DoesNotExist:
+        print 'Creating post %s' % slug 
+        slide = models.Slide.create(slug=slug, name=post_title, body=rendered_post)
+        
+        max = models.SlideSequence.select(fn.Max(models.SlideSequence.sequence)).scalar()
+        sequence = models.SlideSequence.create(sequence=max+1, slide=slide)
+        print '%s is slide number %s' % (slide.name, max)
+        sequence.save()
 
 def _render_post(post):
     filename = '_tumblr_%s.html' % post['type']
@@ -36,17 +55,3 @@ def _render_post(post):
         template = Template(f.read())
     return template.render(**post)
 
-def _create_slide(post):
-    print 'Creating post %s' % post['id']
-    rendered_post = _render_post(post)
-    post_id = str(post['id'])
-    post_title = post['slug']
-    print post_title
-    slide = models.Slide.create(slug=post_id, name=post_title, body=rendered_post)
-    print slide
-    slide.save()
-    
-    max = models.SlideSequence.select(fn.Max(models.SlideSequence.sequence)).scalar()
-    sequence = models.SlideSequence.create(sequence=max+1, slide=slide)
-    print '%s is slide number %s' % (slide.name, max)
-    sequence.save()
