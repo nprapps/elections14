@@ -15,10 +15,7 @@ import models
 def get_posts():
     secrets = app_config.get_secrets()
     client = pytumblr.TumblrRestClient(
-        secrets.get('TUMBLR_CONSUMER_KEY'),
-        secrets.get('TUMBLR_CONSUMER_SECRET'),
-        secrets.get('TUMBLR_TOKEN'),
-        secrets.get('TUMBLR_TOKEN_SECRET')
+        secrets.get('TUMBLR_CONSUMER_KEY')
     )
 
     resp = client.posts(app_config.TUMBLR_NAME)
