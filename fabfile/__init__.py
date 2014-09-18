@@ -13,6 +13,7 @@ import data
 import issues
 import render
 import text
+import tumblr
 import utils
 
 if app_config.DEPLOY_TO_SERVERS:
