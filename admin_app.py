@@ -7,7 +7,7 @@ import logging
 from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
-from flask_peewee.admin import Admin
+from flask_peewee.admin import Admin, ModelAdmin
 from models import Slide, SlideSequence
 
 import app_config
@@ -24,11 +24,14 @@ file_handler.setLevel(logging.INFO)
 app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
 
+class SlideAdmin(ModelAdmin):
+    exclude = ('slug',)
+
 # Set up flask peewee db wrapper
 db = Database(app)
 auth = Auth(app, db, prefix='/%s/accounts' % app_config.PROJECT_SLUG)
 admin = Admin(app, auth, prefix='/%s/admin' % app_config.PROJECT_SLUG)
-admin.register(Slide)
+admin.register(Slide, SlideAdmin)
 admin.register(SlideSequence)
 admin.setup()
 

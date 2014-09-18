@@ -62,7 +62,8 @@ class BaseModel(Model):
         slug = base_slug
         i = 1
 
-        while Race.select().where(Race.slug == slug).count():
+        model_class = self.__class__
+        while model_class.select().where(model_class.slug == slug).count():
             i += 1
             slug = '%s-%i' % (base_slug, i)
 
@@ -282,13 +283,14 @@ class Slide(BaseModel):
     """
     Model for a slide in dynamic slide show
     """
-    slug_fields = ['slug']
+    slug_fields = ['name']
 
     slug = CharField(max_length=255, primary_key=True)
+    name = CharField(max_length=255)
     body = TextField()
 
     def __unicode__(self):
-        return self.slug
+        return self.name
 
 class SlideSequence(Model):
     """

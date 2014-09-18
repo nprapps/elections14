@@ -119,6 +119,8 @@ def render_all():
             compiled_includes = g.compiled_includes
 
         with open(filename, 'w') as f:
+            if isinstance(content, tuple):
+                content = content[0]
             f.write(content.encode('utf-8'))
 
 @task
@@ -163,6 +165,6 @@ def _render_slug_pages(models, view_name, output_path, compiled_includes):
             pass
 
         with open(path, 'w') as f:
-            f.write(content.encode('utf-8'))
+            f.write(content.data.encode('utf-8'))
 
     return compiled_includes

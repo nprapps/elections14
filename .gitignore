@@ -59,6 +59,8 @@ www/dynamodb
 www/game
 www/slides
 www/stack
+www/results
 .stack_number
 .slides_gzip
 .slides_html
+
