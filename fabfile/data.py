@@ -11,14 +11,19 @@ import shutil
 import boto.dynamodb
 from boto.dynamodb.condition import GE
 import copytext
+from dateutil.parser import parse
 from fabric.api import env, local, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
 import app_config
 import admin_app
+import servers
 
-def postgres_command(cmd ):
+def server_postgres_command(cmd ):
+    """
+    Run a postgres command on the server.
+    """
     local('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT' % cmd)
 
 @task
@@ -30,8 +35,13 @@ def bootstrap():
 
     if env.settings:
         with settings(warn_only=True):
-            postgres_command('dropdb %s' % app_config.PROJECT_SLUG)
-            postgres_command('createdb %s' % app_config.PROJECT_SLUG)
+            service_name = servers._get_installed_service_name('uwsgi')
+            local('sudo service %s stop' % service_name)
+
+            server_postgres_command('dropdb %s' % app_config.PROJECT_SLUG)
+            server_postgres_command('createdb %s' % app_config.PROJECT_SLUG)
+
+            local('sudo service %s start' % service_name)
     else:
         with settings(warn_only=True):
             local('dropdb %s' % app_config.PROJECT_SLUG)
@@ -94,6 +104,8 @@ def update(test=False):
 
     if not os.path.exists('data/update.json'):
         return
+    
+    update_flat = []
 
     with open('data/update.json') as f:
         races = json.load(f)
@@ -101,10 +113,16 @@ def update(test=False):
         for race in races:
             race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
+            # If race has not been updated, skip
+            last_updated = parse(race['last_updated']).replace(tzinfo=None)
+
+            if race_model.last_updated == last_updated:
+                continue
+
             race_model.is_test = race['is_test']
             race_model.precincts_reporting = race['precincts_reporting']
             race_model.precincts_total = race['precincts_total']
-            race_model.last_updated = race['last_updated']
+            race_model.last_updated = last_updated
 
             race_model.save()
 
@@ -117,21 +135,13 @@ def update(test=False):
 
                 candidate_model.save()
 
-    init_flat = []
-    update_flat = []
-
-    for race_model in models.Race.select():
-        init_flat.append(race_model.flatten())
-        update_flat.append(race_model.flatten(update_only=True))
-
-    with open('www/live-data/init.json', 'w') as f:
-        json.dump(init_flat, f, cls=models.ModelEncoder)
+            update_flat.append(race_model.flatten(update_only=True))
 
     with open('www/live-data/update.json', 'w') as f:
         json.dump(update_flat, f, cls=models.ModelEncoder)
 
-    print 'Updated %i races' % len(races)
-    print 'Updated %i candidates' % sum([len(race['candidates']) for race in races])
+    print 'Updated %i races' % len(update_flat)
+    print 'Updated %i candidates' % sum([len(race['candidates']) for race in update_flat])
 
 
 @task
