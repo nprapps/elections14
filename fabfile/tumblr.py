@@ -5,7 +5,7 @@ from pprint import pprint as pp
 from fabric.api import local, task
 from jinja2 import Template
 from peewee import fn
-import pytumblr
+import requests
 
 import app
 import app_config
@@ -14,13 +14,11 @@ import models
 @task
 def get_posts():
     secrets = app_config.get_secrets()
-    client = pytumblr.TumblrRestClient(
-        secrets.get('TUMBLR_CONSUMER_KEY')
-    )
 
-    resp = client.posts(app_config.TUMBLR_NAME)
-
-    posts = resp['posts']
+    response = requests.get('http://api.tumblr.com/v2/blog/%s.tumblr.com/posts' % app_config.TUMBLR_NAME, params={
+        'api_key':secrets['TUMBLR_CONSUMER_KEY'],
+    })
+    posts = response.json()['response']['posts']
 
     for post in posts:
         _create_slide(post)
