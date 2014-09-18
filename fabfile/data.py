@@ -11,6 +11,7 @@ import shutil
 import boto.dynamodb
 from boto.dynamodb.condition import GE
 import copytext
+from dateutil.parser import parse
 from fabric.api import env, local, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
@@ -104,13 +105,15 @@ def update(test=False):
             race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
             # If race has not been updated, skip
-            if race_model.last_updated == race['last_updated']:
+            last_updated = parse(race['last_updated']).replace(tzinfo=None)
+
+            if race_model.last_updated == last_updated:
                 continue
 
             race_model.is_test = race['is_test']
             race_model.precincts_reporting = race['precincts_reporting']
             race_model.precincts_total = race['precincts_total']
-            race_model.last_updated = race['last_updated']
+            race_model.last_updated = last_updated
 
             race_model.save()
 
@@ -128,8 +131,8 @@ def update(test=False):
     with open('www/live-data/update.json', 'w') as f:
         json.dump(update_flat, f, cls=models.ModelEncoder)
 
-    print 'Updated %i races' % len(races)
-    print 'Updated %i candidates' % sum([len(race['candidates']) for race in races])
+    print 'Updated %i races' % len(update_flat)
+    print 'Updated %i candidates' % sum([len(race['candidates']) for race in update_flat])
 
 
 @task
