@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from functools import wraps
 import json
 
 import argparse
-from flask import Flask, render_template
+from flask import Flask, make_response, render_template
 from peewee import fn
 
 import app_config
@@ -15,6 +16,17 @@ app = Flask(__name__)
 
 app.jinja_env.filters['smarty'] = smarty_filter
 app.jinja_env.filters['urlencode'] = urlencode_filter
+
+def cors(f):
+    """
+    Decorator that enables local CORS support for easier local dev.
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        response = make_response(f(*args, **kwargs))
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        return response 
+    return decorated_function
 
 # Example application views
 @app.route('/')
@@ -95,6 +107,7 @@ def test_widget():
     return render_template('test_widget.html', **make_context())
 
 @app.route('/slides/<slug>.html')
+@cors
 def _slide(slug):
     """
     Serve up slide html fragment
@@ -105,6 +118,7 @@ def _slide(slug):
     return render_template('_stack_fragment.html', body=slide.body)
 
 @app.route('/live-data/next-slide.json')
+@cors
 def _stack_json():
     """
     Serve up pointer to next slide in stack
