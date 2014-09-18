@@ -51,6 +51,13 @@ def _create_slide(post):
 def _render_post(post):
     filename = '_tumblr_%s.html' % post['type']
 
+    if post['type'] == 'photo':
+        image = None
+        for size in post['photos'][0]['alt_sizes']:
+            if not image or size['width'] > image['width']:
+                image = size
+        post['image'] = image
+        
     with open('templates/%s' % filename) as f:
         template = Template(f.read())
     return template.render(**post)
