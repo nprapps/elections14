@@ -94,6 +94,8 @@ def update(test=False):
 
     if not os.path.exists('data/update.json'):
         return
+    
+    update_flat = []
 
     with open('data/update.json') as f:
         races = json.load(f)
@@ -117,15 +119,7 @@ def update(test=False):
 
                 candidate_model.save()
 
-    init_flat = []
-    update_flat = []
-
-    for race_model in models.Race.select():
-        init_flat.append(race_model.flatten())
-        update_flat.append(race_model.flatten(update_only=True))
-
-    with open('www/live-data/init.json', 'w') as f:
-        json.dump(init_flat, f, cls=models.ModelEncoder)
+            update_flat.append(race_model.flatten(update_only=True))
 
     with open('www/live-data/update.json', 'w') as f:
         json.dump(update_flat, f, cls=models.ModelEncoder)

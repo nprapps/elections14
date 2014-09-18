@@ -5,12 +5,11 @@ import json
 
 import argparse
 from flask import Flask, render_template
+from peewee import fn
 
 import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter
 import static
-
-from peewee import fn
 
 app = Flask(__name__)
 
@@ -23,15 +22,16 @@ def index():
     """
     Example view demonstrating rendering a simple HTML page.
     """
+    from models import Race
+
     context = make_context()
 
     with open('data/featured.json') as f:
         context['featured'] = json.load(f)
 
-    with open('www/live-data/init.json') as f:
-        context['races'] = json.load(f)
+    context['races'] = Race.select()
 
-    return render_template('index.html', **context)
+    return render_template('index.html', **context), 200, 
 
 @app.route('/chromecast/')
 def chromecast():
@@ -100,7 +100,6 @@ def _slide(slug):
     Serve up slide html fragment
     """
     from models import Slide
-
 
     slide = Slide.get(Slide.slug == slug)
     return render_template('_stack_fragment.html', body=slide.body)
