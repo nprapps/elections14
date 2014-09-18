@@ -2,11 +2,14 @@
 @import "less/lib/bootstrap/normalize";
 @import "less/lib/bootstrap/type";
 @import "less/lib/bootstrap/mixins";
+@import "less/cooper_hewitt";
 
 // Colors
 @blue: #376099;
 @red: #BE0F00;
-@green: #317e62;
+// @green: #317e62;
+@green: #319269;
+
 
 
 // Data colors
@@ -45,30 +48,31 @@
 @blue5      : #A8D5EF;
 @blue6      : #D3EAF7;
 
-@font-face {
-    font-family: 'Open Sans Condensed';
-    src: url('../assets/fonts/opensans-condbold-webfont.eot');
-    src: url('../assets/fonts/opensans-condbold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../assets/fonts/opensans-condbold-webfont.woff') format('woff'),
-         url('../assets/fonts/opensans-condbold-webfont.ttf') format('truetype'),
-         url('../assets/fonts/opensans-condbold-webfont.svg#open_sans_condensedbold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-}
+// @font-face {
+//     font-family: 'Open Sans Condensed';
+//     src: url('../assets/fonts/opensans-condbold-webfont.eot');
+//     src: url('../assets/fonts/opensans-condbold-webfont.eot?#iefix') format('embedded-opentype'),
+//          url('../assets/fonts/opensans-condbold-webfont.woff') format('woff'),
+//          url('../assets/fonts/opensans-condbold-webfont.ttf') format('truetype'),
+//          url('../assets/fonts/opensans-condbold-webfont.svg#open_sans_condensedbold') format('svg');
+//     font-weight: bold;
+//     font-style: normal;
+// }
 
-@font-face {
-    font-family: 'Open Sans Condensed';
-    src: url('../assets/fonts/opensans-condlight-webfont.eot');
-    src: url('../assets/fonts/opensans-condlight-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../assets/fonts/opensans-condlight-webfont.woff') format('woff'),
-         url('../assets/fonts/opensans-condlight-webfont.ttf') format('truetype'),
-         url('../assets/fonts/opensans-condlight-webfont.svg#open_sanscondensed_light') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+// @font-face {
+//     font-family: 'Open Sans Condensed';
+//     src: url('../assets/fonts/opensans-condlight-webfont.eot');
+//     src: url('../assets/fonts/opensans-condlight-webfont.eot?#iefix') format('embedded-opentype'),
+//          url('../assets/fonts/opensans-condlight-webfont.woff') format('woff'),
+//          url('../assets/fonts/opensans-condlight-webfont.ttf') format('truetype'),
+//          url('../assets/fonts/opensans-condlight-webfont.svg#open_sanscondensed_light') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 
 body {
-    font-family: 'Open Sans Condensed';
+    font-family: 'Cooper Hewitt';
+    font-weight: 300;
 }
 
 h1,
@@ -78,6 +82,7 @@ h4,
 h5,
 h6 {
     margin-top: 0;
+    font-family: 'Cooper Hewitt'
 }
 
 .container {
@@ -122,12 +127,11 @@ h6 {
         h2,
         p {
             margin: 0;
-            font-size: 42px;
+            font-size: 36px;
         }
 
         h2 {
             display: inline-block;
-            font-family: "Open Sans Condensed";
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -138,8 +142,13 @@ h6 {
             margin: 0 10px;
         }
 
+        .change {
+            margin-left: 15px;
+        }
+
         .seats-needed {
             color: @gray-dark;
+            margin-left: 15px;
 
             .count {
                 display: inline-block;
@@ -165,6 +174,7 @@ h6 {
         border-radius: 28px;
         color: #fff;
         text-align: center;
+        line-height: 55px;
 
         .square(55px);
     }
@@ -188,17 +198,20 @@ h6 {
     }
 
     .closing-time-group {
-        font-size: 24px;
+        font-size: 36px;
         font-weight: bold;
         // text-align: center;
-        background: #ccc;
+        // background: #ddd;
+        border-top: 4px solid @gray-dark;
+        color: @gray-darker;
         margin-bottom: 0;
         padding: 5px;
+        // line-height: 66px;
     }
 
     .races {
         width: 100%;
-        font-size: 42px;
+        font-size: 34px;
         // font-weight: 700;
 
         td {
@@ -223,9 +236,10 @@ h6 {
                 // font-weight: bold;
             }
         }
-        .candidate-total + .candidate {
-            text-align: right;
-        }
+
+        // .state + .candidate {
+        //     text-align: right;
+        // }
 
         .dem { color: @blue; }
         .gop { color: @red; }
@@ -241,6 +255,10 @@ h6 {
 
         .closing-time {
             text-align: right;
+
+            &.reporting {
+                background: @yellow3;
+            }
 
             &.called {
                 background: @gray-darker;
