@@ -103,6 +103,10 @@ def update(test=False):
         for race in races:
             race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
+            # If race has not been updated, skip
+            if race_model.last_updated == race['last_updated']:
+                continue
+
             race_model.is_test = race['is_test']
             race_model.precincts_reporting = race['precincts_reporting']
             race_model.precincts_total = race['precincts_total']
