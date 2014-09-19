@@ -87,6 +87,7 @@ SERVER_SERVICES = [
     ('app', SERVER_REPOSITORY_PATH, 'ini'),
     ('uwsgi', '/etc/init', 'conf'),
     ('nginx', '/etc/nginx/locations-enabled', 'conf'),
+    ('update_slides', '/etc/init', 'conf'),
 ]
 
 # These variables will be set at runtime. See configure_targets() below
