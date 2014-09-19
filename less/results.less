@@ -39,9 +39,14 @@ h6 {
 .races h2,
 .races,
 .poll-closing-group {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1;
     font-weight: 400;
+
+    @media screen and (min-width: @screen-md){
+        font-size: 14px;
+        line-height: 1.1;
+    }
 
     @media screen and (min-width: @screen-lg){
         font-size: 18px;
@@ -59,6 +64,7 @@ h6 {
         font-size: 34px;
         font-weight: 300;
         line-height: 1.2;
+        letter-spacing: -0.03em;
     }
 }
 
@@ -68,33 +74,32 @@ h6 {
     margin-bottom: @line-height-computed / 2;
 
     h1 {
-        width: 14%;
+        // width: 14%;
         float: left;
         margin: 0;
-        font-size: 36px;
+        padding-right: 15px;
+        font-size: 24px;
+
+        @media screen and (min-width: @screen-lg){
+            font-size: 36px;
+        }
 
         @media screen and (min-width: @screen-big-board){
             font-size: 46px;
         }
     }
 
+    .leaderboard {
+        float: right;
+    }
+
     .results-header-group {
-        display: table;
+        white-space: nowrap;
 
         .party,
         .total,
         .seats-needed {
-            display: table-cell;
-        }
-
-        &.dem,
-        &.gop {
-            width: 25%;
-        }
-
-        &.other,
-        &.not-called {
-            width: 18%;
+            display: inline-block;
         }
 
         float: left;
@@ -108,7 +113,11 @@ h6 {
     .results-header-group {
         border-left: 1px solid #ccc;
         box-sizing: border-box;
-        padding-left: 30px;
+        padding-left: 15px;
+
+        &:first-child {
+            border-left: none;
+        }
 
         h2,
         p {
@@ -122,19 +131,31 @@ h6 {
 
         .total,
         .seats-needed {
-            margin: 0 10px;
             white-space: nowrap;
         }
 
         .seats-needed {
             color: @gray-dark;
             margin-left: 15px;
+            margin-right: 15px;
 
             .count {
                 display: inline-block;
                 background: #ddd;
                 color: #333;
             }
+        }
+
+        &.other {
+            margin-right: 15px;
+        }
+
+        &.not-called {
+            h2 {
+                display: inline-block;
+            }
+
+            white-space: nowrap;
         }
     }
 
@@ -151,12 +172,18 @@ h6 {
     .percentage,
     .count {
         display: inline-block;
-        border-radius: 18px;
+        border-radius: 14px;
         color: #fff;
         text-align: center;
-        line-height: 36px;
+        line-height: 28px;
 
-        .square(36px);
+        .square(28px);
+
+        @media screen and (min-width: @screen-lg){
+            .square(36px);
+            line-height: 36px;
+            border-radius: 18px;
+        }
 
         @media screen and (min-width: @screen-big-board){
             .square(55px);
@@ -169,16 +196,19 @@ h6 {
 .results {
     .results-col {
         .senate & {
-            width: 50%;
-            box-sizing: border-box;
-            float: left;
 
-            &:first-child {
-                padding-right: 15px;
-            }
+            @media screen and (min-width: @screen-sm){
+                width: 50%;
+                box-sizing: border-box;
+                float: left;
 
-            &:last-child {
-                padding-left: 15px;
+                &:first-child {
+                    padding-right: 15px;
+                }
+
+                &:last-child {
+                    padding-left: 15px;
+                }
             }
         }
     }
@@ -250,19 +280,17 @@ h6 {
             width: 35%;
 
             .party {
-                font-size: 14px;
+                font-size: 75%;
                 font-weight: normal;
                 letter-spacing: 0.05em;
-
-                @media screen and (min-width: @screen-big-board){
-                    font-size: 24px;
-                }
             }
 
             &.incumbent {
-                &:after {
-                    content: "*";
-                }
+                // font-style: italic;
+                font-weight: 500;
+                // &:after {
+                //     content: "i";
+                // }
             }
         }
 
