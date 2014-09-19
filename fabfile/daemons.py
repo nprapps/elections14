@@ -2,19 +2,16 @@
 
 from time import sleep
 
-from fabric.api import task
-
-import cron_jobs
-import tumblr
+from fabric.api import execute, task
 
 @task
 def tumblr():
     while True:
-        tumblr.get_posts()
+        execute('tumblr.get_posts')
         sleep(15)
 
 @task
 def rotate_slide():
     while True:
-        cron_jobs.rotate_slide()
+        execute('stack.rotate')
         sleep(15)
