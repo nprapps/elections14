@@ -1,7 +1,7 @@
 {% extends '_base_results.html' %}
 
 {% block extra_css %}
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 {{ CSS.push('less/results.less') }}
 {{ CSS.render('css/results.min.css') }}
@@ -266,6 +266,7 @@
 					<td class="candidate gop">John MacGovern</td>
 				</tr>
 			</table>
+
 		</div>
 
 <!-- 		<div class="results-col">
@@ -279,7 +280,44 @@
 
 		</div> -->
 
-	</div>
+
+
+
+
+	
+		</div>
+
+			<div class="key">
+				<ul>
+					<li><span class="bold">Bold time stamp:</span> Poll closing time</li>
+					<li><span class="bold">Highlighted box with candidate:</span> Projected winner</li>
+				</ul>
+				<ul>
+					<li><span class="bold">Black box with time <span class="black-square">&nbsp;</span> :</span> When a winner was projected </li>
+					<li><span class="bold">Yellow box with percentage <span class="yellow-square">&nbsp;</span> :</span> Precincts reporting </li>
+					
+				</ul>
+				<ul>
+					<li><span class="bold">Bold state:</span> Seat has switched to party of corresponding color</li>
+					<li><span class="bold">Bold candidate:</span> Incumbent</li>
+				</ul>
+			</div>
+
+<!-- 			<div class="key">
+				<ul>
+					<li><span class="bold">Bold time stamp:</span> Poll closing time</li>
+					<li><span class="bold">Yellow box with percentage:</span> Precincts reporting <span class="yellow-square">&nbsp;</span></li>
+					<li><span class="bold">Black box with time:</span> When a winner was projected <span class="black-square">&nbsp;</span></li>
+					<li><span class="bold">Bold candidate:</span> Incumbent</li>
+					<li><span class="bold">Bold state:</span> Seat has switched to party of corresponding color</li>
+					<li><span class="bold">Highlighted box with candidate:</span> Projected winner</li>
+				</ul>
+			</div> -->
+	
+
+
+
+
 
 </div>
 {% endblock outer_content %}
