@@ -8,7 +8,7 @@ from fabric.api import execute, task
 def tumblr():
     while True:
         execute('tumblr.get_posts')
-        sleep(15)
+        sleep(30)
 
 @task
 def rotate_slide():

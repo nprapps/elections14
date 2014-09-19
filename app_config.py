@@ -88,6 +88,7 @@ SERVER_SERVICES = [
     ('uwsgi', '/etc/init', 'conf'),
     ('nginx', '/etc/nginx/locations-enabled', 'conf'),
     ('rotate_slide', '/etc/init', 'conf'),
+    ('get_tumblr_posts', '/etc/init', 'conf'),
 ]
 
 # These variables will be set at runtime. See configure_targets() below
