@@ -178,7 +178,7 @@ def deploy(remote='origin'):
 
 @task
 def deploy_slides():
-    local('rm -rf .slides_html .slides_gzip')
+    #local('rm -rf .slides_html .slides_gzip')
     render.render_slides()
     _gzip('.slides_html', '.slides_gzip')
     _deploy_to_s3('.slides_gzip')
