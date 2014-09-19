@@ -8,6 +8,7 @@ from fabric.api import execute, task
 def tumblr():
     while True:
         execute('tumblr.get_posts')
+        execute('deploy_slides')
         sleep(30)
 
 @task
