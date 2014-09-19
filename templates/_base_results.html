@@ -5,7 +5,11 @@
     <title>{{ COPY.content.project_name }}</title>
 
     <!-- META TAGS -->
-    {% include '_meta.html' %}
+    <meta name="description" content="{{ COPY.share.meta_description }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" /> -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="http://media.npr.org/favicon.ico" />
 
     <!-- CHARTBEAT -->
     <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
@@ -121,7 +125,7 @@
     {% endblock extra_foot %}
 
     {# Adhesion ad #}
-    <div id="adhesion">
+<!--     <div id="adhesion">
         <script type="text/javascript">
         if (Modernizr.touch && Modernizr.mq('(max-width: 1024px)')) {
             var ord = Math.floor(Math.random() * 1e16);
@@ -135,6 +139,6 @@
             document.write('<scr' + 'ipt type="text/javascript" src="http://ad.doubleclick.net/N6735/adj/n6735.nprmobile/' + APP_CONFIG.NPR_DFP.TARGET + ';storyId=' + APP_CONFIG.NPR_DFP.STORY_ID + ';testserver=false;sz=' + size + ';ord=' + ord + '?"><\/script>');
         }
         </script>
-    </div>
+    </div> -->
 </body>
 </html>
