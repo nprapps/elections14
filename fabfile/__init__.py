@@ -15,6 +15,7 @@ import issues
 import render
 import stack
 import text
+import theme
 import tumblr
 import utils
 
