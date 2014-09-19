@@ -7,68 +7,13 @@
 // Colors
 @blue: #376099;
 @red: #BE0F00;
-// @green: #317e62;
 @green: #319269;
+@yellow: #EFC637;
 
+// Additional media query sizes
+@screen-xl: 1400px;
+@screen-big-board: 1920px;
 
-
-// Data colors
-@red1       : #6C2315;
-@red2       : #A23520;
-@red3       : #D8472B;
-@red4       : #E27560;
-@red5       : #ECA395;
-@red6       : #F5D1CA;
-
-@orange1    : #714616;
-@orange2    : #AA6A21;
-@orange3    : #E38D2C;
-@orange4    : #EAAA61;
-@orange5    : #F1C696;
-@orange6    : #F8E2CA;
-
-@yellow1    : #77631B;
-@yellow2    : #B39429;
-@yellow3    : #EFC637;
-@yellow4    : #F3D469;
-@yellow5    : #F7E39B;
-@yellow6    : #FBF1CD;
-
-@teal1      : #0B403F;
-@teal2      : #11605E;
-@teal3      : #17807E;
-@teal4      : #51A09E;
-@teal5      : #8BC0BF;
-@teal6      : #C5DFDF;
-
-@blue1      : #28556F;
-@blue2      : #3D7FA6;
-@blue3      : #51AADE;
-@blue4      : #7DBFE6;
-@blue5      : #A8D5EF;
-@blue6      : #D3EAF7;
-
-// @font-face {
-//     font-family: 'Open Sans Condensed';
-//     src: url('../assets/fonts/opensans-condbold-webfont.eot');
-//     src: url('../assets/fonts/opensans-condbold-webfont.eot?#iefix') format('embedded-opentype'),
-//          url('../assets/fonts/opensans-condbold-webfont.woff') format('woff'),
-//          url('../assets/fonts/opensans-condbold-webfont.ttf') format('truetype'),
-//          url('../assets/fonts/opensans-condbold-webfont.svg#open_sans_condensedbold') format('svg');
-//     font-weight: bold;
-//     font-style: normal;
-// }
-
-// @font-face {
-//     font-family: 'Open Sans Condensed';
-//     src: url('../assets/fonts/opensans-condlight-webfont.eot');
-//     src: url('../assets/fonts/opensans-condlight-webfont.eot?#iefix') format('embedded-opentype'),
-//          url('../assets/fonts/opensans-condlight-webfont.woff') format('woff'),
-//          url('../assets/fonts/opensans-condlight-webfont.ttf') format('truetype'),
-//          url('../assets/fonts/opensans-condlight-webfont.svg#open_sanscondensed_light') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
-// }
 
 body {
     font-family: 'Cooper Hewitt';
@@ -89,6 +34,34 @@ h6 {
     padding: 15px;
 }
 
+.results-header h2,
+.results-header,
+.races h2,
+.races,
+.poll-closing-group {
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 400;
+
+    @media screen and (min-width: @screen-lg){
+        font-size: 18px;
+        line-height: 1.1;
+        font-weight: 300;
+    }
+
+    @media screen and (min-width: @screen-xl){
+        font-size: 24px;
+        line-height: 1.1;
+        font-weight: 300;
+    }
+
+    @media screen and (min-width: @screen-big-board){
+        font-size: 34px;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+}
+
 .results-header {
     background: #fff;
     overflow: hidden;
@@ -97,9 +70,22 @@ h6 {
     h1 {
         width: 14%;
         float: left;
+        margin: 0;
+        font-size: 36px;
+
+        @media screen and (min-width: @screen-big-board){
+            font-size: 46px;
+        }
     }
 
-    .results-group {
+    .results-header-group {
+        display: table;
+
+        .party,
+        .total,
+        .seats-needed {
+            display: table-cell;
+        }
 
         &.dem,
         &.gop {
@@ -119,7 +105,7 @@ h6 {
         font-weight: bold;
     }
 
-    .results-group {
+    .results-header-group {
         border-left: 1px solid #ccc;
         box-sizing: border-box;
         padding-left: 30px;
@@ -127,23 +113,17 @@ h6 {
         h2,
         p {
             margin: 0;
-            font-size: 36px;
         }
 
         h2 {
-            display: inline-block;
             font-weight: bold;
             text-transform: uppercase;
         }
 
         .total,
         .seats-needed {
-            display: inline-block;
             margin: 0 10px;
-        }
-
-        .change {
-            margin-left: 15px;
+            white-space: nowrap;
         }
 
         .seats-needed {
@@ -171,12 +151,18 @@ h6 {
     .percentage,
     .count {
         display: inline-block;
-        border-radius: 28px;
+        border-radius: 18px;
         color: #fff;
         text-align: center;
-        line-height: 55px;
+        line-height: 36px;
 
-        .square(55px);
+        .square(36px);
+
+        @media screen and (min-width: @screen-big-board){
+            .square(55px);
+            line-height: 55px;
+            border-radius: 28px;
+        }
     }
 }
 
@@ -197,22 +183,23 @@ h6 {
         }
     }
 
-    .closing-time-group {
-        font-size: 36px;
+    .poll-closing-group {
         font-weight: bold;
-        // text-align: center;
-        // background: #ddd;
         border-top: 4px solid @gray-dark;
         color: @gray-darker;
         margin-bottom: 0;
-        padding: 5px;
-        // line-height: 66px;
+        padding: 5px 0;
+
+        .time {
+            width: 11%;
+            text-align: right;
+            display: inline-block;
+            padding-right: 5px;
+        }
     }
 
     .races {
         width: 100%;
-        font-size: 34px;
-        // font-weight: 700;
 
         td {
             vertical-align: top;
@@ -220,44 +207,12 @@ h6 {
             padding: 5px;
         }
 
-        .candidate {
-            width: 35%;
-
-            .party {
-                font-size: 24px;
-                // border: 2px solid @green;
-                // border-radius: 3px;
-                // padding: 0 3px;
-                font-weight: normal;
-                letter-spacing: 0.05em;
-            }
-
-            &.incumbent {
-                // font-weight: bold;
-            }
-        }
-
-        // .state + .candidate {
-        //     text-align: right;
-        // }
-
-        .dem { color: @blue; }
-        .gop { color: @red; }
-        .other { color: @green; }
-
-        .winner {
-            color: #fff;
-
-            &.dem { background: @blue; }
-            &.gop { background: @red; }
-            &.other { background: @green; }
-        }
-
-        .closing-time {
+        .results-status {
+            width: 11%;
             text-align: right;
 
             &.reporting {
-                background: @yellow3;
+                background: @yellow;
             }
 
             &.called {
@@ -277,6 +232,42 @@ h6 {
                 &.gop { color: @red; }
                 &.other { color: @green; }
             }
+        }
+
+        .dem { color: @blue; }
+        .gop { color: @red; }
+        .other { color: @green; }
+
+        .winner {
+            color: #fff;
+
+            &.dem { background: @blue; }
+            &.gop { background: @red; }
+            &.other { background: @green; }
+        }
+
+        .candidate {
+            width: 35%;
+
+            .party {
+                font-size: 14px;
+                font-weight: normal;
+                letter-spacing: 0.05em;
+
+                @media screen and (min-width: @screen-big-board){
+                    font-size: 24px;
+                }
+            }
+
+            &.incumbent {
+                &:after {
+                    content: "*";
+                }
+            }
+        }
+
+        .candidate-total {
+            width: 6%;
         }
     }
 }
