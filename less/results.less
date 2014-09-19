@@ -38,7 +38,8 @@ h6 {
 .results-header,
 .races h2,
 .races,
-.poll-closing-group {
+.poll-closing-group,
+ {
     font-size: 14px;
     line-height: 1;
     font-weight: 400;
@@ -138,7 +139,7 @@ h6 {
         }
     }
 
-    .dem   { color: @blue; }
+    .dem  { color: @blue; }
     .gop   { color: @red; }
     .other { color: @green; }
     .not-called { color: @gray; }
@@ -166,7 +167,9 @@ h6 {
     }
 }
 
-.results {
+.results  {
+    overflow:hidden;
+
     .results-col {
         .senate & {
             width: 50%;
@@ -260,9 +263,10 @@ h6 {
             }
 
             &.incumbent {
-                &:after {
-                    content: "*";
-                }
+                font-style:italic;
+                // &:after {
+                //     content: "*";
+                // }
             }
         }
 
@@ -270,4 +274,68 @@ h6 {
             width: 6%;
         }
     }
+}
+
+
+
+    .key{
+        font-size: 10px;
+   
+        font-weight: 300;
+    @media screen and (min-width: @screen-lg){
+        font-size: 12px;
+        line-height: 1.1;
+        font-weight: 300;
+    }
+
+    @media screen and (min-width: @screen-xl){
+        font-size: 15px;
+        line-height: 1.1;
+        font-weight: 300;
+    }
+
+    @media screen and (min-width: @screen-big-board){
+        font-size: 20px;
+        line-height: 1.2;
+    }
+        
+
+        margin-top:20px;
+        margin-bottom:20px;
+        overflow:hidden;
+        // border:1px solid black;
+        padding:5px;
+        float:left;
+        // font-family:'Open Sans';
+        
+
+        .yellow-square{
+            
+            background-color:@yellow;
+            width:20px;
+            display:inline-block;
+        }
+        .black-square{
+            
+            background-color:#222;
+            width:20px;
+            display:inline-block;
+        }
+
+        .bold  { font-weight:500;}
+        ul{
+            padding-left:0;
+            float:left;
+            padding-right:20px;
+            margin-bottom:0;
+        }
+        li{
+         
+            list-style-type:none;
+            text-indent:none;
+            padding-left:0;
+        
+        }
+
+    
 }
