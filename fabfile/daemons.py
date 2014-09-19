@@ -2,6 +2,8 @@
 
 from time import sleep
 
+from fabric.api import task
+
 import cron_jobs
 import tumblr
 
