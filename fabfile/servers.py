@@ -126,7 +126,7 @@ def _get_rendered_conf_path(service, extension):
     Derive the rendered path for a conf file.
     """
     return 'confs/rendered/%s.%s.%s' % (app_config.PROJECT_FILENAME, service, extension)
-
+    
 def _get_installed_conf_path(service, remote_path, extension):
     """
     Derive the installed path for a conf file.
@@ -146,8 +146,8 @@ def render_confs():
     """
     require('settings', provided_by=['production', 'staging'])
 
-    with settings(warn_only=True):
-        local('mkdir confs/rendered')
+    #with settings(warn_only=True):
+        #local('mkdir confs/rendered')
 
     # Copy the app_config so that when we load the secrets they don't
     # get exposed to other management commands
