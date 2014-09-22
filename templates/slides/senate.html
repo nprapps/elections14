@@ -39,25 +39,25 @@
 	</div>
 
 	<div class="results">
-		<table class="races">
-			{% for race in races %}
-			<tr class="race">
-				<td class="results-status"></td>
-				<td class="state">{{ race.state_postal }}</td>
-				<td class="candidate dem">Joe Donnelly</td>
-				<td class="candidate-total dem">50</td>
-				<td class="candidate-total gop">44</td>
-				<td class="candidate gop">Richard Mourdock</td>
-			</tr>
-			{% endfor %}
-		</table>
-		
-
-
-
-
-
-	
+    {% for column in race_columns %}
+    <div class="results-col">
+      {% for closing_time, races in column %}
+      <h2 class="poll-closing-group"><span class="time"><span class="time-inner">{{ closing_time|format_closing_time }}</span></span></h2>
+      <table class="races">
+        {% for race in races %}
+        <tr class="race">
+          <td class="results-status"></td>
+          <td class="state">{{ race.state_postal }}</td>
+          <td class="candidate dem">Joe Donnelly</td>
+          <td class="candidate-total dem">50</td>
+          <td class="candidate-total gop">44</td>
+          <td class="candidate gop">Richard Mourdock</td>
+        </tr>
+        {% endfor %}
+      </table>
+		  {% endfor %}
+    </div>
+    {% endfor %}
 	</div>
 
 			<div class="key">

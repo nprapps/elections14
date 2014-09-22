@@ -33,13 +33,17 @@ def _group_races_by_closing_time(races):
 
     return sorted(results.items())
 
-def _partition(l, n):
+def _partition(l):
     """
-    Yield successive n-sized chunks from l.
-    Taken from http://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks-in-python
+    Split a list in two!
     """
-    for i in xrange(0, len(l), n):
-        yield l[i:i+n]
+    length = len(l)
+    left = int(round(length / 2.))
+    return (l[0:left], l[left:])
+
+@app.template_filter()
+def format_closing_time(dt):
+   return '{d:%l}:{d.minute:02}'.format(d=dt)
 
 def cors(f):
     """
@@ -108,7 +112,7 @@ def results_senate():
     context = make_context()
     races = Race.select().where(Race.office_name == "U.S. Senate")
     grouped = _group_races_by_closing_time(races)
-    context["races"] = _partition(grouped, 2)
+    context["race_columns"] = _partition(grouped)
     return render_template('slides/senate.html', **context)
 
 @app.route('/comments/')
