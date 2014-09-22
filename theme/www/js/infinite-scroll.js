@@ -173,23 +173,22 @@ Tumblelog.Infinite = (function() {
         _Ajax(_url, function(data) {
             var new_posts_html = data.split('<!-- START' + ' POSTS -->')[1].split('<!-- END' + ' POSTS -->')[0];
             var $new_posts = $('#posts', data);
-            var new_post_div = '.page' + _current_page;
             var $current_posts = $('#posts');
+
+            first_page_posts = $new_posts[0];
+            first_post = $(first_page_posts).children()[0];
 
             new_post_permalink =  $new_posts.find('article.post .post-meta .pubdate .permalink').attr('href')
             current_post_permalink = $current_posts.find('article.post .post-meta .pubdate .permalink').attr('href')
 
             if (new_post_permalink === current_post_permalink) {
-                console.log('do nothing');
                 return;
             }
-
-
             // Insert posts and update counters
 
-           $('#posts').prepend('<div class="page' + _current_page + '">' + new_posts_html + '</div>');
-           sizeVideoContainers(new_post_div);
-           $(new_post_div).fitVids({ customSelector: "video"});
+           $('#posts').prepend(first_post);
+           sizeVideoContainers(first_post);
+           $(first_post).fitVids({ customSelector: "video"});
 
             _posts_loaded = $new_posts.find('article.post').length;
         });
