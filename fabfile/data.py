@@ -303,6 +303,9 @@ def update_featured_social():
 
 @task
 def load_slide_fixtures():
+    """
+    Load mockup slides from assets directory.
+    """
     import models
 
     path = 'www/assets/slide-mockups/'
