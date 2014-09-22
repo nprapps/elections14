@@ -176,8 +176,14 @@ Tumblelog.Infinite = (function() {
             var new_post_div = '.page' + _current_page;
             var $current_posts = $('#posts');
 
-            var $first_new_post = $('#posts ')
-            var $first_current_post = $current_posts.find('.post')[0]
+            new_post_permalink =  $new_posts.find('article.post .post-meta .pubdate .permalink').attr('href')
+            current_post_permalink = $current_posts.find('article.post .post-meta .pubdate .permalink').attr('href')
+
+            if (new_post_permalink === current_post_permalink) {
+                console.log('do nothing');
+                return;
+            }
+
 
             // Insert posts and update counters
 
