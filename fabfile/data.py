@@ -20,6 +20,9 @@ import app_config
 import admin_app
 import servers
 
+from datetime import datetime, timedelta
+import random
+
 def server_postgres_command(cmd ):
     """
     Run a postgres command on the server.
@@ -300,6 +303,9 @@ def update_featured_social():
 
 @task
 def load_slide_fixtures():
+    """
+    Load mockup slides from assets directory.
+    """
     import models
 
     path = 'www/assets/slide-mockups/'
@@ -312,3 +318,17 @@ def load_slide_fixtures():
         slide.save()
         sequence = models.SlideSequence.create(sequence=i, slide=slide)
         sequence.save()
+
+@task
+def mock_election_results():
+    """
+    Fake out some election results
+    """
+    import models
+
+    first_close = datetime(2014, 11, 4, 7)
+    closing_times = [first_close + timedelta(hours=delta) for delta in range(6)]
+
+    for race in models.Race.select():
+        race.poll_closing_time = random.choice(closing_times)
+        race.save()
