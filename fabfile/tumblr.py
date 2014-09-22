@@ -21,13 +21,16 @@ def get_posts():
     posts = response.json()['response']['posts']
 
     for post in posts:
+        if post['type'] == 'video':
+            continue
+
         _create_slide(post)
 
 def _create_slide(post):
     rendered_post = _render_post(post)
     slug = 'tumblr-%i' % post['id']
     post_title = post['slug']
-    
+
     try:
         slide = models.Slide.get(slug=slug)
         print 'Updating post %s' % slug
@@ -35,9 +38,9 @@ def _create_slide(post):
         slide.body = rendered_post
         slide.save()
     except models.Slide.DoesNotExist:
-        print 'Creating post %s' % slug 
+        print 'Creating post %s' % slug
         slide = models.Slide.create(slug=slug, name=post_title, body=rendered_post)
-        
+
         max = models.SlideSequence.select(fn.Max(models.SlideSequence.sequence)).scalar()
         sequence = models.SlideSequence.create(sequence=max+1, slide=slide)
         print '%s is slide number %s' % (slide.name, max)
@@ -52,7 +55,7 @@ def _render_post(post):
             if not image or size['width'] > image['width']:
                 image = size
         post['image'] = image
-        
+
     with open('templates/%s' % filename) as f:
         template = Template(f.read())
     return template.render(**post)
