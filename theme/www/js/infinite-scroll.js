@@ -137,6 +137,8 @@ Tumblelog.Infinite = (function() {
         _current_page++;
         _url = _url.replace('page/' + (_current_page - 1), 'page/' + _current_page);
 
+        console.log(_url, _current_page);
+
         // Fetch
         _Ajax(_url, function(data) {
             var new_posts_html = data.split('<!-- START' + ' POSTS -->')[1].split('<!-- END' + ' POSTS -->')[0];
@@ -165,32 +167,48 @@ Tumblelog.Infinite = (function() {
     }
 
     function find_new_posts() {
+        if (_is_loading) return;
+        _is_loading = true;
+
         // reset the url
-        _url = document.location.href;
-        if (_url.charAt(_url.length - 1) != '/') _url += '/';
-        _url += 'page/1';
+        var liveblog_url = document.location.href;
+        if (liveblog_url.charAt(liveblog_url.length - 1) != '/') liveblog_url += '/';
+        liveblog_url += 'page/1';
 
-        _Ajax(_url, function(data) {
-            var new_posts_html = data.split('<!-- START' + ' POSTS -->')[1].split('<!-- END' + ' POSTS -->')[0];
+        _Ajax(liveblog_url, function(data) {
+
             var $new_posts = $('#posts', data);
+            var first_page = $new_posts[0];
+            var first_page_posts = $(first_page).children();
+
             var $current_posts = $('#posts');
+            var current_post_permalink = $current_posts.find('.permalink').attr('href');
+            var posts_to_append = [];
 
-            first_page_posts = $new_posts[0];
-            first_post = $(first_page_posts).children()[0];
-
-            new_post_permalink =  $new_posts.find('article.post .post-meta .pubdate .permalink').attr('href')
-            current_post_permalink = $current_posts.find('article.post .post-meta .pubdate .permalink').attr('href')
-
-            if (new_post_permalink === current_post_permalink) {
-                return;
+            for (i=0; i < first_page_posts.length; i++) {
+                var loop_post = first_page_posts[i];
+                var permalink = $(loop_post).find('.permalink').attr('href');
+                console.log(permalink, current_post_permalink);
+                if (permalink == current_post_permalink) break;
+                posts_to_append.push(first_page_posts[i]);
             }
+
+            console.log(posts_to_append);
+
             // Insert posts and update counters
 
-           $('#posts').prepend(first_post);
-           sizeVideoContainers(first_post);
-           $(first_post).fitVids({ customSelector: "video"});
+           $('#posts').prepend(posts_to_append);
+           sizeVideoContainers(posts_to_append);
+           $(posts_to_append).fitVids({ customSelector: "video"});
 
             _posts_loaded = $new_posts.find('article.post').length;
+
+            if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
+                set_trigger();
+                _is_loading = false;
+            } else {
+                disable_scroll();
+            }
         });
     }
 
