@@ -9,6 +9,7 @@
 @red: #BE0F00;
 @green: #319269;
 @yellow: #EFC637;
+@white: #fff;
 
 // Additional media query sizes
 @screen-xl: 1400px;
@@ -301,28 +302,27 @@ h6 {
 
 
     .key{
-        font-size: 10px;
-   
+        font-size: 11px;
         font-weight: 300;
     @media screen and (min-width: @screen-lg){
         font-size: 12px;
-        line-height: 1.1;
+        line-height: 1.3;
         font-weight: 300;
     }
 
     @media screen and (min-width: @screen-xl){
         font-size: 15px;
-        line-height: 1.1;
+        line-height: 1.3;
         font-weight: 300;
     }
 
     @media screen and (min-width: @screen-big-board){
         font-size: 20px;
-        line-height: 1.2;
+        line-height: 1.5;
     }
         
 
-        margin-top:20px;
+        margin-top:40px;
         margin-bottom:20px;
         overflow:hidden;
         // border:1px solid black;
@@ -331,17 +331,32 @@ h6 {
         // font-family:'Open Sans';
         
 
-        .yellow-square{
+        .percent-ex{
             
             background-color:@yellow;
-            width:20px;
             display:inline-block;
+            padding:0 2px;
         }
-        .black-square{
+        .time-ex{
             
             background-color:#222;
-            width:20px;
             display:inline-block;
+            color: @white;
+            padding:0 2px;
+        }
+
+        .name-ex{
+            background-color: @blue;
+            color: @white;
+            padding: 0 2px;
+        }
+
+        .state-ex{
+            color:@blue;
+
+        }
+        .incum-ex{
+            color:@red;
         }
 
         .bold  { font-weight:500;}
