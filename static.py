@@ -4,11 +4,10 @@ import json
 from mimetypes import guess_type
 import subprocess
 
-from flask import abort
+from flask import abort, Blueprint
 
 import app_config
 import copytext
-from flask import Blueprint
 from render_utils import flatten_app_config
 
 static = Blueprint('static', __name__)
@@ -21,20 +20,13 @@ def _templates_js():
     return r, 200, { 'Content-Type': 'application/javascript' }
 
 # Render LESS files on-demand
-@static.route('/less/<string:filename>')
-def _less(filename):
-    try:
-        with open('less/%s' % filename) as f:
-            less = f.read()
-    except IOError:
-        abort(404)
+def _less(filename, static_path=''):
 
-    r = subprocess.check_output(["node_modules/less/bin/lessc", "less/%s" % filename])
+    r = subprocess.check_output(["node_modules/less/bin/lessc", "%sless/%s" % (static_path, filename)])
 
     return r, 200, { 'Content-Type': 'text/css' }
 
 # Render application configuration
-@static.route('/js/app_config.js')
 def _app_config_js():
     config = flatten_app_config()
     js = 'window.APP_CONFIG = ' + json.dumps(config)
@@ -42,7 +34,6 @@ def _app_config_js():
     return js, 200, { 'Content-Type': 'application/javascript' }
 
 # Render copytext
-@static.route('/js/copy.js')
 def _copy_js():
     copy = 'window.COPY = ' + copytext.Copy(app_config.COPY_PATH).json()
 
@@ -50,7 +41,7 @@ def _copy_js():
 
 # Server arbitrary static files on-demand
 @static.route('/<path:path>')
-def _static(path):
+def static_file(path):
     try:
         with open('www/%s' % path) as f:
             return f.read(), 200, { 'Content-Type': guess_type(path)[0] }

@@ -19,10 +19,12 @@ class Includer(object):
 
     See `make_context` for an explanation of `asset_depth`.
     """
-    def __init__(self, asset_depth=0):
+    def __init__(self, asset_depth=0, static_path='', absolute=False):
         self.includes = []
         self.tag_string = None
         self.asset_depth = asset_depth
+        self.static_path = static_path
+        self.absolute = absolute
 
     def push(self, path):
         self.includes.append(path)
@@ -34,7 +36,7 @@ class Includer(object):
 
     def _relativize_path(self, path):
         relative_path = path
-        depth = len(request.path.split('/')) - (2 + self.asset_depth) 
+        depth = len(request.path.split('/')) - (2 + self.asset_depth)
 
         while depth > 0:
             relative_path = '../%s' % relative_path
@@ -42,7 +44,14 @@ class Includer(object):
 
         return relative_path
 
+    def _absolutize_path(self, path):
+        return '%s/%s/%s' % (app_config.S3_BASE_URL, self.static_path, path)
+
     def render(self, path):
+        if self.absolute:
+            pather = self._absolutize_path
+        else:
+            pather = self._relativize_path
         if getattr(g, 'compile_includes', False):
             if path in g.compiled_includes:
                 timestamp_path = g.compiled_includes[path]
@@ -53,12 +62,12 @@ class Includer(object):
                 timestamp_path = '%s.%i.%s' % (front, timestamp, back)
 
                 # Delete old rendered versions, just to be tidy
-                old_versions = glob.glob('www/%s.*.%s' % (front, back))
+                old_versions = glob.glob('%swww/%s.*.%s' % (self.static_path, front, back))
 
                 for f in old_versions:
                     os.remove(f)
 
-            out_path = 'www/%s' % timestamp_path
+            out_path = '%swww/%s' % (self.static_path, timestamp_path)
 
             if path not in g.compiled_includes:
                 print 'Rendering %s' % out_path
@@ -69,12 +78,12 @@ class Includer(object):
             # See "fab render"
             g.compiled_includes[path] = timestamp_path
 
-            markup = Markup(self.tag_string % self._relativize_path(timestamp_path))
+            markup = Markup(self.tag_string % pather(timestamp_path))
         else:
             response = ','.join(self.includes)
 
             response = '\n'.join([
-                self.tag_string % self._relativize_path(src) for src in self.includes
+                self.tag_string % pather(src) for src in self.includes
             ])
 
             markup = Markup(response)
@@ -99,7 +108,7 @@ class JavascriptIncluder(Includer):
         for src in self.includes:
             src_paths.append('www/%s' % src)
 
-            with open('www/%s' % src) as f:
+            with open('%swww/%s' % (self.static_path, src)) as f:
                 print '- compressing %s' % src
                 output.append(minify(f.read().encode('utf-8')))
 
@@ -134,7 +143,7 @@ class CSSIncluder(Includer):
             else:
                 src_paths.append('www/%s' % src)
 
-            with open('www/%s' % src) as f:
+            with open('%swww/%s' % (self.static_path, src)) as f:
                 print '- compressing %s' % src
                 output.append(cssmin(f.read().encode('utf-8')))
 
