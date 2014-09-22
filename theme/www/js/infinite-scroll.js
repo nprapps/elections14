@@ -60,9 +60,14 @@ Tumblelog.Infinite = (function() {
 
     var _Ajax = Tumblelog.Ajax;
 
-    function init() {
-        set_trigger();
-        enable_scroll();
+    function init(scrollHandler) {
+        if (scrollHandler == true) {
+            set_trigger();
+            enable_scroll();
+        }
+        else {
+            newPostListener();
+        }
     }
 
     function set_trigger () {
@@ -106,6 +111,12 @@ Tumblelog.Infinite = (function() {
     function disable_scroll() {
         clearTimeout(_infinite_timeout);
         $(window).unbind('scroll');
+    }
+
+    function newPostListener() {
+        if (_is_loading) return;
+
+        setInterval(find_new_posts, 5000);
     }
 
     function infinite_scroll() {
@@ -153,6 +164,31 @@ Tumblelog.Infinite = (function() {
         }
     }
 
+    function find_new_posts() {
+        // reset the url
+        _url = document.location.href;
+        if (_url.charAt(_url.length - 1) != '/') _url += '/';
+        _url += 'page/1';
+
+        _Ajax(_url, function(data) {
+            var new_posts_html = data.split('<!-- START' + ' POSTS -->')[1].split('<!-- END' + ' POSTS -->')[0];
+            var $new_posts = $('#posts', data);
+            var new_post_div = '.page' + _current_page;
+            var $current_posts = $('#posts');
+
+            var $first_new_post = $('#posts ')
+            var $first_current_post = $current_posts.find('.post')[0]
+
+            // Insert posts and update counters
+
+           $('#posts').prepend('<div class="page' + _current_page + '">' + new_posts_html + '</div>');
+           sizeVideoContainers(new_post_div);
+           $(new_post_div).fitVids({ customSelector: "video"});
+
+            _posts_loaded = $new_posts.find('article.post').length;
+        });
+    }
+
     return {
         init: init
     };
@@ -160,5 +196,9 @@ Tumblelog.Infinite = (function() {
 
 $(function() {
     var InfiniteScroll = new Tumblelog.Infinite;
-    InfiniteScroll.init();
+    InfiniteScroll.init(true);
+
+    var liveBlog = new Tumblelog.Infinite;
+    liveBlog.init(false);
+
 });
