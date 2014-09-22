@@ -5,12 +5,14 @@ from functools import wraps
 import json
 
 import argparse
-from flask import Flask, make_response, render_template
+from flask import Blueprint, Flask, make_response, render_template
 from peewee import fn
 
 import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter
 import static
+import static_app
+import static_theme
 
 app = Flask(__name__)
 
@@ -25,7 +27,7 @@ def cors(f):
     def decorated_function(*args, **kwargs):
         response = make_response(f(*args, **kwargs))
         response.headers['Access-Control-Allow-Origin'] = '*'
-        return response 
+        return response
     return decorated_function
 
 # Example application views
@@ -43,7 +45,7 @@ def index():
 
     context['races'] = Race.select()
 
-    return render_template('index.html', **context), 200, 
+    return render_template('index.html', **context), 200,
 
 @app.route('/chromecast/')
 def chromecast():
@@ -152,6 +154,8 @@ def stack():
     return render_template('stack.html', **context)
 
 app.register_blueprint(static.static)
+app.register_blueprint(static_app.static_app)
+app.register_blueprint(static_theme.theme)
 
 # Boilerplate
 if __name__ == '__main__':

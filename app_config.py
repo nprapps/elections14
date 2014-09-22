@@ -60,7 +60,7 @@ PRODUCTION_SERVERS = ['cron.nprapps.org']
 STAGING_SERVERS = ['50.112.92.131']
 
 # Should code be deployed to the web/cron servers?
-DEPLOY_TO_SERVERS = True 
+DEPLOY_TO_SERVERS = True
 
 SERVER_USER = 'ubuntu'
 SERVER_PYTHON = 'python2.7'

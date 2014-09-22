@@ -40,24 +40,10 @@
              });
         </script>
 
-        <!-- HTML5 Shiv -->
-        <!--[if lt IE 9]>
-                <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
-        <![endif]-->
-        {{ static(file_path='modernizr.js') }}
-
-        <!-- Reset CSS -->
-        <link rel="stylesheet" href="http://static.tumblr.com/thpaaos/DIcklyl4z/reset.css" type="text/css">
-
-        <!-- Project CSS -->
-        {{ static(file_path='app.less.css') }}
-
-        <!--[if lt IE 9]>
-            <style type="text/css">
-                #container { width: 980px; }
-            </style>
-        <![endif]-->
-
+         <!-- CSS -->
+        {{ CSS.push('less/app.less') }}
+        {% block extra_css %}{% endblock extra_css %}
+        {{ CSS.render('css/app.min.css') }}
 
         <!-- GOOGLE ANALYTICS -->
          <script>
@@ -72,10 +58,10 @@
 
         <meta name="twitter:card" content="summary">
         <meta property="og:title" content="{Title}" />
-        <meta property="og:url" content="{{ copy.og_url }}" />
+        <meta property="og:url" content="{{ COPY.og_url }}" />
         <meta property="og:type" content="article" />
-        <meta property="og:description" content="{{ copy.og_description }}" />
-        <meta property="og:image" content="{{ copy.og_image }}" />
+        <meta property="og:description" content="{{ COPY.og_description }}" />
+        <meta property="og:image" content="{{ COPY.og_image }}" />
         <meta property="og:site_name" content="NPR.org" />
         <meta property="fb:app_id" content="138837436154588" />
 
@@ -90,8 +76,7 @@
                             <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
                             <h1><a href="/">
-                                {{ static(file_path='social_media_desk_lg.svg', classes='img-responsive hidden-xs hidden-sm', alt="header") }}
-                                {{ static(file_path='social_media_desk.svg', classes='img-responsive visible-xs visible-sm', alt="header") }}
+                                NPR Politics
                             </a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>
@@ -249,182 +234,11 @@
         </div> <!-- #container -->
 
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        {{ static(file_path='app.js') }}
-        {{ static(file_path='jquery.fitvids.js') }}
-
-        {block:IfUseEndlessScrolling}
-        <script type="text/javascript">
-            var Tumblelog = {};
-
-            // AJAX
-            Tumblelog.Ajax = (function(url, callbackFunction) {
-                this.bindFunction = function (caller, object) {
-                    return function() {
-                        return caller.apply(object, [object]);
-                    };
-                };
-
-                this.stateChange = function (object) {
-                    if (this.request.readyState==4) {
-                        this.callbackFunction(this.request.responseText);
-                    }
-                };
-
-                this.getRequest = function() {
-                    if (window.ActiveXObject)
-                        return new ActiveXObject('Microsoft.XMLHTTP');
-                    else if (window.XMLHttpRequest)
-                        return new XMLHttpRequest();
-                    return false;
-                };
-
-                this.postBody = (arguments[2] || "");
-                this.callbackFunction=callbackFunction;
-                this.url=url;
-                this.request = this.getRequest();
-
-                if(this.request) {
-                    var req = this.request;
-                    req.onreadystatechange = this.bindFunction(this.stateChange, this);
-
-                    if (this.postBody!=="") {
-                        req.open("POST", url, true);
-                        req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-                        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                        req.setRequestHeader('Connection', 'close');
-                    } else {
-                        req.open("GET", url, true);
-                    }
-
-                    req.send(this.postBody);
-                }
-            });
-
-            // Infinite Scroll
-            Tumblelog.Infinite = (function() {
-
-                var _$window          = $(window);
-                var _$posts           = $('#posts');
-                var _trigger_post     = null;
-
-                var _current_page     = {CurrentPage};
-                var _total_pages      = {TotalPages};
-                var _url              = document.location.href;
-                var _infinite_timeout = null;
-                var _is_loading       = false;
-                var _posts_loaded     = false;
-
-                var _Ajax = Tumblelog.Ajax;
-
-                function init() {
-                    set_trigger();
-                    enable_scroll();
-                }
-
-                function set_trigger () {
-                    var $all_posts = _$posts.find('article.post');
-
-                    if (!_posts_loaded) {
-                        _posts_loaded = $all_posts.length;
-                    }
-
-                    if (_posts_loaded >= 4) {
-                        _trigger_post = _$posts.find('article.post:eq(' + ($all_posts.length - 4) + ')').get(0);
-                    } else if (_posts_loaded >= 3) {
-                        _trigger_post = _$posts.find('article.post:eq(' + ($all_posts.length - 3) + ')').get(0);
-                    } else {
-                        _trigger_post = _$posts.find('article.post:last').get(0);
-                    }
-
-                };
-
-                function in_viewport (el) {
-                    if (el == null) return;
-                    var top = el.offsetTop;
-                    var height = el.offsetHeight;
-
-                    while (el.offsetParent) {
-                        el = el.offsetParent;
-                        top += el.offsetTop;
-                    }
-
-                    return (top < (window.pageYOffset + window.innerHeight));
-                };
-
-                function enable_scroll() {
-                    $('#footer .pagination').hide();
-                    _$window.scroll(function(){
-                        clearTimeout(_infinite_timeout);
-                        infinite_timeout = setTimeout(infinite_scroll, 100);
-                    });
-                }
-
-                function disable_scroll() {
-                    clearTimeout(_infinite_timeout);
-                    $(window).unbind('scroll');
-                }
-
-                function infinite_scroll() {
-                    if (_is_loading) return;
-
-                    if (in_viewport(_trigger_post)) {
-                        load_more_posts(); // w00t
-                    }
-                };
-
-                function load_more_posts() {
-                    if (_is_loading) return;
-                    _is_loading = true;
-
-                    // Build URL
-                    if (_url.charAt(_url.length - 1) != '/') _url += '/';
-                    if (_current_page === 1) _url += 'page/1';
-                    _current_page++;
-                    _url = _url.replace('page/' + (_current_page - 1), 'page/' + _current_page);
-
-                    // Fetch
-                    _Ajax(_url, function(data) {
-                        var new_posts_html = data.split('<!-- START' + ' POSTS -->')[1].split('<!-- END' + ' POSTS -->')[0];
-                        var $new_posts = $('#posts', data);
-
-                        // Insert posts and update counters
-                        $('#posts').append(new_posts_html);
-                        sizeVideoContainers();
-
-                        _posts_loaded = $new_posts.find('article.post').length;
-
-                        if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
-                            set_trigger();
-                            _is_loading = false;
-                        } else {
-                            disable_scroll();
-                        }
-                    });
-
-                    // Stats
-                    {block:IfGoogleAnalyticsID}
-                        if (typeof window._gaq != 'undefined') {
-                            _gaq.push(['_trackPageview', _url]);
-                        }
-                    {/block:IfGoogleAnalyticsID}
-                }
-
-                return {
-                    init: init
-                };
-            });
-
-            $(function() {
-                {block:IndexPage}
-                if ( !($.browser.msie && (parseInt($.browser.version, 10) < 9) ) ) {
-                    var InfiniteScroll = new Tumblelog.Infinite;
-                    InfiniteScroll.init();
-                }
-                {/block:IndexPage}
-            });
-        </script>
-        {/block:IfUseEndlessScrolling}
+        {{ JS.push('js/lib/jquery.js') }}
+        {{ JS.push('js/lib/jquery.fitvids.js') }}
+        {{ JS.push('js/infinite-scroll.js') }}
+        {{ JS.push('js/app.js') }}
+        {{ JS.render('js/app-footer-index.min.js') }}
 
         <!-- CHARTBEAT -->
         <script type="text/javascript">
@@ -451,8 +265,5 @@
                     loadChartbeat : function() { oldonload(); loadChartbeat(); };
             })();
         </script>
-
-
-        {block:IfUseEndlessScrolling}<script type="text/javascript" src="http://assets.tumblr.com/javascript/tumblelog.js"></script>{/block:IfUseEndlessScrolling}
     </body>
 </html>

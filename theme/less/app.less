@@ -1,52 +1,6 @@
 // Core variables and mixins
 @import "variables.less";
-@import "less/bootstrap-3/mixins.less";
-
-// Reset
-@import "less/bootstrap-3/normalize.less";
-@import "less/bootstrap-3/print.less";
-
-// Core CSS
-@import "less/bootstrap-3/scaffolding.less";
-@import "less/bootstrap-3/type.less";
-// @import "code.less";
-@import "less/bootstrap-3/grid.less";
-// @import "tables.less";
-// @import "forms.less";
-// @import "buttons.less";
-
-// Components
-// @import "component-animations.less";
-//@import "glyphicons.less";
-// @import "dropdowns.less";
-// @import "button-groups.less";
-// @import "input-groups.less";
-// @import "navs.less";
-// @import "navbar.less";
-// @import "breadcrumbs.less";
-@import "less/bootstrap-3/pagination.less";
-// @import "pager.less";
-// @import "labels.less";
-// @import "badges.less";
-// @import "jumbotron.less";
-// @import "thumbnails.less";
-// @import "alerts.less";
-// @import "progress-bars.less";
-// @import "media.less";
-// @import "list-group.less";
-// @import "panels.less";
-// @import "wells.less";
-// @import "close.less";
-
-// Components w/ JavaScript
-// @import "modals.less";
-// @import "tooltip.less";
-// @import "popovers.less";
-// @import "carousel.less";
-
-// Utility classes
-@import "less/bootstrap-3/utilities.less";
-@import "less/bootstrap-3/responsive-utilities.less";
+@import "lib/bootstrap/bootstrap.less";
 
 .container {
     .center-block;
@@ -91,7 +45,7 @@
         }
     }
 
-    p {        
+    p {
         color: @musicMedium;
         clear: both;
         -webkit-font-smoothing: antialiased;
@@ -254,14 +208,14 @@
         }
 
         &.photoset {
-            iframe { 
-                margin: 0 auto @line-height-computed; 
+            iframe {
+                margin: 0 auto @line-height-computed;
                 display: block;
                 max-width: 100%;
             }
             // .caption { margin-top: 12px; }
             .photoset-250 { display: none; }
-            
+
             @media (max-width: @screen-xs-max) {
                 .photoset-250 { display: block; }
                 .photoset-500 { display: none; }
@@ -316,7 +270,7 @@
                 }
 
             }
-            
+
             .tumblr_video_iframe,
             .video-container img, {
                 position: absolute;
@@ -359,7 +313,7 @@
                 .make-md-column-push(2);
                 // .make-lg-column(9);
                 // .make-lg-column-push(3);
-                
+
                 blockquote {
                     border-left: none;
                     font-size: @font-size-base * 2;
