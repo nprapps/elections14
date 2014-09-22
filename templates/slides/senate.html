@@ -48,10 +48,12 @@
         <tr class="race">
           <td class="results-status"></td>
           <td class="state">{{ race.state_postal }}</td>
-          <td class="candidate dem">Joe Donnelly</td>
-          <td class="candidate-total dem">50</td>
-          <td class="candidate-total gop">44</td>
-          <td class="candidate gop">Richard Mourdock</td>
+          {% set candidate = race.top_candidates[0] %}
+          <td class="candidate {{ candidate.party|lower }}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>
+          <td class="candidate-total {{ candidate.party|lower }}">50</td>
+          {% set candidate = race.top_candidates[1] %}
+          <td class="candidate-total {{ candidate.party|lower }}">50</td>
+          <td class="candidate {{ candidate.party|lower }}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>
         </tr>
         {% endfor %}
       </table>

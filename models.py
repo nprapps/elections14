@@ -226,6 +226,19 @@ class Race(BaseModel):
 
         return flat
 
+    @property
+    def top_candidates(self):
+        try:
+            dem = self.candidates.where(self.candidates.model_class.party == "Dem")[0]
+        except IndexError:
+            dem = None
+        try:
+            gop = self.candidates.where(self.candidates.model_class.party == "GOP")[0]
+        except IndexError:
+            gop = None
+
+        return (dem, gop)
+
 class Candidate(BaseModel):
     """
     Candidate model.
