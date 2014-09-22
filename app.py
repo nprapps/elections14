@@ -13,6 +13,7 @@ from render_utils import make_context, smarty_filter, urlencode_filter
 import static
 import static_app
 import static_theme
+from models import Race
 
 app = Flask(__name__)
 
@@ -84,7 +85,9 @@ def results_senate():
     Senate big board
     """
     context = make_context()
-
+    context["races"] = Race.select().where(Race.office_name == "U.S. Senate").dicts()
+    from pprint import pprint
+    pprint(context)
     return render_template('slides/senate.html', **context)
 
 @app.route('/comments/')
