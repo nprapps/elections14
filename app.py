@@ -20,6 +20,27 @@ app = Flask(__name__)
 app.jinja_env.filters['smarty'] = smarty_filter
 app.jinja_env.filters['urlencode'] = urlencode_filter
 
+def _group_races_by_closing_time(races):
+    """
+    Process race results for use in templates.
+    """
+    results = {}
+
+    for race in races:
+        if not results.get(race.poll_closing_time):
+            results[race.poll_closing_time] = []
+        results[race.poll_closing_time].append(race)
+
+    return sorted(results.items())
+
+def _partition(l, n):
+    """
+    Yield successive n-sized chunks from l.
+    Taken from http://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks-in-python
+    """
+    for i in xrange(0, len(l), n):
+        yield l[i:i+n]
+
 def cors(f):
     """
     Decorator that enables local CORS support for easier local dev.
@@ -85,9 +106,9 @@ def results_senate():
     Senate big board
     """
     context = make_context()
-    context["races"] = Race.select().where(Race.office_name == "U.S. Senate").dicts()
-    from pprint import pprint
-    pprint(context)
+    races = Race.select().where(Race.office_name == "U.S. Senate")
+    grouped = _group_races_by_closing_time(races)
+    context["races"] = _partition(grouped, 2)
     return render_template('slides/senate.html', **context)
 
 @app.route('/comments/')
