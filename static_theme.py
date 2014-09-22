@@ -35,7 +35,7 @@ def _copy_js():
 # serve arbitrary static files on-demand
 @theme.route('/<path:path>')
 def _theme_static(path):
-    return static.static_file(path)
+    return static.static_file(path, 'theme/')
 
 @theme.route('/theme')
 def _theme():

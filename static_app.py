@@ -29,5 +29,5 @@ def _copy_js():
 
 # serve arbitrary static files on-demand
 @static_app.route('/<path:path>')
-def _post_static(slug, path):
+def _post_static(path):
     return static.static_file(path)

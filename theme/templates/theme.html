@@ -76,7 +76,7 @@
                             <h2 class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></h2>
                             {block:IfShowBlogTitle}
                             <h1><a href="/">
-                                NPR Politics
+                                NPR Politics Desk
                             </a></h1>
                             {/block:IfShowBlogTitle}
                             <p>{Description}</p>
@@ -232,13 +232,26 @@
                 </section> <!-- #post-wrap -->
             </div>
         </div> <!-- #container -->
+        <script>
+            var CURRENT_PAGE = {CurrentPage};
+            var TOTAL_PAGES = {TotalPages};
+        </script>
 
 
+        {block:IndexPage}
         {{ JS.push('js/lib/jquery.js') }}
         {{ JS.push('js/lib/jquery.fitvids.js') }}
         {{ JS.push('js/infinite-scroll.js') }}
         {{ JS.push('js/app.js') }}
         {{ JS.render('js/app-footer-index.min.js') }}
+        {/block:IndexPage}
+
+        {block:PermalinkPage}
+        {{ JS.push('js/lib/jquery.js') }}
+        {{ JS.push('js/lib/jquery.fitvids.js') }}
+        {{ JS.push('js/app.js') }}
+        {{ JS.render('js/app-footer-permalink.min.js') }}
+        {/block:PermalinkPage}
 
         <!-- CHARTBEAT -->
         <script type="text/javascript">

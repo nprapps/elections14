@@ -45,6 +45,11 @@
         }
     }
 
+    h1 a {
+        color: white;
+        font-size: 200%;
+    }
+
     p {
         color: @musicMedium;
         clear: both;
@@ -323,6 +328,12 @@
                     // margin-left: 0.46em;
                 }
 
+                .long {
+                    font-size: @font-size-base * 1.5;
+                    line-height: @line-height-computed * 1.2;
+                    font-weight: normal;
+                }
+
                 .wf-loading & {
                     visibility: hidden;
                 }
@@ -517,6 +528,7 @@
 
     .pagination {
             position: relative;
+            width: 100%;
             .buttons {
                 .left,
                 .right {
@@ -532,11 +544,6 @@
                 a {
                     color: @musicMedium;
                 }
-            }
-
-            .count {
-                text-align: center;
-                color: @musicLight;
             }
 
             li {
