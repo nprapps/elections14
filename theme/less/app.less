@@ -45,6 +45,11 @@
         }
     }
 
+    h1 a {
+        color: white;
+        font-size: 200%;
+    }
+
     p {
         color: @musicMedium;
         clear: both;
@@ -517,6 +522,7 @@
 
     .pagination {
             position: relative;
+            width: 100%;
             .buttons {
                 .left,
                 .right {
@@ -535,7 +541,11 @@
             }
 
             .count {
-                text-align: center;
+                width: 50%;
+                height: 50%;
+                top: 0; left: 0; bottom: 0; right: 0;
+                margin: auto;
+                overflow: auto;
                 color: @musicLight;
             }
 
