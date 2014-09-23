@@ -10,7 +10,7 @@ var resizeSlide = function(slide) {
 var rotateSlide = function(url) {
     // Fix for out of sync server and client refreshes
     if (lastSlidePath == url) {
-        setTimeout(getSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+        setTimeout(getSlide, APP_CONFIG.CLIENT_SLIDE_ROTATE_INTERVAL * 1000);
         return;
     }
 
@@ -31,7 +31,7 @@ var rotateSlide = function(url) {
             });
 
             $newSlide.fadeIn(function(){
-                setTimeout(getSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                setTimeout(getSlide, APP_CONFIG.CLIENT_SLIDE_ROTATE_INTERVAL * 1000);
             });
         }
     });
