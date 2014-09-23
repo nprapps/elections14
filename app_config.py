@@ -136,6 +136,7 @@ CHROMECAST_APP_ID = '8408F716'
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
 NEXT_SLIDE_FILENAME = 'live-data/next-slide.json'
+SLIDE_ROTATE_INTERVAL = 5
 
 TUMBLR_NAME = 'stage-nprelections'
 TUMBLR_AUTO_REFRESH = True

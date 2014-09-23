@@ -97,6 +97,7 @@
 {% endblock outer_content %}
 
 {% block extra_foot_js %}
-{# {{ JS.push('js/analytics.js') }} #}
+{{ JS.push('js/lib/pym.js') }}
+{{ JS.push('js/results.js') }}
 {{ JS.render('js/results-footer.min.js') }}
 {% endblock extra_foot_js %}
