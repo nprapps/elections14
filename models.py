@@ -316,6 +316,27 @@ class Candidate(BaseModel):
 
         return flat
 
+    @property
+    def is_winner(self):
+        """
+        Is the candidate the winner?
+        """
+        if self.race.is_called():
+            if self.npr_winner:
+                return True
+            elif self.ap_winner:
+                return True
+
+        return False
+
+    @property
+    def vote_percent(self):
+        total_votes = 0
+        for candidate in self.race.candidates:
+            total_votes += candidate.vote_count
+        ratio = Decimal(self.vote_count) / Decimal(total_votes)
+        return int(round(ratio * 100))
+
 class Slide(BaseModel):
     """
     Model for a slide in dynamic slide show
