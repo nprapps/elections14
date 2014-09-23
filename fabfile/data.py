@@ -335,12 +335,26 @@ def mock_election_results():
     import models
 
     for race in models.Race.select():
+        _fake_incumbent(race)
         _fake_poll_closing_time(race)
         _fake_precincts_reporting(race)
         _fake_called_status(race)
         _fake_results(race)
         race.save()
 
+
+def _fake_incumbent(race):
+    """
+    Fake one incumbent for a race
+    """
+    import models
+    candidates = race.candidates.where((models.Candidate.party == "GOP") | (models.Candidate.party == "Dem"))
+    try:
+        candidate = candidates[random.randint(0,1)]
+        candidate.incumbent = True
+        candidate.save()
+    except IndexError:
+        pass
 
 def _fake_poll_closing_time(race):
     """
