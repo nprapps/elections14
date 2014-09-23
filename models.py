@@ -167,7 +167,7 @@ class Race(BaseModel):
         Get precent precincts reporting
         """
         ratio = Decimal(self.precincts_reporting) / Decimal(self.precincts_total)
-        return int(round(ratio * 100))
+        return ratio * 100
 
     def has_incumbents(self):
         """
@@ -319,13 +319,12 @@ class Candidate(BaseModel):
 
         return False
 
-    @property
     def vote_percent(self):
         total_votes = 0
         for candidate in self.race.candidates:
             total_votes += candidate.vote_count
         ratio = Decimal(self.vote_count) / Decimal(total_votes)
-        return int(round(ratio * 100))
+        return ratio * 100
 
 class Slide(BaseModel):
     """

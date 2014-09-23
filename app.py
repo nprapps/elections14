@@ -48,6 +48,10 @@ def format_board_time(dt):
 
     return '{d:%l}:{d.minute:02}'.format(d=dt)
 
+@app.template_filter()
+def format_percent(num):
+    return int(round(num))
+
 def cors(f):
     """
     Decorator that enables local CORS support for easier local dev.
