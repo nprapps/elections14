@@ -28,6 +28,21 @@ class ModelEncoder(json.JSONEncoder):
 
         return encoded_object
 
+def slugify(bits):
+    """
+    Generate a slug.
+    """
+    slug_bits = []
+
+    for bit in bits:
+        if bit:
+            bit = bit.lower()
+            bit = re.sub(r"[^\w\s]", '', bit)
+            bit = re.sub(r"\s+", '-', bit)
+            slug_bits.append(bit)
+
+    return '-'.join(slug_bits)
+
 class BaseModel(Model):
     """
     Base class for Peewee models. Ensures they all live in the same database.
@@ -40,30 +55,25 @@ class BaseModel(Model):
         Slugify before saving!
         """
         if not self.slug:
-            self.slugify()
+            self._slugify()
 
         super(BaseModel, self).save(*args, **kwargs)
 
-    def slugify(self):
+    def _slugify(self):
         """
         Generate a slug for this model.
         """
         bits = []
 
         for field in self.slug_fields:
-            attr = getattr(self, field)
+            bits.append(getattr(self, field))
 
-            if attr:
-                attr = attr.lower()
-                attr = re.sub(r"[^\w\s]", '', attr)
-                attr = re.sub(r"\s+", '-', attr)
-                bits.append(attr)
-
-        base_slug = '-'.join(bits)
+        base_slug = slugify(bits)
         slug = base_slug
         i = 1
 
         model_class = self.__class__
+
         while model_class.select().where(model_class.slug == slug).count():
             i += 1
             slug = '%s-%i' % (base_slug, i)
@@ -305,6 +315,27 @@ class Candidate(BaseModel):
                 flat[field] = getattr(self, field)
 
         return flat
+
+    @property
+    def is_winner(self):
+        """
+        Is the candidate the winner?
+        """
+        if self.race.is_called():
+            if self.npr_winner:
+                return True
+            elif self.ap_winner:
+                return True
+
+        return False
+
+    @property
+    def vote_percent(self):
+        total_votes = 0
+        for candidate in self.race.candidates:
+            total_votes += candidate.vote_count
+        ratio = Decimal(self.vote_count) / Decimal(total_votes)
+        return int(round(ratio * 100))
 
 class Slide(BaseModel):
     """

@@ -62,12 +62,12 @@ class Includer(object):
                 timestamp_path = '%s.%i.%s' % (front, timestamp, back)
 
                 # Delete old rendered versions, just to be tidy
-                old_versions = glob.glob('%swww/%s.*.%s' % (self.static_path, front, back))
+                old_versions = glob.glob(('%s/www/%s.*.%s' % (self.static_path, front, back)).lstrip('/'))
 
                 for f in old_versions:
                     os.remove(f)
 
-            out_path = '%swww/%s' % (self.static_path, timestamp_path)
+            out_path = ('%s/www/%s' % (self.static_path, timestamp_path)).lstrip('/')
 
             if path not in g.compiled_includes:
                 print 'Rendering %s' % out_path
@@ -108,7 +108,7 @@ class JavascriptIncluder(Includer):
         for src in self.includes:
             src_paths.append('www/%s' % src)
 
-            with open('%swww/%s' % (self.static_path, src)) as f:
+            with open(('%s/www/%s' % (self.static_path, src)).lstrip('/')) as f:
                 print '- compressing %s' % src
                 output.append(minify(f.read().encode('utf-8')))
 
@@ -141,9 +141,9 @@ class CSSIncluder(Includer):
                 src = src.replace('less', 'css') # less/example.less -> css/example.css
                 src = '%s.less.css' % src[:-4]   # css/example.css -> css/example.less.css
             else:
-                src_paths.append('www/%s' % src)
+                src_paths.append(('%s/www/%s' % (self.static_path, src)).lstrip('/'))
 
-            with open('%swww/%s' % (self.static_path, src)) as f:
+            with open(('%s/www/%s' % (self.static_path, src)).lstrip('/')) as f:
                 print '- compressing %s' % src
                 output.append(cssmin(f.read().encode('utf-8')))
 
