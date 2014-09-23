@@ -3,6 +3,7 @@
 import json
 
 from fabric.api import env, local, require, task
+from peewee import fn
 
 import app_config
 from models import SlideSequence
@@ -17,19 +18,20 @@ def rotate():
     """
     require('settings', provided_by=['production', 'staging'])
 
+    min_sequence = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
+
     try:
         with open(STACK_NUMBER_FILENAME, 'r') as f:
-            stack_number = int(f.read().strip())
+            sequence = int(f.read().strip())
     except IOError:
-        stack_number = 0
+        sequence = min_sequence
 
-    slides = SlideSequence.select().count()
+    next_slide = SlideSequence.select().where(SlideSequence.sequence > sequence).order_by(SlideSequence.sequence.asc()).limit(1)
 
-    if stack_number == slides:
-        stack_number = 0
-
-    next_slide = SlideSequence.get(SlideSequence.sequence == stack_number)
-    stack_number += 1
+    if next_slide.count():
+        next_slide = next_slide[0]
+    else:
+        next_slide = SlideSequence.get(SlideSequence.sequence==min_sequence)
 
     with open('www/%s' % app_config.NEXT_SLIDE_FILENAME, 'w') as f:
         json.dump({
@@ -37,7 +39,7 @@ def rotate():
         }, f)
 
     with open(STACK_NUMBER_FILENAME, 'w') as f:
-        f.write(unicode(stack_number))
+        f.write(unicode(next_slide.sequence))
 
     if env.settings:
         deploy_json(
