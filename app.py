@@ -5,7 +5,7 @@ from functools import wraps
 import json
 
 import argparse
-from flask import Blueprint, Flask, make_response, render_template
+from flask import Flask, make_response, render_template
 from peewee import fn
 
 import app_config
@@ -13,7 +13,6 @@ from render_utils import make_context, smarty_filter, urlencode_filter
 import static
 import static_app
 import static_theme
-from models import Race
 
 app = Flask(__name__)
 
@@ -29,6 +28,7 @@ def _group_races_by_closing_time(races):
     for race in races:
         if not results.get(race.poll_closing_time):
             results[race.poll_closing_time] = []
+
         results[race.poll_closing_time].append(race)
 
     return sorted(results.items())
@@ -43,7 +43,10 @@ def _partition(l):
 
 @app.template_filter()
 def format_closing_time(dt):
-   return '{d:%l}:{d.minute:02}'.format(d=dt)
+    if not dt:
+        return ''
+
+    return '{d:%l}:{d.minute:02}'.format(d=dt)
 
 def cors(f):
     """
@@ -109,10 +112,14 @@ def results_senate():
     """
     Senate big board
     """
+    from models import Race
+    
     context = make_context()
+    
     races = Race.select().where(Race.office_name == "U.S. Senate")
     grouped = _group_races_by_closing_time(races)
     context["race_columns"] = _partition(grouped)
+    
     return render_template('slides/senate.html', **context)
 
 @app.route('/comments/')
