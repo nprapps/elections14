@@ -88,6 +88,7 @@
 
                     {block:TagPage}<h2 class="tag-header">{Tag}</h2>{/block:TagPage}
 
+                    <div id="total-pages" data-total-pages="{TotalPages}"></div>
                     <div id="posts">
                         <!-- START POSTS -->
                         {block:Posts}
@@ -236,7 +237,6 @@
             var CURRENT_PAGE = {CurrentPage};
             var TOTAL_PAGES = {TotalPages};
         </script>
-
 
         {block:IndexPage}
         {{ JS.push('js/lib/jquery.js') }}

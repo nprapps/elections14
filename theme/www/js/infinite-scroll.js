@@ -113,12 +113,6 @@ Tumblelog.Infinite = (function() {
         $(window).unbind('scroll');
     }
 
-    function newPostListener() {
-        if (_is_loading) return;
-
-        setInterval(find_new_posts, 5000);
-    }
-
     function infinite_scroll() {
         if (_is_loading) return;
 
@@ -137,7 +131,7 @@ Tumblelog.Infinite = (function() {
         _current_page++;
         _url = _url.replace('page/' + (_current_page - 1), 'page/' + _current_page);
 
-        console.log(_url, _current_page);
+        console.log('load_more_posts', _url, _current_page);
 
         // Fetch
         _Ajax(_url, function(data) {
@@ -166,42 +160,71 @@ Tumblelog.Infinite = (function() {
         }
     }
 
-    function find_new_posts() {
+    /* Infinite refresh code */
+
+    function newPostListener() {
         if (_is_loading) return;
+
+        setInterval(find_new_posts, 5000);
+    }
+
+    function find_new_posts() {
+        if (_is_loading) {
+            return;
+        }
+
         _is_loading = true;
 
         // reset the url
         var liveblog_url = document.location.href;
-        if (liveblog_url.charAt(liveblog_url.length - 1) != '/') liveblog_url += '/';
+        
+        if (liveblog_url.charAt(liveblog_url.length - 1) != '/') {
+            liveblog_url += '/';
+        }
+
         liveblog_url += 'page/1';
 
         _Ajax(liveblog_url, function(data) {
+            var $data = data;
 
-            var $new_posts = $('#posts', data);
-            var first_page = $new_posts[0];
-            var first_page_posts = $(first_page).children();
+            // Update global state
+            var new_total_pages = $(data).find('#total-pages').attr('data-total-pages');
+
+            if (new_total_pages > _total_pages) {
+                _current_page += new_total_pages - _total_pages;
+                _total_pages = new_total_pages;
+                console.log('New page', _current_page, _total_pages);
+            }
+
+            var $posts = $(data).find('#posts').eq(0);
+            var posts = $posts.children();
 
             var $current_posts = $('#posts');
             var current_post_permalink = $current_posts.find('.permalink').attr('href');
             var posts_to_append = [];
 
-            for (i=0; i < first_page_posts.length; i++) {
-                var loop_post = first_page_posts[i];
+            for (i = 0; i < posts.length; i++) {
+                var loop_post = posts[i];
                 var permalink = $(loop_post).find('.permalink').attr('href');
-                console.log(permalink, current_post_permalink);
-                if (permalink == current_post_permalink) break;
-                posts_to_append.push(first_page_posts[i]);
+                
+                if (permalink == current_post_permalink) {
+                    break;
+                }
+
+                posts_to_append.push(posts[i]);
             }
 
-            console.log(posts_to_append);
+            console.log('find_new_posts', posts_to_append);
 
             // Insert posts and update counters
 
            $('#posts').prepend(posts_to_append);
+           
+           // TODO: #245
            sizeVideoContainers(posts_to_append);
            $(posts_to_append).fitVids({ customSelector: "video"});
 
-            _posts_loaded = $new_posts.find('article.post').length;
+            _posts_loaded = $('#posts article.post').length;
 
             if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
                 set_trigger();
