@@ -137,7 +137,7 @@ CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
 NEXT_SLIDE_FILENAME = 'live-data/next-slide.json'
 CLIENT_SLIDE_ROTATE_INTERVAL = 5
-SLIDE_ROTATE_INTERVAL = 20
+SLIDE_ROTATE_INTERVAL = 12
 
 TUMBLR_NAME = 'stage-nprelections'
 TUMBLR_AUTO_REFRESH = True
