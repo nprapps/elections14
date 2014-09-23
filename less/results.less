@@ -40,8 +40,8 @@ h6 {
 .races h2,
 .races,
 .poll-closing-group {
-    font-size: 12px;
-    line-height: 1;
+    font-size: 9px;
+    line-height: .2;
     font-weight: 400;
 
     @media screen and (min-width: @screen-md){
@@ -69,17 +69,24 @@ h6 {
     }
 }
 
+.results-header h2{
+    line-height: 18px;
+}
+
 .results-header {
     background: #fff;
     overflow: hidden;
+    padding-right:5px;
     margin-bottom: @line-height-computed / 2;
 
     h1 {
-        // width: 14%;
         float: left;
         margin: 0;
-        padding-right: 15px;
+        font-size:18px;
+
+        @media screen and (min-width: @screen-md){
         font-size: 24px;
+        }
 
         @media screen and (min-width: @screen-lg){
             font-size: 36px;
@@ -115,6 +122,9 @@ h6 {
         border-left: 1px solid #ccc;
         box-sizing: border-box;
         padding-left: 15px;
+        @media screen and (max-width: @screen-sm){
+            padding-left:5px;
+        }
 
         &:first-child {
             border-left: none;
@@ -139,6 +149,10 @@ h6 {
             color: @gray-dark;
             margin-left: 15px;
             margin-right: 15px;
+            @media screen and (max-width: @screen-sm){
+            margin-left:5px;
+            margin-right:5px;
+            }
 
             .count {
                 display: inline-block;
@@ -149,6 +163,9 @@ h6 {
 
         &.other {
             margin-right: 15px;
+            @media screen and (max-width: @screen-sm){
+            margin-right:5px;
+            }
         }
 
         &.not-called {
@@ -173,14 +190,20 @@ h6 {
     .percentage,
     .count {
         display: inline-block;
-        border-radius: 14px;
+        border-radius: 9px;
         color: #fff;
         text-align: center;
-        line-height: 28px;
+        line-height: 18px;
 
-        min-width:28px;
-        height:28px;
+        min-width:18px;
+        height:18px;
 
+        @media screen and (min-width: @screen-md){
+            min-width:38px;
+            height:38px;
+            line-height: 38px;
+            border-radius: 19px;
+        }
 
         @media screen and (min-width: @screen-lg){
             min-width:38px;
@@ -210,9 +233,8 @@ h6 {
     overflow:hidden;
 
     .results-col {
-        .senate & {
-
-            @media screen and (min-width: @screen-sm){
+        .senate & { 
+            @media screen and (min-width: @screen-xs){
                 width: 50%;
                 box-sizing: border-box;
                 float: left;
@@ -223,14 +245,17 @@ h6 {
 
                 &:last-child {
                     padding-left: 15px;
-                }
-            }
+                }  
+            }  
         }
     }
 
     .poll-closing-group {
         font-weight: bold;
         border-top: 4px solid @gray-dark;
+        @media screen and (max-width: @screen-md){
+            border-top: 2px solid @gray-dark;
+        }
         color: @gray-darker;
         margin-bottom: 0;
         padding: 5px 0;
@@ -308,6 +333,14 @@ h6 {
                     font-weight:600;
                 }
             }
+
+            .fname{
+                @media screen and (max-width: @screen-sm){
+                display:none;
+                }
+            }    
+
+
         }
 
         .candidate-total {
