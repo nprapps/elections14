@@ -55,7 +55,7 @@
               0%
             {% endif %}
           </td>
-          <td class="state">{{ race.state_postal }}</td>
+          <td class="state{% if race.party_change %} party-change {{ race.get_winning_party() }}{% endif %}">{{ race.state_postal }}</td>
           {% set candidate = race.top_candidates()[0] %}
           {% if candidate %}
           <td class="candidate {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>
