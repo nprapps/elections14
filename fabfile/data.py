@@ -37,13 +37,17 @@ def bootstrap():
 
     if env.settings:
         with settings(warn_only=True):
-            service_name = servers._get_installed_service_name('uwsgi')
-            local('sudo service %s stop' % service_name)
+            services = ['uwsgi', 'rotate_slide', 'get_tumblr_posts']
+            for service in services:
+                service_name = servers._get_installed_service_name(service)
+                local('sudo service %s stop' % service_name)
 
             server_postgres_command('dropdb %s' % app_config.PROJECT_SLUG)
             server_postgres_command('createdb %s' % app_config.PROJECT_SLUG)
 
-            local('sudo service %s start' % service_name)
+            for service in services:
+                service_name = servers._get_installed_service_name(service)
+                local('sudo service %s start' % service_name)
     else:
         with settings(warn_only=True):
             local('dropdb %s' % app_config.PROJECT_SLUG)
@@ -106,7 +110,7 @@ def update(test=False):
 
     if not os.path.exists('data/update.json'):
         return
-    
+
     update_flat = []
 
     with open('data/update.json') as f:
@@ -307,7 +311,7 @@ def _mock_slide_from_image(filename, i):
     import models
 
     body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
-    name = 'Test slide: %s' % os.path.splitext(filename)[0] 
+    name = 'Test slide: %s' % os.path.splitext(filename)[0]
     slide = models.Slide.create(body=body, name=name)
     models.SlideSequence.create(sequence=i, slide=slide)
 
@@ -322,9 +326,9 @@ def _mock_slide_with_pym(slug, path, i):
     }
 
     with app.app.test_request_context(path='/slides/pym'):
-        body = render_template('slides/pym.html', **context) 
-    
-    name = slug 
+        body = render_template('slides/pym.html', **context)
+
+    name = slug
     slide = models.Slide.create(body=body, name=name)
     models.SlideSequence.create(sequence=i, slide=slide)
 
@@ -338,11 +342,11 @@ def mock_slides():
     models.SlideSequence.delete().execute()
     models.Slide.delete().execute()
 
-    it = count() 
-    _mock_slide_from_image('welcome.png', it.next()) 
-    _mock_slide_with_pym('senate', 'results/senate/', it.next()) 
-    _mock_slide_from_image('gif1.gif', it.next()) 
-    _mock_slide_from_image('party_pix.png', it.next()) 
+    it = count()
+    _mock_slide_from_image('welcome.png', it.next())
+    _mock_slide_with_pym('senate', 'results/senate/', it.next())
+    # _mock_slide_from_image('gif1.gif', it.next())
+    # _mock_slide_from_image('party_pix.png', it.next())
 
 @task
 def mock_election_results():
@@ -352,12 +356,26 @@ def mock_election_results():
     import models
 
     for race in models.Race.select():
+        _fake_incumbent(race)
         _fake_poll_closing_time(race)
         _fake_precincts_reporting(race)
         _fake_called_status(race)
         _fake_results(race)
         race.save()
 
+
+def _fake_incumbent(race):
+    """
+    Fake one incumbent for a race
+    """
+    import models
+    candidates = race.candidates.where((models.Candidate.party == "GOP") | (models.Candidate.party == "Dem"))
+    try:
+        candidate = candidates[random.randint(0,1)]
+        candidate.incumbent = True
+        candidate.save()
+    except IndexError:
+        pass
 
 def _fake_poll_closing_time(race):
     """
@@ -384,7 +402,7 @@ def _fake_called_status(race):
     Fake AP called status, requires race to have closing time
     """
     if race.precincts_reporting > 0:
-        race.ap_called = random.choice([True, False, False, False])
+        race.ap_called = random.choice([True, False])
         if race.ap_called:
             race.accept_ap_call = True
             race.ap_called_time = race.poll_closing_time + timedelta(hours=random.randint(1,3), minutes=random.randint(0,59))
@@ -393,7 +411,7 @@ def _fake_called_status(race):
 def _fake_results(race):
     max_votes = 0
     for candidate in race.candidates:
-        if candidate.party in ["GOP", "Dem"]:
+        if candidate.party in ["GOP", "Dem"] and race.precincts_reporting > 0:
             votes = random.randint(400000, 500000)
             candidate.vote_count = votes
             if votes > max_votes:
@@ -404,6 +422,9 @@ def _fake_results(race):
 
         candidate.save()
 
-    if race.ap_called:
+    if race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
         max_candidate.ap_winner = True
+        if not max_candidate.incumbent:
+            race.party_change = True
         max_candidate.save()
+

@@ -114,6 +114,7 @@ class Race(BaseModel):
     ap_called_time = DateTimeField(null=True)
     npr_called = BooleanField(default=False)
     npr_called_time = DateTimeField(null=True)
+    party_change = BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s: %s-%s' % (
@@ -122,27 +123,27 @@ class Race(BaseModel):
             self.seat_name
         )
 
-    def get_winner(self):
+    def get_winning_party(self):
         """
         Return the winner of this race, if any. 
         """
-        for candidate in Candidate.select().where(Candidate.race == self):
+        for candidate in self.candidates.where(Candidate.race == self):
             if self.accept_ap_call:
                 if candidate.ap_winner:
                     if candidate.party == 'GOP':
-                        return 'r'
+                        return 'gop'
                     elif candidate.party == 'Dem':
-                        return 'd'
+                        return 'dem'
                     else:
-                        return 'o'
+                        return 'other'
             else:
                 if candidate.npr_winner:
                     if candidate.party == 'GOP':
-                        return 'r'
+                        return 'gop'
                     elif candidate.party == 'Dem':
-                        return 'd'
+                        return 'dem'
                     else:
-                        return 'o'
+                        return 'other'
 
         return None
 
@@ -177,7 +178,7 @@ class Race(BaseModel):
         Get precent precincts reporting
         """
         ratio = Decimal(self.precincts_reporting) / Decimal(self.precincts_total)
-        return int(round(ratio * 100))
+        return ratio * 100
 
     def has_incumbents(self):
         """
@@ -250,7 +251,6 @@ class Race(BaseModel):
 
         return flat
 
-    @property
     def top_candidates(self):
         try:
             dem = self.candidates.where(self.candidates.model_class.party == "Dem")[0]
@@ -316,7 +316,6 @@ class Candidate(BaseModel):
 
         return flat
 
-    @property
     def is_winner(self):
         """
         Is the candidate the winner?
@@ -329,13 +328,12 @@ class Candidate(BaseModel):
 
         return False
 
-    @property
     def vote_percent(self):
         total_votes = 0
         for candidate in self.race.candidates:
             total_votes += candidate.vote_count
         ratio = Decimal(self.vote_count) / Decimal(total_votes)
-        return int(round(ratio * 100))
+        return ratio * 100
 
 class Slide(BaseModel):
     """

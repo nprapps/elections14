@@ -1,3 +1,10 @@
+var resizeSlide = function(slide) {
+    var $w = $(window).width();
+    var $h = $(window).height();
+    slide.width($w);
+    slide.height($h);
+}
+
 var rotateSlide = function(url) {
     $.ajax({
         url: APP_CONFIG.S3_BASE_URL + '/' + url,
@@ -8,6 +15,8 @@ var rotateSlide = function(url) {
             $oldSlide.fadeOut();
 
             $('#stack').append($newSlide);
+
+            resizeSlide($newSlide)
 
             $oldSlide.fadeOut(function(){
                 $(this).remove();
@@ -30,4 +39,10 @@ var getSlide = function() {
   });
 }
 
-getSlide();
+$(document).ready(function() {
+    getSlide();
+    $(window).resize(function() {
+        var thisSlide = $('#stack .slide');
+        resizeSlide(thisSlide);
+    })
+});
