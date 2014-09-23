@@ -19,6 +19,8 @@ app = Flask(__name__)
 app.jinja_env.filters['smarty'] = smarty_filter
 app.jinja_env.filters['urlencode'] = urlencode_filter
 
+STACK_NUMBER_FILENAME = '.stack_number'
+
 def _group_races_by_closing_time(races):
     """
     Process race results for use in templates.
@@ -158,25 +160,36 @@ def _slide(slug):
     slide = Slide.get(Slide.slug == slug)
     return render_template('_stack_fragment.html', body=slide.body)
 
+def rotate_slide():
+    from models import SlideSequence
+
+    min_sequence = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
+
+    try:
+        with open(STACK_NUMBER_FILENAME, 'r') as f:
+            sequence = int(f.read().strip())
+    except IOError:
+        sequence = min_sequence
+
+    next_slide = SlideSequence.select().where(SlideSequence.sequence > sequence).order_by(SlideSequence.sequence.asc()).limit(1)
+
+    if next_slide.count():
+        next_slide = next_slide[0]
+    else:
+        next_slide = SlideSequence.get(SlideSequence.sequence==min_sequence)
+
+    with open(STACK_NUMBER_FILENAME, 'w') as f:
+        f.write(unicode(next_slide.sequence))
+
+    return next_slide
+
 @app.route('/live-data/next-slide.json')
 @cors
 def _stack_json():
     """
     Serve up pointer to next slide in stack
     """
-    from models import SlideSequence
-
-    if not hasattr(app, 'stack_number'):
-        min_sequence = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
-        app.stack_number = min_sequence
-
-    max = SlideSequence.select(fn.Max(SlideSequence.sequence)).scalar()
-    if app.stack_number > max:
-        min = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
-        app.stack_number = min
-
-    next_slide = SlideSequence.get(SlideSequence.sequence == app.stack_number)
-    app.stack_number += 1
+    next_slide = rotate_slide()
 
     js = json.dumps({
         'next': 'slides/%s.html' % next_slide.slide.slug,
