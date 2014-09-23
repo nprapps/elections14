@@ -394,7 +394,7 @@ def _fake_precincts_reporting(race):
     Fake precincts reporting
     """
     race.precincts_total = random.randint(2000, 4000)
-    if random.choice([True, False, False]):
+    if random.choice([True, True, False]):
         race.precincts_reporting = random.randint(200, race.precincts_total)
     else:
         race.precincts_reporting = 0
@@ -405,7 +405,7 @@ def _fake_called_status(race):
     Fake AP called status, requires race to have closing time
     """
     if race.precincts_reporting > 0:
-        race.ap_called = random.choice([True, False])
+        race.ap_called = random.choice([True, True, False])
         if race.ap_called:
             race.accept_ap_call = True
             race.ap_called_time = race.poll_closing_time + timedelta(hours=random.randint(1,3), minutes=random.randint(0,59))
@@ -416,7 +416,7 @@ def _fake_results(race):
     for candidate in race.candidates:
         candidate.ap_winner = False
         if candidate.party in ["GOP", "Dem"] and race.precincts_reporting > 0:
-            votes = random.randint(400000, 500000)
+            votes = random.randint(400000, 600000)
             candidate.vote_count = votes
             if votes > max_votes:
                 max_candidate = candidate
