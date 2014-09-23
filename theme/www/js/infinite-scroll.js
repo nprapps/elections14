@@ -244,7 +244,8 @@ $(function() {
     var InfiniteScroll = new Tumblelog.Infinite;
     InfiniteScroll.init(true);
 
-    var liveBlog = new Tumblelog.Infinite;
-    liveBlog.init(false);
-
+    if (APP_CONFIG.TUMBLR_AUTO_REFRESH) {
+        var liveBlog = new Tumblelog.Infinite;
+        liveBlog.init(false);
+    }
 });
