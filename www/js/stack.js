@@ -1,5 +1,9 @@
-var $w = $(window).width();
-var $h = $(window).height();
+var resizeSlide = function(slide) {
+    var $w = $(window).width();
+    var $h = $(window).height();
+    slide.width($w);
+    slide.height($h);
+}
 
 var rotateSlide = function(url) {
     $.ajax({
@@ -12,8 +16,7 @@ var rotateSlide = function(url) {
 
             $('#stack').append($newSlide);
 
-            $newSlide.width($w);
-            $newSlide.height($h);
+            resizeSlide($newSlide)
 
             $oldSlide.fadeOut(function(){
                 $(this).remove();
@@ -36,4 +39,10 @@ var getSlide = function() {
   });
 }
 
-getSlide();
+$(document).ready(function() {
+    getSlide();
+    $(window).resize(function() {
+        var thisSlide = $('#stack .slide');
+        resizeSlide(thisSlide);
+    })
+});
