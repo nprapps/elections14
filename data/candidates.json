@@ -225,45 +225,206 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Dick", 
-        "last_name": "Durbin", 
-        "candidate_id": "25721", 
-        "race_id": "15800"
+        "first_name": "Michael", 
+        "last_name": "Mason", 
+        "candidate_id": "25752", 
+        "race_id": "15995"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Jim", 
-        "last_name": "Oberweis", 
-        "candidate_id": "25722", 
-        "race_id": "15800"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Sharon", 
-        "last_name": "Hansen", 
-        "candidate_id": "26130", 
-        "race_id": "15800"
+        "first_name": "Peter", 
+        "last_name": "Roskam", 
+        "candidate_id": "25753", 
+        "race_id": "15995"
     }, 
     {
         "party": "Dem", 
-        "first_name": "Pat", 
-        "last_name": "Quinn", 
-        "candidate_id": "25725", 
-        "race_id": "15989"
+        "first_name": "Danny", 
+        "last_name": "Davis", 
+        "candidate_id": "25754", 
+        "race_id": "15996"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Bruce", 
-        "last_name": "Rauner", 
-        "candidate_id": "25729", 
-        "race_id": "15989"
+        "first_name": "Robert", 
+        "last_name": "Bumpers", 
+        "candidate_id": "25755", 
+        "race_id": "15996"
     }, 
     {
-        "party": "Lib", 
-        "first_name": "Chad", 
-        "last_name": "Grimm", 
-        "candidate_id": "26135", 
-        "race_id": "15989"
+        "party": "Dem", 
+        "first_name": "Tammy", 
+        "last_name": "Duckworth", 
+        "candidate_id": "25756", 
+        "race_id": "15997"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Larry", 
+        "last_name": "Kaifesh", 
+        "candidate_id": "25758", 
+        "race_id": "15997"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Jan", 
+        "last_name": "Schakowsky", 
+        "candidate_id": "25759", 
+        "race_id": "15998"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Susanne", 
+        "last_name": "Atanus", 
+        "candidate_id": "25761", 
+        "race_id": "15998"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Brad", 
+        "last_name": "Schneider", 
+        "candidate_id": "25762", 
+        "race_id": "15999"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Robert", 
+        "last_name": "Dold", 
+        "candidate_id": "25763", 
+        "race_id": "15999"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Bill", 
+        "last_name": "Foster", 
+        "candidate_id": "25764", 
+        "race_id": "16000"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Darlene", 
+        "last_name": "Senger", 
+        "candidate_id": "25767", 
+        "race_id": "16000"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Bill", 
+        "last_name": "Enyart", 
+        "candidate_id": "25770", 
+        "race_id": "16001"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Mike", 
+        "last_name": "Bost", 
+        "candidate_id": "25771", 
+        "race_id": "16001"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Paula", 
+        "last_name": "Bradshaw", 
+        "candidate_id": "25772", 
+        "race_id": "16001"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Ann", 
+        "last_name": "Callis", 
+        "candidate_id": "25773", 
+        "race_id": "16002"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Rodney", 
+        "last_name": "Davis", 
+        "candidate_id": "25776", 
+        "race_id": "16002"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Dennis", 
+        "last_name": "Anderson", 
+        "candidate_id": "25779", 
+        "race_id": "16003"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Randy", 
+        "last_name": "Hultgren", 
+        "candidate_id": "25781", 
+        "race_id": "16003"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Eric", 
+        "last_name": "Thorsland", 
+        "candidate_id": "25782", 
+        "race_id": "16004"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "John", 
+        "last_name": "Shimkus", 
+        "candidate_id": "25783", 
+        "race_id": "16004"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Randall", 
+        "last_name": "Olsen", 
+        "candidate_id": "25784", 
+        "race_id": "16005"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Adam", 
+        "last_name": "Kinzinger", 
+        "candidate_id": "25786", 
+        "race_id": "16005"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Cheri", 
+        "last_name": "Bustos", 
+        "candidate_id": "25787", 
+        "race_id": "16006"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Bobby", 
+        "last_name": "Schilling", 
+        "candidate_id": "25788", 
+        "race_id": "16006"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Darrel", 
+        "last_name": "Miller", 
+        "candidate_id": "25791", 
+        "race_id": "16007"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Aaron", 
+        "last_name": "Schock", 
+        "candidate_id": "25792", 
+        "race_id": "16007"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Robin", 
+        "last_name": "Kelly", 
+        "candidate_id": "26122", 
+        "race_id": "16310"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Eric", 
+        "last_name": "Wallace", 
+        "candidate_id": "26123", 
+        "race_id": "16310"
     }, 
     {
         "party": "Dem", 
@@ -617,192 +778,17 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Burton", 
-        "last_name": "LeFlore", 
-        "candidate_id": "4693", 
-        "race_id": "1005"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Bradley", 
-        "last_name": "Byrne", 
-        "candidate_id": "4519", 
-        "race_id": "1005"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Robert", 
-        "last_name": "Aderholt", 
-        "candidate_id": "4357", 
-        "race_id": "1011"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Parker", 
-        "last_name": "Griffith", 
-        "candidate_id": "4691", 
-        "race_id": "1019"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Robert", 
-        "last_name": "Bentley", 
-        "candidate_id": "4433", 
-        "race_id": "1019"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Arthur", 
-        "last_name": "Lieber", 
-        "candidate_id": "8312", 
-        "race_id": "26023"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Ann", 
-        "last_name": "Wagner", 
-        "candidate_id": "7501", 
-        "race_id": "26023"
-    }, 
-    {
-        "party": "Lib", 
         "first_name": "Bill", 
-        "last_name": "Slantz", 
-        "candidate_id": "8313", 
-        "race_id": "26023"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Courtney", 
-        "last_name": "Denton", 
-        "candidate_id": "8315", 
-        "race_id": "26025"
+        "last_name": "Keating", 
+        "candidate_id": "32625", 
+        "race_id": "23865"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Blaine", 
-        "last_name": "Luetkemeyer", 
-        "candidate_id": "7507", 
-        "race_id": "26025"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Steven", 
-        "last_name": "Hedrick", 
-        "candidate_id": "8594", 
-        "race_id": "26025"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Nate", 
-        "last_name": "Irvin", 
-        "candidate_id": "8319", 
-        "race_id": "26027"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Vicky", 
-        "last_name": "Hartzler", 
-        "candidate_id": "7510", 
-        "race_id": "26027"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Herschel", 
-        "last_name": "Young", 
-        "candidate_id": "8322", 
-        "race_id": "26027"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Emanuel", 
-        "last_name": "Cleaver", 
-        "candidate_id": "7515", 
-        "race_id": "26029"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Jacob", 
-        "last_name": "Turk", 
-        "candidate_id": "8331", 
-        "race_id": "26029"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Roy", 
-        "last_name": "Welborn", 
-        "candidate_id": "8332", 
-        "race_id": "26029"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Bill", 
-        "last_name": "Hedge", 
-        "candidate_id": "8333", 
-        "race_id": "26031"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Sam", 
-        "last_name": "Graves", 
-        "candidate_id": "7527", 
-        "race_id": "26031"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Russ", 
-        "last_name": "Monchil", 
-        "candidate_id": "8339", 
-        "race_id": "26031"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Jim", 
-        "last_name": "Evans", 
-        "candidate_id": "8342", 
-        "race_id": "26033"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Billy", 
-        "last_name": "Long", 
-        "candidate_id": "7532", 
-        "race_id": "26033"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Kevin", 
-        "last_name": "Craig", 
-        "candidate_id": "8344", 
-        "race_id": "26033"
-    }, 
-    {
-        "party": "CST", 
-        "first_name": "Doug", 
-        "last_name": "Enyart", 
-        "candidate_id": "8349", 
-        "race_id": "26035"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Barbara", 
-        "last_name": "Stocker", 
-        "candidate_id": "8345", 
-        "race_id": "26035"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Jason", 
-        "last_name": "Smith", 
-        "candidate_id": "8346", 
-        "race_id": "26035"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Rick", 
-        "last_name": "Vandeven", 
-        "candidate_id": "8348", 
-        "race_id": "26035"
+        "first_name": "John", 
+        "last_name": "Chapman", 
+        "candidate_id": "32629", 
+        "race_id": "23865"
     }, 
     {
         "party": "Dem", 
@@ -852,34 +838,6 @@
         "last_name": "Brown", 
         "candidate_id": "35963", 
         "race_id": "30992"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Michelle", 
-        "last_name": "Lujan Grisham", 
-        "candidate_id": "37708", 
-        "race_id": "32005"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Michael", 
-        "last_name": "Frese", 
-        "candidate_id": "38131", 
-        "race_id": "32005"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Ben Ray", 
-        "last_name": "Lujan", 
-        "candidate_id": "37713", 
-        "race_id": "32052"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Jefferson", 
-        "last_name": "Byrd", 
-        "candidate_id": "38135", 
-        "race_id": "32052"
     }, 
     {
         "party": "Dem", 
@@ -1093,125 +1051,6 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Bill", 
-        "last_name": "Foster", 
-        "candidate_id": "25764", 
-        "race_id": "16000"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Darlene", 
-        "last_name": "Senger", 
-        "candidate_id": "25767", 
-        "race_id": "16000"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Bill", 
-        "last_name": "Enyart", 
-        "candidate_id": "25770", 
-        "race_id": "16001"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Mike", 
-        "last_name": "Bost", 
-        "candidate_id": "25771", 
-        "race_id": "16001"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Paula", 
-        "last_name": "Bradshaw", 
-        "candidate_id": "25772", 
-        "race_id": "16001"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Ann", 
-        "last_name": "Callis", 
-        "candidate_id": "25773", 
-        "race_id": "16002"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Rodney", 
-        "last_name": "Davis", 
-        "candidate_id": "25776", 
-        "race_id": "16002"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Dennis", 
-        "last_name": "Anderson", 
-        "candidate_id": "25779", 
-        "race_id": "16003"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Randy", 
-        "last_name": "Hultgren", 
-        "candidate_id": "25781", 
-        "race_id": "16003"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Eric", 
-        "last_name": "Thorsland", 
-        "candidate_id": "25782", 
-        "race_id": "16004"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "John", 
-        "last_name": "Shimkus", 
-        "candidate_id": "25783", 
-        "race_id": "16004"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Randall", 
-        "last_name": "Olsen", 
-        "candidate_id": "25784", 
-        "race_id": "16005"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Adam", 
-        "last_name": "Kinzinger", 
-        "candidate_id": "25786", 
-        "race_id": "16005"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Cheri", 
-        "last_name": "Bustos", 
-        "candidate_id": "25787", 
-        "race_id": "16006"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Bobby", 
-        "last_name": "Schilling", 
-        "candidate_id": "25788", 
-        "race_id": "16006"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Darrel", 
-        "last_name": "Miller", 
-        "candidate_id": "25791", 
-        "race_id": "16007"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Aaron", 
-        "last_name": "Schock", 
-        "candidate_id": "25792", 
-        "race_id": "16007"
-    }, 
-    {
-        "party": "Dem", 
         "first_name": "Alan", 
         "last_name": "Lowenthal", 
         "candidate_id": "18723", 
@@ -1282,20 +1121,6 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Robin", 
-        "last_name": "Kelly", 
-        "candidate_id": "26122", 
-        "race_id": "16310"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Eric", 
-        "last_name": "Wallace", 
-        "candidate_id": "26123", 
-        "race_id": "16310"
-    }, 
-    {
-        "party": "Dem", 
         "first_name": "Mark", 
         "last_name": "Dayton", 
         "candidate_id": "31871", 
@@ -1359,6 +1184,216 @@
     }, 
     {
         "party": "Dem", 
+        "first_name": "Margie", 
+        "last_name": "Wakefield", 
+        "candidate_id": "5885", 
+        "race_id": "17355"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Lynn", 
+        "last_name": "Jenkins", 
+        "candidate_id": "5665", 
+        "race_id": "17355"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Christopher", 
+        "last_name": "Clemmons", 
+        "candidate_id": "6083", 
+        "race_id": "17355"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Paul", 
+        "last_name": "Davis", 
+        "candidate_id": "5894", 
+        "race_id": "17559"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Sam", 
+        "last_name": "Brownback", 
+        "candidate_id": "5663", 
+        "race_id": "17559"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Keen", 
+        "last_name": "Umbehr", 
+        "candidate_id": "6084", 
+        "race_id": "17559"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Pat", 
+        "last_name": "Roberts", 
+        "candidate_id": "5662", 
+        "race_id": "17585"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Greg", 
+        "last_name": "Orman", 
+        "candidate_id": "6081", 
+        "race_id": "17585"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Randall", 
+        "last_name": "Batson", 
+        "candidate_id": "6082", 
+        "race_id": "17585"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Edward", 
+        "last_name": "FitzGerald", 
+        "candidate_id": "45103", 
+        "race_id": "36005"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "John", 
+        "last_name": "Kasich", 
+        "candidate_id": "44786", 
+        "race_id": "36005"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Anita", 
+        "last_name": "Rios", 
+        "candidate_id": "45359", 
+        "race_id": "36005"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Fred", 
+        "last_name": "Kundrata", 
+        "candidate_id": "45131", 
+        "race_id": "36015"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Steve", 
+        "last_name": "Chabot", 
+        "candidate_id": "44143", 
+        "race_id": "36015"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Joyce", 
+        "last_name": "Beatty", 
+        "candidate_id": "44453", 
+        "race_id": "36019"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "John", 
+        "last_name": "Adams", 
+        "candidate_id": "45117", 
+        "race_id": "36019"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Janet", 
+        "last_name": "Garrett", 
+        "candidate_id": "45356", 
+        "race_id": "36021"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Jim", 
+        "last_name": "Jordan", 
+        "candidate_id": "44499", 
+        "race_id": "36021"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Robert", 
+        "last_name": "Fry", 
+        "candidate_id": "45138", 
+        "race_id": "36023"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Bob", 
+        "last_name": "Latta", 
+        "candidate_id": "44515", 
+        "race_id": "36023"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Eric", 
+        "last_name": "Eberly", 
+        "candidate_id": "45363", 
+        "race_id": "36023"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Jennifer", 
+        "last_name": "Garrison", 
+        "candidate_id": "45139", 
+        "race_id": "36025"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Bill", 
+        "last_name": "Johnson", 
+        "candidate_id": "44503", 
+        "race_id": "36025"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Dennis", 
+        "last_name": "Lambert", 
+        "candidate_id": "45360", 
+        "race_id": "36025"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Bob", 
+        "last_name": "Gibbs", 
+        "candidate_id": "44431", 
+        "race_id": "36027"
+    }, 
+    {
+        "party": "CST", 
+        "first_name": "Jim", 
+        "last_name": "Condit", 
+        "candidate_id": "45362", 
+        "race_id": "36029"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Tom", 
+        "last_name": "Poetter", 
+        "candidate_id": "45113", 
+        "race_id": "36029"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "John", 
+        "last_name": "Boehner", 
+        "candidate_id": "44148", 
+        "race_id": "36029"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Marcy", 
+        "last_name": "Kaptur", 
+        "candidate_id": "44227", 
+        "race_id": "36031"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Richard", 
+        "last_name": "May", 
+        "candidate_id": "45126", 
+        "race_id": "36031"
+    }, 
+    {
+        "party": "Dem", 
         "first_name": "John", 
         "last_name": "Carney", 
         "candidate_id": "10184", 
@@ -1384,6 +1419,48 @@
         "last_name": "Scott", 
         "candidate_id": "10377", 
         "race_id": "8074"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "James", 
+        "last_name": "Sherow", 
+        "candidate_id": "5882", 
+        "race_id": "17007"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Tim", 
+        "last_name": "Huelskamp", 
+        "candidate_id": "5664", 
+        "race_id": "17007"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Kelly", 
+        "last_name": "Kultala", 
+        "candidate_id": "5890", 
+        "race_id": "17009"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Kevin", 
+        "last_name": "Yoder", 
+        "candidate_id": "5667", 
+        "race_id": "17009"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Perry", 
+        "last_name": "Schuckman", 
+        "candidate_id": "5892", 
+        "race_id": "17010"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Mike", 
+        "last_name": "Pompeo", 
+        "candidate_id": "5669", 
+        "race_id": "17010"
     }, 
     {
         "party": "Dem", 
@@ -1559,69 +1636,6 @@
         "last_name": "Netherwood", 
         "candidate_id": "20103", 
         "race_id": "11670"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Jackie", 
-        "last_name": "McPherson", 
-        "candidate_id": "12199", 
-        "race_id": "5104"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Rick", 
-        "last_name": "Crawford", 
-        "candidate_id": "11569", 
-        "race_id": "5104"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Brian", 
-        "last_name": "Willhite", 
-        "candidate_id": "12515", 
-        "race_id": "5104"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Patrick", 
-        "last_name": "Hays", 
-        "candidate_id": "12198", 
-        "race_id": "5105"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "French", 
-        "last_name": "Hill", 
-        "candidate_id": "12197", 
-        "race_id": "5105"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Debbie", 
-        "last_name": "Standiford", 
-        "candidate_id": "12516", 
-        "race_id": "5105"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "James", 
-        "last_name": "Witt", 
-        "candidate_id": "12194", 
-        "race_id": "5107"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Bruce", 
-        "last_name": "Westerman", 
-        "candidate_id": "12191", 
-        "race_id": "5107"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Ken", 
-        "last_name": "Hamilton", 
-        "candidate_id": "12508", 
-        "race_id": "5107"
     }, 
     {
         "party": "Dem", 
@@ -2226,6 +2240,34 @@
         "race_id": "5713"
     }, 
     {
+        "party": "DCG", 
+        "first_name": "David", 
+        "last_name": "Schwartzman", 
+        "candidate_id": "10204", 
+        "race_id": "9307"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Paul", 
+        "last_name": "Strauss", 
+        "candidate_id": "10203", 
+        "race_id": "9307"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Glenda", 
+        "last_name": "Richmond", 
+        "candidate_id": "10206", 
+        "race_id": "9307"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "John", 
+        "last_name": "Daniel", 
+        "candidate_id": "10205", 
+        "race_id": "9307"
+    }, 
+    {
         "party": "Dem", 
         "first_name": "Bill", 
         "last_name": "Tilghman", 
@@ -2388,192 +2430,80 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Lacy", 
-        "last_name": "Clay", 
-        "candidate_id": "7490", 
-        "race_id": "27025"
+        "first_name": "Jack", 
+        "last_name": "Reed", 
+        "candidate_id": "45299", 
+        "race_id": "40003"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Daniel", 
-        "last_name": "Elder", 
-        "candidate_id": "8309", 
-        "race_id": "27025"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Robb", 
-        "last_name": "Cunningham", 
-        "candidate_id": "8311", 
-        "race_id": "27025"
+        "first_name": "Mark", 
+        "last_name": "Zaccaria", 
+        "candidate_id": "45423", 
+        "race_id": "40003"
     }, 
     {
         "party": "Dem", 
-        "first_name": "Gary", 
-        "last_name": "Peters", 
-        "candidate_id": "34481", 
-        "race_id": "24463"
+        "first_name": "Gina", 
+        "last_name": "Raimondo", 
+        "candidate_id": "45412", 
+        "race_id": "40005"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Terri Lynn", 
-        "last_name": "Land", 
-        "candidate_id": "34480", 
-        "race_id": "24463"
+        "first_name": "Allan", 
+        "last_name": "Fung", 
+        "candidate_id": "45415", 
+        "race_id": "40005"
     }, 
     {
-        "party": "Grn", 
-        "first_name": "Chris", 
-        "last_name": "Wahmhoff", 
-        "candidate_id": "34963", 
-        "race_id": "24463"
+        "party": "Ind", 
+        "first_name": "Leon", 
+        "last_name": "Kayarian", 
+        "candidate_id": "45651", 
+        "race_id": "40005"
     }, 
     {
-        "party": "Lib", 
+        "party": "Ind", 
+        "first_name": "Kate", 
+        "last_name": "Fletcher", 
+        "candidate_id": "45702", 
+        "race_id": "40005"
+    }, 
+    {
+        "party": "Mod", 
+        "first_name": "Bob", 
+        "last_name": "Healey", 
+        "candidate_id": "45721", 
+        "race_id": "40005"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "David", 
+        "last_name": "Cicilline", 
+        "candidate_id": "45085", 
+        "race_id": "40015"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Cormick", 
+        "last_name": "Lynch", 
+        "candidate_id": "45419", 
+        "race_id": "40015"
+    }, 
+    {
+        "party": "Dem", 
         "first_name": "Jim", 
-        "last_name": "Fulner", 
-        "candidate_id": "34964", 
-        "race_id": "24463"
-    }, 
-    {
-        "party": "UST", 
-        "first_name": "Richard", 
-        "last_name": "Matkin", 
-        "candidate_id": "34987", 
-        "race_id": "24463"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Bobby", 
-        "last_name": "Rush", 
-        "candidate_id": "25739", 
-        "race_id": "15990"
+        "last_name": "Langevin", 
+        "candidate_id": "45087", 
+        "race_id": "40017"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Jimmy Lee", 
-        "last_name": "Tillman", 
-        "candidate_id": "25740", 
-        "race_id": "15990"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Dan", 
-        "last_name": "Lipinski", 
-        "candidate_id": "25743", 
-        "race_id": "15992"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Sharon", 
-        "last_name": "Brannigan", 
-        "candidate_id": "25744", 
-        "race_id": "15992"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Luis", 
-        "last_name": "Gutierrez", 
-        "candidate_id": "25746", 
-        "race_id": "15993"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Hector", 
-        "last_name": "Concepcion", 
-        "candidate_id": "25749", 
-        "race_id": "15993"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Mike", 
-        "last_name": "Quigley", 
-        "candidate_id": "25750", 
-        "race_id": "15994"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Vince", 
-        "last_name": "Kolber", 
-        "candidate_id": "26124", 
-        "race_id": "15994"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Nancy", 
-        "last_name": "Wade", 
-        "candidate_id": "25751", 
-        "race_id": "15994"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Michael", 
-        "last_name": "Mason", 
-        "candidate_id": "25752", 
-        "race_id": "15995"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Peter", 
-        "last_name": "Roskam", 
-        "candidate_id": "25753", 
-        "race_id": "15995"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Danny", 
-        "last_name": "Davis", 
-        "candidate_id": "25754", 
-        "race_id": "15996"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Robert", 
-        "last_name": "Bumpers", 
-        "candidate_id": "25755", 
-        "race_id": "15996"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Tammy", 
-        "last_name": "Duckworth", 
-        "candidate_id": "25756", 
-        "race_id": "15997"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Larry", 
-        "last_name": "Kaifesh", 
-        "candidate_id": "25758", 
-        "race_id": "15997"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Jan", 
-        "last_name": "Schakowsky", 
-        "candidate_id": "25759", 
-        "race_id": "15998"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Susanne", 
-        "last_name": "Atanus", 
-        "candidate_id": "25761", 
-        "race_id": "15998"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Brad", 
-        "last_name": "Schneider", 
-        "candidate_id": "25762", 
-        "race_id": "15999"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Robert", 
-        "last_name": "Dold", 
-        "candidate_id": "25763", 
-        "race_id": "15999"
+        "first_name": "Rhue", 
+        "last_name": "Reis", 
+        "candidate_id": "45422", 
+        "race_id": "40017"
     }, 
     {
         "party": "Dem", 
@@ -3053,94 +2983,24 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Niki", 
-        "last_name": "Tsongas", 
-        "candidate_id": "32613", 
-        "race_id": "22949"
+        "first_name": "Katherine", 
+        "last_name": "Clark", 
+        "candidate_id": "32594", 
+        "race_id": "24356"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Ed", 
+        "last_name": "Markey", 
+        "candidate_id": "32598", 
+        "race_id": "24467"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Ann", 
-        "last_name": "Wofford", 
-        "candidate_id": "32626", 
-        "race_id": "22949"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Joe", 
-        "last_name": "Kennedy", 
-        "candidate_id": "32614", 
-        "race_id": "22950"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Seth", 
-        "last_name": "Moulton", 
-        "candidate_id": "32621", 
-        "race_id": "22952"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Richard", 
-        "last_name": "Tisei", 
-        "candidate_id": "32627", 
-        "race_id": "22952"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Chris", 
-        "last_name": "Stockwell", 
-        "candidate_id": "33103", 
-        "race_id": "22952"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Mike", 
-        "last_name": "Capuano", 
-        "candidate_id": "32623", 
-        "race_id": "22953"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Stephen", 
-        "last_name": "Lynch", 
-        "candidate_id": "32624", 
-        "race_id": "22954"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Martha", 
-        "last_name": "Coakley", 
-        "candidate_id": "32603", 
-        "race_id": "22957"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Charlie", 
-        "last_name": "Baker", 
-        "candidate_id": "32606", 
-        "race_id": "22957"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Scott", 
-        "last_name": "Lively", 
-        "candidate_id": "33100", 
-        "race_id": "22957"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Jeff", 
-        "last_name": "McCormick", 
-        "candidate_id": "33101", 
-        "race_id": "22957"
-    }, 
-    {
-        "party": "Uni", 
-        "first_name": "Evan", 
-        "last_name": "Falchuk", 
-        "candidate_id": "33102", 
-        "race_id": "22957"
+        "first_name": "Brian", 
+        "last_name": "Herr", 
+        "candidate_id": "32599", 
+        "race_id": "24467"
     }, 
     {
         "party": "Dem", 
@@ -3204,6 +3064,244 @@
         "last_name": "Henry", 
         "candidate_id": "4996", 
         "race_id": "38019"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Jared", 
+        "last_name": "Polis", 
+        "candidate_id": "12112", 
+        "race_id": "6614"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "George", 
+        "last_name": "Leing", 
+        "candidate_id": "12220", 
+        "race_id": "6614"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Abel", 
+        "last_name": "Tapia", 
+        "candidate_id": "12221", 
+        "race_id": "6615"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Scott", 
+        "last_name": "Tipton", 
+        "candidate_id": "12149", 
+        "race_id": "6615"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Travis", 
+        "last_name": "Mero", 
+        "candidate_id": "12376", 
+        "race_id": "6615"
+    }, 
+    {
+        "party": "Una", 
+        "first_name": "Tisha", 
+        "last_name": "Casida", 
+        "candidate_id": "12370", 
+        "race_id": "6615"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Vic", 
+        "last_name": "Meyers", 
+        "candidate_id": "12223", 
+        "race_id": "6616"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Ken", 
+        "last_name": "Buck", 
+        "candidate_id": "12225", 
+        "race_id": "6616"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Jess", 
+        "last_name": "Loban", 
+        "candidate_id": "12377", 
+        "race_id": "6616"
+    }, 
+    {
+        "party": "Una", 
+        "first_name": "Grant", 
+        "last_name": "Doherty", 
+        "candidate_id": "12371", 
+        "race_id": "6616"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Irv", 
+        "last_name": "Halter", 
+        "candidate_id": "12228", 
+        "race_id": "6617"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Doug", 
+        "last_name": "Lamborn", 
+        "candidate_id": "12151", 
+        "race_id": "6617"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Andrew", 
+        "last_name": "Romanoff", 
+        "candidate_id": "12230", 
+        "race_id": "6618"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Mike", 
+        "last_name": "Coffman", 
+        "candidate_id": "12152", 
+        "race_id": "6618"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Gary", 
+        "last_name": "Swing", 
+        "candidate_id": "12381", 
+        "race_id": "6618"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Norm", 
+        "last_name": "Olsen", 
+        "candidate_id": "12378", 
+        "race_id": "6618"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "John", 
+        "last_name": "Hickenlooper", 
+        "candidate_id": "12204", 
+        "race_id": "6619"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Bob", 
+        "last_name": "Beauprez", 
+        "candidate_id": "12208", 
+        "race_id": "6619"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Harry", 
+        "last_name": "Hempy", 
+        "candidate_id": "12382", 
+        "race_id": "6619"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Matthew", 
+        "last_name": "Hess", 
+        "candidate_id": "12380", 
+        "race_id": "6619"
+    }, 
+    {
+        "party": "Una", 
+        "first_name": "Mike", 
+        "last_name": "Dunafon", 
+        "candidate_id": "12372", 
+        "race_id": "6619"
+    }, 
+    {
+        "party": "Una", 
+        "first_name": "Paul", 
+        "last_name": "Fiorino", 
+        "candidate_id": "12373", 
+        "race_id": "6619"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Ed", 
+        "last_name": "Perlmutter", 
+        "candidate_id": "12199", 
+        "race_id": "6954"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Don", 
+        "last_name": "Ytterberg", 
+        "candidate_id": "12231", 
+        "race_id": "6954"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Mark", 
+        "last_name": "Udall", 
+        "candidate_id": "12201", 
+        "race_id": "7168"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Cory", 
+        "last_name": "Gardner", 
+        "candidate_id": "12203", 
+        "race_id": "7168"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Gaylon", 
+        "last_name": "Kent", 
+        "candidate_id": "12374", 
+        "race_id": "7168"
+    }, 
+    {
+        "party": "Una", 
+        "first_name": "Steve", 
+        "last_name": "Shogan", 
+        "candidate_id": "12367", 
+        "race_id": "7168"
+    }, 
+    {
+        "party": "Una", 
+        "first_name": "Raul", 
+        "last_name": "Acosta", 
+        "candidate_id": "12368", 
+        "race_id": "7168"
+    }, 
+    {
+        "party": "Uty", 
+        "first_name": "Bill", 
+        "last_name": "Hammons", 
+        "candidate_id": "12366", 
+        "race_id": "7168"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Diana", 
+        "last_name": "DeGette", 
+        "candidate_id": "12200", 
+        "race_id": "7191"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Martin", 
+        "last_name": "Walsh", 
+        "candidate_id": "12219", 
+        "race_id": "7191"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Frank", 
+        "last_name": "Atwood", 
+        "candidate_id": "12375", 
+        "race_id": "7191"
+    }, 
+    {
+        "party": "Una", 
+        "first_name": "Danny", 
+        "last_name": "Stroud", 
+        "candidate_id": "12383", 
+        "race_id": "7191"
     }, 
     {
         "party": "Dem", 
@@ -4271,20 +4369,6 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Richard", 
-        "last_name": "Neal", 
-        "candidate_id": "32611", 
-        "race_id": "22947"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Jim", 
-        "last_name": "McGovern", 
-        "candidate_id": "32612", 
-        "race_id": "22948"
-    }, 
-    {
-        "party": "Dem", 
         "first_name": "Janice", 
         "last_name": "Hahn", 
         "candidate_id": "18710", 
@@ -4324,6 +4408,111 @@
         "last_name": "Nick", 
         "candidate_id": "19860", 
         "race_id": "5736"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Richard", 
+        "last_name": "Neal", 
+        "candidate_id": "32611", 
+        "race_id": "22947"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Jim", 
+        "last_name": "McGovern", 
+        "candidate_id": "32612", 
+        "race_id": "22948"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Niki", 
+        "last_name": "Tsongas", 
+        "candidate_id": "32613", 
+        "race_id": "22949"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Ann", 
+        "last_name": "Wofford", 
+        "candidate_id": "32626", 
+        "race_id": "22949"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Joe", 
+        "last_name": "Kennedy", 
+        "candidate_id": "32614", 
+        "race_id": "22950"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Seth", 
+        "last_name": "Moulton", 
+        "candidate_id": "32621", 
+        "race_id": "22952"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Richard", 
+        "last_name": "Tisei", 
+        "candidate_id": "32627", 
+        "race_id": "22952"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Chris", 
+        "last_name": "Stockwell", 
+        "candidate_id": "33103", 
+        "race_id": "22952"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Mike", 
+        "last_name": "Capuano", 
+        "candidate_id": "32623", 
+        "race_id": "22953"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Stephen", 
+        "last_name": "Lynch", 
+        "candidate_id": "32624", 
+        "race_id": "22954"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Martha", 
+        "last_name": "Coakley", 
+        "candidate_id": "32603", 
+        "race_id": "22957"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Charlie", 
+        "last_name": "Baker", 
+        "candidate_id": "32606", 
+        "race_id": "22957"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Scott", 
+        "last_name": "Lively", 
+        "candidate_id": "33100", 
+        "race_id": "22957"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Jeff", 
+        "last_name": "McCormick", 
+        "candidate_id": "33101", 
+        "race_id": "22957"
+    }, 
+    {
+        "party": "Uni", 
+        "first_name": "Evan", 
+        "last_name": "Falchuk", 
+        "candidate_id": "33102", 
+        "race_id": "22957"
     }, 
     {
         "party": "Dem", 
@@ -4404,24 +4593,17 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Margie", 
-        "last_name": "Wakefield", 
-        "candidate_id": "5885", 
-        "race_id": "17355"
+        "first_name": "Marek", 
+        "last_name": "Tyszkiewicz", 
+        "candidate_id": "45134", 
+        "race_id": "37258"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Lynn", 
-        "last_name": "Jenkins", 
-        "candidate_id": "5665", 
-        "race_id": "17355"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Christopher", 
-        "last_name": "Clemmons", 
-        "candidate_id": "6083", 
-        "race_id": "17355"
+        "first_name": "Brad", 
+        "last_name": "Wenstrup", 
+        "candidate_id": "44291", 
+        "race_id": "37258"
     }, 
     {
         "party": "Dem", 
@@ -4597,41 +4779,6 @@
         "last_name": "Malloy", 
         "candidate_id": "19847", 
         "race_id": "7019"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Mark", 
-        "last_name": "Schauer", 
-        "candidate_id": "34478", 
-        "race_id": "24074"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Rick", 
-        "last_name": "Snyder", 
-        "candidate_id": "34089", 
-        "race_id": "24074"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Paul", 
-        "last_name": "Homeniuk", 
-        "candidate_id": "34965", 
-        "race_id": "24074"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Mary", 
-        "last_name": "Buzuma", 
-        "candidate_id": "34966", 
-        "race_id": "24074"
-    }, 
-    {
-        "party": "UST", 
-        "first_name": "Mark", 
-        "last_name": "McFarlin", 
-        "candidate_id": "34986", 
-        "race_id": "24074"
     }, 
     {
         "party": "Dem", 
@@ -4989,6 +5136,34 @@
         "last_name": "Beard", 
         "candidate_id": "44657", 
         "race_id": "38145"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Michelle", 
+        "last_name": "Lujan Grisham", 
+        "candidate_id": "37708", 
+        "race_id": "32005"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Michael", 
+        "last_name": "Frese", 
+        "candidate_id": "38131", 
+        "race_id": "32005"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Ben Ray", 
+        "last_name": "Lujan", 
+        "candidate_id": "37713", 
+        "race_id": "32052"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Jefferson", 
+        "last_name": "Byrd", 
+        "candidate_id": "38135", 
+        "race_id": "32052"
     }, 
     {
         "party": "Dem", 
@@ -5369,34 +5544,6 @@
         "race_id": "18622"
     }, 
     {
-        "party": "DCG", 
-        "first_name": "David", 
-        "last_name": "Schwartzman", 
-        "candidate_id": "10204", 
-        "race_id": "9307"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Paul", 
-        "last_name": "Strauss", 
-        "candidate_id": "10203", 
-        "race_id": "9307"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Glenda", 
-        "last_name": "Richmond", 
-        "candidate_id": "10206", 
-        "race_id": "9307"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "John", 
-        "last_name": "Daniel", 
-        "candidate_id": "10205", 
-        "race_id": "9307"
-    }, 
-    {
         "party": "Dem", 
         "first_name": "Dina", 
         "last_name": "Titus", 
@@ -5426,38 +5573,38 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Bill", 
-        "last_name": "Keating", 
-        "candidate_id": "32625", 
-        "race_id": "23865"
+        "first_name": "Burton", 
+        "last_name": "LeFlore", 
+        "candidate_id": "4693", 
+        "race_id": "1005"
     }, 
     {
         "party": "GOP", 
-        "first_name": "John", 
-        "last_name": "Chapman", 
-        "candidate_id": "32629", 
-        "race_id": "23865"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Katherine", 
-        "last_name": "Clark", 
-        "candidate_id": "32594", 
-        "race_id": "24356"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Ed", 
-        "last_name": "Markey", 
-        "candidate_id": "32598", 
-        "race_id": "24467"
+        "first_name": "Bradley", 
+        "last_name": "Byrne", 
+        "candidate_id": "4519", 
+        "race_id": "1005"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Brian", 
-        "last_name": "Herr", 
-        "candidate_id": "32599", 
-        "race_id": "24467"
+        "first_name": "Robert", 
+        "last_name": "Aderholt", 
+        "candidate_id": "4357", 
+        "race_id": "1011"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Parker", 
+        "last_name": "Griffith", 
+        "candidate_id": "4691", 
+        "race_id": "1019"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Robert", 
+        "last_name": "Bentley", 
+        "candidate_id": "4433", 
+        "race_id": "1019"
     }, 
     {
         "party": "Dem", 
@@ -6042,45 +6189,220 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Paul", 
-        "last_name": "Davis", 
-        "candidate_id": "5894", 
-        "race_id": "17559"
+        "first_name": "Arthur", 
+        "last_name": "Lieber", 
+        "candidate_id": "8312", 
+        "race_id": "26023"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Ann", 
+        "last_name": "Wagner", 
+        "candidate_id": "7501", 
+        "race_id": "26023"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Bill", 
+        "last_name": "Slantz", 
+        "candidate_id": "8313", 
+        "race_id": "26023"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Courtney", 
+        "last_name": "Denton", 
+        "candidate_id": "8315", 
+        "race_id": "26025"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Blaine", 
+        "last_name": "Luetkemeyer", 
+        "candidate_id": "7507", 
+        "race_id": "26025"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Steven", 
+        "last_name": "Hedrick", 
+        "candidate_id": "8594", 
+        "race_id": "26025"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Nate", 
+        "last_name": "Irvin", 
+        "candidate_id": "8319", 
+        "race_id": "26027"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Vicky", 
+        "last_name": "Hartzler", 
+        "candidate_id": "7510", 
+        "race_id": "26027"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Herschel", 
+        "last_name": "Young", 
+        "candidate_id": "8322", 
+        "race_id": "26027"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Emanuel", 
+        "last_name": "Cleaver", 
+        "candidate_id": "7515", 
+        "race_id": "26029"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Jacob", 
+        "last_name": "Turk", 
+        "candidate_id": "8331", 
+        "race_id": "26029"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Roy", 
+        "last_name": "Welborn", 
+        "candidate_id": "8332", 
+        "race_id": "26029"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Bill", 
+        "last_name": "Hedge", 
+        "candidate_id": "8333", 
+        "race_id": "26031"
     }, 
     {
         "party": "GOP", 
         "first_name": "Sam", 
-        "last_name": "Brownback", 
-        "candidate_id": "5663", 
-        "race_id": "17559"
+        "last_name": "Graves", 
+        "candidate_id": "7527", 
+        "race_id": "26031"
     }, 
     {
         "party": "Lib", 
-        "first_name": "Keen", 
-        "last_name": "Umbehr", 
-        "candidate_id": "6084", 
-        "race_id": "17559"
+        "first_name": "Russ", 
+        "last_name": "Monchil", 
+        "candidate_id": "8339", 
+        "race_id": "26031"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Jim", 
+        "last_name": "Evans", 
+        "candidate_id": "8342", 
+        "race_id": "26033"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Pat", 
-        "last_name": "Roberts", 
-        "candidate_id": "5662", 
-        "race_id": "17585"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Greg", 
-        "last_name": "Orman", 
-        "candidate_id": "6081", 
-        "race_id": "17585"
+        "first_name": "Billy", 
+        "last_name": "Long", 
+        "candidate_id": "7532", 
+        "race_id": "26033"
     }, 
     {
         "party": "Lib", 
-        "first_name": "Randall", 
-        "last_name": "Batson", 
-        "candidate_id": "6082", 
-        "race_id": "17585"
+        "first_name": "Kevin", 
+        "last_name": "Craig", 
+        "candidate_id": "8344", 
+        "race_id": "26033"
+    }, 
+    {
+        "party": "CST", 
+        "first_name": "Doug", 
+        "last_name": "Enyart", 
+        "candidate_id": "8349", 
+        "race_id": "26035"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Barbara", 
+        "last_name": "Stocker", 
+        "candidate_id": "8345", 
+        "race_id": "26035"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Jason", 
+        "last_name": "Smith", 
+        "candidate_id": "8346", 
+        "race_id": "26035"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Rick", 
+        "last_name": "Vandeven", 
+        "candidate_id": "8348", 
+        "race_id": "26035"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Jackie", 
+        "last_name": "McPherson", 
+        "candidate_id": "12199", 
+        "race_id": "5104"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Rick", 
+        "last_name": "Crawford", 
+        "candidate_id": "11569", 
+        "race_id": "5104"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Brian", 
+        "last_name": "Willhite", 
+        "candidate_id": "12515", 
+        "race_id": "5104"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Patrick", 
+        "last_name": "Hays", 
+        "candidate_id": "12198", 
+        "race_id": "5105"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "French", 
+        "last_name": "Hill", 
+        "candidate_id": "12197", 
+        "race_id": "5105"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Debbie", 
+        "last_name": "Standiford", 
+        "candidate_id": "12516", 
+        "race_id": "5105"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "James", 
+        "last_name": "Witt", 
+        "candidate_id": "12194", 
+        "race_id": "5107"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Bruce", 
+        "last_name": "Westerman", 
+        "candidate_id": "12191", 
+        "race_id": "5107"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Ken", 
+        "last_name": "Hamilton", 
+        "candidate_id": "12508", 
+        "race_id": "5107"
     }, 
     {
         "party": "Dem", 
@@ -6098,7 +6420,7 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Roxanne Rocky", 
+        "first_name": "Roxanne", 
         "last_name": "Lara", 
         "candidate_id": "38133", 
         "race_id": "33279"
@@ -6112,192 +6434,122 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Mike", 
-        "last_name": "Ross", 
-        "candidate_id": "12177", 
-        "race_id": "5626"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Asa", 
-        "last_name": "Hutchinson", 
-        "candidate_id": "12182", 
-        "race_id": "5626"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Joshua", 
-        "last_name": "Drake", 
-        "candidate_id": "12512", 
-        "race_id": "5626"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Frank", 
-        "last_name": "Gilbert", 
-        "candidate_id": "12511", 
-        "race_id": "5626"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Steve", 
-        "last_name": "Womack", 
-        "candidate_id": "11571", 
-        "race_id": "6092"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Grant", 
-        "last_name": "Brand", 
-        "candidate_id": "12507", 
-        "race_id": "6092"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Mark", 
-        "last_name": "Pryor", 
-        "candidate_id": "11959", 
-        "race_id": "6345"
-    }, 
-    {
-        "party": "GOP", 
         "first_name": "Tom", 
-        "last_name": "Cotton", 
-        "candidate_id": "12493", 
-        "race_id": "6345"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Mark", 
-        "last_name": "Swaney", 
-        "candidate_id": "12513", 
-        "race_id": "6345"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Nathan", 
-        "last_name": "LaFrance", 
-        "candidate_id": "12514", 
-        "race_id": "6345"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Robert", 
-        "last_name": "Klepinger", 
-        "candidate_id": "45247", 
-        "race_id": "36033"
+        "last_name": "Udall", 
+        "candidate_id": "37931", 
+        "race_id": "33948"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Mike", 
-        "last_name": "Turner", 
-        "candidate_id": "44779", 
-        "race_id": "36033"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "David", 
-        "last_name": "Harlow", 
-        "candidate_id": "45364", 
-        "race_id": "36033"
+        "first_name": "Allen", 
+        "last_name": "Weh", 
+        "candidate_id": "38129", 
+        "race_id": "33948"
     }, 
     {
         "party": "Dem", 
-        "first_name": "Marcia", 
-        "last_name": "Fudge", 
-        "candidate_id": "44377", 
-        "race_id": "36035"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Mark", 
-        "last_name": "Zetzer", 
-        "candidate_id": "45142", 
-        "race_id": "36035"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "David", 
-        "last_name": "Tibbs", 
-        "candidate_id": "45119", 
-        "race_id": "36037"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Pat", 
-        "last_name": "Tiberi", 
-        "candidate_id": "44463", 
-        "race_id": "36037"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Bob", 
-        "last_name": "Hart", 
-        "candidate_id": "45361", 
-        "race_id": "36037"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Tim", 
-        "last_name": "Ryan", 
-        "candidate_id": "44326", 
-        "race_id": "36039"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Thomas", 
-        "last_name": "Pekarek", 
-        "candidate_id": "45358", 
-        "race_id": "36039"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Michael", 
-        "last_name": "Wager", 
-        "candidate_id": "45122", 
-        "race_id": "36041"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "David", 
-        "last_name": "Joyce", 
-        "candidate_id": "44801", 
-        "race_id": "36041"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "David", 
-        "last_name": "Macko", 
-        "candidate_id": "45365", 
-        "race_id": "36041"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Scott", 
-        "last_name": "Wharton", 
-        "candidate_id": "45120", 
-        "race_id": "36043"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Steve", 
-        "last_name": "Stivers", 
-        "candidate_id": "44465", 
-        "race_id": "36043"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Pete", 
-        "last_name": "Crossland", 
-        "candidate_id": "45130", 
-        "race_id": "36045"
+        "first_name": "Dick", 
+        "last_name": "Durbin", 
+        "candidate_id": "25721", 
+        "race_id": "15800"
     }, 
     {
         "party": "GOP", 
         "first_name": "Jim", 
-        "last_name": "Renacci", 
-        "candidate_id": "44383", 
-        "race_id": "36045"
+        "last_name": "Oberweis", 
+        "candidate_id": "25722", 
+        "race_id": "15800"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Sharon", 
+        "last_name": "Hansen", 
+        "candidate_id": "26130", 
+        "race_id": "15800"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Pat", 
+        "last_name": "Quinn", 
+        "candidate_id": "25725", 
+        "race_id": "15989"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Bruce", 
+        "last_name": "Rauner", 
+        "candidate_id": "25729", 
+        "race_id": "15989"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Chad", 
+        "last_name": "Grimm", 
+        "candidate_id": "26135", 
+        "race_id": "15989"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Bobby", 
+        "last_name": "Rush", 
+        "candidate_id": "25739", 
+        "race_id": "15990"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Jimmy Lee", 
+        "last_name": "Tillman", 
+        "candidate_id": "25740", 
+        "race_id": "15990"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Dan", 
+        "last_name": "Lipinski", 
+        "candidate_id": "25743", 
+        "race_id": "15992"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Sharon", 
+        "last_name": "Brannigan", 
+        "candidate_id": "25744", 
+        "race_id": "15992"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Luis", 
+        "last_name": "Gutierrez", 
+        "candidate_id": "25746", 
+        "race_id": "15993"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Hector", 
+        "last_name": "Concepcion", 
+        "candidate_id": "25749", 
+        "race_id": "15993"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Mike", 
+        "last_name": "Quigley", 
+        "candidate_id": "25750", 
+        "race_id": "15994"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Vince", 
+        "last_name": "Kolber", 
+        "candidate_id": "26124", 
+        "race_id": "15994"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Nancy", 
+        "last_name": "Wade", 
+        "candidate_id": "25751", 
+        "race_id": "15994"
     }, 
     {
         "party": "Dem", 
@@ -6343,17 +6595,94 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Tom", 
-        "last_name": "Udall", 
-        "candidate_id": "37931", 
-        "race_id": "33948"
+        "first_name": "Peter", 
+        "last_name": "Welch", 
+        "candidate_id": "51543", 
+        "race_id": "46374"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Allen", 
-        "last_name": "Weh", 
-        "candidate_id": "38129", 
-        "race_id": "33948"
+        "first_name": "Mark", 
+        "last_name": "Donka", 
+        "candidate_id": "51983", 
+        "race_id": "46374"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Cris", 
+        "last_name": "Ericson", 
+        "candidate_id": "52307", 
+        "race_id": "46374"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Randall", 
+        "last_name": "Meyer", 
+        "candidate_id": "52308", 
+        "race_id": "46374"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Jerry", 
+        "last_name": "Trudell", 
+        "candidate_id": "52309", 
+        "race_id": "46374"
+    }, 
+    {
+        "party": "LUn", 
+        "first_name": "Matthew", 
+        "last_name": "Andrews", 
+        "candidate_id": "51986", 
+        "race_id": "46374"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Peter", 
+        "last_name": "Shumlin", 
+        "candidate_id": "51546", 
+        "race_id": "46375"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Scott", 
+        "last_name": "Milne", 
+        "candidate_id": "52295", 
+        "race_id": "46375"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Emily", 
+        "last_name": "Peyton", 
+        "candidate_id": "52310", 
+        "race_id": "46375"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Cris", 
+        "last_name": "Ericson", 
+        "candidate_id": "52312", 
+        "race_id": "46375"
+    }, 
+    {
+        "party": "Ind", 
+        "first_name": "Bernard", 
+        "last_name": "Peters", 
+        "candidate_id": "52313", 
+        "race_id": "46375"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Dan", 
+        "last_name": "Feliciano", 
+        "candidate_id": "52311", 
+        "race_id": "46375"
+    }, 
+    {
+        "party": "LUn", 
+        "first_name": "Pete", 
+        "last_name": "Diamondstone", 
+        "candidate_id": "51981", 
+        "race_id": "46375"
     }, 
     {
         "party": "Con", 
@@ -7168,139 +7497,6 @@
         "race_id": "28594"
     }, 
     {
-        "party": "Dem", 
-        "first_name": "Edward", 
-        "last_name": "FitzGerald", 
-        "candidate_id": "45103", 
-        "race_id": "36005"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "John", 
-        "last_name": "Kasich", 
-        "candidate_id": "44786", 
-        "race_id": "36005"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Anita", 
-        "last_name": "Rios", 
-        "candidate_id": "45359", 
-        "race_id": "36005"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Fred", 
-        "last_name": "Kundrata", 
-        "candidate_id": "45131", 
-        "race_id": "36015"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Steve", 
-        "last_name": "Chabot", 
-        "candidate_id": "44143", 
-        "race_id": "36015"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Joyce", 
-        "last_name": "Beatty", 
-        "candidate_id": "44453", 
-        "race_id": "36019"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "John", 
-        "last_name": "Adams", 
-        "candidate_id": "45117", 
-        "race_id": "36019"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Janet", 
-        "last_name": "Garrett", 
-        "candidate_id": "45356", 
-        "race_id": "36021"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Jim", 
-        "last_name": "Jordan", 
-        "candidate_id": "44499", 
-        "race_id": "36021"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Robert", 
-        "last_name": "Fry", 
-        "candidate_id": "45138", 
-        "race_id": "36023"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Bob", 
-        "last_name": "Latta", 
-        "candidate_id": "44515", 
-        "race_id": "36023"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Eric", 
-        "last_name": "Eberly", 
-        "candidate_id": "45363", 
-        "race_id": "36023"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Jennifer", 
-        "last_name": "Garrison", 
-        "candidate_id": "45139", 
-        "race_id": "36025"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Bill", 
-        "last_name": "Johnson", 
-        "candidate_id": "44503", 
-        "race_id": "36025"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Dennis", 
-        "last_name": "Lambert", 
-        "candidate_id": "45360", 
-        "race_id": "36025"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Bob", 
-        "last_name": "Gibbs", 
-        "candidate_id": "44431", 
-        "race_id": "36027"
-    }, 
-    {
-        "party": "CST", 
-        "first_name": "Jim", 
-        "last_name": "Condit", 
-        "candidate_id": "45362", 
-        "race_id": "36029"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Tom", 
-        "last_name": "Poetter", 
-        "candidate_id": "45113", 
-        "race_id": "36029"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "John", 
-        "last_name": "Boehner", 
-        "candidate_id": "44148", 
-        "race_id": "36029"
-    }, 
-    {
         "party": "GOP", 
         "first_name": "Barry", 
         "last_name": "Loudermilk", 
@@ -7393,297 +7589,577 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Marcy", 
-        "last_name": "Kaptur", 
-        "candidate_id": "44227", 
-        "race_id": "36031"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Richard", 
-        "last_name": "May", 
-        "candidate_id": "45126", 
-        "race_id": "36031"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Jared", 
-        "last_name": "Polis", 
-        "candidate_id": "12112", 
-        "race_id": "6614"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "George", 
-        "last_name": "Leing", 
-        "candidate_id": "12220", 
-        "race_id": "6614"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Abel", 
-        "last_name": "Tapia", 
-        "candidate_id": "12221", 
-        "race_id": "6615"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Scott", 
-        "last_name": "Tipton", 
-        "candidate_id": "12149", 
-        "race_id": "6615"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Travis", 
-        "last_name": "Mero", 
-        "candidate_id": "12376", 
-        "race_id": "6615"
-    }, 
-    {
-        "party": "Una", 
-        "first_name": "Tisha", 
-        "last_name": "Casida", 
-        "candidate_id": "12370", 
-        "race_id": "6615"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Vic", 
-        "last_name": "Meyers", 
-        "candidate_id": "12223", 
-        "race_id": "6616"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Ken", 
-        "last_name": "Buck", 
-        "candidate_id": "12225", 
-        "race_id": "6616"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Jess", 
-        "last_name": "Loban", 
-        "candidate_id": "12377", 
-        "race_id": "6616"
-    }, 
-    {
-        "party": "Una", 
-        "first_name": "Grant", 
-        "last_name": "Doherty", 
-        "candidate_id": "12371", 
-        "race_id": "6616"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Irv", 
-        "last_name": "Halter", 
-        "candidate_id": "12228", 
-        "race_id": "6617"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Doug", 
-        "last_name": "Lamborn", 
-        "candidate_id": "12151", 
-        "race_id": "6617"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Andrew", 
-        "last_name": "Romanoff", 
-        "candidate_id": "12230", 
-        "race_id": "6618"
+        "first_name": "Robert", 
+        "last_name": "Klepinger", 
+        "candidate_id": "45247", 
+        "race_id": "36033"
     }, 
     {
         "party": "GOP", 
         "first_name": "Mike", 
-        "last_name": "Coffman", 
-        "candidate_id": "12152", 
-        "race_id": "6618"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Gary", 
-        "last_name": "Swing", 
-        "candidate_id": "12381", 
-        "race_id": "6618"
+        "last_name": "Turner", 
+        "candidate_id": "44779", 
+        "race_id": "36033"
     }, 
     {
         "party": "Lib", 
-        "first_name": "Norm", 
-        "last_name": "Olsen", 
-        "candidate_id": "12378", 
-        "race_id": "6618"
+        "first_name": "David", 
+        "last_name": "Harlow", 
+        "candidate_id": "45364", 
+        "race_id": "36033"
     }, 
     {
         "party": "Dem", 
-        "first_name": "John", 
-        "last_name": "Hickenlooper", 
-        "candidate_id": "12204", 
-        "race_id": "6619"
+        "first_name": "Marcia", 
+        "last_name": "Fudge", 
+        "candidate_id": "44377", 
+        "race_id": "36035"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Bob", 
-        "last_name": "Beauprez", 
-        "candidate_id": "12208", 
-        "race_id": "6619"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Harry", 
-        "last_name": "Hempy", 
-        "candidate_id": "12382", 
-        "race_id": "6619"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Matthew", 
-        "last_name": "Hess", 
-        "candidate_id": "12380", 
-        "race_id": "6619"
-    }, 
-    {
-        "party": "Una", 
-        "first_name": "Mike", 
-        "last_name": "Dunafon", 
-        "candidate_id": "12372", 
-        "race_id": "6619"
-    }, 
-    {
-        "party": "Una", 
-        "first_name": "Paul", 
-        "last_name": "Fiorino", 
-        "candidate_id": "12373", 
-        "race_id": "6619"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Ed", 
-        "last_name": "Perlmutter", 
-        "candidate_id": "12199", 
-        "race_id": "6954"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Don", 
-        "last_name": "Ytterberg", 
-        "candidate_id": "12231", 
-        "race_id": "6954"
-    }, 
-    {
-        "party": "Dem", 
         "first_name": "Mark", 
-        "last_name": "Udall", 
-        "candidate_id": "12201", 
-        "race_id": "7168"
+        "last_name": "Zetzer", 
+        "candidate_id": "45142", 
+        "race_id": "36035"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "David", 
+        "last_name": "Tibbs", 
+        "candidate_id": "45119", 
+        "race_id": "36037"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Cory", 
-        "last_name": "Gardner", 
-        "candidate_id": "12203", 
-        "race_id": "7168"
+        "first_name": "Pat", 
+        "last_name": "Tiberi", 
+        "candidate_id": "44463", 
+        "race_id": "36037"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Bob", 
+        "last_name": "Hart", 
+        "candidate_id": "45361", 
+        "race_id": "36037"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Tim", 
+        "last_name": "Ryan", 
+        "candidate_id": "44326", 
+        "race_id": "36039"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Thomas", 
+        "last_name": "Pekarek", 
+        "candidate_id": "45358", 
+        "race_id": "36039"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Michael", 
+        "last_name": "Wager", 
+        "candidate_id": "45122", 
+        "race_id": "36041"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "David", 
+        "last_name": "Joyce", 
+        "candidate_id": "44801", 
+        "race_id": "36041"
     }, 
     {
         "party": "Lib", 
-        "first_name": "Gaylon", 
-        "last_name": "Kent", 
-        "candidate_id": "12374", 
-        "race_id": "7168"
+        "first_name": "David", 
+        "last_name": "Macko", 
+        "candidate_id": "45365", 
+        "race_id": "36041"
     }, 
     {
-        "party": "Una", 
+        "party": "Dem", 
+        "first_name": "Scott", 
+        "last_name": "Wharton", 
+        "candidate_id": "45120", 
+        "race_id": "36043"
+    }, 
+    {
+        "party": "GOP", 
         "first_name": "Steve", 
-        "last_name": "Shogan", 
-        "candidate_id": "12367", 
-        "race_id": "7168"
-    }, 
-    {
-        "party": "Una", 
-        "first_name": "Raul", 
-        "last_name": "Acosta", 
-        "candidate_id": "12368", 
-        "race_id": "7168"
-    }, 
-    {
-        "party": "Uty", 
-        "first_name": "Bill", 
-        "last_name": "Hammons", 
-        "candidate_id": "12366", 
-        "race_id": "7168"
+        "last_name": "Stivers", 
+        "candidate_id": "44465", 
+        "race_id": "36043"
     }, 
     {
         "party": "Dem", 
-        "first_name": "Diana", 
-        "last_name": "DeGette", 
-        "candidate_id": "12200", 
-        "race_id": "7191"
+        "first_name": "Pete", 
+        "last_name": "Crossland", 
+        "candidate_id": "45130", 
+        "race_id": "36045"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Martin", 
-        "last_name": "Walsh", 
-        "candidate_id": "12219", 
-        "race_id": "7191"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Frank", 
-        "last_name": "Atwood", 
-        "candidate_id": "12375", 
-        "race_id": "7191"
-    }, 
-    {
-        "party": "Una", 
-        "first_name": "Danny", 
-        "last_name": "Stroud", 
-        "candidate_id": "12383", 
-        "race_id": "7191"
+        "first_name": "Jim", 
+        "last_name": "Renacci", 
+        "candidate_id": "44383", 
+        "race_id": "36045"
     }, 
     {
         "party": "Dem", 
-        "first_name": "James", 
-        "last_name": "Sherow", 
-        "candidate_id": "5882", 
-        "race_id": "17007"
+        "first_name": "Jerry", 
+        "last_name": "Cannon", 
+        "candidate_id": "34483", 
+        "race_id": "23805"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Dan", 
+        "last_name": "Benishek", 
+        "candidate_id": "33723", 
+        "race_id": "23805"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Ellis", 
+        "last_name": "Boal", 
+        "candidate_id": "34967", 
+        "race_id": "23805"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Loel", 
+        "last_name": "Gnadt", 
+        "candidate_id": "34974", 
+        "race_id": "23805"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Dean", 
+        "last_name": "Vanderstelt", 
+        "candidate_id": "34484", 
+        "race_id": "23806"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Bill", 
+        "last_name": "Huizenga", 
+        "candidate_id": "33724", 
+        "race_id": "23806"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Kipp", 
+        "last_name": "Welch", 
+        "candidate_id": "34975", 
+        "race_id": "23806"
+    }, 
+    {
+        "party": "UST", 
+        "first_name": "Ronald", 
+        "last_name": "Graeser", 
+        "candidate_id": "35011", 
+        "race_id": "23806"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Bob", 
+        "last_name": "Goodrich", 
+        "candidate_id": "34486", 
+        "race_id": "23807"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Justin", 
+        "last_name": "Amash", 
+        "candidate_id": "33725", 
+        "race_id": "23807"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Tonya", 
+        "last_name": "Duncan", 
+        "candidate_id": "34968", 
+        "race_id": "23807"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Jeff", 
+        "last_name": "Holmes", 
+        "candidate_id": "34490", 
+        "race_id": "23808"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "John", 
+        "last_name": "Moolenaar", 
+        "candidate_id": "34488", 
+        "race_id": "23808"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Will", 
+        "last_name": "White", 
+        "candidate_id": "34976", 
+        "race_id": "23808"
+    }, 
+    {
+        "party": "UST", 
+        "first_name": "George", 
+        "last_name": "Zimmer", 
+        "candidate_id": "34988", 
+        "race_id": "23808"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Daniel", 
+        "last_name": "Kildee", 
+        "candidate_id": "33759", 
+        "race_id": "23809"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Allen", 
+        "last_name": "Hardwick", 
+        "candidate_id": "34492", 
+        "race_id": "23809"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Hal", 
+        "last_name": "Jones", 
+        "candidate_id": "34977", 
+        "race_id": "23809"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Paul", 
+        "last_name": "Clements", 
+        "candidate_id": "34494", 
+        "race_id": "23810"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Fred", 
+        "last_name": "Upton", 
+        "candidate_id": "33728", 
+        "race_id": "23810"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "John", 
+        "last_name": "Lawrence", 
+        "candidate_id": "34969", 
+        "race_id": "23810"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Erwin", 
+        "last_name": "Haas", 
+        "candidate_id": "34978", 
+        "race_id": "23810"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Pam", 
+        "last_name": "Byrnes", 
+        "candidate_id": "34496", 
+        "race_id": "23811"
     }, 
     {
         "party": "GOP", 
         "first_name": "Tim", 
-        "last_name": "Huelskamp", 
-        "candidate_id": "5664", 
-        "race_id": "17007"
+        "last_name": "Walberg", 
+        "candidate_id": "33729", 
+        "race_id": "23811"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Ken", 
+        "last_name": "Proctor", 
+        "candidate_id": "34979", 
+        "race_id": "23811"
+    }, 
+    {
+        "party": "NPA", 
+        "first_name": "David", 
+        "last_name": "Swartout", 
+        "candidate_id": "34990", 
+        "race_id": "23811"
+    }, 
+    {
+        "party": "UST", 
+        "first_name": "Rick", 
+        "last_name": "Strawcutter", 
+        "candidate_id": "34989", 
+        "race_id": "23811"
     }, 
     {
         "party": "Dem", 
-        "first_name": "Kelly", 
-        "last_name": "Kultala", 
-        "candidate_id": "5890", 
-        "race_id": "17009"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Kevin", 
-        "last_name": "Yoder", 
-        "candidate_id": "5667", 
-        "race_id": "17009"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Perry", 
-        "last_name": "Schuckman", 
-        "candidate_id": "5892", 
-        "race_id": "17010"
+        "first_name": "Eric", 
+        "last_name": "Schertzing", 
+        "candidate_id": "34501", 
+        "race_id": "23812"
     }, 
     {
         "party": "GOP", 
         "first_name": "Mike", 
-        "last_name": "Pompeo", 
-        "candidate_id": "5669", 
-        "race_id": "17010"
+        "last_name": "Bishop", 
+        "candidate_id": "34498", 
+        "race_id": "23812"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Jim", 
+        "last_name": "Casha", 
+        "candidate_id": "34991", 
+        "race_id": "23812"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "James", 
+        "last_name": "Weeks", 
+        "candidate_id": "34980", 
+        "race_id": "23812"
+    }, 
+    {
+        "party": "NLP", 
+        "first_name": "Jeremy", 
+        "last_name": "Burgess", 
+        "candidate_id": "35012", 
+        "race_id": "23812"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Sander", 
+        "last_name": "Levin", 
+        "candidate_id": "33745", 
+        "race_id": "23813"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "George", 
+        "last_name": "Brikho", 
+        "candidate_id": "34503", 
+        "race_id": "23813"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "John", 
+        "last_name": "McDermott", 
+        "candidate_id": "34971", 
+        "race_id": "23813"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Greg", 
+        "last_name": "Creswell", 
+        "candidate_id": "34981", 
+        "race_id": "23813"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Chuck", 
+        "last_name": "Stadler", 
+        "candidate_id": "34504", 
+        "race_id": "23814"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Candice", 
+        "last_name": "Miller", 
+        "candidate_id": "33732", 
+        "race_id": "23814"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Harley", 
+        "last_name": "Mikkelson", 
+        "candidate_id": "34972", 
+        "race_id": "23814"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Bobby", 
+        "last_name": "McKenzie", 
+        "candidate_id": "34509", 
+        "race_id": "23815"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Dave", 
+        "last_name": "Trott", 
+        "candidate_id": "34505", 
+        "race_id": "23815"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "John", 
+        "last_name": "Tatar", 
+        "candidate_id": "34982", 
+        "race_id": "23815"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Debbie", 
+        "last_name": "Dingell", 
+        "candidate_id": "34511", 
+        "race_id": "23816"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Terry", 
+        "last_name": "Bowman", 
+        "candidate_id": "34510", 
+        "race_id": "23816"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Bhagwan", 
+        "last_name": "Dashairya", 
+        "candidate_id": "35013", 
+        "race_id": "23816"
+    }, 
+    {
+        "party": "NPA", 
+        "first_name": "Gary", 
+        "last_name": "Walkowicz", 
+        "candidate_id": "34992", 
+        "race_id": "23816"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "John", 
+        "last_name": "Conyers", 
+        "candidate_id": "33747", 
+        "race_id": "23817"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Jeff", 
+        "last_name": "Gorman", 
+        "candidate_id": "34513", 
+        "race_id": "23817"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Chris", 
+        "last_name": "Sharer", 
+        "candidate_id": "34984", 
+        "race_id": "23817"
+    }, 
+    {
+        "party": "NPA", 
+        "first_name": "Sam", 
+        "last_name": "Johnson", 
+        "candidate_id": "34993", 
+        "race_id": "23817"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Brenda", 
+        "last_name": "Lawrence", 
+        "candidate_id": "34518", 
+        "race_id": "23818"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Christina", 
+        "last_name": "Barr", 
+        "candidate_id": "35044", 
+        "race_id": "23818"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Stephen", 
+        "last_name": "Boyle", 
+        "candidate_id": "34973", 
+        "race_id": "23818"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Leonard", 
+        "last_name": "Schwartz", 
+        "candidate_id": "34985", 
+        "race_id": "23818"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Jeanne", 
+        "last_name": "Shaheen", 
+        "candidate_id": "44274", 
+        "race_id": "30003"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Scott", 
+        "last_name": "Brown", 
+        "candidate_id": "44477", 
+        "race_id": "30003"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Maggie", 
+        "last_name": "Hassan", 
+        "candidate_id": "43356", 
+        "race_id": "30005"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Walt", 
+        "last_name": "Havenstein", 
+        "candidate_id": "44491", 
+        "race_id": "30005"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Carol", 
+        "last_name": "Shea-Porter", 
+        "candidate_id": "43357", 
+        "race_id": "30015"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Frank", 
+        "last_name": "Guinta", 
+        "candidate_id": "43781", 
+        "race_id": "30015"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Ann", 
+        "last_name": "Kuster", 
+        "candidate_id": "43358", 
+        "race_id": "30017"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Marilinda", 
+        "last_name": "Garcia", 
+        "candidate_id": "44501", 
+        "race_id": "30017"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Lacy", 
+        "last_name": "Clay", 
+        "candidate_id": "7490", 
+        "race_id": "27025"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Daniel", 
+        "last_name": "Elder", 
+        "candidate_id": "8309", 
+        "race_id": "27025"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Robb", 
+        "last_name": "Cunningham", 
+        "candidate_id": "8311", 
+        "race_id": "27025"
     }, 
     {
         "party": "Dem", 
@@ -8156,185 +8632,45 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Marek", 
-        "last_name": "Tyszkiewicz", 
-        "candidate_id": "45134", 
-        "race_id": "37258"
+        "first_name": "Mike", 
+        "last_name": "Ross", 
+        "candidate_id": "12177", 
+        "race_id": "5626"
     }, 
     {
         "party": "GOP", 
-        "first_name": "Brad", 
-        "last_name": "Wenstrup", 
-        "candidate_id": "44291", 
-        "race_id": "37258"
+        "first_name": "Asa", 
+        "last_name": "Hutchinson", 
+        "candidate_id": "12182", 
+        "race_id": "5626"
     }, 
     {
-        "party": "Dem", 
-        "first_name": "Jack", 
-        "last_name": "Reed", 
-        "candidate_id": "45299", 
-        "race_id": "40003"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Mark", 
-        "last_name": "Zaccaria", 
-        "candidate_id": "45423", 
-        "race_id": "40003"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Gina", 
-        "last_name": "Raimondo", 
-        "candidate_id": "45412", 
-        "race_id": "40005"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Allan", 
-        "last_name": "Fung", 
-        "candidate_id": "45415", 
-        "race_id": "40005"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Leon", 
-        "last_name": "Kayarian", 
-        "candidate_id": "45651", 
-        "race_id": "40005"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Kate", 
-        "last_name": "Fletcher", 
-        "candidate_id": "45702", 
-        "race_id": "40005"
-    }, 
-    {
-        "party": "Mod", 
-        "first_name": "Bob", 
-        "last_name": "Healey", 
-        "candidate_id": "45721", 
-        "race_id": "40005"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "David", 
-        "last_name": "Cicilline", 
-        "candidate_id": "45085", 
-        "race_id": "40015"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Cormick", 
-        "last_name": "Lynch", 
-        "candidate_id": "45419", 
-        "race_id": "40015"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Jim", 
-        "last_name": "Langevin", 
-        "candidate_id": "45087", 
-        "race_id": "40017"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Rhue", 
-        "last_name": "Reis", 
-        "candidate_id": "45422", 
-        "race_id": "40017"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Peter", 
-        "last_name": "Welch", 
-        "candidate_id": "51543", 
-        "race_id": "46374"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Mark", 
-        "last_name": "Donka", 
-        "candidate_id": "51983", 
-        "race_id": "46374"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Cris", 
-        "last_name": "Ericson", 
-        "candidate_id": "52307", 
-        "race_id": "46374"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Randall", 
-        "last_name": "Meyer", 
-        "candidate_id": "52308", 
-        "race_id": "46374"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Jerry", 
-        "last_name": "Trudell", 
-        "candidate_id": "52309", 
-        "race_id": "46374"
-    }, 
-    {
-        "party": "LUn", 
-        "first_name": "Matthew", 
-        "last_name": "Andrews", 
-        "candidate_id": "51986", 
-        "race_id": "46374"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Peter", 
-        "last_name": "Shumlin", 
-        "candidate_id": "51546", 
-        "race_id": "46375"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Scott", 
-        "last_name": "Milne", 
-        "candidate_id": "52295", 
-        "race_id": "46375"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Emily", 
-        "last_name": "Peyton", 
-        "candidate_id": "52310", 
-        "race_id": "46375"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Cris", 
-        "last_name": "Ericson", 
-        "candidate_id": "52312", 
-        "race_id": "46375"
-    }, 
-    {
-        "party": "Ind", 
-        "first_name": "Bernard", 
-        "last_name": "Peters", 
-        "candidate_id": "52313", 
-        "race_id": "46375"
+        "party": "Grn", 
+        "first_name": "Joshua", 
+        "last_name": "Drake", 
+        "candidate_id": "12512", 
+        "race_id": "5626"
     }, 
     {
         "party": "Lib", 
-        "first_name": "Dan", 
-        "last_name": "Feliciano", 
-        "candidate_id": "52311", 
-        "race_id": "46375"
+        "first_name": "Frank", 
+        "last_name": "Gilbert", 
+        "candidate_id": "12511", 
+        "race_id": "5626"
     }, 
     {
-        "party": "LUn", 
-        "first_name": "Pete", 
-        "last_name": "Diamondstone", 
-        "candidate_id": "51981", 
-        "race_id": "46375"
+        "party": "GOP", 
+        "first_name": "Steve", 
+        "last_name": "Womack", 
+        "candidate_id": "11571", 
+        "race_id": "6092"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Grant", 
+        "last_name": "Brand", 
+        "candidate_id": "12507", 
+        "race_id": "6092"
     }, 
     {
         "party": "Dem", 
@@ -9143,433 +9479,6 @@
     }, 
     {
         "party": "Dem", 
-        "first_name": "Jeanne", 
-        "last_name": "Shaheen", 
-        "candidate_id": "44274", 
-        "race_id": "30003"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Scott", 
-        "last_name": "Brown", 
-        "candidate_id": "44477", 
-        "race_id": "30003"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Maggie", 
-        "last_name": "Hassan", 
-        "candidate_id": "43356", 
-        "race_id": "30005"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Walt", 
-        "last_name": "Havenstein", 
-        "candidate_id": "44491", 
-        "race_id": "30005"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Carol", 
-        "last_name": "Shea-Porter", 
-        "candidate_id": "43357", 
-        "race_id": "30015"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Frank", 
-        "last_name": "Guinta", 
-        "candidate_id": "43781", 
-        "race_id": "30015"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Ann", 
-        "last_name": "Kuster", 
-        "candidate_id": "43358", 
-        "race_id": "30017"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Marilinda", 
-        "last_name": "Garcia", 
-        "candidate_id": "44501", 
-        "race_id": "30017"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Jerry", 
-        "last_name": "Cannon", 
-        "candidate_id": "34483", 
-        "race_id": "23805"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Dan", 
-        "last_name": "Benishek", 
-        "candidate_id": "33723", 
-        "race_id": "23805"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Ellis", 
-        "last_name": "Boal", 
-        "candidate_id": "34967", 
-        "race_id": "23805"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Loel", 
-        "last_name": "Gnadt", 
-        "candidate_id": "34974", 
-        "race_id": "23805"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Dean", 
-        "last_name": "Vanderstelt", 
-        "candidate_id": "34484", 
-        "race_id": "23806"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Bill", 
-        "last_name": "Huizenga", 
-        "candidate_id": "33724", 
-        "race_id": "23806"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Kipp", 
-        "last_name": "Welch", 
-        "candidate_id": "34975", 
-        "race_id": "23806"
-    }, 
-    {
-        "party": "UST", 
-        "first_name": "Ronald", 
-        "last_name": "Graeser", 
-        "candidate_id": "35011", 
-        "race_id": "23806"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Bob", 
-        "last_name": "Goodrich", 
-        "candidate_id": "34486", 
-        "race_id": "23807"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Justin", 
-        "last_name": "Amash", 
-        "candidate_id": "33725", 
-        "race_id": "23807"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Tonya", 
-        "last_name": "Duncan", 
-        "candidate_id": "34968", 
-        "race_id": "23807"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Jeff", 
-        "last_name": "Holmes", 
-        "candidate_id": "34490", 
-        "race_id": "23808"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "John", 
-        "last_name": "Moolenaar", 
-        "candidate_id": "34488", 
-        "race_id": "23808"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Will", 
-        "last_name": "White", 
-        "candidate_id": "34976", 
-        "race_id": "23808"
-    }, 
-    {
-        "party": "UST", 
-        "first_name": "George", 
-        "last_name": "Zimmer", 
-        "candidate_id": "34988", 
-        "race_id": "23808"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Daniel", 
-        "last_name": "Kildee", 
-        "candidate_id": "33759", 
-        "race_id": "23809"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Allen", 
-        "last_name": "Hardwick", 
-        "candidate_id": "34492", 
-        "race_id": "23809"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Hal", 
-        "last_name": "Jones", 
-        "candidate_id": "34977", 
-        "race_id": "23809"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Paul", 
-        "last_name": "Clements", 
-        "candidate_id": "34494", 
-        "race_id": "23810"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Fred", 
-        "last_name": "Upton", 
-        "candidate_id": "33728", 
-        "race_id": "23810"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "John", 
-        "last_name": "Lawrence", 
-        "candidate_id": "34969", 
-        "race_id": "23810"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Erwin", 
-        "last_name": "Haas", 
-        "candidate_id": "34978", 
-        "race_id": "23810"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Pam", 
-        "last_name": "Byrnes", 
-        "candidate_id": "34496", 
-        "race_id": "23811"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Tim", 
-        "last_name": "Walberg", 
-        "candidate_id": "33729", 
-        "race_id": "23811"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Ken", 
-        "last_name": "Proctor", 
-        "candidate_id": "34979", 
-        "race_id": "23811"
-    }, 
-    {
-        "party": "NPA", 
-        "first_name": "David", 
-        "last_name": "Swartout", 
-        "candidate_id": "34990", 
-        "race_id": "23811"
-    }, 
-    {
-        "party": "UST", 
-        "first_name": "Rick", 
-        "last_name": "Strawcutter", 
-        "candidate_id": "34989", 
-        "race_id": "23811"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Eric", 
-        "last_name": "Schertzing", 
-        "candidate_id": "34501", 
-        "race_id": "23812"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Mike", 
-        "last_name": "Bishop", 
-        "candidate_id": "34498", 
-        "race_id": "23812"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Jim", 
-        "last_name": "Casha", 
-        "candidate_id": "34991", 
-        "race_id": "23812"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "James", 
-        "last_name": "Weeks", 
-        "candidate_id": "34980", 
-        "race_id": "23812"
-    }, 
-    {
-        "party": "NLP", 
-        "first_name": "Jeremy", 
-        "last_name": "Burgess", 
-        "candidate_id": "35012", 
-        "race_id": "23812"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Sander", 
-        "last_name": "Levin", 
-        "candidate_id": "33745", 
-        "race_id": "23813"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "George", 
-        "last_name": "Brikho", 
-        "candidate_id": "34503", 
-        "race_id": "23813"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "John", 
-        "last_name": "McDermott", 
-        "candidate_id": "34971", 
-        "race_id": "23813"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Greg", 
-        "last_name": "Creswell", 
-        "candidate_id": "34981", 
-        "race_id": "23813"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Chuck", 
-        "last_name": "Stadler", 
-        "candidate_id": "34504", 
-        "race_id": "23814"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Candice", 
-        "last_name": "Miller", 
-        "candidate_id": "33732", 
-        "race_id": "23814"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Harley", 
-        "last_name": "Mikkelson", 
-        "candidate_id": "34972", 
-        "race_id": "23814"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Bobby", 
-        "last_name": "McKenzie", 
-        "candidate_id": "34509", 
-        "race_id": "23815"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Dave", 
-        "last_name": "Trott", 
-        "candidate_id": "34505", 
-        "race_id": "23815"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "John", 
-        "last_name": "Tatar", 
-        "candidate_id": "34982", 
-        "race_id": "23815"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Debbie", 
-        "last_name": "Dingell", 
-        "candidate_id": "34511", 
-        "race_id": "23816"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Terry", 
-        "last_name": "Bowman", 
-        "candidate_id": "34510", 
-        "race_id": "23816"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Bhagwan", 
-        "last_name": "Dashairya", 
-        "candidate_id": "35013", 
-        "race_id": "23816"
-    }, 
-    {
-        "party": "NPA", 
-        "first_name": "Gary", 
-        "last_name": "Walkowicz", 
-        "candidate_id": "34992", 
-        "race_id": "23816"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "John", 
-        "last_name": "Conyers", 
-        "candidate_id": "33747", 
-        "race_id": "23817"
-    }, 
-    {
-        "party": "GOP", 
-        "first_name": "Jeff", 
-        "last_name": "Gorman", 
-        "candidate_id": "34513", 
-        "race_id": "23817"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Chris", 
-        "last_name": "Sharer", 
-        "candidate_id": "34984", 
-        "race_id": "23817"
-    }, 
-    {
-        "party": "NPA", 
-        "first_name": "Sam", 
-        "last_name": "Johnson", 
-        "candidate_id": "34993", 
-        "race_id": "23817"
-    }, 
-    {
-        "party": "Dem", 
-        "first_name": "Brenda", 
-        "last_name": "Lawrence", 
-        "candidate_id": "34518", 
-        "race_id": "23818"
-    }, 
-    {
-        "party": "Grn", 
-        "first_name": "Stephen", 
-        "last_name": "Boyle", 
-        "candidate_id": "34973", 
-        "race_id": "23818"
-    }, 
-    {
-        "party": "Lib", 
-        "first_name": "Leonard", 
-        "last_name": "Schwartz", 
-        "candidate_id": "34985", 
-        "race_id": "23818"
-    }, 
-    {
-        "party": "Dem", 
         "first_name": "David", 
         "last_name": "Alameel", 
         "candidate_id": "58710", 
@@ -9749,5 +9658,103 @@
         "last_name": "Veach", 
         "candidate_id": "58967", 
         "race_id": "49480"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Mark", 
+        "last_name": "Pryor", 
+        "candidate_id": "11959", 
+        "race_id": "6345"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Tom", 
+        "last_name": "Cotton", 
+        "candidate_id": "12493", 
+        "race_id": "6345"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Mark", 
+        "last_name": "Swaney", 
+        "candidate_id": "12513", 
+        "race_id": "6345"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Nathan", 
+        "last_name": "LaFrance", 
+        "candidate_id": "12514", 
+        "race_id": "6345"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Mark", 
+        "last_name": "Schauer", 
+        "candidate_id": "34478", 
+        "race_id": "24074"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Rick", 
+        "last_name": "Snyder", 
+        "candidate_id": "34089", 
+        "race_id": "24074"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Paul", 
+        "last_name": "Homeniuk", 
+        "candidate_id": "34965", 
+        "race_id": "24074"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Mary", 
+        "last_name": "Buzuma", 
+        "candidate_id": "34966", 
+        "race_id": "24074"
+    }, 
+    {
+        "party": "UST", 
+        "first_name": "Mark", 
+        "last_name": "McFarlin", 
+        "candidate_id": "34986", 
+        "race_id": "24074"
+    }, 
+    {
+        "party": "Dem", 
+        "first_name": "Gary", 
+        "last_name": "Peters", 
+        "candidate_id": "34481", 
+        "race_id": "24463"
+    }, 
+    {
+        "party": "GOP", 
+        "first_name": "Terri Lynn", 
+        "last_name": "Land", 
+        "candidate_id": "34480", 
+        "race_id": "24463"
+    }, 
+    {
+        "party": "Grn", 
+        "first_name": "Chris", 
+        "last_name": "Wahmhoff", 
+        "candidate_id": "34963", 
+        "race_id": "24463"
+    }, 
+    {
+        "party": "Lib", 
+        "first_name": "Jim", 
+        "last_name": "Fulner", 
+        "candidate_id": "34964", 
+        "race_id": "24463"
+    }, 
+    {
+        "party": "UST", 
+        "first_name": "Richard", 
+        "last_name": "Matkin", 
+        "candidate_id": "34987", 
+        "race_id": "24463"
     }
 ]

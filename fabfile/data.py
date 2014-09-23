@@ -402,7 +402,7 @@ def _fake_called_status(race):
     Fake AP called status, requires race to have closing time
     """
     if race.precincts_reporting > 0:
-        race.ap_called = random.choice([True, False, False, False])
+        race.ap_called = random.choice([True, False])
         if race.ap_called:
             race.accept_ap_call = True
             race.ap_called_time = race.poll_closing_time + timedelta(hours=random.randint(1,3), minutes=random.randint(0,59))
@@ -422,6 +422,9 @@ def _fake_results(race):
 
         candidate.save()
 
-    if race.precincts_reporting > 0 and race.ap_called:
+    if race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
         max_candidate.ap_winner = True
+        if not max_candidate.incumbent:
+            race.party_change = True
         max_candidate.save()
+
