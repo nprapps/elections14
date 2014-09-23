@@ -106,7 +106,7 @@ def update(test=False):
 
     if not os.path.exists('data/update.json'):
         return
-    
+
     update_flat = []
 
     with open('data/update.json') as f:
@@ -307,7 +307,7 @@ def _mock_slide_from_image(filename, i):
     import models
 
     body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
-    name = 'Test slide: %s' % os.path.splitext(filename)[0] 
+    name = 'Test slide: %s' % os.path.splitext(filename)[0]
     slide = models.Slide.create(body=body, name=name)
     models.SlideSequence.create(sequence=i, slide=slide)
 
@@ -322,9 +322,9 @@ def _mock_slide_with_pym(slug, path, i):
     }
 
     with app.app.test_request_context(path='/slides/pym'):
-        body = render_template('slides/pym.html', **context) 
-    
-    name = slug 
+        body = render_template('slides/pym.html', **context)
+
+    name = slug
     slide = models.Slide.create(body=body, name=name)
     models.SlideSequence.create(sequence=i, slide=slide)
 
@@ -338,11 +338,11 @@ def mock_slides():
     models.SlideSequence.delete().execute()
     models.Slide.delete().execute()
 
-    it = count() 
-    _mock_slide_from_image('welcome.png', it.next()) 
-    _mock_slide_with_pym('senate', 'results/senate/', it.next()) 
-    _mock_slide_from_image('gif1.gif', it.next()) 
-    _mock_slide_from_image('party_pix.png', it.next()) 
+    it = count()
+    _mock_slide_from_image('welcome.png', it.next())
+    _mock_slide_with_pym('senate', 'results/senate/', it.next())
+    _mock_slide_from_image('gif1.gif', it.next())
+    _mock_slide_from_image('party_pix.png', it.next())
 
 @task
 def mock_election_results():
