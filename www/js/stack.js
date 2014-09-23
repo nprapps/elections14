@@ -6,13 +6,13 @@ var rotateSlide = function(url) {
             var $newSlide = $(data);
 
             $oldSlide.fadeOut();
-            
+
             $('#stack').append($newSlide);
 
             $oldSlide.fadeOut(function(){
-                //$(this).remove();
+                $(this).remove();
             });
-            
+
             $newSlide.fadeIn(function(){
                 setTimeout(getSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
             });
