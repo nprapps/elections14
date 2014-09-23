@@ -5,6 +5,7 @@ import json
 import re
 
 from peewee import Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField, TextField
+from decimal import Decimal
 
 import app_config
 
@@ -146,6 +147,12 @@ class Race(BaseModel):
 
         return False
 
+    def is_reporting(self):
+        """
+        Are precincts reporting?
+        """
+        return bool(self.precincts_reporting)
+
     def get_called_time(self):
         """
         Get when this race was called.
@@ -154,6 +161,13 @@ class Race(BaseModel):
             return self.ap_called_time
         else:
             return self.npr_called_time
+
+    def precincts_reporting_percent(self):
+        """
+        Get precent precincts reporting
+        """
+        ratio = Decimal(self.precincts_reporting) / Decimal(self.precincts_total)
+        return int(round(ratio * 100))
 
     def has_incumbents(self):
         """
