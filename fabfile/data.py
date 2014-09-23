@@ -356,6 +356,9 @@ def mock_election_results():
     import models
 
     for race in models.Race.select():
+        race.accept_ap_call = False
+        race.ap_called = False
+        race.party_change = False
         _fake_incumbent(race)
         _fake_poll_closing_time(race)
         _fake_precincts_reporting(race)
@@ -411,6 +414,7 @@ def _fake_called_status(race):
 def _fake_results(race):
     max_votes = 0
     for candidate in race.candidates:
+        candidate.ap_winner = False
         if candidate.party in ["GOP", "Dem"] and race.precincts_reporting > 0:
             votes = random.randint(400000, 500000)
             candidate.vote_count = votes
