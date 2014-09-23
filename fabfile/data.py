@@ -341,8 +341,8 @@ def mock_slides():
     it = count()
     _mock_slide_from_image('welcome.png', it.next())
     _mock_slide_with_pym('senate', 'results/senate/', it.next())
-    _mock_slide_from_image('gif1.gif', it.next())
-    _mock_slide_from_image('party_pix.png', it.next())
+    # _mock_slide_from_image('gif1.gif', it.next())
+    # _mock_slide_from_image('party_pix.png', it.next())
 
 @task
 def mock_election_results():
