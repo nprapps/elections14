@@ -240,7 +240,6 @@ class Race(BaseModel):
 
         return flat
 
-    @property
     def top_candidates(self):
         try:
             dem = self.candidates.where(self.candidates.model_class.party == "Dem")[0]
@@ -306,7 +305,6 @@ class Candidate(BaseModel):
 
         return flat
 
-    @property
     def is_winner(self):
         """
         Is the candidate the winner?
