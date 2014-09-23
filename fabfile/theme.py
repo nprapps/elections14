@@ -88,7 +88,7 @@ def deploy():
 
     local('rm -rf .gzip_theme')
 
-    #execute('update')
+    execute('update')
     render()
     utils._gzip('theme/www/', '.gzip_theme/theme')
     utils._deploy_to_s3('.gzip_theme')
