@@ -165,7 +165,7 @@ Tumblelog.Infinite = (function() {
     function newPostListener() {
         if (_is_loading) return;
 
-        setInterval(find_new_posts, 5000);
+        setInterval(find_new_posts, APP_CONFIG.TUMBLR_REFRESH_INTERVAL * 1000);
     }
 
     function find_new_posts() {
