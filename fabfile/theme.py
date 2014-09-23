@@ -86,6 +86,8 @@ def deploy():
     """
     require('settings', provided_by=['production', 'staging'])
 
+    local('rm -rf .gzip_theme')
+
     #execute('update')
     render()
     utils._gzip('theme/www/', '.gzip_theme/theme')
