@@ -88,6 +88,7 @@
 
                     {block:TagPage}<h2 class="tag-header">{Tag}</h2>{/block:TagPage}
 
+                    <div id="total-pages" data-total-pages="{TotalPages}"></div>
                     <div id="posts">
                         <!-- START POSTS -->
                         {block:Posts}
@@ -237,10 +238,10 @@
             var TOTAL_PAGES = {TotalPages};
         </script>
 
-
         {block:IndexPage}
         {{ JS.push('js/lib/jquery.js') }}
         {{ JS.push('js/lib/jquery.fitvids.js') }}
+        {{ JS.push('js/app_config.js') }}
         {{ JS.push('js/infinite-scroll.js') }}
         {{ JS.push('js/app.js') }}
         {{ JS.render('js/app-footer-index.min.js') }}

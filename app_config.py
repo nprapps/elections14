@@ -138,6 +138,8 @@ CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 NEXT_SLIDE_FILENAME = 'live-data/next-slide.json'
 
 TUMBLR_NAME = 'stage-nprelections'
+TUMBLR_AUTO_REFRESH = True
+TUMBLR_REFRESH_INTERVAL = 15
 
 """
 Utilities

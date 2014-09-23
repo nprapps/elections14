@@ -4,6 +4,7 @@
 Commands that update or process the application data.
 """
 from datetime import datetime, timedelta
+from itertools import count
 import json
 import os
 import random
@@ -62,7 +63,7 @@ def bootstrap():
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
 
-    load_slide_fixtures()
+    mock_slides()
 
     with open('data/races.json') as f:
         races = json.load(f)
@@ -302,23 +303,29 @@ def update_featured_social():
     with open('data/featured.json', 'w') as f:
         json.dump(output, f)
 
+def _mock_slide_from_image(filename, i):
+    import models
+
+    body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
+    name = 'Test slide: %s' % filename[0:-4]
+    slide = models.Slide.create(body=body, name=name)
+    models.SlideSequence.create(sequence=i, slide=slide)
+
 @task
-def load_slide_fixtures():
+def mock_slides():
     """
     Load mockup slides from assets directory.
     """
     import models
 
-    path = 'www/assets/slide-mockups/'
-    files = [ f for f in os.listdir(path) if os.path.isfile(os.path.join(path,f)) ]
-    files.sort()
-    for i, filename in enumerate(files):
-        body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
-        name = 'Test slide: %s' % filename[0:-4]
-        slide = models.Slide.create(body=body, name=name)
-        slide.save()
-        sequence = models.SlideSequence.create(sequence=i, slide=slide)
-        sequence.save()
+    models.SlideSequence.delete().execute()
+    models.Slide.delete().execute()
+
+    it = count() 
+    _mock_slide_from_image('welcome.png', it.next()) 
+    _mock_slide_from_image('senate.png', it.next()) 
+    _mock_slide_from_image('gif1.gif', it.next()) 
+    _mock_slide_from_image('party_pix.png', it.next()) 
 
 @task
 def mock_election_results():

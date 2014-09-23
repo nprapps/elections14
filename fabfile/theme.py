@@ -4,9 +4,11 @@
 Commands that render and copy the theme
 """
 
-from fabric.api import execute, local, task, require
+from glob import glob
+import os
+
+from fabric.api import local, task, require
 from fabric.state import env
-from render import less, copytext_js
 import utils
 
 import app
@@ -19,10 +21,9 @@ def render():
     Render the Tumblr theme.
     """
     from flask import g
-
+    
     less()
     app_config_js()
-    copytext_js()
 
     compiled_includes = {}
 
@@ -34,7 +35,7 @@ def render():
     with app.app.test_request_context(path='/theme'):
         print 'Rendering %s' % path
 
-        if env.settings != 'production':
+        if env.settings not in ['staging', 'production']:
             g.compile_includes = False
         else:
             g.compile_includes = True
@@ -50,6 +51,21 @@ def render():
     local('pbcopy < theme/www/index.html')
     print 'The Tumblr theme HTML has been copied to your clipboard.'
     local('open https://www.tumblr.com/customize/%s' % app_config.TUMBLR_NAME)
+
+def less():
+    """
+    Render LESS files to CSS.
+    """
+    for path in glob('theme/less/*.less'):
+        filename = os.path.split(path)[-1]
+        name = os.path.splitext(filename)[0]
+        out_path = 'theme/www/css/%s.less.css' % name
+
+        try:
+            local('node_modules/less/bin/lessc %s %s' % (path, out_path))
+        except:
+            print 'It looks like "lessc" isn\'t installed. Try running: "npm install"'
+            raise
 
 def app_config_js():
     """
@@ -70,7 +86,9 @@ def deploy():
     """
     require('settings', provided_by=['production', 'staging'])
 
+    local('rm -rf .gzip_theme')
+
     execute('update')
     render()
-    utils._gzip('theme/www/' % (env.static_path), '.gzip/theme/')
-    utils._deploy_to_s3('.gzip/theme/')
+    utils._gzip('theme/www/', '.gzip_theme/theme')
+    utils._deploy_to_s3('.gzip_theme')

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import imp
 import json
 
 import copytext
@@ -17,7 +16,7 @@ theme = Blueprint('theme', __name__, url_prefix='/theme', template_folder='theme
 @theme.route('/less/<string:filename>')
 def _theme_less(filename):
 
-    return static._less(filename, 'theme/')
+    return static._less(filename, 'theme')
 
 # Render application configuration
 @theme.route('/js/app_config.js')
@@ -35,7 +34,7 @@ def _copy_js():
 # serve arbitrary static files on-demand
 @theme.route('/<path:path>')
 def _theme_static(path):
-    return static.static_file(path, 'theme/')
+    return static.static_file(path, 'theme')
 
 @theme.route('/theme')
 def _theme():

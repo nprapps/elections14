@@ -1,5 +1,3 @@
-var slideHistory = [];
-
 var rotateSlide = function(url) {
   $.ajax({
     url: APP_CONFIG.S3_BASE_URL + '/' + url,
@@ -15,7 +13,6 @@ var rotateSlide = function(url) {
       $newSlide.fadeIn(function(){
         setTimeout(getSlide, 5000);
       });
-      console.log('slides seen so far', slideHistory);
     }
   });
 }

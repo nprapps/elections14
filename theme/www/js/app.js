@@ -41,8 +41,6 @@ $(function() {
 	$document = $(document);
 	$videoContainers = $('.video-container');
 
-
-
 	$videoContainers.fitVids({ customSelector: "video"});
 
 	$window.on('resize', function(){
@@ -55,5 +53,4 @@ $(function() {
 	});
 
 	sizeVideoContainers();
-
 });
