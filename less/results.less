@@ -234,31 +234,41 @@ h6 {
 
     .results-col {
         .senate & { 
-            @media screen and (min-width: @screen-xs){
-                width: 50%;
-                box-sizing: border-box;
-                float: left;
+            @media screen and (max-width: @screen-xs){
+                width:100%;
+            }
+            width: 50%;
+            box-sizing: border-box;
+            float: left;
 
-                &:first-child {
-                    padding-right: 15px;
+            &:first-child {
+                padding-right: 15px;
+                @media screen and (max-width: @screen-md){
+                padding-right:6px;
                 }
+            }
 
-                &:last-child {
-                    padding-left: 15px;
-                }  
-            }  
+            &:last-child {
+                padding-left: 15px;
+                @media screen and (max-width: @screen-md){
+                padding-left:6px;
+                }
+            }             
         }
     }
 
     .poll-closing-group {
         font-weight: bold;
+        color: @gray-darker;
+        vertical-align:top;
+        margin-bottom:0;
         border-top: 4px solid @gray-dark;
+        padding: 4px 0;
         @media screen and (max-width: @screen-md){
             border-top: 2px solid @gray-dark;
+            padding:4.5px 0;
         }
-        color: @gray-darker;
-        margin-bottom: 0;
-        padding: 5px 0;
+       
 
         .time {
             width: 12%;
