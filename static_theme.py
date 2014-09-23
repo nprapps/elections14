@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import imp
 import json
 
 import copytext
