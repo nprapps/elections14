@@ -44,6 +44,11 @@ h6 {
     line-height: .2;
     font-weight: 400;
 
+    @media screen and (min-width: @screen-sm){
+        font-size: 10.6px;
+        line-height: 1;
+    }
+
     @media screen and (min-width: @screen-md){
         font-size: 14px;
         line-height: 1.1;
@@ -62,7 +67,7 @@ h6 {
     }
 
     @media screen and (min-width: @screen-big-board){
-        font-size: 34px;
+        font-size: 32px;
         font-weight: 300;
         line-height: 1.2;
         letter-spacing: -0.03em;
@@ -83,6 +88,7 @@ h6 {
         float: left;
         margin: 0;
         font-size:18px;
+        letter-spacing: .05em;
 
         @media screen and (min-width: @screen-md){
         font-size: 24px;
@@ -234,31 +240,41 @@ h6 {
 
     .results-col {
         .senate & { 
-            @media screen and (min-width: @screen-xs){
-                width: 50%;
-                box-sizing: border-box;
-                float: left;
+            @media screen and (max-width: @screen-xs){
+                width:100%;
+            }
+            width: 50%;
+            box-sizing: border-box;
+            float: left;
 
-                &:first-child {
-                    padding-right: 15px;
+            &:first-child {
+                padding-right: 15px;
+                @media screen and (max-width: @screen-md){
+                padding-right:6px;
                 }
+            }
 
-                &:last-child {
-                    padding-left: 15px;
-                }  
-            }  
+            &:last-child {
+                padding-left: 15px;
+                @media screen and (max-width: @screen-md){
+                padding-left:6px;
+                }
+            }             
         }
     }
 
     .poll-closing-group {
         font-weight: bold;
+        color: @gray-darker;
+        vertical-align:top;
+        margin-bottom:0;
         border-top: 4px solid @gray-dark;
+        padding: 4px 0;
         @media screen and (max-width: @screen-md){
             border-top: 2px solid @gray-dark;
+            padding:4.5px 0;
         }
-        color: @gray-darker;
-        margin-bottom: 0;
-        padding: 5px 0;
+       
 
         .time {
             width: 12%;
@@ -351,11 +367,11 @@ h6 {
 
 
 
-    .key{
-        font-size: 11px;
-        font-weight: 300;
+.key{
+    font-size: 9px;
+    font-weight: 300;
     @media screen and (min-width: @screen-lg){
-        font-size: 13px;
+        font-size: 13.5px;
         line-height: 1.3;
         font-weight: 300;
     }
@@ -372,57 +388,56 @@ h6 {
     }
         
 
-        margin-top:40px;
-        margin-bottom:20px;
-        overflow:hidden;
-        // border:1px solid black;
-        padding:5px;
+    margin-top:40px;
+    @media screen and (max-width: @screen-md){
+        margin-top:20px;
+    }
+    margin-bottom:20px;
+    overflow:hidden;
+    // border:1px solid black;
+    padding:5px;
+    float:left;
+    // font-family:'Open Sans';
+        
+
+    .percent-ex{
+        
+        background-color:@yellow;
+        display:inline-block;
+        padding:0 2px;
+    }
+    .time-ex{
+        
+        background-color:#222;
+        display:inline-block;
+        color: @white;
+        padding:0 2px;
+    }
+
+    .name-ex{
+        background-color: @blue;
+        color: @white;
+        padding: 0 2px;
+    }
+
+    .state-ex{
+        color:@blue;
+
+    }
+    .incum-ex{
+        color:@red;
+    }
+
+    .bold  { font-weight:500;}
+    ul{
+        padding-left:0;
         float:left;
-        // font-family:'Open Sans';
-        
-
-        .percent-ex{
-            
-            background-color:@yellow;
-            display:inline-block;
-            padding:0 2px;
-        }
-        .time-ex{
-            
-            background-color:#222;
-            display:inline-block;
-            color: @white;
-            padding:0 2px;
-        }
-
-        .name-ex{
-            background-color: @blue;
-            color: @white;
-            padding: 0 2px;
-        }
-
-        .state-ex{
-            color:@blue;
-
-        }
-        .incum-ex{
-            color:@red;
-        }
-
-        .bold  { font-weight:500;}
-        ul{
-            padding-left:0;
-            float:left;
-            padding-right:20px;
-            margin-bottom:0;
-        }
-        li{
-         
-            list-style-type:none;
-            text-indent:none;
-            padding-left:0;
-        
-        }
-
-    
+        padding-right:20px;
+        margin-bottom:0;
+    }
+    li{
+        list-style-type:none;
+        text-indent:none;
+        padding-left:0;
+    }  
 }

@@ -29,8 +29,7 @@ def render():
 
     app_config.configure_targets(env.get('settings', None))
 
-    with app.app.test_request_context():
-        path = 'theme/www/index.html'
+    path = 'theme/www/index.html'
 
     with app.app.test_request_context(path='/theme'):
         print 'Rendering %s' % path

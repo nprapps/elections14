@@ -4,13 +4,6 @@ body {
 
 .slide {
     background-color: #fff;
-    margin: 30px;
-    text-align: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     display: none;
 }
 
@@ -27,4 +20,57 @@ body {
     img {
         width: 100%;
     }
+
+    .tumblr-text-post {
+        margin: 0 auto;
+        max-width: 1024px;
+        h2 {
+            font-size: 48px;
+        }
+        p {
+            font-size: 30px;
+        }
+    }
+
+    .tumblr-image-post {
+        max-width: 1024px;
+        margin: 0 auto;
+        .image {
+            text-align: center;
+            img {
+                max-height: 500px;
+                width: auto;
+            }
+        }
+        .caption {
+            p {
+                font-size: 30px;
+                text-align: center;
+            }
+        }
+    }
+
+    .tumblr-quote-post {
+        max-width: 1024px;
+        margin: 0 auto;
+        blockquote {
+            font-size: 48px;
+            border: none;
+        }
+        footer {
+            margin-top: 20px;
+            border: none;
+            text-align: right;
+            cite {
+                font-size: 30px;
+            }
+        }
+    }
 }
+
+.pym-container {
+    width: 100%;
+    height: 100%;
+}
+
+

@@ -42,6 +42,8 @@ def _create_slide(post):
         slide = models.Slide.create(slug=slug, name=post_title, body=rendered_post)
 
         max = models.SlideSequence.select(fn.Max(models.SlideSequence.sequence)).scalar()
+        if not max:
+            max = 0
         sequence = models.SlideSequence.create(sequence=max+1, slide=slide)
         print '%s is slide number %s' % (slide.name, max)
         sequence.save()
