@@ -327,9 +327,38 @@ def mock_election_results():
     """
     import models
 
+    for race in models.Race.select():
+        _fake_poll_closing_time(race)
+        _fake_precincts_reporting(race)
+        _fake_called_status(race)
+        race.save()
+
+
+def _fake_poll_closing_time(race):
+    """
+    Fake poll closing time
+    """
     first_close = datetime(2014, 11, 4, 7)
     closing_times = [first_close + timedelta(hours=delta) for delta in range(6)]
+    race.poll_closing_time = random.choice(closing_times)
 
-    for race in models.Race.select():
-        race.poll_closing_time = random.choice(closing_times)
-        race.save()
+
+def _fake_precincts_reporting(race):
+    """
+    Fake precincts reporting
+    """
+    race.precincts_total = random.randint(2000, 4000)
+    if random.choice([True, False, False]):
+        race.precincts_reporting = random.randint(0, race.precincts_total)
+    else:
+        race.precincts_reporting = 0
+
+
+def _fake_called_status(race):
+    """
+    Fake AP called status, requires race to have closing time
+    """
+    race.ap_called = random.choice([True, False, False, False])
+    if race.ap_called:
+        race.accept_ap_call = True
+        race.ap_called_time = race.poll_closing_time + timedelta(hours=random.randint(1,3), minutes=random.randint(0,59))
