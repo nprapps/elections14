@@ -42,7 +42,7 @@ def _partition(l):
     return (l[0:left], l[left:])
 
 @app.template_filter()
-def format_closing_time(dt):
+def format_board_time(dt):
     if not dt:
         return ''
 

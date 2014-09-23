@@ -3,9 +3,10 @@
 """
 Commands that update or process the application data.
 """
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import os
+import random
 import shutil
 
 import boto.dynamodb
@@ -19,9 +20,6 @@ from twitter import Twitter, OAuth
 import app_config
 import admin_app
 import servers
-
-from datetime import datetime, timedelta
-import random
 
 def server_postgres_command(cmd ):
     """
@@ -96,7 +94,7 @@ def bootstrap():
 @task(default=True)
 def update(test=False):
     """
-    Stub function for updating app-specific data.
+    Update models with elections data from interediary files.
     """
     import models
 
@@ -149,6 +147,9 @@ def update(test=False):
 
 @task
 def get_quiz_answers():
+    """
+    Read all quiz answers from Dynamo.
+    """
     conn = boto.dynamodb.connect_to_region('us-west-2')
 
     table = conn.get_table('elections14-game')
@@ -326,9 +327,38 @@ def mock_election_results():
     """
     import models
 
+    for race in models.Race.select():
+        _fake_poll_closing_time(race)
+        _fake_precincts_reporting(race)
+        _fake_called_status(race)
+        race.save()
+
+
+def _fake_poll_closing_time(race):
+    """
+    Fake poll closing time
+    """
     first_close = datetime(2014, 11, 4, 7)
     closing_times = [first_close + timedelta(hours=delta) for delta in range(6)]
+    race.poll_closing_time = random.choice(closing_times)
 
-    for race in models.Race.select():
-        race.poll_closing_time = random.choice(closing_times)
-        race.save()
+
+def _fake_precincts_reporting(race):
+    """
+    Fake precincts reporting
+    """
+    race.precincts_total = random.randint(2000, 4000)
+    if random.choice([True, False, False]):
+        race.precincts_reporting = random.randint(0, race.precincts_total)
+    else:
+        race.precincts_reporting = 0
+
+
+def _fake_called_status(race):
+    """
+    Fake AP called status, requires race to have closing time
+    """
+    race.ap_called = random.choice([True, False, False, False])
+    if race.ap_called:
+        race.accept_ap_call = True
+        race.ap_called_time = race.poll_closing_time + timedelta(hours=random.randint(1,3), minutes=random.randint(0,59))
