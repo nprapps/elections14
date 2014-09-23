@@ -46,7 +46,13 @@
       <table class="races">
         {% for race in races %}
         <tr class="race">
-          <td class="results-status"></td>
+          <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
+            {% if race.is_called() %}
+              {{ race.get_called_time()|format_board_time }}
+            {% elif race.is_reporting() %}
+              {{ race.precincts_reporting_percent() }}%
+            {% endif %}
+          </td>
           <td class="state">{{ race.state_postal }}</td>
           {% set candidate = race.top_candidates[0] %}
           <td class="candidate {{ candidate.party|lower }}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>
