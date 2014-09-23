@@ -117,13 +117,13 @@ def results_senate():
     Senate big board
     """
     from models import Race
-    
+
     context = make_context()
-    
+
     races = Race.select().where(Race.office_name == "U.S. Senate")
     grouped = _group_races_by_closing_time(races)
     context["race_columns"] = _partition(grouped)
-    
+
     return render_template('slides/senate.html', **context)
 
 @app.route('/comments/')
@@ -182,15 +182,6 @@ def _stack_json():
         'next': 'slides/%s.html' % next_slide.slide.slug,
     })
     return js, 200, { 'Content-Type': 'application/javascript' }
-
-@app.route('/stack/')
-def stack():
-    """
-    Serve shell page for stack
-    """
-    context = make_context()
-
-    return render_template('stack.html', **context)
 
 app.register_blueprint(static.static)
 app.register_blueprint(static_app.static_app)
