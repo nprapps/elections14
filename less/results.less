@@ -266,17 +266,21 @@ h6 {
     .poll-closing-group {
         font-weight: bold;
         color: @gray-darker;
-        vertical-align:top;
+        // vertical-align:top;
         margin-bottom:0;
         border-top: 4px solid @gray-dark;
-        padding: 4px 0;
+        // padding: 4px 0;
         @media screen and (max-width: @screen-md){
             border-top: 2px solid @gray-dark;
-            padding:4.5px 0;
+            // padding:4.5px 0;
         }
        
 
         .time {
+            padding: 3.5px 0;
+            @media screen and (max-width: @screen-md){
+                padding:4.5px 0;
+            }
             width: 12%;
             text-align: right;
             display: inline-block;
@@ -286,12 +290,16 @@ h6 {
         }
     }
 
+    .race{
+         border-top: 1px solid #ccc;
+    }
     .races {
         width: 100%;
-
+        
+    
         td {
             vertical-align: top;
-            border-top: 1px solid #ccc;
+            // border-top: 1px solid #ccc;
             padding: 5px;
         }
 
