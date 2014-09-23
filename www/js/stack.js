@@ -1,3 +1,5 @@
+var lastSlidePath = null;
+
 var resizeSlide = function(slide) {
     var $w = $(window).width();
     var $h = $(window).height();
@@ -6,13 +8,19 @@ var resizeSlide = function(slide) {
 }
 
 var rotateSlide = function(url) {
+    // Fix for out of sync server and client refreshes
+    if (lastSlidePath == url) {
+        setTimeout(getSlide, APP_CONFIG.CLIENT_SLIDE_ROTATE_INTERVAL * 1000);
+        return;
+    }
+
     $.ajax({
         url: APP_CONFIG.S3_BASE_URL + '/' + url,
         success: function(data) {
+            lastSlidePath = url;
+
             var $oldSlide = $('#stack').find('.slide');
             var $newSlide = $(data);
-
-            $oldSlide.fadeOut();
 
             $('#stack').append($newSlide);
 
@@ -23,7 +31,7 @@ var rotateSlide = function(url) {
             });
 
             $newSlide.fadeIn(function(){
-                setTimeout(getSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                setTimeout(getSlide, APP_CONFIG.CLIENT_SLIDE_ROTATE_INTERVAL * 1000);
             });
         }
     });
