@@ -37,13 +37,17 @@ def bootstrap():
 
     if env.settings:
         with settings(warn_only=True):
-            service_name = servers._get_installed_service_name('uwsgi')
-            local('sudo service %s stop' % service_name)
+            services = ['uwsgi', 'rotate_slide', 'get_tumblr_posts']
+            for service in services:
+                service_name = servers._get_installed_service_name(service)
+                local('sudo service %s stop' % service_name)
 
             server_postgres_command('dropdb %s' % app_config.PROJECT_SLUG)
             server_postgres_command('createdb %s' % app_config.PROJECT_SLUG)
 
-            local('sudo service %s start' % service_name)
+            for service in services:
+                service_name = servers._get_installed_service_name(service)
+                local('sudo service %s start' % service_name)
     else:
         with settings(warn_only=True):
             local('dropdb %s' % app_config.PROJECT_SLUG)
