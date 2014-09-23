@@ -3,9 +3,10 @@
 """
 Commands that update or process the application data.
 """
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import os
+import random
 import shutil
 
 import boto.dynamodb
@@ -19,9 +20,6 @@ from twitter import Twitter, OAuth
 import app_config
 import admin_app
 import servers
-
-from datetime import datetime, timedelta
-import random
 
 def server_postgres_command(cmd ):
     """
@@ -96,7 +94,7 @@ def bootstrap():
 @task(default=True)
 def update(test=False):
     """
-    Stub function for updating app-specific data.
+    Update models with elections data from interediary files.
     """
     import models
 
@@ -149,6 +147,9 @@ def update(test=False):
 
 @task
 def get_quiz_answers():
+    """
+    Read all quiz answers from Dynamo.
+    """
     conn = boto.dynamodb.connect_to_region('us-west-2')
 
     table = conn.get_table('elections14-game')

@@ -15,6 +15,9 @@ import static_theme
 
 @task(default=True)
 def render():
+    """
+    Render the Tumblr theme.
+    """
     from flask import g
 
     less()
@@ -50,7 +53,7 @@ def render():
 
 def app_config_js():
     """
-    Render app_config.js to file.
+    Render Tumblr theme app_config.js to file.
     """
     from static_theme import _app_config_js
 
@@ -63,7 +66,7 @@ def app_config_js():
 @task
 def deploy():
     """
-    Deploy the latest app to S3 and, if configured, to our servers.
+    Deploy the latest Tumblr theme assets to S3.
     """
     require('settings', provided_by=['production', 'staging'])
 

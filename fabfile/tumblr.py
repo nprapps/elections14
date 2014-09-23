@@ -1,18 +1,18 @@
 # /usr/bin/env python
 
-from pprint import pprint as pp
-
-from fabric.api import local, task
+from fabric.api import task
 from jinja2 import Template
 from peewee import fn
 import requests
 
-import app
 import app_config
 import models
 
 @task
 def get_posts():
+    """
+    Fetch latests posts from Tumblr API.
+    """
     secrets = app_config.get_secrets()
 
     response = requests.get('http://api.tumblr.com/v2/blog/%s.tumblr.com/posts' % app_config.TUMBLR_NAME, params={
