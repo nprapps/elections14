@@ -77,6 +77,9 @@ def _calculate_bop(races, majority, initial):
 
 @app.template_filter()
 def format_board_time(dt):
+    """
+    Format a time for the big board
+    """
     if not dt:
         return ''
 
@@ -84,6 +87,9 @@ def format_board_time(dt):
 
 @app.template_filter()
 def format_percent(num):
+    """
+    Format a percentage
+    """
     return int(round(num))
 
 def cors(f):
