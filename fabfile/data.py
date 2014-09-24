@@ -14,7 +14,7 @@ import boto.dynamodb
 from boto.dynamodb.condition import GE
 import copytext
 from dateutil.parser import parse
-from fabric.api import env, local, settings, task
+from fabric.api import env, local, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
@@ -22,11 +22,19 @@ import app_config
 import admin_app
 import servers
 
-def server_postgres_command(cmd ):
+SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
+
+@task
+def query(q):
+    require('settings', provided_by=['production', 'staging'])
+
+    run(SERVER_POSTGRES_CMD % ('psql -q elections14 -c "%s"' % q))
+
+def server_postgres_command(cmd):
     """
     Run a postgres command on the server.
     """
-    local('export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT' % cmd)
+    local(SERVER_POSTGRES_CMD % cmd)
 
 @task
 def bootstrap():
@@ -55,6 +63,7 @@ def bootstrap():
 
         local('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
 
+    # Don't load this until done resetting database
     import models
 
     models.Race.create_table()
@@ -66,8 +75,6 @@ def bootstrap():
     admin_user = admin_app.auth.User(username='admin', email='', admin=True, active=True)
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
-
-    mock_slides()
 
     with open('data/races.json') as f:
         races = json.load(f)

@@ -90,6 +90,13 @@ fab data.bootstrap
 fab update
 ```
 
+If testing, you will also want to run these commands:
+
+```
+fab data.mock_slides
+fab data.mock_election_results
+```
+
 **Problems installing requirements?** You may need to run the pip command as ``ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install -r requirements.txt`` to work around an issue with OSX.
 
 Simulate election results

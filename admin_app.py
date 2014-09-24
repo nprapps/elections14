@@ -48,19 +48,19 @@ def _test_app():
 
     return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-@app.route('/%s/stack/' % app_config.PROJECT_SLUG, methods=['GET'])
+@app.route('/%s/admin/stack/' % app_config.PROJECT_SLUG, methods=['GET'])
 def stack():
     """
     Administer a stack of slides.
     """
-    context = make_context()
+    context = make_context(asset_depth=1)
     context.update({
         'sequence': SlideSequence.select().dicts(),
         'slides': Slide.select().dicts(),
     })
     return render_template('stack_admin.html', **context)
 
-@app.route('/%s/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
+@app.route('/%s/admin/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
 def save_stack():
     from flask import request
     data = request.json
@@ -71,7 +71,7 @@ def save_stack():
         obj.save()
     return "saved sequence"
 
-@app.route('/%s/chamber/<chamber>/' % app_config.PROJECT_SLUG, methods=['GET', 'POST'])
+@app.route('/%s/admin/chamber/<chamber>/' % app_config.PROJECT_SLUG, methods=['GET', 'POST'])
 def chamber(chamber):
     """
     Read/update list of chamber candidates.
