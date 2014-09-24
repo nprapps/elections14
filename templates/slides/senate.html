@@ -18,18 +18,18 @@
 		<div class="leaderboard">
 			<div class="results-header-group dem">
 				<h2 class="party">Dem</h2>
-				<p class="total"><span class="percentage">53</span> <span class="change">+1</span></p>
-				<p class="seats-needed" colspan="2">Needs <span class="count">0</span></p>
+				<p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
+				<p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.dem.needs }}</span></p>
 			</div>
 			<div class="results-header-group gop">
 				<h2 class="party">GOP</h2>
-				<p class="total"><span class="percentage">45</span> <span class="change">-2</span></p>
-				<p class="seats-needed" colspan="2">Needs <span class="count">6</span></td>
+				<p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
+				<p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.gop.needs }}</span></td>
 				</tr>
 			</div>
 			<div class="results-header-group other">
 				<h2 class="party">Other</h2>
-				<p class="total"><span class="percentage">2</span></p>
+				<p class="total"><span class="percentage">{{ bop.other.has }}</span></p>
 			</div>
 			<div class="results-header-group not-called">
 				<h2>Not Called</h2>
