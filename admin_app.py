@@ -53,7 +53,7 @@ def stack():
     """
     Administer a stack of slides.
     """
-    context = make_context()
+    context = make_context(asset_depth=1)
     context.update({
         'sequence': SlideSequence.select().dicts(),
         'slides': Slide.select().dicts(),
