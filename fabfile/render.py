@@ -43,7 +43,7 @@ def app_config_js():
     """
     Render app_config.js to file.
     """
-    from static import _app_config_js
+    from static_app import _app_config_js
 
     response = _app_config_js()
     js = response[0]
@@ -56,7 +56,7 @@ def copytext_js():
     """
     Render COPY to copy.js.
     """
-    from static import _copy_js
+    from static_app import _copy_js
 
     response = _copy_js()
     js = response[0]
