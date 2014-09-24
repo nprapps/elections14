@@ -125,10 +125,10 @@ class Race(BaseModel):
 
     def get_winning_party(self):
         """
-        Return the winner of this race, if any. 
+        Return the winning party in this race, if any.
         """
-        for candidate in self.candidates.where(Candidate.race == self):
-            if self.accept_ap_call:
+        if self.is_called():
+            for candidate in self.candidates.where(Candidate.race == self):
                 if candidate.ap_winner:
                     if candidate.party == 'GOP':
                         return 'gop'
@@ -136,7 +136,6 @@ class Race(BaseModel):
                         return 'dem'
                     else:
                         return 'other'
-            else:
                 if candidate.npr_winner:
                     if candidate.party == 'GOP':
                         return 'gop'
