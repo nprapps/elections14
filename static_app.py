@@ -12,42 +12,50 @@ from render_utils import flatten_app_config
 
 static_app = Blueprint('static_app', __name__)
 
-# Render JST templates on-demand
 @static_app.route('/js/templates.js')
 def _templates_js():
+    """
+    Render JST templates.
+    """
     r = subprocess.check_output(["node_modules/universal-jst/bin/jst.js", "--template", "underscore", "jst"])
 
     return r, 200, { 'Content-Type': 'application/javascript' }
 
-# Render LESS files on-demand
 def less(filename, static_path=''):
-
+    """
+    Render LESS files.
+    """
     r = subprocess.check_output(["node_modules/less/bin/lessc", "%sless/%s" % (static_path, filename)])
 
     return r, 200, { 'Content-Type': 'text/css' }
 
-# Render LESS files on-demand
 @static_app.route('/less/<string:filename>')
 def _less(filename):
-    print filename
     return less(filename)
 
-# Render application configuration
 @static_app.route('/js/app_config.js')
 def _app_config_js():
+    """
+    Render app configuration to javascript.
+    """
     config = flatten_app_config()
     js = 'window.APP_CONFIG = ' + json.dumps(config)
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-# render copytext
 @static_app.route('/js/copy.js')
 def _copy_js():
+    """
+    Render copytext to javascript.
+    """
     copy = 'window.COPY = ' + copytext.Copy(app_config.COPY_PATH).json()
 
     return copy, 200, { 'Content-Type': 'application/javascript' }
 
 def static(path, static_path=''):
+    """
+    Serve arbitrary files.
+    """
     real_path = '%swww/%s' % (static_path, path)
 
     try:
@@ -56,7 +64,6 @@ def static(path, static_path=''):
     except IOError:
         abort(404)
 
-# serve arbitrary static files on-demand
 @static_app.route('/<path:path>')
 def _static(path):
     return static(path)
