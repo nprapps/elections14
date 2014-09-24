@@ -73,7 +73,7 @@ h6 {
         font-size: 34px;
         font-weight: 300;
         line-height: 1.2;
-        letter-spacing: -0.02em;
+        // letter-spacing: -0.02em;
     }
 }
 
@@ -94,7 +94,7 @@ h6 {
         float: left;
         margin: 0;
         font-size:18px;
-        letter-spacing: .05em;
+        letter-spacing: .1em;
 
         @media screen and (min-width: @screen-md){
         font-size: 24px;
@@ -245,27 +245,25 @@ h6 {
     overflow:hidden;
 
     .results-col {
-        .senate & { 
-            @media screen and (max-width: 470px){
-                width:100%;
-            }
-            width: 50%;
-            box-sizing: border-box;
-            float: left;
+        @media screen and (max-width: 470px){
+            width:100%;
+        }
+        width: 50%;
+        box-sizing: border-box;
+        float: left;
 
-            &:first-child {
-                padding-right: 15px;
-                @media screen and (max-width: @screen-md){
+        &:first-child {
+            padding-right: 15px;
+            @media screen and (max-width: @screen-md){
                 padding-right:6px;
-                }
             }
+        }
 
-            &:last-child {
-                padding-left: 15px;
-                @media screen and (max-width: @screen-md){
+        &:last-child {
+            padding-left: 15px;
+            @media screen and (max-width: @screen-md){
                 padding-left:6px;
-                }
-            }             
+            }
         }
     }
 
@@ -369,8 +367,10 @@ h6 {
                 display:none;
                 }
             }    
+        }
 
-
+        .id-5083{
+            letter-spacing:-.09em;
         }
 
         .candidate-total {
