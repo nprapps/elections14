@@ -50,6 +50,7 @@ class BaseModel(Model):
     class Meta:
         database = db
 
+class SlugModel(BaseModel):
     def save(self, *args, **kwargs):
         """
         Slugify before saving!
@@ -80,7 +81,7 @@ class BaseModel(Model):
 
         self.slug = slug
 
-class Race(BaseModel):
+class Race(SlugModel):
     """
     Race model.
     """
@@ -262,7 +263,7 @@ class Race(BaseModel):
 
         return (dem, gop)
 
-class Candidate(BaseModel):
+class Candidate(SlugModel):
     """
     Candidate model.
     """
@@ -334,29 +335,25 @@ class Candidate(BaseModel):
         ratio = Decimal(self.vote_count) / Decimal(total_votes)
         return ratio * 100
 
-class Slide(BaseModel):
+class Slide(SlugModel):
     """
     Model for a slide in dynamic slide show
     """
     slug_fields = ['name']
 
-    slug = CharField(max_length=255, primary_key=True)
+    slug = CharField(max_length=255, primary_key=True) 
     name = CharField(max_length=255)
     body = TextField()
 
     def __unicode__(self):
         return self.name
 
-class SlideSequence(Model):
+class SlideSequence(BaseModel):
     """
     Defines a sequence of slides to play
     """
-
-    class Meta:
-        database = db
-
     sequence = IntegerField()
     slide = ForeignKeyField(Slide)
 
     def __unicode__(self):
-        return self.slide.__unicode__()
+        return unicode(self.slide)
