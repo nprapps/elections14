@@ -22,7 +22,7 @@ STACK_NUMBER_FILENAME = '.stack_number'
 
 SENATE_INITIAL_BOP = {
     'dem': 32,
-    'gop': 21,
+    'gop': 30,
     'other': 2,
 }
 
