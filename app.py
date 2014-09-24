@@ -225,7 +225,7 @@ def _slide(slug):
     from models import Slide
 
     slide = Slide.get(Slide.slug == slug)
-    return render_template('_stack_fragment.html', body=slide.body)
+    return render_template('_slide.html', body=slide.body)
 
 def rotate_slide():
     from models import SlideSequence

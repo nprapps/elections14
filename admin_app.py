@@ -58,7 +58,7 @@ def stack():
         'sequence': SlideSequence.select().dicts(),
         'slides': Slide.select().dicts(),
     })
-    return render_template('stack_admin.html', **context)
+    return render_template('admin/stack.html', **context)
 
 @app.route('/%s/admin/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
 def save_stack():
