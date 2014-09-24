@@ -8,6 +8,9 @@ import app_config
 
 @task
 def tumblr():
+    """
+    Fetch new Tumblr posts indenfinitely.
+    """
     while True:
         execute('tumblr.get_posts')
         execute('deploy_slides')
@@ -15,6 +18,9 @@ def tumblr():
 
 @task
 def rotate_slide():
+    """
+    Rotate slides indenfinitely.
+    """
     while True:
         execute('stack.rotate')
         sleep(app_config.SLIDE_ROTATE_INTERVAL)

@@ -13,6 +13,9 @@ SECRETS = app_config.get_secrets()
 CACHE_FILE = '.ap_cache.json'
 
 def _init_ap(endpoint):
+    """
+    Make a request to an AP init endpoint.
+    """
     url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
     headers = {}
 
@@ -68,9 +71,10 @@ def _init_ap(endpoint):
 
     print '%s: inited' % endpoint
 
-    sleep(30)
-
 def _update_ap(endpoint, use_cache=True):
+    """
+    Make a request to an AP update endpoint.
+    """
     url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
     headers = {}
 
@@ -120,9 +124,34 @@ def _update_ap(endpoint, use_cache=True):
 
     print '%s: updated' % endpoint
 
-    sleep(30)
+@task
+def init():
+    """
+    Initialize data from AP.
+    """
+    try:
+        os.remove(CACHE_FILE)
+    except OSError:
+        pass
 
-def _write():
+    _init_ap('init/races')
+    sleep(30)
+    _init_ap('init/candidates')
+
+@task
+def update():
+    """
+    Update data from AP.
+    """
+    _update_ap('races')
+    sleep(30)
+    _update_ap('calls')
+
+@task
+def write():
+    """
+    Write AP data to intermediary files.
+    """
     with open(CACHE_FILE) as f:
         cache = json.load(f)
 
@@ -172,22 +201,3 @@ def _write():
     with open('data/candidates.json', 'w') as f:
         json.dump(candidates, f, indent=4)
 
-
-@task
-def init():
-    try:
-        os.remove(CACHE_FILE)
-    except OSError:
-        pass
-
-    _init_ap('init/races')
-    _init_ap('init/candidates')
-
-@task
-def update():
-    _update_ap('races')
-    _update_ap('calls')
-
-@task
-def write():
-    _write()

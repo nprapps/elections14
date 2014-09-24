@@ -125,6 +125,9 @@ def render_all():
 
 @task
 def render_slides():
+    """
+    Render slides to HTML files.
+    """
     import models
 
     slides = models.Slide.select()

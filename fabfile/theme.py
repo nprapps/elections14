@@ -51,6 +51,7 @@ def render():
     print 'The Tumblr theme HTML has been copied to your clipboard.'
     local('open https://www.tumblr.com/customize/%s' % app_config.TUMBLR_NAME)
 
+@task
 def less():
     """
     Render LESS files to CSS.
@@ -66,6 +67,7 @@ def less():
             print 'It looks like "lessc" isn\'t installed. Try running: "npm install"'
             raise
 
+@task
 def app_config_js():
     """
     Render Tumblr theme app_config.js to file.
@@ -87,7 +89,6 @@ def deploy():
 
     local('rm -rf .gzip_theme')
 
-    execute('update')
     render()
     utils._gzip('theme/www/', '.gzip_theme/theme')
     utils._deploy_to_s3('.gzip_theme')

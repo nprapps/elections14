@@ -114,30 +114,33 @@ def update():
 
 @task
 def deploy_server(remote='origin'):
+    """
+    Deploy server code and configuration.
+    """
     if app_config.DEPLOY_TO_SERVERS:
-            require('branch', provided_by=[stable, master, branch])
+        require('branch', provided_by=[stable, master, branch])
 
-            if (app_config.DEPLOYMENT_TARGET == 'production' and env.branch != 'stable'):
-                utils.confirm(
-                    colored("You are trying to deploy the '%s' branch to production.\nYou should really only deploy a stable branch.\nDo you know what you're doing?" % env.branch, "red")
-                )
+        if (app_config.DEPLOYMENT_TARGET == 'production' and env.branch != 'stable'):
+            utils.confirm(
+                colored("You are trying to deploy the '%s' branch to production.\nYou should really only deploy a stable branch.\nDo you know what you're doing?" % env.branch, "red")
+            )
 
-            servers.checkout_latest(remote)
+        servers.checkout_latest(remote)
 
-            servers.fabcast('text.update')
-            servers.fabcast('assets.sync')
-            servers.fabcast('data.update')
+        servers.fabcast('text.update')
+        servers.fabcast('assets.sync')
+        servers.fabcast('data.update')
 
-            if app_config.DEPLOY_CRONTAB:
-                servers.install_crontab()
+        if app_config.DEPLOY_CRONTAB:
+            servers.install_crontab()
 
-            if app_config.DEPLOY_SERVICES:
-                servers.deploy_confs()
+        if app_config.DEPLOY_SERVICES:
+            servers.deploy_confs()
 
 @task
 def deploy_client(remote='origin'):
     """
-    Deploy the latest app to S3 and, if configured, to our servers.
+    Render and deploy app to S3.
     """
     require('settings', provided_by=[production, staging])
 
@@ -148,6 +151,9 @@ def deploy_client(remote='origin'):
 
 @task
 def deploy_slides():
+    """
+    Deploy latest slides to S3.
+    """
     local('rm -rf .slides_html .slides_gzip')
     render.render_slides()
     utils._gzip('.slides_html', '.slides_gzip')
@@ -155,6 +161,9 @@ def deploy_slides():
 
 @task
 def deploy():
+    """
+    Deploy the latest app to S3 and, if configured, to our servers.
+    """
     require('settings', provided_by=[production, staging])
 
     deploy_server()
