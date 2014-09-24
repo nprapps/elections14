@@ -10,7 +10,6 @@ from peewee import fn
 
 import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter
-import static
 import static_app
 import static_theme
 
@@ -196,7 +195,6 @@ def _stack_json():
     })
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-app.register_blueprint(static.static)
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)
 

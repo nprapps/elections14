@@ -1,0 +1,238 @@
+{% extends '_base.html' %}
+{% block title %}The U.S. {{ chamber.title() }}{% endblock %}
+
+{% block extra_head %}
+    <style type='text/css'>
+        .gop { color:red; }
+        .dem { color:blue; }
+        .other { color:green; }
+        .incumbent { text-transform:uppercase; }
+        .clear { width:100%; clear:both; }
+        td.ap-call { text-align:center!important; }
+        .modal { display:none; }
+        .btn { text-transform:none; }
+        .npr-call, .npr-uncall { float:right; }
+        .clear-call { margin-left:5px; float:none;}
+        .hidden { display:none; }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <div class="span12">
+        <h1>The U.S. {{ chamber.title() }} ({{ count }})</h1>
+
+        <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr class="info">
+            <td><strong>State</strong></td>
+            <td><strong>Candidates</strong></td>
+            <td></td>
+            <td><strong>Accept AP calls</strong></td>
+        </tr>
+        {% for grouper, list in candidates|groupby('race.slug') %}
+        {% if loop.index % 20 == 0  %}
+        <tr class="info">
+            <td><strong>State</strong></td>
+            <td><strong>Candidates</strong></td>
+            <td></td>
+            <td><strong>Accept AP calls?</strong></td>
+        </tr>
+        {% endif %}
+        <tr
+            data-state-slug="{{ grouper }}"
+            class="{{ grouper }}">
+            <td>{% if chamber == "senate" %}
+                {{ grouper.replace('0', '').upper() }}
+            {% else %}
+                {{ grouper.upper() }}
+            {% endif %}</td>
+
+            <td>{% for race in list %}
+                {% if loop.first %}
+
+                <span class="candidate
+                    {% if race.incumbent == True %}incumbent{% endif %}
+                    {{ race.party.lower() }}
+                    {% if race.race.accept_ap_call == True %}{% if race.race.ap_call == True %}called{% endif %}{% endif %}
+                "
+                data-first-name="{{ race.first_name }}"
+                data-last-name="{{ race.last_name }}">
+                    {# {% include 'includes/house_winner_buttons.html' %} #}
+                    {{ race.first_name }} {{ race.last_name}}
+                </span>
+                {% endif %}
+            {% endfor %}</td>
+            <td>{% for race in list %}
+                {% if loop.index == 2 %}
+
+                <span class="candidate
+                    {% if race.incumbent == True %}incumbent{% endif %}
+                    {{ race.party.lower() }}
+                    {% if race.race.accept_ap_call == True%}{% if race.ap_call == True %}called{% endif %}{% endif %}
+                "
+                data-first-name="{{ race.first_name }}"
+                data-last-name="{{ race.last_name }}">
+                    {# {% include 'includes/house_winner_buttons.html' %} #}
+                    {{ race.first_name }} {{ race.last_name}}
+                </span>
+                {% endif %}
+            {% endfor %}</td>
+            <td class="ap-call">{% for race in list %}{% if loop.first %}
+            <button
+                id="{{ race.race.slug }}"
+                class="btn {% if race.race.accept_ap_call == True %}btn-success{% else %}btn-warning{% endif %} btn-mini"
+                data-race-slug="{{ grouper }}">
+                    {% if race.race.accept_ap_call == True %}
+                    Accepting AP calls
+                    {% else %}
+                    Not accepting AP calls
+                    {% endif %}
+            </button>
+            {% endif %}
+            {% endfor %}
+        </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
+
+{% block extra_foot_js %}
+{{ JS.render('chamber.min.js') }}
+{% endblock %}
+
+{% block extra_foot %}
+    <script type="text/javascript">
+
+        $('.npr-call').click(function(){
+            // Set up the race slug.
+            var race_slug = $(this).parent('span').parent('td').parent('tr').attr('data-state-slug');
+
+            // Hide all "npr uncall" buttons for this race.
+            $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-uncall').addClass('hidden');
+
+            // Show all "npr call" buttons for this race.
+            $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-call').removeClass('hidden');
+
+            // Hide all "npr winner" buttons for this race.
+            $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-winner').addClass('hidden');
+
+            // Hide this "npr call" button.
+            $(this).addClass('hidden');
+
+            // Show this "npr uncall" button.
+            $($(this).parent('span').children('.npr-uncall')).removeClass('hidden');
+
+            // Show this "npr winner" button.
+            $($(this).parent('span').children('.npr-winner')).removeClass('hidden');
+
+            // POST!
+            buttonPOST({
+                post_data: {
+                    race_slug: race_slug,
+                    first_name: $(this).parent('span').attr('data-first-name'),
+                    last_name: $(this).parent('span').attr('data-last-name')
+                },
+                target: this
+            });
+        });
+
+        $('.npr-uncall').click(function(){
+            // Set up the race slug.
+            var race_slug = $(this).parent('span').parent('td').parent('tr').attr('data-state-slug');
+
+            // Hide this "npr uncall" button.
+            $(this).addClass('hidden');
+
+            // Show all "npr call" buttons for this race.
+            $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-call').removeClass('hidden');
+
+            // Show all "npr winner" buttons for this race.
+            $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-winner').addClass('hidden');
+
+            // POST!
+            buttonPOST({
+                post_data: {
+                    race_slug: race_slug,
+                    clear_all: true
+                },
+                target: this
+            });
+        });
+
+        // A sort of generic function to read options and handle changing button state and POSTing to an URL.
+        function buttonPOST(options){
+
+            function acceptAP(){
+                // Check if we have targets.
+                if ( options.target != undefined ) {
+                    // Monkey with buttons.
+                    if ( options.button.pre_state != undefined ){
+                        $(options.target).removeClass(options.button.pre_state);
+                    }
+                    if ( options.button.post_state != undefined ){
+                        $(options.target).addClass(options.button.post_state);
+                    }
+                    if ( options.message != undefined ){
+                        $(options.target).html(options.message);
+                    }
+                }
+                var target = $(options.target).attr('data-race-slug');
+
+                if (options.post_data.accept_ap_call == false) {
+                    $('tr.'+target+' .npr-call').removeClass('hidden');
+                } else {
+                    $('tr.'+target+' .npr-call').addClass('hidden');
+                    $('tr.'+target+' .npr-uncall').addClass('hidden');
+                    $('tr.'+target+' .npr-winner').addClass('hidden');
+                }
+            }
+
+            // POST some data.
+            $.post('.', options.post_data, function(e){
+                if ( options.post_data.accept_ap_call != undefined ) { acceptAP(); }
+            });
+        }
+
+        // If someone clicks on the ap-call buttons ...
+        $('.ap-call .btn').click(function(){
+
+            // Identify the race.
+            var race_slug = $(this).attr('id');
+
+            // If we're already accepting ap calls, do the opposite.
+            if ( $(this).hasClass('btn-success') ) {
+
+                // Here's the options. Ain't javascript fun?
+                buttonPOST({
+                    post_data: {
+                        race_slug: race_slug,
+                        accept_ap_call: false
+                    },
+                    button: {
+                        pre_state: 'btn-success',
+                        post_state: 'btn-warning'
+                    },
+                    message: 'Not accepting AP calls',
+                    target: this
+                });
+
+            // Otherwise, do the opposite.
+            } else {
+                buttonPOST({
+                    post_data: {
+                        race_slug: race_slug,
+                        accept_ap_call: true
+                    },
+                    button: {
+                        pre_state: 'btn-warning',
+                        post_state: 'btn-success'
+                    },
+                    message: 'Accepting AP calls',
+                    target: this
+                });
+            }
+        });
+    </script>
+{% endblock %}

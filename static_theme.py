@@ -6,7 +6,7 @@ import copytext
 from flask import Blueprint, render_template
 from render_utils import flatten_app_config
 from render_utils import make_context, CSSIncluder, JavascriptIncluder
-import static
+import static_app
 
 import app_config
 
@@ -16,7 +16,7 @@ theme = Blueprint('theme', __name__, url_prefix='/theme', template_folder='theme
 @theme.route('/less/<string:filename>')
 def _theme_less(filename):
 
-    return static._less(filename, 'theme')
+    return static_app.less(filename, 'theme')
 
 # Render application configuration
 @theme.route('/js/app_config.js')
@@ -29,12 +29,12 @@ def _app_config_js():
 # render copytext
 @theme.route('/js/copy.js')
 def _copy_js():
-    return static._copy_js('theme')
+    return static_app._copy_js()
 
 # serve arbitrary static files on-demand
 @theme.route('/<path:path>')
 def _theme_static(path):
-    return static.static_file(path, 'theme')
+    return static_app.static(path, 'theme')
 
 @theme.route('/theme')
 def _theme():
