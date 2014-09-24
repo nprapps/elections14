@@ -21,6 +21,12 @@ app.jinja_env.filters['urlencode'] = urlencode_filter
 
 STACK_NUMBER_FILENAME = '.stack_number'
 
+SENATE_INITIAL_BOP = {
+    'dem': 32,
+    'gop': 21,
+    'other': 2,
+}
+
 def _group_races_by_closing_time(races):
     """
     Process race results for use in templates.
@@ -42,6 +48,32 @@ def _partition(l):
     length = len(l)
     left = int(round(length / 2.))
     return (l[0:left], l[left:])
+
+def _calculate_bop(races, majority, initial):
+    """
+    Calculate a balance of power
+    """
+    bop = {key: {
+        'has': value,
+        'needs': majority - value,
+        'picked_up': 0,
+    } for key, value in initial.items()}
+
+    for race in races:
+        winner = race.get_winning_party()
+        if winner:
+            bop[winner]['has'] += 1
+            bop[winner]['needs'] -= 1
+
+            # @TODO this needs historical knowledge to work propery
+            if race.party_change:
+                bop[winner]['picked_up'] += 1
+                if winner == 'gop':
+                    bop['dem']['picked_up'] -= 1
+                else:
+                    bop['gop']['picked_up'] -= 1
+
+    return bop
 
 @app.template_filter()
 def format_board_time(dt):
@@ -121,10 +153,12 @@ def results_senate():
     from models import Race
 
     context = make_context()
-
     races = Race.select().where(Race.office_name == "U.S. Senate")
+
     grouped = _group_races_by_closing_time(races)
-    context["race_columns"] = _partition(grouped)
+    context['race_columns'] = _partition(grouped)
+
+    context['bop'] = _calculate_bop(races, 51, SENATE_INITIAL_BOP)
 
     return render_template('slides/senate.html', **context)
 
