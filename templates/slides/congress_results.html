@@ -7,14 +7,14 @@
 {{ CSS.render('css/results.min.css') }}
 {% endblock extra_css %}
 
-{% block body_class %}senate{% endblock body_class %}
+{% block body_class %}{{ page_class }}{% endblock body_class %}
 
 
 {% block outer_content %}
 <div class="container">
 
 	<div class="results-header">
-		<h1>Senate</h1>
+		<h1>{{ page_title }}</h1>
 		<div class="leaderboard">
 			<div class="results-header-group dem">
 				<h2 class="party">Dem</h2>

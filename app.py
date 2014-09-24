@@ -26,6 +26,12 @@ SENATE_INITIAL_BOP = {
     'other': 2,
 }
 
+HOUSE_INITIAL_BOP = {
+    'dem': 0,
+    'gop': 0,
+    'other': 0,
+}
+
 def _group_races_by_closing_time(races):
     """
     Process race results for use in templates.
@@ -153,9 +159,20 @@ def results_house():
     """
     House big board
     """
+    from models import Race
+
     context = make_context()
 
-    return render_template('slides/house.html', **context)
+    context['page_title'] = 'House'
+    context['page_class'] = 'house'
+
+    races = Race.select().where(Race.office_name == 'U.S. House')[0:36]
+
+    grouped = _group_races_by_closing_time(races)
+    context['race_columns'] = _partition(grouped)
+
+    context['bop'] = _calculate_bop(races, 218, HOUSE_INITIAL_BOP)
+    return render_template('slides/congress_results.html', **context)
 
 @app.route('/results/senate/')
 def results_senate():
@@ -165,14 +182,18 @@ def results_senate():
     from models import Race
 
     context = make_context()
-    races = Race.select().where(Race.office_name == "U.S. Senate")
+
+    context['page_title'] = 'Senate'
+    context['page_class'] = 'senate'
+
+    races = Race.select().where(Race.office_name == 'U.S. Senate')
 
     grouped = _group_races_by_closing_time(races)
     context['race_columns'] = _partition(grouped)
 
     context['bop'] = _calculate_bop(races, 51, SENATE_INITIAL_BOP)
 
-    return render_template('slides/senate.html', **context)
+    return render_template('slides/congress_results.html', **context)
 
 @app.route('/comments/')
 def comments():
