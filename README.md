@@ -5,6 +5,7 @@ elections14
 * [Assumptions](#assumptions)
 * [What's in here?](#whats-in-here)
 * [Bootstrap the project](#bootstrap-the-project)
+* [Simulate election results](#simulate-election-results)
 * [Hide project secrets](#hide-project-secrets)
 * [Save media assets](#save-media-assets)
 * [Add a page to the site](#add-a-page-to-the-site)
@@ -90,6 +91,15 @@ fab update
 ```
 
 **Problems installing requirements?** You may need to run the pip command as ``ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install -r requirements.txt`` to work around an issue with OSX.
+
+Simulate election results
+-------------------------
+
+To apply random poll closing times, vote counts, race calls, etc. to default Associated Press data, run:
+
+```
+fab data.mock_election_results
+```
 
 Hide project secrets
 --------------------
