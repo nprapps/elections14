@@ -4,14 +4,14 @@ import argparse
 import datetime
 import logging
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin, ModelAdmin
 from models import Slide, SlideSequence, Race, Candidate
 
 import app_config
-from render_utils import make_context, CSSIncluder, JavascriptIncluder, urlencode_filter
+from render_utils import make_context, urlencode_filter
 import static_app
 
 app = Flask(__name__)
@@ -76,8 +76,10 @@ def chamber(chamber):
     """
     Read/update list of chamber candidates.
     """
+    from flask import request
 
     chamber_slug = u'H'
+
     if chamber == 'senate':
         chamber_slug = u'S'
 
