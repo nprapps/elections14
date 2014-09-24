@@ -113,31 +113,33 @@ def update():
     #data.update()
 
 @task
-def deploy(remote='origin'):
+def deploy_server(remote='origin'):
+    if app_config.DEPLOY_TO_SERVERS:
+            require('branch', provided_by=[stable, master, branch])
+
+            if (app_config.DEPLOYMENT_TARGET == 'production' and env.branch != 'stable'):
+                utils.confirm(
+                    colored("You are trying to deploy the '%s' branch to production.\nYou should really only deploy a stable branch.\nDo you know what you're doing?" % env.branch, "red")
+                )
+
+            servers.checkout_latest(remote)
+
+            servers.fabcast('text.update')
+            servers.fabcast('assets.sync')
+            servers.fabcast('data.update')
+
+            if app_config.DEPLOY_CRONTAB:
+                servers.install_crontab()
+
+            if app_config.DEPLOY_SERVICES:
+                servers.deploy_confs()
+
+@task
+def deploy_client(remote='origin'):
     """
     Deploy the latest app to S3 and, if configured, to our servers.
     """
     require('settings', provided_by=[production, staging])
-
-    if app_config.DEPLOY_TO_SERVERS:
-        require('branch', provided_by=[stable, master, branch])
-
-        if (app_config.DEPLOYMENT_TARGET == 'production' and env.branch != 'stable'):
-            utils.confirm(
-                colored("You are trying to deploy the '%s' branch to production.\nYou should really only deploy a stable branch.\nDo you know what you're doing?" % env.branch, "red")
-            )
-
-        servers.checkout_latest(remote)
-
-        servers.fabcast('text.update')
-        servers.fabcast('assets.sync')
-        servers.fabcast('data.update')
-
-        if app_config.DEPLOY_CRONTAB:
-            servers.install_crontab()
-
-        if app_config.DEPLOY_SERVICES:
-            servers.deploy_confs()
 
     update()
     render.render_all()
@@ -150,6 +152,13 @@ def deploy_slides():
     render.render_slides()
     utils._gzip('.slides_html', '.slides_gzip')
     utils._deploy_to_s3('.slides_gzip')
+
+@task
+def deploy():
+    require('settings', provided_by=[production, staging])
+
+    deploy_server()
+    deploy_client()
 
 """
 Destruction
