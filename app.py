@@ -92,6 +92,13 @@ def format_percent(num):
     """
     return int(round(num))
 
+@app.template_filter()
+def signed(num):
+    """
+    Add sign to number (e.g. +1, -1)
+    """
+    return '{0:+d}'.format(num)
+
 def cors(f):
     """
     Decorator that enables local CORS support for easier local dev.
