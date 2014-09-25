@@ -48,7 +48,7 @@
                     {% if race.is_called() %}
                         {{ race.get_called_time()|format_board_time }}
                     {% elif race.is_reporting() %}
-                        {{ race.precincts_reporting_percent()|format_percent }}% in
+                        {{ race.precincts_reporting_percent()|format_percent }}% 
                     {% else %}
                         0%
                     {% endif %}

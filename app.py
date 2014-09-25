@@ -151,7 +151,7 @@ def results_house():
 
     context['page_title'] = 'House'
     context['page_class'] = 'house'
-    context['column_number'] = 3
+    context['column_number'] = 2
 
     races = Race.select().where(Race.office_name == 'U.S. House')[0:36]
 
