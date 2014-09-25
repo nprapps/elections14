@@ -347,8 +347,8 @@ def mock_results():
     for race in models.Race.select():
         race.accept_ap_call = False
         race.ap_called = False
-        race.party_change = False
         _fake_incumbent(race)
+        _fake_previous_party(race)
         _fake_poll_closing_time(race)
         _fake_precincts_reporting(race)
         _fake_called_status(race)
@@ -367,6 +367,18 @@ def _fake_incumbent(race):
         candidate.save()
     except IndexError:
         pass
+
+def _fake_previous_party(race):
+    """
+    Fake out previous party for each seat
+    """
+    import models
+    incumbent_query = race.candidates.where(models.Candidate.incumbent == True)
+    if incumbent_query.count() > 0:
+        incumbent = incumbent_query[0]
+        race.previous_party = incumbent.party.lower()
+    else:
+        race.previous_party = random.choice(['gop', 'dem', 'other'])
 
 def _fake_poll_closing_time(race):
     """

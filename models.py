@@ -115,7 +115,7 @@ class Race(SlugModel):
     ap_called_time = DateTimeField(null=True)
     npr_called = BooleanField(default=False)
     npr_called_time = DateTimeField(null=True)
-    party_change = BooleanField(default=False)
+    previous_party = CharField(max_length=5, null=True)
 
     def __unicode__(self):
         return u'%s: %s-%s' % (
