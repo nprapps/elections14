@@ -193,6 +193,7 @@ Tumblelog.Infinite = (function() {
                 console.log('New page', _current_page, _total_pages);
             }
 
+            // Parse new posts
             var $posts = $(data).find('#posts').eq(0);
             var posts = $posts.children();
 
@@ -213,13 +214,11 @@ Tumblelog.Infinite = (function() {
 
             console.log('updateLiveBlog', posts_to_append);
 
-            // Insert posts and update counters
+            // Insert new posts
+            $('#posts').prepend(posts_to_append);
 
-           $('#posts').prepend(posts_to_append);
-           
-           // TODO: #245
-           sizeVideoContainers(posts_to_append);
-           $(posts_to_append).fitVids({ customSelector: "video"});
+            sizeVideoContainers(posts_to_append);
+            $(posts_to_append).fitVids({ customSelector: "video"});
 
             _posts_loaded = $('#posts article.post').length;
 
