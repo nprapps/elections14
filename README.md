@@ -18,6 +18,7 @@ elections14
 * [Test the rendered app](#test-the-rendered-app)
 * [Deploy to S3](#deploy-to-s3)
 * [Deploy to EC2](#deploy-to-ec2)
+* [Bootstrapping the server](#bootstrapping-the-server)
 * [Install cron jobs](#install-cron-jobs)
 * [Install web services](#install-web-services)
 * [Run a remote fab command](#run-a-remote-fab-command)
@@ -94,7 +95,7 @@ If testing, you will also want to run these commands:
 
 ```
 fab data.mock_slides
-fab data.mock_election_results
+fab data.mock_results
 ```
 
 **Problems installing requirements?** You may need to run the pip command as ``ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install -r requirements.txt`` to work around an issue with OSX.
@@ -322,6 +323,14 @@ For running cron jobs:
 * Run ``fab staging master deploy`` to deploy the app.
 
 You can configure your EC2 instance to both run Web services and execute cron jobs; just set both environment variables in the fabfile.
+
+Bootstrapping the server
+------------------------
+
+```
+fab staging master fabcast:"data.bootstrap"
+fab staging master fabcast:"data.mock_election_results"
+```
 
 Install cron jobs
 -----------------
