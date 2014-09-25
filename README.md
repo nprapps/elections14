@@ -106,7 +106,7 @@ Simulate election results
 To apply random poll closing times, vote counts, race calls, etc. to default Associated Press data, run:
 
 ```
-fab data.mock_election_results
+fab data.mock_results
 ```
 
 Hide project secrets
