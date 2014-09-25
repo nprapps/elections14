@@ -344,6 +344,10 @@ def mock_results():
     """
     import models
 
+    for candidate in models.Candidate.select():
+        candidate.incumbent = False
+        candidate.save()
+
     for race in models.Race.select():
         race.accept_ap_call = False
         race.ap_called = False
@@ -405,7 +409,7 @@ def _fake_called_status(race):
     Fake AP called status, requires race to have closing time
     """
     if race.precincts_reporting > 0:
-        race.ap_called = random.choice([True, True, False])
+        race.ap_called = random.choice([True, True, True, False])
         if race.ap_called:
             race.accept_ap_call = True
             race.ap_called_time = race.poll_closing_time + timedelta(hours=random.randint(1,3), minutes=random.randint(0,59))
@@ -415,7 +419,7 @@ def _fake_results(race):
     max_votes = 0
     for candidate in race.candidates:
         candidate.ap_winner = False
-        if candidate.party in ["GOP", "Dem"] and race.precincts_reporting > 0:
+        if candidate.party in ['GOP', 'Dem', 'Grn'] and race.precincts_reporting > 0:
             votes = random.randint(400000, 600000)
             candidate.vote_count = votes
             if votes > max_votes:
@@ -428,7 +432,5 @@ def _fake_results(race):
 
     if race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
         max_candidate.ap_winner = True
-        if not max_candidate.incumbent:
-            race.party_change = True
         max_candidate.save()
 
