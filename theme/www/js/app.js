@@ -1,9 +1,28 @@
-var $window;
-var $document;
-var $videoContainers;
+var $window = null;
+var $document = null;
+var $videoContainers = null;
 
-var sizeVideoContainers = function(element){
-	var scope = element||document;
+var onDocumentLoad = function() {
+	$window = $(window);
+	$document = $(document);
+	$videoContainers = $('.video-container');
+
+	$videoContainers.fitVids({ customSelector: "video"});
+
+	$window.on('resize', function(){
+		$vineEmbeds = $document.find('iframe.vine-embed');
+		$vineEmbeds.each(function(){
+			var vidSrc = $(this).attr('src');
+			$(this).attr('src', vidSrc);
+		});
+
+	});
+
+	sizeVideoContainers();
+}
+
+var sizeVideoContainers = function(element) {
+	var scope = element || document;
 	var $videoIframe = $(scope).find('.tumblr_video_iframe, .video-container img');
 
 	$videoIframe.each(function(){
@@ -36,21 +55,4 @@ var sizeVideoContainers = function(element){
 	});
 }
 
-$(function() {
-	$window = $(window);
-	$document = $(document);
-	$videoContainers = $('.video-container');
-
-	$videoContainers.fitVids({ customSelector: "video"});
-
-	$window.on('resize', function(){
-		$vineEmbeds = $document.find('iframe.vine-embed');
-		$vineEmbeds.each(function(){
-			var vidSrc = $(this).attr('src');
-			$(this).attr('src', vidSrc);
-		});
-
-	});
-
-	sizeVideoContainers();
-});
+$(onDocumentLoad);

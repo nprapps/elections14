@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 
-import json
-
-import copytext
 from flask import Blueprint, render_template
-from render_utils import flatten_app_config
-from render_utils import make_context, CSSIncluder, JavascriptIncluder
+from render_utils import make_context
 import static_app
 
 import app_config

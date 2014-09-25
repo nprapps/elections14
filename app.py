@@ -6,7 +6,6 @@ import json
 
 import argparse
 from flask import Flask, make_response, render_template
-from peewee import fn
 
 import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter

@@ -60,13 +60,12 @@ Tumblelog.Infinite = (function() {
 
     var _Ajax = Tumblelog.Ajax;
 
-    function init(scrollHandler) {
-        if (scrollHandler == true) {
-            set_trigger();
-            enable_scroll();
-        }
-        else {
-            newPostListener();
+    function init() {
+        set_trigger();
+        enable_scroll();
+
+        if (APP_CONFIG.TUMBLR_AUTO_REFRESH) {
+            enableLiveBlog();
         }
     }
 
@@ -160,15 +159,13 @@ Tumblelog.Infinite = (function() {
         }
     }
 
-    /* Infinite refresh code */
+    /* Live blog code */
 
-    function newPostListener() {
-        if (_is_loading) return;
-
-        setInterval(find_new_posts, APP_CONFIG.TUMBLR_REFRESH_INTERVAL * 1000);
+    function enableLiveBlog() {
+        setInterval(updateLiveBlog, APP_CONFIG.TUMBLR_REFRESH_INTERVAL * 1000);
     }
 
-    function find_new_posts() {
+    function updateLiveBlog() {
         if (_is_loading) {
             return;
         }
@@ -214,7 +211,7 @@ Tumblelog.Infinite = (function() {
                 posts_to_append.push(posts[i]);
             }
 
-            console.log('find_new_posts', posts_to_append);
+            console.log('updateLiveBlog', posts_to_append);
 
             // Insert posts and update counters
 
@@ -241,11 +238,6 @@ Tumblelog.Infinite = (function() {
 });
 
 $(function() {
-    var InfiniteScroll = new Tumblelog.Infinite;
-    InfiniteScroll.init(true);
-
-    if (APP_CONFIG.TUMBLR_AUTO_REFRESH) {
-        var liveBlog = new Tumblelog.Infinite;
-        liveBlog.init(false);
-    }
+    var scroller = new Tumblelog.Infinite;
+    scroller.init();
 });

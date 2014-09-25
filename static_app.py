@@ -25,7 +25,7 @@ def less(filename, static_path=''):
     """
     Render LESS files.
     """
-    r = subprocess.check_output(["node_modules/less/bin/lessc", "%sless/%s" % (static_path, filename)])
+    r = subprocess.check_output(["node_modules/less/bin/lessc", "%s/less/%s" % (static_path, filename)])
 
     return r, 200, { 'Content-Type': 'text/css' }
 
@@ -56,7 +56,8 @@ def static(path, static_path=''):
     """
     Serve arbitrary files.
     """
-    real_path = '%swww/%s' % (static_path, path)
+    real_path = '%s/www/%s' % (static_path, path)
+    print real_path
 
     try:
         with open(real_path) as f:
