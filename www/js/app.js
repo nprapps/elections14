@@ -4,13 +4,7 @@ var $commentCount = null;
 
 // Global state
 var firstShareLoad = true;
-var pollingInterval = 30000;
 var session = null;
-
-var user = null;
-var station = null;
-var table = null;
-
 
 /*
  * Run on page load.
@@ -34,14 +28,7 @@ var onDocumentLoad = function(e) {
         clippy.on('aftercopy', onClippyCopy);
     });
 
-    AWS.config.update({accessKeyId: DYNAMODB_ACCESS_KEY_ID, secretAccessKey: DYNAMODB_SECRET_ACCESS_KEY});
-
-    AWS.config.region = 'us-west-2';
-
     getCommentCount(showCommentCount);
-    getUpdates();
-    pollUpdates();
-    initDynamoDB();
 }
 
 window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
@@ -50,30 +37,6 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
     } else {
         console.log(errorInfo);
     }
-}
-
-/*
-* AP DATA
-*/
-
-var pollUpdates = function() {
-    setInterval(getUpdates, pollingInterval);
-}
-
-var getUpdates = function() {
-    $.getJSON('../live-data/update.json', function(data) {
-        _.each(data, function(race) {
-            _.each(race, function(value, key) {
-                $('[data-field="' + race.slug + '-' + key + '"]').text(value);
-            });
-
-            _.each(race.candidates, function(candidate) {
-                _.each(candidate, function(value, key) {
-                    $('[data-field="' + candidate.slug + '-' + key + '"]').text(value);
-                });
-            });
-        });
-    });
 }
 
 /*
@@ -142,83 +105,6 @@ var onRequestSessionSuccess = function(e) {
 var onLaunchError = function(e) {
     console.log('launch error:', e);
 }
-
-/*
-* DYNAMODB
-*/
-
-var initDynamoDB = function() {
-    AWS.config.update({accessKeyId: DYNAMODB_ACCESS_KEY_ID, secretAccessKey: DYNAMODB_SECRET_ACCESS_KEY});
-
-    AWS.config.region = 'us-west-2';
-
-    table = new AWS.DynamoDB({params: {TableName: 'elections14-game'}});
-}
-
-var guid = function() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
-    });
-}
-
-var registerDevice = function(e) {
-    e.preventDefault();
-
-    user = $('#username').val();
-    station = $('#station').val();
-
-    $('.register').fadeOut();
-    $('.quiz').fadeIn();
-
-    if (session) {
-        sendMessage('showQuestionOne');
-    }
-    else {
-        $('.question-text').show();
-    }
-}
-
-var submitAnswer = function(e) {
-    e.preventDefault();
-
-    var timestamp = new Date().getTime();
-    timestamp = timestamp.toString();
-    var answer = $('input[name="answer"]:checked').val();
-
-    var itemParams = {
-        Item: {
-            user_id: {
-                S: guid()
-            },
-            timestamp: {
-                S: timestamp
-            },
-            question: {
-                N: '1'
-            },
-            answer: {
-                S: answer
-            },
-            station: {
-                S: station
-            },
-            user: {
-                S: user
-            }
-        }
-    };
-    table.putItem(itemParams, function(err) {
-        if (!err){
-            if (session) {
-                sendMessage('highlightAnswer:' + answer)
-            }
-        }
-        else {
-            console.log(err);
-        }
-    });
-};
 
 /*
  * Display the comment count.

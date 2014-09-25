@@ -119,51 +119,43 @@ def update(test=False):
     import models
 
     #update_featured_social()
-
-    if test:
-        shutil.copyfile('data/fake_update.json', 'data/update.json')
-
-    if not os.path.exists('data/update.json'):
-        return
-
-    update_flat = []
+    races_updated = 0
+    candidates_updated = 0
 
     with open('data/update.json') as f:
         races = json.load(f)
 
-        for race in races:
-            race_model = models.Race.get(models.Race.race_id == race['race_id'])
+    for race in races:
+        race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
-            # If race has not been updated, skip
-            last_updated = parse(race['last_updated']).replace(tzinfo=None)
+        # If race has not been updated, skip
+        last_updated = parse(race['last_updated']).replace(tzinfo=None)
 
-            if race_model.last_updated == last_updated:
-                continue
+        if race_model.last_updated == last_updated:
+            continue
 
-            race_model.is_test = race['is_test']
-            race_model.precincts_reporting = race['precincts_reporting']
-            race_model.precincts_total = race['precincts_total']
-            race_model.last_updated = last_updated
+        race_model.is_test = race['is_test']
+        race_model.precincts_reporting = race['precincts_reporting']
+        race_model.precincts_total = race['precincts_total']
+        race_model.last_updated = last_updated
 
-            race_model.save()
+        race_model.save()
 
-            for candidate in race['candidates']:
-                # Select candidate by candidate_id AND race_id, since they can appear in multiple races
-                candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
+        races_updated += 1
 
-                candidate_model.vote_count = candidate['vote_count']
-                candidate_model.ap_winner = candidate.get('ap_winner', False)
+        for candidate in race['candidates']:
+            # Select candidate by candidate_id AND race_id, since they can appear in multiple races
+            candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
-                candidate_model.save()
+            candidate_model.vote_count = candidate['vote_count']
+            candidate_model.ap_winner = candidate.get('ap_winner', False)
 
-            update_flat.append(race_model.flatten(update_only=True))
+            candidate_model.save()
 
-    with open('www/live-data/update.json', 'w') as f:
-        json.dump(update_flat, f, cls=models.ModelEncoder)
+            candidates_updated += 1
 
-    print 'Updated %i races' % len(update_flat)
-    print 'Updated %i candidates' % sum([len(race['candidates']) for race in update_flat])
-
+    print 'Updated %i races' % races_updated 
+    print 'Updated %i candidates' % candidates_updated 
 
 @task
 def get_quiz_answers():

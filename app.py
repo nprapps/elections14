@@ -140,19 +140,6 @@ def chromecast():
 
     return render_template('chromecast.html', **context)
 
-@app.route('/game/')
-def game():
-    """
-    Custom Chromecast receiver.
-    """
-    context = make_context()
-
-    secrets = app_config.get_secrets()
-    context['DYNAMODB_ACCESS_KEY_ID'] = secrets['DYNAMODB_ACCESS_KEY_ID']
-    context['DYNAMODB_SECRET_ACCESS_KEY'] = secrets['DYNAMODB_SECRET_ACCESS_KEY']
-
-    return render_template('game.html', **context)
-
 @app.route('/results/house/')
 def results_house():
     """
