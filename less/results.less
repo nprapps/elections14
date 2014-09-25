@@ -245,26 +245,22 @@ h6 {
 .results  {
     overflow:hidden;
 
-    .results-col {
+    .column {
         @media screen and (max-width: 470px){
-            width:100%;
+            width:100% !important;
         }
-        width: 50%;
         box-sizing: border-box;
-        float: left;
+        padding: 0 15px;
+        @media screen and (max-width: @screen-md){
+            padding: 0 6px;
+        }
 
         &:first-child {
-            padding-right: 15px;
-            @media screen and (max-width: @screen-md){
-                padding-right:6px;
-            }
+            padding-left: 0;
         }
 
         &:last-child {
-            padding-left: 15px;
-            @media screen and (max-width: @screen-md){
-                padding-left:6px;
-            }
+            padding-right: 0;
         }
     }
 
@@ -393,7 +389,11 @@ h6 {
     }
 }
 
-
+body.house{
+    .fname{
+        display:none;
+    }
+}
 
 .key{
     font-size: 9px;

@@ -151,11 +151,11 @@ def results_house():
 
     context['page_title'] = 'House'
     context['page_class'] = 'house'
+    context['column_number'] = 3
 
     races = Race.select().where(Race.office_name == 'U.S. House')[0:36]
 
-    grouped = _group_races_by_closing_time(races)
-    context['race_columns'] = _partition(grouped)
+    context['poll_groups'] = _group_races_by_closing_time(races)
 
     context['bop'] = _calculate_bop(races, 218, HOUSE_INITIAL_BOP)
     return render_template('slides/congress_results.html', **context)
@@ -171,11 +171,11 @@ def results_senate():
 
     context['page_title'] = 'Senate'
     context['page_class'] = 'senate'
+    context['column_number'] = 2
 
     races = Race.select().where(Race.office_name == 'U.S. Senate')
 
-    grouped = _group_races_by_closing_time(races)
-    context['race_columns'] = _partition(grouped)
+    context['poll_groups'] = _group_races_by_closing_time(races)
 
     context['bop'] = _calculate_bop(races, 51, SENATE_INITIAL_BOP)
 
