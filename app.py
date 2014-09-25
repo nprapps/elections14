@@ -45,14 +45,6 @@ def _group_races_by_closing_time(races):
 
     return sorted(results.items())
 
-def _partition(l):
-    """
-    Split a list in two!
-    """
-    length = len(l)
-    left = int(round(length / 2.))
-    return (l[0:left], l[left:])
-
 def _calculate_bop(races, majority, initial):
     """
     Calculate a balance of power
