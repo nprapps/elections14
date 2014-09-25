@@ -115,7 +115,7 @@ class Race(SlugModel):
     ap_called_time = DateTimeField(null=True)
     npr_called = BooleanField(default=False)
     npr_called_time = DateTimeField(null=True)
-    party_change = BooleanField(default=False)
+    previous_party = CharField(max_length=5, null=True)
 
     def __unicode__(self):
         return u'%s: %s-%s' % (
@@ -164,6 +164,16 @@ class Race(SlugModel):
         """
         return bool(self.precincts_reporting)
 
+    def party_changed(self):
+        """
+        Did the party change?
+        """
+        winner = self.get_winning_party()
+        if winner:
+            return winner != self.previous_party
+
+        return None
+
     def get_called_time(self):
         """
         Get when this race was called.
@@ -180,15 +190,11 @@ class Race(SlugModel):
         ratio = Decimal(self.precincts_reporting) / Decimal(self.precincts_total)
         return ratio * 100
 
-    def has_incumbents(self):
+    def has_incumbent(self):
         """
         Check if this Race has an incumbent candidate.
         """
-        for candidate in Candidate.select().where(Candidate.race == self):
-            if candidate.incumbent:
-                return True
-
-        return False
+        return bool(self.candidates.where(Candidate.incumbent == True).count())
 
     def count_votes(self):
         """
