@@ -44,10 +44,12 @@ def stack():
     Administer a stack of slides.
     """
     context = make_context(asset_depth=1)
+
     context.update({
         'sequence': SlideSequence.select().dicts(),
         'slides': Slide.select().dicts(),
     })
+    
     return render_template('admin/stack.html', **context)
 
 @app.route('/%s/admin/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
@@ -60,9 +62,9 @@ def save_stack():
     data = request.json
     SlideSequence.delete().execute()
     
-    # rebuild sequence table
+    # Rebuild sequence table
     for i, row in enumerate(data[0]):
-        obj = SlideSequence(slide=row['slide'], sequence = i + 1)
+        obj = SlideSequence(slide=row['slide'], sequence=i + 1)
         obj.save()
     
     return "saved sequence"
@@ -72,14 +74,12 @@ def chamber(chamber):
     """
     Read/update list of chamber candidates.
     """
-    chamber_slug = u'H'
+    chamber_slug = 'H'
 
     if chamber == 'senate':
-        chamber_slug = u'S'
+        chamber_slug = 'S'
 
-    # Get all of the candidates that match this race which are either
-    # Republicans or Democrats or have the first name Angus or Bernie and
-    # we ignore the Democrat in the Maine race.
+    # TODO: special cases for independents who might win
     candidates = Candidate\
         .select()\
         .join(Race)\
@@ -89,9 +89,10 @@ def chamber(chamber):
         )
 
     candidates = candidates.order_by(
-            Race.state_postal.desc(),
-            Race.seat_number.asc(),
-            Candidate.party.asc())
+        Race.state_postal.desc(),
+        Race.seat_number.asc(),
+        Candidate.party.asc()
+    )
 
     race_count = Race.select().where(Race.office_id == chamber_slug)
 
@@ -111,7 +112,7 @@ def chamber_call(chamber):
 
     race_slug = request.form.get('race_slug', None)
 
-    race = Race.select().where(Race.slug == race_slug).get()
+    race = Race.get(Race.slug == race_slug)
 
     # Toggling accept AP call 
     accept_ap_call = request.form.get('accept_ap_call', None)
@@ -123,12 +124,11 @@ def chamber_call(chamber):
             accept_ap_call = False
 
     if race_slug != None and accept_ap_call != None:
-        aq = Race.update(accept_ap_call=accept_ap_call).where(Race.slug == race.slug)
-        aq.execute()
+        race.accept_ap_call = accept_ap_call
+        race.save()
 
         if accept_ap_call == True:
-            rq = Candidate.update(npr_winner=False).where(Candidate.race == race)
-            rq.execute()
+            Candidate.update(npr_winner=False).where(Candidate.race == race).execute()
 
     # Setting NPR winner
     first_name = request.form.get('first_name', None)
@@ -137,31 +137,27 @@ def chamber_call(chamber):
 
     if race_slug != None and clear_all != None:
         if clear_all == 'true':
-            rq = Candidate.update(npr_winner=False).where(Candidate.race == race)
-            rq.execute()
+            Candidate.update(npr_winner=False).where(Candidate.race == race).execute()
 
-            rq2 = Race.update(npr_called=False).where(Race.slug == race_slug)
-            rq2.execute()
+            race.npr_called = False
+            race.save()
 
     if race_slug != None and first_name != None and last_name != None:
+        Candidate.update(npr_winner=False).where(Candidate.race == race).execute()
 
-        rq = Candidate.update(npr_winner=False).where(Candidate.race == race)
-        rq.execute()
-
-        cq = Candidate.update(npr_winner=True).where(
+        Candidate.update(npr_winner=True).where(
             Candidate.race == race,
             Candidate.first_name == first_name,
-            Candidate.last_name == last_name)
-        cq.execute()
+            Candidate.last_name == last_name
+        ).execute()
 
-        race_update = {}
-        race_update['npr_called'] = True
+        race.npr_called = True
+
         if race.accept_ap_call == False:
             if race.npr_called_time == None:
-                race_update['npr_called_time'] = datetime.datetime.utcnow()
+                race.npr_called_time = datetime.datetime.utcnow()
 
-        rq2 = Race.update(**race_update).where(Race.slug == race_slug)
-        rq2.execute()
+        race.save()
 
     return 'Success'
 
