@@ -164,6 +164,16 @@ class Race(SlugModel):
         """
         return bool(self.precincts_reporting)
 
+    def party_changed(self):
+        """
+        Did the party change?
+        """
+        winner = self.get_winning_party()
+        if winner:
+            return winner == self.previous_party
+
+        return None
+
     def get_called_time(self):
         """
         Get when this race was called.
