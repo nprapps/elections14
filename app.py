@@ -144,7 +144,7 @@ def results_house():
 
     races = Race.select().where(Race.office_name == 'U.S. House')
 
-    context['poll_groups'] = _group_races_by_closing_time(races[0:66])
+    context['poll_groups'] = _group_races_by_closing_time(races[0:60])
 
     context['bop'] = _calculate_bop(races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
     return render_template('slides/congress_results.html', **context)
