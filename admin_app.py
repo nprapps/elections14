@@ -38,143 +38,127 @@ admin.register(Slide, SlideAdmin)
 admin.register(SlideSequence)
 admin.setup()
 
-# Example application views
-@app.route('/%s/test/' % app_config.PROJECT_SLUG, methods=['GET'])
-def _test_app():
-    """
-    Test route for verifying the application is running.
-    """
-    app.logger.info('Test URL requested.')
-
-    return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
 @app.route('/%s/admin/stack/' % app_config.PROJECT_SLUG, methods=['GET'])
 def stack():
     """
     Administer a stack of slides.
     """
     context = make_context(asset_depth=1)
+
     context.update({
         'sequence': SlideSequence.select().dicts(),
         'slides': Slide.select().dicts(),
     })
-    return render_template('stack_admin.html', **context)
+    
+    return render_template('admin/stack.html', **context)
 
 @app.route('/%s/admin/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
 def save_stack():
+    """
+    Save new stack sequence.
+    """
     from flask import request
+
     data = request.json
     SlideSequence.delete().execute()
-    # rebuild sequence table
+    
+    # Rebuild sequence table
     for i, row in enumerate(data[0]):
-        obj = SlideSequence(slide=row["slide"], sequence = i + 1)
-        obj.save()
-    return "saved sequence"
+        SlideSequence.create(order=i, slide=row['slide'])
+    
+    return "Saved sequence"
 
-@app.route('/%s/admin/chamber/<chamber>/' % app_config.PROJECT_SLUG, methods=['GET', 'POST'])
+@app.route('/%s/admin/chamber/<chamber>/' % app_config.PROJECT_SLUG, methods=['GET'])
 def chamber(chamber):
     """
     Read/update list of chamber candidates.
     """
-    from flask import request
-
-    chamber_slug = u'H'
+    chamber_slug = 'H'
 
     if chamber == 'senate':
-        chamber_slug = u'S'
+        chamber_slug = 'S'
 
-    if request.method == 'GET':
+    # TODO: special cases for independents who might win
+    candidates = Candidate\
+        .select()\
+        .join(Race)\
+        .where(
+            Race.office_id == chamber_slug,
+            (Candidate.party == 'Dem') | (Candidate.party == 'GOP')
+        )
 
-        # Get all of the candidates that match this race which are either
-        # Republicans or Democrats or have the first name Angus or Bernie and
-        # we ignore the Democrat in the Maine race.
-        candidates = Candidate\
-            .select()\
-            .join(Race)\
-            .where(
-                Race.office_id == chamber_slug,
-                (Candidate.party == 'Dem') | (Candidate.party == 'GOP')
-            )
+    candidates = candidates.order_by(
+        Race.state_postal.desc(),
+        Race.seat_number.asc(),
+        Candidate.party.asc()
+    )
 
-        candidates = candidates.order_by(
-                Race.state_postal.desc(),
-                Race.seat_number.asc(),
-                Candidate.party.asc())
+    race_count = Race.select().where(Race.office_id == chamber_slug)
 
-        race_count = Race.select().where(Race.office_id == chamber_slug)
+    context = make_context(asset_depth=1)
 
-        context = make_context(asset_depth=1)
+    context.update({
+        'candidates': candidates,
+        'count': race_count.count(),
+        'chamber': chamber,
+    })
 
-        context.update({
-            'candidates': candidates,
-            'count': race_count.count(),
-            'chamber': chamber,
-        })
+    return render_template('admin/chamber.html', **context)
 
-        return render_template('admin/chamber.html', **context)
+@app.route('/%s/admin/chamber/<chamber>/call/' % app_config.PROJECT_SLUG, methods=['POST'])
+def chamber_call(chamber):
+    from flask import request
 
-    # Alternately, what if someone is POSTing?
-    if request.method == 'POST':
+    race_slug = request.form.get('race_slug', None)
 
-        # Everything needs a race slug.
-        race_slug = request.form.get('race_slug', None)
-        race = Race.select().where(Race.slug == race_slug).get()
+    race = Race.get(Race.slug == race_slug)
 
-        # 1.) Perhaps we're trying to set the accept_ap_call flag on some races?
-        accept_ap_call = request.form.get('accept_ap_call', None)
+    # Toggling accept AP call 
+    accept_ap_call = request.form.get('accept_ap_call', None)
 
-        if accept_ap_call != None:
-            if accept_ap_call.lower() == 'true':
-                accept_ap_call = True
-            else:
-                accept_ap_call = False
+    if accept_ap_call != None:
+        if accept_ap_call.lower() == 'true':
+            accept_ap_call = True
+        else:
+            accept_ap_call = False
 
-        if race_slug != None and accept_ap_call != None:
-            aq = Race.update(accept_ap_call=accept_ap_call).where(Race.slug == race.slug)
-            aq.execute()
+    if race_slug != None and accept_ap_call != None:
+        race.accept_ap_call = accept_ap_call
+        race.save()
 
-            if accept_ap_call == True:
-                rq = Candidate.update(npr_winner=False).where(Candidate.race == race)
-                rq.execute()
+        if accept_ap_call == True:
+            Candidate.update(npr_winner=False).where(Candidate.race == race).execute()
 
-        # 2.) Perhaps we're trying to set an NPR winner?
-        first_name = request.form.get('first_name', None)
-        last_name = request.form.get('last_name', None)
-        clear_all = request.form.get('clear_all', None)
+    # Setting NPR winner
+    first_name = request.form.get('first_name', None)
+    last_name = request.form.get('last_name', None)
+    clear_all = request.form.get('clear_all', None)
 
-        if race_slug != None and clear_all != None:
-            if clear_all == 'true':
-                rq = Candidate.update(npr_winner=False).where(Candidate.race == race)
-                rq.execute()
+    if race_slug != None and clear_all != None:
+        if clear_all == 'true':
+            Candidate.update(npr_winner=False).where(Candidate.race == race).execute()
 
-                rq2 = Race.update(npr_called=False).where(Race.slug == race_slug)
-                rq2.execute()
+            race.npr_called = False
+            race.save()
 
-        if race_slug != None and first_name != None and last_name != None:
+    if race_slug != None and first_name != None and last_name != None:
+        Candidate.update(npr_winner=False).where(Candidate.race == race).execute()
 
-            rq = Candidate.update(npr_winner=False).where(Candidate.race == race)
-            rq.execute()
+        Candidate.update(npr_winner=True).where(
+            Candidate.race == race,
+            Candidate.first_name == first_name,
+            Candidate.last_name == last_name
+        ).execute()
 
-            cq = Candidate.update(npr_winner=True).where(
-                Candidate.race == race,
-                Candidate.first_name == first_name,
-                Candidate.last_name == last_name)
-            cq.execute()
+        race.npr_called = True
 
-            race_update = {}
-            race_update['npr_called'] = True
-            if race.accept_ap_call == False:
-                if race.npr_called_time == None:
-                    race_update['npr_called_time'] = datetime.datetime.utcnow()
+        if race.accept_ap_call == False:
+            if race.npr_called_time == None:
+                race.npr_called_time = datetime.datetime.utcnow()
 
-            rq2 = Race.update(**race_update).where(Race.slug == race_slug)
-            rq2.execute()
+        race.save()
 
-        # TODO
-        # Return a 200. This is probably bad.
-        # Need to figure out what should go here.
-        return "Success."
-
+    return 'Success'
 
 # Boilerplate
 if __name__ == '__main__':

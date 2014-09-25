@@ -2,11 +2,12 @@
 
 from fabric.api import task
 from jinja2 import Template
-from peewee import fn
 import requests
 
 import app_config
 import models
+
+LIMIT = 20 
 
 @task
 def get_posts():
@@ -15,16 +16,30 @@ def get_posts():
     """
     secrets = app_config.get_secrets()
 
-    response = requests.get('http://api.tumblr.com/v2/blog/%s.tumblr.com/posts' % app_config.TUMBLR_NAME, params={
-        'api_key':secrets['TUMBLR_CONSUMER_KEY'],
-    })
-    posts = response.json()['response']['posts']
+    offset = 0
+    total_posts = 1
 
-    for post in posts:
-        if post['type'] == 'video':
-            continue
+    while offset < total_posts:
+        print 'Fetching posts %i-%i' % (offset, offset + LIMIT)
 
-        _create_slide(post)
+        response = requests.get('http://api.tumblr.com/v2/blog/%s.tumblr.com/posts' % app_config.TUMBLR_NAME, params={
+            'api_key':secrets['TUMBLR_CONSUMER_KEY'],
+            'limit': LIMIT,
+            'offset': offset
+        })
+
+        data = response.json()
+
+        total_posts = data['response']['total_posts']
+        posts = data['response']['posts']
+
+        for post in posts:
+            if post['type'] == 'video':
+                continue
+
+            _create_slide(post)
+
+        offset += LIMIT
 
 def _create_slide(post):
     rendered_post = _render_post(post)
@@ -41,12 +56,12 @@ def _create_slide(post):
         print 'Creating post %s' % slug
         slide = models.Slide.create(slug=slug, name=post_title, body=rendered_post)
 
-        max = models.SlideSequence.select(fn.Max(models.SlideSequence.sequence)).scalar()
-        if not max:
-            max = 0
-        sequence = models.SlideSequence.create(sequence=max+1, slide=slide)
-        print '%s is slide number %s' % (slide.name, max)
+        order = (models.SlideSequence.last() or 0) + 1
+
+        sequence = models.SlideSequence.create(order=order, slide=slide)
         sequence.save()
+        
+        print '%s is slide number %s' % (slide.name, order)
 
 def _render_post(post):
     filename = '_tumblr_%s.html' % post['type']
@@ -60,5 +75,6 @@ def _render_post(post):
 
     with open('templates/%s' % filename) as f:
         template = Template(f.read())
+
     return template.render(**post)
 

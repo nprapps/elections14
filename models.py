@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 import re
 
-from peewee import Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField, TextField
+from peewee import fn, Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField, TextField
 from decimal import Decimal
 
 import app_config
@@ -352,8 +352,17 @@ class SlideSequence(BaseModel):
     """
     Defines a sequence of slides to play
     """
-    sequence = IntegerField()
+    order = IntegerField(primary_key=True)
     slide = ForeignKeyField(Slide)
 
     def __unicode__(self):
         return unicode(self.slide)
+
+    @classmethod
+    def first(cls):
+        return cls.select(fn.Min(cls.order)).scalar() or 0
+
+    @classmethod
+    def last(cls):
+        return cls.select(fn.Max(cls.order)).scalar() or 0
+

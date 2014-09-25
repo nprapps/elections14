@@ -2,12 +2,10 @@
 
 import json
 
-from fabric.api import env, local, require, task
-from peewee import fn
+from fabric.api import env, require, task
 
 import app
 import app_config
-from models import SlideSequence
 from utils import deploy_json
 
 @task

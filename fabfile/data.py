@@ -66,15 +66,21 @@ def bootstrap():
     # Don't load this until done resetting database
     import models
 
+    print 'Creating tables'
+
     models.Race.create_table()
     models.Candidate.create_table()
     models.Slide.create_table()
     models.SlideSequence.create_table()
 
+    print 'Setting up admin'
+
     admin_app.auth.User.create_table()
     admin_user = admin_app.auth.User(username='admin', email='', admin=True, active=True)
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
+
+    print 'Loading race data'
 
     with open('data/races.json') as f:
         races = json.load(f)
@@ -90,6 +96,8 @@ def bootstrap():
                 race_type = race['race_type'],
                 last_updated = race['last_updated'],
             )
+
+    print 'Loading candidate data'
 
     with open('data/candidates.json') as f:
         candidates = json.load(f)
@@ -111,51 +119,43 @@ def update(test=False):
     import models
 
     #update_featured_social()
-
-    if test:
-        shutil.copyfile('data/fake_update.json', 'data/update.json')
-
-    if not os.path.exists('data/update.json'):
-        return
-
-    update_flat = []
+    races_updated = 0
+    candidates_updated = 0
 
     with open('data/update.json') as f:
         races = json.load(f)
 
-        for race in races:
-            race_model = models.Race.get(models.Race.race_id == race['race_id'])
+    for race in races:
+        race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
-            # If race has not been updated, skip
-            last_updated = parse(race['last_updated']).replace(tzinfo=None)
+        # If race has not been updated, skip
+        last_updated = parse(race['last_updated']).replace(tzinfo=None)
 
-            if race_model.last_updated == last_updated:
-                continue
+        if race_model.last_updated == last_updated:
+            continue
 
-            race_model.is_test = race['is_test']
-            race_model.precincts_reporting = race['precincts_reporting']
-            race_model.precincts_total = race['precincts_total']
-            race_model.last_updated = last_updated
+        race_model.is_test = race['is_test']
+        race_model.precincts_reporting = race['precincts_reporting']
+        race_model.precincts_total = race['precincts_total']
+        race_model.last_updated = last_updated
 
-            race_model.save()
+        race_model.save()
 
-            for candidate in race['candidates']:
-                # Select candidate by candidate_id AND race_id, since they can appear in multiple races
-                candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
+        races_updated += 1
 
-                candidate_model.vote_count = candidate['vote_count']
-                candidate_model.ap_winner = candidate.get('ap_winner', False)
+        for candidate in race['candidates']:
+            # Select candidate by candidate_id AND race_id, since they can appear in multiple races
+            candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
-                candidate_model.save()
+            candidate_model.vote_count = candidate['vote_count']
+            candidate_model.ap_winner = candidate.get('ap_winner', False)
 
-            update_flat.append(race_model.flatten(update_only=True))
+            candidate_model.save()
 
-    with open('www/live-data/update.json', 'w') as f:
-        json.dump(update_flat, f, cls=models.ModelEncoder)
+            candidates_updated += 1
 
-    print 'Updated %i races' % len(update_flat)
-    print 'Updated %i candidates' % sum([len(race['candidates']) for race in update_flat])
-
+    print 'Updated %i races' % races_updated 
+    print 'Updated %i candidates' % candidates_updated 
 
 @task
 def get_quiz_answers():
@@ -319,7 +319,7 @@ def _mock_slide_from_image(filename, i):
 
     body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
     slide = models.Slide.create(body=body, name=filename)
-    models.SlideSequence.create(sequence=i, slide=slide)
+    models.SlideSequence.create(order=i, slide=slide)
 
 def _mock_slide_with_pym(slug, path, i):
     from flask import render_template
@@ -335,7 +335,7 @@ def _mock_slide_with_pym(slug, path, i):
         body = render_template('slides/pym.html', **context)
 
     slide = models.Slide.create(slug=slug, body=body, name=slug)
-    models.SlideSequence.create(sequence=i, slide=slide)
+    models.SlideSequence.create(order=i, slide=slide)
 
 @task
 def mock_slides():
@@ -350,8 +350,8 @@ def mock_slides():
     it = count()
     _mock_slide_from_image('welcome.png', it.next())
     _mock_slide_with_pym('senate', 'results/senate/', it.next())
-    #_mock_slide_from_image('gif1.gif', it.next())
-    #_mock_slide_from_image('party_pix.png', it.next())
+    _mock_slide_from_image('gif1.gif', it.next())
+    _mock_slide_from_image('party_pix.png', it.next())
 
 @task
 def mock_election_results():

@@ -6,7 +6,6 @@ import json
 
 import argparse
 from flask import Flask, make_response, render_template
-from peewee import fn
 
 import app_config
 from render_utils import make_context, smarty_filter, urlencode_filter
@@ -141,19 +140,6 @@ def chromecast():
 
     return render_template('chromecast.html', **context)
 
-@app.route('/game/')
-def game():
-    """
-    Custom Chromecast receiver.
-    """
-    context = make_context()
-
-    secrets = app_config.get_secrets()
-    context['DYNAMODB_ACCESS_KEY_ID'] = secrets['DYNAMODB_ACCESS_KEY_ID']
-    context['DYNAMODB_SECRET_ACCESS_KEY'] = secrets['DYNAMODB_SECRET_ACCESS_KEY']
-
-    return render_template('game.html', **context)
-
 @app.route('/results/house/')
 def results_house():
     """
@@ -225,28 +211,30 @@ def _slide(slug):
     from models import Slide
 
     slide = Slide.get(Slide.slug == slug)
-    return render_template('_stack_fragment.html', body=slide.body)
+    return render_template('_slide.html', body=slide.body)
 
 def rotate_slide():
     from models import SlideSequence
 
-    min_sequence = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
+    first = SlideSequence.first() or 0
 
     try:
         with open(STACK_NUMBER_FILENAME, 'r') as f:
-            sequence = int(f.read().strip())
+            order = int(f.read().strip())
     except IOError:
-        sequence = min_sequence
+        order = first
 
-    next_slide = SlideSequence.select().where(SlideSequence.sequence > sequence).order_by(SlideSequence.sequence.asc()).limit(1)
-
-    if next_slide.count():
-        next_slide = next_slide[0]
-    else:
-        next_slide = SlideSequence.get(SlideSequence.sequence==min_sequence)
+    try:
+        next_slide = SlideSequence\
+            .select()\
+            .where(SlideSequence.order > order)\
+            .order_by(SlideSequence.order.asc())\
+            .get()
+    except SlideSequence.DoesNotExist:
+        next_slide = SlideSequence.get(SlideSequence.order==first)
 
     with open(STACK_NUMBER_FILENAME, 'w') as f:
-        f.write(unicode(next_slide.sequence))
+        f.write(unicode(next_slide.order))
 
     return next_slide
 

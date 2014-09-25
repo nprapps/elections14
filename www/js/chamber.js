@@ -1,129 +1,100 @@
-$('.npr-call').click(function(){
-    // Set up the race slug.
-    var race_slug = $(this).parent('span').parent('td').parent('tr').attr('data-state-slug');
+var $nprCall = null;
+var $nprUncall = null;
+var $toggleAP = null;
 
-    // Hide all "npr uncall" buttons for this race.
-    $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-uncall').addClass('hidden');
+var onDocumentReady = function() {
+    $nprCall = $('.npr-call');
+    $nprUncall = $('.npr-uncall');
+    $toggleAP = $('.ap-call .btn');
 
-    // Show all "npr call" buttons for this race.
-    $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-call').removeClass('hidden');
-
-    // Hide all "npr winner" buttons for this race.
-    $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-winner').addClass('hidden');
-
-    // Hide this "npr call" button.
-    $(this).addClass('hidden');
-
-    // Show this "npr uncall" button.
-    $($(this).parent('span').children('.npr-uncall')).removeClass('hidden');
-
-    // Show this "npr winner" button.
-    $($(this).parent('span').children('.npr-winner')).removeClass('hidden');
-
-    // POST!
-    buttonPOST({
-        post_data: {
-            race_slug: race_slug,
-            first_name: $(this).parent('span').attr('data-first-name'),
-            last_name: $(this).parent('span').attr('data-last-name')
-        },
-        target: this
-    });
-});
-
-$('.npr-uncall').click(function(){
-    // Set up the race slug.
-    var race_slug = $(this).parent('span').parent('td').parent('tr').attr('data-state-slug');
-
-    // Hide this "npr uncall" button.
-    $(this).addClass('hidden');
-
-    // Show all "npr call" buttons for this race.
-    $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-call').removeClass('hidden');
-
-    // Show all "npr winner" buttons for this race.
-    $('tr.'+$(this).parent('span').parent('td').parent('tr').attr('data-state-slug')+' .npr-winner').addClass('hidden');
-
-    // POST!
-    buttonPOST({
-        post_data: {
-            race_slug: race_slug,
-            clear_all: true
-        },
-        target: this
-    });
-});
-
-// A sort of generic function to read options and handle changing button state and POSTing to an URL.
-function buttonPOST(options){
-
-    function acceptAP(){
-        // Check if we have targets.
-        if ( options.target != undefined ) {
-            // Monkey with buttons.
-            if ( options.button.pre_state != undefined ){
-                $(options.target).removeClass(options.button.pre_state);
-            }
-            if ( options.button.post_state != undefined ){
-                $(options.target).addClass(options.button.post_state);
-            }
-            if ( options.message != undefined ){
-                $(options.target).html(options.message);
-            }
-        }
-        var target = $(options.target).attr('data-race-slug');
-
-        if (options.post_data.accept_ap_call == false) {
-            $('tr.'+target+' .npr-call').removeClass('hidden');
-        } else {
-            $('tr.'+target+' .npr-call').addClass('hidden');
-            $('tr.'+target+' .npr-uncall').addClass('hidden');
-            $('tr.'+target+' .npr-winner').addClass('hidden');
-        }
-    }
-
-    // POST some data.
-    $.post('.', options.post_data, function(e){
-        if ( options.post_data.accept_ap_call != undefined ) { acceptAP(); }
-    });
+    $nprCall.on('click', onCallClick);
+    $nprUncall.on('click', onUncallClick);
+    $toggleAP.on('click', onToggleAPClick);
 }
 
-// If someone clicks on the ap-call buttons ...
-$('.ap-call .btn').click(function(){
+$(onDocumentReady);
 
-    // Identify the race.
+/*
+ * When PR call button is clicked.
+ */
+var onCallClick = function() {
+    var $this = $(this);
+    var $parent = $this.parent('span');
+    var $row = $this.closest('tr');
+    var race_slug = $row.data('state-slug');
+
+    $row.find('.npr-uncall,.npr-call,.npr-winner').addClass('hidden');
+
+    $this.addClass('hidden');
+
+    $this.siblings('.npr-uncall,.npr-winner').removeClass('hidden');
+
+    var data = {
+        race_slug: race_slug,
+        first_name: $parent.attr('data-first-name'),
+        last_name: $parent.attr('data-last-name')
+    };
+
+    $.post(window.location.href + 'call/', data);
+}
+
+/*
+ * When NPR uncall button is clicked.
+ */
+var onUncallClick = function() {
+    var $this = $(this);
+    var $row = $this.closest('tr');
+    var race_slug = $row.data('state-slug');
+
+    $this.addClass('hidden');
+
+    $row.find('.npr-call').removeClass('hidden');
+    $row.find('.npr-winner').addClass('hidden');
+
+    var data = {
+        race_slug: race_slug,
+        clear_all: true
+    };
+
+    $.post(window.location.href + 'call/', data);
+}
+
+/*
+ * When AP toggle button is clicked.
+ */
+var onToggleAPClick = function() {
+    var $this = $(this);
+    var $row = $this.closest('tr');
     var race_slug = $(this).attr('id');
 
-    // If we're already accepting ap calls, do the opposite.
-    if ( $(this).hasClass('btn-success') ) {
+    // Accept AP calls
+    if ($this.hasClass('btn-success')) {
+        var data = {
+            race_slug: race_slug,
+            accept_ap_call: false
+        };
 
-        // Here's the options. Ain't javascript fun?
-        buttonPOST({
-            post_data: {
-                race_slug: race_slug,
-                accept_ap_call: false
-            },
-            button: {
-                pre_state: 'btn-success',
-                post_state: 'btn-warning'
-            },
-            message: 'Not accepting AP calls',
-            target: this
-        });
+        $.post(window.location.href + 'call/', data);
+        
+        $this.removeClass('btn-success');
+        $this.addClass('btn-warning');
+        $this.html('Not accepting AP calls');
 
-    // Otherwise, do the opposite.
+        $row.find('.npr-call').removeClass('hidden');
+    // Deny AP calls
     } else {
-        buttonPOST({
-            post_data: {
-                race_slug: race_slug,
-                accept_ap_call: true
-            },
-            button: {
-                pre_state: 'btn-warning',
-                post_state: 'btn-success'
-            },
-            message: 'Accepting AP calls',
-            target: this
-        });
+        var data = {
+            race_slug: race_slug,
+            accept_ap_call: true 
+        };
+
+        $.post(window.location.href + 'call/', data);
+        
+        $this.removeClass('btn-warning');
+        $this.addClass('btn-success');
+        $this.html('Accepting AP calls');
+
+        $row.find('.npr-call,.npr-uncall,.npr-winner').addClass('hidden');
     }
-});
+}
+
