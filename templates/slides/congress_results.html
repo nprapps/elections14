@@ -43,7 +43,7 @@
         <h2 class="poll-closing-group"><span class="time"><span class="time-inner">{{ closing_time|format_board_time }}</span></span></h2>
         <table class="races">
             {% for race in races %}
-            <tr class="race">
+            <tr class="race dontsplit">
                 <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
                     {% if race.is_called() %}
                         {{ race.get_called_time()|format_board_time }}
