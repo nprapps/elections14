@@ -11,7 +11,7 @@ var group = $(".js-droppable-and-draggable").sortable({
         console.log(data);
         $.ajax({
             type:"POST",
-            url: "/elections14/stack/save",
+            url: "/elections14/admin/stack/save",
             data: JSON.stringify(data),
             dataType: "json",
             contentType: "application/json",

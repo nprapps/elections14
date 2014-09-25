@@ -64,10 +64,9 @@ def save_stack():
     
     # Rebuild sequence table
     for i, row in enumerate(data[0]):
-        obj = SlideSequence(slide=row['slide'], sequence=i + 1)
-        obj.save()
+        SlideSequence.create(order=i, slide=row['slide'])
     
-    return "saved sequence"
+    return "Saved sequence"
 
 @app.route('/%s/admin/chamber/<chamber>/' % app_config.PROJECT_SLUG, methods=['GET'])
 def chamber(chamber):

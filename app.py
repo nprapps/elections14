@@ -230,23 +230,25 @@ def _slide(slug):
 def rotate_slide():
     from models import SlideSequence
 
-    min_sequence = SlideSequence.select(fn.Min(SlideSequence.sequence)).scalar()
+    first = SlideSequence.first() or 0
 
     try:
         with open(STACK_NUMBER_FILENAME, 'r') as f:
-            sequence = int(f.read().strip())
+            order = int(f.read().strip())
     except IOError:
-        sequence = min_sequence
+        order = first
 
-    next_slide = SlideSequence.select().where(SlideSequence.sequence > sequence).order_by(SlideSequence.sequence.asc()).limit(1)
-
-    if next_slide.count():
-        next_slide = next_slide[0]
-    else:
-        next_slide = SlideSequence.get(SlideSequence.sequence==min_sequence)
+    try:
+        next_slide = SlideSequence\
+            .select()\
+            .where(SlideSequence.order > order)\
+            .order_by(SlideSequence.order.asc())\
+            .get()
+    except SlideSequence.DoesNotExist:
+        next_slide = SlideSequence.get(SlideSequence.order==first)
 
     with open(STACK_NUMBER_FILENAME, 'w') as f:
-        f.write(unicode(next_slide.sequence))
+        f.write(unicode(next_slide.order))
 
     return next_slide
 

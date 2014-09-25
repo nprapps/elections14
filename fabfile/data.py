@@ -66,15 +66,21 @@ def bootstrap():
     # Don't load this until done resetting database
     import models
 
+    print 'Creating tables'
+
     models.Race.create_table()
     models.Candidate.create_table()
     models.Slide.create_table()
     models.SlideSequence.create_table()
 
+    print 'Setting up admin'
+
     admin_app.auth.User.create_table()
     admin_user = admin_app.auth.User(username='admin', email='', admin=True, active=True)
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
+
+    print 'Loading race data'
 
     with open('data/races.json') as f:
         races = json.load(f)
@@ -90,6 +96,8 @@ def bootstrap():
                 race_type = race['race_type'],
                 last_updated = race['last_updated'],
             )
+
+    print 'Loading candidate data'
 
     with open('data/candidates.json') as f:
         candidates = json.load(f)
@@ -319,7 +327,7 @@ def _mock_slide_from_image(filename, i):
 
     body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
     slide = models.Slide.create(body=body, name=filename)
-    models.SlideSequence.create(sequence=i, slide=slide)
+    models.SlideSequence.create(order=i, slide=slide)
 
 def _mock_slide_with_pym(slug, path, i):
     from flask import render_template
@@ -335,7 +343,7 @@ def _mock_slide_with_pym(slug, path, i):
         body = render_template('slides/pym.html', **context)
 
     slide = models.Slide.create(slug=slug, body=body, name=slug)
-    models.SlideSequence.create(sequence=i, slide=slide)
+    models.SlideSequence.create(order=i, slide=slide)
 
 @task
 def mock_slides():
@@ -350,8 +358,8 @@ def mock_slides():
     it = count()
     _mock_slide_from_image('welcome.png', it.next())
     _mock_slide_with_pym('senate', 'results/senate/', it.next())
-    #_mock_slide_from_image('gif1.gif', it.next())
-    #_mock_slide_from_image('party_pix.png', it.next())
+    _mock_slide_from_image('gif1.gif', it.next())
+    _mock_slide_from_image('party_pix.png', it.next())
 
 @task
 def mock_election_results():
