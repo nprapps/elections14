@@ -180,15 +180,11 @@ class Race(SlugModel):
         ratio = Decimal(self.precincts_reporting) / Decimal(self.precincts_total)
         return ratio * 100
 
-    def has_incumbents(self):
+    def has_incumbent(self):
         """
         Check if this Race has an incumbent candidate.
         """
-        for candidate in Candidate.select().where(Candidate.race == self):
-            if candidate.incumbent:
-                return True
-
-        return False
+        return bool(self.candidates.where(Candidate.incumbent == True).count())
 
     def count_votes(self):
         """
