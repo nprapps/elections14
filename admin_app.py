@@ -22,7 +22,7 @@ app.config['SECRET_KEY'] = 'askfhj3r3j'
 app.jinja_env.filters['urlencode'] = urlencode_filter
 app.register_blueprint(static_app.static_app, url_prefix='/%s' % app_config.PROJECT_SLUG)
 
-file_handler = logging.FileHandler(app_config.APP_LOG_PATH)
+file_handler = logging.FileHandler('%s/app.log' % app_config.SERVER_LOG_PATH)
 file_handler.setLevel(logging.INFO)
 app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)

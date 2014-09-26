@@ -16,6 +16,9 @@ import app_config
 import copytext
 
 class BetterJSONEncoder(json.JSONEncoder):
+    """
+    A JSON encoder that handles complex types (dates).
+    """
     def default(self, obj):
         if isinstance(obj, datetime):
             encoded_object = obj.isoformat() 
