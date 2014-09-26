@@ -150,7 +150,7 @@ def results_house():
     context['poll_groups'] = _group_races_by_closing_time(races[0:60])
 
     context['bop'] = _calculate_bop(races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
-    return render_template('slides/congress_results.html', **context)
+    return render_template('slides/race_results.html', **context)
 
 @app.route('/results/senate/')
 def results_senate():
@@ -171,7 +171,27 @@ def results_senate():
 
     context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
 
-    return render_template('slides/congress_results.html', **context)
+    return render_template('slides/race_results.html', **context)
+
+@app.route('/results/governor/')
+def results_governor():
+    """
+    Governor big board
+    """
+    from models import Race
+
+    context = make_context()
+
+    context['page_title'] = 'Governors'
+    context['page_class'] = 'governor'
+    context['column_number'] = 2
+
+    races = Race.select().where(Race.office_name == 'Governor')
+
+    context['poll_groups'] = _group_races_by_closing_time(races)
+
+    return render_template('slides/race_results.html', **context)
+
 
 @app.route('/comments/')
 def comments():
