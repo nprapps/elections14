@@ -58,14 +58,14 @@ h6 {
     }
 
     @media screen and (min-width: @screen-lg){
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.1;
         font-weight: 300;
     }
 
     @media screen and (min-width: @screen-xl){
-        font-size: 24px;
-        line-height: 1.1;
+        font-size: 16px;
+        line-height: 1;
         font-weight: 300;
     }
 
@@ -308,10 +308,10 @@ h6 {
             &.reporting {
                 background: @yellow;
                 @media screen and (min-width: @screen-sm){
-                    &:after{
-                        content:"in";
-                        font-size:80%;
-                    }
+                    // &:after{
+                    //     content:"in";
+                    //     font-size:80%;
+                    // }
                 }
             }
 
@@ -375,7 +375,7 @@ h6 {
         }
 
         .candidate-total {
-            width: 6%;
+            // width: 6%;
             text-align:right;
         }
 
@@ -383,14 +383,21 @@ h6 {
             text-align:left;
         }
 
-        .id-5083, .id-19638{
+        .id-5083, .id-19638, .id-18556{
             letter-spacing:-.09em;
             font-weight:300 !important;
         }
     }
 }
 
-
+body.house{
+    .fname{
+        display:none;
+    }
+    .results-status{
+        width:15%;
+    }
+}
 
 
 
