@@ -68,7 +68,6 @@ SERVER_PYTHON = 'python2.7'
 SERVER_PROJECT_PATH = '/home/%s/apps/%s' % (SERVER_USER, PROJECT_FILENAME)
 SERVER_REPOSITORY_PATH = '%s/repository' % SERVER_PROJECT_PATH
 SERVER_VIRTUALENV_PATH = '%s/virtualenv' % SERVER_PROJECT_PATH
-SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
 
 # Should the crontab file be installed on the servers?
 # If True, DEPLOY_TO_SERVERS must also be True
@@ -96,6 +95,7 @@ S3_BUCKETS = []
 S3_BASE_URL = ''
 SERVERS = []
 SERVER_BASE_URL = ''
+SERVER_LOG_PATH = ''
 DEBUG = True
 
 """
@@ -139,10 +139,10 @@ NEXT_SLIDE_FILENAME = 'live-data/next-slide.json'
 CLIENT_SLIDE_ROTATE_INTERVAL = 3
 SLIDE_ROTATE_INTERVAL = 8
 
-TUMBLR_NAME = 'stage-nprelections'
+TUMBLR_NAME = '' # See below
+TUMBLR_NOT_BEFORE = None # See below 
 TUMBLR_AUTO_REFRESH = True
 TUMBLR_REFRESH_INTERVAL = 5
-TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
 
 """
 Utilities
@@ -174,13 +174,13 @@ def configure_targets(deployment_target):
     Configure deployment targets. Abstracted so this can be
     overriden for rendering before deployment.
     """
+    global DEPLOYMENT_TARGET
     global S3_BUCKETS
     global S3_BASE_URL
     global SERVERS
     global SERVER_BASE_URL
-    global DEBUG
-    global DEPLOYMENT_TARGET
     global SERVER_LOG_PATH
+    global DEBUG
     global DISQUS_SHORTNAME
     global TUMBLR_NAME
     global TUMBLR_NOT_BEFORE
@@ -190,8 +190,11 @@ def configure_targets(deployment_target):
         S3_BASE_URL = 'http://%s/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)
         SERVERS = PRODUCTION_SERVERS
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
-        DISQUS_SHORTNAME = 'npr-news'
+        SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
         DEBUG = False
+
+        DISQUS_SHORTNAME = 'npr-news'
+
         TUMBLR_NAME = 'nprpolitics'
         TUMBLR_NOT_BEFORE = datetime(2014, 11, 4, 23, 0, 0) # +5 hours for UTC
     elif deployment_target == 'staging':
@@ -199,16 +202,25 @@ def configure_targets(deployment_target):
         S3_BASE_URL = 'http://%s.s3-website-us-east-1.amazonaws.com/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)
         SERVERS = STAGING_SERVERS
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
-        DISQUS_SHORTNAME = 'nprviz-test'
+        SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
         DEBUG = True
+
+        DISQUS_SHORTNAME = 'nprviz-test'
+
+        TUMBLR_NAME = 'stage-nprelections'
+        TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
     else:
         S3_BUCKETS = []
         S3_BASE_URL = 'http://127.0.0.1:8000'
         SERVERS = []
         SERVER_BASE_URL = 'http://127.0.0.1:8001/%s' % PROJECT_SLUG
-        DISQUS_SHORTNAME = 'nprviz-test'
-        DEBUG = True
         SERVER_LOG_PATH = '/tmp'
+        DEBUG = True
+
+        DISQUS_SHORTNAME = 'nprviz-test'
+        
+        TUMBLR_NAME = 'stage-nprelections'
+        TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
 
     DEPLOYMENT_TARGET = deployment_target
 

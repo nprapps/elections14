@@ -157,9 +157,6 @@ def render_confs():
     """
     require('settings', provided_by=['production', 'staging'])
 
-    #with settings(warn_only=True):
-        #local('mkdir confs/rendered')
-
     # Copy the app_config so that when we load the secrets they don't
     # get exposed to other management commands
     context = copy.copy(app_config.__dict__)
