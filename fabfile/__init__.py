@@ -129,7 +129,6 @@ def deploy_server(remote='origin'):
 
         servers.fabcast('text.update')
         servers.fabcast('assets.sync')
-        servers.fabcast('data.update')
 
         if app_config.DEPLOY_CRONTAB:
             servers.install_crontab()
