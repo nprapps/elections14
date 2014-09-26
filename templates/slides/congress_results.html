@@ -57,14 +57,14 @@
                 {% set candidate = race.top_candidates()[0] %}
                 {% if candidate %}
                 <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>
-                <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
+                <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}<span class="percent">%</span>{% else %}--{% endif %}</td>
                 {% else %}
                 <td class="candidate"></td>
                 <td class="candidate-total"></td>
                 {% endif %}
                 {% set candidate = race.top_candidates()[1] %}
                 {% if candidate %}
-                <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
+                <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}<span class="percent">%</span>{% else %}--{% endif %}</td>
                 <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>
                 {% else %}
                 <td class="candidate-total"></td>
