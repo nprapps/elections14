@@ -8,6 +8,7 @@ They will be exposed to users. Use environment variables instead.
 See get_secrets() below for a fast way to access them.
 """
 
+from datetime import datetime
 import os
 
 """
@@ -87,8 +88,8 @@ SERVER_SERVICES = [
     ('app', SERVER_REPOSITORY_PATH, 'ini'),
     ('uwsgi', '/etc/init', 'conf'),
     ('nginx', '/etc/nginx/locations-enabled', 'conf'),
-    ('rotate_slide', '/etc/init', 'conf'),
-    ('get_tumblr_posts', '/etc/init', 'conf'),
+    ('stack', '/etc/init', 'conf'),
+    ('liveblog', '/etc/init', 'conf'),
 ]
 
 # These variables will be set at runtime. See configure_targets() below
@@ -142,6 +143,7 @@ SLIDE_ROTATE_INTERVAL = 8
 TUMBLR_NAME = 'stage-nprelections'
 TUMBLR_AUTO_REFRESH = True
 TUMBLR_REFRESH_INTERVAL = 5
+TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
 
 """
 Utilities
@@ -182,7 +184,7 @@ def configure_targets(deployment_target):
     global APP_LOG_PATH
     global DISQUS_SHORTNAME
     global TUMBLR_NAME
-
+    global TUMBLR_NOT_BEFORE
 
     if deployment_target == 'production':
         S3_BUCKETS = PRODUCTION_S3_BUCKETS
@@ -192,6 +194,7 @@ def configure_targets(deployment_target):
         DISQUS_SHORTNAME = 'npr-news'
         DEBUG = False
         TUMBLR_NAME = 'nprpolitics'
+        TUMBLR_NOT_BEFORE = datetime(2014, 11, 4, 23, 0, 0) # +5 hours for UTC
     elif deployment_target == 'staging':
         S3_BUCKETS = STAGING_S3_BUCKETS
         S3_BASE_URL = 'http://%s.s3-website-us-east-1.amazonaws.com/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)

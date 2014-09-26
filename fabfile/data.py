@@ -43,7 +43,7 @@ def bootstrap():
 
     if env.settings:
         with settings(warn_only=True):
-            services = ['uwsgi', 'rotate_slide', 'get_tumblr_posts']
+            services = ['uwsgi', 'stack', 'liveblog']
             for service in services:
                 service_name = servers._get_installed_service_name(service)
                 local('sudo service %s stop' % service_name)

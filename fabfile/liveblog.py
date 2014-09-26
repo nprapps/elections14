@@ -1,5 +1,7 @@
 # /usr/bin/env python
 
+from datetime import datetime
+
 from fabric.api import task
 from jinja2 import Template
 import requests
@@ -10,7 +12,7 @@ import models
 LIMIT = 20 
 
 @task
-def get_posts():
+def update():
     """
     Fetch latests posts from Tumblr API.
     """
@@ -35,6 +37,10 @@ def get_posts():
 
         for post in posts:
             if post['type'] == 'video':
+                continue
+
+            if datetime.fromtimestamp(post['timestamp']) < app_config.TUMBLR_NOT_BEFORE:
+                print 'Skipping old post'
                 continue
 
             _create_slide(post)
