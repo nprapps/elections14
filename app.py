@@ -153,7 +153,7 @@ def results_house():
     context['page_class'] = 'house'
     context['column_number'] = 3
 
-    races = Race.select().where(Race.office_name == 'U.S. House')[0:36]
+    races = Race.select().where(Race.office_name == 'U.S. House')[0:70]
 
     context['poll_groups'] = _group_races_by_closing_time(races)
 
