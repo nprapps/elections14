@@ -68,6 +68,7 @@ SERVER_PYTHON = 'python2.7'
 SERVER_PROJECT_PATH = '/home/%s/apps/%s' % (SERVER_USER, PROJECT_FILENAME)
 SERVER_REPOSITORY_PATH = '%s/repository' % SERVER_PROJECT_PATH
 SERVER_VIRTUALENV_PATH = '%s/virtualenv' % SERVER_PROJECT_PATH
+SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
 
 # Should the crontab file be installed on the servers?
 # If True, DEPLOY_TO_SERVERS must also be True
@@ -78,8 +79,6 @@ DEPLOY_CRONTAB = True
 DEPLOY_SERVICES = True
 
 UWSGI_SOCKET_PATH = '/tmp/%s.uwsgi.sock' % PROJECT_FILENAME
-UWSGI_LOG_PATH = '/var/log/%s.uwsgi.log' % PROJECT_FILENAME
-APP_LOG_PATH = '/var/log/%s.app.log' % PROJECT_FILENAME
 
 # Services are the server-side services we want to enable and configure.
 # A three-tuple following this format:
@@ -181,7 +180,7 @@ def configure_targets(deployment_target):
     global SERVER_BASE_URL
     global DEBUG
     global DEPLOYMENT_TARGET
-    global APP_LOG_PATH
+    global SERVER_LOG_PATH
     global DISQUS_SHORTNAME
     global TUMBLR_NAME
     global TUMBLR_NOT_BEFORE
@@ -209,7 +208,7 @@ def configure_targets(deployment_target):
         SERVER_BASE_URL = 'http://127.0.0.1:8001/%s' % PROJECT_SLUG
         DISQUS_SHORTNAME = 'nprviz-test'
         DEBUG = True
-        APP_LOG_PATH = '/tmp/%s.app.log' % PROJECT_SLUG
+        SERVER_LOG_PATH = '/tmp'
 
     DEPLOYMENT_TARGET = deployment_target
 
