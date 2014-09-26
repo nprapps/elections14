@@ -60,8 +60,11 @@ def _calculate_bop(races, majority, initial):
     winning_races = [race for race in races if race.is_called()]
     for race in winning_races:
         winner = race.get_winning_party()
+
         bop[winner]['has'] += 1
-        bop[winner]['needs'] -= 1
+        if bop[winner]['needs'] > 0:
+            bop[winner]['needs'] -= 1
+
         if race.party_changed():
             bop[winner]['picked_up'] += 1
             bop[race.previous_party]['picked_up'] -= 1
