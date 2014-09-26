@@ -73,7 +73,6 @@ h6 {
         font-size: 34px;
         font-weight: 300;
         line-height: 1.2;
-        // letter-spacing: -0.02em;
     }
 }
 
@@ -84,7 +83,6 @@ h6 {
 .results-header {
     background: #fff;
     overflow: hidden;
-    padding-right:5px;
     margin-bottom: @line-height-computed / 2;
     @media screen and (max-width: @screen-sm){
         margin-bottom:5px;
@@ -249,17 +247,18 @@ h6 {
         @media screen and (max-width: 470px){
             width:100% !important;
         }
+
         box-sizing: border-box;
         padding: 0 15px;
         @media screen and (max-width: @screen-md){
             padding: 0 6px;
         }
 
-        &:first-child {
+        &.first {
             padding-left: 0;
         }
 
-        &:last-child {
+        &.last {
             padding-right: 0;
         }
     }
@@ -269,16 +268,15 @@ h6 {
         color: @gray-darker;
         // vertical-align:top;
         margin-bottom:0;
-        border-top: 4px solid @gray-dark;
+        border-top: 5px solid @gray-dark;
         // padding: 4px 0;
         @media screen and (max-width: @screen-md){
             border-top: 2px solid @gray-dark;
             // padding:4.5px 0;
         }
        
-
         .time {
-            padding: 3.5px 0;
+            padding: 3px 0;
             @media screen and (max-width: @screen-md){
                 padding:4.5px 0;
             }
@@ -297,7 +295,6 @@ h6 {
     .races {
         width: 100%;
         
-    
         td {
             vertical-align: top;
             // border-top: 1px solid #ccc;
@@ -310,7 +307,12 @@ h6 {
 
             &.reporting {
                 background: @yellow;
-                // &:after{content:"in";}
+                @media screen and (min-width: @screen-sm){
+                    &:after{
+                        content:"in";
+                        font-size:80%;
+                    }
+                }
             }
 
             &.called {
@@ -363,7 +365,6 @@ h6 {
                 //     content:"*";
                 // }  
                 // text-transform:uppercase;
-
             }
 
             .fname{
@@ -373,27 +374,25 @@ h6 {
             }    
         }
 
-
-        .id-5083{
-            letter-spacing:-.09em;
-        }
         .candidate-total {
             width: 6%;
-        }
-        .candidate-total{
             text-align:right;
         }
+
         .candidate-total.gop{
             text-align:left;
         }
+
+        .id-5083, .id-19638{
+            letter-spacing:-.09em;
+            font-weight:300 !important;
+        }
     }
 }
 
-body.house{
-    .fname{
-        display:none;
-    }
-}
+
+
+
 
 .key{
     font-size: 9px;
@@ -473,12 +472,4 @@ body.house{
     }  
 }
 
-// .results-status.reporting{
-//     background-color: @white !important;
-//     color: @yellow;
-// }
 
-// .results-status.called{
-//     background-color: @white !important;
-//     color: black !important;
-// }

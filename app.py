@@ -19,12 +19,14 @@ app.jinja_env.filters['urlencode'] = urlencode_filter
 
 STACK_NUMBER_FILENAME = '.stack_number'
 
+SENATE_MAJORITY = 51
 SENATE_INITIAL_BOP = {
     'dem': 32,
     'gop': 30,
     'other': 2,
 }
 
+HOUSE_MAJORITY = 218
 HOUSE_INITIAL_BOP = {
     'dem': 0,
     'gop': 0,
@@ -45,14 +47,6 @@ def _group_races_by_closing_time(races):
 
     return sorted(results.items())
 
-def _partition(l):
-    """
-    Split a list in two!
-    """
-    length = len(l)
-    left = int(round(length / 2.))
-    return (l[0:left], l[left:])
-
 def _calculate_bop(races, majority, initial):
     """
     Calculate a balance of power
@@ -63,19 +57,14 @@ def _calculate_bop(races, majority, initial):
         'picked_up': 0,
     } for key, value in initial.items()}
 
-    for race in races:
+    winning_races = [race for race in races if race.is_called()]
+    for race in winning_races:
         winner = race.get_winning_party()
-        if winner:
-            bop[winner]['has'] += 1
-            bop[winner]['needs'] -= 1
-
-            # @TODO this needs historical knowledge to work propery
-            if race.party_change:
-                bop[winner]['picked_up'] += 1
-                if winner == 'gop':
-                    bop['dem']['picked_up'] -= 1
-                else:
-                    bop['gop']['picked_up'] -= 1
+        bop[winner]['has'] += 1
+        bop[winner]['needs'] -= 1
+        if race.party_changed():
+            bop[winner]['picked_up'] += 1
+            bop[race.previous_party]['picked_up'] -= 1
 
     return bop
 
@@ -151,13 +140,13 @@ def results_house():
 
     context['page_title'] = 'House'
     context['page_class'] = 'house'
-    context['column_number'] = 3
+    context['column_number'] = 2
 
     races = Race.select().where(Race.office_name == 'U.S. House')[0:70]
 
-    context['poll_groups'] = _group_races_by_closing_time(races)
+    context['poll_groups'] = _group_races_by_closing_time(races[0:60])
 
-    context['bop'] = _calculate_bop(races, 218, HOUSE_INITIAL_BOP)
+    context['bop'] = _calculate_bop(races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
     return render_template('slides/congress_results.html', **context)
 
 @app.route('/results/senate/')
@@ -177,7 +166,7 @@ def results_senate():
 
     context['poll_groups'] = _group_races_by_closing_time(races)
 
-    context['bop'] = _calculate_bop(races, 51, SENATE_INITIAL_BOP)
+    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
 
     return render_template('slides/congress_results.html', **context)
 

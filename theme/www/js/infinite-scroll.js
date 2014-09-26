@@ -134,14 +134,28 @@ Tumblelog.Infinite = (function() {
 
         // Fetch
         _Ajax(_url, function(data) {
-            var new_posts_html = data.split('<!-- START' + ' POSTS -->')[1].split('<!-- END' + ' POSTS -->')[0];
-            var $new_posts = $('#posts', data);
-            var new_post_div = '.page' + _current_page;
+            var $data = $(data);
 
-            // Insert posts and update counters
-           $('#posts').append('<div class="page' + _current_page + '">' + new_posts_html + '</div>');
-           sizeVideoContainers(new_post_div);
-           $(new_post_div).fitVids({ customSelector: "video"});
+            var $new_posts = $('#posts article', data);
+            var $current_posts = $('#posts');
+
+            var posts_to_append = [];
+
+            for (var i = 0; i < $new_posts.length; i++) {
+                var found = $current_posts.find('#' + $new_posts.eq(i).attr('id'));
+
+                if (found.length == 0) {
+                    posts_to_append.push($new_posts[i]);
+                }
+            }
+
+            // Insert new posts
+            $current_posts.append(posts_to_append);
+
+            $posts = $('#posts article');
+
+            sizeVideoContainers($posts);
+            $posts.fitVids({ customSelector: "video"});
 
             _posts_loaded = $new_posts.find('article.post').length;
 
@@ -182,7 +196,7 @@ Tumblelog.Infinite = (function() {
         liveblog_url += 'page/1';
 
         _Ajax(liveblog_url, function(data) {
-            var $data = data;
+            var $data = $(data);
 
             // Update global state
             var new_total_pages = $(data).find('#total-pages').attr('data-total-pages');
@@ -194,31 +208,32 @@ Tumblelog.Infinite = (function() {
             }
 
             // Parse new posts
-            var $posts = $(data).find('#posts').eq(0);
-            var posts = $posts.children();
+            var $new_posts = $data.find('#posts article');
 
             var $current_posts = $('#posts');
             var current_post_permalink = $current_posts.find('.permalink').attr('href');
             var posts_to_append = [];
 
-            for (i = 0; i < posts.length; i++) {
-                var loop_post = posts[i];
-                var permalink = $(loop_post).find('.permalink').attr('href');
+            for (i = 0; i < $new_posts.length; i++) {
+                var $loop_post = $new_posts.eq(i);
+                var permalink = $loop_post.find('.permalink').attr('href');
                 
                 if (permalink == current_post_permalink) {
                     break;
                 }
 
-                posts_to_append.push(posts[i]);
+                posts_to_append.push($new_posts[i]);
             }
 
             console.log('updateLiveBlog', posts_to_append);
 
             // Insert new posts
-            $('#posts').prepend(posts_to_append);
+            $current_posts.prepend(posts_to_append);
 
-            sizeVideoContainers(posts_to_append);
-            $(posts_to_append).fitVids({ customSelector: "video"});
+            $posts = $('#posts article');
+
+            sizeVideoContainers($posts);
+            $posts.fitVids({ customSelector: "video"});
 
             _posts_loaded = $('#posts article.post').length;
 

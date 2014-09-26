@@ -29,7 +29,7 @@
             </div>
             <div class="results-header-group other">
                 <h2 class="party">Other</h2>
-                <p class="total"><span class="percentage">{{ bop.other.has }}</span></p>
+                <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
             </div>
             <div class="results-header-group not-called">
                 <h2>Not Called</h2>
@@ -43,17 +43,17 @@
         <h2 class="poll-closing-group"><span class="time"><span class="time-inner">{{ closing_time|format_board_time }}</span></span></h2>
         <table class="races">
             {% for race in races %}
-            <tr class="race">
+            <tr class="race dontsplit">
                 <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
                     {% if race.is_called() %}
                         {{ race.get_called_time()|format_board_time }}
                     {% elif race.is_reporting() %}
-                        {{ race.precincts_reporting_percent()|format_percent }}% in
+                        {{ race.precincts_reporting_percent()|format_percent }}% 
                     {% else %}
                         0%
                     {% endif %}
                 </td>
-                <td class="state{% if race.is_called() and race.party_change %} party-change {{ race.get_winning_party() }}{% endif %}">{{ race.state_postal }}</td>
+                <td class="state{% if race.is_called() and race.party_changed() %} party-change {{ race.get_winning_party() }}{% endif %}">{{ race.state_postal }}</td>
                 {% set candidate = race.top_candidates()[0] %}
                 {% if candidate %}
                 <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>

@@ -6,12 +6,8 @@ Commands that update or process the application data.
 from datetime import datetime, timedelta
 from itertools import count
 import json
-import os
 import random
-import shutil
 
-import boto.dynamodb
-from boto.dynamodb.condition import GE
 import copytext
 from dateutil.parser import parse
 from fabric.api import env, local, require, run, settings, task
@@ -24,17 +20,19 @@ import servers
 
 SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
 
+@task(default=True)
+def update():
+    """
+    Run all updates
+    """
+    #update_featured_social()
+    update_results()
+
 @task
 def query(q):
     require('settings', provided_by=['production', 'staging'])
 
     run(SERVER_POSTGRES_CMD % ('psql -q elections14 -c "%s"' % q))
-
-def server_postgres_command(cmd):
-    """
-    Run a postgres command on the server.
-    """
-    local(SERVER_POSTGRES_CMD % cmd)
 
 @task
 def bootstrap():
@@ -50,8 +48,8 @@ def bootstrap():
                 service_name = servers._get_installed_service_name(service)
                 local('sudo service %s stop' % service_name)
 
-            server_postgres_command('dropdb %s' % app_config.PROJECT_SLUG)
-            server_postgres_command('createdb %s' % app_config.PROJECT_SLUG)
+            local(SERVER_POSTGRES_CMD % ('dropdb %s' % app_config.PROJECT_SLUG))
+            local(SERVER_POSTGRES_CMD % ('createdb %s' % app_config.PROJECT_SLUG))
 
             for service in services:
                 service_name = servers._get_installed_service_name(service)
@@ -66,7 +64,7 @@ def bootstrap():
     # Don't load this until done resetting database
     import models
 
-    print 'Creating tables'
+    print 'Creating database tables'
 
     models.Race.create_table()
     models.Candidate.create_table()
@@ -80,7 +78,7 @@ def bootstrap():
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
 
-    print 'Loading race data'
+    print 'Loading race data from AP init data on disk'
 
     with open('data/races.json') as f:
         races = json.load(f)
@@ -97,7 +95,7 @@ def bootstrap():
                 last_updated = race['last_updated'],
             )
 
-    print 'Loading candidate data'
+    print 'Loading candidate data from AP init data on disk'
 
     with open('data/candidates.json') as f:
         candidates = json.load(f)
@@ -111,16 +109,17 @@ def bootstrap():
                 candidate_id = candidate['candidate_id'],
             )
 
-@task(default=True)
-def update(test=False):
+@task()
+def update_results():
     """
-    Update models with elections data from interediary files.
+    Update the latest results from the AP intermediary files.
     """
     import models
 
-    #update_featured_social()
     races_updated = 0
     candidates_updated = 0
+
+    print 'Loading latest results from AP update data on disk'
 
     with open('data/update.json') as f:
         races = json.load(f)
@@ -156,22 +155,6 @@ def update(test=False):
 
     print 'Updated %i races' % races_updated 
     print 'Updated %i candidates' % candidates_updated 
-
-@task
-def get_quiz_answers():
-    """
-    Read all quiz answers from Dynamo.
-    """
-    conn = boto.dynamodb.connect_to_region('us-west-2')
-
-    table = conn.get_table('elections14-game')
-
-    recent_answers = table.scan({ 'timestamp': GE('1410800598040') })
-
-    print recent_answers.count
-
-    for answer in recent_answers:
-        print answer
 
 @task
 def update_featured_social():
@@ -314,6 +297,23 @@ def update_featured_social():
     with open('data/featured.json', 'w') as f:
         json.dump(output, f)
 
+@task
+def mock_slides():
+    """
+    Load mockup slides from assets directory.
+    """
+    import models
+
+    models.SlideSequence.delete().execute()
+    models.Slide.delete().execute()
+
+    it = count()
+    _mock_slide_from_image('welcome.png', it.next())
+    _mock_slide_with_pym('senate', 'results/senate/', it.next())
+    _mock_slide_from_image('gif1.gif', it.next())
+    _mock_slide_from_image('party_pix.png', it.next())
+
+
 def _mock_slide_from_image(filename, i):
     import models
 
@@ -338,39 +338,26 @@ def _mock_slide_with_pym(slug, path, i):
     models.SlideSequence.create(order=i, slide=slide)
 
 @task
-def mock_slides():
-    """
-    Load mockup slides from assets directory.
-    """
-    import models
-
-    models.SlideSequence.delete().execute()
-    models.Slide.delete().execute()
-
-    it = count()
-    _mock_slide_from_image('welcome.png', it.next())
-    _mock_slide_with_pym('senate', 'results/senate/', it.next())
-    _mock_slide_from_image('gif1.gif', it.next())
-    _mock_slide_from_image('party_pix.png', it.next())
-
-@task
-def mock_election_results():
+def mock_results():
     """
     Fake out some election results
     """
     import models
 
+    for candidate in models.Candidate.select():
+        candidate.incumbent = False
+        candidate.save()
+
     for race in models.Race.select():
         race.accept_ap_call = False
         race.ap_called = False
-        race.party_change = False
         _fake_incumbent(race)
+        _fake_previous_party(race)
         _fake_poll_closing_time(race)
         _fake_precincts_reporting(race)
         _fake_called_status(race)
         _fake_results(race)
         race.save()
-
 
 def _fake_incumbent(race):
     """
@@ -384,6 +371,18 @@ def _fake_incumbent(race):
         candidate.save()
     except IndexError:
         pass
+
+def _fake_previous_party(race):
+    """
+    Fake out previous party for each seat
+    """
+    import models
+    incumbent_query = race.candidates.where(models.Candidate.incumbent == True)
+    if incumbent_query.count() > 0:
+        incumbent = incumbent_query[0]
+        race.previous_party = incumbent.party.lower()
+    else:
+        race.previous_party = random.choice(['gop', 'dem', 'other'])
 
 def _fake_poll_closing_time(race):
     """
@@ -410,7 +409,7 @@ def _fake_called_status(race):
     Fake AP called status, requires race to have closing time
     """
     if race.precincts_reporting > 0:
-        race.ap_called = random.choice([True, True, False])
+        race.ap_called = random.choice([True, True, True, False])
         if race.ap_called:
             race.accept_ap_call = True
             race.ap_called_time = race.poll_closing_time + timedelta(hours=random.randint(1,3), minutes=random.randint(0,59))
@@ -420,7 +419,7 @@ def _fake_results(race):
     max_votes = 0
     for candidate in race.candidates:
         candidate.ap_winner = False
-        if candidate.party in ["GOP", "Dem"] and race.precincts_reporting > 0:
+        if candidate.party in ['GOP', 'Dem', 'Grn'] and race.precincts_reporting > 0:
             votes = random.randint(400000, 600000)
             candidate.vote_count = votes
             if votes > max_votes:
@@ -433,7 +432,5 @@ def _fake_results(race):
 
     if race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
         max_candidate.ap_winner = True
-        if not max_candidate.incumbent:
-            race.party_change = True
         max_candidate.save()
 
