@@ -57,3 +57,23 @@ class APTestCase(unittest.TestCase):
         response = cache['response']
         
         self.assertEqual(json.loads(body), response)
+
+    @unittest.skip('TODO')
+    def test_candidate_init(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_race_update(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_candidate_update(self):
+        pass
+
+    @unittest.skip('TODO')
+    def test_write(self):
+        """
+        Test writing format-neutral intermediaries from AP response cache.
+        """
+        pass
+

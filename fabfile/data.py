@@ -30,39 +30,49 @@ def update():
 
 @task
 def query(q):
+    """
+    Execute a query on one of the servers.
+    """
     require('settings', provided_by=['production', 'staging'])
 
     run(SERVER_POSTGRES_CMD % ('psql -q elections14 -c "%s"' % q))
 
-@task
-def bootstrap():
+def server_reset_db():
     """
-    Resets the local environment to a fresh copy of the db and data.
+    Reset the database on a server.
+    """
+    with settings(warn_only=True):
+        services = ['uwsgi', 'stack', 'liveblog']
+        for service in services:
+            service_name = servers._get_installed_service_name(service)
+            local('sudo service %s stop' % service_name)
+
+        local(SERVER_POSTGRES_CMD % ('dropdb %s' % app_config.PROJECT_SLUG))
+        local(SERVER_POSTGRES_CMD % ('createdb %s' % app_config.PROJECT_SLUG))
+
+        for service in services:
+            service_name = servers._get_installed_service_name(service)
+            local('sudo service %s start' % service_name)
+
+def local_reset_db():
+    """
+    Reset the database locally.
     """
     secrets = app_config.get_secrets()
 
-    if env.settings:
-        with settings(warn_only=True):
-            services = ['uwsgi', 'stack', 'liveblog']
-            for service in services:
-                service_name = servers._get_installed_service_name(service)
-                local('sudo service %s stop' % service_name)
+    with settings(warn_only=True):
+        local('dropdb %s' % app_config.PROJECT_SLUG)
+        local('echo "CREATE USER %s WITH PASSWORD \'%s\';" | psql' % (app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']))
 
-            local(SERVER_POSTGRES_CMD % ('dropdb %s' % app_config.PROJECT_SLUG))
-            local(SERVER_POSTGRES_CMD % ('createdb %s' % app_config.PROJECT_SLUG))
+    local('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
 
-            for service in services:
-                service_name = servers._get_installed_service_name(service)
-                local('sudo service %s start' % service_name)
-    else:
-        with settings(warn_only=True):
-            local('dropdb %s' % app_config.PROJECT_SLUG)
-            local('echo "CREATE USER %s WITH PASSWORD \'%s\';" | psql' % (app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']))
-
-        local('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
-
-    # Don't load this until done resetting database
+def create_tables():
+    """
+    Create the databse tables.
+    """
     import models
+    
+    secrets = app_config.get_secrets()
 
     print 'Creating database tables'
 
@@ -77,6 +87,18 @@ def bootstrap():
     admin_user = admin_app.auth.User(username='admin', email='', admin=True, active=True)
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
+
+@task
+def bootstrap():
+    """
+    Resets the local environment to a fresh copy of the db and data.
+    """
+    if env.settings:
+        server_reset_db()
+    else:
+        local_reset_db()
+
+    create_tables()
 
     load_races('data/races.json')
     load_candidates('data/candidates.json')
