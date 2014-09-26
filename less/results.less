@@ -15,6 +15,8 @@
 @screen-xl: 1400px;
 @screen-big-board: 1920px;
 
+@bigpad : 15px;
+@littlepad : 6px;
 
 body {
     font-family: 'Cooper Hewitt';
@@ -32,9 +34,9 @@ h6 {
 }
 
 .container {
-    padding: 15px;
+    padding-top: 15px;
     @media screen and (max-width: @screen-sm){
-        padding: 5px;
+        padding-top: 5px;
     }
 }
 
@@ -81,6 +83,12 @@ h6 {
 }
 
 .results-header {
+    padding-right: @bigpad;
+    padding-left: @bigpad;
+    @media screen and (max-width: @screen-md){
+        padding-right: @littlepad;
+        padding-left: @littlepad;
+    }
     background: #fff;
     overflow: hidden;
     margin-bottom: @line-height-computed / 2;
@@ -249,18 +257,18 @@ h6 {
         }
 
         box-sizing: border-box;
-        padding: 0 15px;
+        padding: 0 @bigpad;
         @media screen and (max-width: @screen-md){
-            padding: 0 6px;
+            padding: 0 @littlepad;
         }
 
-        &.first {
-            padding-left: 0;
-        }
+        // &.first {
+        //     padding-left: 0;
+        // }
 
-        &.last {
-            padding-right: 0;
-        }
+        // &.last {
+        //     padding-right: 0;
+        // }
     }
 
     .poll-closing-group {
@@ -402,6 +410,12 @@ body.house{
 
 
 .key{
+    padding-right: @bigpad;
+    padding-left: @bigpad;
+    @media screen and (max-width: @screen-md){
+        padding-right: @littlepad;
+        padding-left: @littlepad;
+    }
     font-size: 9px;
     font-weight: 300;
 
@@ -432,7 +446,6 @@ body.house{
     margin-bottom:20px;
     overflow:hidden;
     // border:1px solid black;
-    padding:5px;
     float:left;
     // font-family:'Open Sans';
         
