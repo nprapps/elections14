@@ -17,6 +17,7 @@ from twitter import Twitter, OAuth
 import app_config
 import admin_app
 import servers
+import csv
 
 SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
 
@@ -335,6 +336,37 @@ def update_featured_social():
         json.dump(output, f)
 
 @task
+def load_house_extra():
+    """
+    Load extra data (featured status, poll close, last party in power) for
+    house of reps
+    """
+    with open('data/house-extra.csv') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row.get('featured') == '1':
+                _save_house_row(row)
+
+def _save_house_row(row):
+    """
+    Merge house data with existing record
+    """
+    import models
+    state_postal = row['district'][0:2]
+    district = int(row['district'][2:])
+    existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
+
+    print "Updating %s" % existing
+    existing.featured_race = True
+    existing.previous_party = row['party']
+
+    if row['poll_close'] != '':
+        hours, minutes = row['poll_close'].split(':')
+        existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
+
+    existing.save()
+
+@task
 def mock_slides():
     """
     Load mockup slides from assets directory.
@@ -381,6 +413,8 @@ def mock_results():
     """
     import models
 
+    print "Generating fake data"
+
     for candidate in models.Candidate.select():
         candidate.incumbent = False
         candidate.save()
@@ -395,6 +429,9 @@ def mock_results():
         _fake_called_status(race)
         _fake_results(race)
         race.save()
+
+    print "Loading real data where it exists"
+    load_house_extra()
 
 def _fake_incumbent(race):
     """
