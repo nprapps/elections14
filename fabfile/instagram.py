@@ -18,13 +18,13 @@ class Photo(object):
             self,
             'local_img_id',
             self.image_url\
-                .split(u'fbcdn.net/')[1]\
+                .split(u'/')[-1]\
                 .replace('_8.jpg', '.jpg'))
         setattr(
             self,
             'local_img_url',
             'assets/instagram/nprparty-instagram-%s' % self.image_url\
-                .split(u'fbcdn.net/')[1]\
+                .split(u'/')[-1]\
                 .replace('_n.jpg', '.jpg'))
 
 def get_photo_csv():
