@@ -19,7 +19,7 @@ class Photo(object):
             'local_img_id',
             self.image_url\
                 .split(u'/')[-1]\
-                .replace('_8.jpg', '.jpg'))
+                .replace('_n.jpg', '.jpg'))
         setattr(
             self,
             'local_img_url',
