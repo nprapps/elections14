@@ -1,0 +1,37 @@
+state,state,seat_number,poll_close_edt,poll_close,party
+Alabama,AL,,8:00 EDT,8:00,gop
+Alaska,AK,,12:00 EDT,12:00,dem
+Arkansas,AR,,8:30 EDT,8:30,dem
+Colorado,CO,,9:00 EDT,9:00,dem
+Delaware,DE,,8:00 EDT,8:00,dem
+Georgia,GA,,7:00 EDT,7:00,gop
+Hawaii,HI,,11:00 EDT,11:00,dem
+Idaho,ID,,11:00 EDT,11:00,gop
+Illinois,IL,,8:00 EDT,8:00,dem
+Iowa,IA,,10:00 EDT,10:00,dem
+Kansas,KS,,9:00 EDT,9:00,gop
+Kentucky,KY,,7:00 EDT,7:00,gop
+Louisiana (blanket primary,LA,,9:00 EDT,9:00,dem
+Maine,ME,,8:00 EDT,8:00,gop
+Massachusetts,MA,,8:00 EDT,8:00,dem
+Michigan,MI,,9:00 EDT,9:00,dem
+Minnesota,MN,,9:00 EDT,9:00,dem
+Mississippi,MS,,8:00 EDT,8:00,gop
+Montana,MO,,10:00 EDT,10:00,dem
+Nebraska,NE,,9:00 EDT,9:00,gop
+New Hampshire,NH,,8:00 EDT,8:00,dem
+New Jersey,NJ,,8:00 EDT,8:00,dem
+New Mexico,NM,,9:00 EDT,9:00,dem
+North Carolina,NC,,7:30 EDT,7:30,dem
+Oklahoma,OK,,8:00 EDT,8:00,gop
+Oklahoma,OK,2,8:00 EDT,8:00,gop
+Oregon,OR,,11:00 EDT,11:00,dem
+Rhode Island,RI,,8:00 EDT,8:00,dem
+South Carolina,SC,,7:00 EDT,7:00,gop
+South Carolina,SC,2,7:00 EDT,7:00,gop
+South Dakota,SD,,9:00 EDT,9:00,dem
+Tennessee,TN,,8:00 EDT,8:00,gop
+Texas,TX,,9:00 EDT,9:00,gop
+Virginia,VA,,7:00 EDT,7:00,dem
+West Virginia,WV,,7:30 EDT,7:30,dem
+Wyoming,WY,,9:00 EDT,9:00,gop
