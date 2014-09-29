@@ -32,4 +32,5 @@ def instagram():
     """
     while True:
         execute('instagram.get_photos')
+        execute('deploy_instagram_photos')
         sleep(app_config.INSTAGRAM_REFRESH_INTERVAL)

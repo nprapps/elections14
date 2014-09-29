@@ -57,3 +57,4 @@ def parse_photo_csv():
 def get_photos():
     get_photo_csv()
     parse_photo_csv()
+
