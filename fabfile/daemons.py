@@ -24,3 +24,12 @@ def stack():
     while True:
         execute('stack.rotate')
         sleep(app_config.SLIDE_ROTATE_INTERVAL)
+
+@task
+def instagram():
+    """
+    Get photos from Instagram callout indefinitely.
+    """
+    while True:
+        execute('instagram.get_photos')
+        sleep(app_config.INSTAGRAM_REFRESH_INTERVAL)

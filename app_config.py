@@ -88,6 +88,7 @@ SERVER_SERVICES = [
     ('nginx', '/etc/nginx/locations-enabled', 'conf'),
     ('stack', '/etc/init', 'conf'),
     ('liveblog', '/etc/init', 'conf'),
+    ('instagram', '/etc/init', 'conf'),
 ]
 
 # These variables will be set at runtime. See configure_targets() below
@@ -143,6 +144,8 @@ TUMBLR_NAME = '' # See below
 TUMBLR_NOT_BEFORE = None # See below 
 TUMBLR_AUTO_REFRESH = True
 TUMBLR_REFRESH_INTERVAL = 5
+
+INSTAGRAM_REFRESH_INTERVAL = 15
 
 """
 Utilities
