@@ -413,6 +413,8 @@ def mock_results():
     """
     import models
 
+    print "Generating fake data"
+
     for candidate in models.Candidate.select():
         candidate.incumbent = False
         candidate.save()
@@ -427,6 +429,9 @@ def mock_results():
         _fake_called_status(race)
         _fake_results(race)
         race.save()
+
+    print "Loading real data where it exists"
+    load_house_extra()
 
 def _fake_incumbent(race):
     """
