@@ -19,7 +19,7 @@ class Photo(object):
             'local_img_id',
             self.image_url\
                 .split(u'/')[-1]\
-                .replace('_8.jpg', '.jpg'))
+                .replace('_n.jpg', '.jpg'))
         setattr(
             self,
             'local_img_url',
@@ -57,3 +57,4 @@ def parse_photo_csv():
 def get_photos():
     get_photo_csv()
     parse_photo_csv()
+

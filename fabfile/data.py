@@ -373,6 +373,46 @@ def _save_house_row(row):
 
 
 @task
+def load_senate_extra():
+    """
+    Load extra data (featured status, poll close, last party in power) for
+    senate
+    """
+    with open('data/senate-extra.csv') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            _save_senate_row(row)
+
+def _save_senate_row(row):
+    """
+    Merge senate data with existing record
+    """
+    import models
+
+    try:
+        state_postal = row['state']
+        seat_number = row['seat_number']
+        if seat_number == '':
+            seat_number = None
+        else:
+            seat_number = int(seat_number)
+
+        existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
+
+        print "Updating %s" % existing
+        existing.featured_race = True
+        existing.previous_party = row['party']
+
+        if row['poll_close'] != '':
+            hours, minutes = row['poll_close'].split(':')
+            existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
+
+        existing.save()
+
+    except models.Race.DoesNotExist:
+        print 'Race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
+
+@task
 def mock_slides():
     """
     Load mockup slides from assets directory.
@@ -438,6 +478,7 @@ def mock_results():
 
     print "Loading real data where it exists"
     load_house_extra()
+    load_senate_extra()
 
 def _fake_incumbent(race):
     """

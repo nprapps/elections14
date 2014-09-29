@@ -160,6 +160,13 @@ def deploy_slides():
     utils._deploy_to_s3('.slides_gzip')
 
 @task
+def deploy_instagram_photos():
+    """
+    Deploy downloaded Instagram photos to S3.
+    """
+    utils._deploy_to_s3('www/assets/instagram')
+
+@task
 def deploy():
     """
     Deploy the latest app to S3 and, if configured, to our servers.
