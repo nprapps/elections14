@@ -145,11 +145,13 @@ def results_house():
     context['page_class'] = 'house'
     context['column_number'] = 2
 
-    races = Race.select().where(Race.office_name == 'U.S. House')
 
-    context['poll_groups'] = _group_races_by_closing_time(races[0:60])
+    all_races = Race.select().where(Race.office_name == 'U.S. House')
+    featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True))
 
-    context['bop'] = _calculate_bop(races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
+    context['poll_groups'] = _group_races_by_closing_time(featured_races)
+    context['bop'] = _calculate_bop(all_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
+
     return render_template('slides/race_results.html', **context)
 
 @app.route('/results/senate/')
