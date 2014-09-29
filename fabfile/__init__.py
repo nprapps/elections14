@@ -11,6 +11,7 @@ import ap
 import assets
 import daemons
 import data
+import instagram
 import issues
 import liveblog
 import render

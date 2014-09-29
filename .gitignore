@@ -58,6 +58,7 @@ www/test/test.html
 www/assets/*
 !www/assets/assetsignore
 data/gdoc*.csv
+data/photos.csv
 www/comments/index.html
 analytics.json
 analytics.txt
