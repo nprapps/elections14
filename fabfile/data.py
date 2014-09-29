@@ -352,19 +352,25 @@ def _save_house_row(row):
     Merge house data with existing record
     """
     import models
-    state_postal = row['district'][0:2]
-    district = int(row['district'][2:])
-    existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
 
-    print "Updating %s" % existing
-    existing.featured_race = True
-    existing.previous_party = row['party']
+    try:
+        state_postal = row['district'][0:2]
+        district = int(row['district'][2:])
+        existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
 
-    if row['poll_close'] != '':
-        hours, minutes = row['poll_close'].split(':')
-        existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
+        print "Updating %s" % existing
+        existing.featured_race = True
+        existing.previous_party = row['party']
 
-    existing.save()
+        if row['poll_close'] != '':
+            hours, minutes = row['poll_close'].split(':')
+            existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
+
+        existing.save()
+
+    except models.Race.DoesNotExist:
+        print 'Race named %s does not exist in AP data' % row['district']
+
 
 @task
 def mock_slides():
