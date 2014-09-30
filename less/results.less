@@ -344,11 +344,10 @@ h6 {
 
             &.party-change {
                 color: #fff;
-                font-weight: bold;
+                &.dem { background-color: @blue; }
+                &.gop { background-color: @red; }
+                &.other { background-color: @green; }
 
-                &.dem { color: @blue; }
-                &.gop { color: @red; }
-                &.other { color: @green; }
             }
         }
 
@@ -476,8 +475,13 @@ h6 {
     }
 
     .state-ex{
-        color:@blue;
+        background-color:@blue;
+        color:@white;
+        padding: 0 2px;
+    }
 
+    .state2-ex{
+        color:@red;
     }
     .incum-ex{
         color:@red;
