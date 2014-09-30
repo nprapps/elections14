@@ -184,7 +184,7 @@ h6 {
 
             .count {
                 display: inline-block;
-                background: #ddd;
+                background: #ccc;
                 color: #333;
             }
         }
@@ -308,7 +308,7 @@ h6 {
     }
 
     .race{
-         border-top: 1px solid #ccc;
+         border-top: 1px solid @gray-light;
     }
     .races {
         width: 100%;
@@ -323,7 +323,7 @@ h6 {
             width: 12%;
             text-align: right;
 
-            &.reporting {
+            &.reporting, &.called {
                 background: @yellow;
                 @media screen and (min-width: @screen-sm){
                     &:after{
