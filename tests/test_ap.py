@@ -197,9 +197,9 @@ class APTestCase(unittest.TestCase):
         with open('.ap_cache.json', 'w') as f:
             f.write(json.dumps(ap_cache))
 
-        ap.write()
+        ap.write(output_dir='.tests')
 
-        with open('data/races.json') as f:
+        with open('.tests/races.json') as f:
             written_races = json.load(f)
 
             init_race = test_races['races'][0]
@@ -216,7 +216,7 @@ class APTestCase(unittest.TestCase):
             self.assertEqual(init_race['officeID'], written_race['office_id'])
 
 
-        with open('data/candidates.json') as f:
+        with open('.tests/candidates.json') as f:
             written_candidates = json.load(f)
 
             init_candidates = test_candidates['candidates']
