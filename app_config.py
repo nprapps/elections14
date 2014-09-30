@@ -142,7 +142,7 @@ SLIDE_ROTATE_INTERVAL = 8
 
 TUMBLR_NAME = '' # See below
 TUMBLR_NOT_BEFORE = None # See below 
-TUMBLR_AUTO_REFRESH = True
+TUMBLR_AUTO_REFRESH = None # See below 
 TUMBLR_REFRESH_INTERVAL = 5
 
 INSTAGRAM_REFRESH_INTERVAL = 15
@@ -186,6 +186,7 @@ def configure_targets(deployment_target):
     global DEBUG
     global DISQUS_SHORTNAME
     global TUMBLR_NAME
+    global TUMBLR_AUTO_REFRESH
     global TUMBLR_NOT_BEFORE
 
     if deployment_target == 'production':
@@ -199,6 +200,7 @@ def configure_targets(deployment_target):
         DISQUS_SHORTNAME = 'npr-news'
 
         TUMBLR_NAME = 'nprpolitics'
+        TUMBLR_AUTO_REFRESH = False
         TUMBLR_NOT_BEFORE = datetime(2014, 11, 4, 23, 0, 0) # +5 hours for UTC
     elif deployment_target == 'staging':
         S3_BUCKETS = STAGING_S3_BUCKETS
@@ -211,6 +213,7 @@ def configure_targets(deployment_target):
         DISQUS_SHORTNAME = 'nprviz-test'
 
         TUMBLR_NAME = 'stage-nprelections'
+        TUMBLR_AUTO_REFRESH = False
         TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
     else:
         S3_BUCKETS = []
@@ -223,6 +226,7 @@ def configure_targets(deployment_target):
         DISQUS_SHORTNAME = 'nprviz-test'
         
         TUMBLR_NAME = 'stage-nprelections'
+        TUMBLR_AUTO_REFRESH = False
         TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
 
     DEPLOYMENT_TARGET = deployment_target
