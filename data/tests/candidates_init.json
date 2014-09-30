@@ -1,0 +1,49 @@
+{
+    "timestamp": "2014-09-30T15:34:55.823Z", 
+    "candidates": [
+        {
+            "abbrv": "Chrstffrs", 
+            "candidateID": "4848", 
+            "last": "Christofferson", 
+            "statePostal": "OR", 
+            "raceID": "38529", 
+            "ballotOrder": 1, 
+            "polNum": "40596", 
+            "lastupdated": "2014-09-26T16:26:50Z", 
+            "polID": "63559", 
+            "officeID": "H", 
+            "party": "Dem", 
+            "first": "Aelea"
+        }, 
+        {
+            "abbrv": "Walden", 
+            "candidateID": "4642", 
+            "last": "Walden", 
+            "statePostal": "OR", 
+            "raceID": "38529", 
+            "ballotOrder": 3, 
+            "polNum": "38856", 
+            "lastupdated": "2014-09-26T16:26:50Z", 
+            "polID": "481", 
+            "officeID": "H", 
+            "party": "GOP", 
+            "first": "Greg"
+        }, 
+        {
+            "abbrv": "Durbin", 
+            "candidateID": "4979", 
+            "last": "Durbin", 
+            "statePostal": "OR", 
+            "raceID": "38529", 
+            "ballotOrder": 2, 
+            "polNum": "40756", 
+            "lastupdated": "2014-09-26T16:26:50Z", 
+            "polID": "64323", 
+            "officeID": "H", 
+            "party": "Lib", 
+            "first": "Sharon"
+        } 
+    ],
+    "electionDate": "2014-11-04", 
+    "nextrequest": "http://api.ap.org/v2/init/candidates/2014-11-04?officeID=S%2cH%2cG&format=json&minDateTime=2014-09-30T15%3a08%3a31.000Z"
+} 

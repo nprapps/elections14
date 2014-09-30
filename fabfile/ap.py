@@ -111,7 +111,7 @@ def _update_ap(endpoint, use_cache=True):
     elif response.status_code != 200:
         print '%s: returned %i' % (endpoint, response.status_code)
         return
-
+    
     cache[endpoint] = {
         'response': response.json(),
         'nextrequest': response.json()['nextrequest'],

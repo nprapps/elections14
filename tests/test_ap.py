@@ -58,17 +58,125 @@ class APTestCase(unittest.TestCase):
         
         self.assertEqual(json.loads(body), response)
 
-    @unittest.skip('TODO')
+    @responses.activate
     def test_candidate_init(self):
-        pass
+        """
+        Verify candidate data is cached correctly.
+        """
+        with open('data/tests/candidates_init.json') as f:
+            body = f.read()
 
-    @unittest.skip('TODO')
+        def responder(request):
+            headers = {
+                'Last-Modified': 'Tue, 30 Sep 2014 15:08:31 GMT', 
+                'Etag': '40b13862-json'
+            }
+
+            return (200, headers, body) 
+
+        responses.add_callback(
+            responses.GET,
+            'https://api.ap.org/v2/init/candidates/2014-11-04',
+            callback=responder,
+            content_type='application/json'
+        )
+
+        ap._init_ap('init/candidates') 
+
+        with open(ap.CACHE_FILE) as f:
+            data = json.load(f)
+
+        self.assertIn('init/candidates', data)
+
+        cache = data['init/candidates']
+
+        self.assertIn('Etag', cache)
+        self.assertIn('Last-Modified', cache)
+        self.assertIn('nextrequest', cache)
+
+        response = cache['response']
+       
+        self.assertEqual(json.loads(body), response)
+
+    @responses.activate
     def test_race_update(self):
-        pass
+        """
+        Verify race update data is cached correctly.
+        """
+        with open('data/tests/race_update.json') as f:
+            body = f.read()
 
-    @unittest.skip('TODO')
-    def test_candidate_update(self):
-        pass
+        def responder(request):
+            headers = {
+                'Last-Modified': 'Tue, 30 Sep 2014 15:18:50 GMT', 
+                'Etag': 'ffffffffbb1db2cd-json'
+            }
+
+            return (200, headers, body) 
+
+        responses.add_callback(
+            responses.GET,
+            'https://api.ap.org/v2/races/2014-11-04',
+            callback=responder,
+            content_type='application/json'
+        )
+
+        ap._update_ap('races') 
+
+        with open(ap.CACHE_FILE) as f:
+            data = json.load(f)
+
+        self.assertIn('races', data)
+
+        cache = data['races']
+
+        self.assertIn('Etag', cache)
+        self.assertIn('Last-Modified', cache)
+        self.assertIn('nextrequest', cache)
+
+        response = cache['response']
+       
+        self.assertEqual(json.loads(body), response)
+
+    @responses.activate
+    def test_calls_update(self):
+        """
+        Verify calls update data is cached correctly.
+        """
+        with open('data/tests/calls_update.json') as f:
+            body = f.read()
+
+        def responder(request):
+            headers = {
+                'Last-Modified': 'Thu, 25 Sep 2014 18:10:54 GMT', 
+                'Etag': '\"ffffffffa71c73ab-json\"'
+            }
+
+            return (200, headers, body) 
+
+        responses.add_callback(
+            responses.GET,
+            'https://api.ap.org/v2/calls/2014-11-04',
+            callback=responder,
+            content_type='application/json'
+        )
+
+        ap._update_ap('calls') 
+
+        with open(ap.CACHE_FILE) as f:
+            data = json.load(f)
+
+        self.assertIn('calls', data)
+
+        cache = data['calls']
+
+        self.assertIn('Etag', cache)
+        self.assertIn('Last-Modified', cache)
+        self.assertIn('nextrequest', cache)
+
+        response = cache['response']
+       
+        self.assertEqual(json.loads(body), response)
 
     @unittest.skip('TODO')
     def test_write(self):

@@ -59,11 +59,23 @@ h6 {
         line-height: 1.1;
     }
 
+    // @media screen and (min-width: @screen-lg){
+    //     font-size: 18px;
+    //     line-height: 1.1;
+    //     font-weight: 300;
+    // }
+
     @media screen and (min-width: @screen-lg){
         font-size: 16px;
         line-height: 1.1;
-        font-weight: 300;
+        font-weight: 400;
     }
+
+    // @media screen and (min-width: @screen-xl){
+    //     font-size: 24px;
+    //     line-height: 1.1;
+    //     font-weight: 300;
+    // }
 
     @media screen and (min-width: @screen-xl){
         font-size: 16px;
@@ -72,9 +84,9 @@ h6 {
     }
 
     @media screen and (min-width: @screen-big-board){
-        font-size: 33px;
+        font-size: 19px;
         font-weight: 300;
-        line-height: 1.2;
+        line-height: .8;
     }
 }
 
@@ -174,12 +186,12 @@ h6 {
 
             .count {
                 display: inline-block;
-                background: #ddd;
+                background: #ccc;
                 color: #333;
             }
         }
 
-        &.other {
+        &.ind {
             margin-right: 15px;
             @media screen and (max-width: @screen-sm){
             margin-right:5px;
@@ -197,12 +209,12 @@ h6 {
 
     .dem  { color: @blue; }
     .gop   { color: @red; }
-    .other { color: @green; }
+    .ind { color: @green; }
     .not-called { color: @gray; }
 
     .dem .percentage   { background: @blue; }
     .gop .percentage   { background: @red; }
-    .other .percentage { background: @green; }
+    .ind .percentage { background: @green; }
     .not-called .count { background: @gray; }
 
     .percentage,
@@ -298,7 +310,7 @@ h6 {
     }
 
     .race{
-         border-top: 1px solid #ccc;
+         border-top: 1px solid @gray-light;
     }
     .races {
         width: 100%;
@@ -313,7 +325,7 @@ h6 {
             width: 12%;
             text-align: right;
 
-            &.reporting {
+            &.reporting, &.called {
                 background: @yellow;
                 @media screen and (min-width: @screen-sm){
                     // &:after{
@@ -334,24 +346,23 @@ h6 {
 
             &.party-change {
                 color: #fff;
-                font-weight: bold;
+                &.dem { background-color: @blue; }
+                &.gop { background-color: @red; }
+                &.ind { background-color: @green; }
 
-                &.dem { color: @blue; }
-                &.gop { color: @red; }
-                &.other { color: @green; }
             }
         }
 
         .dem { color: @blue; }
         .gop { color: @red; }
-        .other { color: @green; }
+        .ind { color: @green; }
 
         .winner {
             color: #fff;
 
             &.dem { background: @blue; }
             &.gop { background: @red; }
-            &.other { background: @green; }
+            &.ind { background: @green; }
         }
 
         .candidate {
@@ -364,15 +375,7 @@ h6 {
             }
 
             &.incumbent {
-                font-weight: 600;
-                // other options
-                // &:before{
-                //     content:"*";
-                // }  
-                // &:after{
-                //     content:"*";
-                // }  
-                // text-transform:uppercase;
+                text-transform:uppercase;
             }
 
             .fname{
@@ -393,7 +396,7 @@ h6 {
 
         .id-5083, .id-19638, .id-18556{
             letter-spacing:-.09em;
-            font-weight:300 !important;
+            font-weight:400 !important;
         }
     }
 }
@@ -432,21 +435,21 @@ body.house{
         font-weight: 300;
     }
     @media screen and (min-width: @screen-lg){
-        font-size: 13.8px;
+        font-size: 13px;
         font-weight: 300;
     }
 
     @media screen and (min-width: @screen-xl){
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 300;
     }
 
     @media screen and (min-width: @screen-big-board){
-        font-size: 22.5px;
+        font-size: 19px;
     }
         
 
-    margin-top:40px;
+    margin-top:20px;
     @media screen and (max-width: @screen-md){
         margin-top:20px;
     }
@@ -458,13 +461,17 @@ body.house{
         
 
     .percent-ex{
-        
         background-color:@yellow;
         display:inline-block;
         padding:0 2px;
     }
+    .percent-called-ex{
+        background-color:#222;
+        display:inline-block;
+        color: @yellow;
+        padding:0 2px;
+    }
     .time-ex{
-        
         background-color:#222;
         display:inline-block;
         color: @white;
@@ -478,8 +485,13 @@ body.house{
     }
 
     .state-ex{
-        color:@blue;
+        background-color:@blue;
+        color:@white;
+        padding: 0 2px;
+    }
 
+    .state2-ex{
+        color:@red;
     }
     .incum-ex{
         color:@red;
