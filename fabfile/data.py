@@ -43,7 +43,7 @@ def server_reset_db():
     Reset the database on a server.
     """
     with settings(warn_only=True):
-        services = ['uwsgi', 'stack', 'liveblog']
+        services = ['uwsgi', 'stack', 'liveblog', 'instagram']
         for service in services:
             service_name = servers._get_installed_service_name(service)
             local('sudo service %s stop' % service_name)
@@ -72,7 +72,7 @@ def create_tables():
     Create the databse tables.
     """
     import models
-    
+
     secrets = app_config.get_secrets()
 
     print 'Creating database tables'
@@ -191,8 +191,8 @@ def update_results():
 
             candidates_updated += 1
 
-    print 'Updated %i races' % races_updated 
-    print 'Updated %i candidates' % candidates_updated 
+    print 'Updated %i races' % races_updated
+    print 'Updated %i candidates' % candidates_updated
 
 @task
 def update_featured_social():
@@ -426,8 +426,6 @@ def mock_slides():
     _mock_slide_from_image('welcome.png', it.next())
     _mock_slide_with_pym('senate', 'results/senate/', it.next())
     _mock_slide_from_image('gif1.gif', it.next())
-    _mock_slide_from_image('party_pix.png', it.next())
-
 
 def _mock_slide_from_image(filename, i):
     import models

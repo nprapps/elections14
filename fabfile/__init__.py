@@ -95,7 +95,11 @@ def tests():
     """
     Run Python unit tests.
     """
+    with settings(warn_only=True):
+        local('createdb elections14test')
+
     local('nosetests')
+
 
 """
 Deployment
