@@ -111,7 +111,7 @@ def _update_ap(endpoint, use_cache=True):
     elif response.status_code != 200:
         print '%s: returned %i' % (endpoint, response.status_code)
         return
-    
+
     cache[endpoint] = {
         'response': response.json(),
         'nextrequest': response.json()['nextrequest'],
@@ -148,7 +148,7 @@ def update():
     _update_ap('calls')
 
 @task
-def write():
+def write(output_dir='data'):
     """
     Write AP data to intermediary files.
     """
@@ -195,9 +195,9 @@ def write():
                 'last_updated': race.get('lastUpdated'),
             })
 
-    with open('data/races.json', 'w') as f:
+    with open('%s/races.json' % output_dir, 'w') as f:
         json.dump(races, f, indent=4)
 
-    with open('data/candidates.json', 'w') as f:
+    with open('%s/candidates.json' % output_dir, 'w') as f:
         json.dump(candidates, f, indent=4)
 
