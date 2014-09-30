@@ -128,8 +128,14 @@ Tumblelog.Infinite = (function() {
         _is_loading = true;
 
         // Build URL
-        if (_url.charAt(_url.length - 1) != '/') _url += '/';
-        if (_current_page === 1) _url += 'page/1';
+        if (_url.charAt(_url.length - 1) != '/') {
+            _url += '/';
+        }
+
+        if (_current_page === 1){
+            _url += 'page/1';
+        }
+
         _current_page++;
         _url = _url.replace('page/' + (_current_page - 1), 'page/' + _current_page);
 
@@ -155,14 +161,15 @@ Tumblelog.Infinite = (function() {
             // Insert new posts
             $current_posts.append(posts_to_append);
 
+
             $posts = $('#posts article');
 
             sizeVideoContainers($posts);
             $posts.fitVids({ customSelector: "video"});
 
-            _posts_loaded = $new_posts.find('article.post').length;
+            _posts_loaded = $('#posts article.post').length;
 
-            if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
+            if (_current_page < _total_pages) {
                 set_trigger();
             } else {
                 disable_scroll();
@@ -241,7 +248,7 @@ Tumblelog.Infinite = (function() {
 
             _posts_loaded = $('#posts article.post').length;
 
-            if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
+            if (_current_page < _total_pages) {
                 set_trigger();
                 _is_loading = false;
             } else {
