@@ -58,9 +58,46 @@ class APTestCase(unittest.TestCase):
         
         self.assertEqual(json.loads(body), response)
 
-    @unittest.skip('TODO')
+    @responses.activate
     def test_candidate_init(self):
-        pass
+        """
+        Verify candidate data is cached correctly.
+        """
+        with open('data/tests/candidates_init.json') as f:
+            body = f.read()
+
+        def responder(request):
+            headers = {
+                'Last-Modified': 'Tue, 30 Sep 2014 15:08:31 GMT', 
+                'Etag': '40b13862-json'
+            }
+
+            print request
+            return (200, headers, body) 
+
+        responses.add_callback(
+            responses.GET,
+            'https://api.ap.org/v2/init/candidates/2014-11-04',
+            callback=responder,
+            content_type='application/json'
+        )
+
+        ap._init_ap('init/candidates') 
+
+        with open(ap.CACHE_FILE) as f:
+            data = json.load(f)
+
+        self.assertIn('init/candidates', data)
+
+        cache = data['init/candidates']
+
+        self.assertIn('Etag', cache)
+        self.assertIn('Last-Modified', cache)
+        self.assertIn('nextrequest', cache)
+
+        response = cache['response']
+       
+        self.assertEqual(json.loads(body), response)
 
     @unittest.skip('TODO')
     def test_race_update(self):
