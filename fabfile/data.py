@@ -43,7 +43,7 @@ def server_reset_db():
     Reset the database on a server.
     """
     with settings(warn_only=True):
-        services = ['uwsgi', 'stack', 'liveblog']
+        services = ['uwsgi', 'stack', 'liveblog', 'instagram']
         for service in services:
             service_name = servers._get_installed_service_name(service)
             local('sudo service %s stop' % service_name)
@@ -72,7 +72,7 @@ def create_tables():
     Create the databse tables.
     """
     import models
-    
+
     secrets = app_config.get_secrets()
 
     print 'Creating database tables'
@@ -191,8 +191,8 @@ def update_results():
 
             candidates_updated += 1
 
-    print 'Updated %i races' % races_updated 
-    print 'Updated %i candidates' % candidates_updated 
+    print 'Updated %i races' % races_updated
+    print 'Updated %i candidates' % candidates_updated
 
 @task
 def update_featured_social():
