@@ -17,6 +17,12 @@ db = PostgresqlDatabase(
     port=secrets.get('POSTGRES_PORT', 5432)
 )
 
+# Indepdendent candidate overrides, (AP race_id, candidate_id) two-tuple mapping
+DEMOCRAT_INDIES = {
+    '17585': '6081', # KS senate, Greg Orman
+}
+REPUBLICAN_INDIES = {}
+
 def slugify(bits):
     """
     Generate a slug.
@@ -248,11 +254,19 @@ class Race(SlugModel):
 
     def top_candidates(self):
         try:
-            dem = self.candidates.where(self.candidates.model_class.party == "Dem")[0]
+            if self.race_id in DEMOCRAT_INDIES.keys():
+                candidate_id = DEMOCRAT_INDIES[self.race_id]
+                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id)[0]
+            else:
+                dem = self.candidates.where(self.candidates.model_class.party == "Dem")[0]
         except IndexError:
             dem = None
         try:
-            gop = self.candidates.where(self.candidates.model_class.party == "GOP")[0]
+            if self.race_id in REPUBLICAN_INDIES.keys():
+                candidate_id = REPUBLICAN_INDIES[self.race_id]
+                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id)[0]
+            else:
+                gop = self.candidates.where(self.candidates.model_class.party == "GOP")[0]
         except IndexError:
             gop = None
 
