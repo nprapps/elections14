@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-from datetime import datetime
-import json
 import re
 
 from peewee import fn, Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField, TextField
@@ -18,15 +16,6 @@ db = PostgresqlDatabase(
     host=secrets.get('POSTGRES_HOST', 'localhost'),
     port=secrets.get('POSTGRES_PORT', 5432)
 )
-
-class ModelEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, datetime):
-            encoded_object = obj.isoformat() 
-        else:
-            encoded_object = json.JSONEncoder.default(self, obj)
-
-        return encoded_object
 
 def slugify(bits):
     """

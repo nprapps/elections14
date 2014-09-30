@@ -7,20 +7,31 @@ from fabric.api import execute, task
 import app_config
 
 @task
-def tumblr():
+def liveblog():
     """
     Fetch new Tumblr posts indenfinitely.
     """
     while True:
-        execute('tumblr.get_posts')
+        execute('liveblog.update')
         execute('deploy_slides')
         sleep(app_config.TUMBLR_REFRESH_INTERVAL)
 
 @task
-def rotate_slide():
+def stack():
     """
     Rotate slides indenfinitely.
     """
     while True:
         execute('stack.rotate')
         sleep(app_config.SLIDE_ROTATE_INTERVAL)
+
+@task
+def instagram():
+    """
+    Get photos from Instagram callout indefinitely.
+    """
+    while True:
+        execute('instagram.get_photos')
+        execute('deploy_instagram_photos')
+        execute('deploy_slides')
+        sleep(app_config.INSTAGRAM_REFRESH_INTERVAL)

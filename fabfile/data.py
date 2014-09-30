@@ -17,6 +17,7 @@ from twitter import Twitter, OAuth
 import app_config
 import admin_app
 import servers
+import csv
 
 SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
 
@@ -30,39 +31,49 @@ def update():
 
 @task
 def query(q):
+    """
+    Execute a query on one of the servers.
+    """
     require('settings', provided_by=['production', 'staging'])
 
     run(SERVER_POSTGRES_CMD % ('psql -q elections14 -c "%s"' % q))
 
-@task
-def bootstrap():
+def server_reset_db():
     """
-    Resets the local environment to a fresh copy of the db and data.
+    Reset the database on a server.
+    """
+    with settings(warn_only=True):
+        services = ['uwsgi', 'stack', 'liveblog']
+        for service in services:
+            service_name = servers._get_installed_service_name(service)
+            local('sudo service %s stop' % service_name)
+
+        local(SERVER_POSTGRES_CMD % ('dropdb %s' % app_config.PROJECT_SLUG))
+        local(SERVER_POSTGRES_CMD % ('createdb %s' % app_config.PROJECT_SLUG))
+
+        for service in services:
+            service_name = servers._get_installed_service_name(service)
+            local('sudo service %s start' % service_name)
+
+def local_reset_db():
+    """
+    Reset the database locally.
     """
     secrets = app_config.get_secrets()
 
-    if env.settings:
-        with settings(warn_only=True):
-            services = ['uwsgi', 'rotate_slide', 'get_tumblr_posts']
-            for service in services:
-                service_name = servers._get_installed_service_name(service)
-                local('sudo service %s stop' % service_name)
+    with settings(warn_only=True):
+        local('dropdb %s' % app_config.PROJECT_SLUG)
+        local('echo "CREATE USER %s WITH PASSWORD \'%s\';" | psql' % (app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']))
 
-            local(SERVER_POSTGRES_CMD % ('dropdb %s' % app_config.PROJECT_SLUG))
-            local(SERVER_POSTGRES_CMD % ('createdb %s' % app_config.PROJECT_SLUG))
+    local('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
 
-            for service in services:
-                service_name = servers._get_installed_service_name(service)
-                local('sudo service %s start' % service_name)
-    else:
-        with settings(warn_only=True):
-            local('dropdb %s' % app_config.PROJECT_SLUG)
-            local('echo "CREATE USER %s WITH PASSWORD \'%s\';" | psql' % (app_config.PROJECT_SLUG, secrets['POSTGRES_PASSWORD']))
-
-        local('createdb -O %s %s' % (app_config.PROJECT_SLUG, app_config.PROJECT_SLUG))
-
-    # Don't load this until done resetting database
+def create_tables():
+    """
+    Create the databse tables.
+    """
     import models
+    
+    secrets = app_config.get_secrets()
 
     print 'Creating database tables'
 
@@ -78,36 +89,63 @@ def bootstrap():
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
 
+@task
+def bootstrap():
+    """
+    Resets the local environment to a fresh copy of the db and data.
+    """
+    if env.settings:
+        server_reset_db()
+    else:
+        local_reset_db()
+
+    create_tables()
+
+    load_races('data/races.json')
+    load_candidates('data/candidates.json')
+
+def load_races(path):
+    """
+    Load AP race data from intermediary JSON into the database.
+    """
+    import models
+
     print 'Loading race data from AP init data on disk'
 
-    with open('data/races.json') as f:
+    with open(path) as f:
         races = json.load(f)
 
-        for race in races:
-            models.Race.create(
-                state_postal = race['state_postal'],
-                office_id = race['office_id'],
-                office_name = race['office_name'],
-                seat_name = race['seat_name'],
-                seat_number = race['seat_number'],
-                race_id = race['race_id'],
-                race_type = race['race_type'],
-                last_updated = race['last_updated'],
-            )
+    for race in races:
+        models.Race.create(
+            state_postal = race['state_postal'],
+            office_id = race['office_id'],
+            office_name = race['office_name'],
+            seat_name = race['seat_name'],
+            seat_number = race['seat_number'],
+            race_id = race['race_id'],
+            race_type = race['race_type'],
+            last_updated = race['last_updated'],
+        )
+
+def load_candidates(path):
+    """
+    Load AP candidate data from intermediary JSON into the database.
+    """
+    import models
 
     print 'Loading candidate data from AP init data on disk'
 
-    with open('data/candidates.json') as f:
+    with open(path) as f:
         candidates = json.load(f)
 
-        for candidate in candidates:
-            models.Candidate.create(
-                first_name = candidate['first_name'],
-                last_name = candidate['last_name'],
-                party = candidate['party'],
-                race = models.Race.get(models.Race.race_id == candidate['race_id']),
-                candidate_id = candidate['candidate_id'],
-            )
+    for candidate in candidates:
+        models.Candidate.create(
+            first_name = candidate['first_name'],
+            last_name = candidate['last_name'],
+            party = candidate['party'],
+            race = models.Race.get(models.Race.race_id == candidate['race_id']),
+            candidate_id = candidate['candidate_id'],
+        )
 
 @task()
 def update_results():
@@ -298,6 +336,83 @@ def update_featured_social():
         json.dump(output, f)
 
 @task
+def load_house_extra():
+    """
+    Load extra data (featured status, poll close, last party in power) for
+    house of reps
+    """
+    with open('data/house-extra.csv') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row.get('featured') == '1':
+                _save_house_row(row)
+
+def _save_house_row(row):
+    """
+    Merge house data with existing record
+    """
+    import models
+
+    try:
+        state_postal = row['district'][0:2]
+        district = int(row['district'][2:])
+        existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
+
+        print "Updating %s" % existing
+        existing.featured_race = True
+        existing.previous_party = row['party']
+
+        if row['poll_close'] != '':
+            hours, minutes = row['poll_close'].split(':')
+            existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
+
+        existing.save()
+
+    except models.Race.DoesNotExist:
+        print 'Race named %s does not exist in AP data' % row['district']
+
+
+@task
+def load_senate_extra():
+    """
+    Load extra data (featured status, poll close, last party in power) for
+    senate
+    """
+    with open('data/senate-extra.csv') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            _save_senate_row(row)
+
+def _save_senate_row(row):
+    """
+    Merge senate data with existing record
+    """
+    import models
+
+    try:
+        state_postal = row['state']
+        seat_number = row['seat_number']
+        if seat_number == '':
+            seat_number = None
+        else:
+            seat_number = int(seat_number)
+
+        existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
+
+        print "Updating %s" % existing
+        existing.featured_race = True
+        existing.previous_party = row['party']
+
+        if row['poll_close'] != '':
+            hours, minutes = row['poll_close'].split(':')
+            existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
+
+        existing.save()
+
+    except models.Race.DoesNotExist:
+        print 'Race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
+
+@task
 def mock_slides():
     """
     Load mockup slides from assets directory.
@@ -344,6 +459,8 @@ def mock_results():
     """
     import models
 
+    print "Generating fake data"
+
     for candidate in models.Candidate.select():
         candidate.incumbent = False
         candidate.save()
@@ -358,6 +475,10 @@ def mock_results():
         _fake_called_status(race)
         _fake_results(race)
         race.save()
+
+    print "Loading real data where it exists"
+    load_house_extra()
+    load_senate_extra()
 
 def _fake_incumbent(race):
     """

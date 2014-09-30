@@ -60,8 +60,11 @@ def _calculate_bop(races, majority, initial):
     winning_races = [race for race in races if race.is_called()]
     for race in winning_races:
         winner = race.get_winning_party()
+
         bop[winner]['has'] += 1
-        bop[winner]['needs'] -= 1
+        if bop[winner]['needs'] > 0:
+            bop[winner]['needs'] -= 1
+
         if race.party_changed():
             bop[winner]['picked_up'] += 1
             bop[race.previous_party]['picked_up'] -= 1
@@ -91,6 +94,7 @@ def signed(num):
     Add sign to number (e.g. +1, -1)
     """
     return '{0:+d}'.format(num)
+
 
 def cors(f):
     """
@@ -142,12 +146,14 @@ def results_house():
     context['page_class'] = 'house'
     context['column_number'] = 3
 
-    races = Race.select().where(Race.office_name == 'U.S. House')[0:70]
+    all_races = Race.select().where(Race.office_name == 'U.S. House')
+    featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.state_postal)
 
-    context['poll_groups'] = _group_races_by_closing_time(races[0:60])
+    context['poll_groups'] = _group_races_by_closing_time(featured_races)
+    context['bop'] = _calculate_bop(all_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
+    context['seat_number'] = ".seat_number"
 
-    context['bop'] = _calculate_bop(races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
-    return render_template('slides/congress_results.html', **context)
+    return render_template('slides/race_results.html', **context)
 
 @app.route('/results/senate/')
 def results_senate():
@@ -162,13 +168,33 @@ def results_senate():
     context['page_class'] = 'senate'
     context['column_number'] = 2
 
-    races = Race.select().where(Race.office_name == 'U.S. Senate')
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
     context['poll_groups'] = _group_races_by_closing_time(races)
 
     context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
 
-    return render_template('slides/congress_results.html', **context)
+    return render_template('slides/race_results.html', **context)
+
+@app.route('/results/governor/')
+def results_governor():
+    """
+    Governor big board
+    """
+    from models import Race
+
+    context = make_context()
+
+    context['page_title'] = 'Governors'
+    context['page_class'] = 'governor'
+    context['column_number'] = 2
+
+    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.state_postal)
+
+    context['poll_groups'] = _group_races_by_closing_time(races)
+
+    return render_template('slides/race_results.html', **context)
+
 
 @app.route('/comments/')
 def comments():

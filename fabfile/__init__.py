@@ -11,12 +11,13 @@ import ap
 import assets
 import daemons
 import data
+import instagram
 import issues
+import liveblog
 import render
 import stack
 import text
 import theme
-import tumblr
 import utils
 
 if app_config.DEPLOY_TO_SERVERS:
@@ -129,7 +130,6 @@ def deploy_server(remote='origin'):
 
         servers.fabcast('text.update')
         servers.fabcast('assets.sync')
-        servers.fabcast('data.update')
 
         if app_config.DEPLOY_CRONTAB:
             servers.install_crontab()
@@ -158,6 +158,13 @@ def deploy_slides():
     render.render_slides()
     utils._gzip('.slides_html', '.slides_gzip')
     utils._deploy_to_s3('.slides_gzip')
+
+@task
+def deploy_instagram_photos():
+    """
+    Deploy downloaded Instagram photos to S3.
+    """
+    utils._deploy_to_s3('www/assets/instagram')
 
 @task
 def deploy():

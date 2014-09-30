@@ -41,3 +41,4 @@ wheel==0.23.0
 wsgiref==0.1.2
 WTForms==2.0.1
 wtf-peewee==0.2.3
+git+https://github.com/dropbox/responses.git@eb8a964b6e3#egg=responses

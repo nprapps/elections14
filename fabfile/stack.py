@@ -17,6 +17,8 @@ def rotate():
 
     next_slide = app.rotate_slide()
 
+    print 'Rotating to %s' % next_slide.slide.slug 
+
     with open('www/%s' % app_config.NEXT_SLIDE_FILENAME, 'w') as f:
         json.dump({
             'next': 'slides/%s.html' % next_slide.slide.slug,

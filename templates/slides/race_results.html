@@ -15,6 +15,7 @@
 
     <div class="results-header">
         <h1>{{ page_title }}</h1>
+        {% if bop %}
         <div class="leaderboard">
             <div class="results-header-group dem">
                 <h2 class="party">Dem</h2>
@@ -36,6 +37,7 @@
                 <p class="total"><span class="count">0</span></p>
             </div>
         </div>
+        {% endif %}
     </div>
 
     <div class="results">
@@ -53,7 +55,10 @@
                         0%
                     {% endif %}
                 </td>
-                <td class="state{% if race.is_called() and race.party_changed() %} party-change {{ race.get_winning_party() }}{% endif %}">{{ race.state_postal }}</td>
+                <td class="state{% if race.is_called() and race.party_changed() %} party-change {{ race.get_winning_party() }}{% endif %}">
+                    {{ race.state_postal }}{% if seat_number %}<span class="seat_number">-{{ race.seat_number }}</span>
+                    {% endif %}
+                </td>
                 {% set candidate = race.top_candidates()[0] %}
                 {% if candidate %}
                 <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>

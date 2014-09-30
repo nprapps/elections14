@@ -8,7 +8,7 @@ from flask import abort, Blueprint
 
 import app_config
 import copytext
-from render_utils import flatten_app_config
+from render_utils import BetterJSONEncoder, flatten_app_config
 
 static_app = Blueprint('static_app', __name__)
 
@@ -39,7 +39,7 @@ def _app_config_js():
     Render app configuration to javascript.
     """
     config = flatten_app_config()
-    js = 'window.APP_CONFIG = ' + json.dumps(config)
+    js = 'window.APP_CONFIG = ' + json.dumps(config, cls=BetterJSONEncoder)
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 

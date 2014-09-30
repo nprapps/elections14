@@ -6,6 +6,7 @@ elections14
 * [What's in here?](#whats-in-here)
 * [Bootstrap the project](#bootstrap-the-project)
 * [Simulate election results](#simulate-election-results)
+* [Display the big board in the building](#display-the-big-board-in-the-building)
 * [Hide project secrets](#hide-project-secrets)
 * [Save media assets](#save-media-assets)
 * [Add a page to the site](#add-a-page-to-the-site)
@@ -108,6 +109,11 @@ To apply random poll closing times, vote counts, race calls, etc. to default Ass
 ```
 fab data.mock_results
 ```
+
+Display the big board in the building
+-------------------------------------
+
+The Senate big board is available on IPTV on channel 151. The internal IP address for administration is 10.32.64.205.
 
 Hide project secrets
 --------------------

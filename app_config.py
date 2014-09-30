@@ -8,6 +8,7 @@ They will be exposed to users. Use environment variables instead.
 See get_secrets() below for a fast way to access them.
 """
 
+from datetime import datetime
 import os
 
 """
@@ -77,8 +78,6 @@ DEPLOY_CRONTAB = True
 DEPLOY_SERVICES = True
 
 UWSGI_SOCKET_PATH = '/tmp/%s.uwsgi.sock' % PROJECT_FILENAME
-UWSGI_LOG_PATH = '/var/log/%s.uwsgi.log' % PROJECT_FILENAME
-APP_LOG_PATH = '/var/log/%s.app.log' % PROJECT_FILENAME
 
 # Services are the server-side services we want to enable and configure.
 # A three-tuple following this format:
@@ -87,8 +86,9 @@ SERVER_SERVICES = [
     ('app', SERVER_REPOSITORY_PATH, 'ini'),
     ('uwsgi', '/etc/init', 'conf'),
     ('nginx', '/etc/nginx/locations-enabled', 'conf'),
-    ('rotate_slide', '/etc/init', 'conf'),
-    ('get_tumblr_posts', '/etc/init', 'conf'),
+    ('stack', '/etc/init', 'conf'),
+    ('liveblog', '/etc/init', 'conf'),
+    ('instagram', '/etc/init', 'conf'),
 ]
 
 # These variables will be set at runtime. See configure_targets() below
@@ -96,6 +96,7 @@ S3_BUCKETS = []
 S3_BASE_URL = ''
 SERVERS = []
 SERVER_BASE_URL = ''
+SERVER_LOG_PATH = ''
 DEBUG = True
 
 """
@@ -139,9 +140,12 @@ NEXT_SLIDE_FILENAME = 'live-data/next-slide.json'
 CLIENT_SLIDE_ROTATE_INTERVAL = 3
 SLIDE_ROTATE_INTERVAL = 8
 
-TUMBLR_NAME = 'stage-nprelections'
+TUMBLR_NAME = '' # See below
+TUMBLR_NOT_BEFORE = None # See below 
 TUMBLR_AUTO_REFRESH = True
 TUMBLR_REFRESH_INTERVAL = 5
+
+INSTAGRAM_REFRESH_INTERVAL = 15
 
 """
 Utilities
@@ -173,40 +177,53 @@ def configure_targets(deployment_target):
     Configure deployment targets. Abstracted so this can be
     overriden for rendering before deployment.
     """
+    global DEPLOYMENT_TARGET
     global S3_BUCKETS
     global S3_BASE_URL
     global SERVERS
     global SERVER_BASE_URL
+    global SERVER_LOG_PATH
     global DEBUG
-    global DEPLOYMENT_TARGET
-    global APP_LOG_PATH
     global DISQUS_SHORTNAME
     global TUMBLR_NAME
-
+    global TUMBLR_NOT_BEFORE
 
     if deployment_target == 'production':
         S3_BUCKETS = PRODUCTION_S3_BUCKETS
         S3_BASE_URL = 'http://%s/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)
         SERVERS = PRODUCTION_SERVERS
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
-        DISQUS_SHORTNAME = 'npr-news'
+        SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
         DEBUG = False
+
+        DISQUS_SHORTNAME = 'npr-news'
+
         TUMBLR_NAME = 'nprpolitics'
+        TUMBLR_NOT_BEFORE = datetime(2014, 11, 4, 23, 0, 0) # +5 hours for UTC
     elif deployment_target == 'staging':
         S3_BUCKETS = STAGING_S3_BUCKETS
         S3_BASE_URL = 'http://%s.s3-website-us-east-1.amazonaws.com/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)
         SERVERS = STAGING_SERVERS
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
-        DISQUS_SHORTNAME = 'nprviz-test'
+        SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
         DEBUG = True
+
+        DISQUS_SHORTNAME = 'nprviz-test'
+
+        TUMBLR_NAME = 'stage-nprelections'
+        TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
     else:
         S3_BUCKETS = []
         S3_BASE_URL = 'http://127.0.0.1:8000'
         SERVERS = []
         SERVER_BASE_URL = 'http://127.0.0.1:8001/%s' % PROJECT_SLUG
-        DISQUS_SHORTNAME = 'nprviz-test'
+        SERVER_LOG_PATH = '/tmp'
         DEBUG = True
-        APP_LOG_PATH = '/tmp/%s.app.log' % PROJECT_SLUG
+
+        DISQUS_SHORTNAME = 'nprviz-test'
+        
+        TUMBLR_NAME = 'stage-nprelections'
+        TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
 
     DEPLOYMENT_TARGET = deployment_target
 
