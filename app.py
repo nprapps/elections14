@@ -95,6 +95,7 @@ def signed(num):
     """
     return '{0:+d}'.format(num)
 
+
 def cors(f):
     """
     Decorator that enables local CORS support for easier local dev.
@@ -151,6 +152,7 @@ def results_house():
 
     context['poll_groups'] = _group_races_by_closing_time(featured_races)
     context['bop'] = _calculate_bop(all_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
+    context['seat_number'] = ".seat_number"
 
     return render_template('slides/race_results.html', **context)
 
