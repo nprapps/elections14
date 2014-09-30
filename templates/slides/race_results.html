@@ -48,7 +48,7 @@
             <tr class="race dontsplit">
                 <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
                     {% if race.is_called() %}
-                        {{ race.get_called_time()|format_board_time }}
+                        {{ race.precincts_reporting_percent()|format_percent }}%
                     {% elif race.is_reporting() %}
                         {{ race.precincts_reporting_percent()|format_percent }}% 
                     {% else %}
@@ -84,15 +84,15 @@
     <div class="key">
         <ul>
             <li>Results are ordered by poll closing time</li>
-            <li><span class="bold">Highlighted box with candidate</span> <span class="name-ex">Jane Smith</span> :    Projected winner</li>
+            <li><span class="bold">Highlighted box with candidate</span> <span class="name-ex">Jane Smith</span> : winner</li>
         </ul>
         <ul>
-            <li><span class="bold">Black box with time</span> <span class="time-ex bold">8:00</span> : When a winner was projected </li>
-            <li><span class="bold">Yellow box with percentage</span> <span class="percent-ex bold">5%</span> : Precincts reporting </li>
+            <li><span class="bold">Yellow box with %</span> <span class="percent-ex bold">5%</span> : Precincts reporting </li>
+            <li><span class="bold">Black box with %</span> <span class="time-ex bold">85%</span> : Precincts reporting after winner projected </li>
         </ul>
         <ul>
-            <li><span class="bold">Bold state</span> <span class="state-ex bold">VA</span> : Seat has switched to party of corresponding color</li>
-            <li><span class="bold">Bold candidate</span> <span class="incum-ex bold">Jane Smith</span> : Incumbent</li>
+            <li><span class="bold">Bold state</span> <span class="state-ex bold">VA</span> : Seat switched to party of corresponding color</li>
+            <li><span class="bold">Uppercase candidate</span> <span class="incum-ex bold">Jane Smith</span> : Incumbent</li>
         </ul>
     </div>
 </div>
