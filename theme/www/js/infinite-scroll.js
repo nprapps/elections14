@@ -121,7 +121,10 @@ Tumblelog.Infinite = (function() {
     };
 
     function load_more_posts() {
-        if (_is_loading) return;
+        if (_is_loading) {
+            return;
+        }
+
         _is_loading = true;
 
         // Build URL
@@ -161,10 +164,11 @@ Tumblelog.Infinite = (function() {
 
             if ((_posts_loaded > 0) && (_current_page < _total_pages)) {
                 set_trigger();
-                _is_loading = false;
             } else {
                 disable_scroll();
             }
+                
+            _is_loading = false;
         });
 
         // Stats
