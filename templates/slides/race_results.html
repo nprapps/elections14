@@ -42,7 +42,6 @@
 
     <div class="results">
         {% for closing_time, races in poll_groups %}
-        <h2 class="poll-closing-group"><span class="time"><span class="time-inner">{{ closing_time|format_board_time }}</span></span></h2>
         <table class="races">
             {% for race in races %}
             <tr class="race dontsplit">
@@ -83,12 +82,14 @@
 
     <div class="key">
         <ul>
-            <li><span class="bold">Highlighted box with candidate</span> <span class="name-ex">Jane Smith</span> : winner</li>
+            <li>Results are ordered by poll closing time</li>
+            <li><span class="bold">Highlighted box with candidate</span> <span class="name-ex">Jane Smith</span> : Winner</li>
             <li><span class="bold">Uppercase candidate</span> <span class="incum-ex bold">JANE SMITH</span> : Incumbent</li>
         </ul>
         <ul>
             <li><span class="bold">Yellow box with %</span> <span class="percent-ex bold">5%</span> : Precincts reporting </li>
             <li><span class="bold">Black box with %</span> <span class="time-ex bold">85%</span> : Precincts reporting after winner projected </li>
+            <li><span class="bold">Black box with yellow %</span> <span class="percent-called-ex bold">80%</span> : Race called in last 5 minutes
         </ul>
         <ul>
             <li><span class="bold">State Color</span> <span class="state2-ex bold">VA</span> : Seat held by party of corresponding color</li>
