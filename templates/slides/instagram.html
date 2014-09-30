@@ -1,0 +1,7 @@
+<div class="instagram-grid">
+    {% for photo in photos %}
+    <div class="photo">
+        <img src="{{ photo.local_img_url }}">
+    </div>
+    {% endfor %}
+</div>

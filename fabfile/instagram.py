@@ -4,7 +4,10 @@ import csv
 import json
 
 from fabric.api import task
+from jinja2 import Template
 import requests
+
+import models
 
 FIELDNAMES = ['date', 'username', 'caption', 'instagram_url', 'image', 'image_url', 'embed_code', 'approved']
 
@@ -49,9 +52,42 @@ def parse_photo_csv():
                 with open('www/assets/instagram/nprparty-instagram-%s' % p.local_img_id, 'wb') as writefile:
                     writefile.write(r.content)
 
-    print "Writing %s photos to JSON." % len(payload)
-    with open('www/live-data/photos.json', 'wb') as writefile:
-        writefile.write(json.dumps(payload))
+    _create_photo_grid(payload)
+
+def _create_photo_grid(photos):
+    rendered_grid = _render_photo_grid(photos)
+    slug = 'instagram-grid'
+    slide_title = 'Instagram Grid'
+
+    try:
+        slide = models.Slide.get(slug=slug)
+        print 'Updating grid'
+        slide.name = slide_title
+        slide.body = rendered_grid
+        slide.save()
+    except models.Slide.DoesNotExist:
+        print 'Creating grid'
+        slide = models.Slide.create(slug=slug, name=slide_title, body=rendered_grid)
+
+        order = (models.SlideSequence.last() or 0) + 1
+
+        sequence = models.SlideSequence.create(order=order, slide=slide)
+        sequence.save()
+        
+        print '%s is slide number %s' % (slide.name, order)
+
+
+def _render_photo_grid(photos):
+    filename = 'slides/instagram.html'
+
+    payload = {
+        "photos": photos
+    }
+
+    with open('templates/%s' % filename) as f:
+        template = Template(f.read())
+
+    return template.render(**payload)
 
 @task
 def get_photos():
