@@ -1,0 +1,55 @@
+{
+    "timestamp": "2014-09-30T17:39:11.338Z", 
+    "races": [
+        {
+            "raceTypeID": "G", 
+            "raceID": "38529", 
+            "raceType": "General", 
+            "officeName": "U.S. House", 
+            "reportingUnits": [
+                {
+                    "precinctsTotal": 203, 
+                    "stateName": "Oregon", 
+                    "statePostal": "OR", 
+                    "precinctsReporting": 0, 
+                    "precinctsReportingPct": 0.0, 
+                    "lastUpdated": "2014-09-30T14:09:43Z", 
+                    "candidates": [
+                        {
+                            "candidateID": "4848", 
+                            "last": "Christofferson", 
+                            "polNum": "40596", 
+                            "polID": "63559", 
+                            "voteCount": 0, 
+                            "first": "Aelea"
+                        }, 
+                        {
+                            "candidateID": "4642", 
+                            "last": "Walden", 
+                            "polNum": "38856", 
+                            "polID": "481", 
+                            "voteCount": 0, 
+                            "incumbent": true, 
+                            "first": "Greg"
+                        }, 
+                        {
+                            "candidateID": "4979", 
+                            "last": "Durbin", 
+                            "polNum": "40756", 
+                            "polID": "64323", 
+                            "voteCount": 0, 
+                            "first": "Sharon"
+                        }
+                    ], 
+                    "level": "state"
+                }
+            ], 
+            "test": true, 
+            "seatName": "District 2", 
+            "officeID": "H", 
+            "seatNum": "2"
+        } 
+    ],
+    "electionDate": "2014-11-04", 
+    "nextrequest": "http://api.ap.org/v2/races/2014-11-04?officeID=S%2cH%2cG&format=json&minDateTime=2014-09-30T15%3a18%3a50.000Z"
+}
