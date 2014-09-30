@@ -28,7 +28,7 @@
                 <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.gop.needs }}</span></td>
                 </tr>
             </div>
-            <div class="results-header-group other">
+            <div class="results-header-group ind">
                 <h2 class="party">Other</h2>
                 <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
             </div>
@@ -60,7 +60,7 @@
                 </td>
                 {% set candidate = race.top_candidates()[0] %}
                 {% if candidate %}
-                <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>
+                <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.party.lower() == "ind" %} <span class="party">IND</span>{% endif %}</td>
                 <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
                 {% else %}
                 <td class="candidate"></td>
@@ -69,7 +69,7 @@
                 {% set candidate = race.top_candidates()[1] %}
                 {% if candidate %}
                 <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
-                <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span></td>
+                <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.party.lower() == "ind" %} <span class="party">IND</span>{% endif %}</td>
                 {% else %}
                 <td class="candidate-total"></td>
                 <td class="candidate"></td>
