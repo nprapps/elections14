@@ -1,9 +1,23 @@
 [
     {
+        "party": "Dem",
         "first_name": "Aelea",
         "last_name": "Christofferson",
-        "party": "Dem",
-        "race_id": "38019",
-        "candidate_id": "4848"
+        "candidate_id": "4848",
+        "race_id": "38529"
+    },
+    {
+        "party": "GOP",
+        "first_name": "Greg",
+        "last_name": "Walden",
+        "candidate_id": "4642",
+        "race_id": "38529"
+    },
+    {
+        "party": "Lib",
+        "first_name": "Sharon",
+        "last_name": "Durbin",
+        "candidate_id": "4979",
+        "race_id": "38529"
     }
 ]

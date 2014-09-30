@@ -29,13 +29,13 @@ class DataTestCase(unittest.TestCase):
             race = Race.select().get()
 
         self.assertEqual(race.state_postal, 'OR')
-        self.assertEqual(race.office_id, 'G')
-        self.assertEqual(race.office_name, 'Governor')
-        self.assertEqual(race.seat_name, None)
-        self.assertEqual(race.seat_number, None)
-        self.assertEqual(race.race_id, '38019')
+        self.assertEqual(race.office_id, 'H')
+        self.assertEqual(race.office_name, 'U.S. House')
+        self.assertEqual(race.seat_name, "District 2")
+        self.assertEqual(race.seat_number, 2)
+        self.assertEqual(race.race_id, '38529')
         self.assertEqual(race.race_type, 'G')
-        self.assertEqual(race.last_updated, datetime(2014, 9, 18, 20, 6, 28))
+        self.assertEqual(race.last_updated, datetime(2014, 9, 26, 16, 26, 50))
 
     def test_load_candidates(self):
         with test_database(test_db, [Race, Candidate]):

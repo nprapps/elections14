@@ -32,7 +32,7 @@ class APTestCase(unittest.TestCase):
                 'Etag': '3a401ee1-json'
             }
 
-            return (200, headers, body) 
+            return (200, headers, body)
 
         responses.add_callback(
             responses.GET,
@@ -41,7 +41,7 @@ class APTestCase(unittest.TestCase):
             content_type='application/json'
         )
 
-        ap._init_ap('init/races') 
+        ap._init_ap('init/races')
 
         with open(ap.CACHE_FILE) as f:
             data = json.load(f)
@@ -55,7 +55,7 @@ class APTestCase(unittest.TestCase):
         self.assertIn('nextrequest', cache)
 
         response = cache['response']
-        
+
         self.assertEqual(json.loads(body), response)
 
     @responses.activate
@@ -68,11 +68,11 @@ class APTestCase(unittest.TestCase):
 
         def responder(request):
             headers = {
-                'Last-Modified': 'Tue, 30 Sep 2014 15:08:31 GMT', 
+                'Last-Modified': 'Tue, 30 Sep 2014 15:08:31 GMT',
                 'Etag': '40b13862-json'
             }
 
-            return (200, headers, body) 
+            return (200, headers, body)
 
         responses.add_callback(
             responses.GET,
@@ -81,7 +81,7 @@ class APTestCase(unittest.TestCase):
             content_type='application/json'
         )
 
-        ap._init_ap('init/candidates') 
+        ap._init_ap('init/candidates')
 
         with open(ap.CACHE_FILE) as f:
             data = json.load(f)
@@ -95,7 +95,7 @@ class APTestCase(unittest.TestCase):
         self.assertIn('nextrequest', cache)
 
         response = cache['response']
-       
+
         self.assertEqual(json.loads(body), response)
 
     @responses.activate
@@ -108,11 +108,11 @@ class APTestCase(unittest.TestCase):
 
         def responder(request):
             headers = {
-                'Last-Modified': 'Tue, 30 Sep 2014 15:18:50 GMT', 
+                'Last-Modified': 'Tue, 30 Sep 2014 15:18:50 GMT',
                 'Etag': 'ffffffffbb1db2cd-json'
             }
 
-            return (200, headers, body) 
+            return (200, headers, body)
 
         responses.add_callback(
             responses.GET,
@@ -121,7 +121,7 @@ class APTestCase(unittest.TestCase):
             content_type='application/json'
         )
 
-        ap._update_ap('races') 
+        ap._update_ap('races')
 
         with open(ap.CACHE_FILE) as f:
             data = json.load(f)
@@ -135,7 +135,7 @@ class APTestCase(unittest.TestCase):
         self.assertIn('nextrequest', cache)
 
         response = cache['response']
-       
+
         self.assertEqual(json.loads(body), response)
 
     @responses.activate
@@ -148,11 +148,11 @@ class APTestCase(unittest.TestCase):
 
         def responder(request):
             headers = {
-                'Last-Modified': 'Thu, 25 Sep 2014 18:10:54 GMT', 
+                'Last-Modified': 'Thu, 25 Sep 2014 18:10:54 GMT',
                 'Etag': '\"ffffffffa71c73ab-json\"'
             }
 
-            return (200, headers, body) 
+            return (200, headers, body)
 
         responses.add_callback(
             responses.GET,
@@ -161,7 +161,7 @@ class APTestCase(unittest.TestCase):
             content_type='application/json'
         )
 
-        ap._update_ap('calls') 
+        ap._update_ap('calls')
 
         with open(ap.CACHE_FILE) as f:
             data = json.load(f)
@@ -175,13 +175,56 @@ class APTestCase(unittest.TestCase):
         self.assertIn('nextrequest', cache)
 
         response = cache['response']
-       
+
         self.assertEqual(json.loads(body), response)
 
-    @unittest.skip('TODO')
     def test_write(self):
         """
         Test writing format-neutral intermediaries from AP response cache.
         """
-        pass
+        ap_cache = {}
+        ap_cache['init/races'] = {}
+        ap_cache['init/candidates'] = {}
+
+        with open('data/tests/race_init.json') as f:
+            test_races = json.load(f)
+            ap_cache['init/races']['response'] = test_races
+
+        with open('data/tests/candidates_init.json') as f:
+            test_candidates = json.load(f)
+            ap_cache['init/candidates']['response'] = test_candidates
+
+        with open('.ap_cache.json', 'w') as f:
+            f.write(json.dumps(ap_cache))
+
+        ap.write()
+
+        with open('data/races.json') as f:
+            written_races = json.load(f)
+
+            init_race = test_races['races'][0]
+            written_race = written_races[0]
+
+
+            self.assertEqual(init_race['raceTypeID'], written_race['race_type'])
+            self.assertEqual(init_race['statePostal'], written_race['state_postal'])
+            self.assertEqual(init_race['raceID'], written_race['race_id'])
+            self.assertEqual(init_race['officeName'], written_race['office_name'])
+            self.assertEqual(init_race['seatNum'], written_race['seat_number'])
+            self.assertEqual(init_race['lastUpdated'], written_race['last_updated'])
+            self.assertEqual(init_race['seatName'], written_race['seat_name'])
+            self.assertEqual(init_race['officeID'], written_race['office_id'])
+
+
+        with open('data/candidates.json') as f:
+            written_candidates = json.load(f)
+
+            init_candidates = test_candidates['candidates']
+
+            for i, init_candidate in enumerate(init_candidates):
+                self.assertEqual(init_candidate['party'], written_candidates[i]['party'])
+                self.assertEqual(init_candidate['first'], written_candidates[i]['first_name'])
+                self.assertEqual(init_candidate['last'], written_candidates[i]['last_name'])
+                self.assertEqual(init_candidate['candidateID'], written_candidates[i]['candidate_id'])
+                self.assertEqual(init_candidate['raceID'], written_candidates[i]['race_id'])
 
