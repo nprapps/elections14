@@ -141,7 +141,7 @@ class APTestCase(unittest.TestCase):
     @responses.activate
     def test_calls_update(self):
         """
-        Verify race update data is cached correctly.
+        Verify calls update data is cached correctly.
         """
         with open('data/tests/calls_update.json') as f:
             body = f.read()
