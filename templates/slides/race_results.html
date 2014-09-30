@@ -55,7 +55,7 @@
                         0%
                     {% endif %}
                 </td>
-                <td class="state{% if race.is_called() and race.party_changed() %} party-change {{ race.get_winning_party() }}{% endif %}">
+                <td class="state{% if race.is_called() and race.party_changed() %} party-change{% endif %}{% if race.is_called() %} {{ race.get_winning_party() }}{% else %} {{ race.previous_party }}{% endif %} ">
                     {{ race.state_postal }}{% if seat_number %}<span class="seat_number">-{{ race.seat_number }}</span>
                     {% endif %}
                 </td>
