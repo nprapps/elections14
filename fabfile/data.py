@@ -336,12 +336,12 @@ def update_featured_social():
         json.dump(output, f)
 
 @task
-def load_house_extra():
+def load_house_extra(folder='data'):
     """
     Load extra data (featured status, poll close, last party in power) for
     house of reps
     """
-    with open('data/house-extra.csv') as f:
+    with open('%s/house-extra.csv' % folder) as f:
         reader = csv.DictReader(f)
         for row in reader:
             if row.get('featured') == '1':
@@ -373,12 +373,12 @@ def _save_house_row(row):
 
 
 @task
-def load_senate_extra():
+def load_senate_extra(folder='data'):
     """
     Load extra data (featured status, poll close, last party in power) for
     senate
     """
-    with open('data/senate-extra.csv') as f:
+    with open('%s/senate-extra.csv' % folder) as f:
         reader = csv.DictReader(f)
         for row in reader:
             _save_senate_row(row)
@@ -451,7 +451,7 @@ def _mock_slide_with_pym(slug, path, i):
     models.SlideSequence.create(order=i, slide=slide)
 
 @task
-def mock_results():
+def mock_results(folder):
     """
     Fake out some election results
     """
@@ -475,8 +475,8 @@ def mock_results():
         race.save()
 
     print "Loading real data where it exists"
-    load_house_extra()
-    load_senate_extra()
+    load_house_extra(folder)
+    load_senate_extra(folder)
 
 def _fake_incumbent(race):
     """
@@ -500,6 +500,7 @@ def _fake_previous_party(race):
     if incumbent_query.count() > 0:
         incumbent = incumbent_query[0]
         race.previous_party = incumbent.party.lower()
+        print race.previous_party
     else:
         race.previous_party = random.choice(['gop', 'dem', 'other'])
 
@@ -510,6 +511,7 @@ def _fake_poll_closing_time(race):
     first_close = datetime(2014, 11, 4, 7)
     closing_times = [first_close + timedelta(hours=delta) for delta in range(6)]
     race.poll_closing_time = random.choice(closing_times)
+    print race.poll_closing_time
 
 
 def _fake_precincts_reporting(race):
