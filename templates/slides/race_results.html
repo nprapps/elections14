@@ -11,92 +11,93 @@
 
 
 {% block outer_content %}
-<div class="container">
-
-    <div class="results-header">
-        <h1>{{ page_title }}</h1>
-        {% if bop %}
-        <div class="leaderboard">
-            <div class="results-header-group dem">
-                <h2 class="party">Dem</h2>
-                <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
-                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.dem.needs }}</span></p>
+<div class="results-wrapper">
+    <div class="results-inner container">
+        <div class="results-header">
+            <h1>{{ page_title }}</h1>
+            {% if bop %}
+            <div class="leaderboard">
+                <div class="results-header-group dem">
+                    <h2 class="party">Dem</h2>
+                    <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
+                    <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.dem.needs }}</span></p>
+                </div>
+                <div class="results-header-group gop">
+                    <h2 class="party">GOP</h2>
+                    <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
+                    <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.gop.needs }}</span></td>
+                    </tr>
+                </div>
+                <div class="results-header-group ind">
+                    <h2 class="party">Other</h2>
+                    <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
+                </div>
+                <div class="results-header-group not-called">
+                    <h2>Not Called</h2>
+                    <p class="total"><span class="count">0</span></p>
+                </div>
             </div>
-            <div class="results-header-group gop">
-                <h2 class="party">GOP</h2>
-                <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
-                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.gop.needs }}</span></td>
-                </tr>
-            </div>
-            <div class="results-header-group ind">
-                <h2 class="party">Other</h2>
-                <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
-            </div>
-            <div class="results-header-group not-called">
-                <h2>Not Called</h2>
-                <p class="total"><span class="count">0</span></p>
-            </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </div>
 
-    <div class="results">
-        {% for closing_time, races in poll_groups %}
-        <h2 class="poll-closing-group"><span class="time"><span class="time-inner">{{ closing_time|format_board_time }}</span></span></h2>
+        <div class="results">
+            {% for closing_time, races in poll_groups %}
+            <h2 class="poll-closing-group"><span class="time"><span class="time-inner">{{ closing_time|format_board_time }}</span></span></h2>
 
-        <table class="races">
-            {% for race in races %}
-            <tr class="race dontsplit">
-                <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
-                    {% if race.is_called() %}
-                        {{ race.precincts_reporting_percent()|format_percent }}%
-                    {% elif race.is_reporting() %}
-                        {{ race.precincts_reporting_percent()|format_percent }}%
+            <table class="races">
+                {% for race in races %}
+                <tr class="race dontsplit">
+                    <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
+                        {% if race.is_called() %}
+                            {{ race.precincts_reporting_percent()|format_percent }}%
+                        {% elif race.is_reporting() %}
+                            {{ race.precincts_reporting_percent()|format_percent }}%
+                        {% else %}
+                            0%
+                        {% endif %}
+                    </td>
+                    <td class="state{% if race.is_called() and race.party_changed() %} party-change{% endif %}{% if race.is_called() %} {{ race.get_winning_party() }}{% else %} {{ race.previous_party }}{% endif %} ">
+                        {{ race.state_postal }}{% if seat_number %}<span class="seat_number">-{{ race.seat_number }}</span>
+                        {% endif %}
+                    </td>
+                    {% set candidate = race.top_candidates()[0] %}
+                    {% if candidate %}
+                    <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.party.lower() == "ind" %} <span class="party">IND</span>{% endif %}</td>
+                    <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
                     {% else %}
-                        0%
+                    <td class="candidate"></td>
+                    <td class="candidate-total"></td>
                     {% endif %}
-                </td>
-                <td class="state{% if race.is_called() and race.party_changed() %} party-change{% endif %}{% if race.is_called() %} {{ race.get_winning_party() }}{% else %} {{ race.previous_party }}{% endif %} ">
-                    {{ race.state_postal }}{% if seat_number %}<span class="seat_number">-{{ race.seat_number }}</span>
+                    {% set candidate = race.top_candidates()[1] %}
+                    {% if candidate %}
+                    <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
+                    <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.party.lower() == "ind" %} <span class="party">IND</span>{% endif %}</td>
+                    {% else %}
+                    <td class="candidate-total"></td>
+                    <td class="candidate"></td>
                     {% endif %}
-                </td>
-                {% set candidate = race.top_candidates()[0] %}
-                {% if candidate %}
-                <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.party.lower() == "ind" %} <span class="party">IND</span>{% endif %}</td>
-                <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
-                {% else %}
-                <td class="candidate"></td>
-                <td class="candidate-total"></td>
-                {% endif %}
-                {% set candidate = race.top_candidates()[1] %}
-                {% if candidate %}
-                <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
-                <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.party.lower() == "ind" %} <span class="party">IND</span>{% endif %}</td>
-                {% else %}
-                <td class="candidate-total"></td>
-                <td class="candidate"></td>
-                {% endif %}
-            </tr>
+                </tr>
+                {% endfor %}
+            </table>
             {% endfor %}
-        </table>
-        {% endfor %}
-    </div>
+        </div>
 
-    <div class="key">
-        <ul>
-            <li>Results are ordered by poll closing time</li>
-            <li><span class="bold">Highlighted box with candidate</span> <span class="name-ex">Jane Smith</span> : Winner</li>
-            <li><span class="bold">Uppercase candidate</span> <span class="incum-ex bold">JANE SMITH</span> : Incumbent</li>
-        </ul>
-        <ul>
-            <li><span class="bold">Yellow box with %</span> <span class="percent-ex bold">5%</span> : Precincts reporting </li>
-            <li><span class="bold">Black box with %</span> <span class="time-ex bold">85%</span> : Precincts reporting after winner projected </li>
-            <li><span class="bold">Black box with yellow %</span> <span class="percent-called-ex bold">80%</span> : Race called in last 5 minutes
-        </ul>
-        <ul>
-            <li><span class="bold">State Color</span> <span class="state2-ex bold">VA</span> : Seat held by party of corresponding color</li>
-            <li><span class="bold">Highlighted box with state</span> <span class="state-ex bold">VA</span> : Seat switched to party of corresponding color</li>
-        </ul>
+        <div class="key">
+            <ul>
+                <li>Results are ordered by poll closing time</li>
+                <li><span class="bold">Highlighted box with candidate</span> <span class="name-ex">Jane Smith</span> : Winner</li>
+                <li><span class="bold">Uppercase candidate</span> <span class="incum-ex bold">JANE SMITH</span> : Incumbent</li>
+            </ul>
+            <ul>
+                <li><span class="bold">Yellow box with %</span> <span class="percent-ex bold">5%</span> : Precincts reporting </li>
+                <li><span class="bold">Black box with %</span> <span class="time-ex bold">85%</span> : Precincts reporting after winner projected </li>
+                <li><span class="bold">Black box with yellow %</span> <span class="percent-called-ex bold">80%</span> : Race called in last 5 minutes
+            </ul>
+            <ul>
+                <li><span class="bold">State Color</span> <span class="state2-ex bold">VA</span> : Seat held by party of corresponding color</li>
+                <li><span class="bold">Highlighted box with state</span> <span class="state-ex bold">VA</span> : Seat switched to party of corresponding color</li>
+            </ul>
+        </div>
     </div>
 </div>
 {% endblock outer_content %}
@@ -107,7 +108,11 @@
 {{ JS.push('js/results.js') }}
 {{ JS.render('js/results-footer.min.js') }}
 <script>
-$('.results').columnize({ precise: true, columns: {{ column_number }} });
-
+$('.results').columnize({ columns: {{ column_number }} });
+setInterval(function(data) {
+  $('.results-wrapper').load(window.location + ' .results-inner', function() {
+    $('.results').columnize({ precise: true, columns: {{ column_number }} });
+  })
+}, 60000);
 </script>
 {% endblock extra_foot_js %}
