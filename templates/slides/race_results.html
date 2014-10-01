@@ -11,7 +11,7 @@
 
 
 {% block outer_content %}
-<div class="results-wrapper">
+<div class="results-wrapper hide-results">
     <div class="results-inner container">
         <div class="results-header">
             <h1>{{ page_title }}</h1>
@@ -108,10 +108,22 @@
 {{ JS.push('js/results.js') }}
 {{ JS.render('js/results-footer.min.js') }}
 <script>
-$('.results').columnize({ columns: {{ column_number }} });
+var colOpts = {
+  precise: true,
+  columns: {{ column_number }},
+}
+
+// Columnizer needs a short pause or else it acts strangely on subsequent calls
+setTimeout(function() {
+  $('.results').columnize(colOpts);
+  $('.results-wrapper').animate({ 'opacity': 1 }, 600, function() {
+    $(this).removeClass('hide-results');
+  });
+}, 100);
+
 setInterval(function(data) {
   $('.results-wrapper').load(window.location + ' .results-inner', function() {
-    $('.results').columnize({ precise: true, columns: {{ column_number }} });
+    $('.results').columnize(colOpts);
   })
 }, 60000);
 </script>
