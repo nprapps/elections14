@@ -71,6 +71,13 @@ def _calculate_bop(races, majority, initial):
 
     return bop
 
+def _calculate_seats_left(races):
+    seats = races.count()
+    for race in races:
+        if race.is_called():
+            seats -= 1
+    return seats
+
 @app.template_filter()
 def format_board_time(dt):
     """
@@ -151,6 +158,7 @@ def results_house():
 
     context['poll_groups'] = _group_races_by_closing_time(featured_races)
     context['bop'] = _calculate_bop(all_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(all_races)
     context['seat_number'] = ".seat_number"
 
     return render_template('slides/race_results.html', **context)
@@ -171,8 +179,8 @@ def results_senate():
     races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
     context['poll_groups'] = _group_races_by_closing_time(races)
-
     context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(races)
 
     return render_template('slides/race_results.html', **context)
 
