@@ -553,9 +553,26 @@
     }
 
     .pagination-index {
+        position: relative;
+        width: 100%;
+        text-align: center;
         a {
-            color: @musicMedium;
+            font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            letter-spacing: .05em;
+            font-weight: bold;
+            text-transform: uppercase;
             -webkit-font-smoothing: antialiased;
+            font-size: 18px;
+            background-color: @inlineLink;
+            border-color: @inlineLink;
+            color: @musicDark;
+            &:hover {
+                background-color: @link-hover-color;
+            }
         }
+    }
+
+    footer {
+        margin-bottom: 50px;
     }
 }
