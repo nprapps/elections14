@@ -42,6 +42,8 @@
 
     <div class="results">
         {% for closing_time, races in poll_groups %}
+        <h2 class="poll-closing-group"><span class="time"><span class="time-inner">{{ closing_time|format_board_time }}</span></span></h2>
+
         <table class="races">
             {% for race in races %}
             <tr class="race dontsplit">
@@ -49,7 +51,7 @@
                     {% if race.is_called() %}
                         {{ race.precincts_reporting_percent()|format_percent }}%
                     {% elif race.is_reporting() %}
-                        {{ race.precincts_reporting_percent()|format_percent }}% 
+                        {{ race.precincts_reporting_percent()|format_percent }}%
                     {% else %}
                         0%
                     {% endif %}

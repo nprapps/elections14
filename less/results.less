@@ -68,22 +68,16 @@ h6 {
         font-weight: 400;
     }
 
-    // @media screen and (min-width: @screen-xl){
-    //     font-size: 24px;
-    //     line-height: 1.1;
-    //     font-weight: 300;
-    // }
-
     @media screen and (min-width: @screen-xl){
-        font-size: 16px;
+        font-size: 22px;
         line-height: 1;
         font-weight: 300;
     }
 
     @media screen and (min-width: @screen-big-board){
-        font-size: 19px;
+        font-size: 33px;
         font-weight: 300;
-        line-height: .8;
+        line-height: 1.2;
     }
 }
 
@@ -308,11 +302,12 @@ h6 {
 
             &.reporting, &.called {
                 background: @yellow;
-                @media screen and (min-width: @screen-sm){
-                    // &:after{
-                    //     content:"in";
-                    //     font-size:80%;
-                    // }
+
+                @media screen and (min-width: @screen-md){
+                    &:after{
+                        content:"in";
+                        font-size:80%;
+                    }
                 }
             }
 
@@ -376,8 +371,8 @@ h6 {
         }
 
         .id-5083, .id-19638, .id-18556{
-            letter-spacing:-.09em;
-            font-weight:400 !important;
+            letter-spacing:-.07em;
+            text-transform:capitalize !important;
         }
     }
 }
