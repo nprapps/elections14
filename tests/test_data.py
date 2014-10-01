@@ -50,6 +50,22 @@ class DataTestCase(unittest.TestCase):
         self.assertIsNotNone(candidate.race)
         self.assertEqual(candidate.candidate_id, '4848')
 
-    @unittest.skip('TODO')
     def test_update_results(self):
-        pass
+        with test_database(test_db, [Race, Candidate]):
+            data.load_races('data/tests/races.json')
+            data.load_candidates('data/tests/candidates.json')
+            data.mock_results(folder='data/tests')
+
+            race = Race.select().get()
+            candidate = Candidate.select().get()
+
+        self.assertIsNotNone(race.previous_party)
+        self.assertIsNotNone(race.poll_closing_time)
+        self.assertGreaterEqual(race.precincts_reporting, 0)
+        self.assertIsNotNone(race.ap_called)
+
+        if race.ap_called:
+            self.assertIsNotNone(race.ap_called_time)
+
+        self.assertGreaterEqual(candidate.vote_count, 0)
+
