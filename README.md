@@ -334,8 +334,8 @@ Bootstrapping the server
 ------------------------
 
 ```
-fab staging master fabcast:"data.bootstrap"
-fab staging master fabcast:"data.mock_election_results"
+fab staging master servers.fabcast:"data.bootstrap"
+fab staging master server.fabcast:"data.mock_results"
 ```
 
 Install cron jobs
