@@ -72,6 +72,9 @@ def _calculate_bop(races, majority, initial):
     return bop
 
 def _calculate_seats_left(races):
+    """
+    Calculate seats remaining
+    """
     seats = races.count()
     for race in races:
         if race.is_called():
