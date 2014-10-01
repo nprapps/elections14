@@ -258,7 +258,6 @@ h6 {
         @media screen and (max-width: 470px){
             width:100% !important;
         }
-
         box-sizing: border-box;
         padding: 0 15px;
         @media screen and (max-width: @screen-md){
@@ -268,7 +267,6 @@ h6 {
             &.first {
                 padding-left: 0;
             }
-
             &.last {
                 padding-right: 0;
             }
@@ -530,22 +528,18 @@ h6 {
     }
 
     .results{
+        padding: 0 @bigpad/2;
+        @media screen and (max-width: @screen-md){
+            padding: 0 @littlepad/2;
+        }
         .column{
             @media screen and (max-width: @screen-sm){
                 width:100% !important;
             }
-            padding: 0 @bigpad;
+            padding: 0 @bigpad/2;
             @media screen and (max-width: @screen-md){
-                padding: 0 @littlepad;
+                padding: 0 @littlepad/2;
             }
-            @media screen and (min-width: @screen-md){
-                &.first {
-                    padding-right: 0;
-                }
-                &.last {
-                    padding-left: 0;
-                }
-            }    
         }
 
         .races{
