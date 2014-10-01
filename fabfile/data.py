@@ -451,7 +451,7 @@ def _mock_slide_with_pym(slug, path, i):
     models.SlideSequence.create(order=i, slide=slide)
 
 @task
-def mock_results(folder):
+def mock_results(folder='data'):
     """
     Fake out some election results
     """
@@ -500,7 +500,6 @@ def _fake_previous_party(race):
     if incumbent_query.count() > 0:
         incumbent = incumbent_query[0]
         race.previous_party = incumbent.party.lower()
-        print race.previous_party
     else:
         race.previous_party = random.choice(['gop', 'dem', 'other'])
 
@@ -511,7 +510,6 @@ def _fake_poll_closing_time(race):
     first_close = datetime(2014, 11, 4, 7)
     closing_times = [first_close + timedelta(hours=delta) for delta in range(6)]
     race.poll_closing_time = random.choice(closing_times)
-    print race.poll_closing_time
 
 
 def _fake_precincts_reporting(race):
