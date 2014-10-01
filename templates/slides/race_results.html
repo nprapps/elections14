@@ -107,6 +107,7 @@
 {{ JS.push('js/results.js') }}
 {{ JS.render('js/results-footer.min.js') }}
 <script>
-$('.results').columnize({ columns: {{ column_number }} });
+$('.results').columnize({ precise: true, columns: {{ column_number }} });
+
 </script>
 {% endblock extra_foot_js %}

@@ -15,6 +15,9 @@
 @screen-xl: 1400px;
 @screen-big-board: 1920px;
 
+//padding for house 
+@bigpad : 30px;
+@littlepad : 6px;
 
 body {
     font-family: 'Cooper Hewitt';
@@ -31,11 +34,8 @@ h6 {
     font-family: 'Cooper Hewitt'
 }
 
-.container {
-    padding: 30px 50px;
-    @media screen and (max-width: @screen-sm){
-        padding: 5px;
-    }
+.container{
+    padding: 30px;
 }
 
 .results-header h2,
@@ -57,14 +57,8 @@ h6 {
         line-height: 1.1;
     }
 
-    // @media screen and (min-width: @screen-lg){
-    //     font-size: 18px;
-    //     line-height: 1.1;
-    //     font-weight: 300;
-    // }
-
     @media screen and (min-width: @screen-lg){
-        font-size: 17px;
+        font-size: 16px;
         line-height: 1.1;
         font-weight: 400;
     }
@@ -193,6 +187,7 @@ h6 {
         }
     }
 
+
     .dem  { color: @blue; }
     .gop   { color: @red; }
     .ind { color: @green; }
@@ -245,6 +240,9 @@ h6 {
         }
     }
 }
+
+
+
 
 .results  {
     overflow:hidden;
@@ -313,6 +311,7 @@ h6 {
 
             &.reporting, &.called {
                 background: @yellow;
+
                 @media screen and (min-width: @screen-md){
                     &:after{
                         content:"in";
@@ -372,7 +371,7 @@ h6 {
         }
 
         .candidate-total {
-            width: 6%;
+            // width: 6%;
             text-align:right;
         }
 
@@ -380,22 +379,12 @@ h6 {
             text-align:left;
         }
 
-        .id-5083, .id-19638{
+        .id-5083, .id-19638, .id-18556{
             letter-spacing:-.07em;
             text-transform:capitalize !important;
         }
     }
 }
-
-.house{ 
-    .candidate{
-        width: 33% !important;
-    }
-    .state{
-        text-align:left !important;
-    }
-}
-
 
 .key{
     font-size: 9px;
@@ -428,7 +417,6 @@ h6 {
     margin-bottom:20px;
     overflow:hidden;
     // border:1px solid black;
-    padding:5px;
     float:left;
     // font-family:'Open Sans';
         
@@ -482,6 +470,102 @@ h6 {
         text-indent:none;
         padding-left:0;
     }  
+}
+
+.house{
+    .container{
+        padding: @bigpad 0;
+        @media screen and (max-width: @screen-md){
+            padding: @littlepad 0;
+        }
+    }
+    .results-header h2,
+    .results-header,
+    .races h2,
+    .races,
+    .poll-closing-group {
+        font-size: 9px;
+        line-height: .2;
+        @media screen and (min-width: @screen-sm){
+            font-size: 10.6px;
+            line-height: .6;
+        }
+
+        @media screen and (min-width: @screen-md){
+            font-size: 12px;
+            line-height: .7;
+        }
+
+        @media screen and (min-width: @screen-lg){
+            font-size: 14px;
+            line-height: .9;
+        }
+
+        @media screen and (min-width: @screen-xl){
+            font-size: 17px;
+            line-height: .9;
+        }
+
+        @media screen and (min-width: @screen-big-board){
+            font-size: 19px;
+            line-height: 1.2;
+        }
+    }
+
+    .results-header{
+        padding-right: @bigpad;
+        padding-left: @bigpad;
+        @media screen and (max-width: @screen-md){
+            padding-right: @littlepad;
+            padding-left: @littlepad;
+        }
+    }
+
+    .results{
+        .column{
+            @media screen and (max-width: @screen-sm){
+                width:100% !important;
+            }
+            padding: 0 @bigpad;
+            @media screen and (max-width: @screen-md){
+                padding: 0 @littlepad;
+            }
+            @media screen and (min-width: @screen-md){
+                &.first {
+                    padding-right: 0;
+                }
+                &.last {
+                    padding-left: 0;
+                }
+            }    
+        }
+
+        .races{
+            .results-status{
+                width:15%;
+                &:after{
+                content:none;
+                }
+            }
+            .candidate{
+                width: 33%;
+                .fname{
+                    display:none;
+                }
+            }
+            .state{
+                text-align:left;
+            }
+        }
+    }
+    .key{
+        padding-right: @bigpad;
+        padding-left: @bigpad;
+        @media screen and (max-width: @screen-md){
+        padding-right: @littlepad;
+        padding-left: @littlepad;
+        }
+    }
 }
 
 

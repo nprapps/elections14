@@ -144,8 +144,7 @@ def results_house():
 
     context['page_title'] = 'House'
     context['page_class'] = 'house'
-    context['column_number'] = 2
-
+    context['column_number'] = 3
 
     all_races = Race.select().where(Race.office_name == 'U.S. House')
     featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.state_postal)
