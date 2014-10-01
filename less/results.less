@@ -16,7 +16,7 @@
 @screen-big-board: 1920px;
 
 //padding for house 
-@bigpad : 30px;
+@bigpad : 40px;
 @littlepad : 6px;
 
 body {
@@ -35,7 +35,10 @@ h6 {
 }
 
 .container{
-    padding: 30px;
+    padding: 30px 40px;
+    @media screen and (max-width: @screen-sm){
+        padding: 6px;
+    }
 }
 
 .results-header h2,
@@ -257,13 +260,14 @@ h6 {
         @media screen and (max-width: @screen-md){
             padding: 0 6px;
         }
+        @media screen and (min-width: @screen-md){
+            &.first {
+                padding-left: 0;
+            }
 
-        &.first {
-            padding-left: 0;
-        }
-
-        &.last {
-            padding-right: 0;
+            &.last {
+                padding-right: 0;
+            }
         }
     }
 
