@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from datetime import datetime
+import time
 import json
 import os
 from time import sleep
@@ -9,6 +11,7 @@ import requests
 
 import app_config
 
+SLEEP_INTERVAL = 60 
 SECRETS = app_config.get_secrets()
 CACHE_FILE = '.ap_cache.json'
 
@@ -135,7 +138,7 @@ def init():
         pass
 
     _init_ap('init/races')
-    sleep(30)
+    sleep(SLEEP_INTERVAL)
     _init_ap('init/candidates')
 
 @task
@@ -144,7 +147,7 @@ def update():
     Update data from AP.
     """
     _update_ap('races')
-    sleep(30)
+    sleep(SLEEP_INTERVAL)
     _update_ap('calls')
 
 @task
@@ -200,4 +203,35 @@ def write(output_dir='data'):
 
     with open('%s/candidates.json' % output_dir, 'w') as f:
         json.dump(candidates, f, indent=4)
+
+@task
+def record():
+    """
+    Begin recording AP data for playback later.
+    """
+    update_interval = 60 * 5
+    folder = datetime.now().strftime('%Y-%m-%d')
+    root = 'data/recording/%s' % folder
+
+    if not os.path.exists(root):
+        os.mkdir(root)
+
+    init()
+    write('.')
+
+    os.rename('races.json', '%s/races_init.json' % root)
+    os.rename('candidates.json', '%s/candidates_init.json' % root)
+
+    sleep(SLEEP_INTERVAL)
+
+    while True:
+        timestamp = time.time()
+
+        update()
+        write('.')
+
+        os.rename('races.json', '%s/races.%i.json' % (root, timestamp))
+        os.rename('candidates.json', '%s/candidates.%i.json' % (root, timestamp))
+
+        sleep(update_interval)
 
