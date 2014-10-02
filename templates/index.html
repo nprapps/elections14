@@ -7,12 +7,38 @@
 
 {% block outer_content %}
 <div id="stack" class="stack">
-
+    <div class="audio">
+        <div id="pop-audio" class="jp-jplayer"></div>
+        <div id="jp_container_1" class="jp-audio">
+            <div class="jp-type-single">
+                <div class="jp-gui jp-interface">
+                    <div class="jp-controls">
+                        <a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="play"><i class="fa fa-play"></i></a>
+                        <a href="javascript:;" class="jp-pause nav-btn" tabindex="1" style="display: none;" title="pause"><i class="fa fa-pause"></i></a>
+                    </div>
+                    <div class="jp-progress-container">
+                        <div class="jp-progress">
+                            <div class="jp-seek-bar">
+                                <div class="jp-play-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jp-volume-bar-container">
+                        <div class="jp-volume-bar">
+                            <div class="jp-volume-bar-value"></div>
+                        </div>
+                    </div>
+                    <div class="title">NPR Livestream</div>
+                </div>
+            </div>
+        </div> <!-- end .jp-audio -->
+    </div>
 </div>
 {% endblock outer_content %}
 
 {% block extra_foot_js %}
 {{ JS.push('js/lib/pym.js') }}
+{{ JS.push('js/lib/jquery.jplayer.js') }}
 {{ JS.push('js/stack.js') }}
 {{ JS.push('js/analytics.js') }}
 {{ JS.render('js/index-footer.min.js') }}
