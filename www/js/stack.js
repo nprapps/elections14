@@ -4,6 +4,10 @@ var currentSlide = 0;
 var isRotating = false;
 
 var $audioPlayer = null;
+var $welcomeScreen = null;
+var $welcomeSubmitButton = null;
+var $welcomeForm = null;
+var $stack = null;
 
 var resizeSlide = function(slide) {
     var $w = $(window).width();
@@ -71,6 +75,16 @@ function getStack() {
     });
 }
 
+var onWelcomeFormSubmit = function(e) {
+    e.preventDefault();
+
+	$welcomeScreen.hide();
+    $stack.show();
+
+    getStack();
+}
+
+
 var setUpAudio = function() {
     $audioPlayer.jPlayer({
         ready: function () {
@@ -86,13 +100,17 @@ var setUpAudio = function() {
 
 $(document).ready(function() {
     $audioPlayer = $('#pop-audio');
-
-    getStack();
+    $welcomeScreen = $('.welcome');
+    $welcomeSubmitButton = $('.welcome-submit');
+    $welcomeForm = $('form.welcome-form');
+    $stack = $('.stack');
 
     $(window).resize(function() {
         var thisSlide = $('#stack .slide');
         resizeSlide(thisSlide);
-    })
+    });
+
+    $welcomeForm.submit(onWelcomeFormSubmit);
 
     setUpAudio();
 });
