@@ -1,4 +1,8 @@
-var lastSlidePath = null;
+var stack = [];
+var nextStack = [];
+var currentSlide = 0;
+var isRotating = false;
+
 var $audioPlayer = null;
 
 var resizeSlide = function(slide) {
@@ -8,18 +12,26 @@ var resizeSlide = function(slide) {
     slide.height($h);
 }
 
-var rotateSlide = function(url) {
-    // Fix for out of sync server and client refreshes
-    if (lastSlidePath == url) {
-        setTimeout(getSlide, APP_CONFIG.CLIENT_SLIDE_ROTATE_INTERVAL * 1000);
-        return;
+var rotateSlide = function() {
+    console.log('Rotating to next slide');
+
+    currentSlide += 1;
+
+    if (currentSlide >= stack.length) {
+        if (nextStack.length > 0) {
+            console.log('Switching to new stack');
+            stack = nextStack;
+            nextStack = [];
+        }
+
+        currentSlide = 0;
     }
 
-    $.ajax({
-        url: APP_CONFIG.S3_BASE_URL + '/' + url,
-        success: function(data) {
-            lastSlidePath = url;
+    slide_path = 'slides/' + stack[currentSlide]['slug'] + '.html';
 
+    $.ajax({
+        url: APP_CONFIG.S3_BASE_URL + '/' + slide_path,
+        success: function(data) {
             var $oldSlide = $('#stack').find('.slide');
             var $newSlide = $(data);
 
@@ -30,22 +42,33 @@ var rotateSlide = function(url) {
             $oldSlide.fadeOut(function(){
                 $(this).remove();
             });
-
+    
             $newSlide.fadeIn(function(){
-                setTimeout(getSlide, APP_CONFIG.CLIENT_SLIDE_ROTATE_INTERVAL * 1000);
+                console.log('Slide rotation complete');
+                setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
             });
         }
     });
 }
 
-var getSlide = function() {
-  $.ajax({
-    url: APP_CONFIG.S3_BASE_URL + '/' + APP_CONFIG.NEXT_SLIDE_FILENAME,
-    dataType: 'json',
-    success: function(data) {
-        rotateSlide(data.next);
-    }
-  });
+function getStack() {
+    console.log('Updating the stack');
+
+    $.ajax({
+        url: APP_CONFIG.S3_BASE_URL + '/live-data/stack.json',
+        dataType: 'json',
+        success: function(data) {
+            nextStack = data;
+            
+            console.log('Stack update complete');
+
+            if (!isRotating) {
+                rotateSlide();
+            }
+    
+            setTimeout(getStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
+        }
+    });
 }
 
 var setUpAudio = function() {
@@ -63,7 +86,9 @@ var setUpAudio = function() {
 
 $(document).ready(function() {
     $audioPlayer = $('#pop-audio');
-    getSlide();
+
+    getStack();
+
     $(window).resize(function() {
         var thisSlide = $('#stack .slide');
         resizeSlide(thisSlide);

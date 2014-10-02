@@ -17,8 +17,6 @@ app = Flask(__name__)
 app.jinja_env.filters['smarty'] = smarty_filter
 app.jinja_env.filters['urlencode'] = urlencode_filter
 
-STACK_NUMBER_FILENAME = '.stack_number'
-
 SENATE_MAJORITY = 51
 SENATE_INITIAL_BOP = {
     'dem': 32,
@@ -142,8 +140,6 @@ def index():
 
     return render_template('index.html', **context), 200,
 
-
-
 @app.route('/chromecast/')
 def chromecast():
     """
@@ -249,42 +245,17 @@ def _slide(slug):
     slide = Slide.get(Slide.slug == slug)
     return render_template('_slide.html', body=slide.body)
 
-def rotate_slide():
-    from models import SlideSequence
-
-    first = SlideSequence.first() or 0
-
-    try:
-        with open(STACK_NUMBER_FILENAME, 'r') as f:
-            order = int(f.read().strip())
-    except IOError:
-        order = first
-
-    try:
-        next_slide = SlideSequence\
-            .select()\
-            .where(SlideSequence.order > order)\
-            .order_by(SlideSequence.order.asc())\
-            .get()
-    except SlideSequence.DoesNotExist:
-        next_slide = SlideSequence.get(SlideSequence.order==first)
-
-    with open(STACK_NUMBER_FILENAME, 'w') as f:
-        f.write(unicode(next_slide.order))
-
-    return next_slide
-
-@app.route('/live-data/next-slide.json')
+@app.route('/live-data/stack.json')
 @cors
 def _stack_json():
     """
-    Serve up pointer to next slide in stack
+    Serve up the current slide stack. 
     """
-    next_slide = rotate_slide()
+    from models import SlideSequence
 
-    js = json.dumps({
-        'next': 'slides/%s.html' % next_slide.slide.slug,
-    })
+    data = SlideSequence.stack()
+    js = json.dumps(data)
+
     return js, 200, { 'Content-Type': 'application/javascript' }
 
 app.register_blueprint(static_app.static_app)

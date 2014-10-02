@@ -375,3 +375,16 @@ class SlideSequence(BaseModel):
     def last(cls):
         return cls.select(fn.Max(cls.order)).scalar() or 0
 
+    @classmethod
+    def stack(cls):
+        sequences = cls.select().order_by(cls.order.asc())
+
+        data = []
+
+        for sequence in sequences:
+            data.append({
+                'slug': sequence.slide.slug
+            })
+
+        return data
+

@@ -4,28 +4,26 @@ import json
 
 from fabric.api import env, require, task
 
-import app
-import app_config
 from utils import deploy_json
 
 @task
-def rotate():
+def update():
     """
     Rotate to the next slide in the sequence.
     """
     require('settings', provided_by=['production', 'staging'])
 
-    next_slide = app.rotate_slide()
+    from models import SlideSequence
 
-    print 'Rotating to %s' % next_slide.slide.slug 
+    data = SlideSequence.stack()
 
-    with open('www/%s' % app_config.NEXT_SLIDE_FILENAME, 'w') as f:
-        json.dump({
-            'next': 'slides/%s.html' % next_slide.slide.slug,
-        }, f)
+    print 'Updating stack' 
+
+    with open('www/live-data/stack.json', 'w') as f:
+        json.dump(data, f)
 
     if env.settings:
         deploy_json(
-            'www/%s' % app_config.NEXT_SLIDE_FILENAME,
-            app_config.NEXT_SLIDE_FILENAME
+            'www/live-data/stack.json',
+            'live-data/stack.json' 
         )

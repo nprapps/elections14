@@ -22,8 +22,8 @@ def stack():
     Rotate slides indenfinitely.
     """
     while True:
-        execute('stack.rotate')
-        sleep(app_config.SLIDE_ROTATE_INTERVAL)
+        execute('stack.update')
+        sleep(app_config.STACK_UPDATE_INTERVAL)
 
 @task
 def instagram():
