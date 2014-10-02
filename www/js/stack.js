@@ -18,6 +18,7 @@ var resizeSlide = function(slide) {
 
 var rotateSlide = function() {
     console.log('Rotating to next slide');
+    isRotating = true;
 
     currentSlide += 1;
 
