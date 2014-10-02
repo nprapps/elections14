@@ -132,7 +132,18 @@ def index():
 
     context['races'] = Race.select()
 
+    """
+    Balance of Power data
+    """
+    
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+
+    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(races)
+
     return render_template('index.html', **context), 200,
+
+
 
 @app.route('/chromecast/')
 def chromecast():

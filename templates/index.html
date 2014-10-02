@@ -2,12 +2,40 @@
 
 {% block extra_css %}
 {{ CSS.push('less/stack.less') }}
+{{ CSS.push('less/results.less') }}
 {{ CSS.render('css/index.min.css') }}
 {% endblock extra_css %}
 
 {% block outer_content %}
 <div id="stack" class="stack">
     <img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
+
+    <div class="results-header">
+        {% if bop %}
+        <div class="leaderboard">
+            <div class="results-header-group dem">
+                <h2 class="party">Dem</h2>
+                <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
+                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.dem.needs }}</span></p>
+            </div>
+            <div class="results-header-group gop">
+                <h2 class="party">GOP</h2>
+                <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
+                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.gop.needs }}</span></td>
+                </tr>
+            </div>
+            <div class="results-header-group ind">
+                <h2 class="party">Other</h2>
+                <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
+            </div>
+            <div class="results-header-group not-called">
+                <h2>Not Called</h2>
+                <p class="total"><span class="count">{{ not_called }}</span></p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
     <div class="audio">
         <div id="pop-audio" class="jp-jplayer"></div>
         <div id="jp_container_1" class="jp-audio">
@@ -41,6 +69,7 @@
 {{ JS.push('js/lib/pym.js') }}
 {{ JS.push('js/lib/jquery.jplayer.js') }}
 {{ JS.push('js/stack.js') }}
+{{ JS.push('js/results.js') }}
 {{ JS.push('js/analytics.js') }}
 {{ JS.render('js/index-footer.min.js') }}
 {% endblock extra_foot_js %}
