@@ -7,11 +7,36 @@
 {% endblock %}
 
 {% block outer_content %}
-<div class="container">
-    <div class="row-fluid">
-        <div class="span12">
-            <h1>The U.S. {{ chamber.title() }} ({{ count }})</h1>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cms-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">AP Calls CMS</a>
+        </div>
 
+        <div class="collapse navbar-collapse" id="cms-nav">
+            <ul class="nav navbar-nav">
+                <li {% if chamber.title() == 'Senate' %} class="active" {% endif %}><a href="../senate">Senate</a></li>
+                <li {% if chamber.title() == 'House' %} class="active" {% endif %}><a href="../house">House</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>The U.S. {{ chamber.title() }} ({{ count }})</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
             <table class="table table-striped table-bordered table-hover table-condensed">
             <tr class="info">
                 <td><strong>State</strong></td>
@@ -28,16 +53,15 @@
                 <td><strong>Accept AP calls?</strong></td>
             </tr>
             {% endif %}
-            <tr
-                data-state-slug="{{ grouper }}"
-                class="{{ grouper }}">
+            <tr data-state-slug="{{ grouper }}" class="{{ grouper }}">
                 <td>{% if chamber == "senate" %}
                     {{ grouper.replace('0', '').upper() }}
                 {% else %}
                     {{ grouper.upper() }}
                 {% endif %}</td>
 
-                <td>{% for race in list %}
+                <td>
+                    {% for race in list %}
                     {% if loop.first %}
 
                     <span class="candidate
@@ -51,8 +75,10 @@
                         {{ race.first_name }} {{ race.last_name}}
                     </span>
                     {% endif %}
-                {% endfor %}</td>
-                <td>{% for race in list %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for race in list %}
                     {% if loop.index == 2 %}
 
                     <span class="candidate
@@ -66,24 +92,28 @@
                         {{ race.first_name }} {{ race.last_name}}
                     </span>
                     {% endif %}
-                {% endfor %}</td>
-                <td class="ap-call">{% for race in list %}{% if loop.first %}
-                <button
-                    id="{{ race.race.slug }}"
-                    class="btn {% if race.race.accept_ap_call == True %}btn-success{% else %}btn-warning{% endif %} btn-mini"
-                    data-race-slug="{{ grouper }}">
-                        {% if race.race.accept_ap_call == True %}
-                        Accepting AP calls
-                        {% else %}
-                        Not accepting AP calls
-                        {% endif %}
-                </button>
-                {% endif %}
+                    {% endfor %}
+                </td>
+                <td class="ap-call">
+                    {% for race in list %}
+                    {% if loop.first %}
+                    <button
+                        id="{{ race.race.slug }}"
+                        class="btn {% if race.race.accept_ap_call == True %}btn-success{% else %}btn-warning{% endif %} btn-mini"
+                        data-race-slug="{{ grouper }}">
+                            {% if race.race.accept_ap_call == True %}
+                            Accepting AP calls
+                            {% else %}
+                            Not accepting AP calls
+                            {% endif %}
+                    </button>
+                    {% endif %}
+                    {% endfor %}
+                </td>
+                </tr>
                 {% endfor %}
-            </td>
-            </tr>
-            {% endfor %}
-        </table>
+            </table>
+        </div>
     </div>
 </div>
 {% endblock %}
