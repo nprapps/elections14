@@ -115,17 +115,18 @@ def load_races(path):
     with open(path) as f:
         races = json.load(f)
 
-    for race in races:
-        models.Race.create(
-            state_postal = race['state_postal'],
-            office_id = race['office_id'],
-            office_name = race['office_name'],
-            seat_name = race['seat_name'],
-            seat_number = race['seat_number'],
-            race_id = race['race_id'],
-            race_type = race['race_type'],
-            last_updated = race['last_updated'],
-        )
+    with models.db.transaction():
+        for race in races:
+            models.Race.create(
+                state_postal = race['state_postal'],
+                office_id = race['office_id'],
+                office_name = race['office_name'],
+                seat_name = race['seat_name'],
+                seat_number = race['seat_number'],
+                race_id = race['race_id'],
+                race_type = race['race_type'],
+                last_updated = race['last_updated'],
+            )
 
 def load_candidates(path):
     """
@@ -138,14 +139,15 @@ def load_candidates(path):
     with open(path) as f:
         candidates = json.load(f)
 
-    for candidate in candidates:
-        models.Candidate.create(
-            first_name = candidate['first_name'],
-            last_name = candidate['last_name'],
-            party = candidate['party'],
-            race = models.Race.get(models.Race.race_id == candidate['race_id']),
-            candidate_id = candidate['candidate_id'],
-        )
+    with models.db.transaction():
+        for candidate in candidates:
+            models.Candidate.create(
+                first_name = candidate['first_name'],
+                last_name = candidate['last_name'],
+                party = candidate['party'],
+                race = models.Race.get(models.Race.race_id == candidate['race_id']),
+                candidate_id = candidate['candidate_id'],
+            )
 
 @task()
 def update_results():
