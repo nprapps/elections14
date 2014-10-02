@@ -10,7 +10,7 @@ import random
 
 import copytext
 from dateutil.parser import parse
-from fabric.api import env, local, require, run, settings, task
+from fabric.api import env, execute, local, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
@@ -425,7 +425,7 @@ def mock_slides():
     it = count()
     _mock_slide_from_image('welcome.png', it.next())
     _mock_slide_with_pym('senate', 'results/senate/', it.next())
-    _mock_slide_from_image('gif1.gif', it.next())
+    execute('instagram.get_photos')
 
 def _mock_slide_from_image(filename, i):
     import models
