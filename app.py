@@ -135,7 +135,6 @@ def index():
     """
     Balance of Power data
     """
-    
     races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
     context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
