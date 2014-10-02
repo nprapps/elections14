@@ -71,6 +71,16 @@ def _calculate_bop(races, majority, initial):
 
     return bop
 
+def _calculate_seats_left(races):
+    """
+    Calculate seats remaining
+    """
+    seats = races.count()
+    for race in races:
+        if race.is_called():
+            seats -= 1
+    return seats
+
 @app.template_filter()
 def format_board_time(dt):
     """
@@ -122,7 +132,17 @@ def index():
 
     context['races'] = Race.select()
 
+    """
+    Balance of Power data
+    """
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+
+    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(races)
+
     return render_template('index.html', **context), 200,
+
+
 
 @app.route('/chromecast/')
 def chromecast():
@@ -144,13 +164,14 @@ def results_house():
 
     context['page_title'] = 'House'
     context['page_class'] = 'house'
-    context['column_number'] = 3
+    context['column_number'] = 2
 
     all_races = Race.select().where(Race.office_name == 'U.S. House')
     featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.state_postal)
 
     context['poll_groups'] = _group_races_by_closing_time(featured_races)
     context['bop'] = _calculate_bop(all_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(all_races)
     context['seat_number'] = ".seat_number"
 
     return render_template('slides/race_results.html', **context)
@@ -171,8 +192,8 @@ def results_senate():
     races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
     context['poll_groups'] = _group_races_by_closing_time(races)
-
     context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(races)
 
     return render_template('slides/race_results.html', **context)
 

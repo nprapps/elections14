@@ -2,18 +2,73 @@
 
 {% block extra_css %}
 {{ CSS.push('less/stack.less') }}
+{{ CSS.push('less/results.less') }}
 {{ CSS.render('css/index.min.css') }}
 {% endblock extra_css %}
 
 {% block outer_content %}
 <div id="stack" class="stack">
+    <img class="logo" src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
 
+    <div class="results-header index">
+        {% if bop %}
+        <div class="leaderboard">
+            <div class="results-header-group dem">
+                <h2 class="party">Dem</h2>
+                <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
+                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.dem.needs }}</span></p>
+            </div>
+            <div class="results-header-group gop">
+                <h2 class="party">GOP</h2>
+                <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
+                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.gop.needs }}</span></td>
+                </tr>
+            </div>
+            <div class="results-header-group ind">
+                <h2 class="party">Other</h2>
+                <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
+            </div>
+            <div class="results-header-group not-called">
+                <h2>Not Called</h2>
+                <p class="total"><span class="count">{{ not_called }}</span></p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="audio">
+        <div id="pop-audio" class="jp-jplayer"></div>
+        <div id="jp_container_1" class="jp-audio">
+            <div class="jp-type-single">
+                <div class="jp-gui jp-interface">
+                    <div class="jp-controls">
+                        <a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="play"><i class="fa fa-play"></i></a>
+                        <a href="javascript:;" class="jp-pause nav-btn" tabindex="1" style="display: none;" title="pause"><i class="fa fa-stop"></i></a>
+                    </div>
+                    <div class="jp-progress-container">
+                        <div class="jp-progress">
+                            <div class="jp-seek-bar">
+                                <div class="jp-play-bar"></div>
+                                <div class="jp-mute-container">
+                                    <a href="javascript:;" class="jp-mute nav-btn" tabindex="1" title="mute"><i class="fa fa-volume-up"></i></a>
+                                    <a href="javascript:;" class="jp-unmute nav-btn" tabindex="1" title="unmute" style="display: none;"><i class="fa fa-volume-off"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="title">Election Night Livestream</div>
+                </div>
+            </div>
+        </div> <!-- end .jp-audio -->
+    </div>
 </div>
 {% endblock outer_content %}
 
 {% block extra_foot_js %}
 {{ JS.push('js/lib/pym.js') }}
+{{ JS.push('js/lib/jquery.jplayer.js') }}
 {{ JS.push('js/stack.js') }}
+{{ JS.push('js/results.js') }}
 {{ JS.push('js/analytics.js') }}
 {{ JS.render('js/index-footer.min.js') }}
 {% endblock extra_foot_js %}

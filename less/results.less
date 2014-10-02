@@ -21,7 +21,8 @@
 
 body {
     font-family: 'Cooper Hewitt';
-    font-weight: 300;
+    font-weight: 400;
+    background-color:@gray-lighter;
 }
 
 h1,
@@ -46,9 +47,13 @@ h6 {
 .races h2,
 .races,
 .poll-closing-group {
+    font-size: 16px;
+    line-height: 1.1;
+
+    @media screen and (min-width: 0px){
     font-size: 9px;
     line-height: .2;
-    font-weight: 400;
+    }
 
     @media screen and (min-width: @screen-sm){
         font-size: 10.6px;
@@ -69,13 +74,13 @@ h6 {
     @media screen and (min-width: @screen-xl){
         font-size: 22px;
         line-height: 1;
-        font-weight: 300;
+        font-weight:300;
     }
 
     @media screen and (min-width: @screen-big-board){
-        font-size: 33px;
-        font-weight: 300;
+        font-size: 26px;
         line-height: 1.2;
+        font-weight:300;
     }
 }
 
@@ -84,7 +89,6 @@ h6 {
 }
 
 .results-header {
-    background: #fff;
     overflow: hidden;
     margin-bottom: @line-height-computed / 2;
     @media screen and (max-width: @screen-sm){
@@ -236,10 +240,10 @@ h6 {
         }
 
         @media screen and (min-width: @screen-big-board){
-            min-width:58px;
-            height:58px;
-            line-height: 58px;
-            border-radius: 28px;
+            min-width:52px;
+            height:52px;
+            line-height: 52px;
+            border-radius: 26px;
         }
     }
 }
@@ -251,23 +255,20 @@ h6 {
     overflow:hidden;
 
     .column {
-        @media screen and (max-width: 470px){
-            width:100% !important;
-        }
-
         box-sizing: border-box;
         padding: 0 15px;
         @media screen and (max-width: @screen-md){
             padding: 0 6px;
         }
-        @media screen and (min-width: @screen-md){
-            &.first {
-                padding-left: 0;
-            }
-
-            &.last {
-                padding-right: 0;
-            }
+        &.first {
+            padding-left: 0;
+        }
+        &.last {
+            padding-right: 0;
+        }
+        @media screen and (max-width: 470px){
+            width:100% !important;
+            padding:0;
         }
     }
 
@@ -476,100 +477,98 @@ h6 {
     }  
 }
 
-.house{
-    .container{
-        padding: @bigpad 0;
-        @media screen and (max-width: @screen-md){
-            padding: @littlepad 0;
-        }
-    }
-    .results-header h2,
-    .results-header,
-    .races h2,
-    .races,
-    .poll-closing-group {
-        font-size: 9px;
-        line-height: .2;
-        @media screen and (min-width: @screen-sm){
-            font-size: 10.6px;
-            line-height: .6;
-        }
+// .house{
+//     .container{
+//         padding: @bigpad 0;
+//         @media screen and (max-width: @screen-md){
+//             padding: @littlepad 0;
+//         }
+//     }
+//     .results-header h2,
+//     .results-header,
+//     .races h2,
+//     .races,
+//     .poll-closing-group {
+//         font-size: 9px;
+//         line-height: .2;
+//         @media screen and (min-width: @screen-sm){
+//             font-size: 10.6px;
+//             line-height: .6;
+//         }
 
-        @media screen and (min-width: @screen-md){
-            font-size: 12px;
-            line-height: .7;
-        }
+//         @media screen and (min-width: @screen-md){
+//             font-size: 12px;
+//             line-height: .7;
+//         }
 
-        @media screen and (min-width: @screen-lg){
-            font-size: 14px;
-            line-height: .9;
-        }
+//         @media screen and (min-width: @screen-lg){
+//             font-size: 14px;
+//             line-height: .9;
+//         }
 
-        @media screen and (min-width: @screen-xl){
-            font-size: 17px;
-            line-height: .9;
-        }
+//         @media screen and (min-width: @screen-xl){
+//             font-size: 17px;
+//             line-height: .9;
+//         }
 
-        @media screen and (min-width: @screen-big-board){
-            font-size: 19px;
-            line-height: 1.2;
-        }
-    }
+//         @media screen and (min-width: @screen-big-board){
+//             font-size: 19px;
+//             line-height: 1.2;
+//         }
+//     }
 
-    .results-header{
-        padding-right: @bigpad;
-        padding-left: @bigpad;
-        @media screen and (max-width: @screen-md){
-            padding-right: @littlepad;
-            padding-left: @littlepad;
-        }
-    }
+//     .results-header{
+//         padding-right: @bigpad;
+//         padding-left: @bigpad;
+//         @media screen and (max-width: @screen-md){
+//             padding-right: @littlepad;
+//             padding-left: @littlepad;
+//         }
+//     }
 
-    .results{
-        .column{
-            @media screen and (max-width: @screen-sm){
-                width:100% !important;
-            }
-            padding: 0 @bigpad;
-            @media screen and (max-width: @screen-md){
-                padding: 0 @littlepad;
-            }
-            @media screen and (min-width: @screen-md){
-                &.first {
-                    padding-right: 0;
-                }
-                &.last {
-                    padding-left: 0;
-                }
-            }    
-        }
+//     .results{
+//         padding: 0 @bigpad/2;
+//         @media screen and (max-width: @screen-md){
+//             padding: 0 @littlepad/2;
+//         }
+//         .column{
+//             @media screen and (max-width: @screen-sm){
+//                 width:100% !important;
+//             }
+//             padding: 0 @bigpad/2;
+//             @media screen and (max-width: @screen-md){
+//                 padding: 0 @littlepad/2;
+//             }
+//         }
 
-        .races{
-            .results-status{
-                width:15%;
-                &:after{
-                content:none;
-                }
-            }
-            .candidate{
-                width: 33%;
-                .fname{
-                    display:none;
-                }
-            }
-            .state{
-                text-align:left;
-            }
-        }
-    }
-    .key{
-        padding-right: @bigpad;
-        padding-left: @bigpad;
-        @media screen and (max-width: @screen-md){
-        padding-right: @littlepad;
-        padding-left: @littlepad;
-        }
-    }
+//         .races{
+//             .results-status{
+//                 width:15%;
+//                 &:after{
+//                 content:none;
+//                 }
+//             }
+//             .candidate{
+//                 width: 33%;
+//                 .fname{
+//                     display:none;
+//                 }
+//             }
+//             .state{
+//                 text-align:left;
+//             }
+//         }
+//     }
+//     .key{
+//         padding-right: @bigpad;
+//         padding-left: @bigpad;
+//         @media screen and (max-width: @screen-md){
+//         padding-right: @littlepad;
+//         padding-left: @littlepad;
+//         }
+//     }
+// }
+
+.hide-results {
+    opacity: 0;
 }
-
-

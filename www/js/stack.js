@@ -1,4 +1,5 @@
 var lastSlidePath = null;
+var $audioPlayer = null;
 
 var resizeSlide = function(slide) {
     var $w = $(window).width();
@@ -47,10 +48,26 @@ var getSlide = function() {
   });
 }
 
+var setUpAudio = function() {
+    $audioPlayer.jPlayer({
+        ready: function () {
+            $(this).jPlayer('setMedia', {
+                mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
+            }).jPlayer('pause');
+        },
+        swfPath: 'js/lib',
+        supplied: 'mp3',
+        loop: false,
+    });
+}
+
 $(document).ready(function() {
+    $audioPlayer = $('#pop-audio');
     getSlide();
     $(window).resize(function() {
         var thisSlide = $('#stack .slide');
         resizeSlide(thisSlide);
     })
+
+    setUpAudio();
 });
