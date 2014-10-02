@@ -7,6 +7,34 @@
 {% endblock extra_css %}
 
 {% block outer_content %}
+<div class="welcome">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Welcome to #nprparty</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form" class="welcome-form">
+                    <div class="form-group">
+                        <label for="state-selector">Pick your state</label>
+                        <select class="form-control">
+                            <option>Alabama</option>
+                            <option>Arkansas</option>
+                            <option>Arizona</option>
+                            <option>California</option>
+                            <option>Maine</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary welcome-submit">Join the party</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="stack" class="stack">
     <img class="logo" src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
 
