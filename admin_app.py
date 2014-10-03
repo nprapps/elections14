@@ -78,6 +78,9 @@ def chamber(chamber):
     if chamber == 'senate':
         chamber_slug = 'S'
 
+    elif chamber == 'governor':
+        chamber_slug = 'G'
+
     # TODO: special cases for independents who might win
     candidates = Candidate\
         .select()\
