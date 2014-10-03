@@ -279,7 +279,7 @@ def configure_targets(deployment_target):
         DISQUS_SHORTNAME = 'nprviz-test'
 
         TUMBLR_NAME = 'stage-nprelections'
-        TUMBLR_AUTO_REFRESH = False
+        TUMBLR_AUTO_REFRESH = True
         TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
 
     DEPLOYMENT_TARGET = deployment_target
