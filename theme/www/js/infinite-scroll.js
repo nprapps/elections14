@@ -222,18 +222,15 @@ Tumblelog.Infinite = (function() {
             var $new_posts = $data.find('#posts article');
 
             var $current_posts = $('#posts');
-            var current_post_permalink = $current_posts.find('.permalink').attr('href');
             var posts_to_append = [];
+            
 
-            for (i = 0; i < $new_posts.length; i++) {
-                var $loop_post = $new_posts.eq(i);
-                var permalink = $loop_post.find('.permalink').attr('href');
-                
-                if (permalink == current_post_permalink) {
-                    break;
+            for (var i = 0; i < $new_posts.length; i++) {
+                var found = $current_posts.find('#' + $new_posts.eq(i).attr('id'));
+
+                if (found.length == 0) {
+                    posts_to_append.push($new_posts[i]);
                 }
-
-                posts_to_append.push($new_posts[i]);
             }
 
             console.log('updateLiveBlog', posts_to_append);
@@ -250,10 +247,11 @@ Tumblelog.Infinite = (function() {
 
             if (_current_page < _total_pages) {
                 set_trigger();
-                _is_loading = false;
             } else {
                 disable_scroll();
             }
+            
+            _is_loading = false;
         });
     }
 
