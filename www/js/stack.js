@@ -2,6 +2,7 @@ var stack = [];
 var nextStack = [];
 var currentSlide = 0;
 var isRotating = false;
+var state = null;
 
 var $audioPlayer = null;
 var $welcomeScreen = null;
@@ -32,9 +33,9 @@ var rotateSlide = function() {
 
         currentSlide = 0;
     }
-    
+
     if (stack[currentSlide]['slug'] === 'state') {
-        slide_path = 'slides/state-' + $.cookie('state') + '.html';
+        slide_path = 'slides/state-' + state + '.html';
     } else {
         slide_path = 'slides/' + stack[currentSlide]['slug'] + '.html';
     }
@@ -46,7 +47,7 @@ var rotateSlide = function() {
             var $newSlide = $(data);
 
             $('#stack').append($newSlide);
-            
+
             resizeSlide($newSlide)
 
             $oldSlide.fadeOut(function(){
@@ -84,8 +85,7 @@ function getStack() {
 var onWelcomeFormSubmit = function(e) {
     e.preventDefault();
 
-    var state = $('.state-selector').val();
-
+    state = $('.state-selector').val();
     $.cookie('state', state);
 
 	$welcomeScreen.hide();
