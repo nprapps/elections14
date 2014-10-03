@@ -64,6 +64,8 @@ var rotateSlide = function() {
 
             $('#stack').append($newSlide);
             
+            resizeSlide($newSlide)
+
             if (slide_path == 'slides/balance-of-power.html') {
 				$graphic = $('#graphic');
 				render_bop();
@@ -71,8 +73,6 @@ var rotateSlide = function() {
             } else {
 				$(window).unbind('resize', render_bop);
             }
-
-            resizeSlide($newSlide)
 
             $oldSlide.fadeOut(function(){
                 $(this).remove();
@@ -136,7 +136,7 @@ var setUpAudio = function() {
 
 /* BALANCE OF POWER */
 function render_bop() {
-	var container_width = $graphic.width();
+	var container_width = $('#stack').width();
 	var graphic_width = Math.floor((container_width - 22) / 2);
 
     if (container_width <= mobile_threshold) {

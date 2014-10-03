@@ -131,6 +131,19 @@
 </div>
 
 <script type="text/javascript">
+		var data_house = [
+			{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': 0, 'net': 1 },
+			{ 'party': 'Republican', 'party_abbr': 'Rep.', 'seats': 0, 'net': 1 },
+			{ 'party': 'Independent', 'party_abbr': 'Ind.', 'seats': 0, 'net': 0 },
+			{ 'party': 'Not yet called', 'party_abbr': 'TBD', 'seats': 435, 'net': 0 }
+		];
+		var data_senate = [
+			{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': 33, 'net': 1 },
+			{ 'party': 'Republican', 'party_abbr': 'Rep.', 'seats': 32, 'net': 1 },
+			{ 'party': 'Independent', 'party_abbr': 'Ind.', 'seats': 2, 'net': 0 },
+			{ 'party': 'Not yet called', 'party_abbr': 'TBD', 'seats': 33, 'net': 0 }
+		];
+		/*
 	var data_house = [
 		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ house_bop.dem.has }}, 'net': {{ house_bop.dem.picked_up }} },
 		{ 'party': 'Republican', 'party_abbr': 'Rep.', 'seats': {{ house_bop.gop.has }}, 'net': {{ house_bop.gop.picked_up }} },
@@ -143,6 +156,7 @@
 		{ 'party': 'Independent', 'party_abbr': 'Ind.', 'seats': {{ senate_bop.other.has }}, 'net': {{ senate_bop.other.picked_up }} },
 		{ 'party': 'Not yet called', 'party_abbr': 'TBD', 'seats': {{ senate_not_called }}, 'net': 0 }
 	];
+	*/
 	var header_house = '{{ COPY.graphic_bop.subhed_house }}';
 	var header_senate = '{{ COPY.graphic_bop.subhed_senate }}';
 	var majority_house = 218;
