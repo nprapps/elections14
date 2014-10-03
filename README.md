@@ -101,6 +101,8 @@ fab data.mock_results
 
 **Problems installing requirements?** You may need to run the pip command as ``ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install -r requirements.txt`` to work around an issue with OSX.
 
+**Problems with data.bootstrap?** Run ``createdb`` to initialize your user database, and make sure you have the project environment variables in your ``.bash_profile``.
+
 Simulate election results
 -------------------------
 
