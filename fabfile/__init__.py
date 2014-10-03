@@ -171,6 +171,17 @@ def deploy_instagram_photos():
     utils._deploy_to_s3('www/assets/instagram')
 
 @task
+def deploy_states():
+    """
+    Deploy every state slide to S3
+    """
+    local('rm -rf .states_html .states_gzip')
+    render.render_states()
+    utils._gzip('.states_html', '.states_gzip')
+    utils._deploy_to_s3('.states_gzip')
+
+
+@task
 def deploy():
     """
     Deploy the latest app to S3 and, if configured, to our servers.

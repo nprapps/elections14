@@ -10,6 +10,7 @@ import os
 from fabric.api import local, task
 
 import app
+import app_config
 
 @task
 def less():
@@ -128,10 +129,55 @@ def render_slides():
     """
     Render slides to HTML files.
     """
+
     import models
 
     slides = models.Slide.select()
     _render_slug_pages(slides, '_slide', '.slides_html', [])
+
+@task
+def render_states():
+    """
+    Render state slides to HTML files
+    """
+    from flask import g, url_for
+
+    view_name = '_state_slide'
+    output_path = '.states_html'
+    compiled_includes = {}
+
+    for postal, state in app_config.STATES.items():
+
+        # Silly fix because url_for require a context
+        with app.app.test_request_context():
+            path = url_for(view_name, slug=postal)
+
+        with app.app.test_request_context(path=path):
+            print 'Rendering %s' % path
+
+            g.compile_includes = True
+            g.compiled_includes = compiled_includes
+
+            view = app.__dict__[view_name]
+            content = view(postal)
+
+            compiled_includes = g.compiled_includes
+
+        path = '%s%s' % (output_path, path)
+
+        # Ensure path exists
+        head = os.path.split(path)[0]
+
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
+
+        with open(path, 'w') as f:
+            f.write(content.data)
+
+    return compiled_includes
+
 
 def _render_slug_pages(models, view_name, output_path, compiled_includes):
     """
