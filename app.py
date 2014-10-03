@@ -249,7 +249,7 @@ def _slide(slug):
 @cors
 def _stack_json():
     """
-    Serve up the current slide stack. 
+    Serve up the current slide stack.
     """
     from models import SlideSequence
 
@@ -257,6 +257,20 @@ def _stack_json():
     js = json.dumps(data)
 
     return js, 200, { 'Content-Type': 'application/javascript' }
+
+@app.route('/slides/state-<string:slug>.html')
+@cors
+def _state_slide(slug):
+    """
+    Serve a dummy state slide
+    """
+    context = make_context()
+
+    context['state'] = slug
+
+    context['body'] = render_template('slides/state.html', **context)
+
+    return render_template('_slide.html', **context)
 
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)

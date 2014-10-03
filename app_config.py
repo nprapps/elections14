@@ -136,15 +136,69 @@ DISQUS_UUID = '187d5a38-3768-11e4-8de3-14109fed4b76'
 CHROMECAST_APP_ID = '8408F716'
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
-SLIDE_ROTATE_INTERVAL = 5 
+SLIDE_ROTATE_INTERVAL = 5
 STACK_UPDATE_INTERVAL = 60
 
 TUMBLR_NAME = '' # See below
-TUMBLR_NOT_BEFORE = None # See below 
-TUMBLR_AUTO_REFRESH = None # See below 
+TUMBLR_NOT_BEFORE = None # See below
+TUMBLR_AUTO_REFRESH = None # See below
 TUMBLR_REFRESH_INTERVAL = 5
 
 INSTAGRAM_REFRESH_INTERVAL = 15
+
+STATES = {
+    'AK': 'Alaska',
+    'AL': 'Alabama',
+    'AR': 'Arkansas',
+    'AZ': 'Arizona',
+    'CA': 'California',
+    'CO': 'Colorado',
+    'CT': 'Connecticut',
+    'DC': 'District of Columbia',
+    'DE': 'Delaware',
+    'FL': 'Florida',
+    'GA': 'Georgia',
+    'HI': 'Hawaii',
+    'IA': 'Iowa',
+    'ID': 'Idaho',
+    'IL': 'Illinois',
+    'IN': 'Indiana',
+    'KS': 'Kansas',
+    'KY': 'Kentucky',
+    'LA': 'Louisiana',
+    'MA': 'Massachusetts',
+    'MD': 'Maryland',
+    'ME': 'Maine',
+    'MI': 'Michigan',
+    'MN': 'Minnesota',
+    'MO': 'Missouri',
+    'MS': 'Mississippi',
+    'MT': 'Montana',
+    'NC': 'North Carolina',
+    'ND': 'North Dakota',
+    'NE': 'Nebraska',
+    'NH': 'New Hampshire',
+    'NJ': 'New Jersey',
+    'NM': 'New Mexico',
+    'NV': 'Nevada',
+    'NY': 'New York',
+    'OH': 'Ohio',
+    'OK': 'Oklahoma',
+    'OR': 'Oregon',
+    'PA': 'Pennsylvania',
+    'RI': 'Rhode Island',
+    'SC': 'South Carolina',
+    'SD': 'South Dakota',
+    'TN': 'Tennessee',
+    'TX': 'Texas',
+    'UT': 'Utah',
+    'VA': 'Virginia',
+    'VT': 'Vermont',
+    'WA': 'Washington',
+    'WI': 'Wisconsin',
+    'WV': 'West Virginia',
+    'WY': 'Wyoming',
+}
 
 """
 Utilities
@@ -223,7 +277,7 @@ def configure_targets(deployment_target):
         DEBUG = True
 
         DISQUS_SHORTNAME = 'nprviz-test'
-        
+
         TUMBLR_NAME = 'stage-nprelections'
         TUMBLR_AUTO_REFRESH = False
         TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)

@@ -31,7 +31,12 @@ var rotateSlide = function() {
         currentSlide = 0;
     }
 
-    slide_path = 'slides/' + stack[currentSlide]['slug'] + '.html';
+    if (stack[currentSlide]['slug'] === 'state') {
+        slide_path = 'slides/state-' + $.cookie('state') + '.html';
+    }
+    else {
+        slide_path = 'slides/' + stack[currentSlide]['slug'] + '.html';
+    }
 
     $.ajax({
         url: APP_CONFIG.S3_BASE_URL + '/' + slide_path,
@@ -46,7 +51,7 @@ var rotateSlide = function() {
             $oldSlide.fadeOut(function(){
                 $(this).remove();
             });
-    
+
             $newSlide.fadeIn(function(){
                 console.log('Slide rotation complete');
                 setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
@@ -63,13 +68,13 @@ function getStack() {
         dataType: 'json',
         success: function(data) {
             nextStack = data;
-            
+
             console.log('Stack update complete');
 
             if (!isRotating) {
                 rotateSlide();
             }
-    
+
             setTimeout(getStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
         }
     });
@@ -77,6 +82,10 @@ function getStack() {
 
 var onWelcomeFormSubmit = function(e) {
     e.preventDefault();
+
+    var state = $('.state-selector').val();
+
+    $.cookie('state', state);
 
 	$welcomeScreen.hide();
     $stack.show();

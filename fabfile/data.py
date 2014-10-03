@@ -427,13 +427,22 @@ def mock_slides():
     it = count()
     _mock_slide_from_image('welcome.png', it.next())
     _mock_slide_with_pym('senate', 'results/senate/', it.next())
+    _mock_empty_slide('state', it.next())
     execute('instagram.get_photos')
+
 
 def _mock_slide_from_image(filename, i):
     import models
 
     body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
     slide = models.Slide.create(body=body, name=filename)
+    models.SlideSequence.create(order=i, slide=slide)
+
+def _mock_empty_slide(slug, i):
+    import models
+
+    body = ''
+    slide = models.Slide.create(body=body, name=slug)
     models.SlideSequence.create(order=i, slide=slide)
 
 def _mock_slide_with_pym(slug, path, i):
