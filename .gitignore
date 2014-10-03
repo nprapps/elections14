@@ -73,6 +73,8 @@ www/results
 .stack_number
 .slides_gzip
 .slides_html
+.states_html
+.states_gzip
 .gzip_theme
 .tests
 data/recording
