@@ -6,6 +6,9 @@
 
 {% block outer_content %}
 <div class="results state-slide">
+	<div class="results-header">
+            <h1>{{ page_title }}</h1>
+    </div>
 	<table class="races">
 		<tr class="header">
 			<td>Senate</td>
@@ -22,8 +25,7 @@
 	            {% endif %}
 	        </td>
 	        <td class="state{% if race.is_called() and race.party_changed() %} party-change{% endif %}{% if race.is_called() %} {{ race.get_winning_party() }}{% else %} {{ race.previous_party }}{% endif %} ">
-	            {{ race.state_postal }}{% if seat_number %}<span class="seat_number">-{{ race.seat_number }}</span>
-	            {% endif %}
+	            {{ race.state_postal }}
 	        </td>
 	        {% set candidate = race.top_candidates()[0] %}
 	        {% if candidate %}
@@ -59,8 +61,7 @@
 	            {% endif %}
 	        </td>
 	        <td class="state{% if race.is_called() and race.party_changed() %} party-change{% endif %}{% if race.is_called() %} {{ race.get_winning_party() }}{% else %} {{ race.previous_party }}{% endif %} ">
-	            {{ race.state_postal }}{% if seat_number %}<span class="seat_number">-{{ race.seat_number }}</span>
-	            {% endif %}
+	            {{ race.state_postal }}
 	        </td>
 	        {% set candidate = race.top_candidates()[0] %}
 	        {% if candidate %}
@@ -96,7 +97,7 @@
 	            {% endif %}
 	        </td>
 	        <td class="state{% if race.is_called() and race.party_changed() %} party-change{% endif %}{% if race.is_called() %} {{ race.get_winning_party() }}{% else %} {{ race.previous_party }}{% endif %} ">
-	            {{ race.state_postal }}{% if seat_number %}<span class="seat_number">-{{ race.seat_number }}</span>
+	            {{ race.state_postal }}{% if race.seat_number != None %}<span class="seat_number">-{{ race.seat_number }}</span>
 	            {% endif %}
 	        </td>
 	        {% set candidate = race.top_candidates()[0] %}

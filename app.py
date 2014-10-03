@@ -284,6 +284,8 @@ def _state_slide(slug):
         (Race.state_postal == slug.upper()) 
     )
 
+    context['seat_number'] = ".seat_number"
+
     context['column_number'] = 2
     context['body'] = render_template('slides/state.html', **context)
 
