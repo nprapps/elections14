@@ -1,17 +1,5 @@
-var stack = [];
-var nextStack = [];
-var currentSlide = 0;
-var isRotating = false;
-
-var $audioPlayer = null;
-var $welcomeScreen = null;
-var $welcomeSubmitButton = null;
-var $welcomeForm = null;
-var $stack = null;
-
-
-/* balance of power */
 var $graphic;
+
 var bar_gap = 5;
 var bar_height = 30;
 var color;
@@ -20,122 +8,26 @@ var is_mobile = false;
 var label_width = 30;
 var mobile_threshold = 480;
 var num_x_ticks = 5;
+var pymChild = null;
 var round_increment = 10;
+
 var fmt_comma = d3.format(',');
 var fmt_year_abbrev = d3.time.format('%y');
 var fmt_year_full = d3.time.format('%Y');
 
+var colors = {
+    'red1': '#6C2315', 'red2': '#A23520', 'red3': '#D8472B', 'red4': '#E27560', 'red5': '#ECA395', 'red6': '#F5D1CA',
+    'orange1': '#714616', 'orange2': '#AA6A21', 'orange3': '#E38D2C', 'orange4': '#EAAA61', 'orange5': '#F1C696', 'orange6': '#F8E2CA',
+    'yellow1': '#77631B', 'yellow2': '#B39429', 'yellow3': '#EFC637', 'yellow4': '#F3D469', 'yellow5': '#F7E39B', 'yellow6': '#FBF1CD',
+    'teal1': '#0B403F', 'teal2': '#11605E', 'teal3': '#17807E', 'teal4': '#51A09E', 'teal5': '#8BC0BF', 'teal6': '#C5DFDF',
+    'blue1': '#28556F', 'blue2': '#3D7FA6', 'blue3': '#51AADE', 'blue4': '#7DBFE6', 'blue5': '#A8D5EF', 'blue6': '#D3EAF7'
+};
 
 
-var resizeSlide = function(slide) {
-    var $w = $(window).width();
-    var $h = $(window).height();
-    slide.width($w);
-    slide.height($h);
-}
-
-var rotateSlide = function() {
-    console.log('Rotating to next slide');
-    isRotating = true;
-
-    currentSlide += 1;
-
-    if (currentSlide >= stack.length) {
-        if (nextStack.length > 0) {
-            console.log('Switching to new stack');
-            stack = nextStack;
-            nextStack = [];
-        }
-
-        currentSlide = 0;
-    }
-    
-    if (stack[currentSlide]['slug'] === 'state') {
-        slide_path = 'slides/state-' + $.cookie('state') + '.html';
-    } else {
-        slide_path = 'slides/' + stack[currentSlide]['slug'] + '.html';
-    }
-
-    $.ajax({
-        url: APP_CONFIG.S3_BASE_URL + '/' + slide_path,
-        success: function(data) {
-            var $oldSlide = $('#stack').find('.slide');
-            var $newSlide = $(data);
-
-            $('#stack').append($newSlide);
-            
-            if (slide_path == 'slides/balance-of-power.html') {
-				$graphic = $('#graphic');
-				render_bop();
-				$(window).on('resize', render_bop);
-            } else {
-				$(window).unbind('resize', render_bop);
-            }
-
-            resizeSlide($newSlide)
-
-            $oldSlide.fadeOut(function(){
-                $(this).remove();
-            });
-
-            $newSlide.fadeIn(function(){
-                console.log('Slide rotation complete');
-                setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
-            });
-        }
-    });
-}
-
-function getStack() {
-    console.log('Updating the stack');
-
-    $.ajax({
-        url: APP_CONFIG.S3_BASE_URL + '/live-data/stack.json',
-        dataType: 'json',
-        success: function(data) {
-            nextStack = data;
-
-            console.log('Stack update complete');
-
-            if (!isRotating) {
-                rotateSlide();
-            }
-
-            setTimeout(getStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
-        }
-    });
-}
-
-var onWelcomeFormSubmit = function(e) {
-    e.preventDefault();
-
-    var state = $('.state-selector').val();
-
-    $.cookie('state', state);
-
-	$welcomeScreen.hide();
-    $stack.show();
-
-    getStack();
-}
-
-
-var setUpAudio = function() {
-    $audioPlayer.jPlayer({
-        ready: function () {
-            $(this).jPlayer('setMedia', {
-                mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
-            }).jPlayer('pause');
-        },
-        swfPath: 'js/lib',
-        supplied: 'mp3',
-        loop: false,
-    });
-}
-
-
-/* BALANCE OF POWER */
-function render_bop() {
+/*
+ * Render the graphic
+ */
+function render() {
 	var container_width = $graphic.width();
 	var graphic_width = Math.floor((container_width - 22) / 2);
 
@@ -148,10 +40,11 @@ function render_bop() {
     // clear out existing graphics
     $graphic.empty();
     
-    draw_bop('house', graphic_width);    
-    draw_bop('senate', graphic_width);    
+    draw_chart('house', graphic_width);    
+    draw_chart('senate', graphic_width);    
 }
-function draw_bop(id, graphic_width) {
+
+function draw_chart(id, graphic_width) {
 	var graphic_data = eval('data_' + id);
 	var majority = eval('majority_' + id);
 	var majority_rounded = Math.ceil(majority / round_increment) * round_increment;
@@ -309,6 +202,10 @@ function draw_bop(id, graphic_width) {
 		.attr('dy', '-6')
 		.attr('text-anchor', 'end')
 		.html('Majority: ' + majority + '&#11022;');
+
+    if (pymChild) {
+        pymChild.sendHeightToParent();
+    }
 }
 
 function classify(str) {
@@ -316,20 +213,13 @@ function classify(str) {
 }
 
 
-
-$(document).ready(function() {
-    $audioPlayer = $('#pop-audio');
-    $welcomeScreen = $('.welcome');
-    $welcomeSubmitButton = $('.welcome-submit');
-    $welcomeForm = $('form.welcome-form');
-    $stack = $('.stack');
-
-    $(window).resize(function() {
-        var thisSlide = $('#stack .slide');
-        resizeSlide(thisSlide);
-    });
-
-    $welcomeForm.submit(onWelcomeFormSubmit);
-
-    setUpAudio();
-});
+$(window).load(function() {
+    if (Modernizr.svg) {
+        $graphic = $('#graphic');
+        
+        render();
+        $(window).on('resize', render);
+    } else {
+        pymChild = new pym.Child({ });
+    }
+})

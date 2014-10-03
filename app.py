@@ -295,6 +295,31 @@ def _state_slide(slug):
 
     return render_template('_slide.html', **context)
 
+@app.route('/slides/balance-of-power.html')
+@cors
+def _balance_of_power():
+    """
+    Serve up the balance of power graph
+    """
+
+    from models import Race
+
+    context = make_context()
+
+    context['page_title'] = 'Balance of Power'
+    context['page_class'] = 'balance-of-power'
+
+    house_races = Race.select().where(Race.office_name == 'U.S. House').order_by(Race.state_postal)
+    senate_races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+
+    context['house_bop'] = _calculate_bop(house_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
+    context['senate_bop'] = _calculate_bop(senate_races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
+    context['house_not_called'] = _calculate_seats_left(house_races)
+    context['senate_not_called'] = _calculate_seats_left(senate_races)
+
+    context['body'] = render_template('slides/balance-of-power.html', **context)
+    return render_template('_slide.html', **context)
+
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)
 

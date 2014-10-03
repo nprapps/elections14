@@ -428,6 +428,7 @@ def mock_slides():
     _mock_slide_from_image('welcome.png', it.next())
     _mock_slide_with_pym('senate', 'results/senate/', it.next())
     _mock_empty_slide('state', it.next())
+    _mock_empty_slide('balance of power', it.next())
     execute('instagram.get_photos')
 
 
