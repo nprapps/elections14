@@ -50,7 +50,6 @@
 	var label_width = 30;
 	var mobile_threshold = 480;
 	var num_x_ticks = 5;
-	var pymChild = null;
 	var round_increment = 10;
 
 	var fmt_comma = d3.format(',');
@@ -62,7 +61,6 @@
 	 * Render the graphic
 	 */
 	function render() {
-		console.log('RENDER');
 		var container_width = $('#stack').width();
 		var graphic_width = Math.floor((container_width - 22) / 2);
 
