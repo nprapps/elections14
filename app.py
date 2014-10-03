@@ -264,10 +264,27 @@ def _state_slide(slug):
     """
     Serve a dummy state slide
     """
+
+    from models import Race
+
     context = make_context()
 
-    context['state'] = slug
+    context['senate'] = Race.select().where(
+        (Race.office_name == 'U.S. Senate') &
+        (Race.state_postal == slug.upper()) 
+    )
 
+    context['governor'] = Race.select().where(
+        (Race.office_name == 'Governor') &
+        (Race.state_postal == slug.upper()) 
+    )
+
+    context['house'] = Race.select().where(
+        (Race.office_name == 'U.S. House') &
+        (Race.state_postal == slug.upper()) 
+    )
+
+    context['column_number'] = 2
     context['body'] = render_template('slides/state.html', **context)
 
     return render_template('_slide.html', **context)
