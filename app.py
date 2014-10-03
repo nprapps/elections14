@@ -267,7 +267,12 @@ def _state_slide(slug):
 
     from models import Race
 
+    for postal, state in app_config.STATES.items():
+        if postal == slug.upper():
+            state_name = state
+
     context = make_context()
+    context['page_title'] = state_name
 
     context['senate'] = Race.select().where(
         (Race.office_name == 'U.S. Senate') &
@@ -284,7 +289,6 @@ def _state_slide(slug):
         (Race.state_postal == slug.upper()) 
     )
 
-    context['seat_number'] = ".seat_number"
 
     context['column_number'] = 2
     context['body'] = render_template('slides/state.html', **context)
