@@ -75,7 +75,7 @@
 }
 
 .slide {
-    background-color: @musicDark;
+    background-color: lighten(@musicDark, 10%);
     display: none;
     color: @musicLight;
 }
@@ -160,6 +160,41 @@
             width: 25%;
         }
     }
+}
+
+.header-container {
+    height: 60px;
+    background-color: @musicDark;
+    .results-header {
+        margin-bottom: 0;
+        color: @musicLight;
+
+        .results-header-group {
+            border-left: none;
+            color: white;
+        }
+        padding: 10px 5px;
+
+        .logo {
+            height: 38px;
+            width: auto;
+            margin: 0 10px;
+        }
+
+        .hashtag {
+            line-height: 38px;
+        }
+
+        .total .percentage {
+            min-width: 38px;
+            height: 38px;
+            line-height: 38px;
+        }
+    }
+}
+
+.results-header .leaderboard .results-header-group .total .change {
+    margin-right: 15px;
 }
 
 .pym-container {

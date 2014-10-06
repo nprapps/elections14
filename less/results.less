@@ -15,7 +15,7 @@
 @screen-xl: 1400px;
 @screen-big-board: 1920px;
 
-//padding for house 
+//padding for house
 @bigpad : 40px;
 @littlepad : 6px;
 
@@ -153,7 +153,8 @@ h6 {
         }
 
         h2 {
-            font-weight: bold;
+            letter-spacing: 0.05em;
+            font-weight: 500;
             text-transform: uppercase;
         }
 
@@ -236,7 +237,7 @@ h6 {
             height:42px;
             line-height:42px;
             border-radius:21px;
-            
+
         }
 
         @media screen and (min-width: @screen-big-board){
@@ -283,7 +284,7 @@ h6 {
             border-top: 2px solid @gray-dark;
             // padding:4.5px 0;
         }
-       
+
         .time {
             padding: 3px 0;
             @media screen and (max-width: @screen-md){
@@ -294,7 +295,7 @@ h6 {
             display: inline-block;
             .time-inner{
                 padding-right:4px;
-            } 
+            }
         }
     }
 
@@ -303,7 +304,7 @@ h6 {
     }
     .races {
         width: 100%;
-        
+
         td {
             vertical-align: top;
             // border-top: 1px solid #ccc;
@@ -372,7 +373,7 @@ h6 {
                 @media screen and (max-width: @screen-sm){
                 display:none;
                 }
-            }    
+            }
         }
 
         .candidate-total {
@@ -413,7 +414,7 @@ h6 {
     @media screen and (min-width: @screen-big-board){
         font-size: 19px;
     }
-        
+
 
     margin-top:20px;
     @media screen and (max-width: @screen-md){
@@ -424,7 +425,7 @@ h6 {
     // border:1px solid black;
     float:left;
     // font-family:'Open Sans';
-        
+
 
     .percent-ex{
         background-color:@yellow;
@@ -474,14 +475,14 @@ h6 {
         list-style-type:none;
         text-indent:none;
         padding-left:0;
-    }  
+    }
 }
 
 .state-slide{
     .header{
         font-size:30px;
         padding-top:20px;
-    }   
+    }
 }
 
 // .house{

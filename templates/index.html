@@ -10,7 +10,7 @@
 <div class="slide welcome">
     <div class="slide-inner">
         <div class="slide-content">
-            <img class="logo" src="assets/npr-logo.png">
+            <img class="logo" src="assets/npr-color.gif">
             <div class="intro-text">
                 <h1>2014</h1>
                 <h2>Election Party!</h2>
@@ -49,35 +49,31 @@
 </div>
 
 <div id="stack" class="stack">
-    <img class="logo" src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
-
-    <div class="results-header index">
-        {% if bop %}
-        <div class="leaderboard">
-            <div class="results-header-group dem">
-                <h2 class="party">Dem</h2>
-                <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
-                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.dem.needs }}</span></p>
+    <div class="header-container">
+        <div class="results-header index">
+            <img class="logo" src="assets/npr-color.gif" alt="NPR" /></a></li>
+            <span class="hashtag">#nprparty</span>
+            {% if bop %}
+            <div class="leaderboard">
+                <div class="results-header-group dem">
+                    <h2 class="party">Dem</h2>
+                    <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
+                </div>
+                <div class="results-header-group gop">
+                    <h2 class="party">GOP</h2>
+                    <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
+                    </tr>
+                </div>
+                <div class="results-header-group not-called">
+                    <h2>Not Called</h2>
+                    <p class="total"><span class="count">{{ not_called }}</span></p>
+                </div>
             </div>
-            <div class="results-header-group gop">
-                <h2 class="party">GOP</h2>
-                <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
-                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.gop.needs }}</span></td>
-                </tr>
-            </div>
-            <div class="results-header-group ind">
-                <h2 class="party">Other</h2>
-                <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
-            </div>
-            <div class="results-header-group not-called">
-                <h2>Not Called</h2>
-                <p class="total"><span class="count">{{ not_called }}</span></p>
-            </div>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 
-    <div class="audio">
+    <!-- <div class="audio">
         <div id="pop-audio" class="jp-jplayer"></div>
         <div id="jp_container_1" class="jp-audio">
             <div class="jp-type-single">
@@ -101,7 +97,7 @@
                 </div>
             </div>
         </div> <!-- end .jp-audio -->
-    </div>
+    </div> -->
 </div>
 {% endblock outer_content %}
 
