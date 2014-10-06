@@ -226,6 +226,9 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
     .results-header.header-controls {
         display: none;
+        a {
+            color: @musicLight;
+        }
         .right-controls {
             float: right;
 
@@ -245,107 +248,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 .logo{
     float:left;
 }
-
-/*
-** JPLAYER
-*/
-
-.audio {
-    color: #ddd;
-    a, a:link, a:visited {
-    color: #eee;
-    text-decoration: none;
-    }
-    .jp-gui{
-        position:relative;
-    }
-    a:hover, a:active {
-        color: #fff;
-        text-decoration: none;
-    }
-    .jp-seek-bar {
-        background-color: #000;
-        height: 30px;
-    }
-
-    .jp-play-bar {
-        background-color: #444;
-        height: 30px;
-    }
-    .jp-progress-container {
-        margin-left: 30px;
-        cursor: pointer;
-    }
-
-    .jp-controls {
-        float: left;
-        width: 30px;
-        height: 30px;
-        font-size: 18px;
-        position: relative;
-
-        .jp-play {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding-left: 3px;
-            width: 30px !important;
-            height: 30px !important;
-            background-color: rgb(109, 138, 196);
-            padding: 3px 0 0 8px;
-        }
-        .jp-pause {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 30px;
-            height: 30px;
-            background-color: #36c;
-            padding: 3px 0 0 7px;
-        }
-    }
-
-    .jp-mute-container {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 30px;
-        height: 30px;
-        font-size: 18px;
-
-        .jp-mute {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding-left: 3px;
-            width: 30px;
-            height: 30px;
-            background-color: rgb(109, 138, 196);
-            padding: 3px 0 0 8px;
-        }
-        .jp-unmute {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 30px;
-            height: 30px;
-            background-color: #36c;
-            padding: 3px 0 0 7px;
-        }
-    }
-    .title {
-        position: absolute;
-        top: 10px;
-        right: 130px;
-        z-index: 3;
-        font-size: 12px;
-        line-height: 1;
-        .touch & {
-            right: 10px;
-        }
-    }
-}
-
 
 /*
 ** SLIDE DEFAULTS

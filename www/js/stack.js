@@ -167,6 +167,7 @@ var onStatePickerSubmit = function(e) {
 
     $('body').on('mousemove', onMouseMove);
     $headerControls.hover(onControlsHover, offControlsHover);
+    $audioPlayer.jPlayer("play");
 
 }
 
