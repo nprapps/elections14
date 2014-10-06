@@ -219,7 +219,7 @@
 		margin: 0 0 22px 0;
 	}
 	h3 {
-		margin: 0 0 6px 0;
+		margin: 0 0 11px 0;
 		font-size: 14px;
 		text-align: center;
 	}
@@ -240,6 +240,10 @@
 		line-height: 1.3;
 		color: #808080;
 	}
+	
+	.r { color: #BE0F00; }
+	.d { color: #376099; }
+	.i { color: #319269; }
 
 	.axis {
 		font-size: 11px;
@@ -286,6 +290,68 @@
 		.not-yet-called { 
 			fill: #999;
 			font-weight: normal;
+		}
+	}
+
+	.race-list {
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			
+			& > li {
+				margin: 0 0 6px 0;
+				padding: 0;
+				font-size: 12px;
+				
+				i.state {
+					font-family: StateFaceRegular;
+					text-align: center;
+					display: inline-block;
+					font-style: normal;
+					width: 30px;
+					margin-right: 5px;
+					height: 2em;
+					margin-top: -2px;
+					float: left;
+					font-size: 150%;
+				}
+				strong { 
+					font-weight: 500;
+					letter-spacing: 0.05em;
+					display: block;
+				}
+				span { color: #999; }
+			}
+		}
+	}
+	.candidate-list {
+		ul {
+			margin: 0 0 22px 0;
+			padding: 0;
+			list-style-type: none;
+
+			&:before {
+				content: ' ';
+				display: table;
+			}
+			&:after {
+				content: ' ';
+				display: table;
+				clear: both;
+			}
+			& > li {
+				margin: 0 0 3px 0;
+				padding: 0;
+				font-size: 11px;
+				width: 20%;
+				float: left;
+				display: table;
+				
+				span { display: table-cell; }
+				.district { width: 30px; }
+				.name { letter-spacing: 0.1; }
+			}
 		}
 	}
 }
@@ -345,33 +411,9 @@
 	.key-races {
 		width: 47%;
 		float: right;
-		
-		ul {
-			margin: 0;
-			padding: 0;
-			list-style-type: none;
-			
-			& > li {
-				margin: 0 0 6px 1em;
-				padding: 0;
-				font-size: 12px;
-				
-				i.stateface {
-					font-style: normal;
-					width: 1em;
-					margin-left: -2em;
-					margin-right: 11px;
-					font-size: 120%;
-				}
-			}
-		}
 	}
-	h1 {
-		margin-bottom: 11px;
-	}
-	h2 {
-		text-align: center;
-	}
+	h1 { margin-bottom: 11px; }
+	h2 { text-align: center; }
 	h3 {
 		text-align: left;
 		margin-bottom: 11px;
