@@ -30,8 +30,12 @@
         <div class="row">
             <div class="col-md-12">
                 <form role="form" class="state-picker-form">
-                    <div class="form-group state-search">
-                        <input class="form-control state-selector typeahead" type="text" placeholder="Pick your state">
+                    <div class="form-group">
+                        <select data-placeholder="Pick your state" class="state-selector chosen" style="width:400px;" multiple="true">
+                            {% for postal in STATES.keys()|sort %}
+                            <option value="{{ postal }}">{{ STATES[postal] }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-primary state-picker-submit">Join the party</button>
