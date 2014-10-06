@@ -1,7 +1,11 @@
-.welcome {
+.welcome, .state-picker {
     h1,h2,h3,h4,h5,h6, p, span, form, label, button {
         font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
+}
+
+.state-picker {
+    display: none;
 }
 
 .stack {
@@ -225,7 +229,7 @@
 		text-align: center;
 	}
 
-	.footnotes { 
+	.footnotes {
 		margin-bottom: 20px;
 
 		h4 {
@@ -241,7 +245,7 @@
 		line-height: 1.3;
 		color: #808080;
 	}
-	
+
 	.r { color: #BE0F00; }
 	.d { color: #376099; }
 	.i { color: #319269; }
@@ -256,11 +260,11 @@
 			stroke: #666;
 			shape-rendering: crispEdges;
 		}
-		
+
 		&.y path { display: none; }
 		&.y .tick line { display: none; }
 	}
-	
+
 	.grid {
 		path { display: none; }
 		.tick {
@@ -270,7 +274,7 @@
 			shape-rendering: crispEdges;
 		}
 	}
-	
+
 	.bars {
 		rect { shape-rendering: crispEdges; }
 		.democratic { fill: #376099; }
@@ -288,7 +292,7 @@
 		fill: #333;
 		font-weight: 500;
 
-		.not-yet-called { 
+		.not-yet-called {
 			fill: #999;
 			font-weight: normal;
 		}
@@ -299,12 +303,12 @@
 			margin: 0;
 			padding: 0;
 			list-style-type: none;
-			
+
 			& > li {
 				margin: 0 0 6px 0;
 				padding: 0;
 				font-size: 12px;
-				
+
 				i.state {
 					font-family: StateFaceRegular;
 					text-align: center;
@@ -317,7 +321,7 @@
 					float: left;
 					font-size: 150%;
 				}
-				strong { 
+				strong {
 					font-weight: 500;
 					letter-spacing: 0.05em;
 					display: block;
@@ -329,7 +333,7 @@
 	.candidate-list {
 		border-top: 1px solid #eee;
 		padding-top: 11px;
-		
+
 		ul {
 			margin: 0 0 6px 0;
 			padding: 0;
@@ -351,7 +355,7 @@
 				width: 20%;
 				float: left;
 				display: table;
-				
+
 				span { display: table-cell; }
 				.district { width: 30px; }
 				.name { letter-spacing: 0.1; }
@@ -363,7 +367,7 @@
 #graphic-bop {
 	position: relative;
 	margin-bottom: 11px;
-	
+
 	&:before {
 		content: ' ';
 		display: table;
@@ -373,10 +377,10 @@
 		display: table;
 		clear: both;
 	}
-	
+
 	.chart {
 		float: left;
-		
+
 		&.house { margin-right: 22px; }
 	}
 
@@ -406,7 +410,7 @@
 	.poll-map {
 		width: 47%;
 		float: left;
-		
+
 		img {
 			width: 100%;
 			height: auto;
