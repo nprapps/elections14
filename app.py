@@ -350,6 +350,16 @@ def _incumbents_lost():
     context['body'] = render_template('slides/incumbents-lost.html', **context)
     return render_template('_slide.html', **context)
 
+@app.route('/slides/obama-reps.html')
+@cors
+def _obama_reps():
+    """
+    Ongoing list of Incumbent Republicans In Districts Barack Obama Won In 2012
+    """
+    context = make_context()
+    context['body'] = render_template('slides/obama-reps.html', **context)
+    return render_template('_slide.html', **context)
+
 @app.route('/slides/poll-closing-8pm.html')
 @cors
 def _poll_closing_8pm():
@@ -358,6 +368,26 @@ def _poll_closing_8pm():
     """
     context = make_context()
     context['body'] = render_template('slides/poll-closing-8pm.html', **context)
+    return render_template('_slide.html', **context)
+
+@app.route('/slides/rematches.html')
+@cors
+def _rematches():
+    """
+    List of elections with candidates who have faced off before
+    """
+    context = make_context()
+    context['body'] = render_template('slides/rematches.html', **context)
+    return render_template('_slide.html', **context)
+
+@app.route('/slides/romney-dems.html')
+@cors
+def _romney_dems():
+    """
+    Ongoing list of Incumbent Democrats In Districts Mitt Romney Won In 2012
+    """
+    context = make_context()
+    context['body'] = render_template('slides/romney-dems.html', **context)
     return render_template('_slide.html', **context)
 
 app.register_blueprint(static_app.static_app)
