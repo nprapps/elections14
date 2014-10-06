@@ -218,6 +218,11 @@
 		font-size: 12px;
 		margin: 0 0 22px 0;
 	}
+	h3 {
+		margin: 0 0 6px 0;
+		font-size: 14px;
+		text-align: center;
+	}
 
 	.footnotes { 
 		margin-bottom: 20px;
@@ -316,10 +321,59 @@
 			font-style: italic;
 		}
 	}
-	
-	h3 {
-		margin: 0 0 6px 0;
-		font-size: 14px;
+}
+
+.graphic.poll-closing {
+	&:before {
+		content: ' ';
+		display: table;
+	}
+	&:after {
+		content: ' ';
+		display: table;
+		clear: both;
+	}
+	.poll-map {
+		width: 47%;
+		float: left;
+		
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	.key-races {
+		width: 47%;
+		float: right;
+		
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			
+			& > li {
+				margin: 0 0 6px 1em;
+				padding: 0;
+				font-size: 12px;
+				
+				i.stateface {
+					font-style: normal;
+					width: 1em;
+					margin-left: -2em;
+					margin-right: 11px;
+					font-size: 120%;
+				}
+			}
+		}
+	}
+	h1 {
+		margin-bottom: 11px;
+	}
+	h2 {
 		text-align: center;
+	}
+	h3 {
+		text-align: left;
+		margin-bottom: 11px;
 	}
 }

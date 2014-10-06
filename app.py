@@ -320,6 +320,16 @@ def _balance_of_power():
     context['body'] = render_template('slides/balance-of-power.html', **context)
     return render_template('_slide.html', **context)
 
+@app.route('/slides/poll-closing-8pm.html')
+@cors
+def _poll_closing_8pm():
+    """
+    Serve up 8pm poll closing information
+    """
+    context = make_context()
+    context['body'] = render_template('slides/poll-closing-8pm.html', **context)
+    return render_template('_slide.html', **context)
+
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)
 

@@ -425,11 +425,12 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
-    _mock_slide_from_image('welcome.png', it.next())
-    _mock_slide_with_pym('senate', 'results/senate/', it.next())
-    _mock_empty_slide('state', it.next())
-    _mock_empty_slide('balance of power', it.next())
-    execute('instagram.get_photos')
+#    _mock_slide_from_image('welcome.png', it.next())
+    _mock_empty_slide('poll closing 8pm', it.next())
+#    _mock_slide_with_pym('senate', 'results/senate/', it.next())
+#    _mock_empty_slide('state', it.next())
+#    _mock_empty_slide('balance of power', it.next())
+#    execute('instagram.get_photos')
 
 
 def _mock_slide_from_image(filename, i):
