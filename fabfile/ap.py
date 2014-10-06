@@ -154,13 +154,18 @@ def write(output_dir='data'):
     """
     Write AP data to intermediary files.
     """
+    write_init_races('%s/init_races.json' % output_dir)
+    write_init_candidates('%s/init_candidates.json' % output_dir)
+    write_update('%s/update.json' % output_dir)
+    write_calls('%s/calls.json' % output_dir)
+
+def write_init_races(path):
+    """
+    Write AP data to intermediary files.
+    """
     with open(CACHE_FILE) as f:
         cache = json.load(f)
 
-
-    #update_calls = cache['calls']['response']['calls']
-
-    # init_races.json
     races = []
     init_races = cache['init/races']['response']['races']
 
@@ -176,10 +181,13 @@ def write(output_dir='data'):
             'last_updated': race.get('lastUpdated')
         })
 
-    with open('%s/init_races.json' % output_dir, 'w') as f:
+    with open(path, 'w') as f:
         json.dump(races, f, indent=4)
 
-    # init_candidates.json
+def write_init_candidates(path):
+    with open(CACHE_FILE) as f:
+        cache = json.load(f)
+ 
     candidates = []
     init_candidates = cache['init/candidates']['response']['candidates']
 
@@ -192,8 +200,12 @@ def write(output_dir='data'):
             'race_id': candidate.get('raceID')
         })
 
-    with open('%s/init_candidates.json' % output_dir, 'w') as f:
+    with open(path, 'w') as f:
         json.dump(candidates, f, indent=4)
+
+def write_update(path):
+    with open(CACHE_FILE) as f:
+        cache = json.load(f)
 
     # Updates
     updates = []
@@ -222,9 +234,13 @@ def write(output_dir='data'):
 
         updates.append(update)
 
-    with open('%s/update.json' % output_dir, 'w') as f:
+    with open(path, 'w') as f:
         json.dump(updates, f, indent=4)
 
+def write_calls(path):
+    with open(CACHE_FILE) as f:
+        cache = json.load(f)
+ 
     # Calls
     calls = []
     update_calls = cache['calls']['response']['calls']
@@ -239,7 +255,7 @@ def write(output_dir='data'):
 
         })
 
-    with open('%s/calls.json' % output_dir, 'w') as f:
+    with open(path, 'w') as f:
         json.dump(calls, f, indent=4)
 
 @task

@@ -201,6 +201,32 @@ def load_updates(path):
     print 'Updated %i candidates' % candidates_updated
 
 @task
+def load_calls(path):
+    """
+    Update the latest calls from the AP intermediary files.
+    """
+    import models
+
+    races_updated = 0
+
+    print 'Loading latest calls from AP update data on disk'
+
+    with open(path) as f:
+        races = json.load(f)
+
+    for race in races:
+        race_model = models.Race.get(models.Race.race_id == race['race_id'])
+
+        race_model.ap_called = True
+        race_model.ap_called_time = parse(race['ap_called_time'])
+
+        race_model.save()
+
+        races_updated += 1
+
+    print 'Updated %i races' % races_updated
+
+@task
 def update_featured_social():
     """
     Update featured tweets

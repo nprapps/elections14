@@ -178,35 +178,18 @@ class APTestCase(unittest.TestCase):
 
         self.assertEqual(json.loads(body), response)
 
-    def test_write(self):
-        """
-        Test writing format-neutral intermediaries from AP response cache.
-        """
+    def test_write_init_races(self):
         ap_cache = {}
         ap_cache['init/races'] = {}
-        ap_cache['init/candidates'] = {}
-        ap_cache['races'] = {}
 
         with open('data/tests/ap_init_races.json') as f:
             test_races = json.load(f)
             ap_cache['init/races']['response'] = test_races
 
-        with open('data/tests/ap_init_candidates.json') as f:
-            test_candidates = json.load(f)
-            ap_cache['init/candidates']['response'] = test_candidates
-
-        with open('data/tests/ap_update.json') as f:
-            test_updates = json.load(f)
-            ap_cache['races']['response'] = test_updates
-
-        with open('data/tests/ap_calls.json') as f:
-            test_calls = json.load(f)
-            ap_cache['calls']['response'] = test_updates
-
         with open('.ap_cache.json', 'w') as f:
             f.write(json.dumps(ap_cache))
 
-        ap.write(output_dir='.tests')
+        ap.write_init_races('.tests/init_races.json')
 
         with open('.tests/init_races.json') as f:
             written_races = json.load(f)
@@ -223,6 +206,19 @@ class APTestCase(unittest.TestCase):
             self.assertEqual(init_race['seatName'], written_race['seat_name'])
             self.assertEqual(init_race['officeID'], written_race['office_id'])
 
+    def test_write_init_candidates(self):
+        ap_cache = {}
+        ap_cache['init/candidates'] = {}
+
+        with open('data/tests/ap_init_candidates.json') as f:
+            test_candidates = json.load(f)
+            ap_cache['init/candidates']['response'] = test_candidates
+
+        with open('.ap_cache.json', 'w') as f:
+            f.write(json.dumps(ap_cache))
+
+        ap.write_init_candidates('.tests/init_candidates.json')
+
         with open('.tests/init_candidates.json') as f:
             written_candidates = json.load(f)
 
@@ -234,6 +230,19 @@ class APTestCase(unittest.TestCase):
                 self.assertEqual(init_candidate['last'], written_candidates[i]['last_name'])
                 self.assertEqual(init_candidate['candidateID'], written_candidates[i]['candidate_id'])
                 self.assertEqual(init_candidate['raceID'], written_candidates[i]['race_id'])
+
+    def test_write_update(self):
+        ap_cache = {}
+        ap_cache['races'] = {}
+
+        with open('data/tests/ap_update.json') as f:
+            test_updates = json.load(f)
+            ap_cache['races']['response'] = test_updates
+
+        with open('.ap_cache.json', 'w') as f:
+            f.write(json.dumps(ap_cache))
+
+        ap.write_update('.tests/update.json')
 
         with open('.tests/update.json') as f:
             written_updates = json.load(f)
@@ -260,6 +269,19 @@ class APTestCase(unittest.TestCase):
                     else:
                         self.assertEqual(False, written_candidate['ap_winner'])
 
+    def test_write_calls(self):
+        ap_cache = {}
+        ap_cache['calls'] = {}
+
+        with open('data/tests/ap_calls.json') as f:
+            test_calls = json.load(f)
+            ap_cache['calls']['response'] = test_calls
+
+        with open('.ap_cache.json', 'w') as f:
+            f.write(json.dumps(ap_cache))
+
+        ap.write_calls('.tests/calls.json')
+
         with open('.tests/calls.json') as f:
             written_calls = json.load(f)
 
@@ -267,3 +289,4 @@ class APTestCase(unittest.TestCase):
 
             self.assertEqual(calls[0]['raceID'], written_calls[0]['race_id'])
             self.assertEqual(calls[0]['callTimestamp'], written_calls[0]['ap_called_time'])
+

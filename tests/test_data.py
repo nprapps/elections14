@@ -65,15 +65,25 @@ class DataTestCase(unittest.TestCase):
         #self.assertIsNotNone(race.poll_closing_time)
         self.assertEqual(race.precincts_reporting, 1970)
         self.assertEqual(race.precincts_total, 2288)
-        self.assertTrue(race.ap_called)
-        #self.assertIsNotNone(race.ap_called_time)
 
         self.assertGreaterEqual(candidate_4848.vote_count, 150000)
-        self.assertGreaterEqual(candidate_4848.winner, False)
+        self.assertGreaterEqual(candidate_4848.ap_winner, False)
 
         self.assertGreaterEqual(candidate_4642.vote_count, 200000)
-        self.assertGreaterEqual(candidate_4642.winner, False)
+        self.assertGreaterEqual(candidate_4642.ap_winner, False)
 
         self.assertGreaterEqual(candidate_4979.vote_count, 250000)
-        self.assertGreaterEqual(candidate_4979.winner, True)
+        self.assertGreaterEqual(candidate_4979.ap_winner, True)
+
+    def test_update_calls(self):
+        with test_database(test_db, [Race, Candidate]):
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+            data.load_updates('data/tests/update.json')
+            data.load_calls('data/tests/calls.json')
+
+            race = Race.select().get()
+
+        self.assertTrue(race.ap_called)
+        self.assertEqual(race.ap_called_time, datetime(2014, 9, 25, 12, 8, 14))
 
