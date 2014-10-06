@@ -102,7 +102,7 @@ def _update_ap(endpoint, use_cache=True):
             'format': 'json',
             'apiKey': SECRETS['AP_API_KEY']
         }
-
+        
     response = requests.get(url, params=params, headers=headers)
 
     if response.status_code == 304:
@@ -160,49 +160,65 @@ def write(output_dir='data'):
 
     races = []
     candidates = []
-    all_races = cache['init/races']['response']['races']
-    all_candidates = cache['init/candidates']['response']['candidates']
+    updates = []
 
-    for race in all_races:
-        race_candidates = [{
+    init_races = cache['init/races']['response']['races']
+    init_candidates = cache['init/candidates']['response']['candidates']
+    update_races = cache['races']['response']['races']
+    #update_calls = cache['calls']['response']['calls']
+
+    for race in init_races:
+        races.append({
+            'state_postal': race.get('statePostal'),
+            'office_id': race.get('officeID'),
+            'office_name': race.get('officeName'),
+            'seat_name': race.get('seatName'),
+            'seat_number': race.get('seatNum'),
+            'race_id': race.get('raceID'),
+            'race_type': race.get('raceTypeID'),
+            'last_updated': race.get('lastUpdated')
+        })
+
+    with open('%s/init_races.json' % output_dir, 'w') as f:
+        json.dump(races, f, indent=4)
+
+    for candidate in init_candidates:
+        candidates.append({
             'candidate_id': candidate.get('candidateID'),
             'last_name': candidate.get('last'),
             'party': candidate.get('party'),
             'first_name': candidate.get('first'),
-            'race_id': race.get('raceID')
-        } for candidate in race['candidates']]
+            'race_id': candidate.get('raceID')
+        })
 
-        candidates.extend(race_candidates)
+    with open('%s/init_candidates.json' % output_dir, 'w') as f:
+        json.dump(candidates, f, indent=4)
 
-        # Init/races does not include state data. We need to look up the state by
-        # grabbing one of the candidates and matching to the init/candidates data.
-        # This suuuuucks.
+    for race in update_races:
+        stateRU = race['reportingUnits'][0]
 
-        if not race['candidates']:
-            print race
-        else:
-            state_candidate = race['candidates'][0]['candidateID']
-            for candidate in all_candidates:
-                if candidate['candidateID'] == state_candidate:
-                    statePostal = candidate['statePostal']
-                    break
+        assert stateRU.get('level', None) == 'state'
 
-            races.append({
-                'state_postal': statePostal,
-                'office_id': race.get('officeID'),
-                'office_name': race.get('officeName'),
-                'seat_name': race.get('seatName'),
-                'seat_number': race.get('seatNum'),
-                'race_id': race.get('raceID'),
-                'race_type': race.get('raceTypeID'),
-                'last_updated': race.get('lastUpdated'),
+        update = {
+            'race_id': race.get('raceID'),
+            'is_test': race.get('test'),
+            'precincts_reporting': stateRU.get('precinctsReporting'),
+            'precincts_total': stateRU.get('precinctsTotal'),
+            'last_updated': stateRU.get('lastUpdated'),
+            'candidates': []
+        }
+
+        for candidate in stateRU.get('candidates'):
+            update['candidates'].append({
+                'candidate_id': candidate.get('candidateID'),
+                'vote_count': candidate.get('voteCount'),
+                'ap_winner': candidate.get('winner', '') == 'X',
             })
 
-    with open('%s/races.json' % output_dir, 'w') as f:
-        json.dump(races, f, indent=4)
+        updates.append(update)
 
-    with open('%s/candidates.json' % output_dir, 'w') as f:
-        json.dump(candidates, f, indent=4)
+    with open('%s/update.json' % output_dir, 'w') as f:
+        json.dump(updates, f, indent=4)
 
 @task
 def record():

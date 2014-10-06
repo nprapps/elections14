@@ -23,7 +23,7 @@ class APTestCase(unittest.TestCase):
         """
         Verify race data is cached correctly.
         """
-        with open('data/tests/race_init.json') as f:
+        with open('data/tests/ap_init_races.json') as f:
             body = f.read()
 
         def responder(request):
@@ -63,7 +63,7 @@ class APTestCase(unittest.TestCase):
         """
         Verify candidate data is cached correctly.
         """
-        with open('data/tests/candidates_init.json') as f:
+        with open('data/tests/ap_init_candidates.json') as f:
             body = f.read()
 
         def responder(request):
@@ -103,7 +103,7 @@ class APTestCase(unittest.TestCase):
         """
         Verify race update data is cached correctly.
         """
-        with open('data/tests/race_update.json') as f:
+        with open('data/tests/ap_update.json') as f:
             body = f.read()
 
         def responder(request):
@@ -143,7 +143,7 @@ class APTestCase(unittest.TestCase):
         """
         Verify calls update data is cached correctly.
         """
-        with open('data/tests/calls_update.json') as f:
+        with open('data/tests/ap_calls.json') as f:
             body = f.read()
 
         def responder(request):
@@ -185,21 +185,26 @@ class APTestCase(unittest.TestCase):
         ap_cache = {}
         ap_cache['init/races'] = {}
         ap_cache['init/candidates'] = {}
+        ap_cache['races'] = {}
 
-        with open('data/tests/race_init.json') as f:
+        with open('data/tests/ap_init_races.json') as f:
             test_races = json.load(f)
             ap_cache['init/races']['response'] = test_races
 
-        with open('data/tests/candidates_init.json') as f:
+        with open('data/tests/ap_init_candidates.json') as f:
             test_candidates = json.load(f)
             ap_cache['init/candidates']['response'] = test_candidates
+
+        with open('data/tests/ap_update.json') as f:
+            test_updates = json.load(f)
+            ap_cache['races']['response'] = test_updates
 
         with open('.ap_cache.json', 'w') as f:
             f.write(json.dumps(ap_cache))
 
         ap.write(output_dir='.tests')
 
-        with open('.tests/races.json') as f:
+        with open('.tests/init_races.json') as f:
             written_races = json.load(f)
 
             init_race = test_races['races'][0]
@@ -215,8 +220,7 @@ class APTestCase(unittest.TestCase):
             self.assertEqual(init_race['seatName'], written_race['seat_name'])
             self.assertEqual(init_race['officeID'], written_race['office_id'])
 
-
-        with open('.tests/candidates.json') as f:
+        with open('.tests/init_candidates.json') as f:
             written_candidates = json.load(f)
 
             init_candidates = test_candidates['candidates']
@@ -227,4 +231,29 @@ class APTestCase(unittest.TestCase):
                 self.assertEqual(init_candidate['last'], written_candidates[i]['last_name'])
                 self.assertEqual(init_candidate['candidateID'], written_candidates[i]['candidate_id'])
                 self.assertEqual(init_candidate['raceID'], written_candidates[i]['race_id'])
+
+        with open('.tests/update.json') as f:
+            written_updates = json.load(f)
+
+            updates = test_updates['races']
+
+            for i, update in enumerate(updates):
+                ru = update['reportingUnits'][0]
+
+                self.assertEqual(update['raceID'], written_updates[i]['race_id'])
+                self.assertEqual(update['test'], written_updates[i]['is_test'])
+                self.assertEqual(ru['precinctsReporting'], written_updates[i]['precincts_reporting'])
+                self.assertEqual(ru['lastUpdated'], written_updates[i]['last_updated'])
+                self.assertEqual(ru['precinctsTotal'], written_updates[i]['precincts_total'])
+
+                for j, candidate in enumerate(ru['candidates']):
+                    written_candidate = written_updates[i]['candidates'][j]
+
+                    self.assertEqual(candidate['candidateID'], written_candidate['candidate_id'])
+                    self.assertEqual(candidate['voteCount'], written_candidate['vote_count'])
+                    
+                    if 'winner' in candidate:
+                        self.assertEqual(True, written_candidate['ap_winner'])
+                    else:
+                        self.assertEqual(False, written_candidate['ap_winner'])
 

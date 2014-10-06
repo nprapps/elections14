@@ -24,7 +24,7 @@ class DataTestCase(unittest.TestCase):
         Test loading races from intermediary file.
         """
         with test_database(test_db, [Race, Candidate], create_tables=True):
-            data.load_races('data/tests/races.json')
+            data.load_races('data/tests/init_races.json')
 
             race = Race.select().get()
 
@@ -39,8 +39,8 @@ class DataTestCase(unittest.TestCase):
 
     def test_load_candidates(self):
         with test_database(test_db, [Race, Candidate]):
-            data.load_races('data/tests/races.json')
-            data.load_candidates('data/tests/candidates.json')
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
 
             candidate = Candidate.select().get()
 
@@ -52,8 +52,8 @@ class DataTestCase(unittest.TestCase):
 
     def test_update_results(self):
         with test_database(test_db, [Race, Candidate]):
-            data.load_races('data/tests/races.json')
-            data.load_candidates('data/tests/candidates.json')
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
             data.mock_results(folder='data/tests')
 
             race = Race.select().get()

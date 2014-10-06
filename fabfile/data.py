@@ -101,8 +101,8 @@ def bootstrap():
 
     create_tables()
 
-    load_races('data/races.json')
-    load_candidates('data/candidates.json')
+    load_races('data/init_races.json')
+    load_candidates('data/init_candidates.json')
 
 def load_races(path):
     """
@@ -128,6 +128,8 @@ def load_races(path):
                 last_updated = race['last_updated'],
             )
 
+    print 'Loaded %i races' % len(races)
+
 def load_candidates(path):
     """
     Load AP candidate data from intermediary JSON into the database.
@@ -148,6 +150,8 @@ def load_candidates(path):
                 race = models.Race.get(models.Race.race_id == candidate['race_id']),
                 candidate_id = candidate['candidate_id'],
             )
+
+    print 'Loaded %i candidates' % len(candidates)
 
 @task()
 def update_results():
