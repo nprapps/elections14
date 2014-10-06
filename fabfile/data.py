@@ -27,7 +27,7 @@ def update():
     Run all updates
     """
     #update_featured_social()
-    update_results()
+    load_updates()
 
 @task
 def query(q):

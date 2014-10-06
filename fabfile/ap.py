@@ -147,7 +147,6 @@ def update():
     Update data from AP.
     """
     _update_ap('races')
-    sleep(SLEEP_INTERVAL)
     _update_ap('calls')
 
 @task
@@ -158,14 +157,12 @@ def write(output_dir='data'):
     with open(CACHE_FILE) as f:
         cache = json.load(f)
 
-    races = []
-    candidates = []
-    updates = []
 
-    init_races = cache['init/races']['response']['races']
-    init_candidates = cache['init/candidates']['response']['candidates']
-    update_races = cache['races']['response'].get('races', [])
     #update_calls = cache['calls']['response']['calls']
+
+    # init_races.json
+    races = []
+    init_races = cache['init/races']['response']['races']
 
     for race in init_races:
         races.append({
@@ -182,6 +179,10 @@ def write(output_dir='data'):
     with open('%s/init_races.json' % output_dir, 'w') as f:
         json.dump(races, f, indent=4)
 
+    # init_candidates.json
+    candidates = []
+    init_candidates = cache['init/candidates']['response']['candidates']
+
     for candidate in init_candidates:
         candidates.append({
             'candidate_id': candidate.get('candidateID'),
@@ -193,6 +194,10 @@ def write(output_dir='data'):
 
     with open('%s/init_candidates.json' % output_dir, 'w') as f:
         json.dump(candidates, f, indent=4)
+
+    # Updates
+    updates = []
+    update_races = cache['races']['response'].get('races', [])
 
     for race in update_races:
         stateRU = race['reportingUnits'][0]
@@ -219,6 +224,23 @@ def write(output_dir='data'):
 
     with open('%s/update.json' % output_dir, 'w') as f:
         json.dump(updates, f, indent=4)
+
+    # Calls
+    calls = []
+    update_calls = cache['calls']['response']['calls']
+
+    for call in update_calls:
+        if not call.get('raceID'):
+            continue
+
+        calls.append({
+            'race_id': call.get('raceID'),
+            'ap_called_time': call.get('callTimestamp')
+
+        })
+
+    with open('%s/calls.json' % output_dir, 'w') as f:
+        json.dump(calls, f, indent=4)
 
 @task
 def record():

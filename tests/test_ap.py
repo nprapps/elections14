@@ -199,6 +199,10 @@ class APTestCase(unittest.TestCase):
             test_updates = json.load(f)
             ap_cache['races']['response'] = test_updates
 
+        with open('data/tests/ap_calls.json') as f:
+            test_calls = json.load(f)
+            ap_cache['calls']['response'] = test_updates
+
         with open('.ap_cache.json', 'w') as f:
             f.write(json.dumps(ap_cache))
 
@@ -209,7 +213,6 @@ class APTestCase(unittest.TestCase):
 
             init_race = test_races['races'][0]
             written_race = written_races[0]
-
 
             self.assertEqual(init_race['raceTypeID'], written_race['race_type'])
             self.assertEqual(init_race['statePostal'], written_race['state_postal'])
@@ -257,3 +260,10 @@ class APTestCase(unittest.TestCase):
                     else:
                         self.assertEqual(False, written_candidate['ap_winner'])
 
+        with open('.tests/calls.json') as f:
+            written_calls = json.load(f)
+
+            calls = test_calls['calls']
+
+            self.assertEqual(calls[0]['raceID'], written_calls[0]['race_id'])
+            self.assertEqual(calls[0]['callTimestamp'], written_calls[0]['ap_called_time'])

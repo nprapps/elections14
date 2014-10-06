@@ -54,18 +54,26 @@ class DataTestCase(unittest.TestCase):
         with test_database(test_db, [Race, Candidate]):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
-            data.mock_results(folder='data/tests')
+            data.load_updates('data/tests/update.json')
 
             race = Race.select().get()
-            candidate = Candidate.select().get()
+            candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
+            candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
+            candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
 
-        self.assertIsNotNone(race.previous_party)
-        self.assertIsNotNone(race.poll_closing_time)
-        self.assertGreaterEqual(race.precincts_reporting, 0)
-        self.assertIsNotNone(race.ap_called)
+        #self.assertIsNotNone(race.previous_party)
+        #self.assertIsNotNone(race.poll_closing_time)
+        self.assertEqual(race.precincts_reporting, 1970)
+        self.assertEqual(race.precincts_total, 2288)
+        self.assertTrue(race.ap_called)
+        #self.assertIsNotNone(race.ap_called_time)
 
-        if race.ap_called:
-            self.assertIsNotNone(race.ap_called_time)
+        self.assertGreaterEqual(candidate_4848.vote_count, 150000)
+        self.assertGreaterEqual(candidate_4848.winner, False)
 
-        self.assertGreaterEqual(candidate.vote_count, 0)
+        self.assertGreaterEqual(candidate_4642.vote_count, 200000)
+        self.assertGreaterEqual(candidate_4642.winner, False)
+
+        self.assertGreaterEqual(candidate_4979.vote_count, 250000)
+        self.assertGreaterEqual(candidate_4979.winner, True)
 
