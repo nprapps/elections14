@@ -426,6 +426,9 @@ def mock_slides():
 
     it = count()
 #    _mock_slide_from_image('welcome.png', it.next())
+    _mock_empty_slide('rematches', it.next())
+    _mock_empty_slide('romney dems', it.next())
+    _mock_empty_slide('obama reps', it.next())
     _mock_empty_slide('incumbents lost', it.next())
     _mock_empty_slide('blue dogs', it.next())
     _mock_empty_slide('house freshmen', it.next())
