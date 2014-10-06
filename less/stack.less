@@ -65,7 +65,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 }
 
 .state-picker {
-    display: none;
+    display: block;
     text-align: center;
 
     form {
@@ -84,62 +84,16 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 */
 
 .header-container {
-    .results-header {
-        h1,h2,h3,h4,h5,h6,p {
-            margin-top: 0;
-            font-family: 'Cooper Hewitt'
-        }
-    }
-    .results-header h2,
-    .results-header {
-
-        font-size: 16px;
-        line-height: 1.1;
-
-        @media screen and (min-width: 0px){
-        font-size: 9px;
-        line-height: .2;
-        }
-
-        @media screen and (min-width: @screen-sm){
-            font-size: 10.6px;
-            line-height: 1;
-        }
-
-        @media screen and (min-width: @screen-md){
-            font-size: 14px;
-            line-height: 1.1;
-        }
-
-        @media screen and (min-width: @screen-lg){
-            font-size: 16px;
-            line-height: 1.1;
-            font-weight: 400;
-        }
-
-        // @media screen and (min-width: @screen-xl){
-        //     font-size: 22px;
-        //     line-height: 1;
-        //     font-weight:300;
-        // }
-
-        // @media screen and (min-width: @screen-big-board){
-        //     font-size: 26px;
-        //     line-height: 1.2;
-        //     font-weight:300;
-        // }
-    }
-
-    .results-header h2{
-        line-height: 18px;
-    }
-
     height: 60px;
     background-color: @musicDark;
     .results-header {
+        display: block;
         overflow: hidden;
         margin-bottom: 0;
         color: @musicLight;
+        padding: 10px 5px;
+        line-height: 38px;
+        font-size: 20px;
 
         .logo {
             height: 38px;
@@ -147,29 +101,58 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             margin: 0 10px;
         }
 
-        .hashtag {
-            line-height: 38px;
-        }
-
         .leaderboard {
             float: right;
         }
 
+        h2 {
+
+            @media screen and (min-width: 0px){
+            font-size: 9px;
+            line-height: .2;
+            }
+
+            @media screen and (min-width: @screen-sm){
+                font-size: 10.6px;
+                line-height: 1;
+            }
+
+            @media screen and (min-width: @screen-md){
+                font-size: 14px;
+                line-height: 1.1;
+            }
+
+            @media screen and (min-width: @screen-lg){
+                font-size: 16px;
+                line-height: 1.1;
+                font-weight: 400;
+            }
+
+            // @media screen and (min-width: @screen-xl){
+            //     font-size: 22px;
+            //     line-height: 1;
+            //     font-weight:300;
+            // }
+
+            // @media screen and (min-width: @screen-big-board){
+            //     font-size: 26px;
+            //     line-height: 1.2;
+            //     font-weight:300;
+            // }
+        }
+
         .results-header-group {
             white-space: nowrap;
+            margin-right: 15px;
+            float: left;
+            box-sizing: border-box;
+            padding-left: 15px;
 
             .party,
             .total,
             .seats-needed {
                 display: inline-block;
             }
-
-            float: left;
-        }
-
-        .results-header-group {
-            box-sizing: border-box;
-            padding-left: 15px;
             @media screen and (max-width: @screen-sm){
                 padding-left:5px;
             }
@@ -183,6 +166,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
                 letter-spacing: 0.05em;
                 font-weight: 500;
                 text-transform: uppercase;
+                margin-top: 0;
+                font-family: 'Cooper Hewitt';
             }
 
             .total {
@@ -204,6 +189,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
         .percentage,
         .count {
+            margin-top: 0;
+            font-family: 'Cooper Hewitt';
             display: inline-block;
             border-radius: 9px;
             color: #fff;
@@ -213,13 +200,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             min-width:18px;
             height:18px;
             box-sizing:border-box;
-
-            @media screen and (min-width: @screen-md){
-                min-width:38px;
-                height:38px;
-                line-height: 38px;
-                border-radius: 19px;
-            }
 
             @media screen and (min-width: @screen-lg){
                 min-width:38px;
@@ -242,8 +222,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             //     border-radius: 26px;
             // }
         }
-        display: block;
-        padding: 10px 5px;
     }
 
     .results-header.header-controls {
@@ -257,10 +235,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             }
         }
     }
-}
-
-.results-header .leaderboard .results-header-group .total .change {
-    margin-right: 15px;
 }
 
 .pym-container {

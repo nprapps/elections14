@@ -5,6 +5,9 @@ var $statePickerScreen = null;
 var $statePickerSubmitButton = null;
 var $statePickerForm = null;
 
+var $header = null;
+var $headerControls = null;
+var $fullScreenButton = null;
 var stack = [];
 var nextStack = [];
 var currentSlide = 0;
@@ -12,6 +15,7 @@ var isRotating = false;
 var state = null;
 var $audioPlayer = null;
 var $stack = null;
+var timer = null;
 
 
 var resizeSlide = function(slide) {
@@ -94,18 +98,48 @@ var onWelcomeButtonClick = function() {
 
 }
 
-var onStatePickerSubmit = function(e) {
-    e.preventDefault();
-
-    state = $('.state-selector').val();
-    $.cookie('state', state);
-
-	$statePickerScreen.hide();
-    $stack.show();
-
-    getStack();
+var onFullScreenButtonClick = function() {
+    var elem = document.getElementById("stack");
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    }
 }
 
+var onMouseMove = function() {
+    $header.hide();
+    $headerControls.show();
+
+    if (timer) {
+        clearTimeout(timer);
+    }
+    timer = setTimeout(onMouseEnd, 200);
+}
+
+var onMouseEnd = function() {
+    if (!($headerControls.data('hover'))) {
+        console.log($headerControls.data('hover'));
+        $header.show();
+        $headerControls.hide();
+    }
+}
+
+var onControlsHover = function() {
+    $headerControls.data('hover', true);
+    $header.hide();
+    $headerControls.show();
+}
+
+var offControlsHover = function() {
+    $headerControls.data('hover', false);
+    $headerControls.hide();
+    $header.show();
+}
 
 var setUpAudio = function() {
     $audioPlayer.jPlayer({
@@ -120,6 +154,22 @@ var setUpAudio = function() {
     });
 }
 
+var onStatePickerSubmit = function(e) {
+    e.preventDefault();
+
+    state = $('.state-selector').val();
+    $.cookie('state', state);
+
+    $statePickerScreen.hide();
+    $stack.show();
+
+    getStack();
+
+    $('body').on('mousemove', onMouseMove);
+    $headerControls.hover(onControlsHover, offControlsHover);
+
+}
+
 $(document).ready(function() {
     $welcomeScreen = $('.welcome');
     resizeSlide($welcomeScreen);
@@ -130,13 +180,19 @@ $(document).ready(function() {
     $welcomeSubmitButton = $('.state-picker-submit');
     $statePickerForm  = $('form.state-picker-form');
     $stack = $('.stack');
+    $header = $('.results-header');
+    $headerControls = $('.header-controls');
+
+    $fullScreenButton = $('.fullscreen p');
 
     $(window).resize(function() {
         var thisSlide = $('.slide');
         resizeSlide(thisSlide);
     });
+
     $welcomeButton.on('click', onWelcomeButtonClick);
     $statePickerForm.submit(onStatePickerSubmit);
+    $fullScreenButton.on('click', onFullScreenButtonClick);
 
     setUpAudio();
 });
