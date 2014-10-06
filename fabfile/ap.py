@@ -164,7 +164,7 @@ def write(output_dir='data'):
 
     init_races = cache['init/races']['response']['races']
     init_candidates = cache['init/candidates']['response']['candidates']
-    update_races = cache['races']['response']['races']
+    update_races = cache['races']['response'].get('races', [])
     #update_calls = cache['calls']['response']['calls']
 
     for race in init_races:
@@ -229,25 +229,21 @@ def record():
     folder = datetime.now().strftime('%Y-%m-%d')
     root = 'data/recording/%s' % folder
 
-    if not os.path.exists(root):
+    if os.path.exists(root):
+        print 'ERROR: %s already exists. Delete it if you want to re-record for today!' % root
+        return
+    else:
         os.mkdir(root)
-
-    init()
-    write('.')
-
-    os.rename('races.json', '%s/races_init.json' % root)
-    os.rename('candidates.json', '%s/candidates_init.json' % root)
-
-    sleep(SLEEP_INTERVAL)
 
     while True:
         timestamp = time.time()
+        folder = '%s/%s' % (root, timestamp)
 
+        os.mkdir(folder)
+
+        init()
         update()
-        write('.')
-
-        os.rename('races.json', '%s/races.%i.json' % (root, timestamp))
-        os.rename('candidates.json', '%s/candidates.%i.json' % (root, timestamp))
+        write(folder)
 
         sleep(update_interval)
 
