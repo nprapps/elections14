@@ -10,7 +10,7 @@ import random
 
 import copytext
 from dateutil.parser import parse
-from fabric.api import env, execute, local, require, run, settings, task
+from fabric.api import env, local, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
@@ -154,7 +154,7 @@ def load_candidates(path):
     print 'Loaded %i candidates' % len(candidates)
 
 @task()
-def update_results():
+def load_updates(path):
     """
     Update the latest results from the AP intermediary files.
     """
@@ -165,7 +165,7 @@ def update_results():
 
     print 'Loading latest results from AP update data on disk'
 
-    with open('data/update.json') as f:
+    with open(path) as f:
         races = json.load(f)
 
     for race in races:
