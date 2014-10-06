@@ -1,13 +1,16 @@
+var $welcomeScreen = null;
+var $welcomeButton = null;
+
+var $statePickerScreen = null;
+var $statePickerSubmitButton = null;
+var $statePickerForm = null;
+
 var stack = [];
 var nextStack = [];
 var currentSlide = 0;
 var isRotating = false;
 var state = null;
-
 var $audioPlayer = null;
-var $welcomeScreen = null;
-var $welcomeSubmitButton = null;
-var $welcomeForm = null;
 var $stack = null;
 
 
@@ -82,13 +85,21 @@ function getStack() {
     });
 }
 
-var onWelcomeFormSubmit = function(e) {
+var onWelcomeButtonClick = function() {
+    $welcomeScreen.hide();
+    $statePickerScreen.show();
+
+    $('.state-selector').chosen({max_selected_options: 1});
+
+}
+
+var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
     state = $('.state-selector').val();
     $.cookie('state', state);
 
-	$welcomeScreen.hide();
+	$statePickerScreen.hide();
     $stack.show();
 
     getStack();
@@ -108,12 +119,14 @@ var setUpAudio = function() {
     });
 }
 
-
 $(document).ready(function() {
-    $audioPlayer = $('#pop-audio');
     $welcomeScreen = $('.welcome');
-    $welcomeSubmitButton = $('.welcome-submit');
-    $welcomeForm = $('form.welcome-form');
+    $welcomeButton = $('.welcome-button')
+
+    $audioPlayer = $('#pop-audio');
+    $statePickerScreen = $('.state-picker');
+    $welcomeSubmitButton = $('.state-picker-submit');
+    $statePickerForm  = $('form.state-picker-form');
     $stack = $('.stack');
 
     $(window).resize(function() {
@@ -121,7 +134,8 @@ $(document).ready(function() {
         resizeSlide(thisSlide);
     });
 
-    $welcomeForm.submit(onWelcomeFormSubmit);
+    $welcomeButton.on('click', onWelcomeButtonClick);
+    $statePickerForm.submit(onStatePickerSubmit);
 
     setUpAudio();
 });

@@ -64,6 +64,10 @@ analytics.json
 analytics.txt
 .ap_cache.json
 www/chromecast
+data/races.json
+data/init_races.json
+data/candidates.json
+data/init_candidates.json
 data/update.json
 www/dynamodb
 www/game

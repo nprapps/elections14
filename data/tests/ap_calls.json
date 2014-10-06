@@ -3,20 +3,20 @@
     "electionDate": "2014-11-04", 
     "calls": [
         {
-            "statePostal": "LA", 
-            "raceID": "20052", 
-            "raceType": "House 5", 
+            "statePostal": "OR", 
+            "raceID": "38529", 
+            "raceType": "House 2", 
             "candidates": [
                 {
-                    "winner": "R", 
-                    "candidateID": "23941", 
-                    "full": "Jamie Mayo", 
-                    "last": "Mayo", 
-                    "first": "Jamie"
+                    "winner": "X", 
+                    "candidateID": "4979", 
+                    "full": "Sharon Durbin", 
+                    "last": "Durbin", 
+                    "first": "Sharon"
                 }
             ], 
             "test": true, 
-            "party": "Dem", 
+            "party": "Lib", 
             "callTimestamp": "2014-09-25T17:08:14Z"
         }
     ],

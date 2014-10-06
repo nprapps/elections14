@@ -11,28 +11,40 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Welcome to #nprparty</h1>
+                <h1>Election 2014</h1>
+
+                <h2>Welcome to #NPRPARTY</h2>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <form role="form" class="welcome-form">
+                <button class="btn btn-primary welcome-button">Get Started</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="state-picker">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form" class="state-picker-form">
                     <div class="form-group">
-                        <label for="state-selector">Pick your state</label>
-                        <select class="form-control state-selector">
+                        <select class="state-selector chosen" data-placeholder="Pick your state" tabindex="-1" multiple="true" style="width:400px">
                             {% for postal in STATES.keys()|sort %}
                             <option value="{{ postal }}">{{ STATES[postal] }}</option>
                             {% endfor %}
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary welcome-submit">Join the party</button>
+                    <button type="submit" class="btn btn-primary state-picker-submit">Join the party</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <div id="stack" class="stack">
     <img class="logo" src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
 

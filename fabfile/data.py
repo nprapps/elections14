@@ -10,7 +10,7 @@ import random
 
 import copytext
 from dateutil.parser import parse
-from fabric.api import env, execute, local, require, run, settings, task
+from fabric.api import env, local, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
@@ -27,7 +27,7 @@ def update():
     Run all updates
     """
     #update_featured_social()
-    update_results()
+    load_updates()
 
 @task
 def query(q):
@@ -101,8 +101,8 @@ def bootstrap():
 
     create_tables()
 
-    load_races('data/races.json')
-    load_candidates('data/candidates.json')
+    load_races('data/init_races.json')
+    load_candidates('data/init_candidates.json')
 
 def load_races(path):
     """
@@ -128,6 +128,8 @@ def load_races(path):
                 last_updated = race['last_updated'],
             )
 
+    print 'Loaded %i races' % len(races)
+
 def load_candidates(path):
     """
     Load AP candidate data from intermediary JSON into the database.
@@ -149,8 +151,10 @@ def load_candidates(path):
                 candidate_id = candidate['candidate_id'],
             )
 
+    print 'Loaded %i candidates' % len(candidates)
+
 @task()
-def update_results():
+def load_updates(path):
     """
     Update the latest results from the AP intermediary files.
     """
@@ -161,7 +165,7 @@ def update_results():
 
     print 'Loading latest results from AP update data on disk'
 
-    with open('data/update.json') as f:
+    with open(path) as f:
         races = json.load(f)
 
     for race in races:
@@ -195,6 +199,32 @@ def update_results():
 
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated
+
+@task
+def load_calls(path):
+    """
+    Update the latest calls from the AP intermediary files.
+    """
+    import models
+
+    races_updated = 0
+
+    print 'Loading latest calls from AP update data on disk'
+
+    with open(path) as f:
+        races = json.load(f)
+
+    for race in races:
+        race_model = models.Race.get(models.Race.race_id == race['race_id'])
+
+        race_model.ap_called = True
+        race_model.ap_called_time = parse(race['ap_called_time'])
+
+        race_model.save()
+
+        races_updated += 1
+
+    print 'Updated %i races' % races_updated
 
 @task
 def update_featured_social():
@@ -425,11 +455,18 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
-    _mock_slide_from_image('welcome.png', it.next())
-    _mock_slide_with_pym('senate', 'results/senate/', it.next())
-    _mock_empty_slide('state', it.next())
+#    _mock_slide_from_image('welcome.png', it.next())
+    _mock_empty_slide('rematches', it.next())
+    _mock_empty_slide('romney dems', it.next())
+    _mock_empty_slide('obama reps', it.next())
+    _mock_empty_slide('incumbents lost', it.next())
+    _mock_empty_slide('blue dogs', it.next())
+    _mock_empty_slide('house freshmen', it.next())
+    _mock_empty_slide('poll closing 8pm', it.next())
     _mock_empty_slide('balance of power', it.next())
-    execute('instagram.get_photos')
+#    _mock_slide_with_pym('senate', 'results/senate/', it.next())
+#    _mock_empty_slide('state', it.next())
+#    execute('instagram.get_photos')
 
 
 def _mock_slide_from_image(filename, i):

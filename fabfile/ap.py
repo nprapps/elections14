@@ -6,7 +6,7 @@ import json
 import os
 from time import sleep
 
-from fabric.api import task
+from fabric.api import env, task
 import requests
 
 import app_config
@@ -102,7 +102,7 @@ def _update_ap(endpoint, use_cache=True):
             'format': 'json',
             'apiKey': SECRETS['AP_API_KEY']
         }
-
+        
     response = requests.get(url, params=params, headers=headers)
 
     if response.status_code == 304:
@@ -147,7 +147,6 @@ def update():
     Update data from AP.
     """
     _update_ap('races')
-    sleep(SLEEP_INTERVAL)
     _update_ap('calls')
 
 @task
@@ -155,54 +154,109 @@ def write(output_dir='data'):
     """
     Write AP data to intermediary files.
     """
+    write_init_races('%s/init_races.json' % output_dir)
+    write_init_candidates('%s/init_candidates.json' % output_dir)
+    write_update('%s/update.json' % output_dir)
+    write_calls('%s/calls.json' % output_dir)
+
+def write_init_races(path):
+    """
+    Write AP data to intermediary files.
+    """
     with open(CACHE_FILE) as f:
         cache = json.load(f)
 
     races = []
-    candidates = []
-    all_races = cache['init/races']['response']['races']
-    all_candidates = cache['init/candidates']['response']['candidates']
+    init_races = cache['init/races']['response']['races']
 
-    for race in all_races:
-        race_candidates = [{
+    for race in init_races:
+        races.append({
+            'state_postal': race.get('statePostal'),
+            'office_id': race.get('officeID'),
+            'office_name': race.get('officeName'),
+            'seat_name': race.get('seatName'),
+            'seat_number': race.get('seatNum'),
+            'race_id': race.get('raceID'),
+            'race_type': race.get('raceTypeID'),
+            'last_updated': race.get('lastUpdated')
+        })
+
+    with open(path, 'w') as f:
+        json.dump(races, f, indent=4)
+
+def write_init_candidates(path):
+    with open(CACHE_FILE) as f:
+        cache = json.load(f)
+ 
+    candidates = []
+    init_candidates = cache['init/candidates']['response']['candidates']
+
+    for candidate in init_candidates:
+        candidates.append({
             'candidate_id': candidate.get('candidateID'),
             'last_name': candidate.get('last'),
             'party': candidate.get('party'),
             'first_name': candidate.get('first'),
-            'race_id': race.get('raceID')
-        } for candidate in race['candidates']]
+            'race_id': candidate.get('raceID')
+        })
 
-        candidates.extend(race_candidates)
+    with open(path, 'w') as f:
+        json.dump(candidates, f, indent=4)
 
-        # Init/races does not include state data. We need to look up the state by
-        # grabbing one of the candidates and matching to the init/candidates data.
-        # This suuuuucks.
+def write_update(path):
+    with open(CACHE_FILE) as f:
+        cache = json.load(f)
 
-        if not race['candidates']:
-            print race
-        else:
-            state_candidate = race['candidates'][0]['candidateID']
-            for candidate in all_candidates:
-                if candidate['candidateID'] == state_candidate:
-                    statePostal = candidate['statePostal']
-                    break
+    # Updates
+    updates = []
+    update_races = cache['races']['response'].get('races', [])
 
-            races.append({
-                'state_postal': statePostal,
-                'office_id': race.get('officeID'),
-                'office_name': race.get('officeName'),
-                'seat_name': race.get('seatName'),
-                'seat_number': race.get('seatNum'),
-                'race_id': race.get('raceID'),
-                'race_type': race.get('raceTypeID'),
-                'last_updated': race.get('lastUpdated'),
+    for race in update_races:
+        stateRU = race['reportingUnits'][0]
+
+        assert stateRU.get('level', None) == 'state'
+
+        update = {
+            'race_id': race.get('raceID'),
+            'is_test': race.get('test'),
+            'precincts_reporting': stateRU.get('precinctsReporting'),
+            'precincts_total': stateRU.get('precinctsTotal'),
+            'last_updated': stateRU.get('lastUpdated'),
+            'candidates': []
+        }
+
+        for candidate in stateRU.get('candidates'):
+            update['candidates'].append({
+                'candidate_id': candidate.get('candidateID'),
+                'vote_count': candidate.get('voteCount'),
+                'ap_winner': candidate.get('winner', '') == 'X',
             })
 
-    with open('%s/races.json' % output_dir, 'w') as f:
-        json.dump(races, f, indent=4)
+        updates.append(update)
 
-    with open('%s/candidates.json' % output_dir, 'w') as f:
-        json.dump(candidates, f, indent=4)
+    with open(path, 'w') as f:
+        json.dump(updates, f, indent=4)
+
+def write_calls(path):
+    with open(CACHE_FILE) as f:
+        cache = json.load(f)
+ 
+    # Calls
+    calls = []
+    update_calls = cache['calls']['response']['calls']
+
+    for call in update_calls:
+        if not call.get('raceID'):
+            continue
+
+        calls.append({
+            'race_id': call.get('raceID'),
+            'ap_called_time': call.get('callTimestamp')
+
+        })
+
+    with open(path, 'w') as f:
+        json.dump(calls, f, indent=4)
 
 @task
 def record():
@@ -213,25 +267,58 @@ def record():
     folder = datetime.now().strftime('%Y-%m-%d')
     root = 'data/recording/%s' % folder
 
-    if not os.path.exists(root):
+    if os.path.exists(root):
+        print 'ERROR: %s already exists. Delete it if you want to re-record for today!' % root
+        return
+    else:
         os.mkdir(root)
-
-    init()
-    write('.')
-
-    os.rename('races.json', '%s/races_init.json' % root)
-    os.rename('candidates.json', '%s/candidates_init.json' % root)
-
-    sleep(SLEEP_INTERVAL)
 
     while True:
         timestamp = time.time()
+        folder = '%s/%s' % (root, timestamp)
 
+        os.mkdir(folder)
+
+        init()
         update()
-        write('.')
-
-        os.rename('races.json', '%s/races.%i.json' % (root, timestamp))
-        os.rename('candidates.json', '%s/candidates.%i.json' % (root, timestamp))
+        write(folder)
 
         sleep(update_interval)
 
+@task
+def playback(folder_name='2014-10-06', update_interval=60):
+    """
+    Begin playback of recorded AP data.
+    """
+    from fabfile import data
+
+    folder = 'data/recording/%s' % folder_name
+
+    timestamps = sorted(os.listdir(folder))
+    initial = '%s/%s' % (folder, timestamps[0])
+
+    print '==== RESETTING DATABASE ===='
+
+    if env.settings:
+        data.server_reset_db()
+    else:
+        data.local_reset_db()
+
+    data.create_tables()
+
+    print '==== LOADING INITIAL DATA (%s) ====' % timestamps[0]
+
+    data.load_races('%s/init_races.json' % initial)
+    data.load_candidates('%s/init_candidates.json' % initial)
+    data.load_updates('%s/update.json' % initial)
+
+    for timestamp in timestamps[1:]:
+        sleep(update_interval)
+
+        print '==== LOADING NEXT DATA (%s) ====' % timestamp
+
+        path = '%s/%s' % (folder, timestamp)
+
+        data.load_updates('%s/update.json' % path)
+
+    print '==== PLAYBACK COMPLETE ===='

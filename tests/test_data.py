@@ -24,7 +24,7 @@ class DataTestCase(unittest.TestCase):
         Test loading races from intermediary file.
         """
         with test_database(test_db, [Race, Candidate], create_tables=True):
-            data.load_races('data/tests/races.json')
+            data.load_races('data/tests/init_races.json')
 
             race = Race.select().get()
 
@@ -39,8 +39,8 @@ class DataTestCase(unittest.TestCase):
 
     def test_load_candidates(self):
         with test_database(test_db, [Race, Candidate]):
-            data.load_races('data/tests/races.json')
-            data.load_candidates('data/tests/candidates.json')
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
 
             candidate = Candidate.select().get()
 
@@ -52,20 +52,38 @@ class DataTestCase(unittest.TestCase):
 
     def test_update_results(self):
         with test_database(test_db, [Race, Candidate]):
-            data.load_races('data/tests/races.json')
-            data.load_candidates('data/tests/candidates.json')
-            data.mock_results(folder='data/tests')
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+            data.load_updates('data/tests/update.json')
 
             race = Race.select().get()
-            candidate = Candidate.select().get()
+            candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
+            candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
+            candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
 
-        self.assertIsNotNone(race.previous_party)
-        self.assertIsNotNone(race.poll_closing_time)
-        self.assertGreaterEqual(race.precincts_reporting, 0)
-        self.assertIsNotNone(race.ap_called)
+        #self.assertIsNotNone(race.previous_party)
+        #self.assertIsNotNone(race.poll_closing_time)
+        self.assertEqual(race.precincts_reporting, 1970)
+        self.assertEqual(race.precincts_total, 2288)
 
-        if race.ap_called:
-            self.assertIsNotNone(race.ap_called_time)
+        self.assertGreaterEqual(candidate_4848.vote_count, 150000)
+        self.assertGreaterEqual(candidate_4848.ap_winner, False)
 
-        self.assertGreaterEqual(candidate.vote_count, 0)
+        self.assertGreaterEqual(candidate_4642.vote_count, 200000)
+        self.assertGreaterEqual(candidate_4642.ap_winner, False)
+
+        self.assertGreaterEqual(candidate_4979.vote_count, 250000)
+        self.assertGreaterEqual(candidate_4979.ap_winner, True)
+
+    def test_update_calls(self):
+        with test_database(test_db, [Race, Candidate]):
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+            data.load_updates('data/tests/update.json')
+            data.load_calls('data/tests/calls.json')
+
+            race = Race.select().get()
+
+        self.assertTrue(race.ap_called)
+        self.assertEqual(race.ap_called_time, datetime(2014, 9, 25, 12, 8, 14))
 

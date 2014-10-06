@@ -11,8 +11,8 @@
                     "precinctsTotal": 203, 
                     "stateName": "Oregon", 
                     "statePostal": "OR", 
-                    "precinctsReporting": 0, 
-                    "precinctsReportingPct": 0.0, 
+                    "precinctsReporting": 1970, 
+                    "precinctsReportingPct": 2288, 
                     "lastUpdated": "2014-09-30T14:09:43Z", 
                     "candidates": [
                         {
@@ -20,7 +20,7 @@
                             "last": "Christofferson", 
                             "polNum": "40596", 
                             "polID": "63559", 
-                            "voteCount": 0, 
+                            "voteCount": 150000, 
                             "first": "Aelea"
                         }, 
                         {
@@ -28,7 +28,7 @@
                             "last": "Walden", 
                             "polNum": "38856", 
                             "polID": "481", 
-                            "voteCount": 0, 
+                            "voteCount": 200000, 
                             "incumbent": true, 
                             "first": "Greg"
                         }, 
@@ -37,8 +37,9 @@
                             "last": "Durbin", 
                             "polNum": "40756", 
                             "polID": "64323", 
-                            "voteCount": 0, 
-                            "first": "Sharon"
+                            "voteCount": 250000, 
+                            "first": "Sharon",
+                            "winner": "X" 
                         }
                     ], 
                     "level": "state"
