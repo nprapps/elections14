@@ -320,6 +320,16 @@ def _balance_of_power():
     context['body'] = render_template('slides/balance-of-power.html', **context)
     return render_template('_slide.html', **context)
 
+@app.route('/slides/blue-dogs.html')
+@cors
+def _blue_dogs():
+    """
+    Ongoing list of how blue dog democrats are faring
+    """
+    context = make_context()
+    context['body'] = render_template('slides/blue-dogs.html', **context)
+    return render_template('_slide.html', **context)
+
 @app.route('/slides/house-freshmen.html')
 @cors
 def _house_freshmen():
@@ -328,6 +338,16 @@ def _house_freshmen():
     """
     context = make_context()
     context['body'] = render_template('slides/house-freshmen.html', **context)
+    return render_template('_slide.html', **context)
+
+@app.route('/slides/incumbents-lost.html')
+@cors
+def _incumbents_lost():
+    """
+    Ongoing list of which incumbents lost their elections
+    """
+    context = make_context()
+    context['body'] = render_template('slides/incumbents-lost.html', **context)
     return render_template('_slide.html', **context)
 
 @app.route('/slides/poll-closing-8pm.html')
