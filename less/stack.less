@@ -1,3 +1,8 @@
+//music palette
+@musicDark: #41474E;
+@musicMedium: #e6ebf2;
+@musicLight: #dbe0e6;
+
 .welcome, .state-picker {
     h1,h2,h3,h4,h5,h6, p, span, form, label, button {
         font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -6,6 +11,24 @@
 
 .state-picker {
     display: none;
+
+    .tt-dropdown-menu {
+        background-color: white;
+        width: 100%;
+        display: block !important;
+    }
+
+    .tt-suggestions {
+        padding-top: 5px;
+
+        .tt-suggestion {
+            padding: 5px 10px;
+            &:hover {
+                background-color: @musicLight;
+            }
+        }
+
+    }
 }
 
 .stack {
