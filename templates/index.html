@@ -31,7 +31,7 @@
             <div class="col-md-12">
                 <form role="form" class="state-picker-form">
                     <div class="form-group">
-                        <select data-placeholder="Pick your state" class="state-selector chosen" style="width:400px;" multiple="true">
+                        <select class="state-selector chosen" data-placeholder="Pick your state" tabindex="-1" multiple="true" style="width:400px">
                             {% for postal in STATES.keys()|sort %}
                             <option value="{{ postal }}">{{ STATES[postal] }}</option>
                             {% endfor %}
