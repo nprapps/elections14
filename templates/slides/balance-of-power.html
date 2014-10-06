@@ -1,20 +1,21 @@
 <div id="balance-of-power" class="graphic">
-	{% if COPY.graphic_bop.headline %}<h1>{{ COPY.graphic_bop.headline }}</h1>{% endif %}
-	{% if COPY.graphic_bop.subhed %}<h2>{{ COPY.graphic_bop.subhed }}</h2>{% endif %}
+	{% if COPY.graphic_slides.headline_bop %}<h1>{{ COPY.graphic_slides.headline_bop }}</h1>{% endif %}
+	{% if COPY.graphic_slides.subhed_bop %}<h2>{{ COPY.graphic_slides.subhed_bop }}</h2>{% endif %}
 
-	<div id="graphic-bop"><img src="fallback.png" alt="[Chart]" class="fallback" /></div>
+	<div id="graphic-bop"></div>
 
-	{% if COPY.graphic_bop.footnote %}
+	{% if COPY.graphic_slides.footnote_bop %}
 	<div class="footnotes">
 		<h4>Notes</h4>
-		<p>{{ COPY.graphic_bop.footnote }}</p>
+		<p>{{ COPY.graphic_slides.footnote_bop }}</p>
 	</div>
 	{% endif %}
 
 	<div class="footer">
-		<p>Last updated: Nov. 4, 2014, at 8:15 p.m. ET.</p>
-		{% if COPY.graphic_bop.source %}<p>Source: {{ COPY.graphic_bop.source }}.</p>{% endif %}
-		{% if COPY.graphic_bop.credit %}<p>Credit: {{ COPY.graphic_bop.credit }}</p>{% endif %}
+		{% if COPY.graphic_slides.source_bop %}
+		<p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;Last updated: Nov. 4, 2014, at 8:15 p.m. ET.
+		</p>
+		{% endif %}
 	</div>
 </div>
 
@@ -35,8 +36,8 @@
 		{ 'party': 'Not yet called', 'party_abbr': 'TBD', 'seats': {{ senate_not_called }}, 'net': 0 }
 	];
 
-	var header_house = '{{ COPY.graphic_bop.subhed_house }}';
-	var header_senate = '{{ COPY.graphic_bop.subhed_senate }}';
+	var header_house = '{{ COPY.graphic_slides.subhed_bop_house }}';
+	var header_senate = '{{ COPY.graphic_slides.subhed_bop_senate }}';
 	var majority_house = 218;
 	var majority_senate = 51;
 	var total_house = 435;
