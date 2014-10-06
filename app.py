@@ -320,6 +320,16 @@ def _balance_of_power():
     context['body'] = render_template('slides/balance-of-power.html', **context)
     return render_template('_slide.html', **context)
 
+@app.route('/slides/house-freshmen.html')
+@cors
+def _house_freshmen():
+    """
+    Ongoing list of how representatives elected in 2012 are faring
+    """
+    context = make_context()
+    context['body'] = render_template('slides/house-freshmen.html', **context)
+    return render_template('_slide.html', **context)
+
 @app.route('/slides/poll-closing-8pm.html')
 @cors
 def _poll_closing_8pm():
