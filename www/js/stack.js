@@ -88,6 +88,7 @@ function getStack() {
 var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
     $statePickerScreen.show();
+    resizeSlide($statePickerScreen);
 
     $('.state-selector').chosen({max_selected_options: 1});
 
@@ -121,6 +122,7 @@ var setUpAudio = function() {
 
 $(document).ready(function() {
     $welcomeScreen = $('.welcome');
+    resizeSlide($welcomeScreen);
     $welcomeButton = $('.welcome-button')
 
     $audioPlayer = $('#pop-audio');
@@ -130,10 +132,9 @@ $(document).ready(function() {
     $stack = $('.stack');
 
     $(window).resize(function() {
-        var thisSlide = $('#stack .slide');
+        var thisSlide = $('.slide');
         resizeSlide(thisSlide);
     });
-
     $welcomeButton.on('click', onWelcomeButtonClick);
     $statePickerForm.submit(onStatePickerSubmit);
 

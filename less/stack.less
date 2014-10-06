@@ -1,16 +1,65 @@
-//music palette
+//color palette
 @musicDark: #41474E;
 @musicMedium: #e6ebf2;
 @musicLight: #dbe0e6;
+@red: #F25A49;
+@blue: #538ECD;
 
 .welcome, .state-picker {
-    h1,h2,h3,h4,h5,h6, p, span, form, label, button {
+    h1,h2,h3,h4,h5,h6, p, form, label, button {
         font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+}
+
+.welcome.slide {
+    display: block;
+    position: relative;
+
+    .logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 150px;
+        height: auto;
+    }
+
+    .intro-text {
+        text-align: center;
+        margin-bottom: 50px;
+        h1 {
+            font-size: 80px;
+            margin-bottom: 0;
+            line-height: 1;
+        }
+    }
+
+    .welcome-button {
+        background-color: @red;
+        border: @red;
+    }
+
+    .tv-prompt {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40%;
+        .icon {
+            margin-top: -45px;
+            float: left;
+            opacity: 0.25;
+            width: 150px;
+            height: auto;
+        }
     }
 }
 
 .state-picker {
     display: none;
+
+    form {
+        text-align: center;
+    }
 }
 
 .stack {
@@ -18,8 +67,9 @@
 }
 
 .slide {
-    background-color: #fff;
+    background-color: @musicDark;
     display: none;
+    color: @musicLight;
 }
 
 .slide-inner {

@@ -429,7 +429,6 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
-#    _mock_slide_from_image('welcome.png', it.next())
     _mock_empty_slide('rematches', it.next())
     _mock_empty_slide('romney dems', it.next())
     _mock_empty_slide('obama reps', it.next())

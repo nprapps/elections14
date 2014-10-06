@@ -7,40 +7,41 @@
 {% endblock extra_css %}
 
 {% block outer_content %}
-<div class="welcome">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Election 2014</h1>
+<div class="slide welcome">
+    <div class="slide-inner">
+        <div class="slide-content">
+            <img class="logo" src="assets/npr-logo.png">
+            <div class="intro-text">
+                <h1>2014</h1>
+                <h2>Election Party!</h2>
 
-                <h2>Welcome to #NPRPARTY</h2>
+            <button class="btn btn-primary btn-lg welcome-button">Get Started</button>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-primary welcome-button">Get Started</button>
+
+            <div class="tv-prompt">
+                <img class="icon" src="../assets/tv.svg">
+                <h3>Stream on your TV</h3>
+                <p>Use your Apple TV, Chromecast, or Roku device.</p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="state-picker">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <form role="form" class="state-picker-form">
-                    <div class="form-group">
-                        <select class="state-selector chosen" data-placeholder="Pick your state" tabindex="-1" multiple="true" style="width:400px">
-                            {% for postal in STATES.keys()|sort %}
-                            <option value="{{ postal }}">{{ STATES[postal] }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+<div class="state-picker slide">
+    <div class="slide-inner">
+        <div class="slide-content">
+            <form role="form" class="state-picker-form">
+                <div class="form-group">
+                    <select class="state-selector chosen" data-placeholder="Pick your state" tabindex="-1" multiple="true" style="width:400px">
+                        {% for postal in STATES.keys()|sort %}
+                        <option value="{{ postal }}">{{ STATES[postal] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-                    <button type="submit" class="btn btn-primary state-picker-submit">Join the party</button>
-                </form>
-            </div>
+                <button type="submit" class="btn btn-primary state-picker-submit">Join the party</button>
+            </form>
         </div>
     </div>
 </div>
