@@ -103,6 +103,8 @@ def bootstrap():
 
     load_races('data/init_races.json')
     load_candidates('data/init_candidates.json')
+    load_house_extra('data/house-extra.csv')
+    load_senate_extra('data/senate-extra.csv')
 
 def load_races(path):
     """
@@ -374,12 +376,14 @@ def update_featured_social():
         json.dump(output, f)
 
 @task
-def load_house_extra(folder='data'):
+def load_house_extra(path):
     """
     Load extra data (featured status, poll close, last party in power) for
     house of reps
     """
-    with open('%s/house-extra.csv' % folder) as f:
+    print 'Loading house extra data from disk'
+
+    with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
             if row.get('featured') == '1':
@@ -396,7 +400,7 @@ def _save_house_row(row):
         district = int(row['district'][2:])
         existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
 
-        print "Updating %s" % existing
+        #print "Updating %s" % existing
         existing.featured_race = True
         existing.previous_party = row['party']
 
@@ -411,12 +415,14 @@ def _save_house_row(row):
 
 
 @task
-def load_senate_extra(folder='data'):
+def load_senate_extra(path):
     """
     Load extra data (featured status, poll close, last party in power) for
     senate
     """
-    with open('%s/senate-extra.csv' % folder) as f:
+    print 'Loading senate extra data from disk'
+
+    with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
             _save_senate_row(row)
@@ -437,7 +443,7 @@ def _save_senate_row(row):
 
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
 
-        print "Updating %s" % existing
+        #print "Updating %s" % existing
         existing.featured_race = True
         existing.previous_party = row['party']
 
