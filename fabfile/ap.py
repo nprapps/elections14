@@ -128,7 +128,12 @@ def _update_ap(endpoint, use_cache=True):
     print '%s: updated' % endpoint
 
 @task
-def init():
+def bootstrap():
+    init()
+    update()
+
+@task
+def init(output_dir='data'):
     """
     Initialize data from AP.
     """
@@ -141,21 +146,17 @@ def init():
     sleep(SLEEP_INTERVAL)
     _init_ap('init/candidates')
 
+    write_init_races('%s/init_races.json' % output_dir)
+    write_init_candidates('%s/init_candidates.json' % output_dir)
+
 @task
-def update():
+def update(output_dir='data'):
     """
     Update data from AP.
     """
     _update_ap('races')
     _update_ap('calls')
 
-@task
-def write(output_dir='data'):
-    """
-    Write AP data to intermediary files.
-    """
-    write_init_races('%s/init_races.json' % output_dir)
-    write_init_candidates('%s/init_candidates.json' % output_dir)
     write_update('%s/update.json' % output_dir)
     write_calls('%s/calls.json' % output_dir)
 

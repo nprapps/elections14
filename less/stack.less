@@ -333,16 +333,33 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     }
 
     .tumblr-quote-post {
-        max-width: 1024px;
-        margin: 0 auto;
+        .date{
+            padding-bottom:40px;
+        }
         blockquote {
             font-size: 48px;
             border: none;
+            padding:0;
+            @media all and (-webkit-min-device-pixel-ratio:0) {
+                -webkit-margin-before: 0;
+                -webkit-margin-after: 0;
+                -webkit-margin-start: 0;
+                -webkit-margin-end: 0;
+                text-indent: -0.31em;
+            }
+
+            span{
+                background-color:@red;
+                padding:10px;
+                -ms-box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+                -o-box-decoration-break: clone;
+                box-decoration-break: clone;
+            }
         }
         footer {
-            margin-top: 20px;
+            margin-top: 40px;
             border: none;
-            text-align: right;
             cite {
                 font-size: 30px;
             }
