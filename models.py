@@ -125,13 +125,15 @@ class Race(SlugModel):
         """
         if self.is_called():
             for candidate in self.candidates.where(Candidate.race == self):
-                if candidate.ap_winner:
-                    if candidate.party == 'GOP':
-                        return 'gop'
-                    elif candidate.party == 'Dem':
-                        return 'dem'
-                    else:
-                        return 'other'
+                if self.accept_ap_call:
+                    if candidate.ap_winner:
+                        if candidate.party == 'GOP':
+                            return 'gop'
+                        elif candidate.party == 'Dem':
+                            return 'dem'
+                        else:
+                            return 'other'
+
                 if candidate.npr_winner:
                     if candidate.party == 'GOP':
                         return 'gop'

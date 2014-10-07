@@ -16,10 +16,6 @@ class DataTestCase(unittest.TestCase):
     """
     Test the data import process.
     """
-    # def setUp(self):
-    #     data.local_reset_db()
-    #     data.create_tables()
-
     def test_load_races(self):
         """
         Test loading races from intermediary file.
