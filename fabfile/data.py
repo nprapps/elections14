@@ -529,15 +529,10 @@ def mock_results(folder='data'):
         race.ap_called = False
         _fake_incumbent(race)
         _fake_previous_party(race)
-        _fake_poll_closing_time(race)
         _fake_precincts_reporting(race)
         _fake_called_status(race)
         _fake_results(race)
         race.save()
-
-    print "Loading real data where it exists"
-    load_house_extra(folder)
-    load_senate_extra(folder)
 
 def _fake_incumbent(race):
     """
@@ -564,15 +559,6 @@ def _fake_previous_party(race):
     else:
         race.previous_party = random.choice(['gop', 'dem', 'other'])
 
-def _fake_poll_closing_time(race):
-    """
-    Fake poll closing time
-    """
-    first_close = datetime(2014, 11, 4, 7)
-    closing_times = [first_close + timedelta(hours=delta) for delta in range(6)]
-    race.poll_closing_time = random.choice(closing_times)
-
-
 def _fake_precincts_reporting(race):
     """
     Fake precincts reporting
@@ -590,7 +576,8 @@ def _fake_called_status(race):
     """
     if race.precincts_reporting > 0:
         race.ap_called = random.choice([True, True, True, False])
-        if race.ap_called:
+
+        if race.ap_called and race.poll_closing_time:
             race.accept_ap_call = True
             race.ap_called_time = race.poll_closing_time + timedelta(hours=random.randint(1,3), minutes=random.randint(0,59))
 
