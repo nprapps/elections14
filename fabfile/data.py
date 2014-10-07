@@ -386,8 +386,7 @@ def load_house_extra(path):
     with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row.get('featured') == '1':
-                _save_house_row(row)
+            _save_house_row(row)
 
 def _save_house_row(row):
     """
@@ -400,18 +399,15 @@ def _save_house_row(row):
         district = int(row['district'][2:])
         existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
 
-        #print "Updating %s" % existing
-        existing.featured_race = True
         existing.previous_party = row['party']
 
-        if row['poll_close'] != '':
-            hours, minutes = row['poll_close'].split(':')
-            existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
+        if row['featured'] == 1:
+            existing.featured_race = True
 
         existing.save()
 
     except models.Race.DoesNotExist:
-        print 'Race named %s does not exist in AP data' % row['district']
+        print 'House race named %s does not exist in AP data' % row['district']
 
 
 @task
