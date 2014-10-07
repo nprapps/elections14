@@ -1,4 +1,4 @@
-<div id="rematches" class="graphic">
+<div id="rematches" class="graphic state-slide">
 	{% if COPY.graphic_slides.headline_rematches %}<h1>{{ COPY.graphic_slides.headline_rematches }}</h1>{% endif %}
 	{% if COPY.graphic_slides.subhed_rematches %}<h2>{{ COPY.graphic_slides.subhed_rematches }}</h2>{% endif %}
 	
@@ -16,6 +16,41 @@
 				<span class="district">AL-2</span>
 				<span class="name">Sessions</span>
 			</li>
+			<li class="r">
+				<span class="district">AL-2</span>
+				<span class="name">Sessions</span>
+			</li>
+			<li class="r">
+				<span class="district">AL-2</span>
+				<span class="name">Sessions</span>
+			</li>
+			<li class="r">
+				<span class="district">AL-2</span>
+				<span class="name">Sessions</span>
+			</li>
 		</ul>
 	</div>
+
+	<h3>U.S. House</h3>
+	<table class="races">
+	    <tr class="race dontsplit">
+	        <td class="results-status reporting">50%</td>
+	        <td class="state gop">AZ<span class="seat_number">-5</span></td>
+	        {% if candidate %}
+	        <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.party.lower() == "ind" %} <span class="party">IND</span>{% endif %}</td>
+	        <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
+	        {% else %}
+	        <td class="candidate"></td>
+	        <td class="candidate-total"></td>
+	        {% endif %}
+	        {% if candidate %}
+	        <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
+	        <td class="candidate {{ candidate.party|lower }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.party.lower() == "ind" %} <span class="party">IND</span>{% endif %}</td>
+	        {% else %}
+	        <td class="candidate-total"></td>
+	        <td class="candidate"></td>
+	        {% endif %}
+	    </tr>
+	</table>
+
 </div>
