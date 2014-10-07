@@ -71,16 +71,8 @@ def _create_slide(post):
 
 def _render_post(post):
     post_date = datetime.fromtimestamp(post['timestamp'])
-    if post_date.hour > 12: 
-        formatted_hour = post_date.hour - 12
-        period = 'p.m.'
-    elif post_date.hour == 0:
-        formatted_hour = 12
-        period = 'a.m.'
-    else: 
-        formatted_hour = post_date.hour
-        period = 'a.m.'
-    post['formatted_date'] = '%s:%s %s EST' %(formatted_hour, post_date.minute, period)
+    formatted_date = post_date.strftime('%I:%M %p')
+    post['formatted_date'] = '%s EST' % formatted_date
     filename = '_tumblr_%s.html' % post['type']
 
     if post['type'] == 'photo':
