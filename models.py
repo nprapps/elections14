@@ -198,12 +198,7 @@ class Race(SlugModel):
         """
         Count the total votes cast for all candidates.
         """
-        count = 0
-
-        for c in Candidate.select().where(Candidate.race == self):
-            count += c.vote_count
-
-        return count
+        return self.candidates.select(fn.Sum(Candidate.vote_count)).scalar()
 
     def flatten(self, update_only=False):
         UPDATE_FIELDS = [
@@ -264,6 +259,7 @@ class Race(SlugModel):
                 dem = self.candidates.where(self.candidates.model_class.party == "Dem")[0]
         except IndexError:
             dem = None
+
         try:
             if self.race_id in REPUBLICAN_INDIES.keys():
                 candidate_id = REPUBLICAN_INDIES[self.race_id]
@@ -335,8 +331,10 @@ class Candidate(SlugModel):
         if self.race.is_called():
             if self.npr_winner:
                 return True
-            elif self.ap_winner:
-                return True
+
+            if self.race.accept_ap_call:
+                if self.ap_winner:
+                    return True
 
         return False
 
