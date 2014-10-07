@@ -439,18 +439,13 @@ def _save_senate_row(row):
 
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
 
-        #print "Updating %s" % existing
         existing.featured_race = True
         existing.previous_party = row['party']
-
-        if row['poll_close'] != '':
-            hours, minutes = row['poll_close'].split(':')
-            existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
 
         existing.save()
 
     except models.Race.DoesNotExist:
-        print 'Race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
+        print 'Senate race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
 
 @task
 def mock_slides():
