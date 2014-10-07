@@ -198,12 +198,7 @@ class Race(SlugModel):
         """
         Count the total votes cast for all candidates.
         """
-        count = 0
-
-        for c in Candidate.select().where(Candidate.race == self):
-            count += c.vote_count
-
-        return count
+        return self.candidates.select(fn.Sum(Candidate.vote_count)).scalar()
 
     def flatten(self, update_only=False):
         UPDATE_FIELDS = [

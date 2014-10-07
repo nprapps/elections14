@@ -87,12 +87,12 @@ cd elections14
 mkvirtualenv --no-site-packages elections14
 pip install -r requirements.txt
 npm install
-fab assets.sync
-fab ap.init ap.update ap.write data.bootstrap
 fab update
+fab ap.bootstrap
+fab data.bootstrap
 ```
 
-If testing, you will also want to run these commands:
+If testing, you will probably also want to run these commands:
 
 ```
 fab data.mock_slides

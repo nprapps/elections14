@@ -209,6 +209,7 @@ def load_calls(path):
     import models
 
     races_updated = 0
+    candidates_updated = 0
 
     print 'Loading latest calls from AP update data on disk'
 
@@ -220,19 +221,18 @@ def load_calls(path):
 
         race_model.ap_called = True
         race_model.ap_called_time = parse(race['ap_called_time'])
-
         race_model.save()
 
         races_updated += 1
 
-        for winner in race['winners']:
-            print winner
-            candidate_model = models.Candidate.get(models.Candidate.candidate_id == winner['candidate_id'])
-            candidate_model.ap_winner = True
+        candidate_model = models.Candidate.get(models.Candidate.candidate_id == race['ap_winner'])
+        candidate_model.ap_winner = True
+        candidate_model.save()
 
-            candidate_model.save()
+        candidates_updated += 1
 
     print 'Updated %i races' % races_updated
+    print 'Updated %i candidates' % candidates_updated
 
 @task
 def update_featured_social():
@@ -467,16 +467,17 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
+#    _mock_slide_from_image('welcome.png', it.next())
+    _mock_empty_slide('balance of power', it.next())
+    _mock_empty_slide('poll closing 8pm', it.next())
     _mock_empty_slide('rematches', it.next())
     _mock_empty_slide('romney dems', it.next())
     _mock_empty_slide('obama reps', it.next())
     _mock_empty_slide('incumbents lost', it.next())
     _mock_empty_slide('blue dogs', it.next())
     _mock_empty_slide('house freshmen', it.next())
-    _mock_empty_slide('poll closing 8pm', it.next())
-    _mock_empty_slide('balance of power', it.next())
-#    _mock_slide_with_pym('senate', 'results/senate/', it.next())
-#    _mock_empty_slide('state', it.next())
+    _mock_slide_with_pym('senate', 'results/senate/', it.next())
+    _mock_empty_slide('state', it.next())
 #    execute('instagram.get_photos')
 
 
