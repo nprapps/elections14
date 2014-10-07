@@ -148,10 +148,32 @@ class RaceTestCase(unittest.TestCase):
             self.assertEqual(race.get_called_time(), datetime(2014, 2, 2))
 
     def test_precincts_reporting_percent(self):
-        pass
+        with test_database(test_db, [Race, Candidate], create_tables=True):
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+            data.load_updates('data/tests/update.json')
+
+            race = Race.select().get()
+            race.precincts_reporting = 700
+            race.precincts_total = 1100
+            race.save()
+
+            self.assertAlmostEqual(race.precincts_reporting_percent(), Decimal('63.636'), 3)
 
     def test_has_incumbent(self):
-        pass
+        with test_database(test_db, [Race, Candidate], create_tables=True):
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+
+            race = Race.select().get()
+
+            self.assertFalse(race.has_incumbent())
+
+            incumbent = race.candidates.get()
+            incumbent.incumbent = True
+            incumbent.save()
+
+            self.assertTrue(race.has_incumbent())
 
     def test_count_votes(self):
         with test_database(test_db, [Race, Candidate], create_tables=True):
@@ -163,6 +185,7 @@ class RaceTestCase(unittest.TestCase):
             self.assertTrue(race.is_reporting())
             self.assertEqual(race.count_votes(), 600000)
 
+    @unittest.skip('TODO')
     def test_top_candidates(self):
         pass
 
@@ -171,7 +194,62 @@ class CandidateTestCase(unittest.TestCase):
     Test Candidate model methods.
     """
     def test_is_winner(self):
-        pass
+        with test_database(test_db, [Race, Candidate], create_tables=True):
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+
+            race = Race.get()
+
+            candidate = race.candidates.get() 
+            candidate.ap_winner = True
+            candidate.save()
+
+            self.assertFalse(race.is_called())
+            self.assertFalse(candidate.is_winner())
+
+            race.ap_called = True
+            race.npr_called = False
+            race.accept_ap_call = True
+            race.save()
+
+            # Hack so the race updates override the cached FK
+            candidate.race = race
+
+            self.assertTrue(race.is_called())
+            self.assertTrue(candidate.is_winner())
+
+            candidate.ap_winner = False
+            candidate.save()
+
+            self.assertTrue(race.is_called())
+            self.assertFalse(candidate.is_winner())
+
+            race.accept_ap_call = False
+            race.save()
+
+            self.assertFalse(race.is_called())
+
+            race.npr_called = True
+            race.save()
+            
+            self.assertTrue(race.is_called())
+            self.assertFalse(candidate.is_winner())
+
+            candidate.npr_winner = True
+            
+            self.assertTrue(candidate.is_winner())
 
     def test_vote_percent(self):
-        pass
+        with test_database(test_db, [Race, Candidate], create_tables=True):
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+            data.load_updates('data/tests/update.json')
+
+            candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
+            candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
+            candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
+
+            self.assertEqual(candidate_4848.vote_percent(), Decimal('25.0')) 
+            self.assertAlmostEqual(candidate_4642.vote_percent(), Decimal('33.333'), 3) 
+            self.assertAlmostEqual(candidate_4979.vote_percent(), Decimal('41.667'), 3) 
+
