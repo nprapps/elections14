@@ -140,11 +140,6 @@
         "race_id": "47021"
     }, 
     {
-        "ap_winner": "6024", 
-        "ap_called_time": "2014-10-06T18:05:19Z", 
-        "race_id": "2015"
-    }, 
-    {
         "ap_winner": "6023", 
         "ap_called_time": "2014-10-06T18:05:19Z", 
         "race_id": "2010"
@@ -153,6 +148,11 @@
         "ap_winner": "6404", 
         "ap_called_time": "2014-10-06T18:05:19Z", 
         "race_id": "3094"
+    }, 
+    {
+        "ap_winner": "6024", 
+        "ap_called_time": "2014-10-06T18:05:19Z", 
+        "race_id": "2015"
     }, 
     {
         "ap_winner": "6402", 
@@ -385,14 +385,14 @@
         "race_id": "15029"
     }, 
     {
-        "ap_winner": "54651", 
-        "ap_called_time": "2014-10-06T17:56:16Z", 
-        "race_id": "51399"
-    }, 
-    {
         "ap_winner": "54647", 
         "ap_called_time": "2014-10-06T17:56:16Z", 
         "race_id": "51404"
+    }, 
+    {
+        "ap_winner": "54651", 
+        "ap_called_time": "2014-10-06T17:56:16Z", 
+        "race_id": "51399"
     }, 
     {
         "ap_winner": "54743", 
@@ -445,14 +445,14 @@
         "race_id": "23818"
     }, 
     {
-        "ap_winner": "54292", 
-        "ap_called_time": "2014-10-06T17:55:44Z", 
-        "race_id": "51401"
-    }, 
-    {
         "ap_winner": "54524", 
         "ap_called_time": "2014-10-06T17:55:44Z", 
         "race_id": "51403"
+    }, 
+    {
+        "ap_winner": "54292", 
+        "ap_called_time": "2014-10-06T17:55:44Z", 
+        "race_id": "51401"
     }, 
     {
         "ap_winner": "44233", 
@@ -535,6 +535,11 @@
         "race_id": "15014"
     }, 
     {
+        "ap_winner": "54791", 
+        "ap_called_time": "2014-10-06T17:54:13Z", 
+        "race_id": "45677"
+    }, 
+    {
         "ap_winner": "54922", 
         "ap_called_time": "2014-10-06T17:54:13Z", 
         "race_id": "47256"
@@ -543,11 +548,6 @@
         "ap_winner": "54812", 
         "ap_called_time": "2014-10-06T17:54:13Z", 
         "race_id": "46464"
-    }, 
-    {
-        "ap_winner": "54791", 
-        "ap_called_time": "2014-10-06T17:54:13Z", 
-        "race_id": "45677"
     }, 
     {
         "ap_winner": "34501", 
@@ -580,14 +580,14 @@
         "race_id": "49570"
     }, 
     {
-        "ap_winner": "55013", 
-        "ap_called_time": "2014-10-06T17:53:30Z", 
-        "race_id": "49596"
-    }, 
-    {
         "ap_winner": "54172", 
         "ap_called_time": "2014-10-06T17:53:30Z", 
         "race_id": "45669"
+    }, 
+    {
+        "ap_winner": "55013", 
+        "ap_called_time": "2014-10-06T17:53:30Z", 
+        "race_id": "49596"
     }, 
     {
         "ap_winner": "31307", 
@@ -815,14 +815,14 @@
         "race_id": "35392"
     }, 
     {
-        "ap_winner": "33960", 
-        "ap_called_time": "2014-10-06T17:49:18Z", 
-        "race_id": "27607"
-    }, 
-    {
         "ap_winner": "33969", 
         "ap_called_time": "2014-10-06T17:49:18Z", 
         "race_id": "27004"
+    }, 
+    {
+        "ap_winner": "33960", 
+        "ap_called_time": "2014-10-06T17:49:18Z", 
+        "race_id": "27607"
     }, 
     {
         "ap_winner": "34488", 
@@ -840,14 +840,14 @@
         "race_id": "20157"
     }, 
     {
-        "ap_winner": "40319", 
-        "ap_called_time": "2014-10-06T17:48:36Z", 
-        "race_id": "35411"
-    }, 
-    {
         "ap_winner": "39840", 
         "ap_called_time": "2014-10-06T17:48:36Z", 
         "race_id": "35342"
+    }, 
+    {
+        "ap_winner": "40319", 
+        "ap_called_time": "2014-10-06T17:48:36Z", 
+        "race_id": "35411"
     }, 
     {
         "ap_winner": "47565", 
