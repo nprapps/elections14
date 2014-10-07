@@ -468,16 +468,16 @@ def mock_slides():
 
     it = count()
 #    _mock_slide_from_image('welcome.png', it.next())
-    _mock_empty_slide('balance of power', it.next())
-    _mock_empty_slide('poll closing 8pm', it.next())
+    _mock_empty_slide('balance of power', '_balance_of_power', it.next())
+    _mock_empty_slide('poll closing 8pm', '_poll_closing_8pm', it.next())
     _mock_slide_with_pym('senate', 'results/senate/', it.next())
-    _mock_empty_slide('state', it.next())
+    _mock_empty_slide('state', '_state_slide', it.next())
 #    _mock_empty_slide('rematches', it.next())
-    _mock_empty_slide('romney dems', it.next())
-    _mock_empty_slide('obama reps', it.next())
-    _mock_empty_slide('incumbents lost', it.next())
-    _mock_empty_slide('blue dogs', it.next())
-    _mock_empty_slide('house freshmen', it.next())
+    _mock_empty_slide('romney dems', '_romney_dems', it.next())
+    _mock_empty_slide('obama reps', '_obama_reps', it.next())
+    _mock_empty_slide('incumbents lost', '_incumbents_lost', it.next())
+    _mock_empty_slide('blue dogs', '_blue_dogs', it.next())
+    _mock_empty_slide('house freshmen', '_house_freshmen', it.next())
 #    execute('instagram.get_photos')
 
 def _mock_slide_from_image(filename, i):
@@ -487,11 +487,11 @@ def _mock_slide_from_image(filename, i):
     slide = models.Slide.create(body=body, name=filename)
     models.SlideSequence.create(order=i, slide=slide)
 
-def _mock_empty_slide(slug, i):
+def _mock_empty_slide(slug, view, i):
     import models
 
     body = ''
-    slide = models.Slide.create(body=body, name=slug)
+    slide = models.Slide.create(body=body, name=slug, view_name=view)
     models.SlideSequence.create(order=i, slide=slide)
 
 def _mock_slide_with_pym(slug, path, i):
@@ -507,7 +507,7 @@ def _mock_slide_with_pym(slug, path, i):
     with app.app.test_request_context(path='/slides/pym'):
         body = render_template('slides/pym.html', **context)
 
-    slide = models.Slide.create(slug=slug, body=body, name=slug)
+    slide = models.Slide.create(slug=slug, body=body, name=slug, view_name="_slide")
     models.SlideSequence.create(order=i, slide=slide)
 
 @task

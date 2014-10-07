@@ -183,16 +183,6 @@ def deploy_states():
     utils._gzip('.states_html', '.states_gzip')
     utils._deploy_to_s3('.states_gzip')
 
-@task
-def deploy_graphics():
-    """
-    Deploy every state slide to S3
-    """
-    local('rm -rf .graphics_html .graphics_gzip')
-    render.render_graphics()
-    utils._gzip('.graphics_html', '.graphics_gzip')
-    utils._deploy_to_s3('.graphics_gzip')
-
 
 @task
 def deploy():

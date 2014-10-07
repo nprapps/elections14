@@ -129,22 +129,20 @@ def render_slides():
     """
     Render slides to HTML files.
     """
-
+    from flask import g, url_for
     import models
 
     slides = models.Slide.select()
-    _render_slug_pages(slides, '_slide', '.slides_html', [])
-    render_states()
-    render_graphics()
 
-def _render_slug_pages(models, view_name, output_path, compiled_includes):
-    """
-    Render pages for SlugModels.
-    """
-    from flask import g, url_for
+    compiled_includes = {}
+    output_path = '.slides_html'
 
-    for model in models:
-        slug = model.slug
+    for slide in slides:
+        slug = slide.slug
+        view_name = '_slide'
+
+        if slug == 'state':
+            continue
 
         # Silly fix because url_for require a context
         with app.app.test_request_context():
@@ -174,10 +172,12 @@ def _render_slug_pages(models, view_name, output_path, compiled_includes):
         with open(path, 'w') as f:
             f.write(content.data)
 
+    compiled_includes.update(render_states(compiled_includes))
+
     return compiled_includes
 
 @task
-def render_states():
+def render_states(compiled_includes={}):
     """
     Render state slides to HTML files
     """
@@ -185,7 +185,6 @@ def render_states():
 
     view_name = '_state_slide'
     output_path = '.states_html'
-    compiled_includes = {}
 
     for postal, state in app_config.STATES.items():
 
@@ -201,49 +200,6 @@ def render_states():
 
             view = app.__dict__[view_name]
             content = view(postal)
-
-            compiled_includes = g.compiled_includes
-
-        path = '%s%s' % (output_path, path)
-
-        # Ensure path exists
-        head = os.path.split(path)[0]
-
-        try:
-            os.makedirs(head)
-        except OSError:
-            pass
-
-        with open(path, 'w') as f:
-            f.write(content.data)
-
-    return compiled_includes
-
-@task
-def render_graphics():
-    """
-    Render state slides to HTML files
-    """
-    from flask import g, url_for
-
-    graphics_views = ['_balance_of_power', '_blue_dogs', '_house_freshmen', '_incumbents_lost', '_obama_reps', '_poll_closing_8pm', '_rematches', '_romney_dems']
-    output_path = '.graphics_html'
-    compiled_includes = {}
-
-    for view_name in graphics_views:
-
-        # Silly fix because url_for require a context
-        with app.app.test_request_context():
-            path = url_for(view_name)
-
-        with app.app.test_request_context(path=path):
-            print 'Rendering %s' % path
-
-            g.compile_includes = True
-            g.compiled_includes = compiled_includes
-
-            view = app.__dict__[view_name]
-            content = view()
 
             compiled_includes = g.compiled_includes
 

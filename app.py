@@ -234,17 +234,6 @@ def test_widget():
     """
     return render_template('test_widget.html', **make_context())
 
-@app.route('/slides/<slug>.html')
-@cors
-def _slide(slug):
-    """
-    Serve up slide html fragment
-    """
-    from models import Slide
-
-    slide = Slide.get(Slide.slug == slug)
-    return render_template('_slide.html', body=slide.body)
-
 @app.route('/live-data/stack.json')
 @cors
 def _stack_json():
@@ -258,7 +247,7 @@ def _stack_json():
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-@app.route('/slides/state-<string:slug>.html')
+@app.route('/slides/state-<slug>.html')
 @cors
 def _state_slide(slug):
     """
@@ -276,27 +265,42 @@ def _state_slide(slug):
 
     context['senate'] = Race.select().where(
         (Race.office_name == 'U.S. Senate') &
-        (Race.state_postal == slug.upper()) 
+        (Race.state_postal == slug.upper())
     )
 
     context['governor'] = Race.select().where(
         (Race.office_name == 'Governor') &
-        (Race.state_postal == slug.upper()) 
+        (Race.state_postal == slug.upper())
     )
 
     context['house'] = Race.select().where(
         (Race.office_name == 'U.S. House') &
-        (Race.state_postal == slug.upper()) 
+        (Race.state_postal == slug.upper())
     )
-
 
     context['column_number'] = 2
     context['body'] = render_template('slides/state.html', **context)
 
     return render_template('_slide.html', **context)
 
-@app.route('/slides/balance-of-power.html')
+@app.route('/slides/<slug>.html')
 @cors
+def _slide(slug):
+    """
+    Serve up slide html fragment
+    """
+    from models import Slide
+
+    slide = Slide.get(Slide.slug == slug)
+    view_name = slide.view_name
+
+    if view_name == '_slide':
+        body = slide.body
+    else:
+        body = globals()[view_name]()
+
+    return render_template('_slide.html', body=body)
+
 def _balance_of_power():
     """
     Serve up the balance of power graph
@@ -317,78 +321,86 @@ def _balance_of_power():
     context['house_not_called'] = _calculate_seats_left(house_races)
     context['senate_not_called'] = _calculate_seats_left(senate_races)
 
-    context['body'] = render_template('slides/balance-of-power.html', **context)
-    return render_template('_slide.html', **context)
+    body = render_template('slides/balance-of-power.html', **context)
 
-@app.route('/slides/blue-dogs.html')
-@cors
+    return body
+    # return render_template('_slide.html', **context)
+
 def _blue_dogs():
     """
     Ongoing list of how blue dog democrats are faring
     """
     context = make_context()
-    context['body'] = render_template('slides/blue-dogs.html', **context)
-    return render_template('_slide.html', **context)
+    body = render_template('slides/blue-dogs.html', **context)
 
-@app.route('/slides/house-freshmen.html')
-@cors
+    return body
+    # return render_template('_slide.html', **context)
+
+
 def _house_freshmen():
     """
     Ongoing list of how representatives elected in 2012 are faring
     """
     context = make_context()
-    context['body'] = render_template('slides/house-freshmen.html', **context)
-    return render_template('_slide.html', **context)
+    body = render_template('slides/house-freshmen.html', **context)
 
-@app.route('/slides/incumbents-lost.html')
-@cors
+    return body
+    # return render_template('_slide.html', **context)
+
+
 def _incumbents_lost():
     """
     Ongoing list of which incumbents lost their elections
     """
     context = make_context()
-    context['body'] = render_template('slides/incumbents-lost.html', **context)
-    return render_template('_slide.html', **context)
+    body = render_template('slides/incumbents-lost.html', **context)
 
-@app.route('/slides/obama-reps.html')
-@cors
+    return body
+    # return render_template('_slide.html', **context)
+
+
 def _obama_reps():
     """
     Ongoing list of Incumbent Republicans In Districts Barack Obama Won In 2012
     """
     context = make_context()
-    context['body'] = render_template('slides/obama-reps.html', **context)
-    return render_template('_slide.html', **context)
+    body = render_template('slides/obama-reps.html', **context)
 
-@app.route('/slides/poll-closing-8pm.html')
-@cors
+    return body
+    # return render_template('_slide.html', **context)
+
+
 def _poll_closing_8pm():
     """
     Serve up 8pm poll closing information
     """
     context = make_context()
-    context['body'] = render_template('slides/poll-closing-8pm.html', **context)
-    return render_template('_slide.html', **context)
+    body = render_template('slides/poll-closing-8pm.html', **context)
 
-@app.route('/slides/rematches.html')
-@cors
+    return body
+    # return render_template('_slide.html', **context)
+
+
 def _rematches():
     """
     List of elections with candidates who have faced off before
     """
     context = make_context()
-    context['body'] = render_template('slides/rematches.html', **context)
-    return render_template('_slide.html', **context)
+    body = render_template('slides/rematches.html', **context)
 
-@app.route('/slides/romney-dems.html')
-@cors
+    return body
+    # return render_template('_slide.html', **context)
+
+
 def _romney_dems():
     """
     Ongoing list of Incumbent Democrats In Districts Mitt Romney Won In 2012
     """
     context = make_context()
-    context['body'] = render_template('slides/romney-dems.html', **context)
-    return render_template('_slide.html', **context)
+    body = render_template('slides/romney-dems.html', **context)
+
+    return body
+    # return render_template('_slide.html', **context)
 
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)
