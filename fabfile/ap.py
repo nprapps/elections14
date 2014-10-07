@@ -228,8 +228,7 @@ def write_update(path):
         for candidate in stateRU.get('candidates'):
             update['candidates'].append({
                 'candidate_id': candidate.get('candidateID'),
-                'vote_count': candidate.get('voteCount'),
-                'ap_winner': candidate.get('winner', '') == 'X',
+                'vote_count': candidate.get('voteCount')
             })
 
         updates.append(update)
@@ -248,19 +247,19 @@ def write_calls(path):
     for race in update_calls:
         if not race.get('raceID'):
             continue
+        
+        winners = race.get('candidates')
 
-        call = {
+        if len(winners) > 1:
+            print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (race['raceID'], race['raceType'], race['statePostal'])
+
+        winner = winners[0]
+
+        calls.append({
             'race_id': race.get('raceID'),
             'ap_called_time':race.get('callTimestamp'),
-            'winners': []
-        }
-
-        for candidate in race['candidates']:
-            call['winners'].append({
-                'candidate_id': candidate['candidateID']    
-            })
-
-        calls.append(call)
+            'ap_winner': winner['candidateID'] 
+        })
 
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)

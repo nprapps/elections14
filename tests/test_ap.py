@@ -264,11 +264,6 @@ class APTestCase(unittest.TestCase):
                     self.assertEqual(candidate['candidateID'], written_candidate['candidate_id'])
                     self.assertEqual(candidate['voteCount'], written_candidate['vote_count'])
                     
-                    if 'winner' in candidate:
-                        self.assertEqual(True, written_candidate['ap_winner'])
-                    else:
-                        self.assertEqual(False, written_candidate['ap_winner'])
-
     def test_write_calls(self):
         ap_cache = {}
         ap_cache['calls'] = {}
@@ -289,4 +284,5 @@ class APTestCase(unittest.TestCase):
 
             self.assertEqual(calls[0]['raceID'], written_calls[0]['race_id'])
             self.assertEqual(calls[0]['callTimestamp'], written_calls[0]['ap_called_time'])
+            self.assertEqual(calls[0]['candidates'][0]['candidateID'], written_calls[0]['ap_winner'])
 

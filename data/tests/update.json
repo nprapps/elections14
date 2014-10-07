@@ -6,17 +6,14 @@
         "is_test": true, 
         "candidates": [
             {
-                "ap_winner": false, 
                 "vote_count": 150000, 
                 "candidate_id": "4848"
             }, 
             {
-                "ap_winner": false, 
                 "vote_count": 200000, 
                 "candidate_id": "4642"
             }, 
             {
-                "ap_winner": true, 
                 "vote_count": 250000, 
                 "candidate_id": "4979"
             }
