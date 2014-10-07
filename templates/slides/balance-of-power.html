@@ -25,13 +25,13 @@
 
 	var data_house = [
 		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ house_bop.dem.has }}, 'net': {{ house_bop.dem.picked_up }} },
-		{ 'party': 'Republican', 'party_abbr': 'Rep.', 'seats': {{ house_bop.gop.has }}, 'net': {{ house_bop.gop.picked_up }} },
+		{ 'party': 'Republican', 'party_abbr': 'GOP', 'seats': {{ house_bop.gop.has }}, 'net': {{ house_bop.gop.picked_up }} },
 		{ 'party': 'Independent', 'party_abbr': 'Ind.', 'seats': {{ house_bop.other.has }}, 'net': {{ house_bop.other.picked_up }} },
 		{ 'party': 'Not yet called', 'party_abbr': 'TBD', 'seats': {{ house_not_called }}, 'net': 0 }
 	];
 	var data_senate = [
 		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ senate_bop.dem.has }}, 'net': {{ senate_bop.dem.picked_up }} },
-		{ 'party': 'Republican', 'party_abbr': 'Rep.', 'seats': {{ senate_bop.gop.has }}, 'net': {{ senate_bop.gop.picked_up }} },
+		{ 'party': 'Republican', 'party_abbr': 'GOP', 'seats': {{ senate_bop.gop.has }}, 'net': {{ senate_bop.gop.picked_up }} },
 		{ 'party': 'Independent', 'party_abbr': 'Ind.', 'seats': {{ senate_bop.other.has }}, 'net': {{ senate_bop.other.picked_up }} },
 		{ 'party': 'Not yet called', 'party_abbr': 'TBD', 'seats': {{ senate_not_called }}, 'net': 0 }
 	];
@@ -48,10 +48,11 @@
 	var color;
 	var graphic_margin = 6;
 	var is_mobile = false;
-	var label_width = 30;
+	var label_width = 35;
 	var mobile_threshold = 480;
 	var num_x_ticks = 5;
 	var round_increment = 10;
+	var side_margin = 11;
 
 	var fmt_comma = d3.format(',');
 	var fmt_year_abbrev = d3.time.format('%y');
@@ -62,7 +63,7 @@
 	 * Render the graphic
 	 */
 	function render() {
-		var container_width = $('#stack').width();
+		var container_width = $('#stack').width() - (side_margin * 2);
 		var graphic_width = Math.floor((container_width - 22) / 2);
 
 		if (container_width <= mobile_threshold) {
@@ -225,8 +226,7 @@
 			.attr('x1', x(majority))
 			.attr('y1', 0)
 			.attr('x2', x(majority))
-			.attr('y2', height)
-			.attr('stroke', '#000');
+			.attr('y2', height);
 
 		majority_marker.append('text')
 			.attr('class', 'majority')

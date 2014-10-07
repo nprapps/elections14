@@ -13,6 +13,7 @@
 @blueDarker: #141D24;
 @red: #F25A49;
 @blue: #538ECD;
+@green: #43af47;
 
 h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -392,17 +393,16 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
 .graphic {
 	-webkit-text-size-adjust: none;
-	color: #333;
+	color: @musicLight;
+	padding: 22px 11px;
 
 	h1 {
 		margin: 0 0 22px 0;
 		font-size: 24px;
-		color: #333;
 		text-align: center;
 	}
 	h2 {
 		font-weight: normal;
-		color: #666;
 		font-size: 12px;
 		margin: -16px 0 22px 0;
 		text-align: center;
@@ -415,10 +415,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
 	.footnotes {
 		margin-bottom: 20px;
+		color: #868686;
 
 		h4 {
 			margin: 2px 0 7px 0;
-			color: #666;
 			font-size: 11px;
 		}
 	}
@@ -427,21 +427,21 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 		margin: 2px 0 0 0;
 		font-size: 11px;
 		line-height: 1.3;
-		color: #808080;
+		color: #868686;
 	}
 
-	.r { color: #BE0F00; }
-	.d { color: #376099; }
-	.i { color: #319269; }
+	.r { color: @red; }
+	.d { color: @blue; }
+	.i { color: @green; }
 
 	.axis {
 		font-size: 11px;
-		fill: #666;
+		fill: #787878;
 
 		line,
 		path {
 			fill: none;
-			stroke: #666;
+			stroke: #787878;
 			shape-rendering: crispEdges;
 		}
 
@@ -452,8 +452,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 	.grid {
 		path { display: none; }
 		.tick {
-			stroke: #ccc;
-			stroke-dasharray: 1px 3px;
+			stroke: #787878;
+			stroke-dasharray: 2px 3px;
 			stroke-width: 1px;
 			shape-rendering: crispEdges;
 		}
@@ -461,10 +461,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
 	.bars {
 		rect { shape-rendering: crispEdges; }
-		.democratic { fill: #376099; }
-		.republican { fill: #BE0F00; }
-		.independent { fill: #319269; }
-		.not-yet-called { fill: #ccc; }
+		.democratic { fill: @blue; }
+		.republican { fill: @red; }
+		.independent { fill: @green; }
+		.not-yet-called { fill: @musicDark; }
 	}
 
 	.value { font-size: 11px; }
@@ -473,11 +473,11 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 		text-align: right;
 		font-size: 12px;
 		line-height: 1.3;
-		fill: #333;
+		fill: @musicLight;
 		font-weight: 500;
 
 		.not-yet-called {
-			fill: #999;
+			fill: #868686;
 			font-weight: normal;
 		}
 	}
@@ -510,7 +510,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 					letter-spacing: 0.05em;
 					display: block;
 				}
-				span { color: #999; }
+				span { color: #868686; }
 			}
 		}
 	}
@@ -570,11 +570,11 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
 	.majority {
 		line {
-			stroke: #999;
-			stroke-width: 1px;
+			stroke: @musicLight;
+			stroke-width: 2px;
 		}
 		text {
-			fill: #999;
+			fill: @musicLight;
 			font-size: 10px;
 			font-style: italic;
 		}
