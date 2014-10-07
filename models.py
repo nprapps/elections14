@@ -166,6 +166,7 @@ class Race(SlugModel):
         Did the party change?
         """
         winner = self.get_winning_party()
+
         if winner:
             return winner != self.previous_party
 
