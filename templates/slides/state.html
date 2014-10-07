@@ -1,7 +1,7 @@
 {% extends '_base_results.html' %}
 {% block extra_css %}
 {{ CSS.push('less/results.less') }}
-{{ CSS.render('css/results.min.css') }}
+{{ CSS.render('css/states.min.css') }}
 {% endblock extra_css %}
 
 {% block outer_content %}
@@ -118,7 +118,7 @@
 {{ JS.push('js/lib/pym.js') }}
 {{ JS.push('js/lib/jquery.columnizer.js') }}
 {{ JS.push('js/results.js') }}
-{{ JS.render('js/results-footer.min.js') }}
+{{ JS.render('js/states-footer.min.js') }}
 <script>
 var colOpts = {
   precise: true,
