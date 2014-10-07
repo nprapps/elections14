@@ -1,80 +1,106 @@
 {% extends '_base.html' %}
 
 {% block extra_css %}
-{{ CSS.push('less/results.less') }}
 {{ CSS.push('less/stack.less') }}
 {{ CSS.render('css/index.min.css') }}
 {% endblock extra_css %}
 
 {% block outer_content %}
-<div class="welcome">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Election 2014</h1>
+<div class="slide welcome">
+    <div class="slide-inner">
+        <div class="slide-content">
+            <img class="logo" src="assets/npr-color.gif">
+            <div class="intro-text">
+                <h1>2014</h1>
+                <h2>Election Party!</h2>
 
-                <h2>Welcome to #NPRPARTY</h2>
+            <button class="btn btn-lg welcome-button">Get Started</button>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-primary welcome-button">Get Started</button>
+
+            <div class="tv-prompt">
+                <img class="icon" src="../assets/tv.svg">
+                <h3>Stream on your TV</h3>
+                <p>Use your Apple TV, Chromecast, or Roku device.</p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="state-picker">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <form role="form" class="state-picker-form">
-                    <div class="form-group">
-                        <select class="state-selector chosen" data-placeholder="Pick your state" tabindex="-1" multiple="true" style="width:400px">
-                            {% for postal in STATES.keys()|sort %}
-                            <option value="{{ postal }}">{{ STATES[postal] }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+<div class="state-picker slide">
+    <div class="slide-inner">
+        <div class="slide-content">
+            <h2>Get up to the minute results on your state</h2>
 
-                    <button type="submit" class="btn btn-primary state-picker-submit">Join the party</button>
-                </form>
-            </div>
+            <form role="form" class="state-picker-form">
+                <div class="form-group">
+                    <select class="state-selector chosen" data-placeholder="Pick your state" tabindex="-1" multiple="true" style="width:400px">
+                        {% for postal in STATES.keys()|sort %}
+                        <option value="{{ postal }}">{{ STATES[postal] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-lg state-picker-submit">Join the party</button>
+            </form>
         </div>
     </div>
 </div>
 
 <div id="stack" class="stack">
-    <img class="logo" src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
+    <div class="header-container">
+        <div class="results-header index">
+            <img class="logo" src="assets/npr-color.gif" alt="NPR" /></a></li>
+            <span class="hashtag">#nprparty</span>
+            {% if bop %}
+            <div class="leaderboard">
+                <div class="results-header-group dem">
+                    <h2 class="party">Dem</h2>
+                    <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
+                </div>
+                <div class="results-header-group gop">
+                    <h2 class="party">GOP</h2>
+                    <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
+                    </tr>
+                </div>
+                <div class="results-header-group not-called">
+                    <h2 class="party">Not Called</h2>
+                    <p class="total"><span class="count">{{ not_called }}</span></p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
 
-    <div class="results-header index">
-        {% if bop %}
-        <div class="leaderboard">
-            <div class="results-header-group dem">
-                <h2 class="party">Dem</h2>
-                <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
-                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.dem.needs }}</span></p>
-            </div>
-            <div class="results-header-group gop">
-                <h2 class="party">GOP</h2>
-                <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
-                <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.gop.needs }}</span></td>
-                </tr>
-            </div>
-            <div class="results-header-group ind">
-                <h2 class="party">Other</h2>
-                <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
-            </div>
-            <div class="results-header-group not-called">
-                <h2>Not Called</h2>
-                <p class="total"><span class="count">{{ not_called }}</span></p>
+        <div class="results-header header-controls">
+            <a href="#" data-toggle="modal" data-backdrop="static" data-target="#share-modal">Share <span class="fa fa-share"></span></a>
+
+            <div class="right-controls">
+                <div class="state results-header-group">
+                    <p>Virginia</p>
+                </div>
+                <div class="volume results-header-group">
+                    <div id="audio-ambient">
+                        <div id="pop-audio" class="jp-jplayer"></div>
+                        <div id="jp_container_1" class="jp-audio">
+                            <div class="jp-type-single">
+                                <div class="jp-gui jp-interface">
+                                    <div class="jp-controls">
+                                        <a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="stop"><i class="fa fa-volume-off"></i></a>
+                                        <a href="javascript:;" class="jp-pause nav-btn" tabindex="1" title="play"><i class="fa fa-volume-up"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fullscreen results-header-group">
+                    <p><a href="#"><span class="fa fa-arrows-alt"></span></a></p>
+                </div>
             </div>
         </div>
-        {% endif %}
     </div>
 
-    <div class="audio">
+    <!-- <div class="audio">
         <div id="pop-audio" class="jp-jplayer"></div>
         <div id="jp_container_1" class="jp-audio">
             <div class="jp-type-single">
@@ -98,8 +124,10 @@
                 </div>
             </div>
         </div> <!-- end .jp-audio -->
-    </div>
+    </div> -->
 </div>
+
+{% include '_share_modal.html' %}
 {% endblock outer_content %}
 
 {% block extra_foot_js %}
