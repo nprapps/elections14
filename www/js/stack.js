@@ -63,7 +63,7 @@ var rotateSlide = function() {
 
             $newSlide.fadeIn(function(){
                 console.log('Slide rotation complete');
-                // setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
             });
         }
     });
@@ -84,7 +84,7 @@ function getStack() {
                 rotateSlide();
             }
 
-            // setTimeout(getStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
+            setTimeout(getStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
         }
     });
 }
