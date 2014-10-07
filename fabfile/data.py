@@ -378,7 +378,7 @@ def update_featured_social():
 @task
 def load_house_extra(path):
     """
-    Load extra data (featured status, poll close, last party in power) for
+    Load extra data (featured status, last party in power) for
     house of reps
     """
     print 'Loading house extra data from disk'
@@ -399,11 +399,10 @@ def _save_house_row(row):
         district = int(row['district'][2:])
         existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
 
-        existing.previous_party = row['party']
-
-        if row['featured'] == 1:
+        if row['featured'] == '1':
             existing.featured_race = True
 
+        existing.previous_party = row['party']
         existing.save()
 
     except models.Race.DoesNotExist:
@@ -413,7 +412,7 @@ def _save_house_row(row):
 @task
 def load_senate_extra(path):
     """
-    Load extra data (featured status, poll close, last party in power) for
+    Load extra data (last party in power) for
     senate
     """
     print 'Loading senate extra data from disk'
@@ -439,9 +438,7 @@ def _save_senate_row(row):
 
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
 
-        existing.featured_race = True
         existing.previous_party = row['party']
-
         existing.save()
 
     except models.Race.DoesNotExist:
