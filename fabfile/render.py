@@ -178,7 +178,6 @@ def render_states():
 
     return compiled_includes
 
-
 def _render_slug_pages(models, view_name, output_path, compiled_includes):
     """
     Render pages for SlugModels.

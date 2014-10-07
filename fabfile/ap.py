@@ -288,7 +288,6 @@ def record():
 
         init()
         update()
-        write(folder)
 
         sleep(update_interval)
 
