@@ -191,7 +191,7 @@ def results_senate():
     context['page_class'] = 'senate'
     context['column_number'] = 2
 
-    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
 
     context['poll_groups'] = _group_races_by_closing_time(races)
     context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
@@ -212,7 +212,7 @@ def results_governor():
     context['page_class'] = 'governor'
     context['column_number'] = 2
 
-    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.state_postal)
+    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
 
     context['poll_groups'] = _group_races_by_closing_time(races)
 
