@@ -267,7 +267,7 @@ def configure_targets(deployment_target):
 
         TUMBLR_NAME = 'stage-nprelections'
         TUMBLR_AUTO_REFRESH = False
-        TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
+        TUMBLR_NOT_BEFORE = datetime(2014, 10, 7, 11, 0, 0)
     else:
         S3_BUCKETS = []
         S3_BASE_URL = 'http://127.0.0.1:8000'

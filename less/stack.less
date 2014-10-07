@@ -287,31 +287,28 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         width: 100%;
     }
 
-    .post-footer{
-        position:absolute;
-        bottom:10px;
-        font-size:20px;
-        a{
-            padding-right:10px;
+    .tumblr{
+        margin: 40px 80px 0;
+        p {
+            font-size: 36px;
+        }
+        .date{
+            font-size: 25px;
+        }
+        .post-footer{
+            position:absolute;
+            bottom:10px;
+            font-size:20px;
+            a{
+                padding-right:10px;
+            }
         }
     }
 
     .tumblr-text-post {
-        margin: 0 80px;
         letter-spacing:-.03em;
-        // max-width: 1200px;
         h2 {
             font-size: 48px;
-            font-style: uppercase;
-        }
-        p {
-            font-size: 36px;
-        }
-        .text-header{
-            padding-top: 40px;
-            .date{
-                font-size: 25px;
-            }
         }
         .body{
             padding-top: 40px;
@@ -319,20 +316,18 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     }
 
     .tumblr-image-post {
-        max-width: 1024px;
-        margin: 0 auto;
         .image {
-            text-align: center;
+            float:right;
+            width:35%;
+            padding-top:27px;
             img {
-                max-height: 500px;
-                width: auto;
+                width:100%;
+                height:auto;
             }
         }
         .caption {
-            p {
-                font-size: 30px;
-                text-align: center;
-            }
+            float:left;
+            width: 60%;
         }
     }
 

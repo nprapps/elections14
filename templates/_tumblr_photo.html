@@ -1,8 +1,13 @@
-<div class="tumblr-image-post">
+<div class="tumblr tumblr-image-post">
+	<p class="date">{{ formatted_date }}</p>
+    <div class="caption">
+        <p>{{ caption }}</p>
+    </div>
     <div class="image">
         <img src="{{ image.url }}">
     </div>
-    <div class="caption">
-        <p>{{ caption }}</p>
+    <div class="post-footer">
+    	<a class="tumblr-link" href="{{ post_url }}">nprpolitics.tumblr.com</a>
+    	<a class="twitter-link" href="http://twitter.com/nprpolitics"><span class="fa fa-twitter"></span> nprpolitics</a>
     </div>
 </div>
