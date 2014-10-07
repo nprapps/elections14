@@ -468,7 +468,7 @@ def mock_slides():
 
     it = count()
 #    _mock_slide_from_image('welcome.png', it.next())
-    _mock_empty_slide('balance of power', it.next())
+#    _mock_empty_slide('balance of power', it.next())
     _mock_empty_slide('poll closing 8pm', it.next())
     _mock_empty_slide('rematches', it.next())
     _mock_empty_slide('romney dems', it.next())
