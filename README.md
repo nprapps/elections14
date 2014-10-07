@@ -88,7 +88,7 @@ mkvirtualenv --no-site-packages elections14
 pip install -r requirements.txt
 npm install
 fab assets.sync
-fab data.bootstrap
+fab ap.init ap.update ap.write data.bootstrap
 fab update
 ```
 

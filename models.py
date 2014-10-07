@@ -125,13 +125,15 @@ class Race(SlugModel):
         """
         if self.is_called():
             for candidate in self.candidates.where(Candidate.race == self):
-                if candidate.ap_winner:
-                    if candidate.party == 'GOP':
-                        return 'gop'
-                    elif candidate.party == 'Dem':
-                        return 'dem'
-                    else:
-                        return 'other'
+                if self.accept_ap_call:
+                    if candidate.ap_winner:
+                        if candidate.party == 'GOP':
+                            return 'gop'
+                        elif candidate.party == 'Dem':
+                            return 'dem'
+                        else:
+                            return 'other'
+
                 if candidate.npr_winner:
                     if candidate.party == 'GOP':
                         return 'gop'
@@ -164,6 +166,7 @@ class Race(SlugModel):
         Did the party change?
         """
         winner = self.get_winning_party()
+
         if winner:
             return winner != self.previous_party
 
@@ -338,10 +341,10 @@ class Candidate(SlugModel):
         return False
 
     def vote_percent(self):
-        total_votes = 0
-        for candidate in self.race.candidates:
-            total_votes += candidate.vote_count
+        total_votes = self.race.count_votes()
+        
         ratio = Decimal(self.vote_count) / Decimal(total_votes)
+        
         return ratio * 100
 
 class Slide(SlugModel):

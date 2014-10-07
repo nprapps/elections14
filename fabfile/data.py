@@ -10,7 +10,7 @@ import random
 
 import copytext
 from dateutil.parser import parse
-from fabric.api import env, execute, local, require, run, settings, task
+from fabric.api import env, local, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
@@ -19,7 +19,7 @@ import admin_app
 import servers
 import csv
 
-SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
+SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD &&7%s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
 
 @task(default=True)
 def update():
@@ -27,7 +27,7 @@ def update():
     Run all updates
     """
     #update_featured_social()
-    update_results()
+    load_updates()
 
 @task
 def query(q):
@@ -101,8 +101,10 @@ def bootstrap():
 
     create_tables()
 
-    load_races('data/races.json')
-    load_candidates('data/candidates.json')
+    load_races('data/init_races.json')
+    load_candidates('data/init_candidates.json')
+    load_house_extra('data/house-extra.csv')
+    load_senate_extra('data/senate-extra.csv')
 
 def load_races(path):
     """
@@ -128,6 +130,8 @@ def load_races(path):
                 last_updated = race['last_updated'],
             )
 
+    print 'Loaded %i races' % len(races)
+
 def load_candidates(path):
     """
     Load AP candidate data from intermediary JSON into the database.
@@ -149,8 +153,10 @@ def load_candidates(path):
                 candidate_id = candidate['candidate_id'],
             )
 
+    print 'Loaded %i candidates' % len(candidates)
+
 @task()
-def update_results():
+def load_updates(path):
     """
     Update the latest results from the AP intermediary files.
     """
@@ -161,7 +167,7 @@ def update_results():
 
     print 'Loading latest results from AP update data on disk'
 
-    with open('data/update.json') as f:
+    with open(path) as f:
         races = json.load(f)
 
     for race in races:
@@ -187,7 +193,6 @@ def update_results():
             candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
             candidate_model.vote_count = candidate['vote_count']
-            candidate_model.ap_winner = candidate.get('ap_winner', False)
 
             candidate_model.save()
 
@@ -195,6 +200,39 @@ def update_results():
 
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated
+
+@task
+def load_calls(path):
+    """
+    Update the latest calls from the AP intermediary files.
+    """
+    import models
+
+    races_updated = 0
+
+    print 'Loading latest calls from AP update data on disk'
+
+    with open(path) as f:
+        races = json.load(f)
+
+    for race in races:
+        race_model = models.Race.get(models.Race.race_id == race['race_id'])
+
+        race_model.ap_called = True
+        race_model.ap_called_time = parse(race['ap_called_time'])
+
+        race_model.save()
+
+        races_updated += 1
+
+        for winner in race['winners']:
+            print winner
+            candidate_model = models.Candidate.get(models.Candidate.candidate_id == winner['candidate_id'])
+            candidate_model.ap_winner = True
+
+            candidate_model.save()
+
+    print 'Updated %i races' % races_updated
 
 @task
 def update_featured_social():
@@ -338,12 +376,14 @@ def update_featured_social():
         json.dump(output, f)
 
 @task
-def load_house_extra(folder='data'):
+def load_house_extra(path):
     """
     Load extra data (featured status, poll close, last party in power) for
     house of reps
     """
-    with open('%s/house-extra.csv' % folder) as f:
+    print 'Loading house extra data from disk'
+
+    with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
             if row.get('featured') == '1':
@@ -360,7 +400,7 @@ def _save_house_row(row):
         district = int(row['district'][2:])
         existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
 
-        print "Updating %s" % existing
+        #print "Updating %s" % existing
         existing.featured_race = True
         existing.previous_party = row['party']
 
@@ -375,12 +415,14 @@ def _save_house_row(row):
 
 
 @task
-def load_senate_extra(folder='data'):
+def load_senate_extra(path):
     """
     Load extra data (featured status, poll close, last party in power) for
     senate
     """
-    with open('%s/senate-extra.csv' % folder) as f:
+    print 'Loading senate extra data from disk'
+
+    with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
             _save_senate_row(row)
@@ -401,7 +443,7 @@ def _save_senate_row(row):
 
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
 
-        print "Updating %s" % existing
+        #print "Updating %s" % existing
         existing.featured_race = True
         existing.previous_party = row['party']
 
@@ -487,15 +529,10 @@ def mock_results(folder='data'):
         race.ap_called = False
         _fake_incumbent(race)
         _fake_previous_party(race)
-        _fake_poll_closing_time(race)
         _fake_precincts_reporting(race)
         _fake_called_status(race)
         _fake_results(race)
         race.save()
-
-    print "Loading real data where it exists"
-    load_house_extra(folder)
-    load_senate_extra(folder)
 
 def _fake_incumbent(race):
     """
@@ -522,15 +559,6 @@ def _fake_previous_party(race):
     else:
         race.previous_party = random.choice(['gop', 'dem', 'other'])
 
-def _fake_poll_closing_time(race):
-    """
-    Fake poll closing time
-    """
-    first_close = datetime(2014, 11, 4, 7)
-    closing_times = [first_close + timedelta(hours=delta) for delta in range(6)]
-    race.poll_closing_time = random.choice(closing_times)
-
-
 def _fake_precincts_reporting(race):
     """
     Fake precincts reporting
@@ -548,7 +576,8 @@ def _fake_called_status(race):
     """
     if race.precincts_reporting > 0:
         race.ap_called = random.choice([True, True, True, False])
-        if race.ap_called:
+
+        if race.ap_called and race.poll_closing_time:
             race.accept_ap_call = True
             race.ap_called_time = race.poll_closing_time + timedelta(hours=random.randint(1,3), minutes=random.randint(0,59))
 
