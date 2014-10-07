@@ -1,4 +1,7 @@
 [{
     "race_id": "38529",
-    "ap_called_time": "2014-09-25T17:08:14Z"
+    "ap_called_time": "2014-09-25T17:08:14Z",
+    "winners": [{
+        "candidate_id": "4979" 
+    }]
 }]

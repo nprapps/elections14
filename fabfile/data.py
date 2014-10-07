@@ -19,7 +19,7 @@ import admin_app
 import servers
 import csv
 
-SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
+SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD &&7%s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
 
 @task(default=True)
 def update():
@@ -191,7 +191,6 @@ def load_updates(path):
             candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
             candidate_model.vote_count = candidate['vote_count']
-            candidate_model.ap_winner = candidate.get('ap_winner', False)
 
             candidate_model.save()
 
@@ -223,6 +222,13 @@ def load_calls(path):
         race_model.save()
 
         races_updated += 1
+
+        for winner in race['winners']:
+            print winner
+            candidate_model = models.Candidate.get(models.Candidate.candidate_id == winner['candidate_id'])
+            candidate_model.ap_winner = True
+
+            candidate_model.save()
 
     print 'Updated %i races' % races_updated
 

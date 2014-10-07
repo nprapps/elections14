@@ -338,10 +338,10 @@ class Candidate(SlugModel):
         return False
 
     def vote_percent(self):
-        total_votes = 0
-        for candidate in self.race.candidates:
-            total_votes += candidate.vote_count
+        total_votes = self.race.count_votes()
+        
         ratio = Decimal(self.vote_count) / Decimal(total_votes)
+        
         return ratio * 100
 
 class Slide(SlugModel):

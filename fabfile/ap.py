@@ -245,15 +245,22 @@ def write_calls(path):
     calls = []
     update_calls = cache['calls']['response']['calls']
 
-    for call in update_calls:
-        if not call.get('raceID'):
+    for race in update_calls:
+        if not race.get('raceID'):
             continue
 
-        calls.append({
-            'race_id': call.get('raceID'),
-            'ap_called_time': call.get('callTimestamp')
+        call = {
+            'race_id': race.get('raceID'),
+            'ap_called_time':race.get('callTimestamp'),
+            'winners': []
+        }
 
-        })
+        for candidate in race['candidates']:
+            call['winners'].append({
+                'candidate_id': candidate['candidateID']    
+            })
+
+        calls.append(call)
 
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)
