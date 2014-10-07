@@ -9,6 +9,8 @@
 @musicDark: #41474E;
 @musicMedium: #e6ebf2;
 @musicLight: #dbe0e6;
+@blueDark: #1E2E3A;
+@blueDarker: #141D24;
 @red: #F25A49;
 @blue: #538ECD;
 
@@ -23,6 +25,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 .welcome.slide {
     display: block;
     position: relative;
+
+    .slide-content{
+        vertical-align: middle;
+    }
 
     .logo {
         position: absolute;
@@ -68,6 +74,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     display: block;
     text-align: center;
 
+    .slide-content{
+        vertical-align: middle;
+    }
+
     form {
         margin-top: 50px;
     }
@@ -85,7 +95,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
 .header-container {
     height: 60px;
-    background-color: @musicDark;
+    background-color: @blueDark;
     .results-header {
         display: block;
         overflow: hidden;
@@ -258,7 +268,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 }
 
 .slide {
-    background-color: lighten(@musicDark, 10%);
+    background-color: lighten(@blueDarker, 10%);
     display: none;
     color: @musicLight;
 }
@@ -271,20 +281,40 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
 .slide-content {
     display: table-cell;
-    vertical-align: middle;
+    
 
     img {
         width: 100%;
     }
 
+    .post-footer{
+        position:absolute;
+        bottom:10px;
+        font-size:20px;
+        a{
+            padding-right:10px;
+        }
+    }
+
     .tumblr-text-post {
-        margin: 0 auto;
-        max-width: 1024px;
+        margin: 0 80px;
+        letter-spacing:-.03em;
+        // max-width: 1200px;
         h2 {
             font-size: 48px;
+            font-style: uppercase;
         }
         p {
-            font-size: 30px;
+            font-size: 36px;
+        }
+        .text-header{
+            padding-top: 40px;
+            .date{
+                font-size: 25px;
+            }
+        }
+        .body{
+            padding-top: 40px;
         }
     }
 

@@ -31,7 +31,7 @@ def update():
         })
 
         data = response.json()
-
+      
         total_posts = data['response']['total_posts']
         posts = data['response']['posts']
 
@@ -70,6 +70,17 @@ def _create_slide(post):
         print '%s is slide number %s' % (slide.name, order)
 
 def _render_post(post):
+    post_date = datetime.fromtimestamp(post['timestamp'])
+    if post_date.hour > 12: 
+        formatted_hour = post_date.hour - 12
+        period = 'p.m.'
+    elif post_date.hour == 0:
+        formatted_hour = 12
+        period = 'a.m.'
+    else: 
+        formatted_hour = post_date.hour
+        period = 'a.m.'
+    post['formatted_date'] = '%s:%s %s EST' %(formatted_hour, post_date.minute, period)
     filename = '_tumblr_%s.html' % post['type']
 
     if post['type'] == 'photo':
