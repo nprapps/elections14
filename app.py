@@ -24,6 +24,7 @@ SENATE_INITIAL_BOP = {
     'other': 2,
 }
 
+HOUSE_PAGE_LIMIT = 36
 HOUSE_MAJORITY = 218
 HOUSE_INITIAL_BOP = {
     'dem': 0,
@@ -150,7 +151,8 @@ def chromecast():
     return render_template('chromecast.html', **context)
 
 @app.route('/results/house/')
-def results_house():
+@app.route('/results/house/<page>/')
+def results_house(page=1):
     """
     House big board
     """
@@ -163,7 +165,11 @@ def results_house():
     context['column_number'] = 2
 
     all_races = Race.select().where(Race.office_name == 'U.S. House')
-    featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.state_postal)
+    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
+    if page == '2':
+        featured_races = all_featured_races[HOUSE_PAGE_LIMIT:]
+    else:
+        featured_races = all_featured_races[:HOUSE_PAGE_LIMIT]
 
     context['poll_groups'] = _group_races_by_closing_time(featured_races)
     context['bop'] = _calculate_bop(all_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
