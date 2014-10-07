@@ -115,9 +115,7 @@
 {% endblock outer_content %}
 
 {% block extra_foot_js %}
-{{ JS.push('js/lib/pym.js') }}
 {{ JS.push('js/lib/jquery.columnizer.js') }}
-{{ JS.push('js/results.js') }}
 {{ JS.render('js/states-footer.min.js') }}
 <script>
 var colOpts = {
