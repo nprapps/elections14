@@ -103,6 +103,7 @@ def bootstrap():
 
     load_races('data/init_races.json')
     load_candidates('data/init_candidates.json')
+    load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
 
@@ -374,6 +375,22 @@ def update_featured_social():
 
     with open('data/featured.json', 'w') as f:
         json.dump(output, f)
+
+@task
+def load_closing_times(path):
+    """
+    Load poll closing times
+    """
+    import models
+
+    print 'Loading poll closing times from disk'
+
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            closing = parse(row['close_time'])
+            update = models.Race.update(poll_closing_time=closing).where(models.Race.state_postal == row['state'])
+            update.execute()
 
 @task
 def load_house_extra(path):
