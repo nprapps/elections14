@@ -16,6 +16,7 @@
 @green: #43af47;
 @grayMedium: #868686;
 
+
 h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -36,17 +37,20 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         position: absolute;
         top: 20px;
         left: 20px;
-        width: 150px;
+        width: 6%;
         height: auto;
     }
 
     .intro-text {
         text-align: center;
-        margin-bottom: 50px;
+        // margin-bottom: 50px;
         h1 {
-            font-size: 80px;
+            font-size: 7vw;
             margin-bottom: 0;
-            line-height: 1;
+            line-height: 7vw;
+        }
+        h2{
+            padding-bottom:1%;
         }
     }
 
@@ -81,7 +85,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     }
 
     form {
-        margin-top: 50px;
+        margin-top: 2%;
     }
 
     .state-picker-submit {
@@ -96,21 +100,26 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 */
 
 .header-container {
-    height: 60px;
+    height: 10%;
     background-color: @blueDark;
     .results-header {
         display: block;
         overflow: hidden;
         margin-bottom: 0;
         color: @musicLight;
-        padding: 10px 5px;
-        line-height: 38px;
-        font-size: 20px;
+        
+        padding: 1vw .5vw;
+        line-height: 2vw;
+        font-size: 1vw;
+        @media screen and (max-width: @screen-sm){
+            line-height: 2vw;
+            font-size: 2vw;
+        }
 
         .logo {
-            height: 38px;
-            width: auto;
-            margin: 0 10px;
+            height: auto;
+            width: 6%;
+            margin: 0 .5%;
         }
 
         .leaderboard {
@@ -118,39 +127,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         }
 
         h2 {
-
-            @media screen and (min-width: 0px){
-            font-size: 9px;
-            line-height: .2;
+            font-size: 1vw;
+            @media screen and (max-width: @screen-sm){
+                font-size: 2vw;
             }
-
-            @media screen and (min-width: @screen-sm){
-                font-size: 10.6px;
-                line-height: 1;
-            }
-
-            @media screen and (min-width: @screen-md){
-                font-size: 14px;
-                line-height: 1.1;
-            }
-
-            @media screen and (min-width: @screen-lg){
-                font-size: 16px;
-                line-height: 1.1;
-                font-weight: 400;
-            }
-
-            // @media screen and (min-width: @screen-xl){
-            //     font-size: 22px;
-            //     line-height: 1;
-            //     font-weight:300;
-            // }
-
-            // @media screen and (min-width: @screen-big-board){
-            //     font-size: 26px;
-            //     line-height: 1.2;
-            //     font-weight:300;
-            // }
         }
 
         .results-header-group {
@@ -165,9 +145,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             .seats-needed {
                 display: inline-block;
             }
-            @media screen and (max-width: @screen-sm){
-                padding-left:5px;
-            }
 
             h2,
             p {
@@ -175,11 +152,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             }
 
             h2 {
-                letter-spacing: 0.05em;
-                font-weight: 500;
                 text-transform: uppercase;
                 margin-top: 0;
                 font-family: 'Cooper Hewitt';
+                letter-spacing: 0.05em;       
             }
 
             .total {
@@ -204,35 +180,21 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             margin-top: 0;
             font-family: 'Cooper Hewitt';
             display: inline-block;
-            border-radius: 9px;
             color: #fff;
             text-align: center;
-            line-height: 18px;
             padding:0 5%;
-            min-width:18px;
-            height:18px;
             box-sizing:border-box;
-
-            @media screen and (min-width: @screen-lg){
-                min-width:38px;
-                height:38px;
-                line-height: 38px;
-                border-radius: 19px;
+            
+            min-width:2vw;
+            height:2vw;
+            line-height: 2vw;
+            border-radius: 1vw;
+            @media screen and (max-width: @screen-sm){
+                min-width:4vw;
+                height:4vw;
+                line-height: 4vw;
+                border-radius: 2vw;
             }
-
-            // @media screen and (min-width: @screen-xl){
-            //     min-width:42px;
-            //     height:42px;
-            //     line-height:42px;
-            //     border-radius:21px;
-            // }
-
-            // @media screen and (min-width: @screen-big-board){
-            //     min-width:52px;
-            //     height:52px;
-            //     line-height: 52px;
-            //     border-radius: 26px;
-            // }
         }
     }
 
@@ -264,6 +226,32 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 /*
 ** SLIDE DEFAULTS
 */
+h1, h2, h3{
+    margin:0;
+}
+h2{
+    font-size: 3vw;
+}
+h3{
+    font-size: 2vw;
+}
+
+p{
+    font-size: 1vw;
+    @media screen and (max-width: @screen-sm){
+        font-size: 2vw;
+    }
+}
+
+.btn-lg{
+    padding:1vw;
+    font-size: 1vw;
+    line-height: 1vw;
+    border-radius: 1vw;
+    @media screen and (max-width: @screen-sm){
+        font-size: 2vw;
+    }
+}
 
 .stack {
     display: none;
@@ -289,17 +277,18 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     }
 
     .tumblr{
-        margin: 40px 80px 0;
+        margin: 4% 6% 0;
         p {
-            font-size: 36px;
+            font-size: 3vw;
+            line-height: 3.7vw;
         }
         .date{
-            font-size: 25px;
+            font-size: 2vw;
         }
         .post-footer{
             position:absolute;
             bottom:10px;
-            font-size:20px;
+            font-size:2vw;
             a{
                 padding-right:10px;
             }
@@ -307,12 +296,12 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     }
 
     .tumblr-text-post {
-        letter-spacing:-.03em;
+        letter-spacing:-.03vw;
         h2 {
-            font-size: 48px;
+            font-size: 3vw;
         }
         .body{
-            padding-top: 40px;
+            padding-top: 4%;
         }
     }
 
@@ -320,7 +309,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         .image {
             float:right;
             width:35%;
-            padding-top:27px;
             img {
                 width:100%;
                 height:auto;
@@ -334,10 +322,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
     .tumblr-quote-post {
         .date{
-            padding-bottom:40px;
+            padding-bottom:4%;
         }
         blockquote {
-            font-size: 48px;
+            font-size: 3vw;
             border: none;
             padding:0;
             @media all and (-webkit-min-device-pixel-ratio:0) {
@@ -349,8 +337,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             }
 
             span{
-                background-color:@red;
-                padding:10px;
+                background-color:@blue;
+                padding:.7vw;
                 -ms-box-decoration-break: clone;
                 -webkit-box-decoration-break: clone;
                 -o-box-decoration-break: clone;
@@ -358,10 +346,13 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             }
         }
         footer {
-            margin-top: 40px;
+            margin-top: 4%;
             border: none;
+            padding-left: 0;
             cite {
-                font-size: 30px;
+                font-size: 2vw;
+                text-transform: uppercase;
+                letter-spacing: .05em;
             }
         }
     }
