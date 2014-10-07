@@ -480,7 +480,6 @@ def mock_slides():
     _mock_empty_slide('state', it.next())
 #    execute('instagram.get_photos')
 
-
 def _mock_slide_from_image(filename, i):
     import models
 
