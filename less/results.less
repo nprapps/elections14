@@ -368,7 +368,10 @@ table {
             }
 
             &.incumbent {
-                text-transform:uppercase;
+                // text-transform:uppercase;
+                &:after{
+                    content:"*";
+                }
             }
 
             .fname{
