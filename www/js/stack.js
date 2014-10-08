@@ -58,11 +58,9 @@ var rotateSlide = function() {
 
             resizeSlide($newSlide)
 
-            $oldSlide.fadeOut(function(){
-                $(this).remove();
-            });
+            $oldSlide.remove();
 
-            $newSlide.fadeIn(function(){
+            $newSlide.fadeIn(800, function(){
                 console.log('Slide rotation complete');
                 setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
             });

@@ -97,7 +97,7 @@ var colOpts = {
 // Columnizer needs a short pause or else it acts strangely on subsequent calls
 setTimeout(function() {
   $('.results').columnize(colOpts);
-  $('.results-wrapper').animate({ 'opacity': 1 }, 600, function() {
+  $('.results-wrapper').animate({ 'opacity': 1 }, 500, function() {
     $(this).removeClass('hide-results');
   });
 }, 100);
