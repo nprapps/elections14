@@ -183,6 +183,11 @@ var onStatePickerLink = function() {
     $statePickerScreen.show();
 }
 
+var onLocateIP = function(response) {
+    var place = response.most_specific_subdivision.iso_code;
+    $('#option-' + place).prop('selected', true);
+}
+
 $(document).ready(function() {
     $welcomeScreen = $('.welcome');
     resizeSlide($welcomeScreen);
@@ -208,6 +213,8 @@ $(document).ready(function() {
     $statePickerForm.submit(onStatePickerSubmit);
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
+
+    geoip2.city(onLocateIP);
 
     setUpAudio();
 });
