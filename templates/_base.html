@@ -14,6 +14,7 @@
     {% include '_fonts.html' %}
 
     <!-- CSS -->
+    {{ CSS.push('less/results.less') }}
     {{ CSS.push('less/app.less') }}
     {{ CSS.render('css/app.min.css') }}
     {% block extra_css %}{% endblock extra_css %}
@@ -112,6 +113,7 @@
     {{ JS.push('js/lib/moment.js') }}
     {{ JS.push('js/lib/chosen.jquery.js') }}
     {{ JS.push('js/lib/jquery.cookie.js') }}
+    {{ JS.push('js/lib/jquery.columnizer.js') }}
     {{ JS.push('js/lib/ZeroClipboard.js') }}
     {{ JS.push('js/app_config.js') }}
     {{ JS.push('js/copy.js') }}

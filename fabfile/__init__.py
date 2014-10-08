@@ -164,7 +164,6 @@ def deploy_slides():
     utils._deploy_to_s3('.slides_gzip')
 
     deploy_states()
-    deploy_graphics()
 
 @task
 def deploy_instagram_photos():

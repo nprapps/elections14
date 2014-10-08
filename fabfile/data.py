@@ -393,7 +393,7 @@ def load_closing_times(path):
             update.execute()
 
 @task
-def load_house_extra(path):
+def load_house_extra(path, quiet=False):
     """
     Load extra data (featured status, last party in power) for
     house of reps
@@ -403,9 +403,9 @@ def load_house_extra(path):
     with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            _save_house_row(row)
+            _save_house_row(row, quiet)
 
-def _save_house_row(row):
+def _save_house_row(row, quiet=False):
     """
     Merge house data with existing record
     """
@@ -423,11 +423,12 @@ def _save_house_row(row):
         existing.save()
 
     except models.Race.DoesNotExist:
-        print 'House race named %s does not exist in AP data' % row['district']
+        if not quiet:
+            print 'House race named %s does not exist in AP data' % row['district']
 
 
 @task
-def load_senate_extra(path):
+def load_senate_extra(path, quiet=False):
     """
     Load extra data (last party in power) for
     senate
@@ -437,9 +438,9 @@ def load_senate_extra(path):
     with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            _save_senate_row(row)
+            _save_senate_row(row, quiet)
 
-def _save_senate_row(row):
+def _save_senate_row(row, quiet):
     """
     Merge senate data with existing record
     """
@@ -459,7 +460,8 @@ def _save_senate_row(row):
         existing.save()
 
     except models.Race.DoesNotExist:
-        print 'Senate race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
+        if not quiet:
+            print 'Senate race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
 
 @task
 def mock_slides():

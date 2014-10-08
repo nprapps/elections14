@@ -69,6 +69,7 @@ data/init_races.json
 data/candidates.json
 data/init_candidates.json
 data/update.json
+data/calls.json
 www/dynamodb
 www/game
 www/slides
