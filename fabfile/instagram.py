@@ -67,13 +67,13 @@ def _create_photo_grid(photos):
         slide.save()
     except models.Slide.DoesNotExist:
         print 'Creating grid'
-        slide = models.Slide.create(slug=slug, name=slide_title, body=rendered_grid)
+        slide = models.Slide.create(slug=slug, name=slide_title, body=rendered_grid, view="_slide")
 
         order = (models.SlideSequence.last() or 0) + 1
 
         sequence = models.SlideSequence.create(order=order, slide=slide)
         sequence.save()
-        
+
         print '%s is slide number %s' % (slide.name, order)
 
 

@@ -19,7 +19,7 @@ import admin_app
 import servers
 import csv
 
-SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD &&7%s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
+SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
 
 @task(default=True)
 def update():
@@ -103,6 +103,7 @@ def bootstrap():
 
     load_races('data/init_races.json')
     load_candidates('data/init_candidates.json')
+    load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
 
@@ -376,9 +377,25 @@ def update_featured_social():
         json.dump(output, f)
 
 @task
-def load_house_extra(path):
+def load_closing_times(path):
     """
-    Load extra data (featured status, poll close, last party in power) for
+    Load poll closing times
+    """
+    import models
+
+    print 'Loading poll closing times from disk'
+
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            closing = parse(row['close_time'])
+            update = models.Race.update(poll_closing_time=closing).where(models.Race.state_postal == row['state'])
+            update.execute()
+
+@task
+def load_house_extra(path, quiet=False):
+    """
+    Load extra data (featured status, last party in power) for
     house of reps
     """
     print 'Loading house extra data from disk'
@@ -386,10 +403,9 @@ def load_house_extra(path):
     with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row.get('featured') == '1':
-                _save_house_row(row)
+            _save_house_row(row, quiet)
 
-def _save_house_row(row):
+def _save_house_row(row, quiet=False):
     """
     Merge house data with existing record
     """
@@ -400,24 +416,21 @@ def _save_house_row(row):
         district = int(row['district'][2:])
         existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
 
-        #print "Updating %s" % existing
-        existing.featured_race = True
+        if row['featured'] == '1':
+            existing.featured_race = True
+
         existing.previous_party = row['party']
-
-        if row['poll_close'] != '':
-            hours, minutes = row['poll_close'].split(':')
-            existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
-
         existing.save()
 
     except models.Race.DoesNotExist:
-        print 'Race named %s does not exist in AP data' % row['district']
+        if not quiet:
+            print 'House race named %s does not exist in AP data' % row['district']
 
 
 @task
-def load_senate_extra(path):
+def load_senate_extra(path, quiet=False):
     """
-    Load extra data (featured status, poll close, last party in power) for
+    Load extra data (last party in power) for
     senate
     """
     print 'Loading senate extra data from disk'
@@ -425,9 +438,9 @@ def load_senate_extra(path):
     with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            _save_senate_row(row)
+            _save_senate_row(row, quiet)
 
-def _save_senate_row(row):
+def _save_senate_row(row, quiet):
     """
     Merge senate data with existing record
     """
@@ -443,18 +456,12 @@ def _save_senate_row(row):
 
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
 
-        #print "Updating %s" % existing
-        existing.featured_race = True
         existing.previous_party = row['party']
-
-        if row['poll_close'] != '':
-            hours, minutes = row['poll_close'].split(':')
-            existing.poll_closing_time = datetime(2014, 11, 4, int(hours), int(minutes))
-
         existing.save()
 
     except models.Race.DoesNotExist:
-        print 'Race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
+        if not quiet:
+            print 'Senate race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
 
 @task
 def mock_slides():
@@ -468,16 +475,16 @@ def mock_slides():
 
     it = count()
 #    _mock_slide_from_image('welcome.png', it.next())
-    _mock_empty_slide('balance of power', it.next())
-    _mock_empty_slide('poll closing 8pm', it.next())
+    _mock_empty_slide('balance of power', '_balance_of_power', it.next())
+    _mock_empty_slide('poll closing 8pm', '_poll_closing_8pm', it.next())
     _mock_slide_with_pym('senate', 'results/senate/', it.next())
-    _mock_empty_slide('state', it.next())
+    _mock_empty_slide('state', '_state_slide', it.next())
 #    _mock_empty_slide('rematches', it.next())
-    _mock_empty_slide('romney dems', it.next())
-    _mock_empty_slide('obama reps', it.next())
-    _mock_empty_slide('incumbents lost', it.next())
-    _mock_empty_slide('blue dogs', it.next())
-    _mock_empty_slide('house freshmen', it.next())
+    _mock_empty_slide('romney dems', '_romney_dems', it.next())
+    _mock_empty_slide('obama reps', '_obama_reps', it.next())
+    _mock_empty_slide('incumbents lost', '_incumbents_lost', it.next())
+    _mock_empty_slide('blue dogs', '_blue_dogs', it.next())
+    _mock_empty_slide('house freshmen', '_house_freshmen', it.next())
 #    execute('instagram.get_photos')
 
 def _mock_slide_from_image(filename, i):
@@ -487,11 +494,11 @@ def _mock_slide_from_image(filename, i):
     slide = models.Slide.create(body=body, name=filename)
     models.SlideSequence.create(order=i, slide=slide)
 
-def _mock_empty_slide(slug, i):
+def _mock_empty_slide(slug, view, i):
     import models
 
     body = ''
-    slide = models.Slide.create(body=body, name=slug)
+    slide = models.Slide.create(body=body, name=slug, view_name=view)
     models.SlideSequence.create(order=i, slide=slide)
 
 def _mock_slide_with_pym(slug, path, i):
@@ -507,7 +514,7 @@ def _mock_slide_with_pym(slug, path, i):
     with app.app.test_request_context(path='/slides/pym'):
         body = render_template('slides/pym.html', **context)
 
-    slide = models.Slide.create(slug=slug, body=body, name=slug)
+    slide = models.Slide.create(slug=slug, body=body, name=slug, view_name="_slide")
     models.SlideSequence.create(order=i, slide=slide)
 
 @task

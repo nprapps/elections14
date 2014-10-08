@@ -213,7 +213,7 @@ class Race(SlugModel):
             'state_postal',
             'office_name',
             'seat_name',
-            'seat_number', 
+            'seat_number',
             'race_type' ,
             'last_updated',
             'office_description',
@@ -292,12 +292,12 @@ class Candidate(SlugModel):
     ap_winner = BooleanField(default=False)
 
     # NPR data
-    slug = CharField(max_length=255) 
+    slug = CharField(max_length=255)
     npr_winner = BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s %s (%s)' % (self.first_name, self.last_name, self.party)
-    
+
     def flatten(self, update_only=False):
         UPDATE_FIELDS = [
             'id',
@@ -340,9 +340,9 @@ class Candidate(SlugModel):
 
     def vote_percent(self):
         total_votes = self.race.count_votes()
-        
+
         ratio = Decimal(self.vote_count) / Decimal(total_votes)
-        
+
         return ratio * 100
 
 class Slide(SlugModel):
@@ -351,9 +351,10 @@ class Slide(SlugModel):
     """
     slug_fields = ['name']
 
-    slug = CharField(max_length=255, primary_key=True) 
+    slug = CharField(max_length=255, primary_key=True)
     name = CharField(max_length=255)
     body = TextField()
+    view_name = CharField(max_length=255)
 
     def __unicode__(self):
         return self.name

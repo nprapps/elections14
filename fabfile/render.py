@@ -129,28 +129,24 @@ def render_slides():
     """
     Render slides to HTML files.
     """
-
+    from flask import g, url_for
     import models
 
     slides = models.Slide.select()
-    _render_slug_pages(slides, '_slide', '.slides_html', [])
 
-@task
-def render_states():
-    """
-    Render state slides to HTML files
-    """
-    from flask import g, url_for
-
-    view_name = '_state_slide'
-    output_path = '.states_html'
     compiled_includes = {}
+    output_path = '.slides_html'
 
-    for postal, state in app_config.STATES.items():
+    for slide in slides:
+        slug = slide.slug
+        view_name = '_slide'
+
+        if slug == 'state':
+            continue
 
         # Silly fix because url_for require a context
         with app.app.test_request_context():
-            path = url_for(view_name, slug=postal)
+            path = url_for(view_name, slug=slug)
 
         with app.app.test_request_context(path=path):
             print 'Rendering %s' % path
@@ -159,7 +155,7 @@ def render_states():
             g.compiled_includes = compiled_includes
 
             view = app.__dict__[view_name]
-            content = view(postal)
+            content = view(slug)
 
             compiled_includes = g.compiled_includes
 
@@ -176,20 +172,25 @@ def render_states():
         with open(path, 'w') as f:
             f.write(content.data)
 
+    compiled_includes.update(render_states(compiled_includes))
+
     return compiled_includes
 
-def _render_slug_pages(models, view_name, output_path, compiled_includes):
+@task
+def render_states(compiled_includes={}):
     """
-    Render pages for SlugModels.
+    Render state slides to HTML files
     """
     from flask import g, url_for
 
-    for model in models:
-        slug = model.slug
+    view_name = '_state_slide'
+    output_path = '.states_html'
+
+    for postal, state in app_config.STATES.items():
 
         # Silly fix because url_for require a context
         with app.app.test_request_context():
-            path = url_for(view_name, slug=slug)
+            path = url_for(view_name, slug=postal)
 
         with app.app.test_request_context(path=path):
             print 'Rendering %s' % path
@@ -198,7 +199,7 @@ def _render_slug_pages(models, view_name, output_path, compiled_includes):
             g.compiled_includes = compiled_includes
 
             view = app.__dict__[view_name]
-            content = view(slug)
+            content = view(postal)
 
             compiled_includes = g.compiled_includes
 

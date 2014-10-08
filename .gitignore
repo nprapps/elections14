@@ -76,6 +76,8 @@ www/slides
 www/stack
 www/results
 .stack_number
+.graphics_gzip
+.graphics_html
 .slides_gzip
 .slides_html
 .states_html

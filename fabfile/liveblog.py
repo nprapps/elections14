@@ -6,10 +6,11 @@ from fabric.api import task
 from jinja2 import Template
 import requests
 
+import app
 import app_config
 import models
 
-LIMIT = 20 
+LIMIT = 20
 
 @task
 def update():
@@ -31,7 +32,7 @@ def update():
         })
 
         data = response.json()
-      
+
         total_posts = data['response']['total_posts']
         posts = data['response']['posts']
 
@@ -60,13 +61,13 @@ def _create_slide(post):
         slide.save()
     except models.Slide.DoesNotExist:
         print 'Creating post %s' % slug
-        slide = models.Slide.create(slug=slug, name=post_title, body=rendered_post)
+        slide = models.Slide.create(slug=slug, name=post_title, body=rendered_post, view_name='_slide')
 
         order = (models.SlideSequence.last() or 0) + 1
 
         sequence = models.SlideSequence.create(order=order, slide=slide)
         sequence.save()
-        
+
         print '%s is slide number %s' % (slide.name, order)
 
 def _render_post(post):
