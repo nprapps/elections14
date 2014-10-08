@@ -475,9 +475,12 @@ def mock_slides():
 
     it = count()
 #    _mock_slide_from_image('welcome.png', it.next())
+    _mock_empty_slide('senate big board', '_senate_big_board', it.next())
+    _mock_empty_slide('house big board', '_house_big_board', it.next())
+    _mock_empty_slide('governor big board', '_governor_big_board', it.next())
     _mock_empty_slide('balance of power', '_balance_of_power', it.next())
     _mock_empty_slide('poll closing 8pm', '_poll_closing_8pm', it.next())
-    _mock_slide_with_pym('senate', 'results/senate/', it.next())
+    # _mock_slide_with_pym('senate', 'results/senate/', it.next())
     _mock_empty_slide('state', '_state_slide', it.next())
 #    _mock_empty_slide('rematches', it.next())
     _mock_empty_slide('romney dems', '_romney_dems', it.next())
