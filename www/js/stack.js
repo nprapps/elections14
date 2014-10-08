@@ -158,6 +158,12 @@ var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
     state = $('.state-selector').val();
+
+    if (!(state)) {
+        alert("Please pick a state!");
+        return false;
+    }
+
     $.cookie('state', state);
 
     $statePickerScreen.hide();
