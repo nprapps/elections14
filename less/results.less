@@ -323,12 +323,11 @@ table {
         }
 
         .results-status {
-            color: @blueDark;
+            color: @white;
             width: 12%;
             text-align: right;
 
             &.reporting, &.called {
-            color: @white;
                 @media screen and (min-width: @screen-md){
                     &:after{
                         content:"in";
@@ -338,7 +337,7 @@ table {
             }
 
             &.called {
-                color: @yellow;
+                color: @gray;
             }
         }
         .state {
