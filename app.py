@@ -150,75 +150,6 @@ def chromecast():
 
     return render_template('chromecast.html', **context)
 
-@app.route('/results/house/')
-@app.route('/results/house/<page>/')
-def results_house(page=1):
-    """
-    House big board
-    """
-    from models import Race
-
-    context = make_context()
-
-    context['page_title'] = 'House'
-    context['page_class'] = 'house'
-    context['column_number'] = 2
-
-    all_races = Race.select().where(Race.office_name == 'U.S. House')
-    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
-    if page == '2':
-        featured_races = all_featured_races[HOUSE_PAGE_LIMIT:]
-    else:
-        featured_races = all_featured_races[:HOUSE_PAGE_LIMIT]
-
-    context['poll_groups'] = _group_races_by_closing_time(featured_races)
-    context['bop'] = _calculate_bop(all_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
-    context['not_called'] = _calculate_seats_left(all_races)
-    context['seat_number'] = ".seat_number"
-
-    return render_template('slides/race_results.html', **context)
-
-@app.route('/results/senate/')
-def results_senate():
-    """
-    Senate big board
-    """
-    from models import Race
-
-    context = make_context()
-
-    context['page_title'] = 'Senate'
-    context['page_class'] = 'senate'
-    context['column_number'] = 2
-
-    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
-
-    context['poll_groups'] = _group_races_by_closing_time(races)
-    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
-    context['not_called'] = _calculate_seats_left(races)
-
-    return render_template('slides/race_results.html', **context)
-
-@app.route('/results/governor/')
-def results_governor():
-    """
-    Governor big board
-    """
-    from models import Race
-
-    context = make_context()
-
-    context['page_title'] = 'Governors'
-    context['page_class'] = 'governor'
-    context['column_number'] = 2
-
-    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
-
-    context['poll_groups'] = _group_races_by_closing_time(races)
-
-    return render_template('slides/race_results.html', **context)
-
-
 @app.route('/comments/')
 def comments():
     """
@@ -285,9 +216,40 @@ def _state_slide(slug):
     )
 
     context['column_number'] = 2
-    context['body'] = render_template('slides/state.html', **context)
+    body = render_template('slides/state.html', **context)
 
     return render_template('_slide.html', **context)
+
+    return body
+
+@app.route('/preview/<slug>.html')
+def _slide_preview(slug):
+    """
+    Preview a slide outside of the stack
+    """
+    from models import Race, Slide
+
+    context = make_context()
+
+    with open('data/featured.json') as f:
+        context['featured'] = json.load(f)
+
+    context['races'] = Race.select()
+
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+
+    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(races)
+
+    slide = Slide.get(Slide.slug == slug)
+    view_name = slide.view_name
+
+    if view_name == '_slide':
+        context['body'] = slide.body
+    else:
+        context['body'] = globals()[view_name]()
+
+    return render_template('_slide_preview.html', **context)
 
 @app.route('/slides/<slug>.html')
 @cors
@@ -306,6 +268,81 @@ def _slide(slug):
         body = globals()[view_name]()
 
     return render_template('_slide.html', body=body)
+
+@app.route('/results/senate/')
+def _senate_big_board():
+    """
+    Senate big board
+    """
+    from models import Race
+
+    context = make_context()
+
+    context['page_title'] = 'Senate'
+    context['page_class'] = 'senate'
+    context['column_number'] = 2
+
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
+
+    context['poll_groups'] = _group_races_by_closing_time(races)
+    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(races)
+
+    body = render_template('slides/race_results.html', **context)
+
+    return body
+
+@app.route('/results/house/')
+@app.route('/results/house/<page>')
+def _house_big_board(page=1):
+    """
+    House big board
+    """
+    from models import Race
+
+    context = make_context()
+
+    context['page_title'] = 'House'
+    context['page_class'] = 'house'
+    context['column_number'] = 2
+
+    all_races = Race.select().where(Race.office_name == 'U.S. House')
+    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
+    if page == '2':
+        featured_races = all_featured_races[HOUSE_PAGE_LIMIT:]
+    else:
+        featured_races = all_featured_races[:HOUSE_PAGE_LIMIT]
+
+    context['poll_groups'] = _group_races_by_closing_time(featured_races)
+    context['bop'] = _calculate_bop(all_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(all_races)
+    context['seat_number'] = ".seat_number"
+
+    body = render_template('slides/race_results.html', **context)
+
+    return body
+
+@app.route('/results/governor/')
+def _governor_big_board():
+    """
+    Governor big board
+    """
+    from models import Race
+
+    context = make_context()
+
+    context['page_title'] = 'Governors'
+    context['page_class'] = 'governor'
+    context['column_number'] = 2
+
+    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
+
+    context['poll_groups'] = _group_races_by_closing_time(races)
+
+    body = render_template('slides/race_results.html', **context)
+
+    return body
+
 
 def _balance_of_power():
     """
