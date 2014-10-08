@@ -76,6 +76,9 @@ def _render_post(post):
     post['formatted_date'] = '%s EST' % formatted_date
     filename = '_tumblr_%s.html' % post['type']
 
+    if post['type'] == 'text':
+        post['truncated_text'] = smart_truncate(post['body'])
+
     if post['type'] == 'photo':
         image = None
         for size in post['photos'][0]['alt_sizes']:
@@ -88,3 +91,8 @@ def _render_post(post):
 
     return template.render(**post)
 
+def smart_truncate(content, length=280, suffix='...'):
+    if len(content) <= length:
+        return content
+    else:
+        return ' '.join(content[:length+1].split(' ')[0:-1]) + suffix
