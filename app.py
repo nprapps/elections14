@@ -223,23 +223,14 @@ def _state_slide(slug):
     return body
 
 @app.route('/preview/<slug>/')
-def _slide_preview(slug):
+@app.route('/preview/<slug>/<page>/')
+def _slide_preview(slug, page=''):
     """
     Preview a slide outside of the stack
     """
-    from models import Race, Slide
+    from models import Slide
 
     context = make_context()
-
-    with open('data/featured.json') as f:
-        context['featured'] = json.load(f)
-
-    context['races'] = Race.select()
-
-    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
-
-    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
-    context['not_called'] = _calculate_seats_left(races)
 
     slide = Slide.get(Slide.slug == slug)
     view_name = slide.view_name
@@ -247,7 +238,10 @@ def _slide_preview(slug):
     if view_name == '_slide':
         context['body'] = slide.body
     else:
-        context['body'] = globals()[view_name]()
+        if page:
+            context['body'] = globals()[view_name](page)
+        else:
+            context['body'] = globals()[view_name]()
 
     return render_template('_slide_preview.html', **context)
 
@@ -291,7 +285,6 @@ def _senate_big_board():
 
     return body
 
-@app.route('/preview/house-big-board/<page>')
 def _house_big_board(page=1):
     """
     House big board
