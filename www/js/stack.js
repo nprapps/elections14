@@ -53,17 +53,28 @@ var rotateSlide = function() {
         success: function(data) {
             var $oldSlide = $('#stack').find('.slide');
             var $newSlide = $(data);
+            console.log($oldSlide);
 
-            $('#stack').append($newSlide);
+            if ($oldSlide.length > 0) {
+                $oldSlide.fadeOut(800, function() {
+                    $(this).remove();
+                    $('#stack').append($newSlide);
+                    resizeSlide($newSlide)
+                    $newSlide.fadeIn(800, function(){
+                        console.log('Slide rotation complete');
+                        setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                    });
+                });
+            }
 
-            resizeSlide($newSlide)
-
-            $oldSlide.remove();
-
-            $newSlide.fadeIn(800, function(){
-                console.log('Slide rotation complete');
-                setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
-            });
+            else {
+                $('#stack').append($newSlide);
+                resizeSlide($newSlide)
+                $newSlide.fadeIn(800, function(){
+                    console.log('Slide rotation complete');
+                    setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                });
+            }
         }
     });
 }
