@@ -216,9 +216,40 @@ def _state_slide(slug):
     )
 
     context['column_number'] = 2
-    context['body'] = render_template('slides/state.html', **context)
+    body = render_template('slides/state.html', **context)
 
     return render_template('_slide.html', **context)
+
+    return body
+
+@app.route('/preview/<slug>.html')
+def _slide_preview(slug):
+    """
+    Preview a slide outside of the stack
+    """
+    from models import Race, Slide
+
+    context = make_context()
+
+    with open('data/featured.json') as f:
+        context['featured'] = json.load(f)
+
+    context['races'] = Race.select()
+
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+
+    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
+    context['not_called'] = _calculate_seats_left(races)
+
+    slide = Slide.get(Slide.slug == slug)
+    view_name = slide.view_name
+
+    if view_name == '_slide':
+        context['body'] = slide.body
+    else:
+        context['body'] = globals()[view_name]()
+
+    return render_template('_slide_preview.html', **context)
 
 @app.route('/slides/<slug>.html')
 @cors
