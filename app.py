@@ -216,11 +216,9 @@ def _state_slide(slug):
     )
 
     context['column_number'] = 2
-    body = render_template('slides/state.html', **context)
+    context['body'] = render_template('slides/state.html', **context)
 
     return render_template('_slide.html', **context)
-
-    return body
 
 @app.route('/preview/<slug>/')
 @app.route('/preview/<slug>/<page>/')
