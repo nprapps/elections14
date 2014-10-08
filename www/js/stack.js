@@ -13,6 +13,7 @@ var nextStack = [];
 var currentSlide = 0;
 var isRotating = false;
 var state = null;
+var $statePickerLink = null;
 var $audioPlayer = null;
 var $stack = null;
 var timer = null;
@@ -118,7 +119,7 @@ var onMouseMove = function() {
     if (timer) {
         clearTimeout(timer);
     }
-    timer = setTimeout(onMouseEnd, 200);
+    timer = setTimeout(onMouseEnd, 500);
 }
 
 var onMouseEnd = function() {
@@ -177,6 +178,11 @@ var onStatePickerSubmit = function(e) {
 
 }
 
+var onStatePickerLink = function() {
+    $stack.hide();
+    $statePickerScreen.show();
+}
+
 $(document).ready(function() {
     $welcomeScreen = $('.welcome');
     resizeSlide($welcomeScreen);
@@ -189,6 +195,7 @@ $(document).ready(function() {
     $stack = $('.stack');
     $header = $('.results-header');
     $headerControls = $('.header-controls');
+    $statePickerLink = $ ('.state-picker-link');
 
     $fullScreenButton = $('.fullscreen p');
 
@@ -200,6 +207,7 @@ $(document).ready(function() {
     $welcomeButton.on('click', onWelcomeButtonClick);
     $statePickerForm.submit(onStatePickerSubmit);
     $fullScreenButton.on('click', onFullScreenButtonClick);
+    $statePickerLink.on('click', onStatePickerLink);
 
     setUpAudio();
 });
