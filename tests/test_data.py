@@ -98,4 +98,11 @@ class DataTestCase(unittest.TestCase):
             self.assertFalse(candidate_4642.ap_winner)
             self.assertTrue(candidate_4979.ap_winner)
 
+    def test_closing_times(self):
+        with test_database(test_db, [Race,]):
+            data.load_races('data/tests/init_races.json')
+            data.load_closing_times('data/closing-times.csv')
+
+            race = Race.select().get()
+            self.assertEqual(race.poll_closing_time, datetime(2014, 11, 4, 11, 0, 0))
 
