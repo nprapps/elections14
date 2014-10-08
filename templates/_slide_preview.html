@@ -6,9 +6,12 @@
 {% endblock extra_css %}
 
 {% block outer_content %}
-<script src="../js/lib/jquery.js"></script>
-<script src="../js/lib/d3.v3.min.js"></script>
-<script src="../js/lib/jquery.columnizer.js"></script>
+
+<!-- ugly includes because slide js is inlined and can't pickup the stuff from the base template -->
+<script src="../../js/lib/jquery.js"></script>
+<script src="../../js/lib/d3.v3.min.js"></script>
+<script src="../../js/lib/jquery.columnizer.js"></script>
+
 <div id="stack" class="stack" style="display: block;">
     <div class="slide" style="display: block;">
         <div class="slide-inner">

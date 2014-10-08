@@ -1,4 +1,15 @@
-<div class="{{ page_class }} results-wrapper hide-results">
+{% extends '_base_results.html' %}
+
+{% block extra_css %}
+{{ CSS.push('less/results.less') }}
+{{ CSS.render('css/results.min.css') }}
+{% endblock extra_css %}
+
+{% block body_class %}{{ page_class }}{% endblock body_class %}
+
+
+{% block outer_content %}
+<div class="results-wrapper hide-results">
     <div class="results-inner results-container">
         <div class="results-header">
             <h1>{{ page_title }}</h1>
@@ -88,6 +99,14 @@
     </div>
 </div>
 
+{% endblock outer_content %}
+
+{% block extra_foot_js %}
+{{ JS.push('js/lib/pym.js') }}
+{{ JS.push('js/lib/jquery.columnizer.js') }}
+{{ JS.push('js/results.js') }}
+{{ JS.render('js/results-footer.min.js') }}
+
 <script>
 var colOpts = {
   precise: true,
@@ -108,3 +127,4 @@ setInterval(function(data) {
   })
 }, 60000);
 </script>
+{% endblock extra_foot_js %}

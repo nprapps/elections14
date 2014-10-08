@@ -222,7 +222,7 @@ def _state_slide(slug):
 
     return body
 
-@app.route('/preview/<slug>.html')
+@app.route('/preview/<slug>/')
 def _slide_preview(slug):
     """
     Preview a slide outside of the stack
@@ -269,7 +269,6 @@ def _slide(slug):
 
     return render_template('_slide.html', body=body)
 
-@app.route('/results/senate/')
 def _senate_big_board():
     """
     Senate big board
@@ -292,8 +291,7 @@ def _senate_big_board():
 
     return body
 
-@app.route('/results/house/')
-@app.route('/results/house/<page>')
+@app.route('/preview/house-big-board/<page>')
 def _house_big_board(page=1):
     """
     House big board
@@ -322,7 +320,6 @@ def _house_big_board(page=1):
 
     return body
 
-@app.route('/results/governor/')
 def _governor_big_board():
     """
     Governor big board
