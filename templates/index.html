@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <select class="state-selector chosen" data-placeholder="Pick your state" tabindex="-1" multiple="true" style="width:400px">
                         {% for postal in STATES.keys()|sort %}
-                        <option value="{{ postal }}">{{ STATES[postal] }}</option>
+                        <option value="{{ postal }}" id="option-{{ postal }}">{{ STATES[postal] }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -131,6 +131,7 @@
 {% endblock outer_content %}
 
 {% block extra_foot_js %}
+<script src="//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript"></script>
 {{ JS.push('js/lib/pym.js') }}
 {{ JS.push('js/lib/jquery.jplayer.js') }}
 {{ JS.push('js/stack.js') }}
