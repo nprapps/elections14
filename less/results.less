@@ -5,8 +5,11 @@
 @import "less/cooper_hewitt";
 
 // Colors
-@blue: #376099;
-@red: #BE0F00;
+@blueDark: #1E2E3A;
+@blueDarker: #141D24;
+@red: #EE3C24;
+@blue: #538ECD;
+
 @green: #319269;
 @yellow: #EFC637;
 @white: #fff;
@@ -20,12 +23,13 @@
 @littlepad : 6px;
 
 body {
-    background-color:@gray-lighter;
+    background-color:@blueDarker;
 }
 
 table {
     font-family: 'Cooper Hewitt';
     font-weight: 400;
+    color:@white;
 }
 
 .results,.results-header {
@@ -37,7 +41,8 @@ table {
     h6,
     p {
         margin-top: 0;
-        font-family: 'Cooper Hewitt'
+        font-family: 'Cooper Hewitt';
+        color:@white;
     }
 }
 
@@ -138,7 +143,7 @@ table {
 
     h1 {
         text-transform: uppercase;
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .results-header-group {
@@ -170,7 +175,7 @@ table {
         }
 
         .seats-needed {
-            color: @gray-dark;
+            color: @gray-light;
             margin-left: 15px;
             margin-right: 15px;
             @media screen and (max-width: @screen-sm){
@@ -180,8 +185,7 @@ table {
 
             .count {
                 display: inline-block;
-                background: #ccc;
-                color: #333;
+                background: @gray-light;
             }
         }
 
@@ -205,18 +209,18 @@ table {
     .dem  { color: @blue; }
     .gop   { color: @red; }
     .ind { color: @green; }
-    .not-called { color: @gray; }
+    .not-called { color: @gray-light; }
 
     .dem .percentage   { background: @blue; }
     .gop .percentage   { background: @red; }
     .ind .percentage { background: @green; }
-    .not-called .count { background: @gray; }
+    .not-called .count { background: @gray-light; }
 
     .percentage,
     .count {
         display: inline-block;
         border-radius: 9px;
-        color: #fff;
+        color: @white;
         text-align: center;
         line-height: 18px;
         padding:0 5%;
@@ -280,11 +284,12 @@ table {
     }
 
     .poll-closing-group {
-        font-weight: bold;
-        color: @gray-darker;
+        font-weight: 600;
+        letter-spacing:0.05em;
+        color: @gray-light;
         // vertical-align:top;
         margin-bottom:0;
-        border-top: 5px solid @gray-dark;
+        border-top: 5px solid @gray-light;
         // padding: 4px 0;
         @media screen and (max-width: @screen-md){
             border-top: 2px solid @gray-dark;
@@ -306,7 +311,7 @@ table {
     }
 
     .race{
-         border-top: 1px solid @gray-light;
+         border-top: 2px solid @blueDarker;
     }
     .races {
         width: 100%;
@@ -318,12 +323,12 @@ table {
         }
 
         .results-status {
+            color: @blueDark;
             width: 12%;
             text-align: right;
 
             &.reporting, &.called {
-                background: @yellow;
-
+            color: @white;
                 @media screen and (min-width: @screen-md){
                     &:after{
                         content:"in";
@@ -333,37 +338,29 @@ table {
             }
 
             &.called {
-                background: @gray-darker;
-                color: #fff;
+                color: @yellow;
             }
         }
-
         .state {
             text-align: center;
+            // &.party-change {
+            //     color: #fff;
+            //     &.dem { background-color: @blue; }
+            //     &.gop { background-color: @red; }
+            //     &.ind { background-color: @green; }
 
-            &.party-change {
-                color: #fff;
-                &.dem { background-color: @blue; }
-                &.gop { background-color: @red; }
-                &.ind { background-color: @green; }
-
-            }
-        }
-
-        .dem { color: @blue; }
-        .gop { color: @red; }
-        .ind { color: @green; }
-
-        .winner {
-            color: #fff;
-
-            &.dem { background: @blue; }
-            &.gop { background: @red; }
-            &.ind { background: @green; }
+            // }
+            &.dem { color: @blue; }
+            &.gop { color: @red; }
+            &.other { color: @green; }           
         }
 
         .candidate {
             width: 35%;
+
+            &.dem { background: #1D2C40; }
+            &.gop { background: #342224; }
+            &.other { background: #0B301F; }
 
             .party {
                 font-size: 75%;
@@ -385,8 +382,21 @@ table {
         .candidate-total {
             // width: 6%;
             text-align:right;
+            &.dem { background: #1D2C40; }
+            &.gop { background: #342224; }
+            &.other { background: #0B301F; }
         }
 
+
+        .winner {
+            color: #fff;
+
+            &.dem { background: @blue; }
+            &.gop { background: @red; }
+            &.other { background: @green; }
+        }
+
+        
         .candidate-total.gop{
             text-align:left;
         }
@@ -401,6 +411,7 @@ table {
 .key{
     font-size: 9px;
     font-weight: 300;
+    color:@white;
 
     @media screen and (min-width: @screen-md){
         font-size: 11px;
@@ -428,9 +439,7 @@ table {
     }
     margin-bottom:20px;
     overflow:hidden;
-    // border:1px solid black;
     float:left;
-    // font-family:'Open Sans';
 
 
     .percent-ex{
