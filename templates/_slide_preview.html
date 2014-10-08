@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+
+{% block extra_css %}
+{{ CSS.push('less/stack.less') }}
+{{ CSS.render('css/index.min.css') }}
+{% endblock extra_css %}
+
+{% block outer_content %}
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/d3.v3.min.js"></script>
+<script src="../js/lib/jquery.columnizer.js"></script>
+<div id="stack" class="stack" style="display: block;">
+    <div class="slide" style="display: block;">
+        <div class="slide-inner">
+            <div class="slide-content">
+                {{ body|smarty }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock outer_content %}

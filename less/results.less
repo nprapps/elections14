@@ -46,7 +46,7 @@ table {
     }
 }
 
-.container{
+.results-container{
     padding: 30px 40px;
     @media screen and (max-width: @screen-sm){
         padding: 6px;
@@ -323,12 +323,11 @@ table {
         }
 
         .results-status {
-            color: @blueDark;
+            color: @white;
             width: 12%;
             text-align: right;
 
             &.reporting, &.called {
-            color: @white;
                 @media screen and (min-width: @screen-md){
                     &:after{
                         content:"in";
@@ -338,7 +337,7 @@ table {
             }
 
             &.called {
-                color: @yellow;
+                color: @gray;
             }
         }
         .state {
@@ -352,7 +351,7 @@ table {
             // }
             &.dem { color: @blue; }
             &.gop { color: @red; }
-            &.other { color: @green; }           
+            &.other { color: @green; }
         }
 
         .candidate {
@@ -369,7 +368,10 @@ table {
             }
 
             &.incumbent {
-                text-transform:uppercase;
+                // text-transform:uppercase;
+                &:after{
+                    content:"*";
+                }
             }
 
             .fname{
@@ -396,7 +398,7 @@ table {
             &.other { background: @green; }
         }
 
-        
+
         .candidate-total.gop{
             text-align:left;
         }
