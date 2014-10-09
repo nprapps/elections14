@@ -7,6 +7,7 @@ var $statePickerScreen = null;
 var $statePickerSubmitButton = null;
 var $statePickerForm = null;
 var $stateface = null;
+var $stateName = null;
 
 var $header = null;
 var $headerControls = null;
@@ -55,6 +56,8 @@ var onDocumentReady = function(e) {
     $statePickerForm  = $('form.state-picker-form');
     $statePickerScreen = $('.state-picker');
     $statePickerLink = $ ('.state-picker-link');
+    $stateface = $('.stateface');
+    $stateName = $('.state-name');
 
     $audioPlayer = $('#pop-audio');
     $fullScreenButton = $('.fullscreen p');
@@ -69,7 +72,6 @@ var onDocumentReady = function(e) {
     $cast.click('click', onCastClick);
 
     $statePickerForm.submit(onStatePickerSubmit);
-    $stateface = $('.stateface');
 
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
@@ -129,6 +131,8 @@ var onWelcomeButtonClick = function() {
         displayKey: 'value',
         source: substringMatcher(states)
     });
+
+    $('.typeahead').on('typeahead:selected', switchState)
 
 }
 
@@ -216,14 +220,29 @@ var offControlsHover = function() {
 /*
  * Select the state.
  */
+
+var getState = function() {
+    var input = $('.typeahead').typeahead('val');
+
+    if (input) {
+        state = getStatePostal(input)
+    }
+}
+
+var switchState = function() {
+    var input = $('.typeahead').typeahead('val');
+    var postal = getStatePostal(input)
+
+    $stateface.removeClass();
+    $stateface.addClass('stateface stateface-' + postal.toLowerCase());
+
+    $stateName.text(input);
+}
+
 var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
-    var input = $('.tt-input').val();
-    var inverted = _.invert(APP_CONFIG.STATES);
-    console.log(inverted);
-    state = inverted[input];
-    console.log(state);
+    getState();
 
     if (!(state)) {
         alert("Please pick a state!");
@@ -245,6 +264,11 @@ var onStatePickerSubmit = function(e) {
 
 }
 
+var getStatePostal = function(input) {
+    var inverted = _.invert(APP_CONFIG.STATES);
+    return inverted[input];
+}
+
 /*
  * Reopen state selector.
  */
@@ -261,6 +285,10 @@ var onLocateIP = function(response) {
     $('#option-' + place).prop('selected', true);
 
     $stateface.addClass('stateface-' + place.toLowerCase());
+    var stateName = APP_CONFIG.STATES[place];
+    $stateName.text(stateName)
+
+    state = place;
 
     if (IS_CAST_RECEIVER) {
         $welcomeButton.click();
