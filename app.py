@@ -104,7 +104,6 @@ def signed(num):
     """
     return '{0:+d}'.format(num)
 
-
 def cors(f):
     """
     Decorator that enables local CORS support for easier local dev.
@@ -279,11 +278,9 @@ def _senate_big_board():
     context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
     context['not_called'] = _calculate_seats_left(races)
 
-    body = render_template('slides/race_results.html', **context)
+    return render_template('slides/race_results.html', **context)
 
-    return body
-
-def _house_big_board(page=1):
+def _house_big_board(page):
     """
     House big board
     """
@@ -297,7 +294,8 @@ def _house_big_board(page=1):
 
     all_races = Race.select().where(Race.office_name == 'U.S. House')
     all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
-    if page == '2':
+
+    if page == 2:
         featured_races = all_featured_races[HOUSE_PAGE_LIMIT:]
     else:
         featured_races = all_featured_races[:HOUSE_PAGE_LIMIT]
@@ -307,9 +305,19 @@ def _house_big_board(page=1):
     context['not_called'] = _calculate_seats_left(all_races)
     context['seat_number'] = ".seat_number"
 
-    body = render_template('slides/race_results.html', **context)
+    return render_template('slides/race_results.html', **context)
 
-    return body
+def _house_big_board_one():
+    """
+    First page of house results.
+    """
+    return _house_big_board(1)
+
+def _house_big_board_two():
+    """
+    Second page of house results.
+    """
+    return _house_big_board(2)
 
 def _governor_big_board():
     """
@@ -327,10 +335,7 @@ def _governor_big_board():
 
     context['poll_groups'] = _group_races_by_closing_time(races)
 
-    body = render_template('slides/race_results.html', **context)
-
-    return body
-
+    return render_template('slides/race_results.html', **context)
 
 def _balance_of_power():
     """
@@ -352,86 +357,63 @@ def _balance_of_power():
     context['house_not_called'] = _calculate_seats_left(house_races)
     context['senate_not_called'] = _calculate_seats_left(senate_races)
 
-    body = render_template('slides/balance-of-power.html', **context)
-
-    return body
-    # return render_template('_slide.html', **context)
+    return render_template('slides/balance-of-power.html', **context)
 
 def _blue_dogs():
     """
     Ongoing list of how blue dog democrats are faring
     """
     context = make_context()
-    body = render_template('slides/blue-dogs.html', **context)
-
-    return body
-    # return render_template('_slide.html', **context)
-
+    
+    return render_template('slides/blue-dogs.html', **context)
 
 def _house_freshmen():
     """
     Ongoing list of how representatives elected in 2012 are faring
     """
     context = make_context()
-    body = render_template('slides/house-freshmen.html', **context)
-
-    return body
-    # return render_template('_slide.html', **context)
-
+    
+    return render_template('slides/house-freshmen.html', **context)
 
 def _incumbents_lost():
     """
     Ongoing list of which incumbents lost their elections
     """
     context = make_context()
-    body = render_template('slides/incumbents-lost.html', **context)
-
-    return body
-    # return render_template('_slide.html', **context)
-
+    
+    return render_template('slides/incumbents-lost.html', **context)
 
 def _obama_reps():
     """
     Ongoing list of Incumbent Republicans In Districts Barack Obama Won In 2012
     """
     context = make_context()
-    body = render_template('slides/obama-reps.html', **context)
-
-    return body
-    # return render_template('_slide.html', **context)
-
+    
+    return render_template('slides/obama-reps.html', **context)
 
 def _poll_closing_8pm():
     """
     Serve up 8pm poll closing information
     """
     context = make_context()
-    body = render_template('slides/poll-closing-8pm.html', **context)
-
-    return body
-    # return render_template('_slide.html', **context)
-
+    
+    return render_template('slides/poll-closing-8pm.html', **context)
 
 def _rematches():
     """
     List of elections with candidates who have faced off before
     """
     context = make_context()
-    body = render_template('slides/rematches.html', **context)
-
-    return body
-    # return render_template('_slide.html', **context)
-
+    
+    return render_template('slides/rematches.html', **context)
 
 def _romney_dems():
     """
     Ongoing list of Incumbent Democrats In Districts Mitt Romney Won In 2012
     """
     context = make_context()
-    body = render_template('slides/romney-dems.html', **context)
-
-    return body
-    # return render_template('_slide.html', **context)
+    
+    return render_template('slides/romney-dems.html', **context)
 
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)

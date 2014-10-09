@@ -128,13 +128,15 @@ def render_all():
 def render_slides():
     """
     Render slides to HTML files.
+
+    NB: slides do not have embedded assets, so we don't pass
+    the compile flag to the assets rig.
     """
-    from flask import g, url_for
+    from flask import url_for
     import models
 
     slides = models.Slide.select()
 
-    compiled_includes = {}
     output_path = '.slides_html'
 
     for slide in slides:
@@ -151,13 +153,8 @@ def render_slides():
         with app.app.test_request_context(path=path):
             print 'Rendering %s' % path
 
-            g.compile_includes = True
-            g.compiled_includes = compiled_includes
-
             view = app.__dict__[view_name]
             content = view(slug)
-
-            compiled_includes = g.compiled_includes
 
         path = '%s%s' % (output_path, path)
 
@@ -172,22 +169,18 @@ def render_slides():
         with open(path, 'w') as f:
             f.write(content.data)
 
-    compiled_includes.update(render_states(compiled_includes))
+    render_states()
 
-    return compiled_includes
-
-@task
 def render_states(compiled_includes={}):
     """
     Render state slides to HTML files
     """
-    from flask import g, url_for
+    from flask import url_for
 
     view_name = '_state_slide'
     output_path = '.states_html'
 
     for postal, state in app_config.STATES.items():
-
         # Silly fix because url_for require a context
         with app.app.test_request_context():
             path = url_for(view_name, slug=postal)
@@ -195,13 +188,8 @@ def render_states(compiled_includes={}):
         with app.app.test_request_context(path=path):
             print 'Rendering %s' % path
 
-            g.compile_includes = True
-            g.compiled_includes = compiled_includes
-
             view = app.__dict__[view_name]
             content = view(postal)
-
-            compiled_includes = g.compiled_includes
 
         path = '%s%s' % (output_path, path)
 
@@ -215,5 +203,3 @@ def render_states(compiled_includes={}):
 
         with open(path, 'w') as f:
             f.write(content.data)
-
-    return compiled_includes
