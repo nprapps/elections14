@@ -65,22 +65,35 @@ var onDocumentReady = function(e) {
     $shareModal.on('hidden.bs.modal', onShareModalHidden);
     $(window).on('resize', onWindowResize);
 
-    // Prepare welcome screen
-    resizeSlide($welcomeScreen);
+    if (IS_CAST_RECEIVER) {
+        $welcomeScreen.hide();
+        $statePickerScreen.hide();
+        state = 'TX';
+        $stack.show();
 
-    // Configure share panel
-    ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
-    var clippy = new ZeroClipboard($(".clippy"));
+        // TODO: eliminate duplication with onStatePickerLink
+        getStack();
 
-    clippy.on('ready', function(readyEvent) {
-        clippy.on('aftercopy', onClippyCopy);
-    });
+        $('body').on('mousemove', onMouseMove);
+        $headerControls.hover(onControlsHover, offControlsHover);
+        setUpAudio(false);
+    } else {
+        // Prepare welcome screen
+        resizeSlide($welcomeScreen);
 
-    // Geolocate
-    geoip2.city(onLocateIP);
+        // Configure share panel
+        ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
+        var clippy = new ZeroClipboard($(".clippy"));
 
-    // Get audio ready
-    setUpAudio();
+        clippy.on('ready', function(readyEvent) {
+            clippy.on('aftercopy', onClippyCopy);
+        });
+
+        // Geolocate
+        geoip2.city(onLocateIP);
+        
+        setUpAudio(true);
+    }
 }
 
 /*
@@ -201,7 +214,6 @@ var onStatePickerSubmit = function(e) {
     $('body').on('mousemove', onMouseMove);
     $headerControls.hover(onControlsHover, offControlsHover);
     $audioPlayer.jPlayer("play");
-
 }
 
 /*
@@ -220,11 +232,6 @@ var onLocateIP = function(response) {
     $('#option-' + place).prop('selected', true);
 
     $stateface.addClass('stateface-' + place.toLowerCase());
-
-    if (IS_CAST_RECEIVER) {
-        $welcomeButton.click();
-        $statePickerForm.submit();
-    }
 }
 
 /*
@@ -285,7 +292,6 @@ var resizeSlide = function(slide) {
  * Rotate to the next slide in the stack.
  */
 var rotateSlide = function() {
-    console.log('Rotating to next slide');
     isRotating = true;
 
     currentSlide += 1;
@@ -300,11 +306,15 @@ var rotateSlide = function() {
         currentSlide = 0;
     }
 
-    if (stack[currentSlide]['slug'] === 'state') {
+    var slug = stack[currentSlide]['slug'];
+
+    if (slug === 'state') {
         slide_path = 'slides/state-' + state + '.html';
     } else {
-        slide_path = 'slides/' + stack[currentSlide]['slug'] + '.html';
+        slide_path = 'slides/' + slug + '.html';
     }
+    
+    console.log('Rotating to next slide:', slide_path);
 
     $.ajax({
         url: APP_CONFIG.S3_BASE_URL + '/' + slide_path,
@@ -362,12 +372,18 @@ function getStack() {
 /*
  * Setup audio playback.
  */
-var setUpAudio = function() {
+var setUpAudio = function(startPaused) {
     $audioPlayer.jPlayer({
         ready: function () {
             $(this).jPlayer('setMedia', {
                 mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
-            }).jPlayer('pause');
+            })
+            
+            if (startPaused) {
+                $(this).jPlayer('pause');
+            } else {
+                $(this).jPlayer('play');
+            }
         },
         swfPath: 'js/lib',
         supplied: 'mp3',
