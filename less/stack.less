@@ -40,10 +40,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     }
     display: block;
     position: relative;
-
-    .slide-content{
-        vertical-align: middle;
-    }
+    padding-top: 4vw;
 
     .logo {
         position: absolute;
@@ -60,16 +57,39 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             font-size: 7vw;
             margin-bottom: 0;
             line-height: 7vw;
+            font-weight: bold;
+            span {
+                font-size: 3vw;
+                margin-right: 1vw;
+                color: @blue;
+                vertical-align: middle;
+
+                &:nth-child(3n) {
+                    margin-right: 0;
+                }
+            }
+
         }
         h2{
             padding-bottom:1%;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 4.33vw;
         }
     }
 
-    .welcome-button {
-        background-color: @red;
-        border: @red;
-        color: @musicLight;
+    .call-to-action {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+
+        .welcome-button {
+            background-color: @red;
+            border: @red;
+            color: @musicLight;
+            height: 6vw;
+        }
     }
 
     .tv-prompt {
@@ -380,6 +400,10 @@ p{
     text-transform: uppercase;
     @media screen and (max-width: @screen-sm){
         font-size: 1vw;
+    }
+
+    &:hover {
+        background-color: darken(@red, 20%);
     }
 }
 
