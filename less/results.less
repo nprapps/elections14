@@ -143,7 +143,7 @@
         }
 
         .results-header-group {
-            border-left: 1px solid @gray-light;
+            border-left: 2px solid @gray;
             box-sizing: border-box;
             padding-left: 15px;
             @media screen and (max-width: @screen-sm){
@@ -313,10 +313,14 @@
                 width: 12%;
 
                 &.reporting, &.called {
+                    color:@yellow;
                     @media screen and (min-width: @screen-md){
                         &:after{
-                            content:"in";
+                            content:"% in";
                             font-size:80%;
+                            vertical-align:top;
+                            margin-left:-2px;
+                            padding:0;
                         }
                     }
                 }
@@ -325,12 +329,16 @@
                     color: @gray;
                 }
             }
+            .pickup{
+                width:5%;
+            }
 
             .party-change{
                 &:after{
+                    font-weight:500;
                     content:"+1";
                     font-style: italic;
-                    font-size:80%;
+                    font-size:65%;
                 }
                 &.dem { color: @blue; }
                 &.gop { color: @red; }
@@ -364,8 +372,17 @@
 
                 &.incumbent {
                     // text-transform:uppercase;
-                    &:after{
-                        content:"*";
+                    // &:after{
+                    //     content:"";
+                    //     background-image:url("../assets/incumbent.svg");
+                    //     width:3px;
+                    //     height:3px;
+                    // }
+                    img{
+                        height:12px;
+                        width:auto;
+                        vertical-align:top;
+                        margin-left:2px;
                     }
                 }
 
@@ -381,6 +398,14 @@
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
+                
+                &.reporting{
+                    &:after{
+                                content:"%";
+                                font-size:80%;
+                                vertical-align:top;
+                    }
+                }
             }
 
 
@@ -419,6 +444,7 @@
     }
 
     .key{
+        font-family: 'Cooper Hewitt';
         font-size: 9px;
         font-weight: 300;
         color:@white;
@@ -453,27 +479,18 @@
 
 
         .percent-ex{
-            background-color:@yellow;
+            color:@yellow;
             display:inline-block;
-            padding:0 2px;
         }
         .percent-called-ex{
-            background-color:#222;
             display:inline-block;
-            color: @yellow;
-            padding:0 2px;
+            color: @gray;
         }
-        .time-ex{
-            background-color:#222;
-            display:inline-block;
-            color: @white;
-            padding:0 2px;
-        }
-
         .name-ex{
             background-color: @blue;
             color: @white;
             padding: 0 2px;
+            border-radius: 5px;
         }
 
         .state-ex{
@@ -485,11 +502,7 @@
         .state2-ex{
             color:@red;
         }
-        .incum-ex{
-            color:@red;
-        }
 
-        .bold  { font-weight:500;}
         ul{
             padding-left:0;
             float:left;
