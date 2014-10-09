@@ -59,8 +59,6 @@ class DataTestCase(unittest.TestCase):
             candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
             candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
 
-            #self.assertIsNotNone(race.previous_party)
-            #self.assertIsNotNone(race.poll_closing_time)
             self.assertEqual(race.precincts_reporting, 1970)
             self.assertEqual(race.precincts_total, 2288)
             self.assertTrue(race.is_reporting())

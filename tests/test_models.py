@@ -28,7 +28,7 @@ class RaceTestCase(unittest.TestCase):
             race.ap_called = True
             race.accept_ap_call = True
             race.save()
-            
+
             winner = race.candidates.select()[0]
             winner.party = 'GOP'
             winner.ap_winner = True
@@ -143,9 +143,9 @@ class RaceTestCase(unittest.TestCase):
 
             self.assertIsNone(race.get_called_time())
 
-            race.npr_called_time = datetime(2014, 2, 2) 
+            race.npr_called_time = datetime(2014, 2, 2)
             race.save()
-            
+
             self.assertEqual(race.get_called_time(), datetime(2014, 2, 2))
 
     def test_precincts_reporting_percent(self):
@@ -232,12 +232,12 @@ class CandidateTestCase(unittest.TestCase):
 
             race.npr_called = True
             race.save()
-            
+
             self.assertTrue(race.is_called())
             self.assertFalse(candidate.is_winner())
 
             candidate.npr_winner = True
-            
+
             self.assertTrue(candidate.is_winner())
 
     def test_vote_percent(self):
