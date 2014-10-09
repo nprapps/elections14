@@ -81,19 +81,10 @@ var onDocumentReady = function(e) {
     $(window).on('resize', onWindowResize);
 
     if (IS_CAST_RECEIVER) {
-        $welcomeScreen.hide();
-        $statePickerScreen.hide();
-        state = 'TX';
-        $stack.show();
-
-        // TODO: eliminate duplication with onStatePickerLink
-        getStack();
-
-        $('body').on('mousemove', onMouseMove);
-        $headerControls.hover(onControlsHover, offControlsHover);
-        setUpAudio(false);
+        beginStack();
     } else {
         // Prepare welcome screen
+        $welcomeScreen.show();
         resizeSlide($welcomeScreen);
 
         // Configure share panel
@@ -286,14 +277,7 @@ var onStatePickerSubmit = function(e) {
 
     $statePickerLink.text(APP_CONFIG.STATES[state]);
 
-    $statePickerScreen.hide();
-    $stack.show();
-
-    getStack();
-
-    $('body').on('mousemove', onMouseMove);
-    $headerControls.hover(onControlsHover, offControlsHover);
-    $audioPlayer.jPlayer("play");
+    beginStack();
 }
 
 var getStatePostal = function(input) {
@@ -321,6 +305,21 @@ var onLocateIP = function(response) {
     $stateName.text(stateName)
 
     state = place;
+}
+
+/*
+ * Setup the stack display.
+ */
+var beginStack = function() {
+    $welcomeScreen.hide();
+    $statePickerScreen.hide();
+    $stack.show();
+
+    getStack();
+
+    $('body').on('mousemove', onMouseMove);
+    $headerControls.hover(onControlsHover, offControlsHover);
+    $audioPlayer.jPlayer('play');
 }
 
 /*
@@ -398,6 +397,12 @@ var rotateSlide = function() {
     var slug = stack[currentSlide]['slug'];
 
     if (slug === 'state') {
+        // If no state selected, skip to next
+        if (!state) {
+            rotateSlide();
+            return;
+        }
+            
         slide_path = 'slides/state-' + state + '.html';
     } else {
         slide_path = 'slides/' + slug + '.html';
