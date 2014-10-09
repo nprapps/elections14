@@ -25,6 +25,7 @@
         font-family: 'Cooper Hewitt';
         font-weight: 400;
         color:@white;
+        border-collapse: separate;
     }
 
     .results,.results-header {
@@ -283,9 +284,9 @@
             letter-spacing:0.05em;
             color: @gray-light;
             margin-bottom:0;
-            border-top: 5px solid @gray-light;
+            border-bottom: 5px solid @gray-light;
             @media screen and (max-width: @screen-md){
-                border-top: 2px solid @gray-dark;
+                border-bottom: 2px solid @gray-dark;
             }
 
             .time {
@@ -293,20 +294,14 @@
                 @media screen and (max-width: @screen-md){
                     padding:4.5px 0;
                 }
-                width: 12%;
-                text-align: right;
                 display: inline-block;
-                .time-inner{
-                    padding-right:4px;
-                }
             }
         }
 
-        .race{
-             border-top: 2px solid @blueDarker;
-        }
+  
         .races {
             width: 100%;
+            border-spacing: 0 2px;
 
             td {
                 vertical-align: top;
@@ -316,7 +311,6 @@
             .results-status {
                 color: @white;
                 width: 12%;
-                text-align: right;
 
                 &.reporting, &.called {
                     @media screen and (min-width: @screen-md){
@@ -330,6 +324,17 @@
                 &.called {
                     color: @gray;
                 }
+            }
+
+            .party-change{
+                &:after{
+                    content:"+1";
+                    font-style: italic;
+                    font-size:80%;
+                }
+                &.dem { color: @blue; }
+                &.gop { color: @red; }
+                &.other { color: @green; }
             }
             .state {
                 text-align: center;
@@ -347,7 +352,6 @@
 
             .candidate {
                 width: 35%;
-
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
@@ -396,6 +400,20 @@
             .id-5083, .id-19638, .id-18556{
                 letter-spacing:-.07em;
                 text-transform:capitalize !important;
+            }
+        }
+        td{
+            &:nth-child(4){
+                border-radius: 5px 0 0 5px;
+            }
+            &:nth-child(5){
+                border-radius: 0 5px 5px 0;
+            }
+            &:nth-child(6){
+                border-radius: 5px 0 0 5px;
+            }
+            &:nth-child(7){
+                border-radius: 0 5px 5px 0;
             }
         }
     }
