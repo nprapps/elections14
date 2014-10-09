@@ -253,7 +253,7 @@ def configure_targets(deployment_target):
         TUMBLR_NOT_BEFORE = datetime(2014, 11, 4, 23, 0, 0) # +5 hours for UTC
     elif deployment_target == 'staging':
         S3_BUCKETS = STAGING_S3_BUCKETS
-        S3_BASE_URL = 'http://d3dhid83frmf6i.cloudfront.net'
+        S3_BASE_URL = 'https://d3dhid83frmf6i.cloudfront.net'
         SERVERS = STAGING_SERVERS
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
         SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
