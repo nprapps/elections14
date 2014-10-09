@@ -1,109 +1,318 @@
 // Global jQuery references
+var $welcomeScreen = null;
+var $welcomeButton = null;
+var $cast = null;
+
+var $statePickerScreen = null;
+var $statePickerSubmitButton = null;
+var $statePickerForm = null;
+var $stateface = null;
+var $stateName = null;
+var $typeahead = null;
+
+var $header = null;
+var $headerControls = null;
+var $fullScreenButton = null;
+var $statePickerLink = null;
+var $audioPlayer = null;
+var $stack = null;
+
 var $shareModal = null;
 var $commentCount = null;
 
 // Global state
+var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
+
+var stack = [];
+var nextStack = [];
+var currentSlide = 0;
+var isRotating = false;
+var state = null;
+var mouseMoveTimer = null;
+
 var firstShareLoad = true;
-var session = null;
+
+var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+];
+
 
 /*
  * Run on page load.
  */
-var onDocumentLoad = function(e) {
+var onDocumentReady = function(e) {
     // Cache jQuery references
+    $welcomeScreen = $('.welcome');
+    $welcomeButton = $('.welcome-button')
+    $welcomeSubmitButton = $('.state-picker-submit');
+    $cast = $('#cast');
+
+    $statePickerForm  = $('form.state-picker-form');
+    $statePickerScreen = $('.state-picker');
+    $statePickerLink = $ ('.state-picker-link');
+    $stateface = $('.stateface');
+    $stateName = $('.state-name');
+
+    $audioPlayer = $('#pop-audio');
+    $fullScreenButton = $('.fullscreen p');
+    $stack = $('.stack');
+    $header = $('.results-header');
+    $headerControls = $('.header-controls');
     $shareModal = $('#share-modal');
     $commentCount = $('.comment-count');
 
     // Bind events
+    $welcomeButton.on('click', onWelcomeButtonClick);
+    $cast.click('click', onCastClick);
+
+    $statePickerForm.submit(onStatePickerSubmit);
+
+    $fullScreenButton.on('click', onFullScreenButtonClick);
+    $statePickerLink.on('click', onStatePickerLink);
     $shareModal.on('shown.bs.modal', onShareModalShown);
     $shareModal.on('hidden.bs.modal', onShareModalHidden);
-    $('.register').on('submit', registerDevice);
-    $('.quiz').on('submit', submitAnswer);
+    $(window).on('resize', onWindowResize);
 
-    // configure ZeroClipboard on share panel
+    // Prepare welcome screen
+    resizeSlide($welcomeScreen);
+
+    // Configure share panel
     ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
     var clippy = new ZeroClipboard($(".clippy"));
 
     clippy.on('ready', function(readyEvent) {
         clippy.on('aftercopy', onClippyCopy);
     });
+    // Geolocate
+    geoip2.city(onLocateIP);
 
-    getCommentCount(showCommentCount);
+    // Get audio ready
+    setUpAudio();
 }
 
-window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
-    if (loaded) {
-        initializeCastApi();
-    } else {
-        console.log(errorInfo);
+/*
+ * Resize current slide.
+ */
+var onWindowResize = function() {
+    var thisSlide = $('.slide');
+    resizeSlide(thisSlide);
+}
+
+/*
+ * Begin chromecasting.
+ */
+var onCastClick = function(e) {
+    e.preventDefault();
+
+    beginCasting();
+}
+
+/*
+ * Advance to state select screen.
+ */
+var onWelcomeButtonClick = function() {
+    $welcomeScreen.hide();
+    $statePickerScreen.show();
+    resizeSlide($statePickerScreen);
+
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        name: 'states',
+        displayKey: 'value',
+        source: substringMatcher(states)
+    });
+
+    $typeahead = $('.twitter-typeahead');
+
+    $('.typeahead').on('typeahead:selected', switchState)
+    $('.typeahead').on('typeahead:opened', hideStateFace)
+
+}
+
+var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches, substrRegex;
+
+    // an array that will be populated with substring matches
+    matches = [];
+
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str)) {
+        // the typeahead jQuery plugin expects suggestions to a
+        // JavaScript object, refer to typeahead docs for more info
+        matches.push({ value: str });
+      }
+    });
+
+    cb(matches);
+  };
+};
+
+/*
+ * Fullscreen the app.
+ */
+var onFullScreenButtonClick = function() {
+    var elem = document.getElementById("stack");
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
     }
 }
 
 /*
-* CHROMECAST
-*/
+ * Show the header.
+ */
+var onMouseMove = function() {
+    $header.hide();
+    $headerControls.show();
 
-var initializeCastApi = function() {
-    var sessionRequest = new chrome.cast.SessionRequest(APP_CONFIG.CHROMECAST_APP_ID);
-    var apiConfig = new chrome.cast.ApiConfig(
-        sessionRequest,
-        sessionListener,
-        receiverListener
-    );
-
-    chrome.cast.initialize(apiConfig, onInitSuccess, onError);
-};
-
-var sessionListener = function(e) {
-    session = e;
-    session.addMessageListener(APP_CONFIG.CHROMECAST_NAMESPACE, receiverMessage);
+    if (mouseMoveTimer) {
+        clearTimeout(mouseMoveTimer);
+    }
+    mouseMoveTimer = setTimeout(onMouseEnd, 500);
 }
 
-var receiverMessage = function(namespace, message) {
-    console.log('Message from receiver:', message)
-}
-
-var receiverListener = function(e) {
-    if (e === chrome.cast.ReceiverAvailability.AVAILABLE) {
-        console.log('available');
-    } else {
-        console.log('not available');
+/*
+ * Hide the header.
+ */
+var onMouseEnd = function() {
+    if (!($headerControls.data('hover'))) {
+        $header.show();
+        $headerControls.hide();
     }
 }
 
-var onInitSuccess = function(e) {
-    console.log('init success');
+/*
+ * Enable header hover.
+ */
+var onControlsHover = function() {
+    $headerControls.data('hover', true);
+    $header.hide();
+    $headerControls.show();
 }
 
-var onError = function(e) {
-    console.log('init error:', e);
+/*
+ * Disable header hover.
+ */
+var offControlsHover = function() {
+    $headerControls.data('hover', false);
+    $headerControls.hide();
+    $header.show();
 }
 
-var onSendError = function(message) {
-    console.log(message);
+/*
+ * Select the state.
+ */
+
+var getState = function() {
+    var input = $('.typeahead').typeahead('val');
+
+    if (input) {
+        state = getStatePostal(input)
+    }
 }
 
-var onSendSuccess = function(message) {
-    console.log(message);
+var switchState = function() {
+    $stateface.css('opacity', 1);
+    $stateName.css('opacity', 1);
+
+    $typeahead.css('top', '0');
+
+    var input = $('.typeahead').typeahead('val');
+    var postal = getStatePostal(input)
+
+    $stateface.removeClass();
+    $stateface.addClass('stateface stateface-' + postal.toLowerCase());
+
+    $stateName.text(input);
+    $('.typeahead').typeahead('val', '')
+    $('.typeahead').typeahead('close');
+    $('.typeahead').blur();
 }
 
-var sendMessage = function(message) {
-    console.log(session);
-    session.sendMessage(APP_CONFIG.CHROMECAST_NAMESPACE, message, onSendSuccess, onSendError);
+var hideStateFace = function() {
+    $stateface.css('opacity', 0);
+    $stateName.css('opacity', 0);
+
+    $typeahead.css('top', '-23vw');
 }
 
-$('#cast').click(function(e) {
+var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
-    chrome.cast.requestSession(onRequestSessionSuccess, onLaunchError);
-});
+    getState();
 
-var onRequestSessionSuccess = function(e) {
-    session = e;
+    if (!(state)) {
+        alert("Please pick a state!");
+        return false;
+    }
+
+    $.cookie('state', state);
+
+    $statePickerLink.text(APP_CONFIG.STATES[state]);
+
+    $statePickerScreen.hide();
+    $stack.show();
+
+    getStack();
+
+    $('body').on('mousemove', onMouseMove);
+    $headerControls.hover(onControlsHover, offControlsHover);
+    $audioPlayer.jPlayer("play");
+
 }
 
-var onLaunchError = function(e) {
-    console.log('launch error:', e);
+var getStatePostal = function(input) {
+    var inverted = _.invert(APP_CONFIG.STATES);
+    return inverted[input];
+}
+
+/*
+ * Reopen state selector.
+ */
+var onStatePickerLink = function() {
+    $stack.hide();
+    $statePickerScreen.show();
+}
+
+/*
+ * Set the geolocated state.
+ */
+var onLocateIP = function(response) {
+    var place = response.most_specific_subdivision.iso_code;
+    $('#option-' + place).prop('selected', true);
+
+    $stateface.addClass('stateface-' + place.toLowerCase());
+    var stateName = APP_CONFIG.STATES[place];
+    $stateName.text(stateName)
+
+    state = place;
+
+    if (IS_CAST_RECEIVER) {
+        $welcomeButton.click();
+        $statePickerForm.submit();
+    }
 }
 
 /*
@@ -150,4 +359,108 @@ var onClippyCopy = function(e) {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'summary-copied']);
 }
 
-$(onDocumentLoad);
+/*
+ * Resize a slide to fit the viewport.
+ */
+var resizeSlide = function(slide) {
+    var $w = $(window).width();
+    var $h = $(window).height();
+    slide.width($w);
+    slide.height($h);
+}
+
+/*
+ * Rotate to the next slide in the stack.
+ */
+var rotateSlide = function() {
+    console.log('Rotating to next slide');
+    isRotating = true;
+
+    currentSlide += 1;
+
+    if (currentSlide >= stack.length) {
+        if (nextStack.length > 0) {
+            console.log('Switching to new stack');
+            stack = nextStack;
+            nextStack = [];
+        }
+
+        currentSlide = 0;
+    }
+
+    if (stack[currentSlide]['slug'] === 'state') {
+        slide_path = 'slides/state-' + state + '.html';
+    } else {
+        slide_path = 'slides/' + stack[currentSlide]['slug'] + '.html';
+    }
+
+    $.ajax({
+        url: APP_CONFIG.S3_BASE_URL + '/' + slide_path,
+        success: function(data) {
+            var $oldSlide = $('#stack').find('.slide');
+            var $newSlide = $(data);
+
+            if ($oldSlide.length > 0) {
+                $oldSlide.fadeOut(800, function() {
+                    $(this).remove();
+                    $('#stack').append($newSlide);
+                    resizeSlide($newSlide)
+                    $newSlide.fadeIn(800, function(){
+                        console.log('Slide rotation complete');
+                        setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                    });
+                });
+            }
+
+            else {
+                $('#stack').append($newSlide);
+                resizeSlide($newSlide)
+                $newSlide.fadeIn(800, function(){
+                    console.log('Slide rotation complete');
+                    setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                });
+            }
+        }
+    });
+}
+
+/*
+ * Update the slide stack.
+ */
+function getStack() {
+    console.log('Updating the stack');
+
+    $.ajax({
+        url: APP_CONFIG.S3_BASE_URL + '/live-data/stack.json',
+        dataType: 'json',
+        success: function(data) {
+            nextStack = data;
+
+            console.log('Stack update complete');
+
+            if (!isRotating) {
+                rotateSlide();
+            }
+
+            setTimeout(getStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
+        }
+    });
+}
+
+/*
+ * Setup audio playback.
+ */
+var setUpAudio = function() {
+    $audioPlayer.jPlayer({
+        ready: function () {
+            $(this).jPlayer('setMedia', {
+                mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
+            }).jPlayer('pause');
+        },
+        swfPath: 'js/lib',
+        supplied: 'mp3',
+        loop: false,
+    });
+}
+
+$(onDocumentReady);

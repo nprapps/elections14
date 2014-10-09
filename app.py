@@ -67,35 +67,12 @@ def index():
 
     return render_template('index.html', **context), 200,
 
-@app.route('/chromecast/')
-def chromecast():
-    """
-    Custom Chromecast receiver.
-    """
-    context = make_context()
-
-    return render_template('chromecast.html', **context)
-
 @app.route('/comments/')
 def comments():
     """
     Full-page comments view.
     """
     return render_template('comments.html', **make_context())
-
-@app.route('/widget.html')
-def widget():
-    """
-    Embeddable widget example page.
-    """
-    return render_template('widget.html', **make_context())
-
-@app.route('/test_widget.html')
-def test_widget():
-    """
-    Example page displaying widget at different embed sizes.
-    """
-    return render_template('test_widget.html', **make_context())
 
 @app.route('/live-data/stack.json')
 @app_utils.cors

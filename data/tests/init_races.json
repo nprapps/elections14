@@ -8,5 +8,15 @@
         "seat_number": "2",
         "office_name": "U.S. House",
         "race_type": "G"
+    },
+    {
+        "office_id": "S",
+        "seat_name": "2010",
+        "state_postal": "OK",
+        "last_updated": "2014-10-08T18:33:17Z",
+        "race_id": "38145",
+        "seat_number": "2",
+        "office_name": "U.S. Senate",
+        "race_type": "G"
     }
 ]

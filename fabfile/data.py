@@ -502,22 +502,6 @@ def _mock_empty_slide(slug, view, i):
     slide = models.Slide.create(body=body, name=slug, view_name=view)
     models.SlideSequence.create(order=i, slide=slide)
 
-def _mock_slide_with_pym(slug, path, i):
-    from flask import render_template
-    import models
-    import app
-
-    context = {
-        'slug': slug,
-        'path': path
-    }
-
-    with app.app.test_request_context(path='/slides/pym'):
-        body = render_template('slides/pym.html', **context)
-
-    slide = models.Slide.create(slug=slug, body=body, name=slug, view_name="_slide")
-    models.SlideSequence.create(order=i, slide=slide)
-
 @task
 def mock_results(folder='data'):
     """

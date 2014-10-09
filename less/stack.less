@@ -2,7 +2,6 @@
 @import "less/lib/bootstrap/normalize";
 @import "less/lib/bootstrap/type";
 @import "less/lib/bootstrap/mixins";
-@import "less/lib/chosen.less";
 @import "less/cooper_hewitt";
 
 //color palette
@@ -34,12 +33,22 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 */
 
 .welcome.slide {
+    &:after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../assets/elections-background-1.jpg');
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        opacity : 0.5;
+        z-index: -1;
+    }
     display: block;
     position: relative;
-
-    .slide-content{
-        vertical-align: middle;
-    }
+    padding-top: 4vw;
 
     .logo {
         position: absolute;
@@ -56,16 +65,39 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             font-size: 7vw;
             margin-bottom: 0;
             line-height: 7vw;
+            font-weight: bold;
+            span {
+                font-size: 3vw;
+                margin-right: 1vw;
+                color: @blue;
+                vertical-align: middle;
+
+                &:nth-child(3n) {
+                    margin-right: 0;
+                }
+            }
+
         }
         h2{
             padding-bottom:1%;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 4.33vw;
         }
     }
 
-    .welcome-button {
-        background-color: @red;
-        border: @red;
-        color: @musicLight;
+    .call-to-action {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+
+        .welcome-button {
+            background-color: @red;
+            border: @red;
+            color: @musicLight;
+            height: 6vw;
+        }
     }
 
     .tv-prompt {
@@ -85,18 +117,128 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 }
 
 .state-picker {
+    &:after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../assets/elections-background-1.jpg');
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        opacity : 0.5;
+        z-index: -1;
+    }
     display: block;
     text-align: center;
 
-    .slide-content{
-        vertical-align: middle;
+    padding-top: 4vw;
+
+    .state {
+        width: 100%;
+        .stateface {
+            font-size: 16vw;
+
+        }
+        .stateface, .state-name {
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+        .state-name {
+            position: relative;
+            top: -1.2vw;
+        }
+
     }
 
     form {
         margin-top: 2%;
     }
 
+    .twitter-typeahead {
+        position: relative;
+        top: 0;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+
+    .typeahead,
+    .tt-query,
+    .tt-hint {
+        color: @musicLight;
+        font-family: FontAwesome, 'Gotham Ssm';
+        width: 40vw;
+        height: 40px;
+        padding: 30px 12px;
+        font-size: 24px;
+        line-height: 30px;
+        border: 2px solid #bbb;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        outline: none;
+    }
+
+
+    .tt-dropdown-menu {
+        text-align: left;
+        max-height: 18vw;
+        overflow-y: auto;
+    }
+
+    .typeahead {
+        background-color: rgba(0,0,0,0);
+    }
+
+    .typeahead:focus {
+      border: 2px solid @blue;
+    }
+
+    .tt-query {
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+         -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+              box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .tt-hint {
+      color: #999
+    }
+
+    .tt-dropdown-menu {
+        background-color: rgba(0,0,0,0);
+        color: @blue;
+        width: 40vw;
+        margin-top: 12px;
+        border: 1px solid #999;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        font-size: 24px;
+    }
+
+    .tt-suggestion {
+      padding: 20px 10px;
+      font-size: 18px;
+      line-height: 24px;
+      border-bottom: 1px solid #999;
+
+      &:last-child {
+        border: none;
+      }
+    }
+
+    .tt-suggestion.tt-cursor {
+      color: #fff;
+      background-color: @blue;
+    }
+
+    .tt-suggestion p {
+      margin: 0;
+    }
+
     .state-picker-submit {
+        margin-top: 3vw;
         background-color: @red;
         border: @red;
         color: @musicLight;
@@ -225,6 +367,12 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
                 white-space: nowrap;
                 float: left;
             }
+            .volume-icon {
+                width: 20px;
+                height: 20px;
+                color: white;
+                margin-top: -2px;
+            }
         }
     }
 }
@@ -259,12 +407,18 @@ p{
 }
 
 .btn-lg{
-    padding:1vw;
-    font-size: 1vw;
+    font-size: 1.5vw;
     line-height: 1vw;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
+    width: 18vw;
+    height: 4vw;
+    text-transform: uppercase;
     @media screen and (max-width: @screen-sm){
-        font-size: 2vw;
+        font-size: 1vw;
+    }
+
+    &:hover {
+        background-color: darken(@red, 20%);
     }
 }
 
