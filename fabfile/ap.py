@@ -160,6 +160,12 @@ def update(output_dir='data'):
     write_update('%s/update.json' % output_dir)
     write_calls('%s/calls.json' % output_dir)
 
+def _generate_race_id(obj):
+    """
+    Makes an unique compound ID out of statePostal and raceID
+    """
+    return '%s-%s' % (obj['statePostal'], obj['raceID'])
+
 def write_init_races(path):
     """
     Write AP data to intermediary files.
@@ -177,7 +183,7 @@ def write_init_races(path):
             'office_name': race.get('officeName'),
             'seat_name': race.get('seatName'),
             'seat_number': race.get('seatNum'),
-            'race_id': race.get('raceID'),
+            'race_id': _generate_race_id(race),
             'race_type': race.get('raceTypeID'),
             'last_updated': race.get('lastUpdated')
         })
@@ -188,7 +194,7 @@ def write_init_races(path):
 def write_init_candidates(path):
     with open(CACHE_FILE) as f:
         cache = json.load(f)
- 
+
     candidates = []
     init_candidates = cache['init/candidates']['response']['candidates']
 
@@ -198,7 +204,7 @@ def write_init_candidates(path):
             'last_name': candidate.get('last'),
             'party': candidate.get('party'),
             'first_name': candidate.get('first'),
-            'race_id': candidate.get('raceID')
+            'race_id': _generate_race_id(candidate)
         })
 
     with open(path, 'w') as f:
@@ -218,7 +224,7 @@ def write_update(path):
         assert stateRU.get('level', None) == 'state'
 
         update = {
-            'race_id': race.get('raceID'),
+            'race_id': _generate_race_id(race),
             'is_test': race.get('test'),
             'precincts_reporting': stateRU.get('precinctsReporting'),
             'precincts_total': stateRU.get('precinctsTotal'),
@@ -248,16 +254,16 @@ def write_calls(path):
     for race in update_calls:
         if not race.get('raceID'):
             continue
-        
+
         winners = race.get('candidates')
 
         if len(winners) > 1:
-            print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (race['raceID'], race['raceType'], race['statePostal'])
+            print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (_generate_race_id(race), race['raceType'], race['statePostal'])
 
         winner = winners[0]
 
         calls.append({
-            'race_id': race.get('raceID'),
+            'race_id': _generate_race_id(race),
             'ap_called_time':race.get('callTimestamp'),
             'ap_winner': winner['candidateID'] 
         })
