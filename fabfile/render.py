@@ -178,7 +178,7 @@ def render_states(compiled_includes={}):
     from flask import url_for
 
     view_name = '_state_slide'
-    output_path = '.states_html'
+    output_path = '.slides_html'
 
     for postal, state in app_config.STATES.items():
         # Silly fix because url_for require a context
