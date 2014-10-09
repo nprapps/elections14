@@ -19,5 +19,19 @@
         "last_name": "Durbin",
         "candidate_id": "4979",
         "race_id": "38529"
+    },
+    {
+        "party": "Dem",
+        "first_name": "Connie",
+        "last_name": "Johnson",
+        "candidate_id": "44646",
+        "race_id": "38145"
+    },
+    {
+        "party": "GOP",
+        "first_name": "James",
+        "last_name": "Lankford",
+        "candidate_id": "44647",
+        "race_id": "38145"
     }
 ]
