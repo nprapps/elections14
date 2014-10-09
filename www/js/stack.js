@@ -176,6 +176,8 @@ var onStatePickerSubmit = function(e) {
 
     $.cookie('state', state);
 
+    $statePickerLink.text(APP_CONFIG.STATES[state]);
+
     $statePickerScreen.hide();
     $stack.show();
 
