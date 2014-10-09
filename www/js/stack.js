@@ -4,6 +4,7 @@ var $welcomeButton = null;
 var $statePickerScreen = null;
 var $statePickerSubmitButton = null;
 var $statePickerForm = null;
+var $stateface = null;
 
 var $header = null;
 var $headerControls = null;
@@ -106,6 +107,14 @@ var onWelcomeButtonClick = function() {
 
     $('.state-selector').chosen({max_selected_options: 1});
 
+    $('.state-selector').on('change', function(evt, params) {
+        if (params['selected']) {
+            var abbrev = params['selected'].toLowerCase();
+            $stateface.removeClass();
+            $stateface.addClass('stateface stateface-' + abbrev);
+        }
+    });
+
 }
 
 var onFullScreenButtonClick = function() {
@@ -197,6 +206,8 @@ var onStatePickerLink = function() {
 var onLocateIP = function(response) {
     var place = response.most_specific_subdivision.iso_code;
     $('#option-' + place).prop('selected', true);
+
+    $stateface.addClass('stateface-' + place.toLowerCase());
 }
 
 $(document).ready(function() {
@@ -208,6 +219,7 @@ $(document).ready(function() {
     $statePickerScreen = $('.state-picker');
     $welcomeSubmitButton = $('.state-picker-submit');
     $statePickerForm  = $('form.state-picker-form');
+    $stateface = $('.stateface');
     $stack = $('.stack');
     $header = $('.results-header');
     $headerControls = $('.header-controls');
