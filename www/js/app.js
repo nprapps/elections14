@@ -8,6 +8,7 @@ var $statePickerSubmitButton = null;
 var $statePickerForm = null;
 var $stateface = null;
 var $stateName = null;
+var $typeahead = null;
 
 var $header = null;
 var $headerControls = null;
@@ -132,7 +133,10 @@ var onWelcomeButtonClick = function() {
         source: substringMatcher(states)
     });
 
+    $typeahead = $('.twitter-typeahead');
+
     $('.typeahead').on('typeahead:selected', switchState)
+    $('.typeahead').on('typeahead:opened', hideStateFace)
 
 }
 
@@ -230,6 +234,11 @@ var getState = function() {
 }
 
 var switchState = function() {
+    $stateface.css('opacity', 1);
+    $stateName.css('opacity', 1);
+
+    $typeahead.css('top', '0');
+
     var input = $('.typeahead').typeahead('val');
     var postal = getStatePostal(input)
 
@@ -237,6 +246,13 @@ var switchState = function() {
     $stateface.addClass('stateface stateface-' + postal.toLowerCase());
 
     $stateName.text(input);
+}
+
+var hideStateFace = function() {
+    $stateface.css('opacity', 0);
+    $stateName.css('opacity', 0);
+
+    $typeahead.css('top', '-23vw');
 }
 
 var onStatePickerSubmit = function(e) {
