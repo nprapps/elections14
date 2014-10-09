@@ -23,7 +23,7 @@ class DataTestCase(unittest.TestCase):
         with test_database(test_db, [Race, Candidate], create_tables=True):
             data.load_races('data/tests/init_races.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
 
             self.assertEqual(race.state_postal, 'OR')
             self.assertEqual(race.office_id, 'H')
@@ -53,7 +53,8 @@ class DataTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
+
             candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
             candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
             candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
@@ -84,7 +85,7 @@ class DataTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_calls('data/tests/calls.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
             candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
             candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
             candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')

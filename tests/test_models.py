@@ -20,7 +20,8 @@ class RaceTestCase(unittest.TestCase):
         with test_database(test_db, [Race, Candidate], create_tables=True):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
-            race = Race.get()
+            race = Race.get(Race.race_id == '38529')
+
 
             self.assertIsNone(race.get_winning_party())
 
@@ -165,7 +166,7 @@ class RaceTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
 
             self.assertFalse(race.has_incumbent())
 
@@ -181,7 +182,7 @@ class RaceTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
             self.assertTrue(race.is_reporting())
             self.assertEqual(race.count_votes(), 600000)
 
@@ -198,7 +199,7 @@ class CandidateTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
 
-            race = Race.get()
+            race = Race.get(Race.race_id == '38529')
 
             candidate = race.candidates.get() 
             candidate.ap_winner = True
