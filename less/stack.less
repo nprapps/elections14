@@ -184,7 +184,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     }
 
     .typeahead:focus {
-      border: 2px solid #0097cf;
+      border: 2px solid @blue;
     }
 
     .tt-query {
@@ -202,22 +202,22 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         color: @blue;
         width: 40vw;
         margin-top: 12px;
-        padding: 8px 0;
-        border: 1px solid #ccc;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        border-radius: 8px;
-        -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-        -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-        box-shadow: 0 5px 10px rgba(0,0,0,.2);
+        border: 1px solid #999;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
         font-size: 24px;
     }
 
     .tt-suggestion {
-      padding: 3px 20px;
+      padding: 20px 10px;
       font-size: 18px;
       line-height: 24px;
+      border-bottom: 1px solid #999;
+
+      &:last-child {
+        border: none;
+      }
     }
 
     .tt-suggestion.tt-cursor {
