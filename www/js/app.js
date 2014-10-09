@@ -220,6 +220,11 @@ var onLocateIP = function(response) {
     $('#option-' + place).prop('selected', true);
 
     $stateface.addClass('stateface-' + place.toLowerCase());
+
+    if (IS_CAST_RECEIVER) {
+        $welcomeButton.click();
+        $statePickerForm.submit();
+    }
 }
 
 /*
@@ -369,7 +374,5 @@ var setUpAudio = function() {
         loop: false,
     });
 }
-
-
 
 $(onDocumentReady);
