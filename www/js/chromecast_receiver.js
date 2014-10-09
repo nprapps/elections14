@@ -1,6 +1,6 @@
 var initializeReceiver = function() { 
     // Only init receiver if in receiver mode
-    if (window.location.search.indexOf('chromecast') < 0) {
+    if (!IS_CAST_RECEIVER) {
         return;
     }
 

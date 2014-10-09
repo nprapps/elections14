@@ -3,7 +3,7 @@ var session = null;
 
 window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
     // Don't init sender if in receiver mode
-    if (window.location.search.indexOf('chromecast') >= 0) {
+    if (IS_CAST_RECEIVER) {
         return;
     }
 
@@ -23,7 +23,7 @@ var initializeCastApi = function() {
     );
 
     chrome.cast.initialize(apiConfig, onInitSuccess, onError);
-};
+}
 
 var sessionListener = function(e) {
     session = e;
@@ -72,6 +72,5 @@ var onLaunchError = function(e) {
 }
 
 var beginCasting = function() {
-    console.log(1);
     chrome.cast.requestSession(onRequestSessionSuccess, onLaunchError);
 }
