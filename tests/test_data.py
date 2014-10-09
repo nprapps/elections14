@@ -23,7 +23,7 @@ class DataTestCase(unittest.TestCase):
         with test_database(test_db, [Race, Candidate], create_tables=True):
             data.load_races('data/tests/init_races.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
 
             self.assertEqual(race.state_postal, 'OR')
             self.assertEqual(race.office_id, 'H')
@@ -53,13 +53,12 @@ class DataTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
+
             candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
             candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
             candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
 
-            #self.assertIsNotNone(race.previous_party)
-            #self.assertIsNotNone(race.poll_closing_time)
             self.assertEqual(race.precincts_reporting, 1970)
             self.assertEqual(race.precincts_total, 2288)
             self.assertTrue(race.is_reporting())
@@ -84,7 +83,7 @@ class DataTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_calls('data/tests/calls.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
             candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
             candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
             candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
@@ -103,13 +102,25 @@ class DataTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_closing_times('data/closing-times.csv')
 
-            race = Race.select().get()
-            self.assertEqual(race.poll_closing_time, datetime(2014, 11, 4, 11, 0, 0))
+            house_race = Race.get(Race.race_id == '38529')
+            self.assertEqual(house_race.poll_closing_time, datetime(2014, 11, 4, 11, 0, 0))
 
-    def test_historic_party(self):
+            senate_race = Race.get(Race.race_id == '38145')
+            self.assertEqual(senate_race.poll_closing_time, datetime(2014, 11, 4, 8, 0, 0))
+
+    def test_house_extra(self):
         with test_database(test_db, [Race,]):
             data.load_races('data/tests/init_races.json')
             data.load_house_extra('data/house-extra.csv', quiet=True)
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
+            self.assertEqual(race.previous_party, 'gop')
+            self.assertFalse(race.featured_race)
+
+    def test_senate_extra(self):
+        with test_database(test_db, [Race,]):
+            data.load_races('data/tests/init_races.json')
+            data.load_senate_extra('data/senate-extra.csv', quiet=True)
+
+            race = Race.get(Race.race_id == '38145')
             self.assertEqual(race.previous_party, 'gop')

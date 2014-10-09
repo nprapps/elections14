@@ -20,14 +20,15 @@ class RaceTestCase(unittest.TestCase):
         with test_database(test_db, [Race, Candidate], create_tables=True):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
-            race = Race.get()
+            race = Race.get(Race.race_id == '38529')
+
 
             self.assertIsNone(race.get_winning_party())
 
             race.ap_called = True
             race.accept_ap_call = True
             race.save()
-            
+
             winner = race.candidates.select()[0]
             winner.party = 'GOP'
             winner.ap_winner = True
@@ -142,9 +143,9 @@ class RaceTestCase(unittest.TestCase):
 
             self.assertIsNone(race.get_called_time())
 
-            race.npr_called_time = datetime(2014, 2, 2) 
+            race.npr_called_time = datetime(2014, 2, 2)
             race.save()
-            
+
             self.assertEqual(race.get_called_time(), datetime(2014, 2, 2))
 
     def test_precincts_reporting_percent(self):
@@ -165,7 +166,7 @@ class RaceTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
 
             self.assertFalse(race.has_incumbent())
 
@@ -181,7 +182,7 @@ class RaceTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
             self.assertTrue(race.is_reporting())
             self.assertEqual(race.count_votes(), 600000)
 
@@ -198,7 +199,7 @@ class CandidateTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
 
-            race = Race.get()
+            race = Race.get(Race.race_id == '38529')
 
             candidate = race.candidates.get() 
             candidate.ap_winner = True
@@ -231,12 +232,12 @@ class CandidateTestCase(unittest.TestCase):
 
             race.npr_called = True
             race.save()
-            
+
             self.assertTrue(race.is_called())
             self.assertFalse(candidate.is_winner())
 
             candidate.npr_winner = True
-            
+
             self.assertTrue(candidate.is_winner())
 
     def test_vote_percent(self):

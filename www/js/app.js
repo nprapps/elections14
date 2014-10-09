@@ -6,6 +6,7 @@ var $cast = null;
 var $statePickerScreen = null;
 var $statePickerSubmitButton = null;
 var $statePickerForm = null;
+var $stateface = null;
 
 var $header = null;
 var $headerControls = null;
@@ -56,6 +57,7 @@ var onDocumentReady = function(e) {
     $cast.click('click', onCastClick);
 
     $statePickerForm.submit(onStatePickerSubmit);
+    $stateface = $('.stateface');
 
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
@@ -108,6 +110,13 @@ var onWelcomeButtonClick = function() {
 
     $('.state-selector').chosen({max_selected_options: 1});
 
+    $('.state-selector').on('change', function(evt, params) {
+        if (params['selected']) {
+            var abbrev = params['selected'].toLowerCase();
+            $stateface.removeClass();
+            $stateface.addClass('stateface stateface-' + abbrev);
+        }
+    });
 }
 
 /*
@@ -209,6 +218,8 @@ var onStatePickerLink = function() {
 var onLocateIP = function(response) {
     var place = response.most_specific_subdivision.iso_code;
     $('#option-' + place).prop('selected', true);
+
+    $stateface.addClass('stateface-' + place.toLowerCase());
 }
 
 /*
