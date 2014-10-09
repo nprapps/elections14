@@ -104,13 +104,25 @@ class DataTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_closing_times('data/closing-times.csv')
 
-            race = Race.select().get()
-            self.assertEqual(race.poll_closing_time, datetime(2014, 11, 4, 11, 0, 0))
+            house_race = Race.get(Race.race_id == '38529')
+            self.assertEqual(house_race.poll_closing_time, datetime(2014, 11, 4, 11, 0, 0))
 
-    def test_historic_party(self):
+            senate_race = Race.get(Race.race_id == '38145')
+            self.assertEqual(senate_race.poll_closing_time, datetime(2014, 11, 4, 8, 0, 0))
+
+    def test_house_extra(self):
         with test_database(test_db, [Race,]):
             data.load_races('data/tests/init_races.json')
             data.load_house_extra('data/house-extra.csv', quiet=True)
 
-            race = Race.select().get()
+            race = Race.get(Race.race_id == '38529')
+            self.assertEqual(race.previous_party, 'gop')
+            self.assertFalse(race.featured_race)
+
+    def test_senate_extra(self):
+        with test_database(test_db, [Race,]):
+            data.load_races('data/tests/init_races.json')
+            data.load_senate_extra('data/senate-extra.csv', quiet=True)
+
+            race = Race.get(Race.race_id == '38145')
             self.assertEqual(race.previous_party, 'gop')
