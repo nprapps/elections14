@@ -25,6 +25,7 @@
         font-family: 'Cooper Hewitt';
         font-weight: 400;
         color:@white;
+        border-collapse: separate;
     }
 
     .results,.results-header {
@@ -142,7 +143,7 @@
         }
 
         .results-header-group {
-            border-left: 1px solid @gray-light;
+            border-left: 2px solid @gray;
             box-sizing: border-box;
             padding-left: 15px;
             @media screen and (max-width: @screen-sm){
@@ -283,9 +284,9 @@
             letter-spacing:0.05em;
             color: @gray-light;
             margin-bottom:0;
-            border-top: 5px solid @gray-light;
+            border-bottom: 5px solid @gray-light;
             @media screen and (max-width: @screen-md){
-                border-top: 2px solid @gray-dark;
+                border-bottom: 2px solid @gray-dark;
             }
 
             .time {
@@ -293,20 +294,14 @@
                 @media screen and (max-width: @screen-md){
                     padding:4.5px 0;
                 }
-                width: 12%;
-                text-align: right;
                 display: inline-block;
-                .time-inner{
-                    padding-right:4px;
-                }
             }
         }
 
-        .race{
-             border-top: 2px solid @blueDarker;
-        }
+  
         .races {
             width: 100%;
+            border-spacing: 0 2px;
 
             td {
                 vertical-align: top;
@@ -316,13 +311,16 @@
             .results-status {
                 color: @white;
                 width: 12%;
-                text-align: right;
 
                 &.reporting, &.called {
+                    color:@yellow;
                     @media screen and (min-width: @screen-md){
                         &:after{
-                            content:"in";
+                            content:"% in";
                             font-size:80%;
+                            vertical-align:top;
+                            margin-left:-2px;
+                            padding:0;
                         }
                     }
                 }
@@ -330,6 +328,21 @@
                 &.called {
                     color: @gray;
                 }
+            }
+            .pickup{
+                width:5%;
+            }
+
+            .party-change{
+                &:after{
+                    font-weight:500;
+                    content:"+1";
+                    font-style: italic;
+                    font-size:65%;
+                }
+                &.dem { color: @blue; }
+                &.gop { color: @red; }
+                &.other { color: @green; }
             }
             .state {
                 text-align: center;
@@ -347,7 +360,6 @@
 
             .candidate {
                 width: 35%;
-
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
@@ -360,8 +372,17 @@
 
                 &.incumbent {
                     // text-transform:uppercase;
-                    &:after{
-                        content:"*";
+                    // &:after{
+                    //     content:"";
+                    //     background-image:url("../assets/incumbent.svg");
+                    //     width:3px;
+                    //     height:3px;
+                    // }
+                    img{
+                        height:12px;
+                        width:auto;
+                        vertical-align:top;
+                        margin-left:2px;
                     }
                 }
 
@@ -377,6 +398,14 @@
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
+                
+                &.reporting{
+                    &:after{
+                                content:"%";
+                                font-size:80%;
+                                vertical-align:top;
+                    }
+                }
             }
 
 
@@ -398,9 +427,24 @@
                 text-transform:capitalize !important;
             }
         }
+        td{
+            &:nth-child(4){
+                border-radius: 5px 0 0 5px;
+            }
+            &:nth-child(5){
+                border-radius: 0 5px 5px 0;
+            }
+            &:nth-child(6){
+                border-radius: 5px 0 0 5px;
+            }
+            &:nth-child(7){
+                border-radius: 0 5px 5px 0;
+            }
+        }
     }
 
     .key{
+        font-family: 'Cooper Hewitt';
         font-size: 9px;
         font-weight: 300;
         color:@white;
@@ -435,27 +479,18 @@
 
 
         .percent-ex{
-            background-color:@yellow;
+            color:@yellow;
             display:inline-block;
-            padding:0 2px;
         }
         .percent-called-ex{
-            background-color:#222;
             display:inline-block;
-            color: @yellow;
-            padding:0 2px;
+            color: @gray;
         }
-        .time-ex{
-            background-color:#222;
-            display:inline-block;
-            color: @white;
-            padding:0 2px;
-        }
-
         .name-ex{
             background-color: @blue;
             color: @white;
             padding: 0 2px;
+            border-radius: 5px;
         }
 
         .state-ex{
@@ -467,11 +502,7 @@
         .state2-ex{
             color:@red;
         }
-        .incum-ex{
-            color:@red;
-        }
 
-        .bold  { font-weight:500;}
         ul{
             padding-left:0;
             float:left;

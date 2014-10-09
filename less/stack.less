@@ -23,6 +23,11 @@
 @white: #fff;
 @grayMedium: #868686;
 
+body {
+    opacity: 0;
+    .transition(opacity 3s ease);
+}
+
 
 h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -163,6 +168,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         transition: all 0.5s;
     }
 
+    :-moz-placeholder {
+        color: white;
+    }
+
     .typeahead,
     .tt-query,
     .tt-hint {
@@ -274,7 +283,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         }
 
         .leaderboard {
-            float: right; 
+            float: right;
         }
 
 
