@@ -199,7 +199,7 @@ class APTestCase(unittest.TestCase):
 
             self.assertEqual(init_race['raceTypeID'], written_race['race_type'])
             self.assertEqual(init_race['statePostal'], written_race['state_postal'])
-            self.assertEqual(init_race['raceID'], written_race['race_id'])
+            self.assertEqual('%s-%s' % (init_race['statePostal'], init_race['raceID']), written_race['race_id'])
             self.assertEqual(init_race['officeName'], written_race['office_name'])
             self.assertEqual(init_race['seatNum'], written_race['seat_number'])
             self.assertEqual(init_race['lastUpdated'], written_race['last_updated'])
@@ -229,7 +229,7 @@ class APTestCase(unittest.TestCase):
                 self.assertEqual(init_candidate['first'], written_candidates[i]['first_name'])
                 self.assertEqual(init_candidate['last'], written_candidates[i]['last_name'])
                 self.assertEqual(init_candidate['candidateID'], written_candidates[i]['candidate_id'])
-                self.assertEqual(init_candidate['raceID'], written_candidates[i]['race_id'])
+                self.assertEqual('%s-%s' % (init_candidate['statePostal'], init_candidate['raceID']), written_candidates[i]['race_id'])
 
     def test_write_update(self):
         ap_cache = {}
@@ -252,7 +252,7 @@ class APTestCase(unittest.TestCase):
             for i, update in enumerate(updates):
                 ru = update['reportingUnits'][0]
 
-                self.assertEqual(update['raceID'], written_updates[i]['race_id'])
+                self.assertEqual('%s-%s' % (ru['statePostal'], update['raceID']), written_updates[i]['race_id'])
                 self.assertEqual(update['test'], written_updates[i]['is_test'])
                 self.assertEqual(ru['precinctsReporting'], written_updates[i]['precincts_reporting'])
                 self.assertEqual(ru['lastUpdated'], written_updates[i]['last_updated'])
@@ -263,7 +263,7 @@ class APTestCase(unittest.TestCase):
 
                     self.assertEqual(candidate['candidateID'], written_candidate['candidate_id'])
                     self.assertEqual(candidate['voteCount'], written_candidate['vote_count'])
-                    
+
     def test_write_calls(self):
         ap_cache = {}
         ap_cache['calls'] = {}
@@ -282,7 +282,7 @@ class APTestCase(unittest.TestCase):
 
             calls = test_calls['calls']
 
-            self.assertEqual(calls[0]['raceID'], written_calls[0]['race_id'])
+            self.assertEqual('%s-%s' % (calls[0]['statePostal'], calls[0]['raceID']), written_calls[0]['race_id'])
             self.assertEqual(calls[0]['callTimestamp'], written_calls[0]['ap_called_time'])
             self.assertEqual(calls[0]['candidates'][0]['candidateID'], written_calls[0]['ap_winner'])
 

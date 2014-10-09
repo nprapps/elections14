@@ -160,11 +160,14 @@ def update(output_dir='data'):
     write_update('%s/update.json' % output_dir)
     write_calls('%s/calls.json' % output_dir)
 
-def _generate_race_id(obj):
+def _generate_race_id(obj, state_postal=None):
     """
     Makes an unique compound ID out of statePostal and raceID
     """
-    return '%s-%s' % (obj['statePostal'], obj['raceID'])
+    if state_postal:
+        return '%s-%s' % (state_postal, obj['raceID'])
+    else:
+        return '%s-%s' % (obj['statePostal'], obj['raceID'])
 
 def write_init_races(path):
     """
@@ -224,7 +227,7 @@ def write_update(path):
         assert stateRU.get('level', None) == 'state'
 
         update = {
-            'race_id': _generate_race_id(race),
+            'race_id': _generate_race_id(race, stateRU.get('statePostal')),
             'is_test': race.get('test'),
             'precincts_reporting': stateRU.get('precinctsReporting'),
             'precincts_total': stateRU.get('precinctsTotal'),
