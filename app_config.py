@@ -36,12 +36,8 @@ DEPLOYMENT
 """
 PRODUCTION_S3_BUCKETS = [
     {
-        'bucket_name': 'apps.npr.org',
-        'region': 'us-east-1'
-    },
-    {
-        'bucket_name': 'apps2.npr.org',
-        'region': 'us-east-1'
+        'bucket_name': 'elections.npr.org',
+        'region': 'us-west-2'
     }
 ]
 
@@ -244,7 +240,7 @@ def configure_targets(deployment_target):
 
     if deployment_target == 'production':
         S3_BUCKETS = PRODUCTION_S3_BUCKETS
-        S3_BASE_URL = 'http://%s/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)
+        S3_BASE_URL = 'http://%s' % (S3_BUCKETS[0]['bucket_name'])
         SERVERS = PRODUCTION_SERVERS
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
         SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
@@ -257,7 +253,7 @@ def configure_targets(deployment_target):
         TUMBLR_NOT_BEFORE = datetime(2014, 11, 4, 23, 0, 0) # +5 hours for UTC
     elif deployment_target == 'staging':
         S3_BUCKETS = STAGING_S3_BUCKETS
-        S3_BASE_URL = 'http://%s.s3-website-us-east-1.amazonaws.com/%s' % (S3_BUCKETS[0]['bucket_name'], PROJECT_SLUG)
+        S3_BASE_URL = '//d3dhid83frmf6i.cloudfront.net'
         SERVERS = STAGING_SERVERS
         SERVER_BASE_URL = 'http://%s/%s' % (SERVERS[0], PROJECT_SLUG)
         SERVER_LOG_PATH = '/var/log/%s' % PROJECT_FILENAME
@@ -272,7 +268,7 @@ def configure_targets(deployment_target):
         S3_BUCKETS = []
         S3_BASE_URL = 'http://127.0.0.1:8000'
         SERVERS = []
-        SERVER_BASE_URL = 'http://127.0.0.1:8001/%s' % PROJECT_SLUG
+        SERVER_BASE_URL = 'http://127.0.0.1:8001'
         SERVER_LOG_PATH = '/tmp'
         DEBUG = True
 

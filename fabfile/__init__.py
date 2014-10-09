@@ -163,25 +163,12 @@ def deploy_slides():
     utils._gzip('.slides_html', '.slides_gzip')
     utils._deploy_to_s3('.slides_gzip')
 
-    deploy_states()
-
 @task
 def deploy_instagram_photos():
     """
     Deploy downloaded Instagram photos to S3.
     """
     utils._deploy_to_s3('www/assets/instagram')
-
-@task
-def deploy_states():
-    """
-    Deploy every state slide to S3
-    """
-    local('rm -rf .states_html .states_gzip')
-    render.render_states()
-    utils._gzip('.states_html', '.states_gzip')
-    utils._deploy_to_s3('.states_gzip')
-
 
 @task
 def deploy():
@@ -216,7 +203,7 @@ def shiva_the_destroyer():
         sync = 'aws s3 rm %s --recursive --region "%s"'
 
         for bucket in app_config.S3_BUCKETS:
-            local(sync % ('s3://%s/%s/' % (bucket['bucket_name'], app_config.PROJECT_SLUG), bucket['region']))
+            local(sync % ('s3://%s/' % bucket['bucket_name'], bucket['region']))
 
         if app_config.DEPLOY_TO_SERVERS:
             servers.delete_project()
