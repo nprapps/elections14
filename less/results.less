@@ -18,13 +18,6 @@
 @screen-xl: 1400px;
 @screen-big-board: 1920px;
 
-//padding for house
-@bigpad : 40px;
-@littlepad : 6px;
-
-body {
-    background-color:@blueDarker;
-}
 
 table {
     font-family: 'Cooper Hewitt';
@@ -287,13 +280,10 @@ table {
         font-weight: 600;
         letter-spacing:0.05em;
         color: @gray-light;
-        // vertical-align:top;
         margin-bottom:0;
         border-top: 5px solid @gray-light;
-        // padding: 4px 0;
         @media screen and (max-width: @screen-md){
             border-top: 2px solid @gray-dark;
-            // padding:4.5px 0;
         }
 
         .time {
@@ -318,7 +308,6 @@ table {
 
         td {
             vertical-align: top;
-            // border-top: 1px solid #ccc;
             padding: 5px;
         }
 
@@ -382,7 +371,6 @@ table {
         }
 
         .candidate-total {
-            // width: 6%;
             text-align:right;
             &.dem { background: #1D2C40; }
             &.gop { background: #342224; }
@@ -501,98 +489,6 @@ table {
         padding-top:20px;
     }
 }
-
-// .house{
-//     .container{
-//         padding: @bigpad 0;
-//         @media screen and (max-width: @screen-md){
-//             padding: @littlepad 0;
-//         }
-//     }
-//     .results-header h2,
-//     .results-header,
-//     .races h2,
-//     .races,
-//     .poll-closing-group {
-//         font-size: 9px;
-//         line-height: .2;
-//         @media screen and (min-width: @screen-sm){
-//             font-size: 10.6px;
-//             line-height: .6;
-//         }
-
-//         @media screen and (min-width: @screen-md){
-//             font-size: 12px;
-//             line-height: .7;
-//         }
-
-//         @media screen and (min-width: @screen-lg){
-//             font-size: 14px;
-//             line-height: .9;
-//         }
-
-//         @media screen and (min-width: @screen-xl){
-//             font-size: 17px;
-//             line-height: .9;
-//         }
-
-//         @media screen and (min-width: @screen-big-board){
-//             font-size: 19px;
-//             line-height: 1.2;
-//         }
-//     }
-
-//     .results-header{
-//         padding-right: @bigpad;
-//         padding-left: @bigpad;
-//         @media screen and (max-width: @screen-md){
-//             padding-right: @littlepad;
-//             padding-left: @littlepad;
-//         }
-//     }
-
-//     .results{
-//         padding: 0 @bigpad/2;
-//         @media screen and (max-width: @screen-md){
-//             padding: 0 @littlepad/2;
-//         }
-//         .column{
-//             @media screen and (max-width: @screen-sm){
-//                 width:100% !important;
-//             }
-//             padding: 0 @bigpad/2;
-//             @media screen and (max-width: @screen-md){
-//                 padding: 0 @littlepad/2;
-//             }
-//         }
-
-//         .races{
-//             .results-status{
-//                 width:15%;
-//                 &:after{
-//                 content:none;
-//                 }
-//             }
-//             .candidate{
-//                 width: 33%;
-//                 .fname{
-//                     display:none;
-//                 }
-//             }
-//             .state{
-//                 text-align:left;
-//             }
-//         }
-//     }
-//     .key{
-//         padding-right: @bigpad;
-//         padding-left: @bigpad;
-//         @media screen and (max-width: @screen-md){
-//         padding-right: @littlepad;
-//         padding-left: @littlepad;
-//         }
-//     }
-// }
 
 .hide-results {
     opacity: 0;

@@ -338,7 +338,7 @@ p{
             }
 
             span{
-                background-color:@blue;
+                background-color:@blueDarker;
                 padding:.7vw;
                 -ms-box-decoration-break: clone;
                 -webkit-box-decoration-break: clone;
@@ -622,3 +622,39 @@ p{
 	}
 }
 
+
+/////////////////////////////////////
+.shadow{
+  position:absolute;
+  z-index: -100;
+  box-shadow: 3px 3px 20vw 20vw @red;
+  background-color:@red;   
+  animation: float 5s alternate linear infinite;
+}
+
+.shadow2{
+  position:absolute;
+  z-index: -100;
+  right:0;
+  bottom:0;
+  box-shadow: 3px 3px 20vw 20vw @blue;
+  background-color:@blue;   
+  animation: float 10s alternate linear infinite;
+  animation-delay:3 ns;
+}
+
+@keyframes float {
+  0% {
+    opacity:.2;
+    width:50vw;
+    height:20vw;
+  }
+
+  100% {
+    opacity:.4;
+    width:10vw;
+    height:10vw;
+  }
+  
+
+}
