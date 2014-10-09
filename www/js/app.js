@@ -68,6 +68,8 @@ var onDocumentReady = function(e) {
     $shareModal = $('#share-modal');
     $commentCount = $('.comment-count');
 
+    $('body').css('opacity', 1);
+
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
     $cast.click('click', onCastClick);
@@ -106,7 +108,7 @@ var onDocumentReady = function(e) {
 
         // Geolocate
         geoip2.city(onLocateIP);
-        
+
         setUpAudio(true);
     }
 }
@@ -402,7 +404,7 @@ var rotateSlide = function() {
     } else {
         slide_path = 'slides/' + slug + '.html';
     }
-    
+
     console.log('Rotating to next slide:', slide_path);
 
     $.ajax({
@@ -467,7 +469,7 @@ var setUpAudio = function(startPaused) {
             $(this).jPlayer('setMedia', {
                 mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
             })
-            
+
             if (startPaused) {
                 $(this).jPlayer('pause');
             } else {
