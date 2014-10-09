@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from functools import wraps
 import json
 
 import argparse
-from flask import Flask, make_response, render_template
+from flask import Flask, render_template
 
 import app_config
+import app_utils
 from render_utils import make_context, smarty_filter, urlencode_filter
+import slides
 import static_app
 import static_theme
 
@@ -16,69 +17,6 @@ app = Flask(__name__)
 
 app.jinja_env.filters['smarty'] = smarty_filter
 app.jinja_env.filters['urlencode'] = urlencode_filter
-
-SENATE_MAJORITY = 51
-SENATE_INITIAL_BOP = {
-    'dem': 32,
-    'gop': 30,
-    'other': 2,
-}
-
-HOUSE_PAGE_LIMIT = 36
-HOUSE_MAJORITY = 218
-HOUSE_INITIAL_BOP = {
-    'dem': 0,
-    'gop': 0,
-    'other': 0,
-}
-
-def _group_races_by_closing_time(races):
-    """
-    Process race results for use in templates.
-    """
-    results = {}
-
-    for race in races:
-        if not results.get(race.poll_closing_time):
-            results[race.poll_closing_time] = []
-
-        results[race.poll_closing_time].append(race)
-
-    return sorted(results.items())
-
-def _calculate_bop(races, majority, initial):
-    """
-    Calculate a balance of power
-    """
-    bop = {key: {
-        'has': value,
-        'needs': majority - value,
-        'picked_up': 0,
-    } for key, value in initial.items()}
-
-    winning_races = [race for race in races if race.is_called()]
-    for race in winning_races:
-        winner = race.get_winning_party()
-
-        bop[winner]['has'] += 1
-        if bop[winner]['needs'] > 0:
-            bop[winner]['needs'] -= 1
-
-        if race.party_changed():
-            bop[winner]['picked_up'] += 1
-            bop[race.previous_party]['picked_up'] -= 1
-
-    return bop
-
-def _calculate_seats_left(races):
-    """
-    Calculate seats remaining
-    """
-    seats = races.count()
-    for race in races:
-        if race.is_called():
-            seats -= 1
-    return seats
 
 @app.template_filter()
 def format_board_time(dt):
@@ -104,17 +42,6 @@ def signed(num):
     """
     return '{0:+d}'.format(num)
 
-def cors(f):
-    """
-    Decorator that enables local CORS support for easier local dev.
-    """
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        response = make_response(f(*args, **kwargs))
-        response.headers['Access-Control-Allow-Origin'] = '*'
-        return response
-    return decorated_function
-
 # Example application views
 @app.route('/')
 def index():
@@ -135,8 +62,8 @@ def index():
     """
     races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
-    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
-    context['not_called'] = _calculate_seats_left(races)
+    context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_MAJORITY, app_utils.SENATE_INITIAL_BOP)
+    context['not_called'] = app_utils.calculate_seats_left(races)
 
     return render_template('index.html', **context), 200,
 
@@ -171,7 +98,7 @@ def test_widget():
     return render_template('test_widget.html', **make_context())
 
 @app.route('/live-data/stack.json')
-@cors
+@app_utils.cors
 def _stack_json():
     """
     Serve up the current slide stack.
@@ -183,13 +110,34 @@ def _stack_json():
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
+@app.route('/preview/state-<slug>/')
+def _state_slide_preview(slug):
+    """
+    Preview a state slide outside of the stack.
+    """
+    context = make_context()
+
+    context['body'] = _state_slide(slug).data
+
+    return render_template('_slide_preview.html', **context)
+
+@app.route('/preview/<slug>/')
+def _slide_preview(slug):
+    """
+    Preview a slide outside of the stack.
+    """
+    context = make_context()
+
+    context['body'] = _slide(slug).data
+
+    return render_template('_slide_preview.html', **context)
+
 @app.route('/slides/state-<slug>.html')
-@cors
+@app_utils.cors
 def _state_slide(slug):
     """
-    Serve a dummy state slide
+    Serve a state slide.
     """
-
     from models import Race
 
     for postal, state in app_config.STATES.items():
@@ -219,31 +167,8 @@ def _state_slide(slug):
 
     return render_template('_slide.html', **context)
 
-@app.route('/preview/<slug>/')
-@app.route('/preview/<slug>/<page>/')
-def _slide_preview(slug, page=''):
-    """
-    Preview a slide outside of the stack
-    """
-    from models import Slide
-
-    context = make_context()
-
-    slide = Slide.get(Slide.slug == slug)
-    view_name = slide.view_name
-
-    if view_name == '_slide':
-        context['body'] = slide.body
-    else:
-        if page:
-            context['body'] = globals()[view_name](page)
-        else:
-            context['body'] = globals()[view_name]()
-
-    return render_template('_slide_preview.html', **context)
-
 @app.route('/slides/<slug>.html')
-@cors
+@app_utils.cors
 def _slide(slug):
     """
     Serve up slide html fragment
@@ -256,164 +181,9 @@ def _slide(slug):
     if view_name == '_slide':
         body = slide.body
     else:
-        body = globals()[view_name]()
+        body = slides.__dict__[view_name]()
 
     return render_template('_slide.html', body=body)
-
-def _senate_big_board():
-    """
-    Senate big board
-    """
-    from models import Race
-
-    context = make_context()
-
-    context['page_title'] = 'Senate'
-    context['page_class'] = 'senate'
-    context['column_number'] = 2
-
-    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
-
-    context['poll_groups'] = _group_races_by_closing_time(races)
-    context['bop'] = _calculate_bop(races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
-    context['not_called'] = _calculate_seats_left(races)
-
-    return render_template('slides/race_results.html', **context)
-
-def _house_big_board(page):
-    """
-    House big board
-    """
-    from models import Race
-
-    context = make_context()
-
-    context['page_title'] = 'House'
-    context['page_class'] = 'house'
-    context['column_number'] = 2
-
-    all_races = Race.select().where(Race.office_name == 'U.S. House')
-    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
-
-    if page == 2:
-        featured_races = all_featured_races[HOUSE_PAGE_LIMIT:]
-    else:
-        featured_races = all_featured_races[:HOUSE_PAGE_LIMIT]
-
-    context['poll_groups'] = _group_races_by_closing_time(featured_races)
-    context['bop'] = _calculate_bop(all_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
-    context['not_called'] = _calculate_seats_left(all_races)
-    context['seat_number'] = ".seat_number"
-
-    return render_template('slides/race_results.html', **context)
-
-def _house_big_board_one():
-    """
-    First page of house results.
-    """
-    return _house_big_board(1)
-
-def _house_big_board_two():
-    """
-    Second page of house results.
-    """
-    return _house_big_board(2)
-
-def _governor_big_board():
-    """
-    Governor big board
-    """
-    from models import Race
-
-    context = make_context()
-
-    context['page_title'] = 'Governors'
-    context['page_class'] = 'governor'
-    context['column_number'] = 2
-
-    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
-
-    context['poll_groups'] = _group_races_by_closing_time(races)
-
-    return render_template('slides/race_results.html', **context)
-
-def _balance_of_power():
-    """
-    Serve up the balance of power graph
-    """
-
-    from models import Race
-
-    context = make_context()
-
-    context['page_title'] = 'Balance of Power'
-    context['page_class'] = 'balance-of-power'
-
-    house_races = Race.select().where(Race.office_name == 'U.S. House').order_by(Race.state_postal)
-    senate_races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
-
-    context['house_bop'] = _calculate_bop(house_races, HOUSE_MAJORITY, HOUSE_INITIAL_BOP)
-    context['senate_bop'] = _calculate_bop(senate_races, SENATE_MAJORITY, SENATE_INITIAL_BOP)
-    context['house_not_called'] = _calculate_seats_left(house_races)
-    context['senate_not_called'] = _calculate_seats_left(senate_races)
-
-    return render_template('slides/balance-of-power.html', **context)
-
-def _blue_dogs():
-    """
-    Ongoing list of how blue dog democrats are faring
-    """
-    context = make_context()
-    
-    return render_template('slides/blue-dogs.html', **context)
-
-def _house_freshmen():
-    """
-    Ongoing list of how representatives elected in 2012 are faring
-    """
-    context = make_context()
-    
-    return render_template('slides/house-freshmen.html', **context)
-
-def _incumbents_lost():
-    """
-    Ongoing list of which incumbents lost their elections
-    """
-    context = make_context()
-    
-    return render_template('slides/incumbents-lost.html', **context)
-
-def _obama_reps():
-    """
-    Ongoing list of Incumbent Republicans In Districts Barack Obama Won In 2012
-    """
-    context = make_context()
-    
-    return render_template('slides/obama-reps.html', **context)
-
-def _poll_closing_8pm():
-    """
-    Serve up 8pm poll closing information
-    """
-    context = make_context()
-    
-    return render_template('slides/poll-closing-8pm.html', **context)
-
-def _rematches():
-    """
-    List of elections with candidates who have faced off before
-    """
-    context = make_context()
-    
-    return render_template('slides/rematches.html', **context)
-
-def _romney_dems():
-    """
-    Ongoing list of Incumbent Democrats In Districts Mitt Romney Won In 2012
-    """
-    context = make_context()
-    
-    return render_template('slides/romney-dems.html', **context)
 
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)
