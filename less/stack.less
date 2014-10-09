@@ -110,12 +110,16 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     .state {
         width: 100%;
         .stateface {
-            font-size: 15vw;
+            font-size: 16vw;
 
         }
         .stateface, .state-name {
             -webkit-transition: all 0.2s;
             transition: all 0.2s;
+        }
+        .state-name {
+            position: relative;
+            top: -1.2vw;
         }
 
     }
@@ -368,11 +372,11 @@ p{
 }
 
 .btn-lg{
-    font-size: 1.2vw;
+    font-size: 1.5vw;
     line-height: 1vw;
     border-radius: 0.5vw;
-    width: 15vw;
-    height: 5vw;
+    width: 18vw;
+    height: 4vw;
     text-transform: uppercase;
     @media screen and (max-width: @screen-sm){
         font-size: 1vw;

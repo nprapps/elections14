@@ -246,6 +246,9 @@ var switchState = function() {
     $stateface.addClass('stateface stateface-' + postal.toLowerCase());
 
     $stateName.text(input);
+    $('.typeahead').typeahead('val', '')
+    $('.typeahead').typeahead('close');
+    $('.typeahead').blur();
 }
 
 var hideStateFace = function() {
