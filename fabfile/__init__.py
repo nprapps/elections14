@@ -216,7 +216,7 @@ def shiva_the_destroyer():
         sync = 'aws s3 rm %s --recursive --region "%s"'
 
         for bucket in app_config.S3_BUCKETS:
-            local(sync % ('s3://%s/%s/' % (bucket['bucket_name'], app_config.PROJECT_SLUG), bucket['region']))
+            local(sync % ('s3://%s/' % bucket['bucket_name'], bucket['region']))
 
         if app_config.DEPLOY_TO_SERVERS:
             servers.delete_project()

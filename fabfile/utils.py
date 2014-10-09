@@ -45,8 +45,8 @@ def _deploy_to_s3(path='.gzip'):
     sync_assets = 'aws s3 sync %s/ %s --acl "public-read" --cache-control "max-age=86400" --region "%s"'
 
     for bucket in app_config.S3_BUCKETS:
-        local(sync % (path, 's3://%s/%s/' % (bucket['bucket_name'], app_config.PROJECT_SLUG), bucket['region']))
-        local(sync_gzip % (path, 's3://%s/%s/' % (bucket['bucket_name'], app_config.PROJECT_SLUG), bucket['region']))
+        local(sync % (path, 's3://%s/' % bucket['bucket_name'], bucket['region']))
+        local(sync_gzip % (path, 's3://%s/' % bucket['bucket_name'], bucket['region']))
         local(sync_assets % ('www/assets/', 's3://%s/%s/assets/' % (bucket['bucket_name'], app_config.PROJECT_SLUG), bucket['region']))
 
 def deploy_json(src, dst):
@@ -56,5 +56,5 @@ def deploy_json(src, dst):
     sync = 'aws s3 cp %s %s --acl "public-read" --cache-control "max-age=5" --region "%s"'
 
     for bucket in app_config.S3_BUCKETS:
-        local(sync % (src, 's3://%s/%s/%s' % (bucket['bucket_name'], app_config.PROJECT_SLUG, dst), bucket['region']))
+        local(sync % (src, 's3://%s/%s' % (bucket['bucket_name'], dst), bucket['region']))
 
