@@ -23,14 +23,14 @@ class DataTestCase(unittest.TestCase):
         with test_database(test_db, [Race, Candidate], create_tables=True):
             data.load_races('data/tests/init_races.json')
 
-            race = Race.get(Race.race_id == '38529')
+            race = Race.get(Race.race_id == 'OR-38529')
 
             self.assertEqual(race.state_postal, 'OR')
             self.assertEqual(race.office_id, 'H')
             self.assertEqual(race.office_name, 'U.S. House')
             self.assertEqual(race.seat_name, "District 2")
             self.assertEqual(race.seat_number, 2)
-            self.assertEqual(race.race_id, '38529')
+            self.assertEqual(race.race_id, 'OR-38529')
             self.assertEqual(race.race_type, 'G')
             self.assertEqual(race.last_updated, datetime(2014, 9, 26, 16, 26, 50))
 
@@ -53,7 +53,7 @@ class DataTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
 
-            race = Race.get(Race.race_id == '38529')
+            race = Race.get(Race.race_id == 'OR-38529')
 
             candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
             candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
@@ -83,7 +83,7 @@ class DataTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_calls('data/tests/calls.json')
 
-            race = Race.get(Race.race_id == '38529')
+            race = Race.get(Race.race_id == 'OR-38529')
             candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
             candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
             candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
@@ -102,10 +102,10 @@ class DataTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_closing_times('data/closing-times.csv')
 
-            house_race = Race.get(Race.race_id == '38529')
+            house_race = Race.get(Race.race_id == 'OR-38529')
             self.assertEqual(house_race.poll_closing_time, datetime(2014, 11, 4, 11, 0, 0))
 
-            senate_race = Race.get(Race.race_id == '38145')
+            senate_race = Race.get(Race.race_id == 'OK-38145')
             self.assertEqual(senate_race.poll_closing_time, datetime(2014, 11, 4, 8, 0, 0))
 
     def test_house_extra(self):
@@ -113,7 +113,7 @@ class DataTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_house_extra('data/house-extra.csv', quiet=True)
 
-            race = Race.get(Race.race_id == '38529')
+            race = Race.get(Race.race_id == 'OR-38529')
             self.assertEqual(race.previous_party, 'gop')
             self.assertFalse(race.featured_race)
 
@@ -122,5 +122,5 @@ class DataTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_senate_extra('data/senate-extra.csv', quiet=True)
 
-            race = Race.get(Race.race_id == '38145')
+            race = Race.get(Race.race_id == 'OK-38145')
             self.assertEqual(race.previous_party, 'gop')

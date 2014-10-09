@@ -83,13 +83,12 @@ class Race(SlugModel):
     slug_fields = ['state_postal', 'office_name', 'seat_name']
 
     # data from init
+    race_id = CharField(primary_key=True)
     state_postal = CharField(max_length=255)
-    # state_name = CharField(max_length=255)
     office_id = CharField(max_length=255)
     office_name = CharField(max_length=255)
     seat_name = CharField(null=True)
     seat_number = IntegerField(null=True)
-    race_id = CharField(unique=True)
     race_type = CharField()
     last_updated = DateTimeField()
 

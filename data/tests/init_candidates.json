@@ -4,34 +4,34 @@
         "first_name": "Aelea",
         "last_name": "Christofferson",
         "candidate_id": "4848",
-        "race_id": "38529"
+        "race_id": "OR-38529"
     },
     {
         "party": "GOP",
         "first_name": "Greg",
         "last_name": "Walden",
         "candidate_id": "4642",
-        "race_id": "38529"
+        "race_id": "OR-38529"
     },
     {
         "party": "Lib",
         "first_name": "Sharon",
         "last_name": "Durbin",
         "candidate_id": "4979",
-        "race_id": "38529"
+        "race_id": "OR-38529"
     },
     {
         "party": "Dem",
         "first_name": "Connie",
         "last_name": "Johnson",
         "candidate_id": "44646",
-        "race_id": "38145"
+        "race_id": "OK-38145"
     },
     {
         "party": "GOP",
         "first_name": "James",
         "last_name": "Lankford",
         "candidate_id": "44647",
-        "race_id": "38145"
+        "race_id": "OK-38145"
     }
 ]
