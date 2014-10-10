@@ -10,10 +10,13 @@ var $stateface = null;
 var $stateName = null;
 var $typeahead = null;
 
+var $chromecastScreen = null;
+
 var $header = null;
 var $headerControls = null;
 var $fullScreenButton = null;
 var $statePickerLink = null;
+var $chromecastButton = null;
 var $audioPlayer = null;
 var $stack = null;
 
@@ -52,7 +55,6 @@ var onDocumentReady = function(e) {
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
     $welcomeSubmitButton = $('.state-picker-submit');
-    $cast = $('.cast');
 
     $statePickerForm  = $('form.state-picker-form');
     $statePickerScreen = $('.state-picker');
@@ -60,8 +62,13 @@ var onDocumentReady = function(e) {
     $stateface = $('.stateface');
     $stateName = $('.state-name');
 
+    $chromecastScreen = $('.cast-controls');
+    $castStart = $('.cast-start');
+    $castStop = $('.cast-stop');
+
     $audioPlayer = $('#pop-audio');
     $fullScreenButton = $('.fullscreen p');
+    $chromecastButton = $('.chromecast');
     $stack = $('.stack');
     $header = $('.results-header');
     $headerControls = $('.header-controls');
@@ -72,9 +79,11 @@ var onDocumentReady = function(e) {
 
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
-    $cast.click('click', onCastClick);
 
     $statePickerForm.submit(onStatePickerSubmit);
+
+    $castStart.on('click', onCastStartClick);
+    $castStop.on('click', onCastStopClick);
 
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
@@ -105,6 +114,47 @@ var onDocumentReady = function(e) {
 }
 
 /*
+ * Setup Chromecast if library is available.
+ */
+window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
+    // Don't init sender if in receiver mode
+    if (IS_CAST_RECEIVER) {
+        return;
+    }
+
+    if (loaded) {
+        CHROMECAST.setup(onCastReady, onCastStarted, onCastStopped);
+    }
+}
+
+/*
+ * A cast device is available.
+ */
+var onCastReady = function() {
+    $chromecastButton.show();
+}
+
+/*
+ * A cast session started.
+ */
+var onCastStarted = function() {
+    $welcomeScreen.hide();
+    $statePickerScreen.hide();
+    $stack.hide();
+    $chromecastScreen.show();
+}
+
+/*
+ * A cast session stopped.
+ */
+var onCastStopped = function() {
+    $chromecastScreen.hide();
+    $stack.show();
+
+    
+}
+
+/*
  * Resize current slide.
  */
 var onWindowResize = function() {
@@ -115,10 +165,19 @@ var onWindowResize = function() {
 /*
  * Begin chromecasting.
  */
-var onCastClick = function(e) {
+var onCastStartClick = function(e) {
     e.preventDefault();
 
-    beginCasting();
+    CHROMECAST.startCasting();
+}
+
+/*
+ * Stop chromecasting.
+ */
+var onCastStopClick = function(e) {
+    e.preventDefault();
+
+    CHROMECAST.stopCasting();
 }
 
 /*

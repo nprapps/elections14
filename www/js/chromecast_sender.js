@@ -1,76 +1,134 @@
-// Global state
-var session = null;
+var CHROMECAST = (function() {
+    var obj = {};
 
-window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
-    // Don't init sender if in receiver mode
-    if (IS_CAST_RECEIVER) {
-        return;
+    // Global state
+    var _session = null;
+    var _readyCallback = null;
+    var _startedCallback = null;
+    var _stoppedCallback = null;
+
+    /*
+     * Initialize chromecast environment.
+     */
+    obj.setup = function(readyCallback, startedCallback, stoppedCallback) {
+        _readyCallback = readyCallback;
+        _startedCallback = startedCallback;
+        _stoppedCallback = stoppedCallback;
+
+        var sessionRequest = new chrome.cast.SessionRequest(APP_CONFIG.CHROMECAST_APP_ID);
+
+        var apiConfig = new chrome.cast.ApiConfig(
+            sessionRequest,
+            sessionListener,
+            receiverListener,
+            chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+        );
+
+        chrome.cast.initialize(apiConfig, onInitSuccess, onInitError);
     }
 
-    if (loaded) {
-        initializeCastApi();
-    } else {
-        console.log(errorInfo);
+    /*
+     * Listen for existing sessions with the receiver.
+     */
+    var sessionListener = function(session) {
+        _session = session;
+        _session.addUpdateListener(sessionUpdateListener);
+
+        if (_startedCallback) {
+            _startedCallback();
+        }
     }
-}
 
-var initializeCastApi = function() {
-    var sessionRequest = new chrome.cast.SessionRequest(APP_CONFIG.CHROMECAST_APP_ID);
-    var apiConfig = new chrome.cast.ApiConfig(
-        sessionRequest,
-        sessionListener,
-        receiverListener
-    );
-
-    chrome.cast.initialize(apiConfig, onInitSuccess, onError);
-}
-
-var sessionListener = function(e) {
-    session = e;
-    session.addMessageListener(APP_CONFIG.CHROMECAST_NAMESPACE, receiverMessage);
-}
-
-var receiverMessage = function(namespace, message) {
-    console.log('Message from receiver:', message)
-}
-
-var receiverListener = function(e) {
-    if (e === chrome.cast.ReceiverAvailability.AVAILABLE) {
-        console.log('available');
-    } else {
-        console.log('not available');
+    /*
+     * Listen for changes to the session status.
+     */
+    var sessionUpdateListener = function(isAlive) {
+        if (!isAlive) {
+            if (_stoppedCallback) {
+                _stoppedCallback();
+            }
+        }
     }
-}
 
-var onInitSuccess = function(e) {
-    console.log('init success');
-}
+    /*
+     * Listen for receivers to become available.
+     */
+    var receiverListener = function(e) {
+        if (e === chrome.cast.ReceiverAvailability.AVAILABLE) {
+            if (_readyCallback) {
+                _readyCallback();
+            }
+        }
+    }
 
-var onError = function(e) {
-    console.log('init error:', e);
-}
+    /*
+     * Environment successfully initialized.
+     */
+    var onInitSuccess = function(e) {}
 
-var onSendError = function(message) {
-    console.log(message);
-}
+    /*
+     * Error initializing.
+     */
+    var onInitError = function(e) {}
 
-var onSendSuccess = function(message) {
-    console.log(message);
-}
+    /*
+     * Start casting.
+     */
+    obj.startCasting = function() {
+        chrome.cast.requestSession(onRequestSessionSuccess, onRequestSessionError);
+    }
 
-var sendMessage = function(message) {
-    console.log(session);
-    session.sendMessage(APP_CONFIG.CHROMECAST_NAMESPACE, message, onSendSuccess, onSendError);
-}
+    /*
+     * Casting session begun successfully.
+     */
+    var onRequestSessionSuccess = function(session) {
+        _session = session;
+        _session.addUpdateListener(sessionUpdateListener);
 
-var onRequestSessionSuccess = function(e) {
-    session = e;
-}
+        if (_startedCallback) {
+            _startedCallback();
+        }
+    }
 
-var onLaunchError = function(e) {
-    console.log('launch error:', e);
-}
+    /*
+     * Casting session failed to start.
+     */
+    var onRequestSessionError = function(e) {}
 
-var beginCasting = function() {
-    chrome.cast.requestSession(onRequestSessionSuccess, onLaunchError);
-}
+    /*
+     * Stop casting.
+     */
+    obj.stopCasting = function() {
+        _session.stop(onSessionStopSuccess, onSessionStopError);
+    }
+
+    /*
+     * Inform client the session has stopped.
+     */
+    var onSessionStopSuccess = function() {
+        if (_stoppedCallback) {
+            _stoppedCallback();
+        }
+    }
+
+    var onSessionStopError = function() {}
+
+    /*
+     * Send a message to the receiver.
+     */
+    var sendMessage = function(message) {
+        _session.sendMessage(APP_CONFIG.CHROMECAST_NAMESPACE, message, onSendSuccess, onSendError);
+    }
+
+    /*
+     * Successfully sent message to receiver.
+     */
+    var onSendSuccess = function(message) {}
+
+    /*
+     * Error sending message to receiver.
+     */
+    var onSendError = function(message) {}
+
+    return obj;
+}());
