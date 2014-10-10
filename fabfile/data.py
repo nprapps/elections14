@@ -106,6 +106,7 @@ def bootstrap():
     load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
+    load_ballot_measures_extra('data/ballot-measures-extra.csv')
 
 def load_races(path):
     """
