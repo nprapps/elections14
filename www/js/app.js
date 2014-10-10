@@ -26,12 +26,7 @@ var $commentCount = null;
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 
-var stack = [];
-var nextStack = [];
-var currentSlide = 0;
-var isRotating = false;
 var state = null;
-var mouseMoveTimer = null;
 
 var firstShareLoad = true;
 
@@ -69,7 +64,7 @@ var onDocumentReady = function(e) {
     $audioPlayer = $('#pop-audio');
     $fullScreenButton = $('.fullscreen p');
     $chromecastButton = $('.chromecast');
-    $stack = $('.stack');
+    $stack = $('#stack');
     $header = $('.results-header');
     $headerControls = $('.header-controls');
     $shareModal = $('#share-modal');
@@ -92,7 +87,7 @@ var onDocumentReady = function(e) {
     $(window).on('resize', onWindowResize);
 
     if (IS_CAST_RECEIVER) {
-        beginStack();
+        STACK.start();
     } else {
         // Prepare welcome screen
         $welcomeScreen.show();
@@ -123,7 +118,7 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
     }
 
     if (loaded) {
-        CHROMECAST.setup(onCastReady, onCastStarted, onCastStopped);
+        CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
     }
 }
 
@@ -142,6 +137,8 @@ var onCastStarted = function() {
     $statePickerScreen.hide();
     $stack.hide();
     $chromecastScreen.show();
+
+    STACK.stop();
 }
 
 /*
@@ -149,9 +146,8 @@ var onCastStarted = function() {
  */
 var onCastStopped = function() {
     $chromecastScreen.hide();
-    $stack.show();
 
-    
+    STACK.start();
 }
 
 /*
@@ -168,7 +164,7 @@ var onWindowResize = function() {
 var onCastStartClick = function(e) {
     e.preventDefault();
 
-    CHROMECAST.startCasting();
+    CHROMECAST_SENDER.startCasting();
 }
 
 /*
@@ -177,7 +173,7 @@ var onCastStartClick = function(e) {
 var onCastStopClick = function(e) {
     e.preventDefault();
 
-    CHROMECAST.stopCasting();
+    CHROMECAST_SENDER.stopCasting();
 }
 
 /*
@@ -246,28 +242,7 @@ var onFullScreenButtonClick = function() {
     }
 }
 
-/*
- * Show the header.
- */
-var onMouseMove = function() {
-    $header.hide();
-    $headerControls.show();
 
-    if (mouseMoveTimer) {
-        clearTimeout(mouseMoveTimer);
-    }
-    mouseMoveTimer = setTimeout(onMouseEnd, 500);
-}
-
-/*
- * Hide the header.
- */
-var onMouseEnd = function() {
-    if (!($headerControls.data('hover'))) {
-        $header.show();
-        $headerControls.hide();
-    }
-}
 
 /*
  * Enable header hover.
@@ -338,7 +313,9 @@ var onStatePickerSubmit = function(e) {
 
     $statePickerLink.text(APP_CONFIG.STATES[state]);
 
-    beginStack();
+    $statePickerScreen.hide();
+
+    STACK.start();
 }
 
 var getStatePostal = function(input) {
@@ -366,21 +343,6 @@ var onLocateIP = function(response) {
     $stateName.text(stateName)
 
     state = place;
-}
-
-/*
- * Setup the stack display.
- */
-var beginStack = function() {
-    $welcomeScreen.hide();
-    $statePickerScreen.hide();
-    $stack.show();
-
-    getStack();
-
-    $('body').on('mousemove', onMouseMove);
-    $headerControls.hover(onControlsHover, offControlsHover);
-    $audioPlayer.jPlayer('play');
 }
 
 /*
@@ -437,92 +399,6 @@ var resizeSlide = function(slide) {
     slide.height($h);
 }
 
-/*
- * Rotate to the next slide in the stack.
- */
-var rotateSlide = function() {
-    isRotating = true;
-
-    currentSlide += 1;
-
-    if (currentSlide >= stack.length) {
-        if (nextStack.length > 0) {
-            console.log('Switching to new stack');
-            stack = nextStack;
-            nextStack = [];
-        }
-
-        currentSlide = 0;
-    }
-
-    var slug = stack[currentSlide]['slug'];
-
-    if (slug === 'state') {
-        // If no state selected, skip to next
-        if (!state) {
-            rotateSlide();
-            return;
-        }
-            
-        slide_path = 'slides/state-' + state + '.html';
-    } else {
-        slide_path = 'slides/' + slug + '.html';
-    }
-
-    console.log('Rotating to next slide:', slide_path);
-
-    $.ajax({
-        url: APP_CONFIG.S3_BASE_URL + '/' + slide_path,
-        success: function(data) {
-            var $oldSlide = $('#stack').find('.slide');
-            var $newSlide = $(data);
-
-            if ($oldSlide.length > 0) {
-                $oldSlide.fadeOut(800, function() {
-                    $(this).remove();
-                    $('#stack').append($newSlide);
-                    resizeSlide($newSlide)
-                    $newSlide.fadeIn(800, function(){
-                        console.log('Slide rotation complete');
-                        setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
-                    });
-                });
-            }
-
-            else {
-                $('#stack').append($newSlide);
-                resizeSlide($newSlide)
-                $newSlide.fadeIn(800, function(){
-                    console.log('Slide rotation complete');
-                    setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
-                });
-            }
-        }
-    });
-}
-
-/*
- * Update the slide stack.
- */
-function getStack() {
-    console.log('Updating the stack');
-
-    $.ajax({
-        url: APP_CONFIG.S3_BASE_URL + '/live-data/stack.json',
-        dataType: 'json',
-        success: function(data) {
-            nextStack = data;
-
-            console.log('Stack update complete');
-
-            if (!isRotating) {
-                rotateSlide();
-            }
-
-            setTimeout(getStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
-        }
-    });
-}
 
 /*
  * Setup audio playback.

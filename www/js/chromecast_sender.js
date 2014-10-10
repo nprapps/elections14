@@ -1,4 +1,4 @@
-var CHROMECAST = (function() {
+var CHROMECAST_SENDER = (function() {
     var obj = {};
 
     // Global state
