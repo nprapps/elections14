@@ -70,7 +70,6 @@ var onDocumentReady = function(e) {
     $shareModal = $('#share-modal');
     $commentCount = $('.comment-count');
 
-    $('body').css('opacity', 1);
 
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
@@ -88,13 +87,13 @@ var onDocumentReady = function(e) {
 
     if (IS_CAST_RECEIVER) {
         CHROMECAST_RECEIVER.setup();
-        
+
         setUpAudio(false);
 
         STACK.start();
     } else {
         // Prepare welcome screen
-        $welcomeScreen.show();
+        $welcomeScreen.css('opacity', 1);
         resizeSlide($welcomeScreen);
 
         // Configure share panel
