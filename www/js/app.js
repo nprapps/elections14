@@ -299,7 +299,9 @@ var hideStateFace = function() {
     $stateface.css('opacity', 0);
     $stateName.css('opacity', 0);
 
-    $typeahead.css('top', '-23vw');
+    if ($stateface.height() > 0) {
+        $typeahead.css('top', '-23vw');
+    }
 }
 
 var onStatePickerSubmit = function(e) {
@@ -341,9 +343,9 @@ var onLocateIP = function(response) {
     var place = response.most_specific_subdivision.iso_code;
     $('#option-' + place).prop('selected', true);
 
-    $stateface.addClass('stateface-' + place.toLowerCase());
+    // $stateface.addClass('stateface-' + place.toLowerCase());
     var stateName = APP_CONFIG.STATES[place];
-    $stateName.text(stateName)
+    // $stateName.text(stateName)
 
     state = place;
 }
