@@ -20,18 +20,17 @@
                             &mdash;
                         {% endif %}
                     </td>
-                    <td class="state{% if race.is_called() %} {{ race.get_winning_party() }}{% else %} {{ race.previous_party }}{% endif %} ">
-                        {{ race.state_postal }}{% if seat_number %}<span class="seat_number">-{{ race.seat_number }}</span>
-                        {% endif %}
+                    <td class="state{% if race.is_called() %} {{ race.get_winning_party() }}{% endif %} ">
+                        {{ race.state_postal }}
                     </td>
                     <td class="description">
                         {{ race.ballot_measure_description }}
                     </td>
                     {% set candidate = race.top_choices()[0] %}
                     <td class="choice id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="lname">{{ candidate.last_name }}</span></td>
-                    <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}{% if race.is_reporting() %} reporting{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
+                    <td class="candidate-total {% if candidate.is_winner() %} winner{% endif %}{% if race.is_reporting() %} reporting{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
                     {% set candidate = race.top_choices()[1] %}
-                    <td class="candidate-total {{ candidate.party|lower }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}{% if race.is_reporting() %} reporting{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
+                    <td class="candidate-total {% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}{% if race.is_reporting() %} reporting{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
                     <td class="choice id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="lname">{{ candidate.last_name }}</span></td>
                 </tr>
                 {% endfor %}
