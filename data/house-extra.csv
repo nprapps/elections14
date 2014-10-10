@@ -11,7 +11,6 @@ AR01,gop,,
 AR02,gop,1,8:30
 AR03,gop,,
 AR04,gop,1,8:30
-AS01,dem,,
 AZ01,dem,1,9:00
 AZ02,dem,1,9:00
 AZ03,dem,,
@@ -86,7 +85,6 @@ CT02,dem,,
 CT03,dem,,
 CT04,dem,,
 CT05,dem,1,8:00
-DC01,dem,,
 DE01,dem,,
 FL01,gop,,
 FL02,gop,1,8:00
@@ -129,7 +127,6 @@ GA11,gop,,
 GA12,dem,1,7:00
 GA13,dem,,
 GA14,gop,,
-GU01,dem,,
 HI01,dem,1,11:00
 HI02,dem,,
 IA01,dem,1,10:00
@@ -230,7 +227,6 @@ MO05,dem,,
 MO06,gop,,
 MO07,gop,,
 MO08,gop,,
-MP01,dem,,
 MS01,gop,,
 MS02,dem,,
 MS03,gop,,
@@ -345,7 +341,6 @@ PA15,gop,,
 PA16,gop,,
 PA17,dem,,
 PA18,gop,,
-PR01,dem,,
 RI01,dem,,
 RI02,dem,,
 SC01,gop,,
@@ -416,7 +411,6 @@ VA08,dem,,
 VA09,gop,,
 VA10,gop,1,7:00
 VA11,dem,,
-VI01,dem,,
 VT01,dem,,
 WA01,dem,1,11:00
 WA02,dem,,
