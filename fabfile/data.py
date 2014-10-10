@@ -464,6 +464,30 @@ def _save_senate_row(row, quiet):
             print 'Senate race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
 
 @task
+def load_ballot_measures_extra(path, quiet=False):
+    """
+    Load extra ballot measure info
+    """
+    print 'Loading ballot measure extra data from disk'
+
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            _save_ballot_measure_row(row, quiet)
+
+def _save_ballot_measure_row(row, quiet):
+    """
+    Save a ballot measure row
+    """
+    import models
+
+    if row.get('race_id'):
+        race = models.Race.get(race_id=row['race_id'])
+        race.ballot_measure_description = row['description']
+        race.featured_race = True
+        race.save()
+
+@task
 def mock_slides():
     """
     Load mockup slides from assets directory.

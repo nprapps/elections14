@@ -39,13 +39,13 @@ def _init_ap(endpoint):
         }
     else:
         params = {
-            'officeID': 'S,H,G',
+            'officeID': 'S,H,G,I',
             'format': 'json',
             'apiKey': SECRETS['AP_API_KEY']
         }
 
     params = {
-        'officeID': 'S,H,G',
+        'officeID': 'S,H,G,I',
         'format': 'json',
         'apiKey': SECRETS['AP_API_KEY']
     }
@@ -98,11 +98,11 @@ def _update_ap(endpoint, use_cache=True):
         }
     else:
         params = {
-            'officeID': 'S,H,G',
+            'officeID': 'S,H,G,I',
             'format': 'json',
             'apiKey': SECRETS['AP_API_KEY']
         }
-        
+
     response = requests.get(url, params=params, headers=headers)
 
     if response.status_code == 304:

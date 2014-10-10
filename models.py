@@ -101,6 +101,7 @@ class Race(SlugModel):
     number_in_runoff = CharField(null=True)
 
     # NPR data
+    ballot_measure_description = CharField(max_length=255, null=True)
     slug = CharField(max_length=255)
     featured_race = BooleanField(default=False)
     accept_ap_call = BooleanField(default=True)
@@ -280,7 +281,7 @@ class Candidate(SlugModel):
     first_name = CharField(max_length=255, null=True,
         help_text='May be null for ballot initiatives')
     last_name = CharField(max_length=255)
-    party = CharField(max_length=255)
+    party = CharField(max_length=255, null=True)
     race = ForeignKeyField(Race, related_name='candidates')
     candidate_id = CharField(index=True)
 
