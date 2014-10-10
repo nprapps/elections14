@@ -52,7 +52,7 @@ var onDocumentReady = function(e) {
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
     $welcomeSubmitButton = $('.state-picker-submit');
-    $cast = $('#cast');
+    $cast = $('.cast');
 
     $statePickerForm  = $('form.state-picker-form');
     $statePickerScreen = $('.state-picker');
