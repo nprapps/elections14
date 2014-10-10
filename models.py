@@ -19,7 +19,7 @@ db = PostgresqlDatabase(
 
 # Indepdendent candidate overrides, (AP race_id, candidate_id) two-tuple mapping
 DEMOCRAT_INDIES = {
-    '17585': '6081', # KS senate, Greg Orman
+    'KS-17585': '6081', # KS senate, Greg Orman
 }
 REPUBLICAN_INDIES = {}
 

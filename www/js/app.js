@@ -363,9 +363,9 @@ var onLocateIP = function(response) {
     var place = response.most_specific_subdivision.iso_code;
     $('#option-' + place).prop('selected', true);
 
-    // $stateface.addClass('stateface-' + place.toLowerCase());
+    $stateface.addClass('stateface-' + place.toLowerCase());
     var stateName = APP_CONFIG.STATES[place];
-    // $stateName.text(stateName)
+    $stateName.text(stateName)
 
     state = place;
 }
