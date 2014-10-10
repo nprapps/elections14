@@ -601,6 +601,7 @@ def _fake_called_status(race):
 
 def _fake_results(race):
     max_votes = 0
+    max_candidate = None
     for candidate in race.candidates:
         candidate.ap_winner = False
         if candidate.party in ['GOP', 'Dem', 'Grn'] and race.precincts_reporting > 0:
@@ -614,7 +615,7 @@ def _fake_results(race):
 
         candidate.save()
 
-    if race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
+    if max_candidate and race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
         max_candidate.ap_winner = True
         max_candidate.save()
 
