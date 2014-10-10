@@ -9,6 +9,9 @@ var STACK = (function () {
     var _rotateTimer = null;
     var _mouseMoveTimer = null;
 
+    var _stackRequest = null;
+    var _rotateRequest = null;
+
     /*
      * Setup the stack display.
      */
@@ -26,24 +29,34 @@ var STACK = (function () {
      * Stop running the stack.
      */
     obj.stop = function() {
-        $stack.hide();
-        
-        $audioPlayer.jPlayer('pause');
+        if (_stackTimer) {
+            clearTimeout(_stackTimer);
+            _stackTimer = null;
+        }
+
+        if (_stackRequest) {
+            _stackRequest.abort();
+            _stackRequest = null;
+        }
 
         if (_rotateTimer) {
             clearTimeout(_rotateTimer);
             _rotateTimer = null;
         }
 
-        if (_stackTimer) {
-            clearTimeout(_stackTimer);
-            _stackTimer = null;
+        if (_rotateRequest) {
+            _rotateRequest.abort();
+            _rotateRequest = null;
         }
 
         if (_mouseMoveTimer) {
             clearTimeout(_mouseMoveTimer);
             _mouseMoveTimer = null;
         }
+
+        $audioPlayer.jPlayer('pause');
+
+        $stack.hide();
     }
 
     /*
@@ -102,7 +115,7 @@ var STACK = (function () {
 
         console.log('Rotating to next slide:', slide_path);
 
-        $.ajax({
+        _rotateRequest = $.ajax({
             url: APP_CONFIG.S3_BASE_URL + '/' + slide_path,
             success: function(data) {
                 var $oldSlide = $stack.find('.slide');
@@ -134,7 +147,7 @@ var STACK = (function () {
      * Update the slide stack.
      */
     function updateStack() {
-        $.ajax({
+        _stackRequest = $.ajax({
             url: APP_CONFIG.S3_BASE_URL + '/live-data/stack.json',
             dataType: 'json',
             success: function(data) {

@@ -87,6 +87,10 @@ var onDocumentReady = function(e) {
     $(window).on('resize', onWindowResize);
 
     if (IS_CAST_RECEIVER) {
+        CHROMECAST_RECEIVER.setup();
+        
+        setUpAudio(false);
+
         STACK.start();
     } else {
         // Prepare welcome screen

@@ -1,25 +1,18 @@
-var initializeReceiver = function() { 
-    // Only init receiver if in receiver mode
-    if (!IS_CAST_RECEIVER) {
-        return;
+var CHROMECAST_RECEIVER = (function() {
+    var obj = {};
+
+    obj.setup = function() { 
+        var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+        var customMessageBus = castReceiverManager.getCastMessageBus(APP_CONFIG.CHROMECAST_NAMESPACE);
+
+        customMessageBus.onMessage = onReceiveMessage; 
+
+        castReceiverManager.start();
     }
 
-    var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
-    var customMessageBus = castReceiverManager.getCastMessageBus(APP_CONFIG.CHROMECAST_NAMESPACE);
-
-    customMessageBus.onMessage = onReceiveMessage; 
-
-    castReceiverManager.start();
-}
-
-var onReceiveMessage = function(e) {
-    /*if (e.data == 'showQuestionOne') {
-        showQuestionOne();
+    var onReceiveMessage = function(e) {
+        // TODO
     }
 
-    else if (e.data.startsWith('highlightAnswer')) {
-        highlightAnswer(e.data)
-    }*/
-}
-
-$(initializeReceiver);
+    return obj;
+}());
