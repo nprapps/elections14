@@ -34,7 +34,7 @@ def house_big_board(page):
 
     context = make_context()
 
-    context['page_title'] = 'House'
+    context['page_title'] = 'House Page %s of 2' % page
     context['page_class'] = 'house'
     context['column_number'] = 2
 
@@ -110,7 +110,7 @@ def blue_dogs():
     Ongoing list of how blue dog democrats are faring
     """
     context = make_context()
-    
+
     return render_template('slides/blue-dogs.html', **context)
 
 def house_freshmen():
@@ -118,7 +118,7 @@ def house_freshmen():
     Ongoing list of how representatives elected in 2012 are faring
     """
     context = make_context()
-    
+
     return render_template('slides/house-freshmen.html', **context)
 
 def incumbents_lost():
@@ -126,7 +126,7 @@ def incumbents_lost():
     Ongoing list of which incumbents lost their elections
     """
     context = make_context()
-    
+
     return render_template('slides/incumbents-lost.html', **context)
 
 def obama_reps():
@@ -134,7 +134,7 @@ def obama_reps():
     Ongoing list of Incumbent Republicans In Districts Barack Obama Won In 2012
     """
     context = make_context()
-    
+
     return render_template('slides/obama-reps.html', **context)
 
 def poll_closing():
@@ -142,7 +142,7 @@ def poll_closing():
     Serve up poll closing information
     """
     context = make_context()
-    
+
     return render_template('slides/poll-closing.html', **context)
 
 def rematches():
@@ -150,7 +150,7 @@ def rematches():
     List of elections with candidates who have faced off before
     """
     context = make_context()
-    
+
     return render_template('slides/rematches.html', **context)
 
 def romney_dems():
@@ -158,7 +158,7 @@ def romney_dems():
     Ongoing list of Incumbent Democrats In Districts Mitt Romney Won In 2012
     """
     context = make_context()
-    
+
     return render_template('slides/romney-dems.html', **context)
 
 
