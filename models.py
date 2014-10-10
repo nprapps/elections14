@@ -251,6 +251,9 @@ class Race(SlugModel):
         return flat
 
     def top_candidates(self):
+        """
+        Return (dem, gop) pair
+        """
         try:
             if self.race_id in DEMOCRAT_INDIES.keys():
                 candidate_id = DEMOCRAT_INDIES[self.race_id]
@@ -263,9 +266,9 @@ class Race(SlugModel):
         try:
             if self.race_id in REPUBLICAN_INDIES.keys():
                 candidate_id = REPUBLICAN_INDIES[self.race_id]
-                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id)[0]
+                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
-                gop = self.candidates.where(self.candidates.model_class.party == "GOP")[0]
+                gop = self.candidates.where(self.candidates.model_class.party == "GOP").get()
         except IndexError:
             gop = None
 
