@@ -271,6 +271,14 @@ class Race(SlugModel):
 
         return (dem, gop)
 
+    def top_choices(self):
+        """
+        Return (yes, no) or (for, against) pair
+        """
+        yes = self.candidates.where((self.candidates.model_class.last_name == 'Yes') | (self.candidates.model_class.last_name == 'For')).get()
+        no = self.candidates.where((self.candidates.model_class.last_name == 'No') | (self.candidates.model_class.last_name == 'Against')).get()
+        return (yes, no)
+
 class Candidate(SlugModel):
     """
     Candidate model.

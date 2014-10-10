@@ -503,6 +503,7 @@ def mock_slides():
     _mock_empty_slide('house big board one', 'house_big_board_one', it.next())
     _mock_empty_slide('house big board two', 'house_big_board_two', it.next())
     _mock_empty_slide('governor big board', 'governor_big_board', it.next())
+    _mock_empty_slide('ballot measures big board', 'ballot_measures_big_board', it.next())
     _mock_empty_slide('balance of power', 'balance_of_power', it.next())
     _mock_empty_slide('poll closing', 'poll_closing', it.next())
     _mock_empty_slide('state', '_state_slide', it.next())

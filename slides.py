@@ -83,6 +83,25 @@ def governor_big_board():
 
     return render_template('slides/race_results.html', **context)
 
+def ballot_measures_big_board():
+    """
+    Governor big board
+    """
+    from models import Race
+
+    context = make_context()
+
+    context['page_title'] = 'Ballot Measures'
+    context['page_class'] = 'ballot-measures'
+    context['column_number'] = 2
+
+    races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
+
+    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
+
+    return render_template('slides/ballot_measure_results.html', **context)
+
+
 def balance_of_power():
     """
     Serve up the balance of power graph
