@@ -314,7 +314,6 @@ var switchState = function() {
 
     $stateName.text(input);
     getState();
-
     $('.typeahead').typeahead('val', '')
     $('.typeahead').typeahead('close');
     $('.typeahead').blur();
@@ -331,13 +330,6 @@ var hideStateFace = function() {
 
 var onStatePickerSubmit = function(e) {
     e.preventDefault();
-
-    getState();
-
-    if (!(state)) {
-        alert("Please pick a state!");
-        return false;
-    }
 
     $.cookie('state', state);
 
