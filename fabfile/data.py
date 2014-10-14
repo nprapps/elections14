@@ -551,8 +551,6 @@ def mock_results(folder='data'):
     for race in models.Race.select():
         race.accept_ap_call = False
         race.ap_called = False
-        _fake_incumbent(race)
-        _fake_previous_party(race)
         _fake_precincts_reporting(race)
         _fake_called_status(race)
         _fake_results(race)
