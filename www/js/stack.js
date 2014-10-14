@@ -12,8 +12,6 @@ var STACK = (function () {
     var _stackRequest = null;
     var _rotateRequest = null;
 
-    var _mouseMoveCounter = 0;
-
     /*
      * Setup the stack display.
      */
@@ -65,15 +63,12 @@ var STACK = (function () {
      * Show the header.
      */
     var onMoveMouse = function() {
-        _mouseMoveCounter += 1;
-
-        if (!($('body').data('mouse-moving')) && _mouseMoveCounter > 20) {
+        if (!($('body').data('mouse-moving'))) {
             $header.fadeOut(200, function() {
                 $headerControls.fadeIn(200);
             });
 
             $('body').data('mouse-moving', true);
-            _mouseMoveCounter = 0;
         }
 
         if (_mouseMoveTimer) {
@@ -87,7 +82,6 @@ var STACK = (function () {
      * Hide the header.
      */
     var onEndMouse = function() {
-        _mouseMoveCounter = 0;
 
         if (!($headerControls.data('hover'))) {
             $('body').data('mouse-moving', false);
