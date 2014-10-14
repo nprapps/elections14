@@ -65,10 +65,11 @@ var STACK = (function () {
     var onMoveMouse = function() {
         if (!($('body').data('mouse-moving'))) {
             $header.fadeOut(200, function() {
-                $headerControls.fadeIn(200);
+                $headerControls.fadeIn(200, function() {
+                    $('body').data('mouse-moving', true);
+                });
             });
 
-            $('body').data('mouse-moving', true);
         }
 
         if (_mouseMoveTimer) {
@@ -84,9 +85,10 @@ var STACK = (function () {
     var onEndMouse = function() {
 
         if (!($headerControls.data('hover'))) {
-            $('body').data('mouse-moving', false);
             $headerControls.fadeOut(200, function() {
-                $header.fadeIn(200);
+                $header.fadeIn(200, function() {
+                    $('body').data('mouse-moving', false);
+                });
             });
         }
     }
