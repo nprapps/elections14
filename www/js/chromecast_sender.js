@@ -1,7 +1,7 @@
 var CHROMECAST_SENDER = (function() {
     var obj = {};
 
-    // Global state
+    var MESSAGE_DELIMITER = 'NPRVIZ';
     var _session = null;
     var _readyCallback = null;
     var _startedCallback = null;
@@ -116,8 +116,13 @@ var CHROMECAST_SENDER = (function() {
     /*
      * Send a message to the receiver.
      */
-    var sendMessage = function(message) {
-        _session.sendMessage(APP_CONFIG.CHROMECAST_NAMESPACE, message, onSendSuccess, onSendError);
+    obj.sendMessage = function(messageType, message) {
+        _session.sendMessage(
+            APP_CONFIG.CHROMECAST_NAMESPACE,
+            messageType + MESSAGE_DELIMITER + message,
+            onSendSuccess,
+            onSendError
+        );
     }
 
     /*

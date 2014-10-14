@@ -106,6 +106,7 @@ def bootstrap():
     load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
+    load_ballot_measures_extra('data/ballot-measures-extra.csv')
 
 def load_races(path):
     """
@@ -464,6 +465,30 @@ def _save_senate_row(row, quiet):
             print 'Senate race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
 
 @task
+def load_ballot_measures_extra(path, quiet=False):
+    """
+    Load extra ballot measure info
+    """
+    print 'Loading ballot measure extra data from disk'
+
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            _save_ballot_measure_row(row, quiet)
+
+def _save_ballot_measure_row(row, quiet):
+    """
+    Save a ballot measure row
+    """
+    import models
+
+    if row.get('race_id'):
+        race = models.Race.get(race_id=row['race_id'])
+        race.ballot_measure_description = row['description']
+        race.featured_race = True
+        race.save()
+
+@task
 def mock_slides():
     """
     Load mockup slides from assets directory.
@@ -478,6 +503,7 @@ def mock_slides():
     _mock_empty_slide('house big board one', 'house_big_board_one', it.next())
     _mock_empty_slide('house big board two', 'house_big_board_two', it.next())
     _mock_empty_slide('governor big board', 'governor_big_board', it.next())
+    _mock_empty_slide('ballot measures big board', 'ballot_measures_big_board', it.next())
     _mock_empty_slide('balance of power', 'balance_of_power', it.next())
     _mock_empty_slide('poll closing', 'poll_closing', it.next())
     _mock_empty_slide('state', '_state_slide', it.next())
@@ -575,6 +601,7 @@ def _fake_called_status(race):
 
 def _fake_results(race):
     max_votes = 0
+    max_candidate = None
     for candidate in race.candidates:
         candidate.ap_winner = False
         if candidate.party in ['GOP', 'Dem', 'Grn'] and race.precincts_reporting > 0:
@@ -588,7 +615,7 @@ def _fake_results(race):
 
         candidate.save()
 
-    if race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
+    if max_candidate and race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
         max_candidate.ap_winner = True
         max_candidate.save()
 

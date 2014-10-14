@@ -20,7 +20,7 @@
 @screen-xl: 1400px;
 @screen-big-board: 1920px;
 
-.house, .senate, .governor{
+.house, .senate, .governor, .ballot-measures{
     table {
         font-family: 'Cooper Hewitt';
         font-weight: 400;
@@ -356,6 +356,10 @@
                 &.dem { color: @blue; }
                 &.gop { color: @red; }
                 &.other { color: @green; }
+            }
+
+            .description {
+              width: 50%;
             }
 
             .candidate {

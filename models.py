@@ -19,7 +19,7 @@ db = PostgresqlDatabase(
 
 # Indepdendent candidate overrides, (AP race_id, candidate_id) two-tuple mapping
 DEMOCRAT_INDIES = {
-    '17585': '6081', # KS senate, Greg Orman
+    'KS-17585': '6081', # KS senate, Greg Orman
 }
 REPUBLICAN_INDIES = {}
 
@@ -101,6 +101,7 @@ class Race(SlugModel):
     number_in_runoff = CharField(null=True)
 
     # NPR data
+    ballot_measure_description = CharField(max_length=255, null=True)
     slug = CharField(max_length=255)
     featured_race = BooleanField(default=False)
     accept_ap_call = BooleanField(default=True)
@@ -250,6 +251,9 @@ class Race(SlugModel):
         return flat
 
     def top_candidates(self):
+        """
+        Return (dem, gop) pair
+        """
         try:
             if self.race_id in DEMOCRAT_INDIES.keys():
                 candidate_id = DEMOCRAT_INDIES[self.race_id]
@@ -262,13 +266,21 @@ class Race(SlugModel):
         try:
             if self.race_id in REPUBLICAN_INDIES.keys():
                 candidate_id = REPUBLICAN_INDIES[self.race_id]
-                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id)[0]
+                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
-                gop = self.candidates.where(self.candidates.model_class.party == "GOP")[0]
+                gop = self.candidates.where(self.candidates.model_class.party == "GOP").get()
         except IndexError:
             gop = None
 
         return (dem, gop)
+
+    def top_choices(self):
+        """
+        Return (yes, no) or (for, against) pair
+        """
+        yes = self.candidates.where((self.candidates.model_class.last_name == 'Yes') | (self.candidates.model_class.last_name == 'For')).get()
+        no = self.candidates.where((self.candidates.model_class.last_name == 'No') | (self.candidates.model_class.last_name == 'Against')).get()
+        return (yes, no)
 
 class Candidate(SlugModel):
     """
@@ -280,7 +292,7 @@ class Candidate(SlugModel):
     first_name = CharField(max_length=255, null=True,
         help_text='May be null for ballot initiatives')
     last_name = CharField(max_length=255)
-    party = CharField(max_length=255)
+    party = CharField(max_length=255, null=True)
     race = ForeignKeyField(Race, related_name='candidates')
     candidate_id = CharField(index=True)
 
