@@ -456,9 +456,16 @@ def _save_senate_row(row, quiet):
             seat_number = int(seat_number)
 
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
-
         existing.previous_party = row['party']
         existing.save()
+
+        if row['incumbent'] == '1':
+            if row['party'] == 'gop':
+                candidate = existing.candidates.where(models.Candidate.party == 'GOP').get()
+            elif row['party'] == 'dem':
+                candidate = existing.candidates.where(models.Candidate.party == 'Dem').get()
+            candidate.incumbent = True
+            candidate.save()
 
     except models.Race.DoesNotExist:
         if not quiet:
