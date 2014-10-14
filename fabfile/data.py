@@ -609,7 +609,7 @@ def _fake_results(race):
     max_candidate = None
     for candidate in race.candidates:
         candidate.ap_winner = False
-        if candidate.party in ['GOP', 'Dem', 'Grn'] and race.precincts_reporting > 0:
+        if (candidate.party in ['GOP', 'Dem', 'Grn'] or race.office_id == 'I') and race.precincts_reporting > 0:
             votes = random.randint(400000, 600000)
             candidate.vote_count = votes
             if votes > max_votes:
