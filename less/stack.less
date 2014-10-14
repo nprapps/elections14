@@ -257,6 +257,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     height: 5vw;
     color: @grayMedium;
     .results-header {
+        height: 3.5vw;
         display: block;
         overflow: hidden;
         // margin-bottom: 0;
@@ -266,13 +267,14 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         font-size: 1vw;
         padding: .8vw;
         @media screen and (max-width: @screen-sm){
+            height:7vw;
             padding: 1.5vw 1.5vw;
             font-size: 2vw;
+            line-height:4vw;
         }
         
         .logo {
-            height: 10px;
-            // width: 6%;
+            height:100%;
             margin: 0 .5% 0 0;
         }
 
@@ -287,6 +289,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             line-height: 2vw;
             @media screen and (max-width: @screen-sm){
                 font-size: 2vw;
+                line-height:4vw;
             }
         }
 
@@ -385,10 +388,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             }
 
             .volume-icon {
-                width: 20px;
-                height: 20px;
-                margin-top: -2px;
-                fill: @grayMedium; 
+                width: 1.5vw;
+                height: 1.5vw;
             }
         }
     }
