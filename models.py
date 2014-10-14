@@ -257,10 +257,10 @@ class Race(SlugModel):
         try:
             if self.race_id in DEMOCRAT_INDIES.keys():
                 candidate_id = DEMOCRAT_INDIES[self.race_id]
-                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id)[0]
+                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
-                dem = self.candidates.where(self.candidates.model_class.party == "Dem")[0]
-        except IndexError:
+                dem = self.candidates.where(self.candidates.model_class.party == "Dem").get()
+        except Candidate.DoesNotExist:
             dem = None
 
         try:
@@ -269,7 +269,7 @@ class Race(SlugModel):
                 dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
                 gop = self.candidates.where(self.candidates.model_class.party == "GOP").get()
-        except IndexError:
+        except Candidate.DoesNotExist:
             gop = None
 
         return (dem, gop)
