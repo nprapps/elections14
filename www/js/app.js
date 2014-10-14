@@ -107,7 +107,9 @@ var onDocumentReady = function(e) {
         });
 
         // Geolocate
-        geoip2.city(onLocateIP);
+        if (geoip2) {
+            geoip2.city(onLocateIP);
+        }
 
         setUpAudio(true);
     }
@@ -293,7 +295,6 @@ var offControlsHover = function() {
 
 var getState = function() {
     var input = $('.typeahead').typeahead('val');
-
     if (input) {
         state = getStatePostal(input)
     }
@@ -312,6 +313,8 @@ var switchState = function() {
     $stateface.addClass('stateface stateface-' + postal.toLowerCase());
 
     $stateName.text(input);
+    getState();
+
     $('.typeahead').typeahead('val', '')
     $('.typeahead').typeahead('close');
     $('.typeahead').blur();
