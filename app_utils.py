@@ -64,7 +64,8 @@ def calculate_bop(races, majority, initial):
 
         if race.party_changed():
             bop[winner]['picked_up'] += 1
-            bop[race.previous_party]['picked_up'] -= 1
+            if race.previous_party:
+                bop[race.previous_party]['picked_up'] -= 1
 
     return bop
 

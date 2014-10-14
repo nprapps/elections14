@@ -186,9 +186,16 @@ class RaceTestCase(unittest.TestCase):
             self.assertTrue(race.is_reporting())
             self.assertEqual(race.count_votes(), 600000)
 
-    @unittest.skip('TODO')
     def test_top_candidates(self):
-        pass
+        with test_database(test_db, [Race, Candidate], create_tables=True):
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+            data.load_updates('data/tests/update.json')
+
+            race = Race.get(Race.race_id == 'OR-38529')
+            top_candidates = race.top_candidates()
+            self.assertEqual(top_candidates[0].party, 'Dem')
+            self.assertEqual(top_candidates[1].party, 'GOP')
 
 class CandidateTestCase(unittest.TestCase):
     """
