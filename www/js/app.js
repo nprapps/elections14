@@ -422,8 +422,9 @@ var onClippyCopy = function(e) {
 var resizeSlide = function(slide) {
     var $w = $(window).width();
     var $h = $(window).height();
+    var headerHeight = $header.height();
     slide.width($w);
-    slide.height($h);
+    slide.height($h - headerHeight - 50);
 }
 
 
