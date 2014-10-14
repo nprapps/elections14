@@ -11,6 +11,7 @@ var $stateName = null;
 var $typeahead = null;
 
 var $chromecastScreen = null;
+var $chromecastMute = null;
 
 var $header = null;
 var $headerControls = null;
@@ -27,10 +28,9 @@ var $commentCount = null;
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 
 var state = null;
-
 var firstShareLoad = true;
 
-var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
   'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
   'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
@@ -40,7 +40,6 @@ var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
 ];
-
 
 /*
  * Run on page load.
@@ -58,6 +57,7 @@ var onDocumentReady = function(e) {
     $stateName = $('.state-name');
 
     $chromecastScreen = $('.cast-controls');
+    $chromecastMute = $chromecastScreen.find('.mute');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
 
@@ -76,6 +76,7 @@ var onDocumentReady = function(e) {
 
     $statePickerForm.submit(onStatePickerSubmit);
 
+    $chromecastMute.on('click', onCastMute);
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
 
@@ -87,6 +88,7 @@ var onDocumentReady = function(e) {
 
     if (IS_CAST_RECEIVER) {
         CHROMECAST_RECEIVER.setup();
+        CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
 
         setUpAudio(false);
 
@@ -154,6 +156,24 @@ var onCastStopped = function() {
 }
 
 /*
+ * Mute or unmute the receiver.
+ */
+var onCastReceiverMute = function(message) {
+    if ($audioPlayer.data().jPlayer.status.paused) {
+        $audioPlayer.jPlayer('play');
+    } else {
+        $audioPlayer.jPlayer('pause');
+    }
+}
+
+/*
+ * Send the mute message to the receiver.
+ */
+var onCastMute = function() {
+    CHROMECAST_SENDER.sendMessage('mute', 'toggle');
+}
+
+/*
  * Resize current slide.
  */
 var onWindowResize = function() {
@@ -195,7 +215,7 @@ var onWelcomeButtonClick = function() {
     {
         name: 'states',
         displayKey: 'value',
-        source: substringMatcher(states)
+        source: substringMatcher(STATES)
     });
 
     $typeahead = $('.twitter-typeahead');

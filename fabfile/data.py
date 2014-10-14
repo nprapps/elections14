@@ -456,9 +456,16 @@ def _save_senate_row(row, quiet):
             seat_number = int(seat_number)
 
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
-
         existing.previous_party = row['party']
         existing.save()
+
+        if row['incumbent'] == '1':
+            if row['party'] == 'gop':
+                candidate = existing.candidates.where(models.Candidate.party == 'GOP').get()
+            elif row['party'] == 'dem':
+                candidate = existing.candidates.where(models.Candidate.party == 'Dem').get()
+            candidate.incumbent = True
+            candidate.save()
 
     except models.Race.DoesNotExist:
         if not quiet:
@@ -544,8 +551,6 @@ def mock_results(folder='data'):
     for race in models.Race.select():
         race.accept_ap_call = False
         race.ap_called = False
-        _fake_incumbent(race)
-        _fake_previous_party(race)
         _fake_precincts_reporting(race)
         _fake_called_status(race)
         _fake_results(race)
@@ -601,6 +606,7 @@ def _fake_called_status(race):
 
 def _fake_results(race):
     max_votes = 0
+    max_candidate = None
     for candidate in race.candidates:
         candidate.ap_winner = False
         if candidate.party in ['GOP', 'Dem', 'Grn'] and race.precincts_reporting > 0:
@@ -614,7 +620,7 @@ def _fake_results(race):
 
         candidate.save()
 
-    if race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
+    if max_candidate and race.precincts_reporting > 0 and race.ap_called and race.candidates.count > 1:
         max_candidate.ap_winner = True
         max_candidate.save()
 

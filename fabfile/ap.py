@@ -328,7 +328,7 @@ def playback(folder_name='2014-10-06', update_interval=60):
     data.load_updates('%s/update.json' % initial)
 
     for timestamp in timestamps[1:]:
-        sleep(update_interval)
+        sleep(int(update_interval))
 
         print '==== LOADING NEXT DATA (%s) ====' % timestamp
 
