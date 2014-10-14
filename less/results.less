@@ -21,6 +21,7 @@
 @screen-big-board: 1920px;
 
 .house, .senate, .governor, .ballot-measures{
+    height: 100%;
     table {
         font-family: 'Cooper Hewitt';
         font-weight: 400;
@@ -47,6 +48,7 @@
         @media screen and (max-width: @screen-sm){
             padding: 6px;
         }
+        height: 100%;
     }
 
     .results-header h2,
@@ -62,29 +64,29 @@
         line-height: .2;
         }
 
-        @media screen and (min-width: @screen-sm) and (min-height: 580px){
+        @media screen and (min-width: @screen-sm) and (min-height: 630px){
             font-size: 10.6px;
             line-height: 1;
         }
 
-        @media screen and (min-width: @screen-md) and (min-height: 600px){
+        @media screen and (min-width: @screen-md) and (min-height: 700px){
             font-size: 14px;
             line-height: 1.1;
         }
 
-        @media screen and (min-width: @screen-lg) and (min-height: 700px){
+        @media screen and (min-width: @screen-lg) and (min-height: 875px){
             font-size: 16px;
             line-height: 1.1;
             font-weight: 400;
         }
 
-        @media screen and (min-width: @screen-xl) and (min-height: 809px){
-            font-size: 22px;
-            line-height: 1;
-            font-weight:300;
-        }
+        // @media screen and (min-width: @screen-xl) and (min-height: 875px){
+        //     font-size: 22px;
+        //     line-height: 1;
+        //     font-weight:300;
+        // }
 
-        @media screen and (min-width: @screen-big-board) and (min-height: 1016px){
+        @media screen and (min-width: @screen-big-board) and (min-height: 1020px){
             font-size: 26px;
             line-height: 1.2;
             font-weight:300;
@@ -259,7 +261,7 @@
 
 
     .results  {
-        overflow:hidden;
+        height: 100%;
 
         .column {
             box-sizing: border-box;
@@ -298,7 +300,7 @@
             }
         }
 
-  
+
         .races {
             width: 100%;
             border-spacing: 0 2px;
@@ -395,7 +397,7 @@
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.ind { background: @greenDim; }
-                
+
                 &.reporting{
                     &:after{
                                 content:"%";

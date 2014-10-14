@@ -143,7 +143,7 @@ var STACK = (function () {
 
 
                         $newSlide.fadeIn(800, function(){
-                            _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                            // _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
                         });
                     });
                 }
@@ -158,7 +158,7 @@ var STACK = (function () {
                         $header.find('.leaderboard').fadeIn();
                     }
                     $newSlide.fadeIn(800, function(){
-                        _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                        // _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
                     });
                 }
             }
@@ -179,7 +179,7 @@ var STACK = (function () {
                     rotateSlide();
                 }
 
-                _stackTimer = setTimeout(updateStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
+                // _stackTimer = setTimeout(updateStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
             }
         });
     }
