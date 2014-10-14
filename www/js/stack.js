@@ -67,8 +67,6 @@ var STACK = (function () {
     var onMoveMouse = function() {
         _mouseMoveCounter += 1;
 
-        console.log(_mouseMoveCounter);
-
         if (!($('body').data('mouse-moving')) && _mouseMoveCounter > 20) {
             $header.fadeOut(200, function() {
                 $headerControls.fadeIn(200);
