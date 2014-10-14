@@ -12,6 +12,8 @@ var STACK = (function () {
     var _stackRequest = null;
     var _rotateRequest = null;
 
+    var _mouseMoveCounter = 0;
+
     /*
      * Setup the stack display.
      */
@@ -20,7 +22,7 @@ var STACK = (function () {
 
         $('body').on('mousemove', onMoveMouse);
         $headerControls.hover(onControlsHover, offControlsHover);
-        $audioPlayer.jPlayer('play');
+        // $audioPlayer.jPlayer('play');
 
         updateStack();
     }
@@ -63,13 +65,23 @@ var STACK = (function () {
      * Show the header.
      */
     var onMoveMouse = function() {
-        $header.hide();
-        $headerControls.show();
+        _mouseMoveCounter += 1;
+
+        console.log(_mouseMoveCounter);
+
+        if (!($('body').data('mouse-moving')) && _mouseMoveCounter > 20) {
+            $header.fadeOut(200, function() {
+                $headerControls.fadeIn(200);
+            });
+
+            $('body').data('mouse-moving', true);
+            _mouseMoveCounter = 0;
+        }
 
         if (_mouseMoveTimer) {
             clearTimeout(_mouseMoveTimer);
         }
-        
+
         _mouseMoveTimer = setTimeout(onEndMouse, 500);
     }
 
@@ -77,9 +89,13 @@ var STACK = (function () {
      * Hide the header.
      */
     var onEndMouse = function() {
+        _mouseMoveCounter = 0;
+
         if (!($headerControls.data('hover'))) {
-            $header.show();
-            $headerControls.hide();
+            $('body').data('mouse-moving', false);
+            $headerControls.fadeOut(200, function() {
+                $header.fadeIn(200);
+            });
         }
     }
 
@@ -107,7 +123,7 @@ var STACK = (function () {
                 rotateSlide();
                 return;
             }
-                
+
             slide_path = 'slides/state-' + state + '.html';
         } else {
             slide_path = 'slides/' + slug + '.html';

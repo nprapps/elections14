@@ -65,7 +65,7 @@ var onDocumentReady = function(e) {
     $fullScreenButton = $('.fullscreen p');
     $chromecastButton = $('.chromecast');
     $stack = $('#stack');
-    $header = $('.results-header');
+    $header = $('.index');
     $headerControls = $('.header-controls');
     $shareModal = $('#share-modal');
     $commentCount = $('.comment-count');
@@ -272,8 +272,9 @@ var onFullScreenButtonClick = function() {
  */
 var onControlsHover = function() {
     $headerControls.data('hover', true);
-    $header.hide();
-    $headerControls.show();
+    $header.fadeOut(200, function() {
+        $headerControls.show();
+    });
 }
 
 /*
@@ -281,8 +282,9 @@ var onControlsHover = function() {
  */
 var offControlsHover = function() {
     $headerControls.data('hover', false);
-    $headerControls.hide();
-    $header.show();
+    $headerControls.fadeOut(200, function() {
+        $header.fadeIn();
+    });
 }
 
 /*
