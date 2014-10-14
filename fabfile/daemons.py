@@ -35,3 +35,12 @@ def instagram():
         execute('deploy_instagram_photos')
         execute('deploy_slides')
         sleep(app_config.INSTAGRAM_REFRESH_INTERVAL)
+
+@task
+def results():
+    while True:
+        execute('ap.update')
+        execute('data.load_updates', 'data/update.json')
+        execute('render.render_big_boards')
+        execute('render.render_states')
+        sleep(app_config.AP_RESULTS_REFRESH_INTERVAL)
