@@ -87,6 +87,8 @@ var onDocumentReady = function(e) {
     $(window).on('resize', onWindowResize);
 
     if (IS_CAST_RECEIVER) {
+        $welcomeScreen.hide();
+
         CHROMECAST_RECEIVER.setup();
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
 
