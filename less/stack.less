@@ -21,7 +21,8 @@
 
 @yellow: #EFC637;
 @white: #fff;
-@grayMedium: #868686;
+// @grayMedium: #868686;
+@grayMedium: #A0A0A0;
 
 h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -56,8 +57,9 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         position: absolute;
         top: 20px;
         left: 20px;
-        width: 6%;
-        height: auto;
+        width: 5vw;
+        height: 2vw;
+        // height: 5vw;
     }
 
     .intro-text {
@@ -255,13 +257,11 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 .header-container {
     box-shadow: inset 0 5vw 5vw -5vw black;
     height: 5vw;
-    color: @grayMedium;
     .results-header {
+        color: @grayMedium;
         height: 3.5vw;
         display: block;
         overflow: hidden;
-        // margin-bottom: 0;
-        // color: @musicLight;
 
         line-height: 2vw;
         font-size: 1vw;
@@ -275,16 +275,17 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         
         .logo {
             height:100%;
+            width:5vw;
             margin: 0 .5% 0 0;
         }
 
         .leaderboard {
             float: right;
+            // width:60%;
         }
 
 
         h2 {
-            color: @grayMedium;
             font-size: 1vw;
             line-height: 2vw;
             @media screen and (max-width: @screen-sm){
@@ -294,11 +295,11 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         }
 
         .results-header-group {
+            // width:300px;
             white-space: nowrap;
-            margin-right: 1vw;
+            padding:0 1vw;
             float: left;
             box-sizing: border-box;
-            padding-left: 1vw;
             line-height: 2vw;
             &:last-child{
                 margin-right: 0;
@@ -347,7 +348,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             text-align: center;
             padding:0 5%;
             box-sizing:border-box;
-            color:@grayMedium;
             min-width:2vw;
             height:2vw;
             line-height: 2vw;
@@ -359,9 +359,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
                 border-radius: 2vw;
             }
         }
-        .change{
-            color:@grayMedium;
-        }
     }
 
     .results-header.header-controls {
@@ -369,6 +366,9 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         
         a {
             color: @grayMedium;
+        }
+        a:hover{
+            color: darken(@grayMedium, 20%);
         }
         .right-controls {
             float: right;
