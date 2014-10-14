@@ -82,6 +82,8 @@ www/results
 .slides_html
 .states_html
 .states_gzip
+.big_boards_gzip
+.big_boards_html
 .gzip_theme
 .tests
 data/recording

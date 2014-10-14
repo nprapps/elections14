@@ -171,6 +171,7 @@ def render_slides():
 
     render_states()
 
+@task
 def render_states(compiled_includes={}):
     """
     Render state slides to HTML files
@@ -203,3 +204,44 @@ def render_states(compiled_includes={}):
 
         with open(path, 'w') as f:
             f.write(content.data)
+
+@task
+def render_big_boards(compiled_includes={}):
+    from flask import g, url_for
+
+    view_name = '_slide_preview'
+    output_path = '.big_boards_html'
+
+    for board in [
+        'senate-big-board',
+        'house-big-board-one',
+        'house-big-board-two',
+        'governor-big-board',
+    ]:
+        # Silly fix because url_for require a context
+        with app.app.test_request_context():
+            path = url_for(view_name, slug=board)
+
+        with app.app.test_request_context(path=path):
+            print 'Rendering %s' % path
+
+            g.compile_includes = True
+            g.compiled_includes = compiled_includes
+
+            view = app.__dict__[view_name]
+            content = view(board)
+
+            compiled_includes = g.compiled_includes
+
+        path = '%s%s' % (output_path, path)
+
+        # Ensure path exists
+        head = os.path.split(path)[0]
+
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
+
+        with open('%sindex.html' % path, 'w') as f:
+            f.write(content)

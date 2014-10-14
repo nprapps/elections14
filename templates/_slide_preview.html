@@ -1,20 +1,14 @@
-{% extends '_base.html' %}
-
-{% block extra_css %}
 {{ CSS.push('less/results.less') }}
 {{ CSS.push('less/stack.less') }}
-{{ CSS.render('css/index.min.css') }}
-{% endblock extra_css %}
+{{ CSS.render('css/preview.min.css') }}
 
-{% block extra_head %}
 <style>
 .slide {
     display: block;
+    background-color: #141D24;
 }
 </style>
-{% endblock %}
 
-{% block outer_content %}
 
 <!-- ugly includes because slide js is inlined and can't pickup the stuff from the base template -->
 <script src="/js/lib/jquery.js"></script>
@@ -24,5 +18,3 @@
 <div id="stack" class="stack" style="display: block;">
     {{ body|smarty }}
 </div>
-
-{% endblock outer_content %}
