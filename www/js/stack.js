@@ -140,6 +140,14 @@ var STACK = (function () {
                         $(this).remove();
                         $stack.append($newSlide);
                         resizeSlide($newSlide)
+                        if ($newSlide.find('.results-header').length > 0) {
+                            $header.find('.leaderboard').fadeOut();
+                        }
+                        else {
+                            $header.find('.leaderboard').fadeIn();
+                        }
+
+
                         $newSlide.fadeIn(800, function(){
                             _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
                         });
@@ -149,6 +157,12 @@ var STACK = (function () {
                 else {
                     $stack.append($newSlide);
                     resizeSlide($newSlide)
+                    if ($newSlide.find('.results-header').length > 0) {
+                        $header.find('.leaderboard').fadeOut();
+                    }
+                    else {
+                        $header.find('.leaderboard').fadeIn();
+                    }
                     $newSlide.fadeIn(800, function(){
                         _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
                     });
