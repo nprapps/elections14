@@ -1,37 +1,37 @@
-state,state,seat_number,poll_close_edt,poll_close,party,incumbent
-Alabama,AL,,8:00 EDT,8:00,gop,1
-Alaska,AK,,12:00 EDT,12:00,dem,1
-Arkansas,AR,,8:30 EDT,8:30,dem,1
-Colorado,CO,,9:00 EDT,9:00,dem,1
-Delaware,DE,,8:00 EDT,8:00,dem,1
-Georgia,GA,,7:00 EDT,7:00,gop,
-Hawaii,HI,,11:00 EDT,11:00,dem,
-Idaho,ID,,11:00 EDT,11:00,gop,1
-Illinois,IL,,8:00 EDT,8:00,dem,1
-Iowa,IA,,10:00 EDT,10:00,dem,
-Kansas,KS,,9:00 EDT,9:00,gop,1
-Kentucky,KY,,7:00 EDT,7:00,gop,1
-Louisiana (blanket primary,LA,,9:00 EDT,9:00,dem,1
-Maine,ME,,8:00 EDT,8:00,gop,1
-Massachusetts,MA,,8:00 EDT,8:00,dem,1
-Michigan,MI,,9:00 EDT,9:00,dem,
-Minnesota,MN,,9:00 EDT,9:00,dem,1
-Mississippi,MS,,8:00 EDT,8:00,gop,1
-Montana,MT,,10:00 EDT,10:00,dem,
-Nebraska,NE,,9:00 EDT,9:00,gop,
-New Hampshire,NH,,8:00 EDT,8:00,dem,1
-New Jersey,NJ,,8:00 EDT,8:00,dem,1
-New Mexico,NM,,9:00 EDT,9:00,dem,1
-North Carolina,NC,,7:30 EDT,7:30,dem,1
-Oklahoma,OK,,8:00 EDT,8:00,gop,1
-Oklahoma,OK,2,8:00 EDT,8:00,gop,
-Oregon,OR,,11:00 EDT,11:00,dem,1
-Rhode Island,RI,,8:00 EDT,8:00,dem,1
-South Carolina,SC,,7:00 EDT,7:00,gop,1
-South Carolina,SC,2,7:00 EDT,7:00,gop,1
-South Dakota,SD,,9:00 EDT,9:00,dem,
-Tennessee,TN,,8:00 EDT,8:00,gop,1
-Texas,TX,,9:00 EDT,9:00,gop,1
-Virginia,VA,,7:00 EDT,7:00,dem,1
-West Virginia,WV,,7:30 EDT,7:30,dem,
-Wyoming,WY,,9:00 EDT,9:00,gop,1
+name,state,seat_number,party,incumbent
+Alabama,AL,,gop,1
+Alaska,AK,,dem,1
+Arkansas,AR,,dem,1
+Colorado,CO,,dem,1
+Delaware,DE,,dem,1
+Georgia,GA,,gop,
+Hawaii,HI,,dem,
+Idaho,ID,,gop,1
+Illinois,IL,,dem,1
+Iowa,IA,,dem,
+Kansas,KS,,gop,1
+Kentucky,KY,,gop,1
+Louisiana (blanket primary,LA,,dem,1
+Maine,ME,,gop,1
+Massachusetts,MA,,dem,1
+Michigan,MI,,dem,
+Minnesota,MN,,dem,1
+Mississippi,MS,,gop,1
+Montana,MT,,dem,
+Nebraska,NE,,gop,
+New Hampshire,NH,,dem,1
+New Jersey,NJ,,dem,1
+New Mexico,NM,,dem,1
+North Carolina,NC,,dem,1
+Oklahoma,OK,,gop,1
+Oklahoma,OK,2,gop,
+Oregon,OR,,dem,1
+Rhode Island,RI,,dem,1
+South Carolina,SC,,gop,1
+South Carolina,SC,2,gop,1
+South Dakota,SD,,dem,
+Tennessee,TN,,gop,1
+Texas,TX,,gop,1
+Virginia,VA,,dem,1
+West Virginia,WV,,dem,
+Wyoming,WY,,gop,1
