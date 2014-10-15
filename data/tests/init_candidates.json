@@ -33,5 +33,19 @@
         "last_name": "Lankford",
         "candidate_id": "44647",
         "race_id": "OK-38145"
+    },
+    {
+        "party": "No",
+        "first_name": null,
+        "last_name": "No",
+        "candidate_id": "35040",
+        "race_id": "MI-24549"
+    },
+    {
+        "party": "Yes",
+        "first_name": null,
+        "last_name": "Yes",
+        "candidate_id": "35041",
+        "race_id": "MI-24549"
     }
 ]

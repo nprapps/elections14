@@ -124,3 +124,12 @@ class DataTestCase(unittest.TestCase):
 
             race = Race.get(Race.race_id == 'OK-38145')
             self.assertEqual(race.previous_party, 'gop')
+
+    def test_ballot_measures_extra(self):
+        with test_database(test_db, [Race,]):
+            data.load_races('data/tests/init_races.json')
+            data.load_ballot_measures_extra('data/ballot-measures-extra.csv', quiet=True)
+
+            race = Race.get(Race.race_id == 'MI-24549')
+            self.assertEqual(race.ballot_measure_description, 'Wolf Hunting')
+

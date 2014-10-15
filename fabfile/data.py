@@ -490,11 +490,14 @@ def _save_ballot_measure_row(row, quiet):
     """
     import models
 
-    if row.get('race_id'):
+    try:
         race = models.Race.get(race_id=row['race_id'])
         race.ballot_measure_description = row['description']
         race.featured_race = True
         race.save()
+    except models.Race.DoesNotExist:
+        if not quiet:
+            print 'Ballot measure %s (%s) does not exist in AP data' % (row['race_id'], row['description'])
 
 @task
 def mock_slides():
