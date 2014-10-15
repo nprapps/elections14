@@ -173,15 +173,6 @@ def deploy_big_boards():
     utils._deploy_to_s3('.big_boards_gzip')
 
 @task
-def deploy_states():
-    local('rm -rf .states_html .states_gzip')
-    render.render_states()
-    utils._gzip('www', '.gzip')
-    utils._gzip('.states_html', '.states_gzip')
-    utils._deploy_to_s3()
-    utils._deploy_to_s3('.states_gzip')
-
-@task
 def deploy_instagram_photos():
     """
     Deploy downloaded Instagram photos to S3.
