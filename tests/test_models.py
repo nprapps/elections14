@@ -197,6 +197,18 @@ class RaceTestCase(unittest.TestCase):
             self.assertEqual(top_candidates[0].party, 'Dem')
             self.assertEqual(top_candidates[1].party, 'GOP')
 
+    def test_top_choices(self):
+        with test_database(test_db, [Race, Candidate], create_tables=True):
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+            data.load_updates('data/tests/update.json')
+
+            race = Race.get(Race.race_id == 'MI-24549')
+            top_choices = race.top_choices()
+            self.assertEqual(top_choices[0].last_name, 'Yes')
+            self.assertEqual(top_choices[1].last_name, 'No')
+
+
 class CandidateTestCase(unittest.TestCase):
     """
     Test Candidate model methods.
