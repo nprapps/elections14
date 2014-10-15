@@ -43,10 +43,10 @@
     }
 
     .results-container{
-        padding: 30px 40px;
-        @media screen and (max-width: @screen-sm){
-            padding: 6px;
-        }
+        padding: 2% 2%;
+        // @media screen and (max-width: @screen-sm){
+        //     padding: 6px;
+        // }
     }
 
     .results-header h2,
@@ -56,10 +56,17 @@
     .poll-closing-group {
 
 
-        font-size: 1.3vw;
-        line-height: 1.3vw;
+        // font-size: 1.2vw;
+        // line-height: 1.2vw;
+        // font-weight:300;
+
+        font-size: 1.5vmin;
+        line-height: 1.5vmin;
         font-weight:300;
 
+
+
+    
 
         // @media screen and (min-width: 0px){
         // font-size: 9px;
@@ -267,10 +274,7 @@
 
         .column {
             box-sizing: border-box;
-            padding: 0 15px;
-            @media screen and (max-width: @screen-md){
-                padding: 0 6px;
-            }
+            padding: 0 .8%;
             &.first {
                 padding-left: 0;
             }
@@ -288,10 +292,10 @@
             letter-spacing:0.05em;
             color: @gray-light;
             margin-bottom:0;
-            border-bottom: 5px solid @gray-light;
-            @media screen and (max-width: @screen-md){
-                border-bottom: 2px solid @gray-dark;
-            }
+            border-bottom: .3vw solid @gray-light;
+            // @media screen and (max-width: @screen-md){
+            //     border-bottom: 2px solid @gray-dark;
+            // }
 
             .time {
                 padding: 3px 0;
@@ -309,11 +313,11 @@
 
             td {
                 vertical-align: top;
-                padding: 5px;
+                padding: .5vmin;
             }
 
             .results-status {
-                white-space: nowrap;
+                // white-space: nowrap;
                 color: @white;
                 width: 10%;
 
@@ -373,7 +377,7 @@
             }
 
             .candidate {
-                white-space: nowrap;
+                // white-space: nowrap;
                 width: 30%;
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
