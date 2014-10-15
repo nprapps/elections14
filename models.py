@@ -335,6 +335,16 @@ class Candidate(SlugModel):
 
         return flat
 
+    def get_party(self):
+        if self.party == 'Dem':
+            return 'dem'
+
+        elif self.party == 'GOP':
+            return 'gop'
+
+        else:
+            return 'other'
+
     def is_winner(self):
         """
         Is the candidate the winner?
