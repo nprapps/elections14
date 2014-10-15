@@ -26,8 +26,9 @@ def update():
     """
     Run all updates
     """
+    load_updates('data/update.json')
+    load_calls('data/calls.json')
     #update_featured_social()
-    load_updates()
 
 @task
 def query(q):
