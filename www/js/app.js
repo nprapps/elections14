@@ -273,7 +273,7 @@ var onFullScreenButtonClick = function() {
 var onControlsHover = function() {
     $headerControls.data('hover', true);
     $header.fadeOut(200, function() {
-        $headerControls.show();
+        $headerControls.fadeIn(200);
     });
 }
 
@@ -283,7 +283,9 @@ var onControlsHover = function() {
 var offControlsHover = function() {
     $headerControls.data('hover', false);
     $headerControls.fadeOut(200, function() {
-        $header.fadeIn();
+        $header.fadeIn(200, function() {
+            $('body').data('mouse-moving', true);
+        });
     });
 }
 
