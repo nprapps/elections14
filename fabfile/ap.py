@@ -312,28 +312,10 @@ def playback(folder_name='2014-10-06', update_interval=60):
     timestamps = sorted(os.listdir(folder))
     initial = '%s/%s' % (folder, timestamps[0])
 
-    print '==== RESETTING DATABASE ===='
-
-    if env.settings:
-        data.server_reset_db()
-    else:
-        data.local_reset_db()
-
-    data.create_tables()
-
-    print '==== LOADING INITIAL DATA (%s) ====' % timestamps[0]
-
-    data.load_races('%s/init_races.json' % initial)
-    data.load_candidates('%s/init_candidates.json' % initial)
-    data.load_updates('%s/update.json' % initial)
-
     for timestamp in timestamps[1:]:
-        sleep(int(update_interval))
-
         print '==== LOADING NEXT DATA (%s) ====' % timestamp
-
         path = '%s/%s' % (folder, timestamp)
-
         data.load_updates('%s/update.json' % path)
+        sleep(int(update_interval))
 
     print '==== PLAYBACK COMPLETE ===='
