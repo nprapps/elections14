@@ -18,5 +18,15 @@
         "seat_number": "2",
         "office_name": "U.S. Senate",
         "race_type": "G"
+    },
+    {
+        "office_id": "I",
+        "seat_name": "14-1 Wolf Hunting Season",
+        "state_postal": "MI",
+        "last_updated": "2014-10-15T16:18:19Z",
+        "race_id": "MI-24549",
+        "seat_number": null,
+        "office_name": "Proposal",
+        "race_type": "G"
     }
 ]
