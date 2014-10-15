@@ -416,6 +416,10 @@ var resizeSlide = function(slide) {
     var $w = $(window).width();
     var $h = $(window).height();
     var headerHeight = $header.height();
+
+    slide.width($w);
+    slide.height($h - headerHeight - 50);
+
     slide.find('.slide-content').width($w);
     slide.find('.slide-content').height($h - headerHeight - 50);
 }
