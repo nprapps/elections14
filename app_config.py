@@ -264,7 +264,7 @@ def configure_targets(deployment_target):
         DISQUS_SHORTNAME = 'nprviz-test'
 
         TUMBLR_NAME = 'stage-nprelections'
-        TUMBLR_AUTO_REFRESH = False
+        TUMBLR_AUTO_REFRESH = True 
         TUMBLR_NOT_BEFORE = datetime(2014, 10, 7, 11, 0, 0)
     else:
         S3_BUCKETS = []
