@@ -20,7 +20,7 @@ var STACK = (function () {
 
         $('body').on('mousemove', onMoveMouse);
         $headerControls.hover(onControlsHover, offControlsHover);
-        $audioPlayer.jPlayer('play');
+        // $audioPlayer.jPlayer('play');
 
         updateStack();
     }
@@ -136,7 +136,7 @@ var STACK = (function () {
                         $(this).remove();
                         $stack.append($newSlide);
                         resizeSlide($newSlide)
-                        if ($newSlide.find('.results-header').length > 0) {
+                        if ($newSlide.find('.leaderboard').length > 0) {
                             $header.find('.leaderboard').fadeOut();
                         }
                         else {
