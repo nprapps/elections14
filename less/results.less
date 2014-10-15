@@ -56,8 +56,8 @@
     .poll-closing-group {
 
 
-        font-size: 1.5vmin;
-        line-height: 1.5vmin;
+        font-size: 1.3vw;
+        line-height: 1.3vw;
         font-weight:300;
 
 
@@ -313,18 +313,23 @@
             }
 
             .results-status {
+                white-space: nowrap;
                 color: @white;
-                width: 12%;
+                width: 10%;
 
                 &.reporting, &.called {
                     color:@yellow;
+                    &:after{
+                        content:"%";
+                        font-size:80%;
+                        vertical-align:top;
+                        margin-left:-2px;
+                        padding:0;
+                    }
+
                     @media screen and (min-width: @screen-md){
                         &:after{
                             content:"% in";
-                            font-size:80%;
-                            vertical-align:top;
-                            margin-left:-2px;
-                            padding:0;
                         }
                     }
                 }
@@ -334,7 +339,7 @@
                 }
             }
             .pickup{
-                width:5%;
+                width:4%;
             }
 
             .party-change{
@@ -349,6 +354,7 @@
                 &.other { color: @green; }
             }
             .state {
+                width:6%;
                 text-align: center;
                 // &.party-change {
                 //     color: #fff;
@@ -367,7 +373,8 @@
             }
 
             .candidate {
-                width: 35%;
+                white-space: nowrap;
+                width: 30%;
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
@@ -395,6 +402,7 @@
             }
 
             .candidate-total {
+                width: 9%;
                 text-align:right;
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
@@ -402,9 +410,9 @@
                 
                 &.reporting{
                     &:after{
-                                content:"%";
-                                font-size:80%;
-                                vertical-align:top;
+                        content:"%";
+                        font-size:80%;
+                        vertical-align:top;
                     }
                 }
             }
@@ -423,10 +431,10 @@
                 text-align:left;
             }
 
-            .id-5083, .id-19638, .id-18556{
-                letter-spacing:-.07em;
-                text-transform:capitalize !important;
-            }
+            // .id-5083, .id-19638, .id-18556{
+            //     letter-spacing:-.07em;
+            //     text-transform:capitalize !important;
+            // }
         }
         td{
             &:nth-child(4){
