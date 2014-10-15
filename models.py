@@ -167,7 +167,7 @@ class Race(SlugModel):
         """
         winner = self.get_winning_party()
 
-        if winner and self.previous_party:
+        if winner:
             return winner != self.previous_party
 
         return None
@@ -334,6 +334,16 @@ class Candidate(SlugModel):
                 flat[field] = getattr(self, field)
 
         return flat
+
+    def get_party(self):
+        if self.party == 'Dem':
+            return 'dem'
+
+        elif self.party == 'GOP':
+            return 'gop'
+
+        else:
+            return 'other'
 
     def is_winner(self):
         """

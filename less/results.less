@@ -17,10 +17,11 @@
 @white: #fff;
 
 // Additional media query sizes
-@screen-xl: 1400px;
+@screen-xl: 1500px;
 @screen-big-board: 1920px;
 
 .house, .senate, .governor, .ballot-measures{
+    height: 100%;
     table {
         font-family: 'Cooper Hewitt';
         font-weight: 400;
@@ -47,6 +48,7 @@
         @media screen and (max-width: @screen-sm){
             padding: 6px;
         }
+        height: 100%;
     }
 
     .results-header h2,
@@ -54,37 +56,31 @@
     .races h2,
     .races,
     .poll-closing-group {
-        font-size: 16px;
-        line-height: 1.1;
 
-        @media screen and (min-width: 0px){
-        font-size: 9px;
-        line-height: .2;
-        }
 
-        @media screen and (min-width: @screen-sm) and (min-height: 580px){
+        @media screen and (min-width: @screen-sm) and (min-height: 630px){
             font-size: 10.6px;
             line-height: 1;
         }
 
-        @media screen and (min-width: @screen-md) and (min-height: 600px){
+        @media screen and (min-width: 1100px) and (min-height: 700px){
             font-size: 14px;
             line-height: 1.1;
         }
 
-        @media screen and (min-width: @screen-lg) and (min-height: 700px){
-            font-size: 16px;
-            line-height: 1.1;
-            font-weight: 400;
-        }
+        // @media screen and (min-width: @screen-lg) and (min-height: 875px){
+        //     font-size: 16px;
+        //     line-height: 1.1;
+        //     font-weight: 400;
+        // }
 
-        @media screen and (min-width: @screen-xl) and (min-height: 809px){
+        @media screen and (min-width: @screen-xl) and (min-height: 875px){
             font-size: 22px;
             line-height: 1;
             font-weight:300;
         }
 
-        @media screen and (min-width: @screen-big-board) and (min-height: 1016px){
+        @media screen and (min-width: @screen-big-board) and (min-height: 1000px){
             font-size: 26px;
             line-height: 1.2;
             font-weight:300;
@@ -105,20 +101,20 @@
         h1 {
             float: left;
             margin: 0;
-            font-size:18px;
-            letter-spacing: .05em;
+            // font-size:18px;
+            // letter-spacing: .05em;
 
-            @media screen and (min-width: @screen-md){
-            font-size: 24px;
-            }
+            // @media screen and (min-width: @screen-md){
+            // font-size: 24px;
+            // }
 
-            @media screen and (min-width: @screen-lg){
-                font-size: 36px;
-            }
+            // @media screen and (min-width: @screen-lg){
+            //     font-size: 36px;
+            // }
 
-            @media screen and (min-width: @screen-big-board){
-                font-size: 46px;
-            }
+            // @media screen and (min-width: @screen-big-board){
+            //     font-size: 46px;
+            // }
         }
 
         .leaderboard {
@@ -185,7 +181,7 @@
                 }
             }
 
-            &.ind {
+            &.other {
                 margin-right: 15px;
                 @media screen and (max-width: @screen-sm){
                 margin-right:5px;
@@ -204,12 +200,12 @@
 
         .dem  { color: @blue; }
         .gop   { color: @red; }
-        .ind { color: @green; }
+        .other { color: @green; }
         .not-called { color: @gray-light; }
 
         .dem .percentage   { background: @blue; }
         .gop .percentage   { background: @red; }
-        .ind .percentage { background: @green; }
+        .other .percentage { background: @green; }
         .not-called .count { background: @gray-light; }
 
         .percentage,
@@ -259,7 +255,7 @@
 
 
     .results  {
-        overflow:hidden;
+        height: 100%;
 
         .column {
             box-sizing: border-box;
@@ -298,7 +294,7 @@
             }
         }
 
-  
+
         .races {
             width: 100%;
             border-spacing: 0 2px;
@@ -330,7 +326,8 @@
                 }
             }
             .pickup{
-                width:5%;
+                width:4%;
+                vertical-align:middle;
             }
 
             .party-change{
@@ -342,7 +339,7 @@
                 }
                 &.dem { color: @blue; }
                 &.gop { color: @red; }
-                &.ind { color: @green; }
+                &.other { color: @green; }
             }
             .state {
                 text-align: center;
@@ -355,7 +352,7 @@
                 // }
                 &.dem { color: @blue; }
                 &.gop { color: @red; }
-                &.ind { color: @green; }
+                &.other { color: @green; }
             }
 
             .description {
@@ -366,7 +363,7 @@
                 width: 35%;
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
-                &.ind { background: @greenDim; }
+                &.other { background: @greenDim; }
 
                 .party {
                     font-size: 75%;
@@ -394,8 +391,7 @@
                 text-align:right;
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
-                &.ind { background: @greenDim; }
-                
+                &.other { background: @greenDim; }
                 &.reporting{
                     &:after{
                                 content:"%";
@@ -411,7 +407,7 @@
 
                 &.dem { background: @blue; }
                 &.gop { background: @red; }
-                &.ind { background: @green; }
+                &.other { background: @green; }
             }
 
 
