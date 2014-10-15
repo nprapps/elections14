@@ -20,7 +20,7 @@ var STACK = (function () {
 
         $('body').on('mousemove', onMoveMouse);
         $headerControls.hover(onControlsHover, offControlsHover);
-        $audioPlayer.jPlayer('play');
+        // $audioPlayer.jPlayer('play');
 
         updateStack();
     }

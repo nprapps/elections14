@@ -74,6 +74,17 @@ def comments():
     """
     return render_template('comments.html', **make_context())
 
+@app.route('/board/<slug>/')
+def _big_board(slug):
+    """
+    Preview a slide outside of the stack.
+    """
+    context = make_context()
+
+    context['body'] = _slide(slug).data
+
+    return render_template('_big_board_wrapper.html', **context)
+
 @app.route('/live-data/stack.json')
 @app_utils.cors
 def _stack_json():

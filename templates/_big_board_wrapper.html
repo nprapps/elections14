@@ -1,0 +1,36 @@
+{% extends '_base_results.html' %}
+
+{% block extra_css %}
+{{ CSS.push('less/results.less') }}
+{{ CSS.push('less/stack.less') }}
+{{ CSS.render('css/preview.min.css') }}
+
+<style>
+body {
+    background-color: #141D24;
+}
+
+.slide {
+    display: block;
+}
+</style>
+{% endblock extra_css %}
+
+{% block outer_content %}
+<script src="/js/lib/jquery.js"></script>
+<script src="/js/lib/d3.v3.min.js"></script>
+<script src="/js/lib/jquery.columnizer.js"></script>
+
+{{ body|smarty }}
+
+{% endblock outer_content %}
+
+{% block extra_foot_js %}
+<script type="text/javascript">
+    setInterval(function() {
+        $('.results-wrapper').load(window.location + ' .results-inner', function() {
+            $('.results').columnize(colOpts);
+        });
+        }, 60000);
+</script>
+{% endblock %}

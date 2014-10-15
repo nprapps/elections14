@@ -209,7 +209,7 @@ def render_states(compiled_includes={}):
 def render_big_boards(compiled_includes={}):
     from flask import g, url_for
 
-    view_name = '_slide_preview'
+    view_name = '_big_board'
     output_path = '.big_boards_html'
 
     for board in [
