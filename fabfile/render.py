@@ -217,7 +217,7 @@ def render_big_boards(compiled_includes={}):
         'house-big-board-one',
         'house-big-board-two',
         'governor-big-board',
-        'ballot-measures-big-board'
+        'ballot-measures-big-board',
     ]:
         # Silly fix because url_for require a context
         with app.app.test_request_context():

@@ -2,6 +2,7 @@
 var $welcomeScreen = null;
 var $welcomeButton = null;
 var $cast = null;
+var $rotate = null;
 
 var $statePickerScreen = null;
 var $statePickerSubmitButton = null;
@@ -49,6 +50,7 @@ var onDocumentReady = function(e) {
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
     $welcomeSubmitButton = $('.state-picker-submit');
+    $rotate = $('.rotate');
 
     $statePickerForm  = $('form.state-picker-form');
     $statePickerScreen = $('.state-picker');
@@ -99,6 +101,8 @@ var onDocumentReady = function(e) {
         // Prepare welcome screen
         $welcomeScreen.css('opacity', 1);
         resizeSlide($welcomeScreen);
+        rotatePhone();
+
 
         // Configure share panel
         ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
@@ -183,6 +187,16 @@ var onCastMute = function() {
 var onWindowResize = function() {
     var thisSlide = $('.slide');
     resizeSlide(thisSlide);
+    rotatePhone();
+}
+
+var rotatePhone = function() {
+    if (Modernizr.touch && Modernizr.mq('(orientation: portrait)')) {
+        $rotate.show();
+    }
+    else {
+        $rotate.hide();
+    }
 }
 
 /*
