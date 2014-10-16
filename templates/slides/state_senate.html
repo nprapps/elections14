@@ -1,0 +1,26 @@
+<div class="state-slide">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <p><span class="stateface stateface-{{ state_postal }}"></span></p>
+                <h2>{{ state_name }}</h2>
+            </div>
+
+            <div class="col-md-8">
+                {% for label, races in [('Governor', governor), ('Senate', senate), ('House', house)] %}
+                {% if races.count() %}
+                <h3>{{ label }}</h3>
+                <div class="house"> {# @TODO this is a hack #}
+                  <div class="results">
+                    {% include '_race_results_table.html' %}
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% include '_legend.html' %}
+</div>
+

@@ -152,7 +152,6 @@ def _state_house_slide(slug):
 
     context.update(app_utils.calculate_state_bop(races))
 
-    import pprint; pprint.pprint(context);
     context['races'] = races.where(Race.featured_race == True)
 
     context['body'] = render_template('slides/state_house.html', **context)
