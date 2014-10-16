@@ -104,6 +104,8 @@ var onDocumentReady = function(e) {
 
         STACK.start();
     } else if (IS_FAKE_CASTER) {
+        is_casting = true;
+        state = 'TX';
         onCastStarted();
     } else {
         // Prepare welcome screen
@@ -386,8 +388,8 @@ var onStatePickerSubmit = function(e) {
     $statePickerScreen.hide();
 
     if (is_casting) {
-        CHROMECAST_SENDER.sendMessage('state', state);
         $chromecastScreen.show(); 
+        CHROMECAST_SENDER.sendMessage('state', state);
     } else {
         STACK.start();
     }
