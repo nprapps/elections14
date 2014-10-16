@@ -1,6 +1,30 @@
 @import "less/cooper_hewitt";
 
 
+.bar-wrapper {
+    display: block;
+    width: 75%;
+    float: left;
+    height: 20px;
+}
+.bar {
+    display: block;
+    float: left;
+    height: 20px;
+    &.gop {
+      background-color: @red;
+    }
+    &.dem {
+      background-color: @blue;
+    }
+    &.other {
+      background-color: @green;
+    }
+}
+
+
+
+
 .house, .senate, .governor, .ballot-measures{
     height: 100%;
     table {

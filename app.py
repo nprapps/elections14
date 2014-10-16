@@ -98,14 +98,25 @@ def _stack_json():
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-@app.route('/preview/state-<slug>/')
-def _state_slide_preview(slug):
+@app.route('/preview/state-house-<slug>/')
+def _state_house_slide_preview(slug):
     """
     Preview a state slide outside of the stack.
     """
     context = make_context()
 
-    context['body'] = _state_slide(slug).data
+    context['body'] = _state_house_slide(slug).data
+
+    return render_template('_slide_preview.html', **context)
+
+@app.route('/preview/state-senate-<slug>/')
+def _state_senate_slide_preview(slug):
+    """
+    Preview a state slide outside of the stack.
+    """
+    context = make_context()
+
+    context['body'] = _state_senate_slide(slug).data
 
     return render_template('_slide_preview.html', **context)
 
@@ -120,9 +131,36 @@ def _slide_preview(slug):
 
     return render_template('_slide_preview.html', **context)
 
-@app.route('/slides/state-<slug>.html')
+@app.route('/slides/state-house-<slug>.html')
 @app_utils.cors
-def _state_slide(slug):
+def _state_house_slide(slug):
+    """
+    Serve a state slide.
+    """
+    from models import Race
+
+    slug = slug.upper()
+
+    context = make_context()
+    context['state_postal'] = slug
+    context['state_name'] = app_config.STATES.get(slug)
+
+    races = Race.select().where(
+        (Race.office_name == 'U.S. House') &
+        (Race.state_postal == slug)
+    ).order_by(Race.seat_number)
+
+    context.update(app_utils.calculate_state_bop(races))
+
+    context['races'] = races.where(Race.featured_race == True)
+
+    context['body'] = render_template('slides/state_house.html', **context)
+
+    return render_template('_slide.html', **context)
+
+@app.route('/slides/state-senate-<slug>.html')
+@app_utils.cors
+def _state_senate_slide(slug):
     """
     Serve a state slide.
     """
@@ -144,13 +182,7 @@ def _state_slide(slug):
         (Race.state_postal == slug)
     )
 
-    context['house'] = Race.select().where(
-        (Race.office_name == 'U.S. House') &
-        (Race.state_postal == slug) &
-        (Race.featured_race == True)
-    ).order_by(Race.seat_number)
-
-    context['body'] = render_template('slides/state.html', **context)
+    context['body'] = render_template('slides/state_senate.html', **context)
 
     return render_template('_slide.html', **context)
 
