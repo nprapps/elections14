@@ -27,6 +27,7 @@ var $commentCount = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
+var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 
 var state = null;
 var firstShareLoad = true;
@@ -97,12 +98,13 @@ var onDocumentReady = function(e) {
         setUpAudio(false);
 
         STACK.start();
+    } else if (IS_FAKE_CASTER) {
+        onCastStarted();
     } else {
         // Prepare welcome screen
         $welcomeScreen.css('opacity', 1);
         resizeSlide($welcomeScreen);
         rotatePhone();
-
 
         // Configure share panel
         ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
@@ -150,6 +152,7 @@ var onCastStarted = function() {
     $statePickerScreen.hide();
     $stack.hide();
     $chromecastScreen.show();
+    resizeSlide($chromecastScreen);
 
     STACK.stop();
 }
