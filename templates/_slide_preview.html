@@ -8,7 +8,11 @@
     {{ CSS.push('less/stack.less') }}
     {{ CSS.render('css/preview.min.css') }}
 
+    <!-- ugly includes because slide js is inlined and can't pickup the stuff from the base template -->
+    <script src="/js/lib/d3.v3.min.js"></script>
     {{ JS.push('js/lib/modernizr.js') }}
+    {{ JS.push('js/lib/jquery.js') }}
+    {{ JS.push('js/lib/jquery.columnizer.js') }}
     {{ JS.render('js/preview-header.min.js') }}
 
     <style>
@@ -17,14 +21,11 @@
             background-color: #141D24;
         }
     </style>
+
+
 </head>
 
 <body>
-    <!-- ugly includes because slide js is inlined and can't pickup the stuff from the base template -->
-    <script src="/js/lib/jquery.js"></script>
-    <script src="/js/lib/d3.v3.min.js"></script>
-    <script src="/js/lib/jquery.columnizer.js"></script>
-
     <div id="stack" class="stack" style="display: block;">
         {{ body|smarty }}
     </div>

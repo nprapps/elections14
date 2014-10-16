@@ -78,6 +78,20 @@ brew install node
 curl https://npmjs.org/install.sh | sh
 ```
 
+You will also need a customized version of phantomjs:
+
+```
+brew install phantomjs
+```
+
+Download [this customized version](https://drive.google.com/a/tylerjfisher.com/folderview?id=0B4Wl57IYdOIPZVl3VFU4TFdVVTg&usp=sharing#list) of phantomjs and save it to your Downloads folder. Unzip the file, then run the following command:
+
+```
+mv ~/Downloads/phantomjs /usr/local/bin/phantomjs
+```
+
+If your prompt asks you to overwrite the file, do so.
+
 Before bootstrapping, you will also need to add a new set of credentials to your environment variables. Ask somebody on the team.
 
 Then bootstrap the project:

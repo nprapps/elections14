@@ -25,9 +25,10 @@
             <div class="slides">
                 <ul class="sortable list-unstyled js-droppable">
                     {% for slide in slides %}
-                    <li class="slide" class="{{ loop.cycle('first', 'middle', 'last') }}" data-slide="{{ slide.slug }}">
-                        <div>{{ slide.slug }}</div>
+                    <li>
+                        <p class="slide" class="{{ loop.cycle('first', 'middle', 'last') }}" data-slide="{{ slide.slug }}">{{ slide.slug }}</p>
                         <p><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank">Preview</a></p>
+                        <p><a target="_blank" href="share/{{ slide.slug }}">Share image</a></p>
                     </li>
                     {% endfor %}
                 </ul>
