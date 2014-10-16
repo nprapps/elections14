@@ -4,7 +4,7 @@
 @import "less/share-modal.less";
 @import "less/stateface.less";
 @import "less/variables.less";
-@import "less/stack.less";
+@import "less/slides.less";
 @import "less/results.less";
 
 
@@ -16,10 +16,64 @@ body {
 h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.logo{
-    float:left;
-    fill: @grayMedium;
+
+/*
+** SLIDE DEFAULTS
+*/
+h1, h2, h3{
+    margin:0;
 }
+h2{
+    font-size: 5vmin;
+}
+h3{
+    font-size: 3.5vmin;
+}
+
+p{
+    font-size: 2vmin;
+    @media screen and (max-width: @screen-sm){
+        font-size: 2vmin;
+    }
+}
+
+.btn-lg{
+    padding: 3vmin 3vmin;
+    font-size: 3.5vmin;
+    letter-spacing: .03em;
+    border-radius: 0.5vmin;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: darken(@red, 20%);
+    }
+}
+
+#stack {
+    display: none;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    color: @musicLight;
+}
+
+.slide-inner {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.slide-content {
+    display: table-cell;
+    width:100%;
+    img {
+        width: 100%;
+    }
+    height: 100%;
+}
+
 
 /*
 ** WELCOME SLIDES
@@ -50,6 +104,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         width: 100%;
         height: 6vmin;
         margin-bottom:2vmin;
+        float:left;
+    	fill: @grayMedium;
     }
 
     .intro-text {
@@ -130,9 +186,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         opacity : 0.5;
         z-index: -1;
     }
-    display: block;
-    text-align: center;
 
+    text-align: center;
     padding-top: 6vmin;
 
     h2 {
@@ -170,9 +225,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         opacity : 0.5;
         z-index: -1;
     }
-    display: block;
-    text-align: center;
 
+    text-align: center;
     padding-top: 6vmin;
 
     .state {
@@ -312,6 +366,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             height:100%;
             width:5vw;
             margin: 0 .5% 0 0;
+            float:left;
+    		fill: @grayMedium;
         }
 
         .leaderboard {
@@ -432,60 +488,4 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
 
 
-/*
-** SLIDE DEFAULTS
-*/
-h1, h2, h3{
-    margin:0;
-}
-h2{
-    font-size: 5vmin;
-}
-h3{
-    font-size: 3.5vmin;
-}
-
-p{
-    font-size: 2vmin;
-    @media screen and (max-width: @screen-sm){
-        font-size: 2vmin;
-    }
-}
-
-.btn-lg{
-    padding: 3vmin 3vmin;
-    font-size: 3.5vmin;
-    letter-spacing: .03em;
-    border-radius: 0.5vmin;
-    text-transform: uppercase;
-
-    &:hover {
-        background-color: darken(@red, 20%);
-    }
-}
-
-#stack {
-    display: none;
-    overflow: hidden;
-}
-
-.slide {
-    display: none;
-    color: @musicLight;
-}
-
-.slide-inner {
-    display: table;
-    width: 100%;
-    height: 100%;
-}
-
-.slide-content {
-    display: table-cell;
-    width:100%;
-    img {
-        width: 100%;
-    }
-    height: 100%;
-}
 
