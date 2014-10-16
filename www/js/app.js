@@ -13,6 +13,7 @@ var $typeahead = null;
 
 var $chromecastScreen = null;
 var $chromecastMute = null;
+var $chromecastChangeState = null;
 
 var $header = null;
 var $headerControls = null;
@@ -62,6 +63,7 @@ var onDocumentReady = function(e) {
 
     $chromecastScreen = $('.cast-controls');
     $chromecastMute = $chromecastScreen.find('.mute');
+    $chromecastChangeState = $chromecastScreen.find('.change-state');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
 
@@ -81,6 +83,7 @@ var onDocumentReady = function(e) {
     $statePickerForm.submit(onStatePickerSubmit);
 
     $chromecastMute.on('click', onCastMute);
+    $chromecastChangeState.on('click', onStatePickerLink);
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
 
@@ -95,6 +98,7 @@ var onDocumentReady = function(e) {
 
         CHROMECAST_RECEIVER.setup();
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
+        CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
 
         setUpAudio(false);
 
@@ -122,6 +126,8 @@ var onDocumentReady = function(e) {
 
         setUpAudio(true);
     }
+
+    setupStateTypeahead();
 }
 
 /*
@@ -136,6 +142,27 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
     if (loaded) {
         CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
     }
+}
+
+/*
+ * Prepare typeahead for state picker.
+ */
+var setupStateTypeahead = function() {
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        name: 'states',
+        displayKey: 'value',
+        source: substringMatcher(STATES)
+    });
+
+    $typeahead = $('.twitter-typeahead');
+
+    $('.typeahead').on('typeahead:selected', switchState)
+    $('.typeahead').on('typeahead:opened', hideStateFace)
 }
 
 /*
@@ -185,6 +212,13 @@ var onCastReceiverMute = function(message) {
     } else {
         $audioPlayer.jPlayer('pause');
     }
+}
+
+/*
+ * Change the state on the receiver.
+ */
+var onCastStateChange = function(message) {
+    state = message;
 }
 
 /*
@@ -238,24 +272,11 @@ var onWelcomeButtonClick = function() {
     $statePickerScreen.show();
     resizeSlide($statePickerScreen);
 
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    },
-    {
-        name: 'states',
-        displayKey: 'value',
-        source: substringMatcher(STATES)
-    });
-
-    $typeahead = $('.twitter-typeahead');
-
-    $('.typeahead').on('typeahead:selected', switchState)
-    $('.typeahead').on('typeahead:opened', hideStateFace)
-
 }
 
+/*
+ * Matcher for typeahead.
+ */
 var substringMatcher = function(strs) {
     return function findMatches(q, cb) {
         var matches = [];
@@ -365,7 +386,7 @@ var onStatePickerSubmit = function(e) {
     $statePickerScreen.hide();
 
     if (is_casting) {
-        // TODO: send state message to receiver
+        CHROMECAST_SENDER.sendMessage('state', state);
         $chromecastScreen.show(); 
     } else {
         STACK.start();
