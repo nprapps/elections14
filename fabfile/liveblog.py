@@ -6,7 +6,6 @@ from fabric.api import task
 from jinja2 import Template
 import requests
 
-import app
 import app_config
 import models
 

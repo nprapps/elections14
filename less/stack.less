@@ -123,6 +123,46 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     }
 }
 
+.cast-controls {
+    &:after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../assets/elections-background-1.jpg');
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        opacity : 0.5;
+        z-index: -1;
+    }
+    display: block;
+    text-align: center;
+
+    padding-top: 6vmin;
+
+    h2 {
+        font-size: 3vw;
+        font-weight: bold;
+        padding-bottom: 2vw;
+    }
+
+    ul.menu {
+        list-style-type: none;
+        text-align: left;
+
+        li {
+            width: 40vw;
+            padding: 1vw;
+            font-size: 2.5vw;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid @grayMedium;
+        }
+    }
+}
+
 .state-picker {
     &:after {
         content : "";
