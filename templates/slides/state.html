@@ -1,4 +1,4 @@
-<div class="results state-slide">
+<div class="state-slide">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -10,7 +10,11 @@
                 {% for label, races in [('Governor', governor), ('Senate', senate), ('House', house)] %}
                 {% if races.count() %}
                 <h3>{{ label }}</h3>
-                {% include '_race_results_table.html' %}
+                <div class="house"> {# @TODO this is a hack #}
+                  <div class="results">
+                    {% include '_race_results_table.html' %}
+                  </div>
+                </div>
                 {% endif %}
                 {% endfor %}
             </div>
