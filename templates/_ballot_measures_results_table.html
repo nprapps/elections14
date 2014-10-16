@@ -1,0 +1,28 @@
+  <table class="races">
+      {% for race in races %}
+      <tr class="race dontsplit">
+          <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
+              {% if race.is_called() %}
+                  {{ race.precincts_reporting_percent()|format_percent }}
+              {% elif race.is_reporting() %}
+                  {{ race.precincts_reporting_percent()|format_percent }}
+              {% else %}
+                  &mdash;
+              {% endif %}
+          </td>
+          <td class="state">
+              {{ race.state_postal }}
+          </td>
+          <td class="description">
+              {{ race.ballot_measure_description }}
+          </td>
+          {% set candidate = race.top_choices()[0] %}
+          <td class="choice id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="lname">{{ candidate.last_name }}</span></td>
+          <td class="candidate-total {% if candidate.is_winner() %} winner{% endif %}{% if race.is_reporting() %} reporting{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
+          {% set candidate = race.top_choices()[1] %}
+          <td class="candidate-total {% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}{% if race.is_reporting() %} reporting{% endif %}">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</td>
+          <td class="choice id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}"><span class="lname">{{ candidate.last_name }}</span></td>
+      </tr>
+      {% endfor %}
+  </table>
+
