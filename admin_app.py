@@ -3,7 +3,6 @@
 import argparse
 import datetime
 import logging
-from StringIO import StringIO
 import subprocess
 
 from flask import Flask, render_template, send_file
@@ -11,7 +10,6 @@ from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin, ModelAdmin
 from models import Slide, SlideSequence, Race, Candidate
-from PIL import Image
 
 import app_config
 from render_utils import make_context, urlencode_filter
