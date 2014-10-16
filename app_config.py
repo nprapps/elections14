@@ -264,13 +264,13 @@ def configure_targets(deployment_target):
         DISQUS_SHORTNAME = 'nprviz-test'
 
         TUMBLR_NAME = 'stage-nprelections'
-        TUMBLR_AUTO_REFRESH = True 
+        TUMBLR_AUTO_REFRESH = True
         TUMBLR_NOT_BEFORE = datetime(2014, 10, 7, 11, 0, 0)
     else:
         S3_BUCKETS = []
         S3_BASE_URL = 'http://127.0.0.1:8000'
         SERVERS = []
-        SERVER_BASE_URL = 'http://127.0.0.1:8001'
+        SERVER_BASE_URL = 'http://127.0.0.1:8080'
         SERVER_LOG_PATH = '/tmp'
         DEBUG = True
 
