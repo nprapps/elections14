@@ -4,8 +4,6 @@
     {% include '_fonts.html' %}
 
     {{ CSS.push('less/app.less') }}
-    {{ CSS.push('less/results.less') }}
-    {{ CSS.push('less/stack.less') }}
     {{ CSS.render('css/preview.min.css') }}
 
     <!-- ugly includes because slide js is inlined and can't pickup the stuff from the base template -->
