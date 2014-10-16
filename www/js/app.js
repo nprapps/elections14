@@ -31,6 +31,7 @@ var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 
 var state = null;
 var firstShareLoad = true;
+var is_casting = false;
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
@@ -149,12 +150,19 @@ var onCastReady = function() {
  */
 var onCastStarted = function() {
     $welcomeScreen.hide();
-    $statePickerScreen.hide();
     $stack.hide();
-    $chromecastScreen.show();
-    resizeSlide($chromecastScreen);
-
     STACK.stop();
+    
+    if (!state) {
+        $statePickerScreen.show();
+        resizeSlide($statePickerScreen);
+    } else {
+        $statePickerScreen.hide();
+        $chromecastScreen.show();
+        resizeSlide($chromecastScreen);
+    }
+
+    is_casting = true;
 }
 
 /*
@@ -164,6 +172,8 @@ var onCastStopped = function() {
     $chromecastScreen.hide();
 
     STACK.start();
+
+    is_casting = false;
 }
 
 /*
@@ -354,7 +364,12 @@ var onStatePickerSubmit = function(e) {
 
     $statePickerScreen.hide();
 
-    STACK.start();
+    if (is_casting) {
+        // TODO: send state message to receiver
+        $chromecastScreen.show(); 
+    } else {
+        STACK.start();
+    }
 }
 
 var getStatePostal = function(input) {
@@ -367,6 +382,7 @@ var getStatePostal = function(input) {
  */
 var onStatePickerLink = function() {
     $stack.hide();
+    $chromecastScreen.hide();
     $statePickerScreen.show();
 }
 

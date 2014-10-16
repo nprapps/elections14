@@ -56,11 +56,14 @@
 <div class="cast-controls slide">
     <div class="slide-inner">
         <div class="slide-content">
-            <p>You're casting!</p>
+            <h2>Chromecast Menu</h2>
 
-            <a class="mute" href="#">Mute</a>
-
-            <p><a class="cast-stop" href="#"><img src="{{ S3_BASE_URL }}/assets/chromecast_on_blue.svg" /></a></p>
+            <ul class="menu">
+                <li><a class="mute" href="#">Mute</a></li>
+                <li><a class="state-picker-link" href="#">Change state</a></li>
+                <li><a data-toggle="modal" data-backdrop="static" data-target="#share-modal" href="#">Share</a></li>
+                <li><a class="cast-stop" href="#">Stop casting</a></li>
+            </ul>
         </div>
     </div>
 </div>
