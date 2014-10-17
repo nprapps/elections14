@@ -297,7 +297,7 @@ class Candidate(SlugModel):
     candidate_id = CharField(index=True)
 
     # update data
-    incumbent = BooleanField(default=False)
+    incumbent = BooleanField(default=False, null=True)
     ballot_order = CharField(null=True)
     vote_count = IntegerField(default=False)
     ap_winner = BooleanField(default=False)
