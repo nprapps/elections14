@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import datetime
+
 from flask import render_template
 
 from render_utils import make_context
@@ -160,7 +162,35 @@ def poll_closing():
     """
     Serve up poll closing information
     """
+    from models import Race
+
     context = make_context()
+
+    # get featured house/ballot measures + all senate and governors
+    featured_races = Race.select().where(
+        (Race.featured_race == True) |
+        (Race.office_name == 'U.S. Senate') |
+        (Race.office_name == 'Governor')
+    ).order_by(Race.poll_closing_time, Race.state_postal)
+
+    poll_groups = app_utils.group_races_by_closing_time(featured_races)
+
+    now = datetime.datetime.now()
+    for closing_time, races in poll_groups:
+        if now < closing_time:
+            nearest_closing_time = closing_time
+            nearest_poll_group = races
+            break
+
+    states_closing = []
+    for race in nearest_poll_group:
+        states_closing.append(race.state_postal)
+
+    states_closing = set(states_closing)
+    context['num_states_closing'] = len(states_closing)
+
+    context['closing_time'] = nearest_closing_time.strftime('%H:%M %p ET')
+    context['races'] = nearest_poll_group
 
     return render_template('slides/poll-closing.html', **context)
 
