@@ -6,7 +6,7 @@ import json
 import os
 from time import sleep
 
-from fabric.api import env, task
+from fabric.api import task
 import requests
 
 import app_config
