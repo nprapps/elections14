@@ -139,26 +139,22 @@ def init(output_dir='data'):
     """
     Initialize data from AP.
     """
-    try:
-        os.remove(CACHE_FILE)
-    except OSError:
-        pass
+    client = AP(SECRETS['AP_FTP_USER'], SECRETS['AP_FTP_PASSWORD'])
+    ticket = client.get_topofticket('2014-11-04')
 
-    _init_ap('init/races')
-    sleep(SLEEP_INTERVAL)
-    _init_ap('init/candidates')
+    races = []
+    candidates = []
 
-    write_init_races('%s/init_races.json' % output_dir)
-    write_init_candidates('%s/init_candidates.json' % output_dir)
+    for race in ticket.races:
+        races.append(process_race(race))
+        for candidate in race.candidates:
+            candidates.append(process_candidate(candidate))
 
-@task
-def get_incumbents(output_dir='data'):
-    """
-    Get incumbent data from updates.
-    """
-    _update_ap('races')
+    with open('%s/init_races.json' % output_dir, 'w') as f:
+        json.dump(races, f, indent=4)
 
-    write_incumbents('%s/incumbents.json' % output_dir)
+    with open('%s/init_candidates.json' % output_dir, 'w') as f:
+        json.dump(candidates, f, indent=4)
 
 @task
 def update(output_dir='data'):
@@ -171,58 +167,36 @@ def update(output_dir='data'):
     write_update('%s/update.json' % output_dir)
     write_calls('%s/calls.json' % output_dir)
 
-def _generate_race_id(obj, state_postal=None):
+
+def process_race(race):
     """
-    Makes an unique compound ID out of statePostal and raceID
+    Process a single race into our intermediary format.
     """
-    if state_postal:
-        return '%s-%s' % (state_postal, obj['raceID'])
-    else:
-        return '%s-%s' % (obj['statePostal'], obj['raceID'])
+    ret = {
+        'state_postal': race.state_postal,
+        'office_id': race.office_id,
+        'office_name': race.office_name,
+        'seat_name': race.seat_name,
+        'seat_number': race.seat_number,
+        'race_id': race.ap_race_number,
+        'race_type': race.race_type,
+        #'last_updated': race.get('lastUpdated') # This doesn't exist in race object in FTP
+    }
+    return ret
 
-def write_init_races(path):
+def process_candidate(candidate):
     """
-    Write AP data to intermediary files.
+    Process a single candidate into our intermediary format.
     """
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
-
-    races = []
-    init_races = cache['init/races']['response']['races']
-
-    for race in init_races:
-        races.append({
-            'state_postal': race.get('statePostal'),
-            'office_id': race.get('officeID'),
-            'office_name': race.get('officeName'),
-            'seat_name': race.get('seatName'),
-            'seat_number': race.get('seatNum'),
-            'race_id': _generate_race_id(race),
-            'race_type': race.get('raceTypeID'),
-            'last_updated': race.get('lastUpdated')
-        })
-
-    with open(path, 'w') as f:
-        json.dump(races, f, indent=4)
-
-def write_init_candidates(path):
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
-
-    candidates = []
-    init_candidates = cache['init/candidates']['response']['candidates']
-
-    for candidate in init_candidates:
-        candidates.append({
-            'candidate_id': candidate.get('candidateID'),
-            'last_name': candidate.get('last'),
-            'party': candidate.get('party'),
-            'first_name': candidate.get('first'),
-            'race_id': _generate_race_id(candidate)
-        })
-
-    with open(path, 'w') as f:
-        json.dump(candidates, f, indent=4)
+    ret = {
+        'candidate_id': candidate.ap_natl_number,
+        'first_name': candidate.first_name,
+        'last_name': candidate.last_name,
+        'race_id': candidate.ap_race_number,
+        'party': candidate.party,
+        'incumbent': candidate.is_incumbent,
+    }
+    return ret
 
 def write_update(path):
     with open(CACHE_FILE) as f:
@@ -284,31 +258,6 @@ def write_calls(path):
 
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)
-
-def write_incumbents(path):
-    """
-    Write incumbent data to a file
-    """
-
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
-
-    incumbents = []
-    races = cache['races']['response'].get('races', [])
-
-    for race in races:
-        stateRU = race['reportingUnits'][0]
-
-        assert stateRU.get('level', None) == 'state'
-
-        for candidate in stateRU.get('candidates'):
-            incumbents.append({
-                'candidate_id': candidate.get('candidateID'),
-                'incumbent': candidate.get('incumbent', False)
-            })
-
-    with open(path, 'w') as f:
-        json.dump(incumbents, f, indent=4)
 
 @task
 def record():
