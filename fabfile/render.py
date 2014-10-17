@@ -178,32 +178,36 @@ def render_states(compiled_includes={}):
     """
     from flask import url_for
 
-    view_name = '_state_slide'
+    view_name_tmpl = '_state_%s_slide'
     output_path = '.slides_html'
 
-    for postal, state in app_config.STATES.items():
-        # Silly fix because url_for require a context
-        with app.app.test_request_context():
-            path = url_for(view_name, slug=postal)
+    for slide_type in ['house', 'senate']:
+        view_name = view_name_tmpl % slide_type
 
-        with app.app.test_request_context(path=path):
-            print 'Rendering %s' % path
+        for postal, state in app_config.STATES.items():
 
-            view = app.__dict__[view_name]
-            content = view(postal)
+            # Silly fix because url_for require a context
+            with app.app.test_request_context():
+                path = url_for(view_name, slug=postal)
 
-        path = '%s%s' % (output_path, path)
+            with app.app.test_request_context(path=path):
+                print 'Rendering %s' % path
 
-        # Ensure path exists
-        head = os.path.split(path)[0]
+                view = app.__dict__[view_name]
+                content = view(postal)
 
-        try:
-            os.makedirs(head)
-        except OSError:
-            pass
+            path = '%s%s' % (output_path, path)
 
-        with open(path, 'w') as f:
-            f.write(content.data)
+            # Ensure path exists
+            head = os.path.split(path)[0]
+
+            try:
+                os.makedirs(head)
+            except OSError:
+                pass
+
+            with open(path, 'w') as f:
+                f.write(content.data)
 
 @task
 def render_big_boards(compiled_includes={}):
