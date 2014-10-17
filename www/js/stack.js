@@ -110,15 +110,25 @@ var STACK = (function () {
 
         var slug = _stack[_currentSlide]['slug'];
 
-        if (slug === 'state') {
+        if (slug === 'state-senate') {
             // If no state selected, skip to next
             if (!state) {
                 rotateSlide();
                 return;
             }
 
-            slide_path = 'slides/state-' + state + '.html';
-        } else {
+            slide_path = 'slides/state-senate-' + state + '.html';
+        }
+        else if (slug === 'state-house') {
+            // If no state selected, skip to next
+            if (!state) {
+                rotateSlide();
+                return;
+            }
+
+            slide_path = 'slides/state-house-' + state + '.html';
+        }
+         else {
             slide_path = 'slides/' + slug + '.html';
         }
 
@@ -144,7 +154,7 @@ var STACK = (function () {
 
 
                         $newSlide.fadeIn(800, function(){
-                            _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                            _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
                         });
                     });
                 }
@@ -159,7 +169,7 @@ var STACK = (function () {
                         $header.find('.leaderboard').fadeIn();
                     }
                     $newSlide.fadeIn(800, function(){
-                        _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                        _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
                     });
                 }
             }

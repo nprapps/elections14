@@ -143,7 +143,9 @@ def _state_house_slide(slug):
     """
     Serve a state slide.
     """
-    from models import Race
+    from models import Race, Slide
+
+    slide = Slide.get(Slide.slug == 'state-house')
 
     slug = slug.upper()
 
@@ -158,6 +160,8 @@ def _state_house_slide(slug):
 
     context.update(app_utils.calculate_state_bop(races))
 
+    context['time_on_screen'] = slide.time_on_screen
+
     context['races'] = races.where(Race.featured_race == True)
 
     context['body'] = render_template('slides/state_house.html', **context)
@@ -170,7 +174,9 @@ def _state_senate_slide(slug):
     """
     Serve a state slide.
     """
-    from models import Race
+    from models import Race, Slide
+
+    slide = Slide.get(Slide.slug == 'state-senate')
 
     slug = slug.upper()
 
@@ -187,6 +193,8 @@ def _state_senate_slide(slug):
         (Race.office_name == 'Governor') &
         (Race.state_postal == slug)
     )
+
+    context['time_on_screen'] = slide.time_on_screen
 
     context['body'] = render_template('slides/state_senate.html', **context)
 
@@ -208,7 +216,9 @@ def _slide(slug):
     else:
         body = slides.__dict__[view_name]()
 
-    return render_template('_slide.html', body=body)
+    time_on_screen = slide.time_on_screen
+
+    return render_template('_slide.html', body=body, time_on_screen=time_on_screen)
 
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)

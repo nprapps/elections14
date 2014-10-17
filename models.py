@@ -376,6 +376,7 @@ class Slide(SlugModel):
     name = CharField(max_length=255)
     body = TextField()
     view_name = CharField(max_length=255)
+    time_on_screen = IntegerField(default=10)
 
     def __unicode__(self):
         return self.name
