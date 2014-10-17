@@ -1,11 +1,9 @@
 <div class="tumblr tumblr-text-post">
     <div class="wrapper">
-        <div class="text-header">
-            {% if title %}
-            <h2>{{ title }}</h2>
-            {% endif %}
-            <div class="date">{{ formatted_date }}</div>
-        </div>
+        {% if title %}
+        <h2>{{ title }}</h2>
+        {% endif %}
+        <div class="date">{{ formatted_date }}</div>
 
         <div class="body">
             {{ truncated_text }}

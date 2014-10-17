@@ -24,11 +24,14 @@
                 margin-bottom: 1vmin;
             }
 
-            p {
-                font-size: 4.5vmin;
-                line-height: 5.2vmin;
+            .body {
                 margin-top: 5vmin;
                 margin-bottom: 5vmin;
+
+                p {
+                    font-size: 4.5vmin;
+                    line-height: 5.2vmin;
+                }
             }
 
             .post-footer {
@@ -130,13 +133,35 @@
     }
 
     .tumblr-link-post {
-        margin: 0 auto;
-        max-width: 1024px;
-        h2 a {
-            font-size: 48px;
-        }
-        p {
-            font-size: 30px;
+        .wrapper {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+
+            h2 {
+                font-size: 6vmin;
+                margin-bottom: 1vmin;
+            }
+
+            .date {
+                font-size: 3vmin;
+                margin-bottom: 1vmin;
+            }
+
+            .body {
+                margin-top: 5vmin;
+                margin-bottom: 5vmin;
+
+                p {
+                    font-size: 4.5vmin;
+                    line-height: 5.2vmin;
+                }
+            }
+
+            .post-footer {
+                font-size: 3vmin;
+            }
         }
     }
 
