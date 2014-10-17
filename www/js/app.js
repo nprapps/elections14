@@ -122,7 +122,11 @@ var onDocumentReady = function(e) {
         });
 
         // Geolocate
-        if (geoip2) {
+        if ($.cookie('state')) {
+            state = $.cookie('state');
+            loadState();
+        }
+        if (geoip2 && !($.cookie('state'))) {
             geoip2.city(onLocateIP);
         }
 
@@ -181,7 +185,7 @@ var onCastStarted = function() {
     $welcomeScreen.hide();
     $stack.hide();
     STACK.stop();
-    
+
     if (!state) {
         $statePickerScreen.show();
         resizeSlide($statePickerScreen);
@@ -348,22 +352,24 @@ var getState = function() {
     if (input) {
         state = getStatePostal(input)
     }
+    $.cookie('state', state, { expires: 30 });
+}
+
+var loadState = function() {
+    $stateface.removeClass();
+    $stateface.addClass('stateface stateface-' + state.toLowerCase());
+    var stateName = APP_CONFIG.STATES[state];
+    $stateName.text(stateName)
 }
 
 var switchState = function() {
+    getState();
+    loadState();
+
     $stateface.css('opacity', 1);
     $stateName.css('opacity', 1);
-
     $typeahead.css('top', '0');
 
-    var input = $('.typeahead').typeahead('val');
-    var postal = getStatePostal(input)
-
-    $stateface.removeClass();
-    $stateface.addClass('stateface stateface-' + postal.toLowerCase());
-
-    $stateName.text(input);
-    getState();
     $('.typeahead').typeahead('val', '')
     $('.typeahead').typeahead('close');
     $('.typeahead').blur();
@@ -381,14 +387,11 @@ var hideStateFace = function() {
 var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
-    $.cookie('state', state);
-
     $statePickerLink.text(APP_CONFIG.STATES[state]);
-
     $statePickerScreen.hide();
 
     if (is_casting) {
-        $chromecastScreen.show(); 
+        $chromecastScreen.show();
         resizeSlide($chromecastScreen);
         CHROMECAST_SENDER.sendMessage('state', state);
     } else {
@@ -417,12 +420,9 @@ var onStatePickerLink = function() {
 var onLocateIP = function(response) {
     var place = response.most_specific_subdivision.iso_code;
     $('#option-' + place).prop('selected', true);
-
-    $stateface.addClass('stateface-' + place.toLowerCase());
-    var stateName = APP_CONFIG.STATES[place];
-    $stateName.text(stateName)
-
     state = place;
+
+    loadState();
 }
 
 /*
