@@ -509,19 +509,20 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
-    _mock_empty_slide('senate big board', 'senate_big_board', it.next())
-    _mock_empty_slide('house big board one', 'house_big_board_one', it.next())
-    _mock_empty_slide('house big board two', 'house_big_board_two', it.next())
-    _mock_empty_slide('governor big board', 'governor_big_board', it.next())
-    _mock_empty_slide('ballot measures big board', 'ballot_measures_big_board', it.next())
-    _mock_empty_slide('balance of power', 'balance_of_power', it.next())
-    _mock_empty_slide('poll closing', 'poll_closing', it.next())
-    _mock_empty_slide('state', '_state_slide', it.next())
-    _mock_empty_slide('romney dems', 'romney_dems', it.next())
-    _mock_empty_slide('obama reps', 'obama_reps', it.next())
-    _mock_empty_slide('incumbents lost', 'incumbents_lost', it.next())
-    _mock_empty_slide('blue dogs', 'blue_dogs', it.next())
-    _mock_empty_slide('house freshmen', 'house_freshmen', it.next())
+    _mock_empty_slide('senate big board', 'senate_big_board', 3, it.next())
+    _mock_empty_slide('house big board one', 'house_big_board_one', 5, it.next())
+    _mock_empty_slide('house big board two', 'house_big_board_two', 5, it.next())
+    _mock_empty_slide('governor big board', 'governor_big_board', 5, it.next())
+    _mock_empty_slide('ballot measures big board', 'ballot_measures_big_board', 5, it.next())
+    _mock_empty_slide('balance of power', 'balance_of_power', 5, it.next())
+    _mock_empty_slide('poll closing', 'poll_closing', 5, it.next())
+    _mock_empty_slide('state senate', '_state_senate_slide', 10, it.next())
+    _mock_empty_slide('state house', '_state_house_slide', 10, it.next())
+    _mock_empty_slide('romney dems', 'romney_dems', 5, it.next())
+    _mock_empty_slide('obama reps', 'obama_reps', 5, it.next())
+    _mock_empty_slide('incumbents lost', 'incumbents_lost', 5, it.next())
+    _mock_empty_slide('blue dogs', 'blue_dogs', 5, it.next())
+    _mock_empty_slide('house freshmen', 'house_freshmen', 5, it.next())
 #    execute('instagram.get_photos')
 
 def _mock_slide_from_image(filename, i):
@@ -531,11 +532,11 @@ def _mock_slide_from_image(filename, i):
     slide = models.Slide.create(body=body, name=filename)
     models.SlideSequence.create(order=i, slide=slide)
 
-def _mock_empty_slide(slug, view, i):
+def _mock_empty_slide(slug, view, time_on_screen, i):
     import models
 
     body = ''
-    slide = models.Slide.create(body=body, name=slug, view_name=view)
+    slide = models.Slide.create(body=body, name=slug, view_name=view, time_on_screen=time_on_screen)
     models.SlideSequence.create(order=i, slide=slide)
 
 @task

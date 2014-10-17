@@ -160,6 +160,8 @@ def _state_house_slide(slug):
 
     context.update(app_utils.calculate_state_bop(races))
 
+    context['time_on_screen'] = slide.time_on_screen
+
     context['races'] = races.where(Race.featured_race == True)
 
     context['body'] = render_template('slides/state_house.html', **context)
@@ -192,6 +194,8 @@ def _state_senate_slide(slug):
         (Race.state_postal == slug)
     )
 
+    context['time_on_screen'] = slide.time_on_screen
+
     context['body'] = render_template('slides/state_senate.html', **context)
 
     return render_template('_slide.html', **context)
@@ -212,7 +216,9 @@ def _slide(slug):
     else:
         body = slides.__dict__[view_name]()
 
-    return render_template('_slide.html', body=body)
+    time_on_screen = slide.time_on_screen
+
+    return render_template('_slide.html', body=body, time_on_screen=time_on_screen)
 
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)
