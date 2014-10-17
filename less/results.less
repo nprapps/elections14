@@ -20,21 +20,12 @@
     }
 
     .results-container{
-      margin:auto;
+      margin:3vmin auto 0 auto;
      .viewportRatio(3, 2);
     }
 
-
-
-    // .results{
-    //     width: 100vw; 
-    //     max-width: 180vh; 
-    //     max-height: 100vh;
-    //     max-width: 177.78vh; /* 16/9 = 1.778 */
-    //     margin:auto; 
-    // }
-
     .results,.results-header {
+        padding: 0 2vmin;
         h1,
         h2,
         h3,
@@ -44,58 +35,23 @@
         p {
             margin-top: 0;
             font-family: 'Cooper Hewitt';
-            // color:@white;
         }
     }
 
-    
+    .races h2,
+    .poll-closing-group{
+        font-size: 1.5vmin;
+    }
 
     .results-header h2,
     .results-header,
-    .races h2,
-    .races,
-    .poll-closing-group {
-    font-size:10px;
-
-        // @media(orientation:landscape) {
-        //     tr {           
-        //         font-size:2vh;
-        //     }
-        // }
-        // @media(orientation:portrait) {
-        //     tr{
-        //         font-size:2vw;
-        //     }
-        // }
+    p{
+        font-size: 2vmin;
+    }
 
 
-        // font-size:10px;
-        // font-size:2vmin;
-
-        // @media screen and (max-width: @screen-md){
-        //     font-size: 1.5vmin;
-        // }
-        // @media screen and (min-width: @screen-sm) and (min-height: 630px){
-        //     font-size: 10.6px;
-        //     line-height: 1;
-        // }
-
-        // @media screen and (min-width: 1100px) and (min-height: 700px){
-        //     font-size: 14px;
-        //     line-height: 1.1;
-        // }
-
-        // @media screen and (min-width: @screen-xl) and (min-height: 875px){
-        //     font-size: 22px;
-        //     line-height: 1;
-        //     font-weight:300;
-        // }
-
-        // @media screen and (min-width: @screen-big-board) and (min-height: 1000px){
-        //     font-size: 26px;
-        //     line-height: 1.2;
-        //     font-weight:300;
-        // }
+    .races {
+        font-size:10px;
     }
  
 
@@ -110,21 +66,8 @@
         h1 {
             float: left;
             margin: 0;
-            font-size:4vmin;
-            // font-size:18px;
-            // letter-spacing: .05em;
-
-            // @media screen and (min-width: @screen-md){
-            // font-size: 24px;
-            // }
-
-            // @media screen and (min-width: @screen-lg){
-            //     font-size: 36px;
-            // }
-
-            // @media screen and (min-width: @screen-big-board){
-            //     font-size: 46px;
-            // }
+            font-size:3vmin;
+            letter-spacing: .05em;
         }
 
         .leaderboard {
@@ -181,8 +124,8 @@
                 margin-left: 15px;
                 margin-right: 15px;
                 @media screen and (max-width: @screen-sm){
-                margin-left:5px;
-                margin-right:5px;
+                    margin-left:5px;
+                    margin-right:5px;
                 }
 
                 .count {
@@ -230,10 +173,10 @@
             height:18px;
             box-sizing:border-box;
 
-            min-width: 1vmin;
-            height: 1vmin;
-            line-height: 1vmin;
-            border-radius: .5vmin;
+            min-width: 4vmin;
+            height: 4vmin;
+            line-height: 4vmin;
+            border-radius: 2vmin;
 
             // @media screen and (min-width: @screen-md){
             //     min-width:38px;
@@ -270,14 +213,9 @@
 
 
     .results  {
-        // height: 100%;
-
         .column {
             box-sizing: border-box;
             padding: 0 1%;
-            // @media screen and (max-width: @screen-md){
-            //     padding: 0 6px;
-            // }
             &.first {
                 padding-left: 0;
             }
@@ -296,15 +234,9 @@
             color: @gray-light;
             margin-bottom:0;
             border-bottom: .2em solid @gray-light;
-            // @media screen and (max-width: @screen-md){
-            //     border-bottom: 2px solid @gray-dark;
-            // }
 
             .time {
-                padding: 3px 0;
-                @media screen and (max-width: @screen-md){
-                    padding:4.5px 0;
-                }
+                padding: .2em 0;
                 display: inline-block;
             }
         }
@@ -352,6 +284,7 @@
                 &.other { color: @green; }
             }
             .state {
+                width: 6%;
                 text-align: center;
                 // &.party-change {
                 //     color: #fff;
@@ -370,7 +303,7 @@
             }
 
             .candidate {
-                width: 35%;
+                width: 32%;
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
@@ -383,7 +316,7 @@
 
                 &.incumbent {
                     img{
-                        height:2vmin;
+                        height:1em;
                         width:auto;
                         vertical-align:top;
                         margin-left:2px;
@@ -398,15 +331,16 @@
             }
 
             .candidate-total {
+                width: 7%;
                 text-align:right;
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
                 &.reporting{
                     &:after{
-                                content:"%";
-                                font-size:80%;
-                                vertical-align:top;
+                        content:"%";
+                        font-size:80%;
+                        vertical-align:top;
                     }
                 }
             }
@@ -536,3 +470,11 @@
     }
 }
 
+.house{
+    .state{
+        width:8%;
+    }
+    .candidate{
+        width:31%;
+    }
+}
