@@ -65,7 +65,13 @@ def index():
     context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_MAJORITY, app_utils.SENATE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(races)
 
-    return render_template('index.html', **context), 200,
+    if app_config.DEPLOY_PROMO:
+        template_file = 'promo.html'
+    else:
+        template_file = 'index.html'
+
+
+    return render_template(template_file, **context), 200,
 
 @app.route('/comments/')
 def comments():
