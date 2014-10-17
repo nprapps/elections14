@@ -143,7 +143,9 @@ def _state_house_slide(slug):
     """
     Serve a state slide.
     """
-    from models import Race
+    from models import Race, Slide
+
+    slide = Slide.get(Slide.slug == 'state-house')
 
     slug = slug.upper()
 
@@ -170,7 +172,9 @@ def _state_senate_slide(slug):
     """
     Serve a state slide.
     """
-    from models import Race
+    from models import Race, Slide
+
+    slide = Slide.get(Slide.slug == 'state-senate')
 
     slug = slug.upper()
 

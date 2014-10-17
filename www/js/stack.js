@@ -110,15 +110,25 @@ var STACK = (function () {
 
         var slug = _stack[_currentSlide]['slug'];
 
-        if (slug === 'state') {
+        if (slug === 'state-senate') {
             // If no state selected, skip to next
             if (!state) {
                 rotateSlide();
                 return;
             }
 
-            slide_path = 'slides/state-' + state + '.html';
-        } else {
+            slide_path = 'slides/state-senate-' + state + '.html';
+        }
+        else if (slug === 'state-house') {
+            // If no state selected, skip to next
+            if (!state) {
+                rotateSlide();
+                return;
+            }
+
+            slide_path = 'slides/state-house-' + state + '.html';
+        }
+         else {
             slide_path = 'slides/' + slug + '.html';
         }
 
