@@ -350,16 +350,17 @@ var offControlsHover = function() {
 var getState = function() {
     var input = $('.typeahead').typeahead('val');
     if (input) {
-        state = getStatePostal(input)
+        var inverted = _.invert(APP_CONFIG.STATES);
+        state = inverted(input)
     }
+
     $.cookie('state', state, { expires: 30 });
 }
 
 var loadState = function() {
     $stateface.removeClass();
     $stateface.addClass('stateface stateface-' + state.toLowerCase());
-    var stateName = APP_CONFIG.STATES[state];
-    $stateName.text(stateName)
+    $stateName.text(APP_CONFIG.STATES[state])
 }
 
 var switchState = function() {
@@ -399,11 +400,6 @@ var onStatePickerSubmit = function(e) {
     }
 }
 
-var getStatePostal = function(input) {
-    var inverted = _.invert(APP_CONFIG.STATES);
-    return inverted[input];
-}
-
 /*
  * Reopen state selector.
  */
@@ -421,6 +417,7 @@ var onLocateIP = function(response) {
     var place = response.most_specific_subdivision.iso_code;
     $('#option-' + place).prop('selected', true);
     state = place;
+    $.cookie('state', state, { expires: 30 });
 
     loadState();
 }
