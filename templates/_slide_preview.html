@@ -34,6 +34,23 @@
                 window.callPhantom({ target: 'depict', status: 'ready' });
             }
         })
+
+        var resizeSlide = function() {
+            var $slide = $('.slide');
+            var w = $(window).width();
+            var h = $(window).height();
+
+            $slide.width(w);
+            $slide.height(h);
+
+            $slide.find('.slide-content').width(w);
+            $slide.find('.slide-content').height(h);
+        }
+
+        resizeSlide();
+
+        $(window).on('resize', resizeSlide);
+
     </script>
 
 </body>
