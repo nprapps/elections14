@@ -145,6 +145,7 @@ var STACK = (function () {
                         $(this).remove();
                         $stack.append($newSlide);
                         resizeSlide($newSlide)
+
                         if ($newSlide.find('.leaderboard').length > 0) {
                             $header.find('.leaderboard').fadeOut();
                         }
@@ -152,22 +153,21 @@ var STACK = (function () {
                             $header.find('.leaderboard').fadeIn();
                         }
 
-
                         $newSlide.fadeIn(800, function(){
                             _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
                         });
                     });
-                }
-
-                else {
+                } else {
                     $stack.append($newSlide);
-                    resizeSlide($newSlide)
+                    resizeSlide($newSlide);
+
                     if ($newSlide.find('.results-header').length > 0) {
                         $header.find('.leaderboard').fadeOut();
                     }
                     else {
                         $header.find('.leaderboard').fadeIn();
                     }
+
                     $newSlide.fadeIn(800, function(){
                         _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
                     });
