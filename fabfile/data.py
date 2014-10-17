@@ -103,6 +103,7 @@ def bootstrap():
 
     load_races('data/init_races.json')
     load_candidates('data/init_candidates.json')
+    load_incumbents('data/incumbents.json')
     load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
@@ -235,6 +236,32 @@ def load_calls(path):
 
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated
+
+@task
+def load_incumbents(path):
+    """
+    Update canidate incumbent status from the AP intermediary files.
+    """
+    import models
+
+    candidates_updated = 0
+    candidates_skipped = 0
+
+    print 'Loading incumbent data from AP update data on disk'
+
+    with open(path) as f:
+        candidates = json.load(f)
+
+    for candidate in candidates:
+        try:
+            candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'])
+            candidate_model.incumbent = candidate['incumbent']
+            candidate_model.save()
+            candidates_updated += 1
+        except models.Candidate.DoesNotExist:
+            candidates_skipped +=1
+
+    print 'Updated incumbent status for %i candidates (%i skipped)' % (candidates_updated, candidates_skipped)
 
 @task
 def update_featured_social():
@@ -458,14 +485,6 @@ def _save_senate_row(row, quiet):
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
         existing.previous_party = row['party']
         existing.save()
-
-        if row['incumbent'] == '1':
-            if row['party'] == 'gop':
-                candidate = existing.candidates.where(models.Candidate.party == 'GOP').get()
-            elif row['party'] == 'dem':
-                candidate = existing.candidates.where(models.Candidate.party == 'Dem').get()
-            candidate.incumbent = True
-            candidate.save()
 
     except models.Race.DoesNotExist:
         if not quiet:

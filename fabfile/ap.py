@@ -150,6 +150,15 @@ def init(output_dir='data'):
     write_init_candidates('%s/init_candidates.json' % output_dir)
 
 @task
+def get_incumbents(output_dir='data'):
+    """
+    Get incumbent data from updates.
+    """
+    _update_ap('races')
+
+    write_incumbents('%s/incumbents.json' % output_dir)
+
+@task
 def update(output_dir='data'):
     """
     Update data from AP.
@@ -273,6 +282,31 @@ def write_calls(path):
 
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)
+
+def write_incumbents(path):
+    """
+    Write incumbent data to a file
+    """
+
+    with open(CACHE_FILE) as f:
+        cache = json.load(f)
+
+    incumbents = []
+    races = cache['races']['response'].get('races', [])
+
+    for race in races:
+        stateRU = race['reportingUnits'][0]
+
+        assert stateRU.get('level', None) == 'state'
+
+        for candidate in stateRU.get('candidates'):
+            incumbents.append({
+                'candidate_id': candidate.get('candidateID'),
+                'incumbent': candidate.get('incumbent', False)
+            })
+
+    with open(path, 'w') as f:
+        json.dump(incumbents, f, indent=4)
 
 @task
 def record():
