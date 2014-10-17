@@ -135,7 +135,7 @@ var STACK = (function () {
         console.log('Rotating to next slide:', slide_path);
 
         _rotateRequest = $.ajax({
-            url: APP_CONFIG.S3_BASE_URL + '/' + slide_path,
+            url: slide_path,
             success: function(data) {
                 var $oldSlide = $stack.find('.slide');
                 var $newSlide = $(data);
@@ -145,6 +145,7 @@ var STACK = (function () {
                         $(this).remove();
                         $stack.append($newSlide);
                         resizeSlide($newSlide)
+
                         if ($newSlide.find('.leaderboard').length > 0) {
                             $header.find('.leaderboard').fadeOut();
                         }
@@ -152,22 +153,21 @@ var STACK = (function () {
                             $header.find('.leaderboard').fadeIn();
                         }
 
-
                         $newSlide.fadeIn(800, function(){
                             _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
                         });
                     });
-                }
-
-                else {
+                } else {
                     $stack.append($newSlide);
-                    resizeSlide($newSlide)
+                    resizeSlide($newSlide);
+
                     if ($newSlide.find('.results-header').length > 0) {
                         $header.find('.leaderboard').fadeOut();
                     }
                     else {
                         $header.find('.leaderboard').fadeIn();
                     }
+
                     $newSlide.fadeIn(800, function(){
                         _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
                     });
@@ -181,7 +181,7 @@ var STACK = (function () {
      */
     function updateStack() {
         _stackRequest = $.ajax({
-            url: APP_CONFIG.S3_BASE_URL + '/live-data/stack.json',
+            url: 'live-data/stack.json',
             dataType: 'json',
             success: function(data) {
                 _nextStack = data;

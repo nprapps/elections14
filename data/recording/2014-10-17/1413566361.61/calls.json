@@ -1,0 +1,3547 @@
+[
+    {
+        "ap_winner": "20172", 
+        "ap_called_time": "2014-10-17T17:13:18Z", 
+        "race_id": "CA-8681"
+    }, 
+    {
+        "ap_winner": "56607", 
+        "ap_called_time": "2014-10-17T17:12:40Z", 
+        "race_id": "TX-45872"
+    }, 
+    {
+        "ap_winner": "33259", 
+        "ap_called_time": "2014-10-17T17:12:17Z", 
+        "race_id": "MA-24745"
+    }, 
+    {
+        "ap_winner": "33264", 
+        "ap_called_time": "2014-10-17T17:12:17Z", 
+        "race_id": "MA-24748"
+    }, 
+    {
+        "ap_winner": "33248", 
+        "ap_called_time": "2014-10-17T17:11:16Z", 
+        "race_id": "MA-24740"
+    }, 
+    {
+        "ap_winner": "33303", 
+        "ap_called_time": "2014-10-17T17:11:16Z", 
+        "race_id": "MA-24767"
+    }, 
+    {
+        "ap_winner": "33187", 
+        "ap_called_time": "2014-10-17T17:11:16Z", 
+        "race_id": "MA-24709"
+    }, 
+    {
+        "ap_winner": "18777", 
+        "ap_called_time": "2014-10-17T17:10:04Z", 
+        "race_id": "HI-12969"
+    }, 
+    {
+        "ap_winner": "5002", 
+        "ap_called_time": "2014-10-17T17:09:56Z", 
+        "race_id": "AL-1974"
+    }, 
+    {
+        "ap_winner": "10203", 
+        "ap_called_time": "2014-10-17T17:09:19Z", 
+        "race_id": "DC-9307"
+    }, 
+    {
+        "ap_winner": "33183", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24707"
+    }, 
+    {
+        "ap_winner": "33231", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24731"
+    }, 
+    {
+        "ap_winner": "33179", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24705"
+    }, 
+    {
+        "ap_winner": "33257", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24744"
+    }, 
+    {
+        "ap_winner": "33304", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24768"
+    }, 
+    {
+        "ap_winner": "33205", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24718"
+    }, 
+    {
+        "ap_winner": "33283", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24757"
+    }, 
+    {
+        "ap_winner": "33170", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24701"
+    }, 
+    {
+        "ap_winner": "33221", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24726"
+    }, 
+    {
+        "ap_winner": "33298", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24765"
+    }, 
+    {
+        "ap_winner": "33219", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24725"
+    }, 
+    {
+        "ap_winner": "33323", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24777"
+    }, 
+    {
+        "ap_winner": "33226", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24729"
+    }, 
+    {
+        "ap_winner": "33229", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24730"
+    }, 
+    {
+        "ap_winner": "33239", 
+        "ap_called_time": "2014-10-17T17:08:56Z", 
+        "race_id": "MA-24735"
+    }, 
+    {
+        "ap_winner": "19484", 
+        "ap_called_time": "2014-10-17T17:08:53Z", 
+        "race_id": "FL-10031"
+    }, 
+    {
+        "ap_winner": "29148", 
+        "ap_called_time": "2014-10-17T17:08:15Z", 
+        "race_id": "ME-21277"
+    }, 
+    {
+        "ap_winner": "10212", 
+        "ap_called_time": "2014-10-17T17:07:08Z", 
+        "race_id": "DC-9334"
+    }, 
+    {
+        "ap_winner": "20211", 
+        "ap_called_time": "2014-10-15T17:56:37Z", 
+        "race_id": "FL-11683"
+    }, 
+    {
+        "ap_winner": "20199", 
+        "ap_called_time": "2014-10-15T17:56:37Z", 
+        "race_id": "FL-11681"
+    }, 
+    {
+        "ap_winner": "20208", 
+        "ap_called_time": "2014-10-15T17:55:58Z", 
+        "race_id": "FL-11682"
+    }, 
+    {
+        "ap_winner": "19378", 
+        "ap_called_time": "2014-10-15T17:55:25Z", 
+        "race_id": "FL-10045"
+    }, 
+    {
+        "ap_winner": "18536", 
+        "ap_called_time": "2014-10-15T17:54:45Z", 
+        "race_id": "FL-10019"
+    }, 
+    {
+        "ap_winner": "18742", 
+        "ap_called_time": "2014-10-15T17:54:45Z", 
+        "race_id": "FL-10023"
+    }, 
+    {
+        "ap_winner": "77059", 
+        "ap_called_time": "2014-10-15T17:53:44Z", 
+        "race_id": "NY-36601"
+    }, 
+    {
+        "ap_winner": "18723", 
+        "ap_called_time": "2014-10-15T17:53:32Z", 
+        "race_id": "FL-10015"
+    }, 
+    {
+        "ap_winner": "76973", 
+        "ap_called_time": "2014-10-15T17:50:19Z", 
+        "race_id": "NY-36581"
+    }, 
+    {
+        "ap_winner": "76992", 
+        "ap_called_time": "2014-10-15T17:50:19Z", 
+        "race_id": "NY-36584"
+    }, 
+    {
+        "ap_winner": "77050", 
+        "ap_called_time": "2014-10-15T17:50:19Z", 
+        "race_id": "NY-36599"
+    }, 
+    {
+        "ap_winner": "76985", 
+        "ap_called_time": "2014-10-15T17:50:19Z", 
+        "race_id": "NY-36583"
+    }, 
+    {
+        "ap_winner": "77072", 
+        "ap_called_time": "2014-10-15T17:50:19Z", 
+        "race_id": "NY-36604"
+    }, 
+    {
+        "ap_winner": "77068", 
+        "ap_called_time": "2014-10-15T17:50:19Z", 
+        "race_id": "NY-36603"
+    }, 
+    {
+        "ap_winner": "77045", 
+        "ap_called_time": "2014-10-15T17:50:19Z", 
+        "race_id": "NY-36598"
+    }, 
+    {
+        "ap_winner": "77039", 
+        "ap_called_time": "2014-10-15T17:49:29Z", 
+        "race_id": "NY-36597"
+    }, 
+    {
+        "ap_winner": "76997", 
+        "ap_called_time": "2014-10-15T17:49:29Z", 
+        "race_id": "NY-36585"
+    }, 
+    {
+        "ap_winner": "76981", 
+        "ap_called_time": "2014-10-15T17:49:29Z", 
+        "race_id": "NY-36582"
+    }, 
+    {
+        "ap_winner": "77086", 
+        "ap_called_time": "2014-10-15T17:48:08Z", 
+        "race_id": "NY-36607"
+    }, 
+    {
+        "ap_winner": "77081", 
+        "ap_called_time": "2014-10-15T17:48:08Z", 
+        "race_id": "NY-39859"
+    }, 
+    {
+        "ap_winner": "76098", 
+        "ap_called_time": "2014-10-15T17:48:08Z", 
+        "race_id": "NY-39760"
+    }, 
+    {
+        "ap_winner": "77034", 
+        "ap_called_time": "2014-10-15T17:46:17Z", 
+        "race_id": "NY-36595"
+    }, 
+    {
+        "ap_winner": "77015", 
+        "ap_called_time": "2014-10-15T17:46:17Z", 
+        "race_id": "NY-36591"
+    }, 
+    {
+        "ap_winner": "77000", 
+        "ap_called_time": "2014-10-15T17:46:17Z", 
+        "race_id": "NY-36587"
+    }, 
+    {
+        "ap_winner": "77020", 
+        "ap_called_time": "2014-10-15T17:44:46Z", 
+        "race_id": "NY-36592"
+    }, 
+    {
+        "ap_winner": "77010", 
+        "ap_called_time": "2014-10-15T17:44:46Z", 
+        "race_id": "NY-36590"
+    }, 
+    {
+        "ap_winner": "77077", 
+        "ap_called_time": "2014-10-15T17:43:47Z", 
+        "race_id": "NY-36605"
+    }, 
+    {
+        "ap_winner": "77100", 
+        "ap_called_time": "2014-10-15T17:43:47Z", 
+        "race_id": "NY-39989"
+    }, 
+    {
+        "ap_winner": "77028", 
+        "ap_called_time": "2014-10-15T17:42:56Z", 
+        "race_id": "NY-36593"
+    }, 
+    {
+        "ap_winner": "77158", 
+        "ap_called_time": "2014-10-15T17:42:56Z", 
+        "race_id": "NY-40004"
+    }, 
+    {
+        "ap_winner": "77004", 
+        "ap_called_time": "2014-10-15T17:42:56Z", 
+        "race_id": "NY-36588"
+    }, 
+    {
+        "ap_winner": "77054", 
+        "ap_called_time": "2014-10-15T17:42:56Z", 
+        "race_id": "NY-36600"
+    }, 
+    {
+        "ap_winner": "77031", 
+        "ap_called_time": "2014-10-15T17:40:46Z", 
+        "race_id": "NY-36594"
+    }, 
+    {
+        "ap_winner": "77102", 
+        "ap_called_time": "2014-10-15T17:40:46Z", 
+        "race_id": "NY-39990"
+    }, 
+    {
+        "ap_winner": "52295", 
+        "ap_called_time": "2014-10-15T17:37:17Z", 
+        "race_id": "VT-46375"
+    }, 
+    {
+        "ap_winner": "19348", 
+        "ap_called_time": "2014-10-15T17:33:46Z", 
+        "race_id": "FL-11586"
+    }, 
+    {
+        "ap_winner": "18777", 
+        "ap_called_time": "2014-10-15T17:33:46Z", 
+        "race_id": "FL-10396"
+    }, 
+    {
+        "ap_winner": "18784", 
+        "ap_called_time": "2014-10-15T17:33:46Z", 
+        "race_id": "FL-10398"
+    }, 
+    {
+        "ap_winner": "18786", 
+        "ap_called_time": "2014-10-15T17:33:46Z", 
+        "race_id": "FL-11128"
+    }, 
+    {
+        "ap_winner": "57382", 
+        "ap_called_time": "2014-10-15T17:33:15Z", 
+        "race_id": "TX-49479"
+    }, 
+    {
+        "ap_winner": "58547", 
+        "ap_called_time": "2014-10-15T17:33:15Z", 
+        "race_id": "TX-45901"
+    }, 
+    {
+        "ap_winner": "56637", 
+        "ap_called_time": "2014-10-15T17:33:15Z", 
+        "race_id": "TX-48733"
+    }, 
+    {
+        "ap_winner": "58308", 
+        "ap_called_time": "2014-10-15T17:33:15Z", 
+        "race_id": "TX-46643"
+    }, 
+    {
+        "ap_winner": "23579", 
+        "ap_called_time": "2014-10-15T17:33:06Z", 
+        "race_id": "LA-20157"
+    }, 
+    {
+        "ap_winner": "23874", 
+        "ap_called_time": "2014-10-15T17:33:06Z", 
+        "race_id": "LA-20053"
+    }, 
+    {
+        "ap_winner": "50237", 
+        "ap_called_time": "2014-10-15T17:32:41Z", 
+        "race_id": "PA-39013"
+    }, 
+    {
+        "ap_winner": "49233", 
+        "ap_called_time": "2014-10-15T17:32:41Z", 
+        "race_id": "PA-39023"
+    }, 
+    {
+        "ap_winner": "51243", 
+        "ap_called_time": "2014-10-15T17:32:40Z", 
+        "race_id": "VA-47021"
+    }, 
+    {
+        "ap_winner": "56622", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45887"
+    }, 
+    {
+        "ap_winner": "57401", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45895"
+    }, 
+    {
+        "ap_winner": "56611", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45876"
+    }, 
+    {
+        "ap_winner": "56626", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45891"
+    }, 
+    {
+        "ap_winner": "56635", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45900"
+    }, 
+    {
+        "ap_winner": "56617", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45882"
+    }, 
+    {
+        "ap_winner": "56902", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45884"
+    }, 
+    {
+        "ap_winner": "56610", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45875"
+    }, 
+    {
+        "ap_winner": "56632", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45897"
+    }, 
+    {
+        "ap_winner": "56629", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45894"
+    }, 
+    {
+        "ap_winner": "56615", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45880"
+    }, 
+    {
+        "ap_winner": "56620", 
+        "ap_called_time": "2014-10-15T17:32:34Z", 
+        "race_id": "TX-45885"
+    }, 
+    {
+        "ap_winner": "25756", 
+        "ap_called_time": "2014-10-15T17:32:32Z", 
+        "race_id": "IL-15997"
+    }, 
+    {
+        "ap_winner": "25739", 
+        "ap_called_time": "2014-10-15T17:32:32Z", 
+        "race_id": "IL-15990"
+    }, 
+    {
+        "ap_winner": "26122", 
+        "ap_called_time": "2014-10-15T17:32:32Z", 
+        "race_id": "IL-16310"
+    }, 
+    {
+        "ap_winner": "25746", 
+        "ap_called_time": "2014-10-15T17:32:32Z", 
+        "race_id": "IL-15993"
+    }, 
+    {
+        "ap_winner": "25770", 
+        "ap_called_time": "2014-10-15T17:32:32Z", 
+        "race_id": "IL-16001"
+    }, 
+    {
+        "ap_winner": "25776", 
+        "ap_called_time": "2014-10-15T17:32:32Z", 
+        "race_id": "IL-16002"
+    }, 
+    {
+        "ap_winner": "25743", 
+        "ap_called_time": "2014-10-15T17:32:32Z", 
+        "race_id": "IL-15992"
+    }, 
+    {
+        "ap_winner": "25750", 
+        "ap_called_time": "2014-10-15T17:32:32Z", 
+        "race_id": "IL-15994"
+    }, 
+    {
+        "ap_winner": "44801", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "OH-36041"
+    }, 
+    {
+        "ap_winner": "26487", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "WI-50068"
+    }, 
+    {
+        "ap_winner": "26481", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "WI-50060"
+    }, 
+    {
+        "ap_winner": "44463", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "OH-36037"
+    }, 
+    {
+        "ap_winner": "44227", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "OH-36031"
+    }, 
+    {
+        "ap_winner": "44377", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "OH-36035"
+    }, 
+    {
+        "ap_winner": "44326", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "OH-36039"
+    }, 
+    {
+        "ap_winner": "44383", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "OH-36045"
+    }, 
+    {
+        "ap_winner": "43357", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "NH-30015"
+    }, 
+    {
+        "ap_winner": "44779", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "OH-36033"
+    }, 
+    {
+        "ap_winner": "44501", 
+        "ap_called_time": "2014-10-15T17:32:29Z", 
+        "race_id": "NH-30017"
+    }, 
+    {
+        "ap_winner": "54782", 
+        "ap_called_time": "2014-10-15T17:32:28Z", 
+        "race_id": "UT-49548"
+    }, 
+    {
+        "ap_winner": "48473", 
+        "ap_called_time": "2014-10-15T17:32:22Z", 
+        "race_id": "TN-43019"
+    }, 
+    {
+        "ap_winner": "48389", 
+        "ap_called_time": "2014-10-15T17:32:22Z", 
+        "race_id": "TN-43011"
+    }, 
+    {
+        "ap_winner": "77007", 
+        "ap_called_time": "2014-10-15T17:32:21Z", 
+        "race_id": "NY-39860"
+    }, 
+    {
+        "ap_winner": "34501", 
+        "ap_called_time": "2014-10-15T17:32:20Z", 
+        "race_id": "MI-23812"
+    }, 
+    {
+        "ap_winner": "33031", 
+        "ap_called_time": "2014-10-15T17:32:20Z", 
+        "race_id": "MI-23813"
+    }, 
+    {
+        "ap_winner": "34509", 
+        "ap_called_time": "2014-10-15T17:32:20Z", 
+        "race_id": "MI-23815"
+    }, 
+    {
+        "ap_winner": "29660", 
+        "ap_called_time": "2014-10-15T17:32:15Z", 
+        "race_id": "MD-22091"
+    }, 
+    {
+        "ap_winner": "19893", 
+        "ap_called_time": "2014-10-15T17:32:09Z", 
+        "race_id": "GA-12301"
+    }, 
+    {
+        "ap_winner": "19640", 
+        "ap_called_time": "2014-10-15T17:32:09Z", 
+        "race_id": "GA-11019"
+    }, 
+    {
+        "ap_winner": "19904", 
+        "ap_called_time": "2014-10-15T17:32:09Z", 
+        "race_id": "GA-12029"
+    }, 
+    {
+        "ap_winner": "23727", 
+        "ap_called_time": "2014-10-15T17:32:05Z", 
+        "race_id": "LA-20050"
+    }, 
+    {
+        "ap_winner": "23854", 
+        "ap_called_time": "2014-10-15T17:32:05Z", 
+        "race_id": "LA-20049"
+    }, 
+    {
+        "ap_winner": "23869", 
+        "ap_called_time": "2014-10-15T17:32:05Z", 
+        "race_id": "LA-20052"
+    }, 
+    {
+        "ap_winner": "23565", 
+        "ap_called_time": "2014-10-15T17:32:05Z", 
+        "race_id": "LA-20048"
+    }, 
+    {
+        "ap_winner": "18757", 
+        "ap_called_time": "2014-10-15T17:31:57Z", 
+        "race_id": "FL-10037"
+    }, 
+    {
+        "ap_winner": "18745", 
+        "ap_called_time": "2014-10-15T17:31:57Z", 
+        "race_id": "FL-10027"
+    }, 
+    {
+        "ap_winner": "18760", 
+        "ap_called_time": "2014-10-15T17:31:57Z", 
+        "race_id": "FL-10039"
+    }, 
+    {
+        "ap_winner": "18756", 
+        "ap_called_time": "2014-10-15T17:31:57Z", 
+        "race_id": "FL-10035"
+    }, 
+    {
+        "ap_winner": "18736", 
+        "ap_called_time": "2014-10-15T17:31:57Z", 
+        "race_id": "FL-10021"
+    }, 
+    {
+        "ap_winner": "7507", 
+        "ap_called_time": "2014-10-15T17:31:56Z", 
+        "race_id": "MO-26025"
+    }, 
+    {
+        "ap_winner": "7527", 
+        "ap_called_time": "2014-10-15T17:31:56Z", 
+        "race_id": "MO-26031"
+    }, 
+    {
+        "ap_winner": "7501", 
+        "ap_called_time": "2014-10-15T17:31:56Z", 
+        "race_id": "MO-26023"
+    }, 
+    {
+        "ap_winner": "7515", 
+        "ap_called_time": "2014-10-15T17:31:56Z", 
+        "race_id": "MO-26029"
+    }, 
+    {
+        "ap_winner": "7510", 
+        "ap_called_time": "2014-10-15T17:31:56Z", 
+        "race_id": "MO-26027"
+    }, 
+    {
+        "ap_winner": "7532", 
+        "ap_called_time": "2014-10-15T17:31:56Z", 
+        "race_id": "MO-26033"
+    }, 
+    {
+        "ap_winner": "47577", 
+        "ap_called_time": "2014-10-15T17:31:53Z", 
+        "race_id": "SC-41004"
+    }, 
+    {
+        "ap_winner": "47521", 
+        "ap_called_time": "2014-10-15T17:31:53Z", 
+        "race_id": "SC-41315"
+    }, 
+    {
+        "ap_winner": "47522", 
+        "ap_called_time": "2014-10-15T17:31:53Z", 
+        "race_id": "SC-41191"
+    }, 
+    {
+        "ap_winner": "43899", 
+        "ap_called_time": "2014-10-15T17:31:52Z", 
+        "race_id": "OK-37036"
+    }, 
+    {
+        "ap_winner": "54173", 
+        "ap_called_time": "2014-10-15T17:31:52Z", 
+        "race_id": "UT-45671"
+    }, 
+    {
+        "ap_winner": "55017", 
+        "ap_called_time": "2014-10-15T17:31:52Z", 
+        "race_id": "UT-49598"
+    }, 
+    {
+        "ap_winner": "54393", 
+        "ap_called_time": "2014-10-15T17:31:52Z", 
+        "race_id": "UT-45670"
+    }, 
+    {
+        "ap_winner": "55014", 
+        "ap_called_time": "2014-10-15T17:31:52Z", 
+        "race_id": "UT-49597"
+    }, 
+    {
+        "ap_winner": "57377", 
+        "ap_called_time": "2014-10-15T17:31:50Z", 
+        "race_id": "TX-49478"
+    }, 
+    {
+        "ap_winner": "56976", 
+        "ap_called_time": "2014-10-15T17:31:50Z", 
+        "race_id": "TX-49477"
+    }, 
+    {
+        "ap_winner": "34488", 
+        "ap_called_time": "2014-10-15T17:31:48Z", 
+        "race_id": "MI-23808"
+    }, 
+    {
+        "ap_winner": "42433", 
+        "ap_called_time": "2014-10-15T17:31:46Z", 
+        "race_id": "NC-35984"
+    }, 
+    {
+        "ap_winner": "42409", 
+        "ap_called_time": "2014-10-15T17:31:46Z", 
+        "race_id": "NC-35388"
+    }, 
+    {
+        "ap_winner": "42406", 
+        "ap_called_time": "2014-10-15T17:31:46Z", 
+        "race_id": "NC-35387"
+    }, 
+    {
+        "ap_winner": "44148", 
+        "ap_called_time": "2014-10-15T17:31:44Z", 
+        "race_id": "OH-36029"
+    }, 
+    {
+        "ap_winner": "44453", 
+        "ap_called_time": "2014-10-15T17:31:44Z", 
+        "race_id": "OH-36019"
+    }, 
+    {
+        "ap_winner": "44503", 
+        "ap_called_time": "2014-10-15T17:31:44Z", 
+        "race_id": "OH-36025"
+    }, 
+    {
+        "ap_winner": "44786", 
+        "ap_called_time": "2014-10-15T17:31:44Z", 
+        "race_id": "OH-36005"
+    }, 
+    {
+        "ap_winner": "31070", 
+        "ap_called_time": "2014-10-15T17:31:41Z", 
+        "race_id": "MS-26486"
+    }, 
+    {
+        "ap_winner": "31064", 
+        "ap_called_time": "2014-10-15T17:31:41Z", 
+        "race_id": "MS-25929"
+    }, 
+    {
+        "ap_winner": "11959", 
+        "ap_called_time": "2014-10-15T17:31:39Z", 
+        "race_id": "AR-6345"
+    }, 
+    {
+        "ap_winner": "12177", 
+        "ap_called_time": "2014-10-15T17:31:39Z", 
+        "race_id": "AR-5626"
+    }, 
+    {
+        "ap_winner": "11571", 
+        "ap_called_time": "2014-10-15T17:31:39Z", 
+        "race_id": "AR-6092"
+    }, 
+    {
+        "ap_winner": "6605", 
+        "ap_called_time": "2014-10-15T17:31:35Z", 
+        "race_id": "WA-2"
+    }, 
+    {
+        "ap_winner": "28672", 
+        "ap_called_time": "2014-10-15T17:31:35Z", 
+        "race_id": "ME-20645"
+    }, 
+    {
+        "ap_winner": "6494", 
+        "ap_called_time": "2014-10-15T17:31:35Z", 
+        "race_id": "WA-48020"
+    }, 
+    {
+        "ap_winner": "6441", 
+        "ap_called_time": "2014-10-15T17:31:35Z", 
+        "race_id": "WA-48008"
+    }, 
+    {
+        "ap_winner": "6505", 
+        "ap_called_time": "2014-10-15T17:31:35Z", 
+        "race_id": "WA-4"
+    }, 
+    {
+        "ap_winner": "31426", 
+        "ap_called_time": "2014-10-15T17:31:31Z", 
+        "race_id": "NE-28594"
+    }, 
+    {
+        "ap_winner": "31178", 
+        "ap_called_time": "2014-10-15T17:31:31Z", 
+        "race_id": "NE-28385"
+    }, 
+    {
+        "ap_winner": "12152", 
+        "ap_called_time": "2014-10-15T17:31:28Z", 
+        "race_id": "CO-6618"
+    }, 
+    {
+        "ap_winner": "18951", 
+        "ap_called_time": "2014-10-15T17:31:28Z", 
+        "race_id": "CT-7015"
+    }, 
+    {
+        "ap_winner": "12201", 
+        "ap_called_time": "2014-10-15T17:31:28Z", 
+        "race_id": "CO-7168"
+    }, 
+    {
+        "ap_winner": "12199", 
+        "ap_called_time": "2014-10-15T17:31:28Z", 
+        "race_id": "CO-6954"
+    }, 
+    {
+        "ap_winner": "12204", 
+        "ap_called_time": "2014-10-15T17:31:28Z", 
+        "race_id": "CO-6619"
+    }, 
+    {
+        "ap_winner": "12151", 
+        "ap_called_time": "2014-10-15T17:31:28Z", 
+        "race_id": "CO-6617"
+    }, 
+    {
+        "ap_winner": "38341", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "NJ-31648"
+    }, 
+    {
+        "ap_winner": "29211", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "MD-21746"
+    }, 
+    {
+        "ap_winner": "38234", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "NJ-31220"
+    }, 
+    {
+        "ap_winner": "29377", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "MD-21754"
+    }, 
+    {
+        "ap_winner": "38236", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "NJ-31296"
+    }, 
+    {
+        "ap_winner": "29213", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "MD-21749"
+    }, 
+    {
+        "ap_winner": "38233", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "NJ-31226"
+    }, 
+    {
+        "ap_winner": "38275", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "NJ-31223"
+    }, 
+    {
+        "ap_winner": "29214", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "MD-21752"
+    }, 
+    {
+        "ap_winner": "29217", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "MD-21762"
+    }, 
+    {
+        "ap_winner": "29378", 
+        "ap_called_time": "2014-10-15T17:31:27Z", 
+        "race_id": "MD-21757"
+    }, 
+    {
+        "ap_winner": "50253", 
+        "ap_called_time": "2014-10-15T17:31:25Z", 
+        "race_id": "PA-39020"
+    }, 
+    {
+        "ap_winner": "49229", 
+        "ap_called_time": "2014-10-15T17:31:25Z", 
+        "race_id": "PA-40041"
+    }, 
+    {
+        "ap_winner": "49227", 
+        "ap_called_time": "2014-10-15T17:31:25Z", 
+        "race_id": "PA-39014"
+    }, 
+    {
+        "ap_winner": "49362", 
+        "ap_called_time": "2014-10-15T17:31:25Z", 
+        "race_id": "PA-39008"
+    }, 
+    {
+        "ap_winner": "49225", 
+        "ap_called_time": "2014-10-15T17:31:25Z", 
+        "race_id": "PA-39012"
+    }, 
+    {
+        "ap_winner": "49230", 
+        "ap_called_time": "2014-10-15T17:31:25Z", 
+        "race_id": "PA-39017"
+    }, 
+    {
+        "ap_winner": "49523", 
+        "ap_called_time": "2014-10-15T17:31:25Z", 
+        "race_id": "PA-39024"
+    }, 
+    {
+        "ap_winner": "49516", 
+        "ap_called_time": "2014-10-15T17:31:25Z", 
+        "race_id": "PA-39019"
+    }, 
+    {
+        "ap_winner": "50246", 
+        "ap_called_time": "2014-10-15T17:31:25Z", 
+        "race_id": "PA-39018"
+    }, 
+    {
+        "ap_winner": "51349", 
+        "ap_called_time": "2014-10-15T17:31:23Z", 
+        "race_id": "VA-47015"
+    }, 
+    {
+        "ap_winner": "51351", 
+        "ap_called_time": "2014-10-15T17:31:23Z", 
+        "race_id": "VA-47019"
+    }, 
+    {
+        "ap_winner": "51278", 
+        "ap_called_time": "2014-10-15T17:31:23Z", 
+        "race_id": "VA-47917"
+    }, 
+    {
+        "ap_winner": "51245", 
+        "ap_called_time": "2014-10-15T17:31:23Z", 
+        "race_id": "VA-47007"
+    }, 
+    {
+        "ap_winner": "5094", 
+        "ap_called_time": "2014-10-15T17:31:21Z", 
+        "race_id": "KY-18835"
+    }, 
+    {
+        "ap_winner": "4585", 
+        "ap_called_time": "2014-10-15T17:31:21Z", 
+        "race_id": "KY-18624"
+    }, 
+    {
+        "ap_winner": "47392", 
+        "ap_called_time": "2014-10-15T17:31:19Z", 
+        "race_id": "SD-42003"
+    }, 
+    {
+        "ap_winner": "47241", 
+        "ap_called_time": "2014-10-15T17:31:19Z", 
+        "race_id": "SD-42222"
+    }, 
+    {
+        "ap_winner": "18718", 
+        "ap_called_time": "2014-10-15T17:31:15Z", 
+        "race_id": "FL-10011"
+    }, 
+    {
+        "ap_winner": "18729", 
+        "ap_called_time": "2014-10-15T17:31:15Z", 
+        "race_id": "FL-10017"
+    }, 
+    {
+        "ap_winner": "18533", 
+        "ap_called_time": "2014-10-15T17:31:15Z", 
+        "race_id": "FL-10013"
+    }, 
+    {
+        "ap_winner": "18532", 
+        "ap_called_time": "2014-10-15T17:31:15Z", 
+        "race_id": "FL-10009"
+    }, 
+    {
+        "ap_winner": "48771", 
+        "ap_called_time": "2014-10-15T17:31:12Z", 
+        "race_id": "TN-43441"
+    }, 
+    {
+        "ap_winner": "48772", 
+        "ap_called_time": "2014-10-15T17:31:12Z", 
+        "race_id": "TN-43440"
+    }, 
+    {
+        "ap_winner": "48388", 
+        "ap_called_time": "2014-10-15T17:31:12Z", 
+        "race_id": "TN-43009"
+    }, 
+    {
+        "ap_winner": "48391", 
+        "ap_called_time": "2014-10-15T17:31:12Z", 
+        "race_id": "TN-43017"
+    }, 
+    {
+        "ap_winner": "23855", 
+        "ap_called_time": "2014-10-15T17:31:11Z", 
+        "race_id": "LA-20051"
+    }, 
+    {
+        "ap_winner": "23922", 
+        "ap_called_time": "2014-10-15T17:31:11Z", 
+        "race_id": "LA-20299"
+    }, 
+    {
+        "ap_winner": "22099", 
+        "ap_called_time": "2014-10-15T17:31:11Z", 
+        "race_id": "IA-17073"
+    }, 
+    {
+        "ap_winner": "23938", 
+        "ap_called_time": "2014-10-15T17:31:11Z", 
+        "race_id": "LA-20291"
+    }, 
+    {
+        "ap_winner": "32625", 
+        "ap_called_time": "2014-10-15T17:31:10Z", 
+        "race_id": "MA-23865"
+    }, 
+    {
+        "ap_winner": "42895", 
+        "ap_called_time": "2014-10-15T17:31:09Z", 
+        "race_id": "NC-34973"
+    }, 
+    {
+        "ap_winner": "56631", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "TX-45896"
+    }, 
+    {
+        "ap_winner": "35315", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "NV-30989"
+    }, 
+    {
+        "ap_winner": "31099", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "MN-24025"
+    }, 
+    {
+        "ap_winner": "35329", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "NV-30992"
+    }, 
+    {
+        "ap_winner": "56633", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "TX-47179"
+    }, 
+    {
+        "ap_winner": "31095", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "MN-24013"
+    }, 
+    {
+        "ap_winner": "5665", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "KS-17355"
+    }, 
+    {
+        "ap_winner": "31870", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "MN-25151"
+    }, 
+    {
+        "ap_winner": "57948", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "TX-45890"
+    }, 
+    {
+        "ap_winner": "56965", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "TX-45893"
+    }, 
+    {
+        "ap_winner": "31268", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "MN-24028"
+    }, 
+    {
+        "ap_winner": "5663", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "KS-17559"
+    }, 
+    {
+        "ap_winner": "31094", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "MN-24010"
+    }, 
+    {
+        "ap_winner": "31097", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "MN-24019"
+    }, 
+    {
+        "ap_winner": "5662", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "KS-17585"
+    }, 
+    {
+        "ap_winner": "35361", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "NV-30155"
+    }, 
+    {
+        "ap_winner": "56624", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "TX-45889"
+    }, 
+    {
+        "ap_winner": "34480", 
+        "ap_called_time": "2014-10-15T17:31:08Z", 
+        "race_id": "MI-24463"
+    }, 
+    {
+        "ap_winner": "55584", 
+        "ap_called_time": "2014-10-15T17:31:07Z", 
+        "race_id": "WV-49275"
+    }, 
+    {
+        "ap_winner": "56740", 
+        "ap_called_time": "2014-10-15T17:31:07Z", 
+        "race_id": "WV-49273"
+    }, 
+    {
+        "ap_winner": "18677", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5696"
+    }, 
+    {
+        "ap_winner": "18552", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5714"
+    }, 
+    {
+        "ap_winner": "18528", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5697"
+    }, 
+    {
+        "ap_winner": "18735", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5709"
+    }, 
+    {
+        "ap_winner": "18684", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5704"
+    }, 
+    {
+        "ap_winner": "18440", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5694"
+    }, 
+    {
+        "ap_winner": "18740", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5710"
+    }, 
+    {
+        "ap_winner": "18768", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5741"
+    }, 
+    {
+        "ap_winner": "18686", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5716"
+    }, 
+    {
+        "ap_winner": "18545", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5711"
+    }, 
+    {
+        "ap_winner": "19839", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5721"
+    }, 
+    {
+        "ap_winner": "18548", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5713"
+    }, 
+    {
+        "ap_winner": "18880", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5699"
+    }, 
+    {
+        "ap_winner": "18781", 
+        "ap_called_time": "2014-10-15T17:31:02Z", 
+        "race_id": "CA-5743"
+    }, 
+    {
+        "ap_winner": "26443", 
+        "ap_called_time": "2014-10-15T17:31:00Z", 
+        "race_id": "WI-50064"
+    }, 
+    {
+        "ap_winner": "26465", 
+        "ap_called_time": "2014-10-15T17:31:00Z", 
+        "race_id": "WI-50040"
+    }, 
+    {
+        "ap_winner": "26447", 
+        "ap_called_time": "2014-10-15T17:31:00Z", 
+        "race_id": "WI-50016"
+    }, 
+    {
+        "ap_winner": "26467", 
+        "ap_called_time": "2014-10-15T17:31:00Z", 
+        "race_id": "WI-50044"
+    }, 
+    {
+        "ap_winner": "28667", 
+        "ap_called_time": "2014-10-15T17:30:58Z", 
+        "race_id": "ME-20644"
+    }, 
+    {
+        "ap_winner": "19963", 
+        "ap_called_time": "2014-10-15T17:30:53Z", 
+        "race_id": "GA-11025"
+    }, 
+    {
+        "ap_winner": "19639", 
+        "ap_called_time": "2014-10-15T17:30:53Z", 
+        "race_id": "GA-11017"
+    }, 
+    {
+        "ap_winner": "37713", 
+        "ap_called_time": "2014-10-15T17:30:51Z", 
+        "race_id": "NM-32052"
+    }, 
+    {
+        "ap_winner": "11569", 
+        "ap_called_time": "2014-10-15T17:30:48Z", 
+        "race_id": "AR-5104"
+    }, 
+    {
+        "ap_winner": "12191", 
+        "ap_called_time": "2014-10-15T17:30:48Z", 
+        "race_id": "AR-5107"
+    }, 
+    {
+        "ap_winner": "31172", 
+        "ap_called_time": "2014-10-15T17:30:46Z", 
+        "race_id": "NE-28382"
+    }, 
+    {
+        "ap_winner": "31183", 
+        "ap_called_time": "2014-10-15T17:30:46Z", 
+        "race_id": "NE-28384"
+    }, 
+    {
+        "ap_winner": "47519", 
+        "ap_called_time": "2014-10-15T17:30:45Z", 
+        "race_id": "SC-41313"
+    }, 
+    {
+        "ap_winner": "47833", 
+        "ap_called_time": "2014-10-15T17:30:45Z", 
+        "race_id": "SC-41924"
+    }, 
+    {
+        "ap_winner": "55012", 
+        "ap_called_time": "2014-10-15T17:30:45Z", 
+        "race_id": "UT-49596"
+    }, 
+    {
+        "ap_winner": "54172", 
+        "ap_called_time": "2014-10-15T17:30:45Z", 
+        "race_id": "UT-45669"
+    }, 
+    {
+        "ap_winner": "47699", 
+        "ap_called_time": "2014-10-15T17:30:45Z", 
+        "race_id": "SC-41314"
+    }, 
+    {
+        "ap_winner": "38232", 
+        "ap_called_time": "2014-10-15T17:30:43Z", 
+        "race_id": "NJ-31215"
+    }, 
+    {
+        "ap_winner": "38255", 
+        "ap_called_time": "2014-10-15T17:30:43Z", 
+        "race_id": "NJ-31216"
+    }, 
+    {
+        "ap_winner": "38228", 
+        "ap_called_time": "2014-10-15T17:30:43Z", 
+        "race_id": "NJ-31218"
+    }, 
+    {
+        "ap_winner": "38231", 
+        "ap_called_time": "2014-10-15T17:30:43Z", 
+        "race_id": "NJ-31212"
+    }, 
+    {
+        "ap_winner": "38224", 
+        "ap_called_time": "2014-10-15T17:30:43Z", 
+        "race_id": "NJ-31205"
+    }, 
+    {
+        "ap_winner": "48529", 
+        "ap_called_time": "2014-10-15T17:30:40Z", 
+        "race_id": "TN-43007"
+    }, 
+    {
+        "ap_winner": "31122", 
+        "ap_called_time": "2014-10-15T17:30:40Z", 
+        "race_id": "MS-26692"
+    }, 
+    {
+        "ap_winner": "7490", 
+        "ap_called_time": "2014-10-15T17:30:36Z", 
+        "race_id": "MO-27025"
+    }, 
+    {
+        "ap_winner": "34511", 
+        "ap_called_time": "2014-10-15T17:30:31Z", 
+        "race_id": "MI-23816"
+    }, 
+    {
+        "ap_winner": "34496", 
+        "ap_called_time": "2014-10-15T17:30:31Z", 
+        "race_id": "MI-23811"
+    }, 
+    {
+        "ap_winner": "34518", 
+        "ap_called_time": "2014-10-15T17:30:31Z", 
+        "race_id": "MI-23818"
+    }, 
+    {
+        "ap_winner": "33723", 
+        "ap_called_time": "2014-10-15T17:30:31Z", 
+        "race_id": "MI-23805"
+    }, 
+    {
+        "ap_winner": "33732", 
+        "ap_called_time": "2014-10-15T17:30:31Z", 
+        "race_id": "MI-23814"
+    }, 
+    {
+        "ap_winner": "33002", 
+        "ap_called_time": "2014-10-15T17:30:31Z", 
+        "race_id": "MI-23806"
+    }, 
+    {
+        "ap_winner": "6493", 
+        "ap_called_time": "2014-10-15T17:30:29Z", 
+        "race_id": "WA-48017"
+    }, 
+    {
+        "ap_winner": "5669", 
+        "ap_called_time": "2014-10-15T17:30:29Z", 
+        "race_id": "KS-17010"
+    }, 
+    {
+        "ap_winner": "32606", 
+        "ap_called_time": "2014-10-15T17:30:29Z", 
+        "race_id": "MA-22957"
+    }, 
+    {
+        "ap_winner": "32626", 
+        "ap_called_time": "2014-10-15T17:30:29Z", 
+        "race_id": "MA-22949"
+    }, 
+    {
+        "ap_winner": "32627", 
+        "ap_called_time": "2014-10-15T17:30:29Z", 
+        "race_id": "MA-22952"
+    }, 
+    {
+        "ap_winner": "35621", 
+        "ap_called_time": "2014-10-15T17:30:28Z", 
+        "race_id": "NV-29861"
+    }, 
+    {
+        "ap_winner": "4356", 
+        "ap_called_time": "2014-10-15T17:30:28Z", 
+        "race_id": "AL-1375"
+    }, 
+    {
+        "ap_winner": "17591", 
+        "ap_called_time": "2014-10-15T17:30:27Z", 
+        "race_id": "ID-13254"
+    }, 
+    {
+        "ap_winner": "18040", 
+        "ap_called_time": "2014-10-15T17:30:27Z", 
+        "race_id": "ID-13676"
+    }, 
+    {
+        "ap_winner": "49228", 
+        "ap_called_time": "2014-10-15T17:30:22Z", 
+        "race_id": "PA-39015"
+    }, 
+    {
+        "ap_winner": "49363", 
+        "ap_called_time": "2014-10-15T17:30:22Z", 
+        "race_id": "PA-39303"
+    }, 
+    {
+        "ap_winner": "12386", 
+        "ap_called_time": "2014-10-15T17:30:16Z", 
+        "race_id": "CO-7574"
+    }, 
+    {
+        "ap_winner": "12390", 
+        "ap_called_time": "2014-10-15T17:30:16Z", 
+        "race_id": "CO-7576"
+    }, 
+    {
+        "ap_winner": "12149", 
+        "ap_called_time": "2014-10-15T17:30:16Z", 
+        "race_id": "CO-6615"
+    }, 
+    {
+        "ap_winner": "12223", 
+        "ap_called_time": "2014-10-15T17:30:16Z", 
+        "race_id": "CO-6616"
+    }, 
+    {
+        "ap_winner": "12384", 
+        "ap_called_time": "2014-10-15T17:30:16Z", 
+        "race_id": "CO-7573"
+    }, 
+    {
+        "ap_winner": "45419", 
+        "ap_called_time": "2014-10-15T17:30:14Z", 
+        "race_id": "RI-40015"
+    }, 
+    {
+        "ap_winner": "44499", 
+        "ap_called_time": "2014-10-15T17:30:13Z", 
+        "race_id": "OH-36021"
+    }, 
+    {
+        "ap_winner": "44515", 
+        "ap_called_time": "2014-10-15T17:30:13Z", 
+        "race_id": "OH-36023"
+    }, 
+    {
+        "ap_winner": "44143", 
+        "ap_called_time": "2014-10-15T17:30:13Z", 
+        "race_id": "OH-36015"
+    }, 
+    {
+        "ap_winner": "31307", 
+        "ap_called_time": "2014-10-15T17:30:12Z", 
+        "race_id": "NE-28006"
+    }, 
+    {
+        "ap_winner": "25764", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-16000"
+    }, 
+    {
+        "ap_winner": "25721", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-15800"
+    }, 
+    {
+        "ap_winner": "25754", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-15996"
+    }, 
+    {
+        "ap_winner": "25725", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-15989"
+    }, 
+    {
+        "ap_winner": "25786", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-16005"
+    }, 
+    {
+        "ap_winner": "25792", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-16007"
+    }, 
+    {
+        "ap_winner": "25787", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-16006"
+    }, 
+    {
+        "ap_winner": "25783", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-16004"
+    }, 
+    {
+        "ap_winner": "25762", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-15999"
+    }, 
+    {
+        "ap_winner": "25759", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-15998"
+    }, 
+    {
+        "ap_winner": "25781", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "IL-16003"
+    }, 
+    {
+        "ap_winner": "10184", 
+        "ap_called_time": "2014-10-15T17:30:09Z", 
+        "race_id": "DE-8074"
+    }, 
+    {
+        "ap_winner": "42405", 
+        "ap_called_time": "2014-10-15T17:30:04Z", 
+        "race_id": "NC-34969"
+    }, 
+    {
+        "ap_winner": "51244", 
+        "ap_called_time": "2014-10-15T17:30:04Z", 
+        "race_id": "VA-47003"
+    }, 
+    {
+        "ap_winner": "51345", 
+        "ap_called_time": "2014-10-15T17:30:04Z", 
+        "race_id": "VA-47013"
+    }, 
+    {
+        "ap_winner": "51247", 
+        "ap_called_time": "2014-10-15T17:30:04Z", 
+        "race_id": "VA-47011"
+    }, 
+    {
+        "ap_winner": "18764", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5731"
+    }, 
+    {
+        "ap_winner": "18556", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5730"
+    }, 
+    {
+        "ap_winner": "32355", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "MN-24022"
+    }, 
+    {
+        "ap_winner": "18907", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5707"
+    }, 
+    {
+        "ap_winner": "18670", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5693"
+    }, 
+    {
+        "ap_winner": "20175", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-8684"
+    }, 
+    {
+        "ap_winner": "18699", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5727"
+    }, 
+    {
+        "ap_winner": "19774", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5701"
+    }, 
+    {
+        "ap_winner": "19231", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-6478"
+    }, 
+    {
+        "ap_winner": "18437", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5744"
+    }, 
+    {
+        "ap_winner": "18594", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5724"
+    }, 
+    {
+        "ap_winner": "20165", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-8678"
+    }, 
+    {
+        "ap_winner": "18902", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5706"
+    }, 
+    {
+        "ap_winner": "18559", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5732"
+    }, 
+    {
+        "ap_winner": "18674", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5695"
+    }, 
+    {
+        "ap_winner": "31871", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "MN-24704"
+    }, 
+    {
+        "ap_winner": "18715", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5736"
+    }, 
+    {
+        "ap_winner": "18704", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5726"
+    }, 
+    {
+        "ap_winner": "18772", 
+        "ap_called_time": "2014-10-15T17:30:03Z", 
+        "race_id": "CA-5742"
+    }, 
+    {
+        "ap_winner": "47538", 
+        "ap_called_time": "2014-10-15T17:30:02Z", 
+        "race_id": "SD-42551"
+    }, 
+    {
+        "ap_winner": "4638", 
+        "ap_called_time": "2014-10-15T17:29:58Z", 
+        "race_id": "KY-18009"
+    }, 
+    {
+        "ap_winner": "23920", 
+        "ap_called_time": "2014-10-15T17:29:57Z", 
+        "race_id": "LA-20300"
+    }, 
+    {
+        "ap_winner": "23927", 
+        "ap_called_time": "2014-10-15T17:29:57Z", 
+        "race_id": "LA-20297"
+    }, 
+    {
+        "ap_winner": "23917", 
+        "ap_called_time": "2014-10-15T17:29:57Z", 
+        "race_id": "LA-20301"
+    }, 
+    {
+        "ap_winner": "57946", 
+        "ap_called_time": "2014-10-15T17:29:56Z", 
+        "race_id": "TX-45886"
+    }, 
+    {
+        "ap_winner": "58682", 
+        "ap_called_time": "2014-10-15T17:29:56Z", 
+        "race_id": "TX-49480"
+    }, 
+    {
+        "ap_winner": "56618", 
+        "ap_called_time": "2014-10-15T17:29:56Z", 
+        "race_id": "TX-45883"
+    }, 
+    {
+        "ap_winner": "56606", 
+        "ap_called_time": "2014-10-15T17:29:56Z", 
+        "race_id": "TX-45871"
+    }, 
+    {
+        "ap_winner": "22080", 
+        "ap_called_time": "2014-10-15T17:29:54Z", 
+        "race_id": "IA-17062"
+    }, 
+    {
+        "ap_winner": "21619", 
+        "ap_called_time": "2014-10-15T17:29:54Z", 
+        "race_id": "IA-17072"
+    }, 
+    {
+        "ap_winner": "21614", 
+        "ap_called_time": "2014-10-15T17:29:54Z", 
+        "race_id": "IA-17076"
+    }, 
+    {
+        "ap_winner": "51543", 
+        "ap_called_time": "2014-10-15T17:29:53Z", 
+        "race_id": "VT-46374"
+    }, 
+    {
+        "ap_winner": "18774", 
+        "ap_called_time": "2014-10-15T17:29:52Z", 
+        "race_id": "FL-10401"
+    }, 
+    {
+        "ap_winner": "18638", 
+        "ap_called_time": "2014-10-15T17:29:52Z", 
+        "race_id": "FL-11126"
+    }, 
+    {
+        "ap_winner": "30292", 
+        "ap_called_time": "2014-10-15T17:29:45Z", 
+        "race_id": "MD-22816"
+    }, 
+    {
+        "ap_winner": "38229", 
+        "ap_called_time": "2014-10-15T17:29:39Z", 
+        "race_id": "NJ-31230"
+    }, 
+    {
+        "ap_winner": "38242", 
+        "ap_called_time": "2014-10-15T17:29:39Z", 
+        "race_id": "NJ-31202"
+    }, 
+    {
+        "ap_winner": "38338", 
+        "ap_called_time": "2014-10-15T17:29:39Z", 
+        "race_id": "NJ-31647"
+    }, 
+    {
+        "ap_winner": "38226", 
+        "ap_called_time": "2014-10-15T17:29:39Z", 
+        "race_id": "NJ-31208"
+    }, 
+    {
+        "ap_winner": "31063", 
+        "ap_called_time": "2014-10-15T17:29:38Z", 
+        "race_id": "MS-26488"
+    }, 
+    {
+        "ap_winner": "44165", 
+        "ap_called_time": "2014-10-15T17:29:37Z", 
+        "race_id": "OK-37855"
+    }, 
+    {
+        "ap_winner": "44166", 
+        "ap_called_time": "2014-10-15T17:29:37Z", 
+        "race_id": "OK-37857"
+    }, 
+    {
+        "ap_winner": "44647", 
+        "ap_called_time": "2014-10-15T17:29:37Z", 
+        "race_id": "OK-38145"
+    }, 
+    {
+        "ap_winner": "19237", 
+        "ap_called_time": "2014-10-15T17:29:35Z", 
+        "race_id": "CT-7019"
+    }, 
+    {
+        "ap_winner": "18828", 
+        "ap_called_time": "2014-10-15T17:29:35Z", 
+        "race_id": "CT-7013"
+    }, 
+    {
+        "ap_winner": "51240", 
+        "ap_called_time": "2014-10-15T17:29:29Z", 
+        "race_id": "VA-47001"
+    }, 
+    {
+        "ap_winner": "35620", 
+        "ap_called_time": "2014-10-15T17:29:26Z", 
+        "race_id": "NV-3"
+    }, 
+    {
+        "ap_winner": "4781", 
+        "ap_called_time": "2014-10-15T17:29:22Z", 
+        "race_id": "AL-1377"
+    }, 
+    {
+        "ap_winner": "33725", 
+        "ap_called_time": "2014-10-15T17:29:21Z", 
+        "race_id": "MI-23807"
+    }, 
+    {
+        "ap_winner": "33759", 
+        "ap_called_time": "2014-10-15T17:29:21Z", 
+        "race_id": "MI-23809"
+    }, 
+    {
+        "ap_winner": "34089", 
+        "ap_called_time": "2014-10-15T17:29:21Z", 
+        "race_id": "MI-24074"
+    }, 
+    {
+        "ap_winner": "5664", 
+        "ap_called_time": "2014-10-15T17:29:20Z", 
+        "race_id": "KS-17007"
+    }, 
+    {
+        "ap_winner": "23929", 
+        "ap_called_time": "2014-10-15T17:29:19Z", 
+        "race_id": "LA-20296"
+    }, 
+    {
+        "ap_winner": "23935", 
+        "ap_called_time": "2014-10-15T17:29:19Z", 
+        "race_id": "LA-20293"
+    }, 
+    {
+        "ap_winner": "18766", 
+        "ap_called_time": "2014-10-15T17:29:13Z", 
+        "race_id": "FL-10041"
+    }, 
+    {
+        "ap_winner": "8346", 
+        "ap_called_time": "2014-10-15T17:29:11Z", 
+        "race_id": "MO-26035"
+    }, 
+    {
+        "ap_winner": "47576", 
+        "ap_called_time": "2014-10-15T17:29:11Z", 
+        "race_id": "SC-41003"
+    }, 
+    {
+        "ap_winner": "6644", 
+        "ap_called_time": "2014-10-15T17:29:05Z", 
+        "race_id": "WA-49358"
+    }, 
+    {
+        "ap_winner": "43893", 
+        "ap_called_time": "2014-10-15T17:29:03Z", 
+        "race_id": "OK-37034"
+    }, 
+    {
+        "ap_winner": "29218", 
+        "ap_called_time": "2014-10-15T17:29:00Z", 
+        "race_id": "MD-21764"
+    }, 
+    {
+        "ap_winner": "29286", 
+        "ap_called_time": "2014-10-15T17:29:00Z", 
+        "race_id": "MD-21760"
+    }, 
+    {
+        "ap_winner": "10214", 
+        "ap_called_time": "2014-10-15T17:28:55Z", 
+        "race_id": "DE-8281"
+    }, 
+    {
+        "ap_winner": "31093", 
+        "ap_called_time": "2014-10-15T17:28:53Z", 
+        "race_id": "MN-24007"
+    }, 
+    {
+        "ap_winner": "31096", 
+        "ap_called_time": "2014-10-15T17:28:53Z", 
+        "race_id": "MN-24016"
+    }, 
+    {
+        "ap_winner": "59062", 
+        "ap_called_time": "2014-10-15T17:28:52Z", 
+        "race_id": "TX-49599"
+    }, 
+    {
+        "ap_winner": "49364", 
+        "ap_called_time": "2014-10-15T17:28:51Z", 
+        "race_id": "PA-39010"
+    }, 
+    {
+        "ap_winner": "9197", 
+        "ap_called_time": "2014-10-15T17:28:47Z", 
+        "race_id": "AZ-3014"
+    }, 
+    {
+        "ap_winner": "8801", 
+        "ap_called_time": "2014-10-15T17:28:47Z", 
+        "race_id": "AZ-3010"
+    }, 
+    {
+        "ap_winner": "54525", 
+        "ap_called_time": "2014-10-15T17:28:46Z", 
+        "race_id": "WY-51677"
+    }, 
+    {
+        "ap_winner": "44465", 
+        "ap_called_time": "2014-10-15T17:28:45Z", 
+        "race_id": "OH-36043"
+    }, 
+    {
+        "ap_winner": "19857", 
+        "ap_called_time": "2014-10-15T17:28:44Z", 
+        "race_id": "GA-12237"
+    }, 
+    {
+        "ap_winner": "19944", 
+        "ap_called_time": "2014-10-15T17:28:44Z", 
+        "race_id": "GA-11007"
+    }, 
+    {
+        "ap_winner": "37708", 
+        "ap_called_time": "2014-10-15T17:28:43Z", 
+        "race_id": "NM-32005"
+    }, 
+    {
+        "ap_winner": "18731", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5708"
+    }, 
+    {
+        "ap_winner": "18655", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5692"
+    }, 
+    {
+        "ap_winner": "18576", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5717"
+    }, 
+    {
+        "ap_winner": "19747", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5725"
+    }, 
+    {
+        "ap_winner": "18708", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5733"
+    }, 
+    {
+        "ap_winner": "18580", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5718"
+    }, 
+    {
+        "ap_winner": "18588", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5719"
+    }, 
+    {
+        "ap_winner": "18693", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5720"
+    }, 
+    {
+        "ap_winner": "18710", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5734"
+    }, 
+    {
+        "ap_winner": "19591", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5723"
+    }, 
+    {
+        "ap_winner": "19819", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5715"
+    }, 
+    {
+        "ap_winner": "20132", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-8673"
+    }, 
+    {
+        "ap_winner": "18591", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-5722"
+    }, 
+    {
+        "ap_winner": "20170", 
+        "ap_called_time": "2014-10-15T17:28:42Z", 
+        "race_id": "CA-8680"
+    }, 
+    {
+        "ap_winner": "41981", 
+        "ap_called_time": "2014-10-15T17:28:34Z", 
+        "race_id": "NC-34977"
+    }, 
+    {
+        "ap_winner": "45087", 
+        "ap_called_time": "2014-10-15T17:28:31Z", 
+        "race_id": "RI-40017"
+    }, 
+    {
+        "ap_winner": "45412", 
+        "ap_called_time": "2014-10-15T17:28:31Z", 
+        "race_id": "RI-40005"
+    }, 
+    {
+        "ap_winner": "49372", 
+        "ap_called_time": "2014-10-15T17:28:29Z", 
+        "race_id": "TN-43707"
+    }, 
+    {
+        "ap_winner": "48390", 
+        "ap_called_time": "2014-10-15T17:28:29Z", 
+        "race_id": "TN-43015"
+    }, 
+    {
+        "ap_winner": "48385", 
+        "ap_called_time": "2014-10-15T17:28:29Z", 
+        "race_id": "TN-43003"
+    }, 
+    {
+        "ap_winner": "48438", 
+        "ap_called_time": "2014-10-15T17:28:29Z", 
+        "race_id": "TN-43020"
+    }, 
+    {
+        "ap_winner": "28674", 
+        "ap_called_time": "2014-10-15T17:28:25Z", 
+        "race_id": "ME-20646"
+    }, 
+    {
+        "ap_winner": "51249", 
+        "ap_called_time": "2014-10-15T17:28:24Z", 
+        "race_id": "VA-47017"
+    }, 
+    {
+        "ap_winner": "4584", 
+        "ap_called_time": "2014-10-15T17:28:21Z", 
+        "race_id": "KY-18622"
+    }, 
+    {
+        "ap_winner": "36022", 
+        "ap_called_time": "2014-10-15T17:28:21Z", 
+        "race_id": "NV-31015"
+    }, 
+    {
+        "ap_winner": "4587", 
+        "ap_called_time": "2014-10-15T17:28:21Z", 
+        "race_id": "KY-18013"
+    }, 
+    {
+        "ap_winner": "4732", 
+        "ap_called_time": "2014-10-15T17:28:21Z", 
+        "race_id": "KY-18015"
+    }, 
+    {
+        "ap_winner": "5079", 
+        "ap_called_time": "2014-10-15T17:28:21Z", 
+        "race_id": "KY-18783"
+    }, 
+    {
+        "ap_winner": "56627", 
+        "ap_called_time": "2014-10-15T17:28:16Z", 
+        "race_id": "TX-45892"
+    }, 
+    {
+        "ap_winner": "56614", 
+        "ap_called_time": "2014-10-15T17:28:16Z", 
+        "race_id": "TX-45879"
+    }, 
+    {
+        "ap_winner": "56613", 
+        "ap_called_time": "2014-10-15T17:28:16Z", 
+        "race_id": "TX-45878"
+    }, 
+    {
+        "ap_winner": "56616", 
+        "ap_called_time": "2014-10-15T17:28:16Z", 
+        "race_id": "TX-45881"
+    }, 
+    {
+        "ap_winner": "26172", 
+        "ap_called_time": "2014-10-15T17:28:14Z", 
+        "race_id": "IL-16334"
+    }, 
+    {
+        "ap_winner": "25753", 
+        "ap_called_time": "2014-10-15T17:28:14Z", 
+        "race_id": "IL-15995"
+    }, 
+    {
+        "ap_winner": "26173", 
+        "ap_called_time": "2014-10-15T17:28:14Z", 
+        "race_id": "IL-16336"
+    }, 
+    {
+        "ap_winner": "26175", 
+        "ap_called_time": "2014-10-15T17:28:14Z", 
+        "race_id": "IL-16335"
+    }, 
+    {
+        "ap_winner": "23911", 
+        "ap_called_time": "2014-10-15T17:28:08Z", 
+        "race_id": "LA-20304"
+    }, 
+    {
+        "ap_winner": "23915", 
+        "ap_called_time": "2014-10-15T17:28:08Z", 
+        "race_id": "LA-20302"
+    }, 
+    {
+        "ap_winner": "47653", 
+        "ap_called_time": "2014-10-15T17:28:08Z", 
+        "race_id": "SC-41908"
+    }, 
+    {
+        "ap_winner": "23930", 
+        "ap_called_time": "2014-10-15T17:28:08Z", 
+        "race_id": "LA-20295"
+    }, 
+    {
+        "ap_winner": "5667", 
+        "ap_called_time": "2014-10-15T17:28:06Z", 
+        "race_id": "KS-17009"
+    }, 
+    {
+        "ap_winner": "6086", 
+        "ap_called_time": "2014-10-15T17:28:06Z", 
+        "race_id": "KS-17704"
+    }, 
+    {
+        "ap_winner": "7381", 
+        "ap_called_time": "2014-10-15T17:28:04Z", 
+        "race_id": "WA-48011"
+    }, 
+    {
+        "ap_winner": "54292", 
+        "ap_called_time": "2014-10-15T17:28:02Z", 
+        "race_id": "WY-51401"
+    }, 
+    {
+        "ap_winner": "42659", 
+        "ap_called_time": "2014-10-15T17:27:57Z", 
+        "race_id": "NC-35390"
+    }, 
+    {
+        "ap_winner": "42402", 
+        "ap_called_time": "2014-10-15T17:27:57Z", 
+        "race_id": "NC-35386"
+    }, 
+    {
+        "ap_winner": "43161", 
+        "ap_called_time": "2014-10-15T17:27:57Z", 
+        "race_id": "NC-36054"
+    }, 
+    {
+        "ap_winner": "42398", 
+        "ap_called_time": "2014-10-15T17:27:57Z", 
+        "race_id": "NC-35385"
+    }, 
+    {
+        "ap_winner": "42911", 
+        "ap_called_time": "2014-10-15T17:27:57Z", 
+        "race_id": "NC-35419"
+    }, 
+    {
+        "ap_winner": "30293", 
+        "ap_called_time": "2014-10-15T17:27:53Z", 
+        "race_id": "MD-22817"
+    }, 
+    {
+        "ap_winner": "44233", 
+        "ap_called_time": "2014-10-15T17:27:51Z", 
+        "race_id": "OK-37960"
+    }, 
+    {
+        "ap_winner": "44667", 
+        "ap_called_time": "2014-10-15T17:27:51Z", 
+        "race_id": "OK-38497"
+    }, 
+    {
+        "ap_winner": "44641", 
+        "ap_called_time": "2014-10-15T17:27:51Z", 
+        "race_id": "OK-37856"
+    }, 
+    {
+        "ap_winner": "18021", 
+        "ap_called_time": "2014-10-15T17:27:50Z", 
+        "race_id": "ID-13253"
+    }, 
+    {
+        "ap_winner": "33747", 
+        "ap_called_time": "2014-10-15T17:27:45Z", 
+        "race_id": "MI-23817"
+    }, 
+    {
+        "ap_winner": "33728", 
+        "ap_called_time": "2014-10-15T17:27:45Z", 
+        "race_id": "MI-23810"
+    }, 
+    {
+        "ap_winner": "21624", 
+        "ap_called_time": "2014-10-15T17:27:44Z", 
+        "race_id": "IA-17074"
+    }, 
+    {
+        "ap_winner": "20187", 
+        "ap_called_time": "2014-10-15T17:27:42Z", 
+        "race_id": "GA-12495"
+    }, 
+    {
+        "ap_winner": "12112", 
+        "ap_called_time": "2014-10-15T17:27:38Z", 
+        "race_id": "CO-6614"
+    }, 
+    {
+        "ap_winner": "8595", 
+        "ap_called_time": "2014-10-15T17:27:38Z", 
+        "race_id": "MO-27455"
+    }, 
+    {
+        "ap_winner": "37931", 
+        "ap_called_time": "2014-10-15T17:27:37Z", 
+        "race_id": "NM-33948"
+    }, 
+    {
+        "ap_winner": "18868", 
+        "ap_called_time": "2014-10-15T17:27:34Z", 
+        "race_id": "CA-5698"
+    }, 
+    {
+        "ap_winner": "18705", 
+        "ap_called_time": "2014-10-15T17:27:34Z", 
+        "race_id": "CA-5728"
+    }, 
+    {
+        "ap_winner": "19034", 
+        "ap_called_time": "2014-10-15T17:27:34Z", 
+        "race_id": "CA-5729"
+    }, 
+    {
+        "ap_winner": "18800", 
+        "ap_called_time": "2014-10-15T17:27:34Z", 
+        "race_id": "CA-7296"
+    }, 
+    {
+        "ap_winner": "20121", 
+        "ap_called_time": "2014-10-15T17:27:34Z", 
+        "race_id": "CA-8668"
+    }, 
+    {
+        "ap_winner": "18826", 
+        "ap_called_time": "2014-10-15T17:27:28Z", 
+        "race_id": "CT-7009"
+    }, 
+    {
+        "ap_winner": "39840", 
+        "ap_called_time": "2014-10-15T17:27:27Z", 
+        "race_id": "ND-35342"
+    }, 
+    {
+        "ap_winner": "23933", 
+        "ap_called_time": "2014-10-15T17:27:27Z", 
+        "race_id": "LA-20294"
+    }, 
+    {
+        "ap_winner": "18432", 
+        "ap_called_time": "2014-10-15T17:27:23Z", 
+        "race_id": "HI-12881"
+    }, 
+    {
+        "ap_winner": "18781", 
+        "ap_called_time": "2014-10-15T17:27:23Z", 
+        "race_id": "HI-12971"
+    }, 
+    {
+        "ap_winner": "49502", 
+        "ap_called_time": "2014-10-15T17:27:23Z", 
+        "race_id": "PA-39011"
+    }, 
+    {
+        "ap_winner": "18740", 
+        "ap_called_time": "2014-10-15T17:27:23Z", 
+        "race_id": "HI-12211"
+    }, 
+    {
+        "ap_winner": "49844", 
+        "ap_called_time": "2014-10-15T17:27:23Z", 
+        "race_id": "PA-39292"
+    }, 
+    {
+        "ap_winner": "18397", 
+        "ap_called_time": "2014-10-15T17:27:23Z", 
+        "race_id": "HI-12480"
+    }, 
+    {
+        "ap_winner": "43356", 
+        "ap_called_time": "2014-10-15T17:27:22Z", 
+        "race_id": "NH-30005"
+    }, 
+    {
+        "ap_winner": "44477", 
+        "ap_called_time": "2014-10-15T17:27:22Z", 
+        "race_id": "NH-30003"
+    }, 
+    {
+        "ap_winner": "29142", 
+        "ap_called_time": "2014-10-15T17:27:14Z", 
+        "race_id": "ME-21270"
+    }, 
+    {
+        "ap_winner": "26125", 
+        "ap_called_time": "2014-10-15T17:27:11Z", 
+        "race_id": "IL-16329"
+    }, 
+    {
+        "ap_winner": "56636", 
+        "ap_called_time": "2014-10-15T17:27:11Z", 
+        "race_id": "TX-48732"
+    }, 
+    {
+        "ap_winner": "19779", 
+        "ap_called_time": "2014-10-15T17:27:10Z", 
+        "race_id": "GA-11009"
+    }, 
+    {
+        "ap_winner": "45731", 
+        "ap_called_time": "2014-10-15T17:26:59Z", 
+        "race_id": "RI-41111"
+    }, 
+    {
+        "ap_winner": "31448", 
+        "ap_called_time": "2014-10-15T17:26:56Z", 
+        "race_id": "NE-29334"
+    }, 
+    {
+        "ap_winner": "49369", 
+        "ap_called_time": "2014-10-15T17:26:56Z", 
+        "race_id": "TN-43706"
+    }, 
+    {
+        "ap_winner": "54524", 
+        "ap_called_time": "2014-10-15T17:26:54Z", 
+        "race_id": "WY-51403"
+    }, 
+    {
+        "ap_winner": "12389", 
+        "ap_called_time": "2014-10-15T17:26:54Z", 
+        "race_id": "CO-7575"
+    }, 
+    {
+        "ap_winner": "4358", 
+        "ap_called_time": "2014-10-15T17:26:53Z", 
+        "race_id": "AL-1376"
+    }, 
+    {
+        "ap_winner": "4385", 
+        "ap_called_time": "2014-10-15T17:26:53Z", 
+        "race_id": "AL-1374"
+    }, 
+    {
+        "ap_winner": "4519", 
+        "ap_called_time": "2014-10-15T17:26:53Z", 
+        "race_id": "AL-1005"
+    }, 
+    {
+        "ap_winner": "17884", 
+        "ap_called_time": "2014-10-15T17:26:50Z", 
+        "race_id": "HI-12008"
+    }, 
+    {
+        "ap_winner": "7682", 
+        "ap_called_time": "2014-10-15T17:26:49Z", 
+        "race_id": "WA-49389"
+    }, 
+    {
+        "ap_winner": "6492", 
+        "ap_called_time": "2014-10-15T17:26:49Z", 
+        "race_id": "WA-48013"
+    }, 
+    {
+        "ap_winner": "7693", 
+        "ap_called_time": "2014-10-15T17:26:49Z", 
+        "race_id": "WA-49387"
+    }, 
+    {
+        "ap_winner": "7680", 
+        "ap_called_time": "2014-10-15T17:26:49Z", 
+        "race_id": "WA-49385"
+    }, 
+    {
+        "ap_winner": "7691", 
+        "ap_called_time": "2014-10-15T17:26:49Z", 
+        "race_id": "WA-49383"
+    }, 
+    {
+        "ap_winner": "44671", 
+        "ap_called_time": "2014-10-15T17:26:45Z", 
+        "race_id": "OK-38499"
+    }, 
+    {
+        "ap_winner": "44669", 
+        "ap_called_time": "2014-10-15T17:26:45Z", 
+        "race_id": "OK-38498"
+    }, 
+    {
+        "ap_winner": "51376", 
+        "ap_called_time": "2014-10-15T17:26:42Z", 
+        "race_id": "VA-47944"
+    }, 
+    {
+        "ap_winner": "51375", 
+        "ap_called_time": "2014-10-15T17:26:42Z", 
+        "race_id": "VA-47943"
+    }, 
+    {
+        "ap_winner": "8799", 
+        "ap_called_time": "2014-10-15T17:26:40Z", 
+        "race_id": "AZ-3008"
+    }, 
+    {
+        "ap_winner": "28666", 
+        "ap_called_time": "2014-10-15T17:26:38Z", 
+        "race_id": "ME-20643"
+    }, 
+    {
+        "ap_winner": "38227", 
+        "ap_called_time": "2014-10-15T17:26:35Z", 
+        "race_id": "NJ-31211"
+    }, 
+    {
+        "ap_winner": "38233", 
+        "ap_called_time": "2014-10-15T17:26:32Z", 
+        "race_id": "NM-33983"
+    }, 
+    {
+        "ap_winner": "38236", 
+        "ap_called_time": "2014-10-15T17:26:32Z", 
+        "race_id": "NM-33984"
+    }, 
+    {
+        "ap_winner": "38238", 
+        "ap_called_time": "2014-10-15T17:26:32Z", 
+        "race_id": "NM-33985"
+    }, 
+    {
+        "ap_winner": "37933", 
+        "ap_called_time": "2014-10-15T17:26:32Z", 
+        "race_id": "NM-32238"
+    }, 
+    {
+        "ap_winner": "8599", 
+        "ap_called_time": "2014-10-15T17:26:21Z", 
+        "race_id": "MO-27457"
+    }, 
+    {
+        "ap_winner": "8602", 
+        "ap_called_time": "2014-10-15T17:26:21Z", 
+        "race_id": "MO-27458"
+    }, 
+    {
+        "ap_winner": "8598", 
+        "ap_called_time": "2014-10-15T17:26:21Z", 
+        "race_id": "MO-27456"
+    }, 
+    {
+        "ap_winner": "20173", 
+        "ap_called_time": "2014-10-15T17:26:14Z", 
+        "race_id": "CA-8682"
+    }, 
+    {
+        "ap_winner": "18723", 
+        "ap_called_time": "2014-10-15T17:26:14Z", 
+        "race_id": "CA-5739"
+    }, 
+    {
+        "ap_winner": "20123", 
+        "ap_called_time": "2014-10-15T17:26:14Z", 
+        "race_id": "CA-8669"
+    }, 
+    {
+        "ap_winner": "12544", 
+        "ap_called_time": "2014-10-15T17:26:12Z", 
+        "race_id": "AR-6468"
+    }, 
+    {
+        "ap_winner": "23937", 
+        "ap_called_time": "2014-10-15T17:26:10Z", 
+        "race_id": "LA-20292"
+    }, 
+    {
+        "ap_winner": "23923", 
+        "ap_called_time": "2014-10-15T17:26:10Z", 
+        "race_id": "LA-20298"
+    }, 
+    {
+        "ap_winner": "23913", 
+        "ap_called_time": "2014-10-15T17:26:10Z", 
+        "race_id": "LA-20303"
+    }, 
+    {
+        "ap_winner": "40431", 
+        "ap_called_time": "2014-10-15T17:26:06Z", 
+        "race_id": "ND-35689"
+    }, 
+    {
+        "ap_winner": "31071", 
+        "ap_called_time": "2014-10-15T17:26:02Z", 
+        "race_id": "MS-26489"
+    }, 
+    {
+        "ap_winner": "42419", 
+        "ap_called_time": "2014-10-15T17:25:59Z", 
+        "race_id": "NC-35391"
+    }, 
+    {
+        "ap_winner": "56623", 
+        "ap_called_time": "2014-10-15T17:25:58Z", 
+        "race_id": "TX-45888"
+    }, 
+    {
+        "ap_winner": "33111", 
+        "ap_called_time": "2014-10-15T17:25:58Z", 
+        "race_id": "MA-24699"
+    }, 
+    {
+        "ap_winner": "56634", 
+        "ap_called_time": "2014-10-15T17:25:58Z", 
+        "race_id": "TX-45899"
+    }, 
+    {
+        "ap_winner": "56612", 
+        "ap_called_time": "2014-10-15T17:25:58Z", 
+        "race_id": "TX-45877"
+    }, 
+    {
+        "ap_winner": "49367", 
+        "ap_called_time": "2014-10-15T17:25:54Z", 
+        "race_id": "TN-43705"
+    }, 
+    {
+        "ap_winner": "4995", 
+        "ap_called_time": "2014-10-15T17:25:43Z", 
+        "race_id": "AL-1971"
+    }, 
+    {
+        "ap_winner": "4989", 
+        "ap_called_time": "2014-10-15T17:25:43Z", 
+        "race_id": "AL-1968"
+    }, 
+    {
+        "ap_winner": "4994", 
+        "ap_called_time": "2014-10-15T17:25:43Z", 
+        "race_id": "AL-1970"
+    }, 
+    {
+        "ap_winner": "46953", 
+        "ap_called_time": "2014-10-15T17:25:41Z", 
+        "race_id": "SD-42005"
+    }, 
+    {
+        "ap_winner": "35040", 
+        "ap_called_time": "2014-10-15T17:25:38Z", 
+        "race_id": "MI-24549"
+    }, 
+    {
+        "ap_winner": "35042", 
+        "ap_called_time": "2014-10-15T17:25:38Z", 
+        "race_id": "MI-24550"
+    }, 
+    {
+        "ap_winner": "29133", 
+        "ap_called_time": "2014-10-15T17:25:31Z", 
+        "race_id": "ME-21275"
+    }, 
+    {
+        "ap_winner": "29146", 
+        "ap_called_time": "2014-10-15T17:25:31Z", 
+        "race_id": "ME-21276"
+    }, 
+    {
+        "ap_winner": "38239", 
+        "ap_called_time": "2014-10-15T17:25:30Z", 
+        "race_id": "NM-33986"
+    }, 
+    {
+        "ap_winner": "33960", 
+        "ap_called_time": "2014-10-15T17:25:26Z", 
+        "race_id": "MT-27607"
+    }, 
+    {
+        "ap_winner": "33969", 
+        "ap_called_time": "2014-10-15T17:25:26Z", 
+        "race_id": "MT-27004"
+    }, 
+    {
+        "ap_winner": "56729", 
+        "ap_called_time": "2014-10-15T17:25:12Z", 
+        "race_id": "WV-49137"
+    }, 
+    {
+        "ap_winner": "56737", 
+        "ap_called_time": "2014-10-15T17:25:12Z", 
+        "race_id": "WV-49274"
+    }, 
+    {
+        "ap_winner": "26127", 
+        "ap_called_time": "2014-10-15T17:25:01Z", 
+        "race_id": "IL-16330"
+    }, 
+    {
+        "ap_winner": "38336", 
+        "ap_called_time": "2014-10-15T17:25:01Z", 
+        "race_id": "NJ-31646"
+    }, 
+    {
+        "ap_winner": "20128", 
+        "ap_called_time": "2014-10-15T17:25:00Z", 
+        "race_id": "CA-8672"
+    }, 
+    {
+        "ap_winner": "19844", 
+        "ap_called_time": "2014-10-15T17:24:54Z", 
+        "race_id": "GA-11023"
+    }, 
+    {
+        "ap_winner": "18827", 
+        "ap_called_time": "2014-10-15T17:24:52Z", 
+        "race_id": "CT-7011"
+    }, 
+    {
+        "ap_winner": "49373", 
+        "ap_called_time": "2014-10-15T17:24:52Z", 
+        "race_id": "TN-43708"
+    }, 
+    {
+        "ap_winner": "29135", 
+        "ap_called_time": "2014-10-15T17:24:45Z", 
+        "race_id": "ME-21274"
+    }, 
+    {
+        "ap_winner": "29140", 
+        "ap_called_time": "2014-10-15T17:24:45Z", 
+        "race_id": "ME-21271"
+    }, 
+    {
+        "ap_winner": "29087", 
+        "ap_called_time": "2014-10-15T17:24:45Z", 
+        "race_id": "ME-21269"
+    }, 
+    {
+        "ap_winner": "29138", 
+        "ap_called_time": "2014-10-15T17:24:45Z", 
+        "race_id": "ME-21272"
+    }, 
+    {
+        "ap_winner": "29136", 
+        "ap_called_time": "2014-10-15T17:24:45Z", 
+        "race_id": "ME-21273"
+    }, 
+    {
+        "ap_winner": "42425", 
+        "ap_called_time": "2014-10-15T17:24:44Z", 
+        "race_id": "NC-35753"
+    }, 
+    {
+        "ap_winner": "6614", 
+        "ap_called_time": "2014-10-15T17:24:44Z", 
+        "race_id": "WA-48009"
+    }, 
+    {
+        "ap_winner": "26469", 
+        "ap_called_time": "2014-10-15T17:24:39Z", 
+        "race_id": "WI-50048"
+    }, 
+    {
+        "ap_winner": "26748", 
+        "ap_called_time": "2014-10-15T17:24:39Z", 
+        "race_id": "WI-50932"
+    }, 
+    {
+        "ap_winner": "8795", 
+        "ap_called_time": "2014-10-15T17:24:34Z", 
+        "race_id": "AZ-3006"
+    }, 
+    {
+        "ap_winner": "8793", 
+        "ap_called_time": "2014-10-15T17:24:34Z", 
+        "race_id": "AZ-3004"
+    }, 
+    {
+        "ap_winner": "4433", 
+        "ap_called_time": "2014-10-15T17:24:30Z", 
+        "race_id": "AL-1019"
+    }, 
+    {
+        "ap_winner": "4992", 
+        "ap_called_time": "2014-10-15T17:24:30Z", 
+        "race_id": "AL-1969"
+    }, 
+    {
+        "ap_winner": "4997", 
+        "ap_called_time": "2014-10-15T17:24:30Z", 
+        "race_id": "AL-1972"
+    }, 
+    {
+        "ap_winner": "33110", 
+        "ap_called_time": "2014-10-15T17:24:19Z", 
+        "race_id": "MA-24698"
+    }, 
+    {
+        "ap_winner": "18743", 
+        "ap_called_time": "2014-10-15T17:24:12Z", 
+        "race_id": "FL-10025"
+    }, 
+    {
+        "ap_winner": "20105", 
+        "ap_called_time": "2014-10-15T17:24:12Z", 
+        "race_id": "FL-11670"
+    }, 
+    {
+        "ap_winner": "44291", 
+        "ap_called_time": "2014-10-15T17:24:04Z", 
+        "race_id": "OH-37258"
+    }, 
+    {
+        "ap_winner": "22090", 
+        "ap_called_time": "2014-10-15T17:24:00Z", 
+        "race_id": "IA-17071"
+    }, 
+    {
+        "ap_winner": "12197", 
+        "ap_called_time": "2014-10-15T17:23:59Z", 
+        "race_id": "AR-5105"
+    }, 
+    {
+        "ap_winner": "12554", 
+        "ap_called_time": "2014-10-15T17:23:59Z", 
+        "race_id": "AR-6475"
+    }, 
+    {
+        "ap_winner": "31361", 
+        "ap_called_time": "2014-10-15T17:23:55Z", 
+        "race_id": "MS-27131"
+    }, 
+    {
+        "ap_winner": "37936", 
+        "ap_called_time": "2014-10-15T17:23:54Z", 
+        "race_id": "NM-33279"
+    }, 
+    {
+        "ap_winner": "20168", 
+        "ap_called_time": "2014-10-15T17:23:52Z", 
+        "race_id": "CA-8679"
+    }, 
+    {
+        "ap_winner": "19229", 
+        "ap_called_time": "2014-10-15T17:23:52Z", 
+        "race_id": "CA-6123"
+    }, 
+    {
+        "ap_winner": "18543", 
+        "ap_called_time": "2014-10-15T17:23:52Z", 
+        "race_id": "CA-5712"
+    }, 
+    {
+        "ap_winner": "20118", 
+        "ap_called_time": "2014-10-15T17:23:52Z", 
+        "race_id": "CA-8667"
+    }, 
+    {
+        "ap_winner": "18893", 
+        "ap_called_time": "2014-10-15T17:23:52Z", 
+        "race_id": "CA-5702"
+    }, 
+    {
+        "ap_winner": "20130", 
+        "ap_called_time": "2014-10-15T17:23:52Z", 
+        "race_id": "CA-8671"
+    }, 
+    {
+        "ap_winner": "20189", 
+        "ap_called_time": "2014-10-15T17:23:50Z", 
+        "race_id": "GA-12496"
+    }, 
+    {
+        "ap_winner": "36023", 
+        "ap_called_time": "2014-10-15T17:23:47Z", 
+        "race_id": "NV-31016"
+    }, 
+    {
+        "ap_winner": "32598", 
+        "ap_called_time": "2014-10-15T17:23:41Z", 
+        "race_id": "MA-24467"
+    }, 
+    {
+        "ap_winner": "19897", 
+        "ap_called_time": "2014-10-15T17:23:39Z", 
+        "race_id": "CT-9179"
+    }, 
+    {
+        "ap_winner": "45299", 
+        "ap_called_time": "2014-10-15T17:23:38Z", 
+        "race_id": "RI-40003"
+    }, 
+    {
+        "ap_winner": "45727", 
+        "ap_called_time": "2014-10-15T17:23:38Z", 
+        "race_id": "RI-41110"
+    }, 
+    {
+        "ap_winner": "47652", 
+        "ap_called_time": "2014-10-15T17:23:35Z", 
+        "race_id": "SC-41189"
+    }, 
+    {
+        "ap_winner": "7678", 
+        "ap_called_time": "2014-10-15T17:23:12Z", 
+        "race_id": "WA-49384"
+    }, 
+    {
+        "ap_winner": "9387", 
+        "ap_called_time": "2014-10-15T17:23:08Z", 
+        "race_id": "AZ-4202"
+    }, 
+    {
+        "ap_winner": "12548", 
+        "ap_called_time": "2014-10-15T17:22:56Z", 
+        "race_id": "AR-6473"
+    }, 
+    {
+        "ap_winner": "12547", 
+        "ap_called_time": "2014-10-15T17:22:56Z", 
+        "race_id": "AR-6476"
+    }, 
+    {
+        "ap_winner": "12551", 
+        "ap_called_time": "2014-10-15T17:22:56Z", 
+        "race_id": "AR-6474"
+    }, 
+    {
+        "ap_winner": "42879", 
+        "ap_called_time": "2014-10-15T17:22:54Z", 
+        "race_id": "NC-35389"
+    }, 
+    {
+        "ap_winner": "19851", 
+        "ap_called_time": "2014-10-15T17:22:50Z", 
+        "race_id": "CA-5735"
+    }, 
+    {
+        "ap_winner": "18884", 
+        "ap_called_time": "2014-10-15T17:22:50Z", 
+        "race_id": "CA-8514"
+    }, 
+    {
+        "ap_winner": "20191", 
+        "ap_called_time": "2014-10-15T17:22:45Z", 
+        "race_id": "GA-12497"
+    }, 
+    {
+        "ap_winner": "18205", 
+        "ap_called_time": "2014-10-15T17:22:44Z", 
+        "race_id": "ID-13252"
+    }, 
+    {
+        "ap_winner": "18825", 
+        "ap_called_time": "2014-10-15T17:22:36Z", 
+        "race_id": "CT-7007"
+    }, 
+    {
+        "ap_winner": "26326", 
+        "ap_called_time": "2014-10-15T17:22:26Z", 
+        "race_id": "WI-50056"
+    }, 
+    {
+        "ap_winner": "56608", 
+        "ap_called_time": "2014-10-15T17:22:25Z", 
+        "race_id": "TX-45873"
+    }, 
+    {
+        "ap_winner": "12200", 
+        "ap_called_time": "2014-10-15T17:22:14Z", 
+        "race_id": "CO-7191"
+    }, 
+    {
+        "ap_winner": "47564", 
+        "ap_called_time": "2014-10-15T17:22:10Z", 
+        "race_id": "SD-42553"
+    }, 
+    {
+        "ap_winner": "47567", 
+        "ap_called_time": "2014-10-15T17:22:10Z", 
+        "race_id": "SD-42554"
+    }, 
+    {
+        "ap_winner": "6625", 
+        "ap_called_time": "2014-10-15T17:22:08Z", 
+        "race_id": "WA-48015"
+    }, 
+    {
+        "ap_winner": "51341", 
+        "ap_called_time": "2014-10-15T17:21:46Z", 
+        "race_id": "VA-47009"
+    }, 
+    {
+        "ap_winner": "18681", 
+        "ap_called_time": "2014-10-15T17:21:46Z", 
+        "race_id": "CA-5703"
+    }, 
+    {
+        "ap_winner": "18720", 
+        "ap_called_time": "2014-10-15T17:21:46Z", 
+        "race_id": "CA-8149"
+    }, 
+    {
+        "ap_winner": "40420", 
+        "ap_called_time": "2014-10-15T17:21:40Z", 
+        "race_id": "ND-35684"
+    }, 
+    {
+        "ap_winner": "40422", 
+        "ap_called_time": "2014-10-15T17:21:40Z", 
+        "race_id": "ND-35685"
+    }, 
+    {
+        "ap_winner": "40426", 
+        "ap_called_time": "2014-10-15T17:21:40Z", 
+        "race_id": "ND-35687"
+    }, 
+    {
+        "ap_winner": "40424", 
+        "ap_called_time": "2014-10-15T17:21:40Z", 
+        "race_id": "ND-35686"
+    }, 
+    {
+        "ap_winner": "40419", 
+        "ap_called_time": "2014-10-15T17:21:40Z", 
+        "race_id": "ND-35683"
+    }, 
+    {
+        "ap_winner": "40433", 
+        "ap_called_time": "2014-10-15T17:21:40Z", 
+        "race_id": "ND-35690"
+    }, 
+    {
+        "ap_winner": "40429", 
+        "ap_called_time": "2014-10-15T17:21:40Z", 
+        "race_id": "ND-35688"
+    }, 
+    {
+        "ap_winner": "8816", 
+        "ap_called_time": "2014-10-15T17:21:37Z", 
+        "race_id": "AZ-3924"
+    }, 
+    {
+        "ap_winner": "9190", 
+        "ap_called_time": "2014-10-15T17:21:37Z", 
+        "race_id": "AZ-3920"
+    }, 
+    {
+        "ap_winner": "9385", 
+        "ap_called_time": "2014-10-15T17:21:37Z", 
+        "race_id": "AZ-4201"
+    }, 
+    {
+        "ap_winner": "8809", 
+        "ap_called_time": "2014-10-15T17:21:37Z", 
+        "race_id": "AZ-3544"
+    }, 
+    {
+        "ap_winner": "8807", 
+        "ap_called_time": "2014-10-15T17:21:37Z", 
+        "race_id": "AZ-3012"
+    }, 
+    {
+        "ap_winner": "9383", 
+        "ap_called_time": "2014-10-15T17:21:37Z", 
+        "race_id": "AZ-4200"
+    }, 
+    {
+        "ap_winner": "8819", 
+        "ap_called_time": "2014-10-15T17:21:37Z", 
+        "race_id": "AZ-4173"
+    }, 
+    {
+        "ap_winner": "48435", 
+        "ap_called_time": "2014-10-15T17:21:18Z", 
+        "race_id": "TN-43013"
+    }, 
+    {
+        "ap_winner": "26325", 
+        "ap_called_time": "2014-10-15T17:21:17Z", 
+        "race_id": "WI-50052"
+    }, 
+    {
+        "ap_winner": "36019", 
+        "ap_called_time": "2014-10-15T17:20:44Z", 
+        "race_id": "NV-31014"
+    }, 
+    {
+        "ap_winner": "18780", 
+        "ap_called_time": "2014-10-15T17:20:42Z", 
+        "race_id": "HI-12970"
+    }, 
+    {
+        "ap_winner": "18784", 
+        "ap_called_time": "2014-10-15T17:20:42Z", 
+        "race_id": "HI-12972"
+    }, 
+    {
+        "ap_winner": "34337", 
+        "ap_called_time": "2014-10-15T17:20:21Z", 
+        "race_id": "MT-28423"
+    }, 
+    {
+        "ap_winner": "34339", 
+        "ap_called_time": "2014-10-15T17:20:21Z", 
+        "race_id": "MT-28424"
+    }, 
+    {
+        "ap_winner": "38241", 
+        "ap_called_time": "2014-10-15T17:19:46Z", 
+        "race_id": "NM-33987"
+    }, 
+    {
+        "ap_winner": "18900", 
+        "ap_called_time": "2014-10-15T17:19:42Z", 
+        "race_id": "CA-5705"
+    }, 
+    {
+        "ap_winner": "4999", 
+        "ap_called_time": "2014-10-15T17:19:39Z", 
+        "race_id": "AL-1973"
+    }, 
+    {
+        "ap_winner": "5006", 
+        "ap_called_time": "2014-10-15T17:18:26Z", 
+        "race_id": "AL-1976"
+    }, 
+    {
+        "ap_winner": "5004", 
+        "ap_called_time": "2014-10-15T17:18:26Z", 
+        "race_id": "AL-1975"
+    }, 
+    {
+        "ap_winner": "18418", 
+        "ap_called_time": "2014-10-15T17:18:01Z", 
+        "race_id": "ID-14325"
+    }, 
+    {
+        "ap_winner": "18775", 
+        "ap_called_time": "2014-10-15T17:18:01Z", 
+        "race_id": "HI-12968"
+    }, 
+    {
+        "ap_winner": "20178", 
+        "ap_called_time": "2014-10-15T17:17:30Z", 
+        "race_id": "CA-8685"
+    }, 
+    {
+        "ap_winner": "49320", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43688"
+    }, 
+    {
+        "ap_winner": "49235", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43645"
+    }, 
+    {
+        "ap_winner": "49316", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43686"
+    }, 
+    {
+        "ap_winner": "49226", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43641"
+    }, 
+    {
+        "ap_winner": "49231", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43643"
+    }, 
+    {
+        "ap_winner": "49228", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43642"
+    }, 
+    {
+        "ap_winner": "49277", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43666"
+    }, 
+    {
+        "ap_winner": "49208", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43632"
+    }, 
+    {
+        "ap_winner": "49323", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43689"
+    }, 
+    {
+        "ap_winner": "49319", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43687"
+    }, 
+    {
+        "ap_winner": "49324", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43690"
+    }, 
+    {
+        "ap_winner": "49328", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43692"
+    }, 
+    {
+        "ap_winner": "49326", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43691"
+    }, 
+    {
+        "ap_winner": "49278", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43667"
+    }, 
+    {
+        "ap_winner": "49233", 
+        "ap_called_time": "2014-10-08T17:43:42Z", 
+        "race_id": "TN-43644"
+    }, 
+    {
+        "ap_winner": "49342", 
+        "ap_called_time": "2014-10-08T17:41:46Z", 
+        "race_id": "TN-43623"
+    }, 
+    {
+        "ap_winner": "49285", 
+        "ap_called_time": "2014-10-08T17:41:46Z", 
+        "race_id": "TN-43670"
+    }, 
+    {
+        "ap_winner": "49241", 
+        "ap_called_time": "2014-10-08T17:41:46Z", 
+        "race_id": "TN-43648"
+    }, 
+    {
+        "ap_winner": "49346", 
+        "ap_called_time": "2014-10-08T17:41:46Z", 
+        "race_id": "TN-43700"
+    }, 
+    {
+        "ap_winner": "49349", 
+        "ap_called_time": "2014-10-08T17:41:46Z", 
+        "race_id": "TN-43701"
+    }, 
+    {
+        "ap_winner": "49345", 
+        "ap_called_time": "2014-10-08T17:41:46Z", 
+        "race_id": "TN-43699"
+    }, 
+    {
+        "ap_winner": "38330", 
+        "ap_called_time": "2014-10-08T17:41:45Z", 
+        "race_id": "NJ-31645"
+    }, 
+    {
+        "ap_winner": "49271", 
+        "ap_called_time": "2014-10-08T17:40:03Z", 
+        "race_id": "TN-43663"
+    }, 
+    {
+        "ap_winner": "49211", 
+        "ap_called_time": "2014-10-08T17:40:03Z", 
+        "race_id": "TN-43633"
+    }, 
+    {
+        "ap_winner": "49268", 
+        "ap_called_time": "2014-10-08T17:40:03Z", 
+        "race_id": "TN-43662"
+    }, 
+    {
+        "ap_winner": "49275", 
+        "ap_called_time": "2014-10-08T17:40:03Z", 
+        "race_id": "TN-43665"
+    }, 
+    {
+        "ap_winner": "49243", 
+        "ap_called_time": "2014-10-08T17:40:03Z", 
+        "race_id": "TN-43649"
+    }, 
+    {
+        "ap_winner": "49300", 
+        "ap_called_time": "2014-10-08T17:38:50Z", 
+        "race_id": "TN-43678"
+    }, 
+    {
+        "ap_winner": "49244", 
+        "ap_called_time": "2014-10-08T17:38:50Z", 
+        "race_id": "TN-43650"
+    }, 
+    {
+        "ap_winner": "49309", 
+        "ap_called_time": "2014-10-08T17:38:50Z", 
+        "race_id": "TN-43682"
+    }, 
+    {
+        "ap_winner": "49303", 
+        "ap_called_time": "2014-10-08T17:38:50Z", 
+        "race_id": "TN-43679"
+    }, 
+    {
+        "ap_winner": "49290", 
+        "ap_called_time": "2014-10-08T17:35:39Z", 
+        "race_id": "TN-43673"
+    }, 
+    {
+        "ap_winner": "49294", 
+        "ap_called_time": "2014-10-08T17:35:39Z", 
+        "race_id": "TN-43675"
+    }, 
+    {
+        "ap_winner": "49299", 
+        "ap_called_time": "2014-10-08T17:34:34Z", 
+        "race_id": "TN-43677"
+    }, 
+    {
+        "ap_winner": "49356", 
+        "ap_called_time": "2014-10-08T17:34:34Z", 
+        "race_id": "TN-43625"
+    }, 
+    {
+        "ap_winner": "49297", 
+        "ap_called_time": "2014-10-08T17:34:34Z", 
+        "race_id": "TN-43676"
+    }, 
+    {
+        "ap_winner": "49239", 
+        "ap_called_time": "2014-10-08T17:31:52Z", 
+        "race_id": "TN-43647"
+    }, 
+    {
+        "ap_winner": "49282", 
+        "ap_called_time": "2014-10-08T17:31:52Z", 
+        "race_id": "TN-43669"
+    }, 
+    {
+        "ap_winner": "49354", 
+        "ap_called_time": "2014-10-08T17:30:21Z", 
+        "race_id": "TN-43624"
+    }, 
+    {
+        "ap_winner": "49247", 
+        "ap_called_time": "2014-10-08T17:29:14Z", 
+        "race_id": "TN-43651"
+    }, 
+    {
+        "ap_winner": "49252", 
+        "ap_called_time": "2014-10-08T17:29:14Z", 
+        "race_id": "TN-43654"
+    }, 
+    {
+        "ap_winner": "49248", 
+        "ap_called_time": "2014-10-08T17:29:14Z", 
+        "race_id": "TN-43652"
+    }, 
+    {
+        "ap_winner": "49256", 
+        "ap_called_time": "2014-10-08T17:29:14Z", 
+        "race_id": "TN-43656"
+    }, 
+    {
+        "ap_winner": "49251", 
+        "ap_called_time": "2014-10-08T17:29:14Z", 
+        "race_id": "TN-43653"
+    }, 
+    {
+        "ap_winner": "49337", 
+        "ap_called_time": "2014-10-08T17:29:14Z", 
+        "race_id": "TN-43696"
+    }, 
+    {
+        "ap_winner": "49338", 
+        "ap_called_time": "2014-10-08T17:29:14Z", 
+        "race_id": "TN-43697"
+    }, 
+    {
+        "ap_winner": "49224", 
+        "ap_called_time": "2014-10-08T17:27:31Z", 
+        "race_id": "TN-43640"
+    }, 
+    {
+        "ap_winner": "49266", 
+        "ap_called_time": "2014-10-08T17:26:24Z", 
+        "race_id": "TN-43661"
+    }, 
+    {
+        "ap_winner": "49350", 
+        "ap_called_time": "2014-10-08T17:26:24Z", 
+        "race_id": "TN-43702"
+    }, 
+    {
+        "ap_winner": "49217", 
+        "ap_called_time": "2014-10-08T17:26:24Z", 
+        "race_id": "TN-43636"
+    }, 
+    {
+        "ap_winner": "49293", 
+        "ap_called_time": "2014-10-08T17:26:24Z", 
+        "race_id": "TN-43674"
+    }, 
+    {
+        "ap_winner": "49218", 
+        "ap_called_time": "2014-10-08T17:26:24Z", 
+        "race_id": "TN-43637"
+    }, 
+    {
+        "ap_winner": "49353", 
+        "ap_called_time": "2014-10-08T17:26:24Z", 
+        "race_id": "TN-43703"
+    }, 
+    {
+        "ap_winner": "49255", 
+        "ap_called_time": "2014-10-08T17:25:20Z", 
+        "race_id": "TN-43655"
+    }, 
+    {
+        "ap_winner": "49286", 
+        "ap_called_time": "2014-10-08T17:25:20Z", 
+        "race_id": "TN-43671"
+    }, 
+    {
+        "ap_winner": "49289", 
+        "ap_called_time": "2014-10-08T17:25:20Z", 
+        "race_id": "TN-43672"
+    }, 
+    {
+        "ap_winner": "49222", 
+        "ap_called_time": "2014-10-08T17:25:20Z", 
+        "race_id": "TN-43639"
+    }, 
+    {
+        "ap_winner": "49340", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43698"
+    }, 
+    {
+        "ap_winner": "49335", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43695"
+    }, 
+    {
+        "ap_winner": "49221", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43638"
+    }, 
+    {
+        "ap_winner": "49305", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43680"
+    }, 
+    {
+        "ap_winner": "49360", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43630"
+    }, 
+    {
+        "ap_winner": "49259", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43657"
+    }, 
+    {
+        "ap_winner": "49212", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43634"
+    }, 
+    {
+        "ap_winner": "49314", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43685"
+    }, 
+    {
+        "ap_winner": "49333", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43694"
+    }, 
+    {
+        "ap_winner": "49306", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43681"
+    }, 
+    {
+        "ap_winner": "49236", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43646"
+    }, 
+    {
+        "ap_winner": "49362", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43631"
+    }, 
+    {
+        "ap_winner": "49260", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43658"
+    }, 
+    {
+        "ap_winner": "49313", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43684"
+    }, 
+    {
+        "ap_winner": "49359", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43626"
+    }, 
+    {
+        "ap_winner": "49264", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43660"
+    }, 
+    {
+        "ap_winner": "49281", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43668"
+    }, 
+    {
+        "ap_winner": "49311", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43683"
+    }, 
+    {
+        "ap_winner": "49330", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43693"
+    }, 
+    {
+        "ap_winner": "49263", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43659"
+    }, 
+    {
+        "ap_winner": "49215", 
+        "ap_called_time": "2014-10-08T17:23:53Z", 
+        "race_id": "TN-43635"
+    }, 
+    {
+        "ap_winner": "45729", 
+        "ap_called_time": "2014-10-08T16:42:07Z", 
+        "race_id": "RI-41109"
+    }, 
+    {
+        "ap_winner": "4633", 
+        "ap_called_time": "2014-10-08T16:42:04Z", 
+        "race_id": "OR-38952"
+    }, 
+    {
+        "ap_winner": "4643", 
+        "ap_called_time": "2014-10-08T16:42:04Z", 
+        "race_id": "OR-38530"
+    }, 
+    {
+        "ap_winner": "4476", 
+        "ap_called_time": "2014-10-08T16:42:04Z", 
+        "race_id": "OR-39031"
+    }, 
+    {
+        "ap_winner": "4632", 
+        "ap_called_time": "2014-10-08T16:42:04Z", 
+        "race_id": "OR-38019"
+    }, 
+    {
+        "ap_winner": "4997", 
+        "ap_called_time": "2014-10-08T16:42:04Z", 
+        "race_id": "OR-39068"
+    }, 
+    {
+        "ap_winner": "33105", 
+        "ap_called_time": "2014-10-08T16:41:49Z", 
+        "race_id": "MA-24696"
+    }, 
+    {
+        "ap_winner": "33107", 
+        "ap_called_time": "2014-10-08T16:41:49Z", 
+        "race_id": "MA-24697"
+    }, 
+    {
+        "ap_winner": "20358", 
+        "ap_called_time": "2014-10-08T16:41:41Z", 
+        "race_id": "IN-15020"
+    }, 
+    {
+        "ap_winner": "20356", 
+        "ap_called_time": "2014-10-08T16:41:41Z", 
+        "race_id": "IN-15014"
+    }, 
+    {
+        "ap_winner": "20359", 
+        "ap_called_time": "2014-10-08T16:41:41Z", 
+        "race_id": "IN-15023"
+    }, 
+    {
+        "ap_winner": "20362", 
+        "ap_called_time": "2014-10-08T16:41:41Z", 
+        "race_id": "IN-15032"
+    }, 
+    {
+        "ap_winner": "20364", 
+        "ap_called_time": "2014-10-08T16:41:41Z", 
+        "race_id": "IN-15038"
+    }, 
+    {
+        "ap_winner": "20532", 
+        "ap_called_time": "2014-10-08T16:41:41Z", 
+        "race_id": "IN-15029"
+    }, 
+    {
+        "ap_winner": "20363", 
+        "ap_called_time": "2014-10-08T16:41:41Z", 
+        "race_id": "IN-15035"
+    }, 
+    {
+        "ap_winner": "20504", 
+        "ap_called_time": "2014-10-08T16:41:41Z", 
+        "race_id": "IN-15017"
+    }, 
+    {
+        "ap_winner": "20516", 
+        "ap_called_time": "2014-10-08T16:41:41Z", 
+        "race_id": "IN-15026"
+    }
+]

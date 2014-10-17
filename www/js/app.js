@@ -389,6 +389,7 @@ var onStatePickerSubmit = function(e) {
 
     if (is_casting) {
         $chromecastScreen.show(); 
+        resizeSlide($chromecastScreen);
         CHROMECAST_SENDER.sendMessage('state', state);
     } else {
         STACK.start();
@@ -407,6 +408,7 @@ var onStatePickerLink = function() {
     $stack.hide();
     $chromecastScreen.hide();
     $statePickerScreen.show();
+    resizeSlide($statePickerScreen);
 }
 
 /*
@@ -476,10 +478,10 @@ var resizeSlide = function(slide) {
     var headerHeight = $header.height();
 
     slide.width($w);
-    slide.height($h - headerHeight - 50);
+    slide.height($h - headerHeight);
 
     slide.find('.slide-content').width($w);
-    slide.find('.slide-content').height($h - headerHeight - 50);
+    slide.find('.slide-content').height($h - headerHeight);
 }
 
 
