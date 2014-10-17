@@ -2,33 +2,15 @@
 
 .slide-content{
     .tumblr {
-        margin: 4% 6% 0;
-
-        p {
-            font-size: 4vmin;
-            line-height: 4.7vmin;
-        }
-
-        .date {
-            font-size: 3vmin;
-        }
-
-        .post-footer {
-            font-size:3vmin;
-
-            a {
-                padding-right:10px;
-            }
-        }
+        background-image: url('../assets/elections-background-1.jpg');
+        padding: 3vmin 6vmin 3vmin 6vmin;
+        height: 100%;
     }
 
     .tumblr-text-post {
-        letter-spacing:-.03vmin;
-        height: 100%;
-
         .wrapper {
             position: relative;
-            top: 40%;
+            top: 50%;
             transform: translateY(-50%);
             -webkit-transform: translateY(-50%);
 
@@ -37,18 +19,25 @@
                 margin-bottom: 1vmin;
             }
 
-            .body {
+            .date {
+                font-size: 3vmin;
+                margin-bottom: 1vmin;
+            }
+
+            p {
                 font-size: 4.5vmin;
                 line-height: 5.2vmin;
                 margin-top: 5vmin;
                 margin-bottom: 5vmin;
             }
+
+            .post-footer {
+                font-size: 3vmin;
+            }
         }
     }
 
     .tumblr-image-post {
-        height: 100%;
-
         .image {
             float: left;
             width: 50%;
@@ -88,38 +77,54 @@
     }
 
     .tumblr-quote-post {
-        .date{
-            padding-bottom:4%;
-        }
-        blockquote {
-            font-size: 3vmin;
-            border: none;
-            padding:0;
-            @media all and (-webkit-min-device-pixel-ratio:0) {
-                -webkit-margin-before: 0;
-                -webkit-margin-after: 0;
-                -webkit-margin-start: 0;
-                -webkit-margin-end: 0;
-                text-indent: -0.31em;
+        .wrapper {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+
+            .date {
+                font-size: 3vmin;
+                margin-bottom: 1vmin;
             }
 
-            span{
-                background-color:@blueDarker;
-                padding:.7vmin;
-                -ms-box-decoration-break: clone;
-                -webkit-box-decoration-break: clone;
-                -o-box-decoration-break: clone;
-                box-decoration-break: clone;
+            blockquote {
+                font-size: 6vmin;
+                line-height: 8vmin;
+                border: none;
+                padding:0;
+                @media all and (-webkit-min-device-pixel-ratio:0) {
+                    -webkit-margin-before: 0;
+                    -webkit-margin-after: 0;
+                    -webkit-margin-start: 0;
+                    -webkit-margin-end: 0;
+                    text-indent: -0.31em;
+                }
+
+                span{
+                    background-color:@blueDarker;
+                    padding:.7vmin;
+                    -ms-box-decoration-break: clone;
+                    -webkit-box-decoration-break: clone;
+                    -o-box-decoration-break: clone;
+                    box-decoration-break: clone;
+                }
+
+                footer {
+                    margin-top: 1vmin;
+                    border: none;
+                    padding-left: 0;
+
+                    cite {
+                        font-size: 4vmin;
+                        text-transform: uppercase;
+                        letter-spacing: .05em;
+                    }
+                }
             }
-        }
-        footer {
-            margin-top: 4%;
-            border: none;
-            padding-left: 0;
-            cite {
-                font-size: 2vmin;
-                text-transform: uppercase;
-                letter-spacing: .05em;
+
+            .post-footer {
+                font-size: 3vmin;
             }
         }
     }
