@@ -2,8 +2,10 @@
 
 from datetime import datetime
 
+from dateutil.parser import parse
 from fabric.api import task
 from jinja2 import Template
+import pytz
 import requests
 
 import app_config
@@ -70,9 +72,15 @@ def _create_slide(post):
         print '%s is slide number %s' % (slide.name, order)
 
 def _render_post(post):
-    post_date = datetime.fromtimestamp(post['timestamp'])
-    formatted_date = post_date.strftime('%I:%M %p')
-    post['formatted_date'] = '%s EST' % formatted_date
+    # Parse GMT date from API
+    post_date = parse(post['date'])
+
+    # Convert to Eastern time (EDT or EST)
+    eastern = pytz.timezone('US/Eastern')
+
+    # Format for display
+    post['formatted_date'] = post_date.astimezone(eastern).strftime('%I:%M %p EST')
+
     filename = '_tumblr_%s.html' % post['type']
 
     if post['type'] == 'photo':
