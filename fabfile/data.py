@@ -478,7 +478,7 @@ def _save_senate_row(row, quiet):
         state_postal = row['state']
         seat_number = row['seat_number']
         if seat_number == '':
-            seat_number = None
+            seat_number = 0
         else:
             seat_number = int(seat_number)
 
