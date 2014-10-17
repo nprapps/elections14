@@ -1,0 +1,80 @@
+<div class="state-slide">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <h1><span class="stateface stateface-{{ state_postal|lower }}"></span></h1>
+                <h2>{{ state_name }}</h2>
+            </div>
+
+            <div class="col-md-8">
+                <h3>U.S. House overview</h3>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Current</h4>
+                        <p>
+                            <span class="bar-wrapper">
+                                <span class="bar gop" style="width: {{ current_gop_percent }}%"></span>
+                            </span>
+                            {{ current_gop_number }}
+                        </p>
+                        <p>
+                            <span class="bar-wrapper">
+                                <span class="bar dem" style="width: {{ current_dem_percent }}%"></span>
+                            </span>
+                            {{ current_dem_number }}
+                        </p>
+                        {% if current_other_number %}
+                        <p>
+                            <span class="bar-wrapper">
+                                <span class="bar other" style="width: {{ current_other_percent }}%"></span>
+                            </span>
+                            {{ current_other_number }}
+                        </p>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4>Projected</h4>
+                        <p>
+                            <span class="bar-wrapper">
+                                <span class="bar gop" width="{{ called_gop_percent }}%"></span>
+                            </span>
+                            {% if called_gop_number %}
+                            {{ called_gop_number }}
+                            {% endif %}
+                        </p>
+                        <p>
+                            <span class="bar-wrapper">
+                                <span class="bar dem" width="{{ called_dem_percent }}%"></span>
+                            </span>
+                            {% if called_dem_number %}
+                            {{ called_dem_number }}
+                            {% endif %}
+                        </p>
+                        {% if called_other_number %}
+                        <p>
+                            <span class="bar-wrapper">
+                                <span class="bar other" width="{{ called_other_percent }}%"></span>
+                            </span>
+                            {{ called_other_number }}
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if races.count() %}
+                <h3>U.S. House races we're watching</h3>
+                <div class="house">
+                    <div class="results">
+                        {% include '_race_results_table.html' %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% include '_legend.html' %}
+</div>
+

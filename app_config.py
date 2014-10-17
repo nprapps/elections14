@@ -129,6 +129,8 @@ GOOGLE_ANALYTICS = {
 DISQUS_API_KEY = 'tIbSzEhGBE9NIptbnQWn4wy1gZ546CsQ2IHHtxJiYAceyyPoAkDkVnQfCifmCaQW'
 DISQUS_UUID = '187d5a38-3768-11e4-8de3-14109fed4b76'
 
+DEPLOY_PROMO = False
+
 CHROMECAST_APP_ID = '8408F716'
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
@@ -266,13 +268,13 @@ def configure_targets(deployment_target):
         DISQUS_SHORTNAME = 'nprviz-test'
 
         TUMBLR_NAME = 'stage-nprelections'
-        TUMBLR_AUTO_REFRESH = False
+        TUMBLR_AUTO_REFRESH = True
         TUMBLR_NOT_BEFORE = datetime(2014, 10, 7, 11, 0, 0)
     else:
         S3_BUCKETS = []
         S3_BASE_URL = 'http://127.0.0.1:8000'
         SERVERS = []
-        SERVER_BASE_URL = 'http://127.0.0.1:8001'
+        SERVER_BASE_URL = 'http://127.0.0.1:8080/%s' % PROJECT_SLUG
         SERVER_LOG_PATH = '/tmp'
         DEBUG = True
 

@@ -26,8 +26,8 @@ def update():
     """
     Run all updates
     """
-    #update_featured_social()
-    load_updates()
+    load_updates('data/update.json')
+    load_calls('data/calls.json')
 
 @task
 def query(q):
@@ -103,6 +103,7 @@ def bootstrap():
 
     load_races('data/init_races.json')
     load_candidates('data/init_candidates.json')
+    load_incumbents('data/incumbents.json')
     load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
@@ -235,6 +236,32 @@ def load_calls(path):
 
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated
+
+@task
+def load_incumbents(path):
+    """
+    Update canidate incumbent status from the AP intermediary files.
+    """
+    import models
+
+    candidates_updated = 0
+    candidates_skipped = 0
+
+    print 'Loading incumbent data from AP update data on disk'
+
+    with open(path) as f:
+        candidates = json.load(f)
+
+    for candidate in candidates:
+        try:
+            candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'])
+            candidate_model.incumbent = candidate['incumbent']
+            candidate_model.save()
+            candidates_updated += 1
+        except models.Candidate.DoesNotExist:
+            candidates_skipped +=1
+
+    print 'Updated incumbent status for %i candidates (%i skipped)' % (candidates_updated, candidates_skipped)
 
 @task
 def update_featured_social():
@@ -459,14 +486,6 @@ def _save_senate_row(row, quiet):
         existing.previous_party = row['party']
         existing.save()
 
-        if row['incumbent'] == '1':
-            if row['party'] == 'gop':
-                candidate = existing.candidates.where(models.Candidate.party == 'GOP').get()
-            elif row['party'] == 'dem':
-                candidate = existing.candidates.where(models.Candidate.party == 'Dem').get()
-            candidate.incumbent = True
-            candidate.save()
-
     except models.Race.DoesNotExist:
         if not quiet:
             print 'Senate race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
@@ -489,11 +508,14 @@ def _save_ballot_measure_row(row, quiet):
     """
     import models
 
-    if row.get('race_id'):
+    try:
         race = models.Race.get(race_id=row['race_id'])
         race.ballot_measure_description = row['description']
         race.featured_race = True
         race.save()
+    except models.Race.DoesNotExist:
+        if not quiet:
+            print 'Ballot measure %s (%s) does not exist in AP data' % (row['race_id'], row['description'])
 
 @task
 def mock_slides():
@@ -506,19 +528,20 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
-    _mock_empty_slide('senate big board', 'senate_big_board', it.next())
-    _mock_empty_slide('house big board one', 'house_big_board_one', it.next())
-    _mock_empty_slide('house big board two', 'house_big_board_two', it.next())
-    _mock_empty_slide('governor big board', 'governor_big_board', it.next())
-    _mock_empty_slide('ballot measures big board', 'ballot_measures_big_board', it.next())
-    _mock_empty_slide('balance of power', 'balance_of_power', it.next())
-    _mock_empty_slide('poll closing', 'poll_closing', it.next())
-    _mock_empty_slide('state', '_state_slide', it.next())
-    _mock_empty_slide('romney dems', 'romney_dems', it.next())
-    _mock_empty_slide('obama reps', 'obama_reps', it.next())
-    _mock_empty_slide('incumbents lost', 'incumbents_lost', it.next())
-    _mock_empty_slide('blue dogs', 'blue_dogs', it.next())
-    _mock_empty_slide('house freshmen', 'house_freshmen', it.next())
+    _mock_empty_slide('senate big board', 'senate_big_board', 3, it.next())
+    _mock_empty_slide('house big board one', 'house_big_board_one', 5, it.next())
+    _mock_empty_slide('house big board two', 'house_big_board_two', 5, it.next())
+    _mock_empty_slide('governor big board', 'governor_big_board', 5, it.next())
+    _mock_empty_slide('ballot measures big board', 'ballot_measures_big_board', 5, it.next())
+    _mock_empty_slide('balance of power', 'balance_of_power', 5, it.next())
+    _mock_empty_slide('poll closing', 'poll_closing', 5, it.next())
+    _mock_empty_slide('state senate', '_state_senate_slide', 10, it.next())
+    _mock_empty_slide('state house', '_state_house_slide', 10, it.next())
+    _mock_empty_slide('romney dems', 'romney_dems', 5, it.next())
+    _mock_empty_slide('obama reps', 'obama_reps', 5, it.next())
+    _mock_empty_slide('incumbents lost', 'incumbents_lost', 5, it.next())
+    _mock_empty_slide('blue dogs', 'blue_dogs', 5, it.next())
+    _mock_empty_slide('house freshmen', 'house_freshmen', 5, it.next())
 #    execute('instagram.get_photos')
 
 def _mock_slide_from_image(filename, i):
@@ -528,11 +551,11 @@ def _mock_slide_from_image(filename, i):
     slide = models.Slide.create(body=body, name=filename)
     models.SlideSequence.create(order=i, slide=slide)
 
-def _mock_empty_slide(slug, view, i):
+def _mock_empty_slide(slug, view, time_on_screen, i):
     import models
 
     body = ''
-    slide = models.Slide.create(body=body, name=slug, view_name=view)
+    slide = models.Slide.create(body=body, name=slug, view_name=view, time_on_screen=time_on_screen)
     models.SlideSequence.create(order=i, slide=slide)
 
 @task
@@ -609,7 +632,7 @@ def _fake_results(race):
     max_candidate = None
     for candidate in race.candidates:
         candidate.ap_winner = False
-        if candidate.party in ['GOP', 'Dem', 'Grn'] and race.precincts_reporting > 0:
+        if (candidate.party in ['GOP', 'Dem', 'Grn'] or race.office_id == 'I') and race.precincts_reporting > 0:
             votes = random.randint(400000, 600000)
             candidate.vote_count = votes
             if votes > max_votes:

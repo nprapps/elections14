@@ -6,7 +6,7 @@ import json
 import os
 from time import sleep
 
-from fabric.api import env, task
+from fabric.api import task
 import requests
 
 import app_config
@@ -152,6 +152,15 @@ def init(output_dir='data'):
     write_init_candidates('%s/init_candidates.json' % output_dir)
 
 @task
+def get_incumbents(output_dir='data'):
+    """
+    Get incumbent data from updates.
+    """
+    _update_ap('races')
+
+    write_incumbents('%s/incumbents.json' % output_dir)
+
+@task
 def update(output_dir='data'):
     """
     Update data from AP.
@@ -276,6 +285,31 @@ def write_calls(path):
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)
 
+def write_incumbents(path):
+    """
+    Write incumbent data to a file
+    """
+
+    with open(CACHE_FILE) as f:
+        cache = json.load(f)
+
+    incumbents = []
+    races = cache['races']['response'].get('races', [])
+
+    for race in races:
+        stateRU = race['reportingUnits'][0]
+
+        assert stateRU.get('level', None) == 'state'
+
+        for candidate in stateRU.get('candidates'):
+            incumbents.append({
+                'candidate_id': candidate.get('candidateID'),
+                'incumbent': candidate.get('incumbent', False)
+            })
+
+    with open(path, 'w') as f:
+        json.dump(incumbents, f, indent=4)
+
 @task
 def record():
     """
@@ -364,28 +398,10 @@ def playback(folder_name='2014-10-06', update_interval=60):
     timestamps = sorted(os.listdir(folder))
     initial = '%s/%s' % (folder, timestamps[0])
 
-    print '==== RESETTING DATABASE ===='
-
-    if env.settings:
-        data.server_reset_db()
-    else:
-        data.local_reset_db()
-
-    data.create_tables()
-
-    print '==== LOADING INITIAL DATA (%s) ====' % timestamps[0]
-
-    data.load_races('%s/init_races.json' % initial)
-    data.load_candidates('%s/init_candidates.json' % initial)
-    data.load_updates('%s/update.json' % initial)
-
     for timestamp in timestamps[1:]:
-        sleep(int(update_interval))
-
         print '==== LOADING NEXT DATA (%s) ====' % timestamp
-
         path = '%s/%s' % (folder, timestamp)
-
         data.load_updates('%s/update.json' % path)
+        sleep(int(update_interval))
 
     print '==== PLAYBACK COMPLETE ===='

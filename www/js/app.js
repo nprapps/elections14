@@ -2,6 +2,7 @@
 var $welcomeScreen = null;
 var $welcomeButton = null;
 var $cast = null;
+var $rotate = null;
 
 var $statePickerScreen = null;
 var $statePickerSubmitButton = null;
@@ -12,6 +13,7 @@ var $typeahead = null;
 
 var $chromecastScreen = null;
 var $chromecastMute = null;
+var $chromecastChangeState = null;
 
 var $header = null;
 var $headerControls = null;
@@ -26,9 +28,11 @@ var $commentCount = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
+var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 
 var state = null;
 var firstShareLoad = true;
+var is_casting = false;
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
@@ -49,6 +53,7 @@ var onDocumentReady = function(e) {
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
     $welcomeSubmitButton = $('.state-picker-submit');
+    $rotate = $('.rotate');
 
     $statePickerForm  = $('form.state-picker-form');
     $statePickerScreen = $('.state-picker');
@@ -58,6 +63,7 @@ var onDocumentReady = function(e) {
 
     $chromecastScreen = $('.cast-controls');
     $chromecastMute = $chromecastScreen.find('.mute');
+    $chromecastChangeState = $chromecastScreen.find('.change-state');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
 
@@ -77,6 +83,7 @@ var onDocumentReady = function(e) {
     $statePickerForm.submit(onStatePickerSubmit);
 
     $chromecastMute.on('click', onCastMute);
+    $chromecastChangeState.on('click', onStatePickerLink);
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
 
@@ -87,16 +94,24 @@ var onDocumentReady = function(e) {
     $(window).on('resize', onWindowResize);
 
     if (IS_CAST_RECEIVER) {
+        $welcomeScreen.hide();
+
         CHROMECAST_RECEIVER.setup();
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
+        CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
 
         setUpAudio(false);
 
         STACK.start();
+    } else if (IS_FAKE_CASTER) {
+        is_casting = true;
+        state = 'TX';
+        onCastStarted();
     } else {
         // Prepare welcome screen
         $welcomeScreen.css('opacity', 1);
         resizeSlide($welcomeScreen);
+        rotatePhone();
 
         // Configure share panel
         ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
@@ -107,10 +122,14 @@ var onDocumentReady = function(e) {
         });
 
         // Geolocate
-        geoip2.city(onLocateIP);
+        if (geoip2) {
+            geoip2.city(onLocateIP);
+        }
 
         setUpAudio(true);
     }
+
+    setupStateTypeahead();
 }
 
 /*
@@ -128,6 +147,27 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
 }
 
 /*
+ * Prepare typeahead for state picker.
+ */
+var setupStateTypeahead = function() {
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        name: 'states',
+        displayKey: 'value',
+        source: substringMatcher(STATES)
+    });
+
+    $typeahead = $('.twitter-typeahead');
+
+    $('.typeahead').on('typeahead:selected', switchState)
+    $('.typeahead').on('typeahead:opened', hideStateFace)
+}
+
+/*
  * A cast device is available.
  */
 var onCastReady = function() {
@@ -139,11 +179,19 @@ var onCastReady = function() {
  */
 var onCastStarted = function() {
     $welcomeScreen.hide();
-    $statePickerScreen.hide();
     $stack.hide();
-    $chromecastScreen.show();
-
     STACK.stop();
+    
+    if (!state) {
+        $statePickerScreen.show();
+        resizeSlide($statePickerScreen);
+    } else {
+        $statePickerScreen.hide();
+        $chromecastScreen.show();
+        resizeSlide($chromecastScreen);
+    }
+
+    is_casting = true;
 }
 
 /*
@@ -153,6 +201,8 @@ var onCastStopped = function() {
     $chromecastScreen.hide();
 
     STACK.start();
+
+    is_casting = false;
 }
 
 /*
@@ -164,6 +214,13 @@ var onCastReceiverMute = function(message) {
     } else {
         $audioPlayer.jPlayer('pause');
     }
+}
+
+/*
+ * Change the state on the receiver.
+ */
+var onCastStateChange = function(message) {
+    state = message;
 }
 
 /*
@@ -179,6 +236,16 @@ var onCastMute = function() {
 var onWindowResize = function() {
     var thisSlide = $('.slide');
     resizeSlide(thisSlide);
+    rotatePhone();
+}
+
+var rotatePhone = function() {
+    if (Modernizr.touch && Modernizr.mq('(orientation: portrait)')) {
+        $rotate.show();
+    }
+    else {
+        $rotate.hide();
+    }
 }
 
 /*
@@ -207,46 +274,29 @@ var onWelcomeButtonClick = function() {
     $statePickerScreen.show();
     resizeSlide($statePickerScreen);
 
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    },
-    {
-        name: 'states',
-        displayKey: 'value',
-        source: substringMatcher(STATES)
-    });
-
-    $typeahead = $('.twitter-typeahead');
-
-    $('.typeahead').on('typeahead:selected', switchState)
-    $('.typeahead').on('typeahead:opened', hideStateFace)
-
 }
 
+/*
+ * Matcher for typeahead.
+ */
 var substringMatcher = function(strs) {
-  return function findMatches(q, cb) {
-    var matches, substrRegex;
+    return function findMatches(q, cb) {
+        var matches = [];
 
-    // an array that will be populated with substring matches
-    matches = [];
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(strs, function(i, str) {
+            var queryLength = q.length;
+            var normalizedString = str.toLowerCase();
+            if (normalizedString.substring(0, queryLength) === q.toLowerCase()) {
+                // the typeahead jQuery plugin expects suggestions to a
+                // JavaScript object, refer to typeahead docs for more info
+                matches.push({ value: str });
+            }
+        });
 
-    // regex used to determine if a string contains the substring `q`
-    substrRegex = new RegExp(q, 'i');
-
-    // iterate through the pool of strings and for any string that
-    // contains the substring `q`, add it to the `matches` array
-    $.each(strs, function(i, str) {
-      if (substrRegex.test(str)) {
-        // the typeahead jQuery plugin expects suggestions to a
-        // JavaScript object, refer to typeahead docs for more info
-        matches.push({ value: str });
-      }
-    });
-
-    cb(matches);
-  };
+        cb(matches);
+    };
 };
 
 /*
@@ -273,7 +323,7 @@ var onFullScreenButtonClick = function() {
 var onControlsHover = function() {
     $headerControls.data('hover', true);
     $header.fadeOut(200, function() {
-        $headerControls.show();
+        $headerControls.fadeIn(200);
     });
 }
 
@@ -283,7 +333,9 @@ var onControlsHover = function() {
 var offControlsHover = function() {
     $headerControls.data('hover', false);
     $headerControls.fadeOut(200, function() {
-        $header.fadeIn();
+        $header.fadeIn(200, function() {
+            $('body').data('mouse-moving', true);
+        });
     });
 }
 
@@ -293,7 +345,6 @@ var offControlsHover = function() {
 
 var getState = function() {
     var input = $('.typeahead').typeahead('val');
-
     if (input) {
         state = getStatePostal(input)
     }
@@ -312,6 +363,7 @@ var switchState = function() {
     $stateface.addClass('stateface stateface-' + postal.toLowerCase());
 
     $stateName.text(input);
+    getState();
     $('.typeahead').typeahead('val', '')
     $('.typeahead').typeahead('close');
     $('.typeahead').blur();
@@ -321,7 +373,7 @@ var hideStateFace = function() {
     $stateface.css('opacity', 0);
     $stateName.css('opacity', 0);
 
-    if ($stateface.height() > 0) {
+    if ($stateface.height() > 0 && $stateface.width() > 0) {
         $typeahead.css('top', '-23vw');
     }
 }
@@ -329,20 +381,19 @@ var hideStateFace = function() {
 var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
-    getState();
-
-    if (!(state)) {
-        alert("Please pick a state!");
-        return false;
-    }
-
     $.cookie('state', state);
 
     $statePickerLink.text(APP_CONFIG.STATES[state]);
 
     $statePickerScreen.hide();
 
-    STACK.start();
+    if (is_casting) {
+        $chromecastScreen.show(); 
+        resizeSlide($chromecastScreen);
+        CHROMECAST_SENDER.sendMessage('state', state);
+    } else {
+        STACK.start();
+    }
 }
 
 var getStatePostal = function(input) {
@@ -355,7 +406,9 @@ var getStatePostal = function(input) {
  */
 var onStatePickerLink = function() {
     $stack.hide();
+    $chromecastScreen.hide();
     $statePickerScreen.show();
+    resizeSlide($statePickerScreen);
 }
 
 /*
@@ -423,8 +476,12 @@ var resizeSlide = function(slide) {
     var $w = $(window).width();
     var $h = $(window).height();
     var headerHeight = $header.height();
+
     slide.width($w);
-    slide.height($h - headerHeight - 50);
+    slide.height($h - headerHeight);
+
+    slide.find('.slide-content').width($w);
+    slide.find('.slide-content').height($h - headerHeight);
 }
 
 

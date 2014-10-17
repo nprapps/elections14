@@ -90,8 +90,8 @@ class DataTestCase(unittest.TestCase):
 
             self.assertTrue(race.is_called())
             self.assertTrue(race.ap_called)
-            self.assertEqual(race.ap_called_time, datetime(2014, 9, 25, 12, 8, 14))
-            self.assertEqual(race.get_called_time(), datetime(2014, 9, 25, 12, 8, 14))
+            self.assertEqual(race.ap_called_time, datetime(2014, 9, 25, 13, 8, 14))
+            self.assertEqual(race.get_called_time(), datetime(2014, 9, 25, 13, 8, 14))
 
             self.assertFalse(candidate_4848.ap_winner)
             self.assertFalse(candidate_4642.ap_winner)
@@ -124,3 +124,12 @@ class DataTestCase(unittest.TestCase):
 
             race = Race.get(Race.race_id == 'OK-38145')
             self.assertEqual(race.previous_party, 'gop')
+
+    def test_ballot_measures_extra(self):
+        with test_database(test_db, [Race,]):
+            data.load_races('data/tests/init_races.json')
+            data.load_ballot_measures_extra('data/ballot-measures-extra.csv', quiet=True)
+
+            race = Race.get(Race.race_id == 'MI-24549')
+            self.assertEqual(race.ballot_measure_description, 'Wolf Hunting')
+

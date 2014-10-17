@@ -12,8 +12,6 @@ var STACK = (function () {
     var _stackRequest = null;
     var _rotateRequest = null;
 
-    var _mouseMoveCounter = 0;
-
     /*
      * Setup the stack display.
      */
@@ -22,7 +20,6 @@ var STACK = (function () {
 
         $('body').on('mousemove', onMoveMouse);
         $headerControls.hover(onControlsHover, offControlsHover);
-        $audioPlayer.jPlayer('play');
 
         updateStack();
     }
@@ -65,15 +62,13 @@ var STACK = (function () {
      * Show the header.
      */
     var onMoveMouse = function() {
-        _mouseMoveCounter += 1;
-
-        if (!($('body').data('mouse-moving')) && _mouseMoveCounter > 20) {
+        if (!($('body').data('mouse-moving'))) {
             $header.fadeOut(200, function() {
-                $headerControls.fadeIn(200);
+                $headerControls.fadeIn(200, function() {
+                    $('body').data('mouse-moving', true);
+                });
             });
 
-            $('body').data('mouse-moving', true);
-            _mouseMoveCounter = 0;
         }
 
         if (_mouseMoveTimer) {
@@ -87,12 +82,12 @@ var STACK = (function () {
      * Hide the header.
      */
     var onEndMouse = function() {
-        _mouseMoveCounter = 0;
 
         if (!($headerControls.data('hover'))) {
-            $('body').data('mouse-moving', false);
             $headerControls.fadeOut(200, function() {
-                $header.fadeIn(200);
+                $header.fadeIn(200, function() {
+                    $('body').data('mouse-moving', false);
+                });
             });
         }
     }
@@ -115,15 +110,25 @@ var STACK = (function () {
 
         var slug = _stack[_currentSlide]['slug'];
 
-        if (slug === 'state') {
+        if (slug === 'state-senate') {
             // If no state selected, skip to next
             if (!state) {
                 rotateSlide();
                 return;
             }
 
-            slide_path = 'slides/state-' + state + '.html';
-        } else {
+            slide_path = 'slides/state-senate-' + state + '.html';
+        }
+        else if (slug === 'state-house') {
+            // If no state selected, skip to next
+            if (!state) {
+                rotateSlide();
+                return;
+            }
+
+            slide_path = 'slides/state-house-' + state + '.html';
+        }
+         else {
             slide_path = 'slides/' + slug + '.html';
         }
 
@@ -140,31 +145,31 @@ var STACK = (function () {
                         $(this).remove();
                         $stack.append($newSlide);
                         resizeSlide($newSlide)
-                        if ($newSlide.find('.results-header').length > 0) {
+
+                        if ($newSlide.find('.leaderboard').length > 0) {
                             $header.find('.leaderboard').fadeOut();
                         }
                         else {
                             $header.find('.leaderboard').fadeIn();
                         }
 
-
                         $newSlide.fadeIn(800, function(){
-                            _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                            _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
                         });
                     });
-                }
-
-                else {
+                } else {
                     $stack.append($newSlide);
-                    resizeSlide($newSlide)
+                    resizeSlide($newSlide);
+
                     if ($newSlide.find('.results-header').length > 0) {
                         $header.find('.leaderboard').fadeOut();
                     }
                     else {
                         $header.find('.leaderboard').fadeIn();
                     }
+
                     $newSlide.fadeIn(800, function(){
-                        _rotateTimer = setTimeout(rotateSlide, APP_CONFIG.SLIDE_ROTATE_INTERVAL * 1000);
+                        _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
                     });
                 }
             }

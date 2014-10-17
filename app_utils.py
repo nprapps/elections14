@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
+from decimal import Decimal, InvalidOperation
 from functools import wraps
-
 from flask import make_response
 
 SENATE_MAJORITY = 51
@@ -64,7 +64,8 @@ def calculate_bop(races, majority, initial):
 
         if race.party_changed():
             bop[winner]['picked_up'] += 1
-            bop[race.previous_party]['picked_up'] -= 1
+            if race.previous_party:
+                bop[race.previous_party]['picked_up'] -= 1
 
     return bop
 
@@ -77,4 +78,58 @@ def calculate_seats_left(races):
         if race.is_called():
             seats -= 1
     return seats
+
+def _percent(dividend, divisor):
+    try:
+        return (Decimal(dividend) / Decimal(divisor)) * 100
+    except InvalidOperation:
+        return 0
+
+def calculate_state_bop(races):
+    current_gop_number = 0
+    current_dem_number = 0
+    current_other_number = 0
+    called_gop_number = 0
+    called_dem_number = 0
+    called_other_number = 0
+    for race in races:
+        if race.previous_party == 'gop':
+            current_gop_number += 1
+        elif race.previous_party == 'dem':
+            current_dem_number += 1
+        elif race.previous_party == 'other':
+            current_other_number += 1
+
+        if race.is_called():
+            if race.get_winning_party() == 'gop':
+                called_gop_number += 1
+            elif race.get_winning_party() == 'dem':
+                called_dem_number += 1
+            elif race.get_winning_party() == 'other':
+                called_other_number += 1
+
+    current_total = current_gop_number + current_dem_number + current_other_number
+    current_gop_percent = _percent(current_gop_number, current_total)
+    current_dem_percent = _percent(current_dem_number, current_total)
+    current_other_percent = _percent(current_other_number, current_total)
+
+    called_total = called_gop_number + called_dem_number + called_other_number
+    called_gop_percent = _percent(called_gop_number, called_total)
+    called_dem_percent = _percent(called_dem_number, called_total)
+    called_other_percent = _percent(called_other_number, called_total)
+
+    return {
+        'current_gop_number': current_gop_number,
+        'current_dem_number': current_dem_number,
+        'current_other_number': current_other_number,
+        'current_gop_percent': current_gop_percent,
+        'current_dem_percent': current_dem_percent,
+        'current_other_percent': current_other_percent,
+        'called_gop_number': called_gop_number,
+        'called_dem_number': called_dem_number,
+        'called_other_number': called_other_number,
+        'called_gop_percent': called_gop_percent,
+        'called_dem_percent': called_dem_percent,
+        'called_other_percent': called_other_percent,
+    }
 

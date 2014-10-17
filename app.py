@@ -65,7 +65,13 @@ def index():
     context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_MAJORITY, app_utils.SENATE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(races)
 
-    return render_template('index.html', **context), 200,
+    if app_config.DEPLOY_PROMO:
+        template_file = 'promo.html'
+    else:
+        template_file = 'index.html'
+
+
+    return render_template(template_file, **context), 200,
 
 @app.route('/comments/')
 def comments():
@@ -73,6 +79,17 @@ def comments():
     Full-page comments view.
     """
     return render_template('comments.html', **make_context())
+
+@app.route('/board/<slug>/')
+def _big_board(slug):
+    """
+    Preview a slide outside of the stack.
+    """
+    context = make_context()
+
+    context['body'] = _slide(slug).data
+
+    return render_template('_big_board_wrapper.html', **context)
 
 @app.route('/live-data/stack.json')
 @app_utils.cors
@@ -87,14 +104,25 @@ def _stack_json():
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-@app.route('/preview/state-<slug>/')
-def _state_slide_preview(slug):
+@app.route('/preview/state-house-<slug>/')
+def _state_house_slide_preview(slug):
     """
     Preview a state slide outside of the stack.
     """
     context = make_context()
 
-    context['body'] = _state_slide(slug).data
+    context['body'] = _state_house_slide(slug).data
+
+    return render_template('_slide_preview.html', **context)
+
+@app.route('/preview/state-senate-<slug>/')
+def _state_senate_slide_preview(slug):
+    """
+    Preview a state slide outside of the stack.
+    """
+    context = make_context()
+
+    context['body'] = _state_senate_slide(slug).data
 
     return render_template('_slide_preview.html', **context)
 
@@ -109,38 +137,66 @@ def _slide_preview(slug):
 
     return render_template('_slide_preview.html', **context)
 
-@app.route('/slides/state-<slug>.html')
+@app.route('/slides/state-house-<slug>.html')
 @app_utils.cors
-def _state_slide(slug):
+def _state_house_slide(slug):
     """
     Serve a state slide.
     """
-    from models import Race
+    from models import Race, Slide
 
-    for postal, state in app_config.STATES.items():
-        if postal == slug.upper():
-            state_name = state
+    slide = Slide.get(Slide.slug == 'state-house')
+
+    slug = slug.upper()
 
     context = make_context()
-    context['page_title'] = state_name
+    context['state_postal'] = slug
+    context['state_name'] = app_config.STATES.get(slug)
+
+    races = Race.select().where(
+        (Race.office_name == 'U.S. House') &
+        (Race.state_postal == slug)
+    ).order_by(Race.seat_number)
+
+    context.update(app_utils.calculate_state_bop(races))
+
+    context['time_on_screen'] = slide.time_on_screen
+
+    context['races'] = races.where(Race.featured_race == True)
+
+    context['body'] = render_template('slides/state_house.html', **context)
+
+    return render_template('_slide.html', **context)
+
+@app.route('/slides/state-senate-<slug>.html')
+@app_utils.cors
+def _state_senate_slide(slug):
+    """
+    Serve a state slide.
+    """
+    from models import Race, Slide
+
+    slide = Slide.get(Slide.slug == 'state-senate')
+
+    slug = slug.upper()
+
+    context = make_context()
+    context['state_postal'] = slug
+    context['state_name'] = app_config.STATES.get(slug)
 
     context['senate'] = Race.select().where(
         (Race.office_name == 'U.S. Senate') &
-        (Race.state_postal == slug.upper())
-    )
+        (Race.state_postal == slug)
+    ).order_by(Race.seat_number)
 
     context['governor'] = Race.select().where(
         (Race.office_name == 'Governor') &
-        (Race.state_postal == slug.upper())
+        (Race.state_postal == slug)
     )
 
-    context['house'] = Race.select().where(
-        (Race.office_name == 'U.S. House') &
-        (Race.state_postal == slug.upper())
-    )
+    context['time_on_screen'] = slide.time_on_screen
 
-    context['column_number'] = 2
-    context['body'] = render_template('slides/state.html', **context)
+    context['body'] = render_template('slides/state_senate.html', **context)
 
     return render_template('_slide.html', **context)
 
@@ -160,7 +216,9 @@ def _slide(slug):
     else:
         body = slides.__dict__[view_name]()
 
-    return render_template('_slide.html', body=body)
+    time_on_screen = slide.time_on_screen
+
+    return render_template('_slide.html', body=body, time_on_screen=time_on_screen)
 
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)

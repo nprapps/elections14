@@ -167,7 +167,7 @@ class Race(SlugModel):
         """
         winner = self.get_winning_party()
 
-        if winner and self.previous_party:
+        if winner:
             return winner != self.previous_party
 
         return None
@@ -297,7 +297,7 @@ class Candidate(SlugModel):
     candidate_id = CharField(index=True)
 
     # update data
-    incumbent = BooleanField(default=False)
+    incumbent = BooleanField(default=False, null=True)
     ballot_order = CharField(null=True)
     vote_count = IntegerField(default=False)
     ap_winner = BooleanField(default=False)
@@ -335,6 +335,16 @@ class Candidate(SlugModel):
 
         return flat
 
+    def get_party(self):
+        if self.party == 'Dem':
+            return 'dem'
+
+        elif self.party == 'GOP':
+            return 'gop'
+
+        else:
+            return 'other'
+
     def is_winner(self):
         """
         Is the candidate the winner?
@@ -366,6 +376,7 @@ class Slide(SlugModel):
     name = CharField(max_length=255)
     body = TextField()
     view_name = CharField(max_length=255)
+    time_on_screen = IntegerField(default=10)
 
     def __unicode__(self):
         return self.name

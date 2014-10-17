@@ -32,12 +32,9 @@ header {
 
 .slides {
 	.make-md-column(8);
-	position: fixed;
-	top: 70px + @line-height-computed;
-	right: 0;
 	padding-right: 0;
 	li {
-		width: 33.33333%;
+		width: 25%;
 		padding: 0 @grid-gutter-width / 2;
 		float: left;
 
@@ -65,12 +62,22 @@ body.dragging, body.dragging * {
 	margin-bottom: @line-height-computed;
 }
 
-.sortable li:after {
+ul.sortable li:after {
 	position: relative;
 	content: ' ';
 	display: block;
 	height: 0;
 	padding-bottom: 56.25%;
+	background: #eee;
+
+}
+
+ol.sortable li:after {
+	position: relative;
+	content: ' ';
+	display: block;
+	height: 0;
+	padding-bottom: 5%;
 	background: #eee;
 
 }
