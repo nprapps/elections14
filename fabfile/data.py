@@ -130,7 +130,6 @@ def load_races(path):
                 seat_number = race['seat_number'],
                 race_id = race['race_id'],
                 race_type = race['race_type'],
-                last_updated = race['last_updated'],
             )
 
     print 'Loaded %i races' % len(races)
