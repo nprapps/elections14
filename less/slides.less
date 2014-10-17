@@ -1,19 +1,21 @@
 .slide-content{
 
-    .tumblr{
+    .tumblr {
         margin: 4% 6% 0;
+
         p {
             font-size: 4vmin;
             line-height: 4.7vmin;
         }
-        .date{
+
+        .date {
             font-size: 3vmin;
         }
-        .post-footer{
-            position:absolute;
-            bottom:10px;
+
+        .post-footer {
             font-size:3vmin;
-            a{
+
+            a {
                 padding-right:10px;
             }
         }
@@ -21,26 +23,66 @@
 
     .tumblr-text-post {
         letter-spacing:-.03vmin;
-        h2 {
-            font-size: 6vmin;
-        }
-        .body{
-            padding-top: 4%;
+        height: 100%;
+
+        .wrapper {
+            position: relative;
+            top: 40%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+
+            h2 {
+                font-size: 6vmin;
+                margin-bottom: 1vmin;
+            }
+
+            .body {
+                font-size: 4.5vmin;
+                line-height: 5.2vmin;
+                margin-top: 5vmin;
+                margin-bottom: 5vmin;
+            }
         }
     }
 
     .tumblr-image-post {
+        height: 100%;
+
         .image {
-            float:right;
-            width:35%;
+            float: left;
+            width: 50%;
+
             img {
-                width:100%;
-                height:auto;
+                width: 100%;
+                height: auto;
             }
         }
+
         .caption {
-            float:left;
-            width: 60%;
+            float: right;
+            width: 45%;
+            position: relative;
+            top: 45%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+
+            .date {
+                font-size: 3vmin;
+                margin-bottom: 1vmin;
+            }
+
+            .body {
+                margin-bottom: 2vmin;
+                
+                p {
+                    font-size: 4.5vmin;
+                    line-height: 5.2vmin;
+                }
+            }
+
+            .post-footer {
+                font-size: 3vmin;
+            }
         }
     }
 
