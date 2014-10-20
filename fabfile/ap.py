@@ -269,61 +269,12 @@ def record():
     while True:
         timestamp = time.time()
         folder = '%s/%s' % (root, timestamp)
+        print "Writing to %s" % folder
 
         os.mkdir(folder)
 
         init(folder)
         update(folder)
-
-        sleep(update_interval)
-
-def date_serial(obj):
-    """serialize dates"""
-    if isinstance(obj, datetime) or isinstance(obj, date):
-        serial = obj.isoformat()
-        return serial
-
-@task
-def write_ftp(path):
-    """Write crudely formatted FTP results to a folder"""
-    client = AP(SECRETS['AP_FTP_USER'], SECRETS['AP_FTP_PASSWORD'])
-    ticket = client.get_topofticket('2014-11-04')
-    output = []
-    for race in ticket.races:
-        race_dict = { k: v for k,v in race.__dict__.items() if not k.startswith('_') }
-        race_dict['candidates'] = []
-        for candidate in race.candidates:
-            candidate_dict = { k: v for k,v in candidate.__dict__.items() if not k.startswith('_') }
-            race_dict['candidates'].append(candidate_dict)
-        output.append(race_dict)
-
-    with open(path, 'w') as f:
-        json.dump(output, f, default=date_serial, indent=4)
-
-@task
-def record_ftp():
-    """
-    Record FTP results
-    """
-    update_interval = 60 #* 5 
-    folder = datetime.now().strftime('%Y-%m-%d')
-    root = 'data/recording/ftp-%s' % folder
-
-    if os.path.exists(root):
-        print 'ERROR: %s already exists. Delete it if you want to re-record for today!' % root
-        return
-    else:
-        os.mkdir(root)
-
-    while True:
-        timestamp = time.time()
-        folder = '%s/%s' % (root, timestamp)
-
-        os.mkdir(folder)
-
-        path = '%s/data.json' % folder
-        write_ftp(path)
-        print "Wrote %s" % path
 
         sleep(update_interval)
 
