@@ -18,14 +18,6 @@
             display: block;
             background-color: #141D24;
         }
-        .share-image-header{
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-        .dl-image {
-            text-align: right;
-        }
     </style>
 
 
@@ -33,19 +25,19 @@
 
 <body>
     <div id="stack" class="stack" style="display: block;">
-        <div class="share-image-header">
-            <a class="dl-image btn btn-default" href="{{ SERVER_BASE_URL }}/admin/stack/share/{{ slug }}">Download share image</a>
-        </div>
         {{ body|smarty }}
+    </div>
+    <div class="share-footer">
+        <div class="share-title">
+            {% include '_election_party.svg' %}
+        </div>
+
+        <div class="share-url">
+            <h2>npr.org/election</h2>
+        </div>
     </div>
 
     <script>
-        $(document).ready(function() {
-            if (typeof window.callPhantom === 'function') {
-                window.callPhantom({ target: 'depict', status: 'ready' });
-            }
-        })
-
         var resizeSlide = function() {
             var $slide = $('.slide');
             var w = $(window).width();
@@ -58,10 +50,17 @@
             $slide.find('.slide-content').height(h);
         }
 
-        resizeSlide();
+        $(document).ready(function() {
 
-        $(window).on('resize', resizeSlide);
+            if (window.location.search.indexOf('share') >= 0) {
+                $('body').prepend('<link rel="stylesheet" href="/less/share-ui.less">');
+            }
+            else {
+                resizeSlide();
+                $(window).on('resize', resizeSlide);
+            }
 
+        })
     </script>
 
 </body>
