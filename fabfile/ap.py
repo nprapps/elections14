@@ -309,6 +309,7 @@ def playback(folder_name='2014-10-06', update_interval=60):
         print '==== LOADING NEXT DATA (%s) ====' % timestamp
         path = '%s/%s' % (folder, timestamp)
         data.load_updates('%s/update.json' % path)
+        data.load_calls('%s/calls.json' % path)
         sleep(int(update_interval))
 
     print '==== PLAYBACK COMPLETE ===='
