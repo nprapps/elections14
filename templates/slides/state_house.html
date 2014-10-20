@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4">
                 <h1><span class="stateface stateface-{{ state_postal|lower }}"></span></h1>
-                <h2>{{ state_name }}</h2>
+                <h2>{{ state_name }}{% if page %} (Page {{ page }} of 2){% endif %}</h2>
             </div>
 
             <div class="col-md-8">

@@ -200,6 +200,13 @@ STATES = {
     'WY': 'Wyoming',
 }
 
+# States with many results that need to be paginated
+PAGINATED_STATES = [
+    'CA',
+    'IL',
+    'NY'
+]
+
 """
 Utilities
 """
