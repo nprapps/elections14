@@ -161,8 +161,11 @@ def update(output_dir='data'):
     """
     Update data from AP.
     """
-    write_update('%s/update.json' % output_dir)
-    write_calls('%s/calls.json' % output_dir)
+    client = AP(SECRETS['AP_FTP_USER'], SECRETS['AP_FTP_PASSWORD'])
+    ticket = client.get_topofticket('2014-11-04')
+
+    write_update(ticket, '%s/update.json' % output_dir)
+    write_calls(ticket, '%s/calls.json' % output_dir)
 
 
 def process_race(race):
@@ -195,14 +198,10 @@ def process_candidate(candidate):
     }
     return ret
 
-def write_update(path):
+def write_update(ticket, path):
     """
     Write an update
     """
-
-    client = AP(SECRETS['AP_FTP_USER'], SECRETS['AP_FTP_PASSWORD'])
-    ticket = client.get_topofticket('2014-11-04')
-
     updates = []
 
     for race in ticket.races:
@@ -229,18 +228,13 @@ def write_update(path):
     with open(path, 'w') as f:
         json.dump(updates, f, indent=4)
 
-def write_calls(path):
+def write_calls(ticket, path):
     """
     Write call data to disk
     """
-
-    client = AP(SECRETS['AP_FTP_USER'], SECRETS['AP_FTP_PASSWORD'])
-    ticket = client.get_topofticket('2014-11-04')
-
     calls = []
 
     for race in ticket.races:
-
         winners = [candidate for candidate in race.candidates if candidate.is_winner]
 
         if len(winners) > 1:
