@@ -83,7 +83,7 @@ def share(slug):
     ])
 
     response = send_file(image_url, mimetype='image/png')
-    response.headers['Content-Disposition'] = 'attachment'
+    response.headers['Content-Disposition'] = 'attachment; filename=%s.png' % slug
     return response
 
 
