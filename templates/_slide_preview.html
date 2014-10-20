@@ -18,6 +18,14 @@
             display: block;
             background-color: #141D24;
         }
+        .share-image-header{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .dl-image {
+            text-align: right;
+        }
     </style>
 
 
@@ -25,6 +33,9 @@
 
 <body>
     <div id="stack" class="stack" style="display: block;">
+        <div class="share-image-header">
+            <a class="dl-image btn btn-default" href="{{ SERVER_BASE_URL }}/admin/stack/share/{{ slug }}">Download share image</a>
+        </div>
         {{ body|smarty }}
     </div>
 

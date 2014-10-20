@@ -1,9 +1,5 @@
 [
     {
-        "candidate_id": "6400", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "6023", 
         "incumbent": true
     }, 
@@ -16,12 +12,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "6337", 
+        "candidate_id": "6400", 
         "incumbent": false
     }, 
     {
         "candidate_id": "6024", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "6337", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "6381", 
@@ -60,15 +60,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "6405", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "6398", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "4691", 
+        "candidate_id": "6405", 
         "incumbent": false
     }, 
     {
@@ -76,7 +72,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "4693", 
+        "candidate_id": "4691", 
         "incumbent": false
     }, 
     {
@@ -84,7 +80,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "4694", 
+        "candidate_id": "4693", 
         "incumbent": false
     }, 
     {
@@ -92,12 +88,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "4695", 
+        "candidate_id": "4694", 
         "incumbent": false
     }, 
     {
         "candidate_id": "4356", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "4695", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "4358", 
@@ -124,11 +124,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "4992", 
+        "candidate_id": "4991", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "4991", 
+        "candidate_id": "4992", 
         "incumbent": false
     }, 
     {
@@ -156,15 +156,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "5000", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "4999", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "5002", 
+        "candidate_id": "5000", 
         "incumbent": false
     }, 
     {
@@ -172,7 +168,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "5004", 
+        "candidate_id": "5002", 
         "incumbent": false
     }, 
     {
@@ -180,7 +176,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "5006", 
+        "candidate_id": "5004", 
         "incumbent": false
     }, 
     {
@@ -188,11 +184,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12177", 
+        "candidate_id": "5006", 
         "incumbent": false
     }, 
     {
         "candidate_id": "12182", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12177", 
         "incumbent": false
     }, 
     {
@@ -204,12 +204,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12199", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "11569", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "12199", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "12515", 
@@ -228,11 +228,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12194", 
+        "candidate_id": "12191", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "12191", 
+        "candidate_id": "12194", 
         "incumbent": false
     }, 
     {
@@ -256,11 +256,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12549", 
+        "candidate_id": "12548", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "12548", 
+        "candidate_id": "12549", 
         "incumbent": false
     }, 
     {
@@ -272,19 +272,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12554", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "12553", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "12547", 
+        "candidate_id": "12554", 
         "incumbent": false
     }, 
     {
         "candidate_id": "12546", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12547", 
         "incumbent": false
     }, 
     {
@@ -304,7 +304,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "9351", 
+        "candidate_id": "9199", 
         "incumbent": false
     }, 
     {
@@ -312,7 +312,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "9199", 
+        "candidate_id": "9351", 
         "incumbent": false
     }, 
     {
@@ -320,20 +320,20 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "8793", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "9181", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "8795", 
+        "candidate_id": "8793", 
         "incumbent": true
     }, 
     {
         "candidate_id": "9184", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "8795", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "8799", 
@@ -372,11 +372,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "9356", 
+        "candidate_id": "9190", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "9190", 
+        "candidate_id": "9353", 
         "incumbent": false
     }, 
     {
@@ -384,7 +384,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "9353", 
+        "candidate_id": "9356", 
         "incumbent": false
     }, 
     {
@@ -396,19 +396,15 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "8819", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "9196", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "9358", 
-        "incumbent": false
+        "candidate_id": "8819", 
+        "incumbent": true
     }, 
     {
-        "candidate_id": "9383", 
+        "candidate_id": "9358", 
         "incumbent": false
     }, 
     {
@@ -416,7 +412,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "9384", 
+        "candidate_id": "9383", 
         "incumbent": false
     }, 
     {
@@ -424,11 +420,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "9386", 
+        "candidate_id": "9384", 
         "incumbent": false
     }, 
     {
         "candidate_id": "9387", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9386", 
         "incumbent": false
     }, 
     {
@@ -488,12 +488,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19766", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18868", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19766", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18880", 
@@ -504,11 +504,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19774", 
+        "candidate_id": "19779", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "19779", 
+        "candidate_id": "19774", 
         "incumbent": false
     }, 
     {
@@ -552,12 +552,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19804", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18907", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19804", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18731", 
@@ -568,12 +568,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19548", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18735", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19548", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18740", 
@@ -584,15 +584,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19796", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18545", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "19808", 
+        "candidate_id": "19796", 
         "incumbent": false
     }, 
     {
@@ -600,12 +596,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "20096", 
+        "candidate_id": "19808", 
         "incumbent": false
     }, 
     {
         "candidate_id": "18548", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "20096", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18552", 
@@ -616,11 +616,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19821", 
+        "candidate_id": "19819", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "19819", 
+        "candidate_id": "19821", 
         "incumbent": false
     }, 
     {
@@ -664,11 +664,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "20095", 
+        "candidate_id": "19839", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "19839", 
+        "candidate_id": "20095", 
         "incumbent": false
     }, 
     {
@@ -688,12 +688,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19746", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18594", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19746", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "19749", 
@@ -728,12 +728,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19608", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "19034", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19608", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18556", 
@@ -752,12 +752,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19850", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18559", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19850", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18708", 
@@ -776,11 +776,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19852", 
+        "candidate_id": "19851", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "19851", 
+        "candidate_id": "19852", 
         "incumbent": false
     }, 
     {
@@ -800,20 +800,20 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19867", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18768", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "19869", 
+        "candidate_id": "19867", 
         "incumbent": false
     }, 
     {
         "candidate_id": "18772", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19869", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18781", 
@@ -832,12 +832,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19689", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "19231", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19689", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18800", 
@@ -848,20 +848,20 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19864", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18720", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "19773", 
+        "candidate_id": "19864", 
         "incumbent": false
     }, 
     {
         "candidate_id": "18884", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19773", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "20118", 
@@ -872,19 +872,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "20122", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "20121", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "20124", 
+        "candidate_id": "20122", 
         "incumbent": false
     }, 
     {
         "candidate_id": "20123", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20124", 
         "incumbent": false
     }, 
     {
@@ -896,15 +896,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "20128", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "20127", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "20132", 
+        "candidate_id": "20128", 
         "incumbent": false
     }, 
     {
@@ -912,7 +908,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "20166", 
+        "candidate_id": "20132", 
         "incumbent": false
     }, 
     {
@@ -920,11 +916,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "20168", 
+        "candidate_id": "20166", 
         "incumbent": false
     }, 
     {
         "candidate_id": "20167", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20168", 
         "incumbent": false
     }, 
     {
@@ -944,19 +944,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "20174", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "20173", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "20176", 
+        "candidate_id": "20174", 
         "incumbent": false
     }, 
     {
         "candidate_id": "20175", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20176", 
         "incumbent": false
     }, 
     {
@@ -980,10 +980,6 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12380", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "12372", 
         "incumbent": false
     }, 
@@ -992,12 +988,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12112", 
-        "incumbent": true
+        "candidate_id": "12380", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "12220", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "12112", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "12221", 
@@ -1024,11 +1024,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12377", 
+        "candidate_id": "12371", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "12371", 
+        "candidate_id": "12377", 
         "incumbent": false
     }, 
     {
@@ -1056,15 +1056,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12199", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "12231", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "12200", 
+        "candidate_id": "12199", 
         "incumbent": true
     }, 
     {
@@ -1072,15 +1068,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12375", 
-        "incumbent": false
+        "candidate_id": "12200", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "12383", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "12385", 
+        "candidate_id": "12375", 
         "incumbent": false
     }, 
     {
@@ -1088,7 +1084,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12387", 
+        "candidate_id": "12385", 
         "incumbent": false
     }, 
     {
@@ -1096,7 +1092,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12389", 
+        "candidate_id": "12387", 
         "incumbent": false
     }, 
     {
@@ -1104,7 +1100,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12391", 
+        "candidate_id": "12389", 
         "incumbent": false
     }, 
     {
@@ -1112,12 +1108,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "12201", 
-        "incumbent": true
+        "candidate_id": "12391", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "12203", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "12201", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "12374", 
@@ -1204,11 +1204,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19897", 
+        "candidate_id": "19896", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "19896", 
+        "candidate_id": "19897", 
         "incumbent": false
     }, 
     {
@@ -1220,19 +1220,23 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "10204", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "10203", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "10205", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "10206", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "10205", 
+        "candidate_id": "10204", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10375", 
         "incumbent": false
     }, 
     {
@@ -1240,7 +1244,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "10375", 
+        "candidate_id": "10435", 
         "incumbent": false
     }, 
     {
@@ -1248,7 +1252,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "10435", 
+        "candidate_id": "10372", 
         "incumbent": false
     }, 
     {
@@ -1256,20 +1260,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "10372", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "10374", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "19681", 
         "incumbent": false
     }, 
     {
         "candidate_id": "19378", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19681", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "20094", 
@@ -1284,20 +1284,20 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19685", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18532", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "19687", 
+        "candidate_id": "19685", 
         "incumbent": false
     }, 
     {
         "candidate_id": "18718", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19687", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "20096", 
@@ -1308,11 +1308,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "20097", 
+        "candidate_id": "20098", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "20098", 
+        "candidate_id": "20097", 
         "incumbent": false
     }, 
     {
@@ -1324,15 +1324,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19691", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18729", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "19697", 
+        "candidate_id": "19691", 
         "incumbent": false
     }, 
     {
@@ -1340,16 +1336,20 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "20099", 
+        "candidate_id": "19697", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "19698", 
+        "candidate_id": "20099", 
         "incumbent": false
     }, 
     {
         "candidate_id": "18736", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19698", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18742", 
@@ -1364,20 +1364,20 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19705", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18743", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "19707", 
+        "candidate_id": "19705", 
         "incumbent": false
     }, 
     {
         "candidate_id": "18745", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19707", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "19484", 
@@ -1388,15 +1388,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19708", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18756", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "19709", 
+        "candidate_id": "19708", 
         "incumbent": false
     }, 
     {
@@ -1404,12 +1400,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "19710", 
+        "candidate_id": "19709", 
         "incumbent": false
     }, 
     {
         "candidate_id": "18760", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19710", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "18766", 
@@ -1444,12 +1444,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19684", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18638", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19684", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "20095", 
@@ -1476,12 +1476,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "20104", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "20105", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "20104", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "20103", 
@@ -1512,12 +1512,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19904", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "19907", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19904", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "20176", 
@@ -1540,15 +1540,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "19956", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "19639", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "19957", 
+        "candidate_id": "19956", 
         "incumbent": false
     }, 
     {
@@ -1556,12 +1552,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "19958", 
+        "candidate_id": "19957", 
         "incumbent": false
     }, 
     {
         "candidate_id": "19844", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "19958", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "19960", 
@@ -1580,19 +1580,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "20188", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "20187", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "20190", 
+        "candidate_id": "20188", 
         "incumbent": false
     }, 
     {
         "candidate_id": "20189", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20190", 
         "incumbent": false
     }, 
     {
@@ -1652,11 +1652,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "18776", 
+        "candidate_id": "18775", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "18775", 
+        "candidate_id": "18776", 
         "incumbent": false
     }, 
     {
@@ -1668,11 +1668,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "18780", 
+        "candidate_id": "18779", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "18779", 
+        "candidate_id": "18780", 
         "incumbent": false
     }, 
     {
@@ -1684,11 +1684,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "18784", 
+        "candidate_id": "18783", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "18783", 
+        "candidate_id": "18784", 
         "incumbent": false
     }, 
     {
@@ -1704,23 +1704,23 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "22086", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "21614", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "22086", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "22252", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "22251", 
+        "candidate_id": "22250", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "22250", 
+        "candidate_id": "22251", 
         "incumbent": false
     }, 
     {
@@ -1740,15 +1740,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "22099", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "22245", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "22254", 
+        "candidate_id": "22099", 
         "incumbent": false
     }, 
     {
@@ -1756,7 +1752,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "22106", 
+        "candidate_id": "22254", 
         "incumbent": false
     }, 
     {
@@ -1764,7 +1760,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "22080", 
+        "candidate_id": "22106", 
         "incumbent": false
     }, 
     {
@@ -1772,11 +1768,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "22248", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "22246", 
+        "candidate_id": "22080", 
         "incumbent": false
     }, 
     {
@@ -1784,7 +1776,23 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "22248", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "22249", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22246", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18040", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "18250", 
         "incumbent": false
     }, 
     {
@@ -1792,12 +1800,8 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "18250", 
+        "candidate_id": "18391", 
         "incumbent": false
-    }, 
-    {
-        "candidate_id": "18040", 
-        "incumbent": true
     }, 
     {
         "candidate_id": "18392", 
@@ -1808,19 +1812,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "18391", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "18208", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "18021", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "18273", 
+        "candidate_id": "18208", 
         "incumbent": false
     }, 
     {
@@ -1828,7 +1824,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "18418", 
+        "candidate_id": "18273", 
         "incumbent": false
     }, 
     {
@@ -1836,12 +1832,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "18241", 
+        "candidate_id": "18418", 
         "incumbent": false
     }, 
     {
         "candidate_id": "18205", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "18241", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "25725", 
@@ -1892,12 +1892,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "25752", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "25753", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "25752", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "25754", 
@@ -1952,15 +1952,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "25773", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "25776", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "25779", 
+        "candidate_id": "25773", 
         "incumbent": false
     }, 
     {
@@ -1968,7 +1964,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "25782", 
+        "candidate_id": "25779", 
         "incumbent": false
     }, 
     {
@@ -1976,12 +1972,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "25784", 
+        "candidate_id": "25782", 
         "incumbent": false
     }, 
     {
         "candidate_id": "25786", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "25784", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "25787", 
@@ -1992,12 +1992,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "25791", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "25792", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "25791", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "26122", 
@@ -2008,11 +2008,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "26126", 
+        "candidate_id": "26125", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "26125", 
+        "candidate_id": "26126", 
         "incumbent": false
     }, 
     {
@@ -2024,11 +2024,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "26172", 
+        "candidate_id": "26170", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "26170", 
+        "candidate_id": "26172", 
         "incumbent": false
     }, 
     {
@@ -2072,19 +2072,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "20977", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "20504", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "21123", 
+        "candidate_id": "20977", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "20981", 
+        "candidate_id": "21123", 
         "incumbent": false
     }, 
     {
@@ -2092,11 +2088,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "21124", 
+        "candidate_id": "20981", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "20987", 
+        "candidate_id": "21124", 
         "incumbent": false
     }, 
     {
@@ -2104,7 +2100,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "20993", 
+        "candidate_id": "20987", 
         "incumbent": false
     }, 
     {
@@ -2112,16 +2108,20 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "21125", 
+        "candidate_id": "20993", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "20997", 
+        "candidate_id": "21125", 
         "incumbent": false
     }, 
     {
         "candidate_id": "20532", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "20997", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "21126", 
@@ -2140,19 +2140,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "21008", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "20363", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "21128", 
+        "candidate_id": "21008", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "21010", 
+        "candidate_id": "21128", 
         "incumbent": false
     }, 
     {
@@ -2160,11 +2156,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "21129", 
+        "candidate_id": "21010", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "5894", 
+        "candidate_id": "21129", 
         "incumbent": false
     }, 
     {
@@ -2172,11 +2168,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "6084", 
+        "candidate_id": "5894", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "5882", 
+        "candidate_id": "6084", 
         "incumbent": false
     }, 
     {
@@ -2184,7 +2180,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "5890", 
+        "candidate_id": "5882", 
         "incumbent": false
     }, 
     {
@@ -2192,7 +2188,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "5892", 
+        "candidate_id": "5890", 
         "incumbent": false
     }, 
     {
@@ -2200,12 +2196,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "5885", 
+        "candidate_id": "5892", 
         "incumbent": false
     }, 
     {
         "candidate_id": "5665", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "5885", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "6083", 
@@ -2224,11 +2224,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "6081", 
+        "candidate_id": "6082", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "6082", 
+        "candidate_id": "6081", 
         "incumbent": false
     }, 
     {
@@ -2244,15 +2244,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "5095", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "4587", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "5097", 
+        "candidate_id": "5095", 
         "incumbent": false
     }, 
     {
@@ -2260,7 +2256,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "5089", 
+        "candidate_id": "5097", 
         "incumbent": false
     }, 
     {
@@ -2268,7 +2264,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "5090", 
+        "candidate_id": "5089", 
         "incumbent": false
     }, 
     {
@@ -2276,7 +2272,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "5093", 
+        "candidate_id": "5090", 
         "incumbent": false
     }, 
     {
@@ -2284,7 +2280,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "5083", 
+        "candidate_id": "5093", 
         "incumbent": false
     }, 
     {
@@ -2292,20 +2288,24 @@
         "incumbent": true
     }, 
     {
+        "candidate_id": "5083", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "5235", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "23970", 
-        "incumbent": false
+        "candidate_id": "23565", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "23971", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "23565", 
-        "incumbent": true
+        "candidate_id": "23970", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "23945", 
@@ -2328,12 +2328,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23975", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "23727", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "23975", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "23974", 
@@ -2348,11 +2348,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23941", 
-        "incumbent": false
+        "candidate_id": "23869", 
+        "incumbent": true
     }, 
     {
-        "candidate_id": "23867", 
+        "candidate_id": "23941", 
         "incumbent": false
     }, 
     {
@@ -2360,7 +2360,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23865", 
+        "candidate_id": "23867", 
         "incumbent": false
     }, 
     {
@@ -2372,11 +2372,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23869", 
-        "incumbent": true
-    }, 
-    {
-        "candidate_id": "23982", 
+        "candidate_id": "23865", 
         "incumbent": false
     }, 
     {
@@ -2384,43 +2380,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23877", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23980", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23883", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23878", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23872", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23880", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23881", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23874", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23879", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23873", 
+        "candidate_id": "23982", 
         "incumbent": false
     }, 
     {
@@ -2428,7 +2388,47 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "23874", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23881", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23877", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23883", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23980", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23879", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23878", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23873", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "23882", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23880", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23872", 
         "incumbent": false
     }, 
     {
@@ -2436,11 +2436,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23939", 
+        "candidate_id": "23938", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "23938", 
+        "candidate_id": "23939", 
         "incumbent": false
     }, 
     {
@@ -2452,19 +2452,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23935", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "23934", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "23933", 
+        "candidate_id": "23935", 
         "incumbent": false
     }, 
     {
         "candidate_id": "23932", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23933", 
         "incumbent": false
     }, 
     {
@@ -2476,15 +2476,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23929", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "23928", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "23927", 
+        "candidate_id": "23929", 
         "incumbent": false
     }, 
     {
@@ -2492,7 +2488,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23924", 
+        "candidate_id": "23927", 
         "incumbent": false
     }, 
     {
@@ -2500,7 +2496,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23922", 
+        "candidate_id": "23924", 
         "incumbent": false
     }, 
     {
@@ -2508,7 +2504,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23920", 
+        "candidate_id": "23922", 
         "incumbent": false
     }, 
     {
@@ -2516,7 +2512,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23918", 
+        "candidate_id": "23920", 
         "incumbent": false
     }, 
     {
@@ -2524,7 +2520,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23916", 
+        "candidate_id": "23918", 
         "incumbent": false
     }, 
     {
@@ -2532,11 +2528,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23914", 
+        "candidate_id": "23916", 
         "incumbent": false
     }, 
     {
         "candidate_id": "23913", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23914", 
         "incumbent": false
     }, 
     {
@@ -2548,6 +2548,30 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "23579", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "23859", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23860", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23944", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23969", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23857", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "23966", 
         "incumbent": false
     }, 
@@ -2556,39 +2580,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "23579", 
-        "incumbent": true
-    }, 
-    {
-        "candidate_id": "23969", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23944", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23859", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23857", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "23860", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "32603", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "32606", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33101", 
+        "candidate_id": "32603", 
         "incumbent": false
     }, 
     {
@@ -2600,19 +2596,23 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "32613", 
-        "incumbent": true
+        "candidate_id": "33101", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "32626", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "32621", 
-        "incumbent": false
+        "candidate_id": "32613", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "32627", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32621", 
         "incumbent": false
     }, 
     {
@@ -2628,11 +2628,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33106", 
+        "candidate_id": "33105", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33105", 
+        "candidate_id": "33106", 
         "incumbent": false
     }, 
     {
@@ -2668,11 +2668,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33173", 
+        "candidate_id": "33172", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33172", 
+        "candidate_id": "33173", 
         "incumbent": false
     }, 
     {
@@ -2684,15 +2684,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33176", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33177", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33179", 
+        "candidate_id": "33176", 
         "incumbent": false
     }, 
     {
@@ -2700,11 +2696,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33180", 
+        "candidate_id": "33179", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33181", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33180", 
         "incumbent": false
     }, 
     {
@@ -2716,19 +2716,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33185", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33184", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33187", 
+        "candidate_id": "33185", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33186", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33187", 
         "incumbent": false
     }, 
     {
@@ -2740,15 +2740,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33191", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33190", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33195", 
+        "candidate_id": "33191", 
         "incumbent": false
     }, 
     {
@@ -2756,11 +2752,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33197", 
+        "candidate_id": "33195", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33196", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33197", 
         "incumbent": false
     }, 
     {
@@ -2772,19 +2772,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33200", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33201", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33202", 
+        "candidate_id": "33200", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33203", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33202", 
         "incumbent": false
     }, 
     {
@@ -2796,11 +2796,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33206", 
+        "candidate_id": "33207", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33207", 
+        "candidate_id": "33206", 
         "incumbent": false
     }, 
     {
@@ -2828,15 +2828,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33215", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33214", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33216", 
+        "candidate_id": "33215", 
         "incumbent": false
     }, 
     {
@@ -2844,7 +2840,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33218", 
+        "candidate_id": "33216", 
         "incumbent": false
     }, 
     {
@@ -2852,11 +2848,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33221", 
+        "candidate_id": "33218", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33220", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33221", 
         "incumbent": false
     }, 
     {
@@ -2876,11 +2876,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33226", 
+        "candidate_id": "33227", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33227", 
+        "candidate_id": "33226", 
         "incumbent": false
     }, 
     {
@@ -2892,15 +2892,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33231", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33230", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33232", 
+        "candidate_id": "33231", 
         "incumbent": false
     }, 
     {
@@ -2908,7 +2904,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33234", 
+        "candidate_id": "33232", 
         "incumbent": false
     }, 
     {
@@ -2916,11 +2912,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33236", 
+        "candidate_id": "33234", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33237", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33236", 
         "incumbent": false
     }, 
     {
@@ -2932,11 +2932,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33241", 
+        "candidate_id": "33240", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33240", 
+        "candidate_id": "33241", 
         "incumbent": false
     }, 
     {
@@ -2956,19 +2956,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33246", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33247", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33249", 
+        "candidate_id": "33246", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33248", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33249", 
         "incumbent": false
     }, 
     {
@@ -2996,11 +2996,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33257", 
+        "candidate_id": "33256", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33256", 
+        "candidate_id": "33257", 
         "incumbent": false
     }, 
     {
@@ -3036,11 +3036,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33266", 
+        "candidate_id": "33267", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33267", 
+        "candidate_id": "33266", 
         "incumbent": false
     }, 
     {
@@ -3068,19 +3068,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33275", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33274", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33277", 
+        "candidate_id": "33275", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33276", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33277", 
         "incumbent": false
     }, 
     {
@@ -3092,11 +3092,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33280", 
+        "candidate_id": "33281", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33281", 
+        "candidate_id": "33280", 
         "incumbent": false
     }, 
     {
@@ -3108,15 +3108,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33285", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33284", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33286", 
+        "candidate_id": "33285", 
         "incumbent": false
     }, 
     {
@@ -3124,7 +3120,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33289", 
+        "candidate_id": "33286", 
         "incumbent": false
     }, 
     {
@@ -3132,7 +3128,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33291", 
+        "candidate_id": "33289", 
         "incumbent": false
     }, 
     {
@@ -3140,7 +3136,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33293", 
+        "candidate_id": "33291", 
         "incumbent": false
     }, 
     {
@@ -3148,7 +3144,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33295", 
+        "candidate_id": "33293", 
         "incumbent": false
     }, 
     {
@@ -3156,7 +3152,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33296", 
+        "candidate_id": "33295", 
         "incumbent": false
     }, 
     {
@@ -3164,11 +3160,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33299", 
+        "candidate_id": "33296", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33298", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33299", 
         "incumbent": false
     }, 
     {
@@ -3188,11 +3188,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33305", 
+        "candidate_id": "33304", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33304", 
+        "candidate_id": "33305", 
         "incumbent": false
     }, 
     {
@@ -3220,19 +3220,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33312", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33313", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33314", 
+        "candidate_id": "33312", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33315", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33314", 
         "incumbent": false
     }, 
     {
@@ -3252,19 +3252,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33320", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33321", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33322", 
+        "candidate_id": "33320", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33323", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33322", 
         "incumbent": false
     }, 
     {
@@ -3284,15 +3284,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33329", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33328", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33330", 
+        "candidate_id": "33329", 
         "incumbent": false
     }, 
     {
@@ -3300,7 +3296,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33333", 
+        "candidate_id": "33330", 
         "incumbent": false
     }, 
     {
@@ -3308,11 +3304,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33335", 
+        "candidate_id": "33333", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33334", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33335", 
         "incumbent": false
     }, 
     {
@@ -3324,19 +3324,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33338", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "33339", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33341", 
+        "candidate_id": "33338", 
         "incumbent": false
     }, 
     {
         "candidate_id": "33340", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33341", 
         "incumbent": false
     }, 
     {
@@ -3380,12 +3380,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "29214", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "29683", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "29214", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "29377", 
@@ -3400,12 +3400,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "29378", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "29691", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "29378", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "29286", 
@@ -3432,11 +3432,15 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "29702", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "29218", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "29702", 
+        "candidate_id": "30291", 
         "incumbent": false
     }, 
     {
@@ -3444,7 +3448,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "30291", 
+        "candidate_id": "30293", 
         "incumbent": false
     }, 
     {
@@ -3452,16 +3456,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "30293", 
-        "incumbent": false
+        "candidate_id": "28674", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "28675", 
         "incumbent": false
-    }, 
-    {
-        "candidate_id": "28674", 
-        "incumbent": true
     }, 
     {
         "candidate_id": "29072", 
@@ -3480,11 +3480,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "28669", 
+        "candidate_id": "28672", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "28672", 
+        "candidate_id": "28669", 
         "incumbent": false
     }, 
     {
@@ -3492,19 +3492,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "29088", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "29087", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "29144", 
+        "candidate_id": "29088", 
         "incumbent": false
     }, 
     {
         "candidate_id": "29142", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29144", 
         "incumbent": false
     }, 
     {
@@ -3532,15 +3532,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "29135", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "29134", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "29133", 
+        "candidate_id": "29135", 
         "incumbent": false
     }, 
     {
@@ -3548,11 +3544,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "29147", 
+        "candidate_id": "29133", 
         "incumbent": false
     }, 
     {
         "candidate_id": "29146", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29147", 
         "incumbent": false
     }, 
     {
@@ -3564,12 +3564,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "28665", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "28666", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "28665", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "34478", 
@@ -3580,15 +3580,15 @@
         "incumbent": true
     }, 
     {
+        "candidate_id": "34986", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "34965", 
         "incumbent": false
     }, 
     {
         "candidate_id": "34966", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "34986", 
         "incumbent": false
     }, 
     {
@@ -3600,11 +3600,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "34967", 
+        "candidate_id": "34974", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "34974", 
+        "candidate_id": "34967", 
         "incumbent": false
     }, 
     {
@@ -3652,12 +3652,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "33759", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "34492", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "33759", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "34977", 
@@ -3672,20 +3672,24 @@
         "incumbent": true
     }, 
     {
+        "candidate_id": "34978", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "34969", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "34978", 
-        "incumbent": false
+        "candidate_id": "33729", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "34496", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "33729", 
-        "incumbent": true
+        "candidate_id": "34989", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "34979", 
@@ -3696,7 +3700,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "34989", 
+        "candidate_id": "34498", 
         "incumbent": false
     }, 
     {
@@ -3704,7 +3708,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "34498", 
+        "candidate_id": "34980", 
         "incumbent": false
     }, 
     {
@@ -3712,11 +3716,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "34980", 
+        "candidate_id": "35012", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "35012", 
+        "candidate_id": "34503", 
         "incumbent": false
     }, 
     {
@@ -3724,15 +3728,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "34503", 
+        "candidate_id": "34981", 
         "incumbent": false
     }, 
     {
         "candidate_id": "34971", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "34981", 
         "incumbent": false
     }, 
     {
@@ -3748,11 +3748,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "34509", 
+        "candidate_id": "34505", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "34505", 
+        "candidate_id": "34509", 
         "incumbent": false
     }, 
     {
@@ -3760,11 +3760,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "34511", 
+        "candidate_id": "34510", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "34510", 
+        "candidate_id": "34511", 
         "incumbent": false
     }, 
     {
@@ -3776,11 +3776,15 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "34513", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "33747", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "34513", 
+        "candidate_id": "34993", 
         "incumbent": false
     }, 
     {
@@ -3788,15 +3792,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "34993", 
+        "candidate_id": "35044", 
         "incumbent": false
     }, 
     {
         "candidate_id": "34518", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "35044", 
         "incumbent": false
     }, 
     {
@@ -3816,11 +3816,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "35043", 
+        "candidate_id": "35042", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "35042", 
+        "candidate_id": "35043", 
         "incumbent": false
     }, 
     {
@@ -3832,6 +3832,10 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "34987", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "34963", 
         "incumbent": false
     }, 
@@ -3840,7 +3844,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "34987", 
+        "candidate_id": "32326", 
         "incumbent": false
     }, 
     {
@@ -3848,7 +3852,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "32326", 
+        "candidate_id": "32675", 
         "incumbent": false
     }, 
     {
@@ -3860,16 +3864,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "32675", 
+        "candidate_id": "32345", 
         "incumbent": false
     }, 
     {
         "candidate_id": "31093", 
         "incumbent": true
-    }, 
-    {
-        "candidate_id": "32345", 
-        "incumbent": false
     }, 
     {
         "candidate_id": "32346", 
@@ -3904,19 +3904,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "31097", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "32352", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "32353", 
-        "incumbent": false
+        "candidate_id": "31097", 
+        "incumbent": true
     }, 
     {
-        "candidate_id": "32354", 
+        "candidate_id": "32353", 
         "incumbent": false
     }, 
     {
@@ -3924,7 +3920,15 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "32354", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "32357", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32358", 
         "incumbent": false
     }, 
     {
@@ -3932,7 +3936,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "32358", 
+        "candidate_id": "32359", 
         "incumbent": false
     }, 
     {
@@ -3940,20 +3944,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "32359", 
+        "candidate_id": "32360", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "32360", 
+        "candidate_id": "32314", 
         "incumbent": false
     }, 
     {
         "candidate_id": "31870", 
         "incumbent": true
-    }, 
-    {
-        "candidate_id": "32314", 
-        "incumbent": false
     }, 
     {
         "candidate_id": "32690", 
@@ -3964,19 +3964,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "8312", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "7501", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "8313", 
+        "candidate_id": "8312", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "8315", 
+        "candidate_id": "8313", 
         "incumbent": false
     }, 
     {
@@ -3984,16 +3980,20 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "8594", 
+        "candidate_id": "8315", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "8319", 
+        "candidate_id": "8594", 
         "incumbent": false
     }, 
     {
         "candidate_id": "7510", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "8319", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "8322", 
@@ -4012,19 +4012,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "8333", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "7527", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "8339", 
+        "candidate_id": "8333", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "8342", 
+        "candidate_id": "8339", 
         "incumbent": false
     }, 
     {
@@ -4032,20 +4028,24 @@
         "incumbent": true
     }, 
     {
+        "candidate_id": "8342", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "8344", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "8349", 
-        "incumbent": false
+        "candidate_id": "8346", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "8345", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "8346", 
-        "incumbent": true
+        "candidate_id": "8349", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "8603", 
@@ -4068,11 +4068,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "8596", 
+        "candidate_id": "8595", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "8595", 
+        "candidate_id": "8596", 
         "incumbent": false
     }, 
     {
@@ -4112,12 +4112,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "31325", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "31070", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "31325", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "31350", 
@@ -4128,12 +4128,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "31332", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "31063", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "31332", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "31347", 
@@ -4144,12 +4144,16 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "31071", 
+        "incumbent": true
+    }, 
+    {
         "candidate_id": "31336", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "31071", 
-        "incumbent": true
+        "candidate_id": "31356", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "31348", 
@@ -4164,7 +4168,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "31356", 
+        "candidate_id": "31360", 
         "incumbent": false
     }, 
     {
@@ -4172,23 +4176,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "31360", 
-        "incumbent": false
+        "candidate_id": "31122", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "31327", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "31122", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "31352", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "33964", 
         "incumbent": false
     }, 
     {
@@ -4196,15 +4192,19 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "33964", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "33970", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "34337", 
+        "candidate_id": "34336", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "34336", 
+        "candidate_id": "34337", 
         "incumbent": false
     }, 
     {
@@ -4228,15 +4228,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "42869", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "42405", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "42891", 
+        "candidate_id": "42869", 
         "incumbent": false
     }, 
     {
@@ -4244,16 +4240,20 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "42893", 
+        "candidate_id": "42891", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "42901", 
+        "candidate_id": "42893", 
         "incumbent": false
     }, 
     {
         "candidate_id": "41981", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "42901", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "42398", 
@@ -4264,12 +4264,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "42866", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "42402", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "42866", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "42406", 
@@ -4280,15 +4280,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "42877", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "42409", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "42879", 
+        "candidate_id": "42877", 
         "incumbent": false
     }, 
     {
@@ -4296,7 +4292,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "42897", 
+        "candidate_id": "42879", 
         "incumbent": false
     }, 
     {
@@ -4304,12 +4300,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "42899", 
+        "candidate_id": "42897", 
         "incumbent": false
     }, 
     {
         "candidate_id": "42419", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "42899", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "42905", 
@@ -4320,19 +4320,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "42914", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "42425", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "43160", 
+        "candidate_id": "42914", 
         "incumbent": false
     }, 
     {
         "candidate_id": "43161", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "43160", 
         "incumbent": false
     }, 
     {
@@ -4368,11 +4368,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "40420", 
+        "candidate_id": "40421", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "40421", 
+        "candidate_id": "40420", 
         "incumbent": false
     }, 
     {
@@ -4384,19 +4384,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "40424", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "40425", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "40426", 
+        "candidate_id": "40424", 
         "incumbent": false
     }, 
     {
         "candidate_id": "40427", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40426", 
         "incumbent": false
     }, 
     {
@@ -4416,15 +4416,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "40433", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "40434", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "31307", 
+        "candidate_id": "40433", 
         "incumbent": false
     }, 
     {
@@ -4432,11 +4428,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "31405", 
+        "candidate_id": "31307", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "31301", 
+        "candidate_id": "31405", 
         "incumbent": false
     }, 
     {
@@ -4444,7 +4440,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "31306", 
+        "candidate_id": "31301", 
         "incumbent": false
     }, 
     {
@@ -4452,12 +4448,16 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "31423", 
+        "candidate_id": "31306", 
         "incumbent": false
     }, 
     {
         "candidate_id": "31178", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "31423", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "31424", 
@@ -4504,15 +4504,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "43358", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "44501", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "44274", 
+        "candidate_id": "43358", 
         "incumbent": true
     }, 
     {
@@ -4520,27 +4516,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38250", 
-        "incumbent": false
+        "candidate_id": "44274", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "38242", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "38302", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "38303", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "38300", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "38340", 
+        "candidate_id": "38250", 
         "incumbent": false
     }, 
     {
@@ -4548,7 +4532,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38253", 
+        "candidate_id": "38340", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38302", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38300", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38303", 
         "incumbent": false
     }, 
     {
@@ -4556,7 +4552,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "38307", 
+        "candidate_id": "38253", 
         "incumbent": false
     }, 
     {
@@ -4564,15 +4560,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38306", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "38308", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "38287", 
+        "candidate_id": "38306", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38307", 
         "incumbent": false
     }, 
     {
@@ -4580,16 +4576,20 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "38311", 
+        "candidate_id": "38287", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "38260", 
+        "candidate_id": "38311", 
         "incumbent": false
     }, 
     {
         "candidate_id": "38227", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "38260", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "38312", 
@@ -4616,6 +4616,10 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "38316", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "38315", 
         "incumbent": false
     }, 
@@ -4624,7 +4628,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38316", 
+        "candidate_id": "38255", 
         "incumbent": false
     }, 
     {
@@ -4632,20 +4636,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38255", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "38309", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "38292", 
         "incumbent": false
     }, 
     {
         "candidate_id": "38228", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "38292", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "38314", 
@@ -4668,11 +4668,15 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "38275", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "38277", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "38275", 
+        "candidate_id": "38323", 
         "incumbent": false
     }, 
     {
@@ -4680,7 +4684,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38321", 
+        "candidate_id": "38325", 
         "incumbent": false
     }, 
     {
@@ -4688,11 +4692,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38325", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "38323", 
+        "candidate_id": "38321", 
         "incumbent": false
     }, 
     {
@@ -4708,12 +4708,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38273", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "38229", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "38273", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "38341", 
@@ -4728,11 +4728,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38344", 
+        "candidate_id": "38343", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "38343", 
+        "candidate_id": "38344", 
         "incumbent": false
     }, 
     {
@@ -4760,11 +4760,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38294", 
+        "candidate_id": "38296", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "38299", 
+        "candidate_id": "38298", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38294", 
         "incumbent": false
     }, 
     {
@@ -4772,11 +4776,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38296", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "38298", 
+        "candidate_id": "38299", 
         "incumbent": false
     }, 
     {
@@ -4788,20 +4788,20 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "37708", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "38131", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "37713", 
+        "candidate_id": "37708", 
         "incumbent": true
     }, 
     {
         "candidate_id": "38135", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "37713", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "38133", 
@@ -4820,19 +4820,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "38235", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "38236", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "38238", 
+        "candidate_id": "38235", 
         "incumbent": false
     }, 
     {
         "candidate_id": "38237", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38238", 
         "incumbent": false
     }, 
     {
@@ -4844,11 +4844,15 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "38241", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "38242", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "38241", 
+        "candidate_id": "38129", 
         "incumbent": false
     }, 
     {
@@ -4856,16 +4860,12 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "38129", 
-        "incumbent": false
+        "candidate_id": "35621", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "35800", 
         "incumbent": false
-    }, 
-    {
-        "candidate_id": "35621", 
-        "incumbent": true
     }, 
     {
         "candidate_id": "35960", 
@@ -4884,20 +4884,24 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "35967", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "35968", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "35967", 
-        "incumbent": false
+        "candidate_id": "35361", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "35844", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "35361", 
-        "incumbent": true
+        "candidate_id": "35970", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "35969", 
@@ -4908,16 +4912,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "35970", 
-        "incumbent": false
+        "candidate_id": "35315", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "35788", 
         "incumbent": false
-    }, 
-    {
-        "candidate_id": "35315", 
-        "incumbent": true
     }, 
     {
         "candidate_id": "35959", 
@@ -4932,15 +4932,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "35962", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "35963", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "36020", 
+        "candidate_id": "35962", 
         "incumbent": false
     }, 
     {
@@ -4948,7 +4944,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "36022", 
+        "candidate_id": "36020", 
         "incumbent": false
     }, 
     {
@@ -4956,11 +4952,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "36024", 
+        "candidate_id": "36022", 
         "incumbent": false
     }, 
     {
         "candidate_id": "36023", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "36024", 
         "incumbent": false
     }, 
     {
@@ -4972,11 +4972,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "76158", 
+        "candidate_id": "76966", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "76966", 
+        "candidate_id": "76158", 
         "incumbent": false
     }, 
     {
@@ -4996,12 +4996,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "76980", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "76981", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "76980", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "76984", 
@@ -5032,10 +5032,6 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77002", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "77000", 
         "incumbent": true
     }, 
@@ -5044,7 +5040,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77005", 
+        "candidate_id": "77002", 
         "incumbent": false
     }, 
     {
@@ -5052,7 +5048,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "77011", 
+        "candidate_id": "77005", 
         "incumbent": false
     }, 
     {
@@ -5064,12 +5060,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77014", 
+        "candidate_id": "77011", 
         "incumbent": false
     }, 
     {
         "candidate_id": "77015", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "77014", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "77019", 
@@ -5092,15 +5092,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77032", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "77031", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "77035", 
+        "candidate_id": "77032", 
         "incumbent": false
     }, 
     {
@@ -5112,6 +5108,10 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "77035", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "77039", 
         "incumbent": true
     }, 
@@ -5120,24 +5120,24 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77044", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "77045", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "77044", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "77160", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "77049", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "77050", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "77049", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "77054", 
@@ -5148,11 +5148,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77059", 
+        "candidate_id": "77060", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "77060", 
+        "candidate_id": "77059", 
         "incumbent": false
     }, 
     {
@@ -5160,12 +5160,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77067", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "77068", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "77067", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "77072", 
@@ -5184,12 +5184,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77085", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "77086", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "77085", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "77081", 
@@ -5200,15 +5200,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77008", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "77007", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "77100", 
+        "candidate_id": "77008", 
         "incumbent": false
     }, 
     {
@@ -5216,11 +5212,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "77102", 
+        "candidate_id": "77100", 
         "incumbent": false
     }, 
     {
         "candidate_id": "77101", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77102", 
         "incumbent": false
     }, 
     {
@@ -5252,12 +5252,12 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "44453", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "45117", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "44453", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "45356", 
@@ -5292,24 +5292,24 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "45362", 
-        "incumbent": false
+        "candidate_id": "44148", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "45113", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "44148", 
-        "incumbent": true
-    }, 
-    {
-        "candidate_id": "44227", 
-        "incumbent": true
+        "candidate_id": "45362", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "45126", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "44227", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "45247", 
@@ -5324,12 +5324,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "44377", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "45142", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "44377", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "45119", 
@@ -5344,12 +5344,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "44326", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "45358", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "44326", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "45122", 
@@ -5388,12 +5388,12 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "44441", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "44166", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "44441", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "44664", 
@@ -5404,15 +5404,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "44425", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "43893", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "44430", 
+        "candidate_id": "44425", 
         "incumbent": false
     }, 
     {
@@ -5420,11 +5416,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "44659", 
+        "candidate_id": "44430", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "44423", 
+        "candidate_id": "44659", 
         "incumbent": false
     }, 
     {
@@ -5432,15 +5428,19 @@
         "incumbent": true
     }, 
     {
+        "candidate_id": "44423", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "44658", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "44641", 
+        "candidate_id": "44644", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "44644", 
+        "candidate_id": "44641", 
         "incumbent": false
     }, 
     {
@@ -5464,11 +5464,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "44670", 
+        "candidate_id": "44669", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "44669", 
+        "candidate_id": "44670", 
         "incumbent": false
     }, 
     {
@@ -5480,12 +5480,16 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "44233", 
+        "incumbent": true
+    }, 
+    {
         "candidate_id": "44631", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "44233", 
-        "incumbent": true
+        "candidate_id": "44654", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "44655", 
@@ -5493,10 +5497,6 @@
     }, 
     {
         "candidate_id": "44656", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "44654", 
         "incumbent": false
     }, 
     {
@@ -5512,7 +5512,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "4976", 
+        "candidate_id": "4841", 
         "incumbent": false
     }, 
     {
@@ -5520,7 +5520,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "4841", 
+        "candidate_id": "4992", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4996", 
         "incumbent": false
     }, 
     {
@@ -5528,11 +5532,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "4992", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "4996", 
+        "candidate_id": "4976", 
         "incumbent": false
     }, 
     {
@@ -5548,12 +5548,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "4643", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "4851", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "4643", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "4980", 
@@ -5568,12 +5568,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "4644", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "4852", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "4644", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "4986", 
@@ -5584,7 +5584,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "4975", 
+        "candidate_id": "4855", 
         "incumbent": false
     }, 
     {
@@ -5592,7 +5592,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "4855", 
+        "candidate_id": "4995", 
         "incumbent": false
     }, 
     {
@@ -5600,16 +5600,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "4995", 
+        "candidate_id": "4975", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4845", 
         "incumbent": false
     }, 
     {
         "candidate_id": "4476", 
         "incumbent": true
-    }, 
-    {
-        "candidate_id": "4845", 
-        "incumbent": false
     }, 
     {
         "candidate_id": "4974", 
@@ -5620,11 +5620,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "4989", 
+        "candidate_id": "4988", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "4988", 
+        "candidate_id": "4989", 
         "incumbent": false
     }, 
     {
@@ -5636,11 +5636,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "5000", 
+        "candidate_id": "4999", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "4999", 
+        "candidate_id": "5000", 
         "incumbent": false
     }, 
     {
@@ -5652,11 +5652,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "5004", 
+        "candidate_id": "5003", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "5003", 
+        "candidate_id": "5004", 
         "incumbent": false
     }, 
     {
@@ -5676,7 +5676,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "4973", 
+        "candidate_id": "4832", 
         "incumbent": false
     }, 
     {
@@ -5684,11 +5684,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "4832", 
+        "candidate_id": "4977", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "4977", 
+        "candidate_id": "4973", 
         "incumbent": false
     }, 
     {
@@ -5704,12 +5704,12 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "49362", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "50227", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "49362", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "50230", 
@@ -5720,12 +5720,12 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "50232", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49502", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "50232", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "50235", 
@@ -5744,12 +5744,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "50239", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49227", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "50239", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "50240", 
@@ -5772,12 +5772,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "50246", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49231", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "50246", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "50248", 
@@ -5804,20 +5804,20 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "49523", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "50257", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49363", 
+        "candidate_id": "49523", 
         "incumbent": true
     }, 
     {
         "candidate_id": "50229", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "49363", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "50242", 
@@ -5836,6 +5836,10 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "45721", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "45702", 
         "incumbent": false
     }, 
@@ -5844,16 +5848,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "45721", 
+        "candidate_id": "45419", 
         "incumbent": false
     }, 
     {
         "candidate_id": "45085", 
         "incumbent": true
-    }, 
-    {
-        "candidate_id": "45419", 
-        "incumbent": false
     }, 
     {
         "candidate_id": "45087", 
@@ -5864,11 +5864,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "45729", 
+        "candidate_id": "45728", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "45728", 
+        "candidate_id": "45729", 
         "incumbent": false
     }, 
     {
@@ -5888,11 +5888,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "45732", 
+        "candidate_id": "45733", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "45733", 
+        "candidate_id": "45732", 
         "incumbent": false
     }, 
     {
@@ -5928,15 +5928,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "47667", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "47522", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "47825", 
+        "candidate_id": "47667", 
         "incumbent": false
     }, 
     {
@@ -5948,7 +5944,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "47694", 
+        "candidate_id": "47825", 
         "incumbent": false
     }, 
     {
@@ -5956,16 +5952,20 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "47828", 
+        "candidate_id": "47694", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "47697", 
+        "candidate_id": "47828", 
         "incumbent": false
     }, 
     {
         "candidate_id": "47577", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "47697", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "47519", 
@@ -5996,20 +5996,20 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "47703", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "47653", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "47655", 
+        "candidate_id": "47703", 
         "incumbent": false
     }, 
     {
         "candidate_id": "47652", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "47655", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "47819", 
@@ -6020,16 +6020,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "47835", 
-        "incumbent": false
+        "candidate_id": "47833", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "47831", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "47833", 
-        "incumbent": true
+        "candidate_id": "47835", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "47399", 
@@ -6052,19 +6052,19 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "47538", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "47537", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "47565", 
+        "candidate_id": "47538", 
         "incumbent": false
     }, 
     {
         "candidate_id": "47564", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47565", 
         "incumbent": false
     }, 
     {
@@ -6076,11 +6076,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "47392", 
+        "candidate_id": "47394", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "47394", 
+        "candidate_id": "47392", 
         "incumbent": false
     }, 
     {
@@ -6092,16 +6092,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49173", 
-        "incumbent": false
+        "candidate_id": "48772", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "48970", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "48772", 
-        "incumbent": true
+        "candidate_id": "49135", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "49174", 
@@ -6112,7 +6112,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49135", 
+        "candidate_id": "49173", 
         "incumbent": false
     }, 
     {
@@ -6124,7 +6124,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "49177", 
+        "candidate_id": "49161", 
         "incumbent": false
     }, 
     {
@@ -6132,16 +6132,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49161", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "48979", 
+        "candidate_id": "49177", 
         "incumbent": false
     }, 
     {
         "candidate_id": "48529", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "48979", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "49178", 
@@ -6152,24 +6152,24 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "48981", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "48388", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "48981", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "49151", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "48983", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "48389", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "48983", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "49152", 
@@ -6188,19 +6188,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "48994", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "48390", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "49154", 
+        "candidate_id": "48994", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "48998", 
+        "candidate_id": "49154", 
         "incumbent": false
     }, 
     {
@@ -6208,15 +6204,11 @@
         "incumbent": true
     }, 
     {
+        "candidate_id": "48998", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "49155", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "49179", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "49001", 
         "incumbent": false
     }, 
     {
@@ -6224,7 +6216,15 @@
         "incumbent": true
     }, 
     {
+        "candidate_id": "49001", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "49184", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49179", 
         "incumbent": false
     }, 
     {
@@ -6240,11 +6240,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49157", 
+        "candidate_id": "49159", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49159", 
+        "candidate_id": "49157", 
         "incumbent": false
     }, 
     {
@@ -6280,11 +6280,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49360", 
+        "candidate_id": "49361", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49361", 
+        "candidate_id": "49360", 
         "incumbent": false
     }, 
     {
@@ -6296,15 +6296,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49209", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49208", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49211", 
+        "candidate_id": "49209", 
         "incumbent": false
     }, 
     {
@@ -6312,11 +6308,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49212", 
+        "candidate_id": "49211", 
         "incumbent": false
     }, 
     {
         "candidate_id": "49213", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49212", 
         "incumbent": false
     }, 
     {
@@ -6344,15 +6344,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49220", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49221", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49223", 
+        "candidate_id": "49220", 
         "incumbent": false
     }, 
     {
@@ -6360,7 +6356,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49224", 
+        "candidate_id": "49223", 
         "incumbent": false
     }, 
     {
@@ -6368,11 +6364,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49227", 
+        "candidate_id": "49224", 
         "incumbent": false
     }, 
     {
         "candidate_id": "49226", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49227", 
         "incumbent": false
     }, 
     {
@@ -6384,11 +6384,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49230", 
+        "candidate_id": "49231", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49231", 
+        "candidate_id": "49230", 
         "incumbent": false
     }, 
     {
@@ -6408,11 +6408,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49236", 
+        "candidate_id": "49237", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49237", 
+        "candidate_id": "49236", 
         "incumbent": false
     }, 
     {
@@ -6424,15 +6424,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49241", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49240", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49242", 
+        "candidate_id": "49241", 
         "incumbent": false
     }, 
     {
@@ -6440,7 +6436,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49244", 
+        "candidate_id": "49242", 
         "incumbent": false
     }, 
     {
@@ -6448,11 +6444,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49246", 
+        "candidate_id": "49244", 
         "incumbent": false
     }, 
     {
         "candidate_id": "49247", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49246", 
         "incumbent": false
     }, 
     {
@@ -6464,11 +6464,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49250", 
+        "candidate_id": "49251", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49251", 
+        "candidate_id": "49250", 
         "incumbent": false
     }, 
     {
@@ -6480,11 +6480,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49255", 
+        "candidate_id": "49254", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49254", 
+        "candidate_id": "49255", 
         "incumbent": false
     }, 
     {
@@ -6496,15 +6496,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49259", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49258", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49260", 
+        "candidate_id": "49259", 
         "incumbent": false
     }, 
     {
@@ -6512,7 +6508,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49262", 
+        "candidate_id": "49260", 
         "incumbent": false
     }, 
     {
@@ -6520,11 +6516,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49265", 
+        "candidate_id": "49262", 
         "incumbent": false
     }, 
     {
         "candidate_id": "49264", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49265", 
         "incumbent": false
     }, 
     {
@@ -6544,11 +6544,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49270", 
+        "candidate_id": "49271", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49271", 
+        "candidate_id": "49270", 
         "incumbent": false
     }, 
     {
@@ -6560,15 +6560,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49276", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49277", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49278", 
+        "candidate_id": "49276", 
         "incumbent": false
     }, 
     {
@@ -6576,11 +6572,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49280", 
+        "candidate_id": "49278", 
         "incumbent": false
     }, 
     {
         "candidate_id": "49281", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49280", 
         "incumbent": false
     }, 
     {
@@ -6672,19 +6672,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49304", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49305", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49306", 
+        "candidate_id": "49304", 
         "incumbent": false
     }, 
     {
         "candidate_id": "49307", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49306", 
         "incumbent": false
     }, 
     {
@@ -6704,15 +6704,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49312", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49313", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49315", 
+        "candidate_id": "49312", 
         "incumbent": false
     }, 
     {
@@ -6720,7 +6716,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49317", 
+        "candidate_id": "49315", 
         "incumbent": false
     }, 
     {
@@ -6728,7 +6724,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49318", 
+        "candidate_id": "49317", 
         "incumbent": false
     }, 
     {
@@ -6736,11 +6732,15 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49320", 
+        "candidate_id": "49318", 
         "incumbent": false
     }, 
     {
         "candidate_id": "49321", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49320", 
         "incumbent": false
     }, 
     {
@@ -6776,11 +6776,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49331", 
+        "candidate_id": "49330", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49330", 
+        "candidate_id": "49331", 
         "incumbent": false
     }, 
     {
@@ -6800,19 +6800,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49336", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49337", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49339", 
+        "candidate_id": "49336", 
         "incumbent": false
     }, 
     {
         "candidate_id": "49338", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49339", 
         "incumbent": false
     }, 
     {
@@ -6824,19 +6824,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49345", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "49344", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49347", 
+        "candidate_id": "49345", 
         "incumbent": false
     }, 
     {
         "candidate_id": "49346", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49347", 
         "incumbent": false
     }, 
     {
@@ -6856,11 +6856,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49352", 
+        "candidate_id": "49353", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "49353", 
+        "candidate_id": "49352", 
         "incumbent": false
     }, 
     {
@@ -6896,39 +6896,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "49176", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "48966", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "48771", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "49175", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "49146", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "49138", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "49139", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "49142", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "49143", 
+        "candidate_id": "48966", 
         "incumbent": false
     }, 
     {
@@ -6940,7 +6912,35 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "49146", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49175", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49142", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49143", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49138", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "49145", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49176", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49139", 
         "incumbent": false
     }, 
     {
@@ -6960,15 +6960,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58846", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56606", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "58807", 
+        "candidate_id": "58846", 
         "incumbent": false
     }, 
     {
@@ -6976,11 +6972,15 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "58927", 
+        "candidate_id": "58807", 
         "incumbent": false
     }, 
     {
         "candidate_id": "58928", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58927", 
         "incumbent": false
     }, 
     {
@@ -7000,24 +7000,24 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58851", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56611", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58851", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58931", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "58806", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56612", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58806", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58932", 
@@ -7040,12 +7040,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58854", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56615", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58854", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58935", 
@@ -7060,24 +7060,24 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58603", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56617", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58603", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58937", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "58723", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56618", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58723", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58938", 
@@ -7088,12 +7088,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58724", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56902", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58724", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58940", 
@@ -7124,12 +7124,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58726", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56622", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58726", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58943", 
@@ -7144,20 +7144,20 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58945", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "59064", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "58673", 
+        "candidate_id": "58945", 
         "incumbent": false
     }, 
     {
         "candidate_id": "56624", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58673", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58946", 
@@ -7184,12 +7184,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58804", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56627", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58804", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58950", 
@@ -7208,24 +7208,24 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58801", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56629", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58801", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58952", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "58799", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "57401", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58799", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58953", 
@@ -7240,12 +7240,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58798", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56632", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58798", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58955", 
@@ -7264,11 +7264,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "59065", 
+        "candidate_id": "58959", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "58959", 
+        "candidate_id": "59065", 
         "incumbent": false
     }, 
     {
@@ -7284,24 +7284,24 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58729", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56636", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58729", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58960", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "58797", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56637", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "58797", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "58961", 
@@ -7344,15 +7344,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58682", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "58876", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "58966", 
+        "candidate_id": "58682", 
         "incumbent": false
     }, 
     {
@@ -7360,7 +7356,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "59075", 
+        "candidate_id": "58966", 
         "incumbent": false
     }, 
     {
@@ -7368,7 +7364,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "58710", 
+        "candidate_id": "59075", 
         "incumbent": false
     }, 
     {
@@ -7376,11 +7372,15 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "58926", 
+        "candidate_id": "58710", 
         "incumbent": false
     }, 
     {
         "candidate_id": "58925", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58926", 
         "incumbent": false
     }, 
     {
@@ -7392,15 +7392,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "54771", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "54772", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "54774", 
+        "candidate_id": "54771", 
         "incumbent": false
     }, 
     {
@@ -7412,11 +7408,15 @@
         "incumbent": true
     }, 
     {
+        "candidate_id": "54776", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "54775", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "54776", 
+        "candidate_id": "54774", 
         "incumbent": false
     }, 
     {
@@ -7428,19 +7428,15 @@
         "incumbent": true
     }, 
     {
+        "candidate_id": "54780", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "54778", 
         "incumbent": false
     }, 
     {
         "candidate_id": "54779", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "54780", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "54784", 
         "incumbent": false
     }, 
     {
@@ -7452,19 +7448,23 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "54783", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "54785", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "55022", 
+        "candidate_id": "54783", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54784", 
         "incumbent": false
     }, 
     {
         "candidate_id": "55021", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "55022", 
         "incumbent": false
     }, 
     {
@@ -7516,15 +7516,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "51341", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "51246", 
         "incumbent": true
     }, 
     {
+        "candidate_id": "51341", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "51361", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51343", 
         "incumbent": false
     }, 
     {
@@ -7533,10 +7537,6 @@
     }, 
     {
         "candidate_id": "51342", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "51343", 
         "incumbent": false
     }, 
     {
@@ -7560,10 +7560,6 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "51363", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "51364", 
         "incumbent": false
     }, 
@@ -7572,11 +7568,19 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "51363", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51350", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "51249", 
         "incumbent": true
     }, 
     {
-        "candidate_id": "51350", 
+        "candidate_id": "51352", 
         "incumbent": false
     }, 
     {
@@ -7584,15 +7588,7 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "51352", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "51366", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "51368", 
         "incumbent": false
     }, 
     {
@@ -7600,12 +7596,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "51243", 
-        "incumbent": true
+        "candidate_id": "51368", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "51353", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "51243", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "51370", 
@@ -7624,11 +7624,15 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "51376", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "51377", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "51376", 
+        "candidate_id": "51338", 
         "incumbent": false
     }, 
     {
@@ -7636,11 +7640,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "51338", 
+        "candidate_id": "51339", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "51339", 
+        "candidate_id": "52295", 
         "incumbent": false
     }, 
     {
@@ -7648,15 +7652,7 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "52295", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "52310", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "52312", 
+        "candidate_id": "51981", 
         "incumbent": false
     }, 
     {
@@ -7668,7 +7664,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "51981", 
+        "candidate_id": "52312", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "52310", 
         "incumbent": false
     }, 
     {
@@ -7684,15 +7684,15 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "51986", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "52308", 
         "incumbent": false
     }, 
     {
         "candidate_id": "52307", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "51986", 
         "incumbent": false
     }, 
     {
@@ -7720,12 +7720,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "7377", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "6614", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "7377", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "7380", 
@@ -7736,12 +7736,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "7393", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "6492", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "7393", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "6625", 
@@ -7760,12 +7760,12 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "7402", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "6494", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "7402", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "6644", 
@@ -7776,19 +7776,19 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "7690", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "7691", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "7679", 
+        "candidate_id": "7690", 
         "incumbent": false
     }, 
     {
         "candidate_id": "7678", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7679", 
         "incumbent": false
     }, 
     {
@@ -7800,11 +7800,11 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "7692", 
+        "candidate_id": "7693", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "7693", 
+        "candidate_id": "7692", 
         "incumbent": false
     }, 
     {
@@ -7824,11 +7824,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "26729", 
+        "candidate_id": "26728", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "26728", 
+        "candidate_id": "26729", 
         "incumbent": false
     }, 
     {
@@ -7840,15 +7840,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "26467", 
-        "incumbent": true
-    }, 
-    {
         "candidate_id": "26468", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "26469", 
+        "candidate_id": "26467", 
         "incumbent": true
     }, 
     {
@@ -7856,12 +7852,16 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "26325", 
+        "candidate_id": "26469", 
         "incumbent": true
     }, 
     {
         "candidate_id": "26474", 
         "incumbent": false
+    }, 
+    {
+        "candidate_id": "26325", 
+        "incumbent": true
     }, 
     {
         "candidate_id": "26730", 
@@ -7876,11 +7876,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "26477", 
+        "candidate_id": "26481", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "26481", 
+        "candidate_id": "26477", 
         "incumbent": false
     }, 
     {
@@ -7924,15 +7924,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "56737", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "56738", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "56744", 
+        "candidate_id": "56737", 
         "incumbent": false
     }, 
     {
@@ -7940,23 +7936,23 @@
         "incumbent": false
     }, 
     {
-        "candidate_id": "55584", 
-        "incumbent": true
+        "candidate_id": "56744", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "56739", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "56894", 
+        "candidate_id": "55584", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "56730", 
         "incumbent": false
     }, 
     {
         "candidate_id": "56729", 
-        "incumbent": false
-    }, 
-    {
-        "candidate_id": "56730", 
         "incumbent": false
     }, 
     {
@@ -7968,6 +7964,10 @@
         "incumbent": false
     }, 
     {
+        "candidate_id": "56894", 
+        "incumbent": false
+    }, 
+    {
         "candidate_id": "54642", 
         "incumbent": false
     }, 
@@ -7976,15 +7976,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "54741", 
-        "incumbent": false
-    }, 
-    {
         "candidate_id": "54742", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "54740", 
+        "candidate_id": "54741", 
         "incumbent": false
     }, 
     {
@@ -7994,6 +7990,10 @@
     {
         "candidate_id": "54292", 
         "incumbent": true
+    }, 
+    {
+        "candidate_id": "54740", 
+        "incumbent": false
     }, 
     {
         "candidate_id": "54739", 
@@ -8008,11 +8008,11 @@
         "incumbent": true
     }, 
     {
-        "candidate_id": "54737", 
+        "candidate_id": "54738", 
         "incumbent": false
     }, 
     {
-        "candidate_id": "54738", 
+        "candidate_id": "54737", 
         "incumbent": false
     }
 ]

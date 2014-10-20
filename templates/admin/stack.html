@@ -15,28 +15,53 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="timeline">
-                <ol class="sortable list-unstyled js-droppable-and-draggable">
-                    {% for slide in sequence %}
-                    <li data-slide="{{ slide.slide }}">{{ slide.slide }}</li>
-                    {% endfor %}
-                </ol>
-            </div>
-            <div class="slides">
-                <ul class="sortable list-unstyled js-droppable">
-                    {% for slide in slides %}
-                    <li>
-                        <p class="slide" class="{{ loop.cycle('first', 'middle', 'last') }}" data-slide="{{ slide.slug }}">{{ slide.slug }}</p>
-                        <p><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank">Preview</a></p>
-                        <p><a target="_blank" href="share/{{ slide.slug }}">Share image</a></p>
+            <div class="out graphics">
+                <h2>Graphics</h2>
+                <ul class="list-unstyled">
+                    {% for slide in graphics %}
+                    <li class="item" data-slide="{{ slide.slug }}">
+                        <p class="slug">{{ slide.slug }}</p>
+                        <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
+
+                        <div class="controls">
+                            <a class="add" href="#"><span class="fa fa-plus"></span></a>
+                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank"><span class="fa fa-search"></span></a>
+                        </div>
                     </li>
                     {% endfor %}
                 </ul>
             </div>
-            <div class="trash js-trash">
-                <h2><i class="fa fa-trash-o"></i> Trash</h2>
-                <ul class="sortable list-unstyled js-droppable">
+            <div class="out news">
+                <h2>News Items</h2>
+                <ul class="list-unstyled">
+                    {% for slide in news %}
+                    <li class="item" data-slide="{{ slide.slug }}">
+                        <p class="slug">{{ slide.slug }}</p>
+                        <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
+                        <p>{{ slide.body|smarty }}</p>
+                        <div class="controls">
+                            <a class="add" href="#"><span class="fa fa-plus"></span></a>
+                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank"><span class="fa fa-search"></span></a>
+                        </div>
+                    </li>
+                    {% endfor %}
                 </ul>
+            </div>
+            <div class="timeline">
+                <h2>Live stack</h2>
+
+                <p>Stack length: {{ time }} seconds</p>
+                <ol class="sortable list-unstyled js-droppable-and-draggable">
+                    {% for slide in sequence %}
+                    <li class="item" data-slide="{{ slide.slide }}">
+                        {{ slide.slide }}
+                        <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div>
+                    </li>
+                    {% endfor %}
+                </ol>
+                <div class="row">
+                    <a class="save-btn btn btn-primary btn-lg">Save</a>
+                </div>
             </div>
         </div>
     </div>
