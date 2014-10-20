@@ -232,21 +232,36 @@ def write_calls(ticket, path):
     """
     Write call data to disk
     """
-    calls = []
+    new_calls = []
+    called_ids = []
+
+    mod_string = ticket.client.ftp.sendcmd('MDTM %s' % ticket.results_file_path)
+    mod_time = datetime.strptime(mod_string[4:], '%Y%m%d%H%M%S')
+
+    if os.path.isfile(path):
+        with open(path) as f:
+            previous_calls = json.load(f)
+            called_ids = [call.get('race_id') for call in previous_calls]
 
     for race in ticket.races:
-        winners = [candidate for candidate in race.candidates if candidate.is_winner]
+        if race.ap_race_number not in called_ids:
+            winners = [candidate for candidate in race.candidates if candidate.is_winner]
 
-        if len(winners) > 1:
-            print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (race.ap_race_number, race.race_type, race.state_postal)
+            if len(winners) > 1:
+                print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (race.ap_race_number, race.race_type, race.state_postal)
 
-        if len(winners):
-            winner = winners[0]
+            if len(winners):
+                winner = winners[0]
+                new_calls.append({
+                    'race_id': race.ap_race_number,
+                    'ap_winner': winner.ap_natl_number,
+                    'ap_called_time': datetime.strftime(mod_time, '%Y-%m-%dT%H:%M:%SZ'),
+                })
 
-            calls.append({
-                'race_id': race.ap_race_number,
-                'ap_winner': winner.ap_natl_number
-            })
+        else:
+            print "Skipped %s, already called" % race.ap_race_number
+
+    calls = previous_calls + new_calls
 
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)
