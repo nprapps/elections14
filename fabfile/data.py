@@ -172,18 +172,8 @@ def load_updates(path):
 
     for race in races:
         race_model = models.Race.get(models.Race.race_id == race['race_id'])
-
-        # If race has not been updated, skip
-        last_updated = datetime.strptime(race['last_updated'], '%Y-%m-%dT%H:%M:%SZ')
-
-        if race_model.last_updated == last_updated:
-            continue
-
-        race_model.is_test = race['is_test']
         race_model.precincts_reporting = race['precincts_reporting']
         race_model.precincts_total = race['precincts_total']
-        race_model.last_updated = last_updated
-
         race_model.save()
 
         races_updated += 1
@@ -192,7 +182,8 @@ def load_updates(path):
             # Select candidate by candidate_id AND race_id, since they can appear in multiple races
             candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
-            candidate_model.vote_count = candidate['vote_count']
+            if candidate.get('vote_count'):
+                candidate_model.vote_count = candidate['vote_count']
 
             candidate_model.save()
 
