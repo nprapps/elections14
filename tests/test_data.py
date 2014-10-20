@@ -90,8 +90,8 @@ class DataTestCase(unittest.TestCase):
 
             self.assertTrue(race.is_called())
             self.assertTrue(race.ap_called)
-            self.assertEqual(race.ap_called_time, datetime(2014, 9, 25, 13, 8, 14))
-            self.assertEqual(race.get_called_time(), datetime(2014, 9, 25, 13, 8, 14))
+            self.assertEqual(race.ap_called_time, datetime(2014, 9, 25, 17, 8, 14))
+            self.assertEqual(race.get_called_time(), datetime(2014, 9, 25, 17, 8, 14))
 
             self.assertFalse(candidate_4848.ap_winner)
             self.assertFalse(candidate_4642.ap_winner)
@@ -103,10 +103,10 @@ class DataTestCase(unittest.TestCase):
             data.load_closing_times('data/closing-times.csv')
 
             house_race = Race.get(Race.race_id == 'OR-38529')
-            self.assertEqual(house_race.poll_closing_time, datetime(2014, 11, 4, 11, 0, 0))
+            self.assertEqual(house_race.poll_closing_time, datetime(2014, 11, 4, 23, 0, 0))
 
             senate_race = Race.get(Race.race_id == 'OK-38145')
-            self.assertEqual(senate_race.poll_closing_time, datetime(2014, 11, 4, 8, 0, 0))
+            self.assertEqual(senate_race.poll_closing_time, datetime(2014, 11, 4, 20, 0, 0))
 
     def test_house_extra(self):
         with test_database(test_db, [Race,]):
