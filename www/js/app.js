@@ -122,7 +122,11 @@ var onDocumentReady = function(e) {
         });
 
         // Geolocate
-        if (geoip2) {
+        if ($.cookie('state')) {
+            state = $.cookie('state');
+            loadState();
+        }
+        if (geoip2 && !($.cookie('state'))) {
             geoip2.city(onLocateIP);
         }
 
@@ -181,7 +185,7 @@ var onCastStarted = function() {
     $welcomeScreen.hide();
     $stack.hide();
     STACK.stop();
-    
+
     if (!state) {
         $statePickerScreen.show();
         resizeSlide($statePickerScreen);
@@ -346,24 +350,27 @@ var offControlsHover = function() {
 var getState = function() {
     var input = $('.typeahead').typeahead('val');
     if (input) {
-        state = getStatePostal(input)
+        var inverted = _.invert(APP_CONFIG.STATES);
+        state = inverted(input)
     }
+
+    $.cookie('state', state, { expires: 30 });
+}
+
+var loadState = function() {
+    $stateface.removeClass();
+    $stateface.addClass('stateface stateface-' + state.toLowerCase());
+    $stateName.text(APP_CONFIG.STATES[state])
 }
 
 var switchState = function() {
+    getState();
+    loadState();
+
     $stateface.css('opacity', 1);
     $stateName.css('opacity', 1);
-
     $typeahead.css('top', '0');
 
-    var input = $('.typeahead').typeahead('val');
-    var postal = getStatePostal(input)
-
-    $stateface.removeClass();
-    $stateface.addClass('stateface stateface-' + postal.toLowerCase());
-
-    $stateName.text(input);
-    getState();
     $('.typeahead').typeahead('val', '')
     $('.typeahead').typeahead('close');
     $('.typeahead').blur();
@@ -381,24 +388,16 @@ var hideStateFace = function() {
 var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
-    $.cookie('state', state);
-
     $statePickerLink.text(APP_CONFIG.STATES[state]);
-
     $statePickerScreen.hide();
 
     if (is_casting) {
-        $chromecastScreen.show(); 
+        $chromecastScreen.show();
         resizeSlide($chromecastScreen);
         CHROMECAST_SENDER.sendMessage('state', state);
     } else {
         STACK.start();
     }
-}
-
-var getStatePostal = function(input) {
-    var inverted = _.invert(APP_CONFIG.STATES);
-    return inverted[input];
 }
 
 /*
@@ -417,12 +416,10 @@ var onStatePickerLink = function() {
 var onLocateIP = function(response) {
     var place = response.most_specific_subdivision.iso_code;
     $('#option-' + place).prop('selected', true);
-
-    $stateface.addClass('stateface-' + place.toLowerCase());
-    var stateName = APP_CONFIG.STATES[place];
-    $stateName.text(stateName)
-
     state = place;
+    $.cookie('state', state, { expires: 30 });
+
+    loadState();
 }
 
 /*

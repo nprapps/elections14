@@ -1,11 +1,29 @@
 <div id="poll-closing-8pm" class="graphic poll-closing">
-	{% if COPY.polls_closing.headline_8pm %}<h1>{{ COPY.polls_closing.headline_8pm }}</h1>{% endif %}
-	{% if COPY.polls_closing.subhed_8pm %}<h2>{{ COPY.polls_closing.subhed_8pm }}</h2>{% endif %}
-	
-	<div class="poll-map"><img src="assets/slide-mockups/map-polls-8pm.svg" alt="Map" /></div>
-	
+	<h1>Coming up at {{ closing_time }}</h1>
+	<h2>Polls are closing in {{ num_states_closing }} states.</h2>
+
+	<div class="poll-map"><img src="{{ S3_BASE_URL }}/assets/slide-mockups/map-polls-8pm.svg" alt="Map" /></div>
+
 	<div class="key-races race-list">
-		<ul>
+	<p>Notable races this hour</p>
+	<ul>
+		{% for race in races %}
+		<li>
+			<i class="stateface stateface-{{ race.state_postal }}"></i>
+			<strong>{{ race.state_postal }}{% if race.seat_number %}-{{ race.seat_number }} {% endif %}</strong>
+
+			<span>
+				{% set candidate = race.top_candidates()[0] %}
+				<span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span> vs.
+				{% set candidate = race.top_candidates()[1] %}
+				<span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>
+			</span>
+		</li>
+		{% endfor %}
+	</ul>
+
+
+		<!-- <ul>
 			<li>
 				<i class="state">p</i>
 				<strong>Tennessee Senate</strong>
@@ -36,6 +54,6 @@
 				<strong>Mississippi District 1</strong>
 				<span>Name (D) vs. incumbent Name (R)</span>
 			</li>
-		</ul>
+		</ul> -->
 	</div>
 </div>
