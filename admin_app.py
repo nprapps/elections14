@@ -3,9 +3,8 @@
 import argparse
 import datetime
 import logging
-import subprocess
 
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin, ModelAdmin
@@ -69,23 +68,6 @@ def stack():
     })
 
     return render_template('admin/stack.html', **context)
-
-@app.route('/%s/admin/stack/share/<slug>' % app_config.PROJECT_SLUG, methods=['GET'])
-def share(slug):
-    preview_url = '%s/preview/%s' % (app_config.S3_BASE_URL, slug)
-    image_url = 'www/assets/share-images/%s.png' % slug
-
-    subprocess.check_output([
-        "node_modules/depict/src/depict.js",
-        preview_url,
-        image_url,
-        '--call-phantom',
-    ])
-
-    response = send_file(image_url, mimetype='image/png')
-    response.headers['Content-Disposition'] = 'attachment; filename=%s.png' % slug
-    return response
-
 
 @app.route('/%s/admin/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
 def save_stack():
