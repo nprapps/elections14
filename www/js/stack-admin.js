@@ -63,10 +63,9 @@ var onSaveClick = function() {
         contentType: "application/json",
     });
 }
-
 $(document).ready(function() {
     $timeline = $('.timeline ol')
-    $items = $('.item');
+    $items = $('.out .item');
     $add = $('.add');
     $remove = $('.remove');
     $save = $('.save-btn');

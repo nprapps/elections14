@@ -76,14 +76,24 @@ ol.sortable li:after {
 	background: #fff;
 }
 
+/*
+* lists
+*/
 
-.out .item {
+.item {
 	position: relative;
+	background-color: #eee;
+	border-bottom: 2px solid #999;
+	padding: 10px;
+
 	.controls {
 		display: none;
 		position: absolute;
 		right: 10px;
 		top: 10px;
+		a {
+			color: black;
+		}
 		span {
 			padding: 0 5px;
 		}
@@ -92,24 +102,8 @@ ol.sortable li:after {
 }
 
 /*
-* Out graphics
-*/
-
-.graphics .item {
-	background-color: #eee;
-	border-bottom: 2px solid #999;
-	padding: 10px;
-}
-
-/*
 * Tumblr posts
 */
-
-.news .item {
-	background-color: #eee;
-	border-bottom: 2px solid #999;
-	padding: 10px;
-}
 
 .post-footer, .date {
 	display: none;
@@ -122,14 +116,19 @@ ol.sortable li:after {
 }
 
 /*
-* Live stack
+* Stack timeline
 */
 
 .timeline {
 	.item {
-		background-color: #eee;
-		padding: 10px;
-		border-bottom: 2px solid #999;
+		.controls {
+			display: block;
+			right: 10px;
+			top: 7px;
+			background-color: red;
+			a {
+				color: white;
+			}
+		}
 	}
-
 }

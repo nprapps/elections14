@@ -21,8 +21,7 @@
                     {% for slide in graphics %}
                     <li class="item" data-slide="{{ slide.slug }}">
                         <p class="slug">{{ slide.slug }}</p>
-                        <!-- <p><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank">Preview</a></p> -->
-                        <!-- <p><a target="_blank" href="share/{{ slide.slug }}">Share image</a></p> -->
+                        <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
 
                         <div class="controls">
                             <a class="add" href="#"><span class="fa fa-plus"></span></a>
@@ -38,8 +37,7 @@
                     {% for slide in news %}
                     <li class="item" data-slide="{{ slide.slug }}">
                         <p class="slug">{{ slide.slug }}</p>
-                        <!-- <p><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank">Preview</a></p> -->
-                        <!-- <p><a target="_blank" href="share/{{ slide.slug }}">Share image</a></p> -->
+                        <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
                         <p>{{ slide.body|smarty }}</p>
                         <div class="controls">
                             <a class="add" href="#"><span class="fa fa-plus"></span></a>
@@ -51,10 +49,13 @@
             </div>
             <div class="timeline">
                 <h2>Live stack</h2>
+
+                <p>Stack length: {{ time }} seconds</p>
                 <ol class="sortable list-unstyled js-droppable-and-draggable">
                     {% for slide in sequence %}
                     <li class="item" data-slide="{{ slide.slide }}">
-                        {{ slide.slide }} <a class="remove" href="#"><span class="fa fa-times"></span></a>
+                        {{ slide.slide }}
+                        <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div>
                     </li>
                     {% endfor %}
                 </ol>
