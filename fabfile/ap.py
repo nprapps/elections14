@@ -238,7 +238,7 @@ def write_calls(ticket, path):
         winners = [candidate for candidate in race.candidates if candidate.is_winner]
 
         if len(winners) > 1:
-            print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (_generate_race_id(race), race['raceType'], race['statePostal'])
+            print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (race.ap_race_number, race.race_type, race.state_postal)
 
         if len(winners):
             winner = winners[0]
