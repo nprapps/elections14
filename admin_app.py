@@ -49,11 +49,16 @@ def stack():
     context = make_context(asset_depth=1)
 
     sequence = SlideSequence.select()
+    sequence_dicts = sequence.dicts()
 
     time = 0
 
     for slide in sequence:
         time += slide.slide.time_on_screen
+
+
+    for slide in sequence_dicts:
+        print slide
 
     context.update({
         'sequence': SlideSequence.select().dicts(),

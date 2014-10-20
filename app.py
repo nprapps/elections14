@@ -106,7 +106,7 @@ def _stack_json():
     # should see two
     for i, d in enumerate(data):
         if d['slug'] == 'state-house':
-            break 
+            break
 
     one = copy(d)
     one['slug'] = 'state-house-1'
@@ -118,7 +118,7 @@ def _stack_json():
         one,
         two
     ]
-    
+
     js = json.dumps(data)
 
     return js, 200, { 'Content-Type': 'application/javascript' }
@@ -153,6 +153,7 @@ def _slide_preview(slug):
     context = make_context()
 
     context['body'] = _slide(slug).data
+    context['slug'] = slug
 
     return render_template('_slide_preview.html', **context)
 
