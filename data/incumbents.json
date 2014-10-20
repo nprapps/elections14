@@ -1,1 +1,8018 @@
-[]
+[
+    {
+        "candidate_id": "6023", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "6382", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6399", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6400", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6024", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "6337", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6381", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6402", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6401", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6404", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6403", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6466", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6465", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6022", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "6373", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6398", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6405", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4433", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4691", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4519", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4693", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4385", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4694", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4356", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4695", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4358", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4986", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4988", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4781", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4990", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4989", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4991", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4992", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4994", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4993", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4996", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4995", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4998", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4997", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4999", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5000", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5001", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5002", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5003", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5004", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5005", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5006", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12182", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12177", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12512", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12511", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "11569", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12199", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12515", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12198", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12197", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12516", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12191", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12194", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12508", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "11571", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12507", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12545", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12544", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12548", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12549", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12551", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12550", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12553", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12554", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12546", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12547", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "11959", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12493", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12513", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12514", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9199", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9197", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9351", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9352", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9181", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8793", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "9184", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8795", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "8799", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "9185", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9186", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8801", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "9355", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9187", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8807", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "9188", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8809", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "9190", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9353", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9354", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9356", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9357", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8816", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "9196", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8819", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "9358", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9382", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9383", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9385", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9384", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9387", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "9386", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19229", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19525", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18655", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19693", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18670", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19590", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18440", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20092", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18674", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19759", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18677", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19536", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18528", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19765", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18868", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19766", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18880", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19769", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19779", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19774", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18893", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19782", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18681", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19791", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18684", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19537", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18900", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20093", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18902", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19799", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18907", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19804", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18731", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19794", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18735", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19548", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18740", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19549", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18545", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19796", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18543", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19808", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18548", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20096", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18552", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20094", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19819", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19821", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18686", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19826", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18576", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19550", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18580", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19830", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18588", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19832", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18693", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19833", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19839", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20095", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18591", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19551", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19591", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19602", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18594", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19746", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19749", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19747", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18704", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19751", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18699", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19755", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18705", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19607", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19034", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19608", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18556", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19756", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18764", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19846", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18559", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19850", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18708", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19847", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18710", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20097", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19851", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19852", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18715", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19860", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18723", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19857", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18768", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19867", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18772", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19869", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18781", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19870", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18437", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19876", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19231", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19689", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18800", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19878", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18720", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19864", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18884", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19773", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20118", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20117", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20121", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20122", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20123", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20124", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20130", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20129", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20127", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20128", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20131", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20132", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20165", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20166", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20167", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20168", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20170", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20169", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20172", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20171", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20173", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20174", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20175", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20176", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20178", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20177", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12204", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12208", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12382", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12372", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12373", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12380", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12220", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12112", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12221", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12149", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12376", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12370", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12223", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12225", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12371", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12377", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12228", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12151", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12230", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12152", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12381", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12378", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12231", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12199", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12219", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12200", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12383", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12375", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12384", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12385", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12386", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12387", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12388", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12389", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12390", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12391", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12203", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12201", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "12374", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12367", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12368", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "12366", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19237", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19612", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19884", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18825", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19620", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19848", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18826", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19621", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19889", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19895", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18827", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19622", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18828", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19623", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18951", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19624", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19885", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19896", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19897", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10217", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10216", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10203", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "10205", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10206", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10204", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10375", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10184", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "10435", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10376", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10372", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "10214", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "10374", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19378", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19681", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20094", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20092", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20093", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18532", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19685", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18718", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19687", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20096", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18533", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20098", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20097", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18723", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19690", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18729", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19691", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18536", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19697", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20099", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18736", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19698", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18742", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19700", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20100", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18743", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19705", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18745", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19707", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19484", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20102", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18756", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19708", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18757", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19709", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18760", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19710", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18766", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19711", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18777", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19723", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18784", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19727", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18774", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19718", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18638", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19684", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20095", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18786", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19728", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20107", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19348", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19730", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20105", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20104", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20103", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20199", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20198", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20208", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20207", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20211", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20210", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19907", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19904", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20176", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19944", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19946", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19779", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19952", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19639", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19956", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19640", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19957", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19844", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19958", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19960", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19963", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19857", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "19978", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20187", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20188", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20189", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20190", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20192", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20191", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19893", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "19900", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20175", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18441", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18397", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18577", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18572", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "17884", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "18430", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18431", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18439", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18432", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18775", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18776", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18778", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18777", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18779", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18780", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18782", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18781", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18783", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18784", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18740", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "18741", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18742", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21614", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "22086", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22252", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22250", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22251", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22090", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22093", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21619", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "22097", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22245", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22099", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22255", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22254", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21624", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "22106", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22082", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22080", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22247", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22248", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22249", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "22246", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18040", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "18250", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18393", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18391", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18392", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18395", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18021", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "18208", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "17591", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "18273", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18417", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18418", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "18205", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "18241", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25725", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25729", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26135", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25739", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25740", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25743", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25744", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25746", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25749", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25750", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26124", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25751", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25753", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25752", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25754", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25755", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25756", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25758", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25759", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25761", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25762", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25763", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25764", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25767", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25770", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25771", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25772", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25776", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25773", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25781", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25779", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25783", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25782", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25786", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25784", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25787", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25788", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25792", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25791", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26122", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26123", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26125", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26126", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26128", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26127", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26170", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26172", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26176", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26175", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26174", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26173", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "25721", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "25722", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26130", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20356", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20976", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21122", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20504", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20977", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21123", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20358", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20981", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21124", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20359", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20987", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20516", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20993", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21125", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20532", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "20997", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21126", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20362", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "21006", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21127", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20363", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "21008", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21128", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "20364", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "21010", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "21129", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5663", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5894", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6084", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5664", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5882", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5667", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5890", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5669", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5892", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5665", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5885", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6083", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6086", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6085", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5662", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "6082", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6081", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4638", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5092", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5242", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4587", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5095", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4732", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5097", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4584", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5089", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4585", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5090", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5094", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5093", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5079", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "5083", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5235", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23565", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "23971", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23970", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23945", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23854", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "23862", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23940", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23972", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23727", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "23975", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23974", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23855", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "23864", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23869", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "23941", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23979", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23867", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23868", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23866", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23865", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23977", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23982", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23876", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23874", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23881", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23877", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23883", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23980", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23879", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23878", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23873", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23882", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23880", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23872", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23884", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23938", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23939", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23937", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23936", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23934", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23935", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23932", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23933", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23931", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23930", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23928", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23929", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23925", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23927", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23923", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23924", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23921", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23922", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23919", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23920", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23917", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23918", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23915", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23916", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23913", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23914", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23912", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23911", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23579", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "23859", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23860", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23944", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23969", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23857", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23966", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "23968", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32606", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32603", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33100", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33102", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33101", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32626", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32613", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32627", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32621", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33103", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32625", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32629", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33105", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33106", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33107", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33108", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33110", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33109", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33111", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33112", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33170", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33171", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33172", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33173", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33175", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33174", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33177", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33176", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33178", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33179", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33181", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33180", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33183", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33182", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33184", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33185", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33186", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33187", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33188", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33189", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33190", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33191", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33194", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33195", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33196", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33197", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33198", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33199", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33201", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33200", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33203", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33202", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33204", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33205", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33207", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33206", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33209", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33208", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33211", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33210", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33212", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33213", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33214", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33215", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33217", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33216", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33219", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33218", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33220", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33221", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33223", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33222", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33224", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33225", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33227", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33226", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33228", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33229", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33230", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33231", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33233", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33232", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33235", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33234", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33237", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33236", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33239", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33238", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33240", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33241", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33243", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33242", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33244", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33245", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33247", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33246", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33248", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33249", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33251", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33250", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33252", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33253", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33254", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33255", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33256", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33257", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33259", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33258", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33260", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33261", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33263", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33262", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33264", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33265", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33267", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33266", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33268", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33269", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33270", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33271", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33273", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33272", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33274", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33275", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33276", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33277", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33278", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33279", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33281", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33280", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33283", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33282", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33284", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33285", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33287", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33286", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33288", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33289", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33290", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33291", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33292", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33293", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33294", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33295", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33297", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33296", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33298", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33299", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33301", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33300", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33303", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33302", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33304", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33305", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33306", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33307", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33309", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33308", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33311", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33310", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33313", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33312", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33315", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33314", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33316", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33317", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33319", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33318", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33321", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33320", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33323", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33322", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33324", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33325", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33327", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33326", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33328", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33329", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33331", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33330", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33332", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33333", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33334", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33335", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33336", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33337", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33339", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33338", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33340", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33341", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32598", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32599", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29652", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29660", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "30195", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29671", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29211", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "29213", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "29679", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "30198", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29683", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29214", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "29377", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "29687", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "30199", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29691", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29378", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "29286", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "29693", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "30204", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29217", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "29699", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "30203", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29702", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29218", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "30291", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "30292", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "30293", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "30294", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "28674", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "28675", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29072", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "28667", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "28668", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29079", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "28672", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "28669", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29080", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29087", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29088", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29142", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29144", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29141", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29140", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29139", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29138", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29137", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29136", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29134", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29135", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29132", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29133", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29146", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29147", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29149", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "29148", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "28666", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "28665", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34478", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34089", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34986", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34965", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34966", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34483", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33723", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34974", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34967", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34484", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33724", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34975", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35011", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34486", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33725", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34968", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34490", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34488", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34976", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34988", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34492", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33759", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34977", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34494", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33728", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34978", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34969", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33729", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34496", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34989", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34979", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34990", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34498", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34501", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34980", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34991", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35012", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34503", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33745", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34981", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34971", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34504", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33732", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34972", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34505", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34509", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34982", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34510", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34511", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35013", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34992", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34513", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33747", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "34993", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34984", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35044", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34518", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34973", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34985", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35040", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35041", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35042", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35043", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34481", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34480", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34987", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34963", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34964", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32326", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31871", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32675", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32676", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32331", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32345", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31093", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32346", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31094", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32348", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32349", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31095", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "31096", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32350", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32351", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32352", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31097", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32353", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32355", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32354", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32357", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32358", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31099", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32359", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31268", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32360", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32314", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31870", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "32690", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "32689", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7501", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "8312", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8313", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7507", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "8315", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8594", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7510", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "8319", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8322", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7515", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "8331", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8332", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7527", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "8333", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8339", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7532", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "8342", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8344", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8346", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "8345", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8349", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8603", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8348", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7490", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "8309", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8311", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8595", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8596", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8598", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8597", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8600", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8599", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8602", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "8601", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31064", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "31346", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31354", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31070", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "31325", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31350", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31353", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31063", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "31332", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31347", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31355", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31071", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "31336", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31356", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31348", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31349", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31357", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31360", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31361", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31122", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "31327", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31352", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33969", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33964", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33970", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34336", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34337", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34339", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34338", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "34306", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33960", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "33962", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42405", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42869", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42895", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42891", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42893", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "41981", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42901", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42398", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42863", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42402", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42866", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42406", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42873", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42409", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42877", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42885", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42879", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42659", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42897", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42419", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42899", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42905", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42911", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42425", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42914", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "43161", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "43160", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42433", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "42858", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "42860", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40313", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "39840", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "40314", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40418", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40419", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40421", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40420", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40423", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40422", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40425", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40424", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40427", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40426", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40428", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40429", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40432", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40431", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40434", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "40433", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31312", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31307", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31405", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31172", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "31301", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31183", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "31306", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31178", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "31423", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31424", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31454", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31453", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31426", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31293", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31447", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "31446", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "43356", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "44491", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "43357", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "43781", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44501", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "43358", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "44477", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44274", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38242", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38250", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38301", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38340", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38302", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38300", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38303", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38224", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38253", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38305", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38308", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38306", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38307", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38226", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38287", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38311", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38227", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38260", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38312", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38231", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38262", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38313", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38232", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38264", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38316", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38315", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38317", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38255", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38256", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38309", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38228", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38292", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38314", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38234", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38266", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38319", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38320", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38275", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38277", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38323", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38322", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38325", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38324", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38321", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38233", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38265", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38318", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38229", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38273", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38341", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38342", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38345", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38343", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38344", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38337", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38336", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38339", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38338", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38236", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38283", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38296", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38298", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38294", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38295", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38299", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38136", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "37933", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38131", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "37708", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38135", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "37713", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38133", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "37936", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "38234", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38233", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38236", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38235", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38237", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38238", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38240", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38239", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38241", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38242", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "38129", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "37931", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "35621", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "35800", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35960", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "36000", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35620", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "35841", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35967", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35968", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35361", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "35844", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35970", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35969", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35971", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35315", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "35788", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35959", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35329", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "35791", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35963", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "35962", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "36019", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "36020", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "36021", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "36022", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "36023", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "36024", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76098", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "76842", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76966", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76158", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76963", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76973", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "76974", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76979", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76981", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "76980", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76984", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76985", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "76986", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76991", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76992", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "76997", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "76998", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77000", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77001", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77002", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77004", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77005", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77010", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77013", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77011", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77015", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77014", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77019", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77020", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77021", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77028", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77030", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77031", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77032", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77034", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77037", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77035", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77039", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77040", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77045", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77044", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77160", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77050", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77049", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77054", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77055", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77060", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77059", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77064", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77068", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77067", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77072", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77073", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77077", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77078", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77086", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77085", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77081", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77082", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77007", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "77008", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77099", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77100", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77101", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77102", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77159", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "77158", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45103", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44786", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45359", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45131", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44143", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45117", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44453", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45356", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44499", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45138", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44515", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45363", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45139", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44503", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45360", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44148", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45113", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45362", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45126", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44227", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45247", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44779", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45364", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45142", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44377", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45119", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44463", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45361", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45358", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44326", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45122", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44801", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45365", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45120", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44465", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45130", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44383", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45134", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44291", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "44166", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "44441", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44664", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44663", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "43893", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "44425", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "43899", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "44430", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44659", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44165", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "44423", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44658", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44644", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44641", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44662", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44660", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44661", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44668", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44667", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44669", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44670", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44672", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44671", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44233", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "44631", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44654", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44655", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44656", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44646", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44647", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "44657", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4841", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4632", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4992", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4996", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4984", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4976", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4848", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4642", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4979", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4851", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4643", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4980", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4993", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4982", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4852", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4644", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4986", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4983", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4855", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4427", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4995", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4994", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4975", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4845", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4476", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4974", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4978", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4988", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4989", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4998", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4997", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4999", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5000", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5002", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5001", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5003", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5004", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5006", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5005", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5008", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "5007", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4832", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4633", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "4977", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4973", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "4991", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "50216", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49844", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50227", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49362", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50230", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49364", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "49502", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50232", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "50235", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49225", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50238", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "50237", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49227", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50239", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "50240", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49228", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50245", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49230", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50512", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49231", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50246", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "50248", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49516", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50249", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "50253", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "50256", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49233", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50257", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49523", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50229", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49363", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "50242", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49229", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45412", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45415", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45721", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45702", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45651", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45419", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45085", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45087", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45422", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45728", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45729", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45727", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45726", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45731", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45730", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45733", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45732", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45735", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45734", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45736", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45737", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45738", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45739", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "45299", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "45423", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47522", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47667", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47826", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47827", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47825", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47576", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47694", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47828", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47577", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47697", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47519", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47829", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47699", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47520", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47521", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47702", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47830", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47653", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47703", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47652", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47655", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47819", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47820", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47833", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47831", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47835", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47399", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47241", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47536", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47398", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "46953", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "47537", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47538", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47564", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47565", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47567", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47566", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47394", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47392", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47534", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "47535", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48772", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "48970", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49135", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49174", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49137", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49173", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49136", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48385", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "49161", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49149", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49177", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48529", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "48979", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49178", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49150", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48388", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "48981", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49151", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48389", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "48983", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49152", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48435", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "48992", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49153", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48390", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "48994", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49154", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48391", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "48998", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49155", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48473", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "49001", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49184", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49179", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48438", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "49005", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49158", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49159", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49157", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49342", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49343", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49354", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49355", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49356", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49357", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49358", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49359", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49361", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49360", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49362", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49363", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49208", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49209", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49210", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49211", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49213", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49212", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49215", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49214", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49217", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49216", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49218", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49219", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49221", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49220", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49222", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49223", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49225", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49224", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49226", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49227", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49229", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49228", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49231", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49230", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49233", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49232", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49234", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49235", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49237", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49236", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49239", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49238", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49240", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49241", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49243", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49242", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49245", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49244", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49247", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49246", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49249", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49248", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49251", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49250", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49253", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49252", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49254", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49255", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49256", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49257", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49258", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49259", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49261", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49260", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49263", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49262", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49264", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49265", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49267", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49266", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49268", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49269", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49271", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49270", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49274", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49275", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49277", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49276", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49279", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49278", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49281", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49280", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49282", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49283", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49285", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49284", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49286", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49287", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49289", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49288", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49291", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49290", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49293", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49292", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49294", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49295", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49296", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49297", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49299", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49298", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49301", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49300", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49303", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49302", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49305", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49304", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49307", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49306", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49309", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49308", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49311", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49310", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49313", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49312", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49314", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49315", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49316", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49317", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49319", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49318", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49321", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49320", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49322", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49323", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49324", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49325", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49327", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49326", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49329", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49328", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49330", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49331", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49333", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49332", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49334", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49335", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49337", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49336", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49338", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49339", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49341", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49340", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49344", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49345", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49346", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49347", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49348", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49349", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49350", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49351", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49353", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49352", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49367", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49368", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49369", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49370", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49372", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49371", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49374", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49373", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "48771", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "48966", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49140", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49144", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49146", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49175", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49142", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49143", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49138", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49145", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49176", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "49139", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58547", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58549", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58968", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58969", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56606", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58846", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56607", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58807", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58928", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58927", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56608", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58929", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56610", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58930", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56611", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58851", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58931", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56612", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58806", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58932", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56613", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58933", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56614", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58934", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56615", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58854", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58935", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56616", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58936", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56617", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58603", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58937", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56618", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58723", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58938", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58939", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56902", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58724", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58940", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56620", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58725", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58941", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "57946", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58875", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58942", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56622", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58726", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58943", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56623", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58606", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "59064", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58945", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56624", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58673", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58946", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "57948", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58947", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56626", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58949", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58948", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56627", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58804", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58950", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56965", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58608", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58951", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56629", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58801", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58952", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "57401", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58799", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58953", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56631", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58954", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56632", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58798", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58955", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56634", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58958", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56635", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58959", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "59065", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56633", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58956", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58957", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56636", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58729", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58960", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56637", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58797", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58961", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56976", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58962", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "57377", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58899", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58963", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "57382", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58862", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58965", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58964", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58876", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58682", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58967", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58966", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "59074", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "59075", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58308", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "58710", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58925", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "58926", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54770", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54172", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "54772", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54771", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54773", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54393", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "54776", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54775", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54774", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54777", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54173", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "54780", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54778", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54779", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54781", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54782", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54785", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54783", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54784", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "55021", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "55022", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "55024", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "55023", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "55026", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "55025", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51346", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51240", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51373", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51347", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51244", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51340", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51245", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51358", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51246", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51341", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51361", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51343", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51247", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51342", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51344", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51345", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51362", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51348", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51349", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51364", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51365", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51363", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51350", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51249", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51352", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51351", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51366", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51369", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51368", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51353", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51243", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51370", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51371", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51374", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51375", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51376", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51377", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51338", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51278", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51339", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "52295", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51546", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51981", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "52313", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "52311", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "52312", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "52310", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51543", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "51983", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "52309", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "51986", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "52308", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "52307", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6605", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "7372", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6505", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "7404", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6441", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "7376", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6614", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "7377", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7380", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7381", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6492", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "7393", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6625", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "7396", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6493", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "7401", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6494", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "7402", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "6644", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "7408", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7691", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7690", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7678", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7679", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7681", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7680", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7693", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7692", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7683", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "7682", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26446", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26447", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26728", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26729", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26463", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26465", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26468", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26467", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26472", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26469", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26474", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26325", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26730", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26476", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26326", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26481", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26477", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26731", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26483", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26443", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26732", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26486", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26487", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "26748", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "26747", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56735", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56740", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "56738", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56737", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56741", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56744", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56739", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "55584", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "56730", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56729", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56731", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56742", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "56894", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54642", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54524", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "54742", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54741", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54640", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54292", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "54740", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54739", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54634", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54525", 
+        "incumbent": true
+    }, 
+    {
+        "candidate_id": "54738", 
+        "incumbent": false
+    }, 
+    {
+        "candidate_id": "54737", 
+        "incumbent": false
+    }
+]
