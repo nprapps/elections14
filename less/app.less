@@ -105,7 +105,7 @@ p{
         height: 6vmin;
         margin-bottom:2vmin;
         float:left;
-    	fill: @grayMedium;
+        fill: @grayMedium;
     }
 
     .intro-text {
@@ -253,7 +253,6 @@ p{
         top: 0;
         -webkit-transition: all 0.5s;
         transition: all 0.5s;
-        width: 80vmin;
     }
 
     .typeahead,
@@ -346,29 +345,21 @@ p{
 
 .header-container {
     box-shadow: inset 0 5vw 5vw -5vw black;
-
     .results-header {
         color: @grayMedium;
-        height: 3.5vw;
+        height: 4vw;
         display: block;
         overflow: hidden;
+        line-height: 3vw;
+        padding: .2vw .5vw;
 
-        line-height: 2vw;
-        font-size: 1vw;
-        padding: .8vw;
-        @media screen and (max-width: @screen-sm){
-            height:7vw;
-            padding: 1.5vw 1.5vw;
-            font-size: 2vw;
-            line-height:4vw;
-        }
 
         .logo {
             height:100%;
-            width:5vw;
+            width:7vw;
             margin: 0 .5% 0 0;
             float:left;
-    		fill: @grayMedium;
+            fill: @grayMedium;
         }
 
         .leaderboard {
@@ -377,17 +368,19 @@ p{
         }
 
 
-        h2 {
-            font-size: 1vw;
-            line-height: 2vw;
+        h2, p, a, span {
+            font-size: 1.5vw;
+            line-height: 3vw;
             @media screen and (max-width: @screen-sm){
                 font-size: 2vw;
                 line-height:4vw;
             }
         }
+        span{
+            text-align:middle;
+        }
 
         .results-header-group {
-            // width:300px;
             white-space: nowrap;
             padding:0 1vw;
             float: left;
@@ -395,6 +388,7 @@ p{
             line-height: 2vw;
             &:last-child{
                 margin-right: 0;
+                padding-right:0;
             }
 
             .party,
@@ -438,12 +432,11 @@ p{
             font-family: 'Cooper Hewitt';
             display: inline-block;
             text-align: center;
-            padding:0 5%;
             box-sizing:border-box;
-            min-width:2vw;
-            height:2vw;
-            line-height: 2vw;
-            border-radius: 1vw;
+            width:3vw;
+            height:3vw;
+            line-height: 3vw;
+            border-radius: 1.5vw;
             @media screen and (max-width: @screen-sm){
                 min-width:4vw;
                 height:4vw;
@@ -479,9 +472,14 @@ p{
                 }
             }
 
-            .volume-icon {
+            .volume-icon{
+                width: 2vw;
+                height: 2vw;
+            }
+            .expand {
                 width: 1.5vw;
-                height: 1.5vw;
+                height: 1.5 vw;
+                
             }
         }
     }

@@ -119,16 +119,31 @@ var STACK = (function () {
 
             slide_path = 'slides/state-senate-' + state + '.html';
         }
-        else if (slug === 'state-house') {
+        else if (slug === 'state-house-1') {
             // If no state selected, skip to next
             if (!state) {
                 rotateSlide();
                 return;
             }
 
-            slide_path = 'slides/state-house-' + state + '.html';
+            slide_path = 'slides/state-house-' + state + '-' + '1.html';
         }
-         else {
+        else if (slug === 'state-house-2') {
+            // If no state selected, skip to next
+            if (!state) {
+                rotateSlide();
+                return;
+            }
+
+            // Not a paginated state, skip page two
+            if (APP_CONFIG.PAGINATED_STATES.indexOf(state) < 0) {
+                rotateSlide();
+                return;
+            }
+
+            slide_path = 'slides/state-house-' + state + '-' + '2.html';
+        }
+        else {
             slide_path = 'slides/' + slug + '.html';
         }
 

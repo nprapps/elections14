@@ -9,7 +9,6 @@ import json
 import random
 
 import copytext
-from dateutil.parser import parse
 from fabric.api import env, local, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
@@ -177,7 +176,7 @@ def load_updates(path):
         race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
         # If race has not been updated, skip
-        last_updated = parse(race['last_updated']).replace(tzinfo=None)
+        last_updated = datetime.strptime(race['last_updated'], '%Y-%m-%dT%H:%M:%SZ')
 
         if race_model.last_updated == last_updated:
             continue
@@ -223,7 +222,8 @@ def load_calls(path):
         race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
         race_model.ap_called = True
-        race_model.ap_called_time = parse(race['ap_called_time'])
+
+        race_model.ap_called_time = datetime.strptime(race['ap_called_time'], '%Y-%m-%dT%H:%M:%SZ')
         race_model.save()
 
         races_updated += 1
@@ -416,7 +416,8 @@ def load_closing_times(path):
     with open(path) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            closing = parse(row['close_time'])
+
+            closing = datetime.strptime(row['close_time'], '%m/%d/%Y %H:%M:%S')
             update = models.Race.update(poll_closing_time=closing).where(models.Race.state_postal == row['state'])
             update.execute()
 

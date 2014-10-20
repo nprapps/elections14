@@ -178,23 +178,29 @@ def render_states(compiled_includes={}):
     """
     from flask import url_for
 
-    view_name_tmpl = '_state_%s_slide'
     output_path = '.slides_html'
 
-    for slide_type in ['house', 'senate']:
-        view_name = view_name_tmpl % slide_type
+    for postal, state in app_config.STATES.items():
+        to_render = [
+            ('_state_senate_slide', { 'slug': postal }),
+            ('_state_house_slide', { 'slug': postal, 'page': 1 })
+        ]
+            
+        if postal in app_config.PAGINATED_STATES:
+            to_render.append(
+                ('_state_house_slide', { 'slug': postal, 'page': 2 })
+            )
 
-        for postal, state in app_config.STATES.items():
-
+        for view_name, view_kwargs in to_render: 
             # Silly fix because url_for require a context
             with app.app.test_request_context():
-                path = url_for(view_name, slug=postal)
+                path = url_for(view_name, **view_kwargs)
 
             with app.app.test_request_context(path=path):
                 print 'Rendering %s' % path
 
                 view = app.__dict__[view_name]
-                content = view(postal)
+                content = view(**view_kwargs)
 
             path = '%s%s' % (output_path, path)
 

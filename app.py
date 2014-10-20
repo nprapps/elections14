@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from copy import copy
 import json
 
 import argparse
@@ -100,18 +101,36 @@ def _stack_json():
     from models import SlideSequence
 
     data = SlideSequence.stack()
+
+    # There is one state slug to manipulate in the stack, but the client
+    # should see two
+    for i, d in enumerate(data):
+        if d['slug'] == 'state-house':
+            break 
+
+    one = copy(d)
+    one['slug'] = 'state-house-1'
+
+    two = copy(d)
+    two['slug'] = 'state-house-2'
+
+    data[i:i + 1] = [
+        one,
+        two
+    ]
+    
     js = json.dumps(data)
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-@app.route('/preview/state-house-<slug>/')
-def _state_house_slide_preview(slug):
+@app.route('/preview/state-house-<string:slug>-<int:page>/')
+def _state_house_slide_preview(slug, page):
     """
     Preview a state slide outside of the stack.
     """
     context = make_context()
 
-    context['body'] = _state_house_slide(slug).data
+    context['body'] = _state_house_slide(slug, page).data
 
     return render_template('_slide_preview.html', **context)
 
@@ -137,9 +156,9 @@ def _slide_preview(slug):
 
     return render_template('_slide_preview.html', **context)
 
-@app.route('/slides/state-house-<slug>.html')
+@app.route('/slides/state-house-<string:slug>-<int:page>.html')
 @app_utils.cors
-def _state_house_slide(slug):
+def _state_house_slide(slug, page):
     """
     Serve a state slide.
     """
@@ -158,12 +177,25 @@ def _state_house_slide(slug):
         (Race.state_postal == slug)
     ).order_by(Race.seat_number)
 
+    # Calculate BOP using all races
     context.update(app_utils.calculate_state_bop(races))
 
+    # Filter to display races
+    races = races.where(Race.featured_race == True)
+
+    if slug in app_config.PAGINATED_STATES:
+        race_count = races.count()
+        page_size = race_count / 2
+
+        if page == 1:
+            races = races.limit(page_size)
+        elif page == 2:
+            races = races.offset(page_size)
+
+        context['page'] = page
+
     context['time_on_screen'] = slide.time_on_screen
-
-    context['races'] = races.where(Race.featured_race == True)
-
+    context['races'] = races
     context['body'] = render_template('slides/state_house.html', **context)
 
     return render_template('_slide.html', **context)
