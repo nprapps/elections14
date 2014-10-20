@@ -4,6 +4,7 @@
 Commands that update or process the application data.
 """
 from datetime import datetime, timedelta
+from time import sleep
 from itertools import count
 import json
 import random
@@ -633,7 +634,7 @@ def _fake_results(race):
     max_candidate = None
     for candidate in race.candidates:
         candidate.ap_winner = False
-        if (candidate.party in ['GOP', 'Dem', 'Grn'] or race.office_id == 'I') and race.precincts_reporting > 0:
+        if (candidate.party in ['GOP', 'Dem'] or race.office_id == 'I') and race.precincts_reporting > 0:
             votes = random.randint(400000, 600000)
             candidate.vote_count = votes
             if votes > max_votes:
@@ -648,3 +649,22 @@ def _fake_results(race):
         max_candidate.ap_winner = True
         max_candidate.save()
 
+@task
+def play_fake_results(update_interval=60):
+    import models
+    from peewee import fn
+
+    closing_times = models.Race.select(fn.Distinct(models.Race.poll_closing_time)).order_by(models.Race.poll_closing_time)
+
+    for ct in closing_times:
+        print "Polls close at %s" % ct.poll_closing_time
+        races = models.Race.select().where(models.Race.poll_closing_time == ct.poll_closing_time)
+        for race in races:
+            race.precincts_total = random.randint(2000, 4000)
+            race.precincts_reporting = random.randint(200, race.precincts_total)
+            race.ap_called = True
+            race.accept_ap_call = True
+            _fake_results(race)
+            race.save()
+
+        sleep(float(update_interval))
