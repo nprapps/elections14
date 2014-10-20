@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "dependencies": {
         "less": "~1.7.0",
-        "universal-jst": "~1.0.5",
-        "depict": "~0.1.9"
+        "universal-jst": "~1.0.5"
     }
 }
