@@ -1,12 +1,13 @@
-{% extends "_base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Stack Administrator</title>
 
-{% block extra_head %}
-  {{ CSS.push('less/admin.less') }}
-  {{ CSS.render('css/admin.min.css') }}
-{% endblock %}
+{{ CSS.push('less/admin.less') }}
+{{ CSS.render('css/admin.min.css') }}
+</head>
 
-{% block outer_content %}
-
+<body>
 <header>
     <h1>Stack administrator</h1>
 </header>
@@ -36,12 +37,12 @@
                 <ul class="list-unstyled">
                     {% for slide in news %}
                     <li class="item" data-slide="{{ slide.slug }}">
-                        <p class="slug">{{ slide.slug }}</p>
+                        <p class="slug"><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank">{{ slide.slug }}</a></p>
                         <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
                         <p>{{ slide.body|smarty }}</p>
                         <div class="controls">
                             <a class="add" href="#"><span class="fa fa-plus"></span></a>
-                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank"><span class="fa fa-search"></span></a>
+                            <a class="preview" href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank"><span class="fa fa-search"></span></a>
                         </div>
                     </li>
                     {% endfor %}
@@ -66,10 +67,10 @@
         </div>
     </div>
 </section>
-{% endblock %}
 
-{% block extra_foot_js %}
-  {{ JS.push('js/lib/jquery-sortable.js') }}
-  {{ JS.push('js/stack-admin.js') }}
-  {{ JS.render('js/admin-app-footer.min.js') }}
-{% endblock %}
+{{ JS.push('js/lib/jquery.js') }}
+{{ JS.push('js/lib/jquery-sortable.js') }}
+{{ JS.push('js/stack-admin.js') }}
+{{ JS.render('js/admin-app-footer.min.js') }}
+
+</body>

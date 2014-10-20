@@ -3,6 +3,7 @@ var postData = null;
 
 var $items = null;
 var $add = null;
+var $preview = null;
 var $remove = null;
 var $timeline = null;
 var $save = null;
@@ -42,10 +43,14 @@ var onAddClick = function() {
     var $item = $(this).parents('.item');
     var slide = $item.data('slide');
 
-    var newItem = $('<li class="item" data-slide="' + slide + '">' + slide + ' <a class="remove" href="#"><span class="fa fa-times"></span></a></li>'
+    var newItem = $('<li class="item" data-slide="' + slide + '">' + slide + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div></li>'
     )
 
     $timeline.append(newItem);
+
+    // reset event handlers to account for new button
+    $remove = $('.remove');
+    $remove.on('click', onRemoveClick);
 }
 
 var onRemoveClick = function() {
@@ -63,10 +68,12 @@ var onSaveClick = function() {
         contentType: "application/json",
     });
 }
+
 $(document).ready(function() {
     $timeline = $('.timeline ol')
     $items = $('.out .item');
     $add = $('.add');
+    $preview = $('.preview');
     $remove = $('.remove');
     $save = $('.save-btn');
 
