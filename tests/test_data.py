@@ -32,7 +32,6 @@ class DataTestCase(unittest.TestCase):
             self.assertEqual(race.seat_number, 2)
             self.assertEqual(race.race_id, 'OR-38529')
             self.assertEqual(race.race_type, 'G')
-            self.assertEqual(race.last_updated, datetime(2014, 9, 26, 16, 26, 50))
 
     def test_load_candidates(self):
         with test_database(test_db, [Race, Candidate]):
@@ -130,6 +129,6 @@ class DataTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_ballot_measures_extra('data/ballot-measures-extra.csv', quiet=True)
 
-            race = Race.get(Race.race_id == 'MI-24549')
-            self.assertEqual(race.ballot_measure_description, 'Wolf Hunting')
+            race = Race.get(Race.race_id == '27456-MO')
+            self.assertEqual(race.ballot_measure_description, 'Teacher Performance Evaluation (Amendment 3)')
 

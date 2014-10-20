@@ -20,13 +20,12 @@
         "race_type": "G"
     },
     {
+        "office_name": "Amendment",
+        "seat_name": "3 - Require Teach Evals",
+        "seat_number": "2",
+        "race_type": "G",
         "office_id": "I",
-        "seat_name": "14-1 Wolf Hunting Season",
-        "state_postal": "MI",
-        "last_updated": "2014-10-15T16:18:19Z",
-        "race_id": "MI-24549",
-        "seat_number": null,
-        "office_name": "Proposal",
-        "race_type": "G"
-    }
+        "state_postal": "MO",
+        "race_id": "27456-MO"
+    },
 ]
