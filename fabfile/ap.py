@@ -161,9 +161,6 @@ def update(output_dir='data'):
     """
     Update data from AP.
     """
-    _update_ap('races')
-    _update_ap('calls')
-
     write_update('%s/update.json' % output_dir)
     write_calls('%s/calls.json' % output_dir)
 
@@ -199,31 +196,32 @@ def process_candidate(candidate):
     return ret
 
 def write_update(path):
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
+    """
+    Write an update
+    """
 
-    # Updates
+    client = AP(SECRETS['AP_FTP_USER'], SECRETS['AP_FTP_PASSWORD'])
+    ticket = client.get_topofticket('2014-11-04')
+
     updates = []
-    update_races = cache['races']['response'].get('races', [])
 
-    for race in update_races:
-        stateRU = race['reportingUnits'][0]
-
-        assert stateRU.get('level', None) == 'state'
-
+    for race in ticket.races:
         update = {
-            'race_id': _generate_race_id(race, stateRU.get('statePostal')),
-            'is_test': race.get('test'),
-            'precincts_reporting': stateRU.get('precinctsReporting'),
-            'precincts_total': stateRU.get('precinctsTotal'),
-            'last_updated': stateRU.get('lastUpdated'),
-            'candidates': []
+            'race_id': race.ap_race_number,
+            'precincts_reporting': 0,
+            'precincts_total': 0,
+            'candidates': [],
         }
 
-        for candidate in stateRU.get('candidates'):
+        for ru in race.reporting_units:
+            update['precincts_total'] += ru.precincts_total
+            if ru.precincts_reporting:
+                update['precincts_reporting'] += ru.precincts_reporting
+
+        for candidate in race.candidates:
             update['candidates'].append({
-                'candidate_id': candidate.get('candidateID'),
-                'vote_count': candidate.get('voteCount')
+                'candidate_id': candidate.ap_natl_number,
+                'vote_count': candidate.vote_total
             })
 
         updates.append(update)
@@ -232,29 +230,29 @@ def write_update(path):
         json.dump(updates, f, indent=4)
 
 def write_calls(path):
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
- 
-    # Calls
+    """
+    Write call data to disk
+    """
+
+    client = AP(SECRETS['AP_FTP_USER'], SECRETS['AP_FTP_PASSWORD'])
+    ticket = client.get_topofticket('2014-11-04')
+
     calls = []
-    update_calls = cache['calls']['response']['calls']
 
-    for race in update_calls:
-        if not race.get('raceID'):
-            continue
+    for race in ticket.races:
 
-        winners = race.get('candidates')
+        winners = [candidate for candidate in race.candidates if candidate.is_winner]
 
         if len(winners) > 1:
             print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (_generate_race_id(race), race['raceType'], race['statePostal'])
 
-        winner = winners[0]
+        if len(winners):
+            winner = winners[0]
 
-        calls.append({
-            'race_id': _generate_race_id(race),
-            'ap_called_time':race.get('callTimestamp'),
-            'ap_winner': winner['candidateID'] 
-        })
+            calls.append({
+                'race_id': race.ap_race_number,
+                'ap_winner': winner.ap_natl_number
+            })
 
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)
