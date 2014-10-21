@@ -10,11 +10,11 @@ import app_config
 secrets = app_config.get_secrets()
 
 db = PostgresqlDatabase(
-    app_config.PROJECT_SLUG,
-    user=secrets.get('POSTGRES_USER', None),
-    password=secrets.get('POSTGRES_PASSWORD', None),
-    host=secrets.get('POSTGRES_HOST', 'localhost'),
-    port=secrets.get('POSTGRES_PORT', 5432)
+    app_config.DATABASE['name'],
+    user=app_config.DATABASE['user'],
+    password=app_config.DATABASE['password'],
+    host=app_config.DATABASE['host'],
+    port=app_config.DATABASE['port']
 )
 
 # Indepdendent candidate overrides, (AP race_id, candidate_id) two-tuple mapping
@@ -382,7 +382,7 @@ class Slide(SlugModel):
     name = CharField(max_length=255)
     body = TextField()
     view_name = CharField(max_length=255)
-    time_on_screen = IntegerField(default=10)
+    time_on_screen = IntegerField(default=15)
 
     def __unicode__(self):
         return self.name

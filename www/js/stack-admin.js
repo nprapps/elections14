@@ -6,7 +6,7 @@ var $add = null;
 var $preview = null;
 var $remove = null;
 var $timeline = null;
-var $save = null;
+var $saveForm = null;
 
 var initDragAndDrop = function() {
     group = $(".js-droppable-and-draggable").sortable({
@@ -38,7 +38,7 @@ var onAddClick = function() {
     var slide = $item.data('slide');
     var time = $item.data('time');
 
-    var newItem = $('<span class="dragger fa fa-align-justify"></span> <li class="item" data-slide="' + slide + '">' + slide + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div></li>'
+    var newItem = $('<li class="item" data-slide="' + slide + '"><span class="dragger fa fa-align-justify"></span>' + slide + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div></li>'
     )
 
     $timeline.append(newItem);
@@ -53,7 +53,7 @@ var onRemoveClick = function() {
     $item.remove();
 }
 
-var onSaveClick = function() {
+var onSaveFormSubmit = function() {
     postData = group.sortable("serialize").get();
     $.ajax({
         type:"POST",
@@ -70,12 +70,12 @@ $(document).ready(function() {
     $add = $('.add');
     $preview = $('.preview');
     $remove = $('.remove');
-    $save = $('.save-btn');
+    $saveForm = $('.send-stack');
 
     $items.hover(onItemsHover, offItemsHover);
     $add.on('click', onAddClick);
     $remove.on('click', onRemoveClick);
-    $save.on('click', onSaveClick);
+    $saveForm.submit(onSaveFormSubmit)
 
     initDragAndDrop();
 });
