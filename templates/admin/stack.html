@@ -3,13 +3,9 @@
 <head>
 <title>Stack Administrator</title>
 
-
-{% if S3_BASE_URL == 'http://127.0.0.1:8000' %}
 {{ CSS.push('less/admin.less') }}
 {{ CSS.render('css/admin.min.css') }}
-{% else %}
-<link rel="stylesheet" href="{{ S3_BASE_URL }}/css/admin.less.css">
-{% endif %}
+
 </head>
 
 <body>
