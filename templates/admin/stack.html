@@ -33,7 +33,7 @@
                 <h2>News Items</h2>
                 <ul class="list-unstyled">
                     {% for slide in news %}
-                    <li class="item" data-slide="{{ slide.slug }}">
+                    <li class="item" data-slide="{{ slide.slug }}" data-time ="{{ slide.time_on_screen }}">
                         <p class="slug"><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank">{{ slide.slug }}</a></p>
                         <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
                         <p>{{ slide.body|smarty }}</p>
@@ -48,11 +48,11 @@
             <div class="timeline">
                 <h2>Live stack</h2>
 
-                <p>Stack length: {{ time }} seconds</p>
+                <p>Stack length: <span class="stack-time">{{ time }}</span> seconds</p>
                 <ol class="sortable list-unstyled js-droppable-and-draggable">
                     {% for slide in sequence %}
                     <li class="item" data-slide="{{ slide.slide }}">
-                        <span class="fa fa-align-justify"></span> {{ slide.slide }}
+                        <span class="dragger fa fa-align-justify"></span> {{ slide.slide }}
                         <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div>
                     </li>
                     {% endfor %}
