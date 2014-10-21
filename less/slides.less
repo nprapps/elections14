@@ -398,3 +398,104 @@
 	}
 }
 
+/*
+** STATE SLIDES
+*/
+
+.state-slide {
+	color: #fff;
+
+    .slide-content {
+        @media screen and (min-width: @screen-md){
+        	display: table;
+        }
+    }
+
+    .state-header,
+    .state-results {
+    	@media screen and (min-width: @screen-md){
+    		display: table-cell;
+    		padding: @grid-gutter-width;
+    	}
+    }
+
+    .state-header {
+    	@media screen and (min-width: @screen-md){
+        	width: 25%;
+        	vertical-align: middle;
+        	border-right: 2px solid #999;
+        }
+
+    	text-align: center;
+    	color: #fff;
+
+    	h2 {
+	    	text-transform: uppercase;
+	    	font-size: 32px;
+	    }
+
+	    .stateface {
+	    	font-size: 20vw;
+	    	line-height: 1;
+	    }
+    }
+
+    .state-results {
+    	@media screen and (min-width: @screen-md){
+        	width: 75%;
+        }
+
+        h3 {
+        	margin-bottom: @line-height-computed;
+        }
+
+        p {
+        	line-height: 30px;
+        }
+
+        .bar-wrapper {
+        	display: inline-block;
+        	position: relative;
+        	height: 30px;
+        }
+
+        .bar {
+        	height: 30px;
+        }
+
+        .bar-label {
+        	position: absolute;
+        	padding-left: 10px;
+        }
+    }
+
+    .results-wrapper {
+        .make-row();
+        margin-bottom: @line-height-computed * 2;
+    }
+
+    .current-results,
+    .projected-results {
+        .make-md-column(6);
+
+        p {
+        	border-left: 1px solid #eee;
+        	margin: 0;
+        	padding: 10px 0;
+	        font-family: 'Cooper Hewitt';
+	        font-size: 24px;
+	        overflow: hidden;
+
+        	+ p {
+        		padding-top: 0;
+        	}
+        }
+    }
+
+    .house .races {
+        @media screen and (min-height: 700px) and (min-width: 1100px){
+            font-size: 24px;
+        }
+    }
+}
+
