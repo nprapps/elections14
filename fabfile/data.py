@@ -651,20 +651,57 @@ def _fake_results(race):
 
 @task
 def play_fake_results(update_interval=60):
+    """
+    Play back faked results, poll closing time by poll closing time
+    """
     import models
     from peewee import fn
 
+    print "Playing back results, ctrl-c to stop"
+
     closing_times = models.Race.select(fn.Distinct(models.Race.poll_closing_time)).order_by(models.Race.poll_closing_time)
+    try:
+        for ct in closing_times:
+            print "Polls close at %s" % ct.poll_closing_time
+            races = models.Race.select().where(models.Race.poll_closing_time == ct.poll_closing_time)
+            for race in races:
+                race.precincts_total = random.randint(2000, 4000)
+                race.precincts_reporting = random.randint(200, race.precincts_total)
+                race.ap_called = True
+                race.accept_ap_call = True
+                _fake_results(race)
+                race.save()
 
-    for ct in closing_times:
-        print "Polls close at %s" % ct.poll_closing_time
-        races = models.Race.select().where(models.Race.poll_closing_time == ct.poll_closing_time)
-        for race in races:
-            race.precincts_total = random.randint(2000, 4000)
-            race.precincts_reporting = random.randint(200, race.precincts_total)
-            race.ap_called = True
-            race.accept_ap_call = True
-            _fake_results(race)
-            race.save()
+            sleep(float(update_interval))
 
-        sleep(float(update_interval))
+        print "All done, resetting results"
+        reset_results()
+        play_fake_results()
+
+    except KeyboardInterrupt:
+        print "ctrl-c pressed, resetting results"
+        reset_results()
+
+
+@task
+def reset_results():
+    """
+    Reset election results
+    """
+    import models
+
+    races = models.Race.select()
+    for race in races:
+        race.precincts_reporting = 0
+        race.ap_called_time = None
+        race.ap_called = False
+        race.accept_ap_call = False
+        race.npr_called = False
+        race.npr_called_time = None
+        for candidate in race.candidates:
+            candidate.total_votes = 0
+            candidate.ap_winner = False
+            candidate.npr_winner = False
+            candidate.save()
+
+        race.save()
