@@ -53,7 +53,7 @@ ASSETS_S3_BUCKET = {
     'region': 'us-east-1'
 }
 
-PRODUCTION_SERVERS = ['cron.nprapps.org']
+PRODUCTION_SERVERS = ['54.244.238.237']
 STAGING_SERVERS = ['54.244.238.154']
 
 # Should code be deployed to the web/cron servers?
@@ -305,7 +305,7 @@ Database
 secrets = get_secrets()
 DATABASE = {
     'name': PROJECT_SLUG,
-    'user': PROJECT_SLUG,
+    'user': secrets.get('POSTGRES_USER', None),
     'engine': 'peewee.PostgresqlDatabase',
     'password': secrets.get('POSTGRES_PASSWORD', None),
     'host': secrets.get('POSTGRES_HOST', 'localhost'),

@@ -86,7 +86,7 @@ def install_requirements():
     require('settings', provided_by=['production', 'staging'])
 
     run('%(SERVER_VIRTUALENV_PATH)s/bin/pip install -U -r %(SERVER_REPOSITORY_PATH)s/requirements.txt' % app_config.__dict__)
-    run('cd %(SERVER_REPOSITORY_PATH)s; npm install' % app_config.__dict__) 
+    run('cd %(SERVER_REPOSITORY_PATH)s; npm install' % app_config.__dict__)
 
 @task
 def setup_logs():
@@ -95,8 +95,8 @@ def setup_logs():
     """
     require('settings', provided_by=['production', 'staging'])
 
-    sudo('mkdir %(SERVER_LOG_PATH)s' % app_config.__dict__) 
-    sudo('chown ubuntu:ubuntu %(SERVER_LOG_PATH)s' % app_config.__dict__) 
+    sudo('mkdir %(SERVER_LOG_PATH)s' % app_config.__dict__)
+    sudo('chown ubuntu:ubuntu %(SERVER_LOG_PATH)s' % app_config.__dict__)
 
 @task
 def install_crontab():
@@ -116,6 +116,7 @@ def uninstall_crontab():
 
     sudo('rm /etc/cron.d/%(PROJECT_FILENAME)s' % app_config.__dict__)
 
+@task
 def delete_project():
     """
     Remove the project directory. Invoked by shiva.
@@ -137,7 +138,7 @@ def _get_rendered_conf_path(service, extension):
     Derive the rendered path for a conf file.
     """
     return 'confs/rendered/%s.%s.%s' % (app_config.PROJECT_FILENAME, service, extension)
-    
+
 def _get_installed_conf_path(service, remote_path, extension):
     """
     Derive the installed path for a conf file.
