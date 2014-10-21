@@ -3,8 +3,22 @@
 .slide-content{
     .tumblr {
         background-image: url('../assets/elections-background-1.jpg');
-        padding: 3vmin 6vmin 3vmin 6vmin;
+        padding: 50px;
         height: 100%;
+
+        a {
+            color: @grayMedium; 
+        }
+
+        .date {
+            font-size: 3vmin;
+            margin-bottom: 2vmin;
+        }
+
+        .post-footer {
+            color: @grayMedium;
+            font-size: 3.5vmin;
+        }
     }
 
     .tumblr-text-post {
@@ -14,13 +28,8 @@
             transform: translateY(-50%);
 
             h2 {
-                font-size: 6vmin;
-                margin-bottom: 1vmin;
-            }
-
-            .date {
-                font-size: 3vmin;
-                margin-bottom: 1vmin;
+                font-size: 40px;
+                margin-bottom: 20px;
             }
 
             .body {
@@ -31,10 +40,6 @@
                     font-size: 4.5vmin;
                     line-height: 5.2vmin;
                 }
-            }
-
-            .post-footer {
-                font-size: 3vmin;
             }
         }
     }
@@ -60,22 +65,13 @@
             top: 45%;
             transform: translateY(-50%);
 
-            .date {
-                font-size: 3vmin;
-                margin-bottom: 1vmin;
-            }
-
             .body {
                 margin-bottom: 2vmin;
-                
+
                 p {
                     font-size: 4.5vmin;
                     line-height: 5.2vmin;
                 }
-            }
-
-            .post-footer {
-                font-size: 3vmin;
             }
         }
     }
@@ -86,11 +82,6 @@
             top: 50%;
             transform: translateY(-50%);
             -webkit-transform: translateY(-50%);
-
-            .date {
-                font-size: 3vmin;
-                margin-bottom: 1vmin;
-            }
 
             blockquote {
                 font-size: 6vmin;
@@ -126,10 +117,6 @@
                     }
                 }
             }
-
-            .post-footer {
-                font-size: 3vmin;
-            }
         }
     }
 
@@ -145,11 +132,6 @@
                 margin-bottom: 1vmin;
             }
 
-            .date {
-                font-size: 3vmin;
-                margin-bottom: 1vmin;
-            }
-
             .body {
                 margin-top: 5vmin;
                 margin-bottom: 5vmin;
@@ -159,16 +141,13 @@
                     line-height: 5.2vmin;
                 }
             }
-
-            .post-footer {
-                font-size: 3vmin;
-            }
         }
     }
 
     .instagram-grid {
         margin: 0 auto;
         max-width: 1280px;
+
         .photo {
             display: inline-block;
             float: left;
@@ -416,6 +395,197 @@
 	h3 {
 		text-align: left;
 		margin-bottom: 11px;
+	}
+}
+
+/*
+** STATE SLIDES
+*/
+
+.state-slide {
+	color: #fff;
+    background-image: url('../assets/elections-background-1.jpg');
+    background-size: cover;
+    height: 100%;
+    margin-bottom: @line-height-computed;
+
+    @media screen and (min-width: @screen-md){
+
+    	.state-results-wrapper {
+    		display: table;
+    		width: 100%;
+    	}
+
+    	.state-header,
+    	.state-results {
+			display: table-cell;
+			padding: @grid-gutter-width;
+    	}
+
+    	.state-header {
+    		width: 25%;
+    		vertical-align: middle;
+    		border-right: 2px solid #999;
+    	}
+
+    	.state-results {
+        	width: 75%;
+    	}
+    }
+
+    .state-header {
+    	text-align: center;
+    	color: #fff;
+
+    	h2 {
+	    	text-transform: uppercase;
+	    	font-size: 32px;
+	    }
+
+	    .stateface {
+	    	font-size: 20vw;
+	    	line-height: 1;
+	    }
+
+	    .page {
+	    	font-size: 14px;
+	    	color: #999;
+	    	text-transform: uppercase;
+	    	margin-top: 10px;
+	    }
+    }
+
+    .state-results {
+        h3 {
+        	margin-bottom: @line-height-computed;
+        }
+
+        p {
+        	line-height: 30px;
+        }
+
+        .bar-wrapper {
+        	display: inline-block;
+        	position: relative;
+        	height: 30px;
+        }
+
+        .bar {
+        	height: 30px;
+        }
+
+        .bar-label {
+        	position: absolute;
+        	padding-left: 10px;
+        }
+    }
+
+    .results-wrapper {
+        .make-row();
+        margin-bottom: @line-height-computed * 2;
+    }
+
+    .current-results,
+    .projected-results {
+        .make-md-column(6);
+
+        p {
+        	border-left: 1px solid #ccc;
+        	margin: 0;
+        	padding: 10px 0;
+	        font-family: 'Cooper Hewitt';
+	        font-weight: 300;
+	        font-size: 24px;
+	        overflow: hidden;
+
+        	+ p {
+        		padding-top: 0;
+        	}
+        }
+    }
+
+    .house,
+    .senate,
+    .governor {
+    	.races {
+	        @media screen and (min-height: 700px) and (min-width: 1100px){
+	            font-size: 24px;
+	        }
+
+	        .candidate,
+	        .candidate-total {
+	        	&.dem   { background: fadeout(@blueDim, 30%); }
+	        	&.gop   { background: fadeout(@redDim, 30%); }
+		        &.other { background: fadeout(@greenDim, 30%); }
+	        }
+	    }
+    }
+}
+
+.legend {
+	font-family: 'Cooper Hewitt';
+	font-weight: 300;
+
+	.container-fluid {
+		margin: @grid-gutter-width;
+		background: fadeout(@blueDark, 30%);
+		padding: @grid-gutter-width / 2;
+		font-size: 3vmin;
+	}
+
+	ul {
+		.make-md-column(4);
+		margin-bottom: 0;
+	}
+
+	.key-color {
+		.square(20px);
+		display: inline-block;
+		border-radius: 10px;
+		margin-right: 10px;
+
+		&.dem { background: @blue; }
+		&.gop { background: @red; }
+		&.other { background: @green; }
+	}
+
+	.winner {
+		display: inline-block;
+		background: @blue;
+		border-radius: 5px;
+		padding: 0 5px;
+		margin-left: 55px;
+	}
+
+	.incumbent {
+		img {
+			width: 8px;
+		}
+	}
+
+	.reporting {
+		color: @yellow;
+	}
+
+	.seat-held {
+		color: @red;
+	}
+
+	.pickup {
+		font-weight: 500;
+		font-style: italic;
+		font-size: 16px;
+		color: @blue;
+	}
+
+	.incumbent,
+	.reporting,
+	.seat-held,
+	.pickup {
+		width: 50px;
+		display: inline-block;
+		text-align: right;
+		margin-right: 5px;
 	}
 }
 

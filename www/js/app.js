@@ -351,7 +351,7 @@ var getState = function() {
     var input = $('.typeahead').typeahead('val');
     if (input) {
         var inverted = _.invert(APP_CONFIG.STATES);
-        state = inverted(input)
+        state = inverted[input]
     }
 
     $.cookie('state', state, { expires: 30 });

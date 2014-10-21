@@ -53,8 +53,8 @@ ASSETS_S3_BUCKET = {
     'region': 'us-east-1'
 }
 
-PRODUCTION_SERVERS = ['cron.nprapps.org']
-STAGING_SERVERS = ['50.112.92.131']
+PRODUCTION_SERVERS = ['54.244.238.237']
+STAGING_SERVERS = ['54.244.238.154']
 
 # Should code be deployed to the web/cron servers?
 DEPLOY_TO_SERVERS = True
@@ -200,6 +200,13 @@ STATES = {
     'WY': 'Wyoming',
 }
 
+# States with many results that need to be paginated
+PAGINATED_STATES = [
+    'CA',
+    'IL',
+    'NY'
+]
+
 """
 Utilities
 """
@@ -300,7 +307,7 @@ Database
 secrets = get_secrets()
 DATABASE = {
     'name': PROJECT_SLUG,
-    'user': PROJECT_SLUG,
+    'user': secrets.get('POSTGRES_USER', None),
     'engine': 'peewee.PostgresqlDatabase',
     'password': secrets.get('POSTGRES_PASSWORD', None),
     'host': secrets.get('POSTGRES_HOST', 'localhost'),

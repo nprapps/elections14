@@ -1,0 +1,46 @@
+@import "less/variables.less";
+
+@viewport-width: 720px;
+@viewport-height: 480px;
+
+.slide-content {
+    width: @viewport-width;
+    height: @viewport-height - 60px;
+}
+
+.post-footer {
+    display: none;
+}
+
+.share-footer {
+    color: white;
+    display: block;
+    height: 60px;
+    width: @viewport-width;
+    padding: 0 50px;
+    background-color: @blueDark;
+
+    .share-title, .share-url {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .share-title {
+        float: left;
+        width: 50%;
+        svg {
+            width: 60%;
+            margin-top: 5px;
+        }
+    }
+
+    .share-url {
+        h2 {
+            font-family: Georgia, serif;
+        }
+        float: right;
+        font-size: 36px;
+    }
+
+}

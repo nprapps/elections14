@@ -4,6 +4,7 @@
 Commands that update or process the application data.
 """
 from datetime import datetime, timedelta
+from time import sleep
 from itertools import count
 import json
 import random
@@ -434,10 +435,24 @@ def _save_house_row(row, quiet=False):
         district = int(row['district'][2:])
         existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
 
+        existing.previous_party = row['party']
+
         if row['featured'] == '1':
             existing.featured_race = True
 
-        existing.previous_party = row['party']
+        if row['obama_gop'] == '1':
+            existing.obama_gop = True
+
+        if row['romney_dem'] == '1':
+            existing.romney_dem = True
+
+        if row['bluedog'] == '1':
+            existing.bluedog = True
+
+        if row['rematch_result'] and row['rematch_description']:
+            existing.rematch_result = row['rematch_result']
+            existing.rematch_description = row['rematch_description']
+
         existing.save()
 
     except models.Race.DoesNotExist:
@@ -518,20 +533,20 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
-    _mock_empty_slide('senate big board', 'senate_big_board', 3, it.next())
-    _mock_empty_slide('house big board one', 'house_big_board_one', 5, it.next())
-    _mock_empty_slide('house big board two', 'house_big_board_two', 5, it.next())
-    _mock_empty_slide('governor big board', 'governor_big_board', 5, it.next())
-    _mock_empty_slide('ballot measures big board', 'ballot_measures_big_board', 5, it.next())
-    _mock_empty_slide('balance of power', 'balance_of_power', 5, it.next())
-    _mock_empty_slide('poll closing', 'poll_closing', 5, it.next())
-    _mock_empty_slide('state senate', '_state_senate_slide', 10, it.next())
-    _mock_empty_slide('state house', '_state_house_slide', 10, it.next())
-    _mock_empty_slide('romney dems', 'romney_dems', 5, it.next())
-    _mock_empty_slide('obama reps', 'obama_reps', 5, it.next())
-    _mock_empty_slide('incumbents lost', 'incumbents_lost', 5, it.next())
-    _mock_empty_slide('blue dogs', 'blue_dogs', 5, it.next())
-    _mock_empty_slide('house freshmen', 'house_freshmen', 5, it.next())
+    _mock_empty_slide('senate big board', 'senate_big_board', 20, it.next())
+    _mock_empty_slide('house big board one', 'house_big_board_one', 20, it.next())
+    _mock_empty_slide('house big board two', 'house_big_board_two', 20, it.next())
+    _mock_empty_slide('governor big board', 'governor_big_board', 20, it.next())
+    _mock_empty_slide('ballot measures big board', 'ballot_measures_big_board', 20, it.next())
+    _mock_empty_slide('balance of power', 'balance_of_power', 10, it.next())
+    _mock_empty_slide('poll closing', 'poll_closing', 15, it.next())
+    _mock_empty_slide('state senate', '_state_senate_slide', 20, it.next())
+    _mock_empty_slide('state house', '_state_house_slide', 20, it.next())
+    _mock_empty_slide('romney dems', 'romney_dems', 10, it.next())
+    _mock_empty_slide('obama reps', 'obama_reps', 10, it.next())
+    _mock_empty_slide('incumbents lost', 'incumbents_lost', 10, it.next())
+    _mock_empty_slide('blue dogs', 'blue_dogs', 10, it.next())
+    _mock_empty_slide('house freshmen', 'house_freshmen', 10, it.next())
 #    execute('instagram.get_photos')
 
 def _mock_slide_from_image(filename, i):
@@ -622,7 +637,7 @@ def _fake_results(race):
     max_candidate = None
     for candidate in race.candidates:
         candidate.ap_winner = False
-        if (candidate.party in ['GOP', 'Dem', 'Grn'] or race.office_id == 'I') and race.precincts_reporting > 0:
+        if (candidate.party in ['GOP', 'Dem'] or race.office_id == 'I') and race.precincts_reporting > 0:
             votes = random.randint(400000, 600000)
             candidate.vote_count = votes
             if votes > max_votes:
@@ -637,3 +652,59 @@ def _fake_results(race):
         max_candidate.ap_winner = True
         max_candidate.save()
 
+@task
+def play_fake_results(update_interval=60):
+    """
+    Play back faked results, poll closing time by poll closing time
+    """
+    import models
+    from peewee import fn
+
+    print "Playing back results, ctrl-c to stop"
+
+    closing_times = models.Race.select(fn.Distinct(models.Race.poll_closing_time)).order_by(models.Race.poll_closing_time)
+    try:
+        for ct in closing_times:
+            print "Polls close at %s" % ct.poll_closing_time
+            races = models.Race.select().where(models.Race.poll_closing_time == ct.poll_closing_time)
+            for race in races:
+                race.precincts_total = random.randint(2000, 4000)
+                race.precincts_reporting = random.randint(200, race.precincts_total)
+                race.ap_called = True
+                race.accept_ap_call = True
+                _fake_results(race)
+                race.save()
+
+            sleep(float(update_interval))
+
+        print "All done, resetting results"
+        reset_results()
+        play_fake_results()
+
+    except KeyboardInterrupt:
+        print "ctrl-c pressed, resetting results"
+        reset_results()
+
+
+@task
+def reset_results():
+    """
+    Reset election results
+    """
+    import models
+
+    races = models.Race.select()
+    for race in races:
+        race.precincts_reporting = 0
+        race.ap_called_time = None
+        race.ap_called = False
+        race.accept_ap_call = False
+        race.npr_called = False
+        race.npr_called_time = None
+        for candidate in race.candidates:
+            candidate.total_votes = 0
+            candidate.ap_winner = False
+            candidate.npr_winner = False
+            candidate.save()
+
+        race.save()

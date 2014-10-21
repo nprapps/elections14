@@ -3,16 +3,16 @@
 import argparse
 import datetime
 import logging
-import subprocess
 
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin, ModelAdmin
 from models import Slide, SlideSequence, Race, Candidate
+from peewee import fn
 
 import app_config
-from render_utils import make_context, urlencode_filter
+from render_utils import make_context, urlencode_filter, smarty_filter
 import static_app
 
 app = Flask(__name__)
@@ -21,6 +21,7 @@ app.config['DATABASE'] = app_config.DATABASE
 app.config['SECRET_KEY'] = 'askfhj3r3j'
 
 app.jinja_env.filters['urlencode'] = urlencode_filter
+app.jinja_env.filters['smarty'] = smarty_filter
 app.register_blueprint(static_app.static_app, url_prefix='/%s' % app_config.PROJECT_SLUG)
 
 file_handler = logging.FileHandler('%s/app.log' % app_config.SERVER_LOG_PATH)
@@ -46,29 +47,27 @@ def stack():
     """
     context = make_context(asset_depth=1)
 
+    sequence = SlideSequence.select()
+    sequence_dicts = sequence.dicts()
+
+    time = 0
+
+    for slide in sequence:
+        time += slide.slide.time_on_screen
+
+
+    for slide in sequence_dicts:
+        print slide
+
     context.update({
         'sequence': SlideSequence.select().dicts(),
         'slides': Slide.select().dicts(),
+        'graphics': Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) != 'tumblr').order_by(Slide.slug).dicts(),
+        'news':  Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) == 'tumblr').order_by(Slide.slug).dicts(),
+        'time': time,
     })
 
     return render_template('admin/stack.html', **context)
-
-@app.route('/%s/admin/stack/share/<slug>' % app_config.PROJECT_SLUG, methods=['GET'])
-def share(slug):
-    preview_url = '%s/preview/%s' % (app_config.S3_BASE_URL, slug)
-    image_url = 'www/assets/share-images/%s.png' % slug
-
-    subprocess.check_output([
-        "node_modules/depict/src/depict.js",
-        preview_url,
-        '%s' % image_url,
-        '--call-phantom',
-    ])
-
-    response = send_file(image_url, mimetype='image/png')
-    response.headers['Content-Disposition'] = 'attachment'
-    return response
-
 
 @app.route('/%s/admin/stack/save' % app_config.PROJECT_SLUG, methods=['POST'])
 def save_stack():
