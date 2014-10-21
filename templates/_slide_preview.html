@@ -3,8 +3,8 @@
 <head>
     {% include '_fonts.html' %}
 
-    {{ CSS.push('less/app.less') }}
-    {{ CSS.render('css/preview.min.css') }}
+    {# Unfortunante hack because we're deploying this to staging and it can't compile a less file on demand #}
+    <link rel="stylesheet" href="/css/app.less.css" />
 
     <!-- ugly includes because slide js is inlined and can't pickup the stuff from the base template -->
     <script src="/js/lib/d3.v3.min.js"></script>
@@ -19,8 +19,6 @@
             background-color: #141D24;
         }
     </style>
-
-
 </head>
 
 <body>
@@ -62,6 +60,5 @@
 
         })
     </script>
-
 </body>
 </html>
