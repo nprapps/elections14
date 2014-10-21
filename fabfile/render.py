@@ -157,9 +157,6 @@ def render_slides():
 
             path = '%s%s' % (output_path, path)
 
-            if path[-1] == '/':
-                path += 'index.html'
-
             # Ensure path exists
             head = os.path.split(path)[0]
 
@@ -208,9 +205,6 @@ def render_states(compiled_includes={}):
                 content = view(**view_kwargs)
 
             path = '%s%s' % (output_path, path)
-
-            if path[-1] == '/':
-                path += 'index.html'
 
             # Ensure path exists
             head = os.path.split(path)[0]

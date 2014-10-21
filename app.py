@@ -123,7 +123,7 @@ def _stack_json():
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-@app.route('/preview/state-house-<string:slug>-<int:page>/')
+@app.route('/preview/state-house-<string:slug>-<int:page>/index.html')
 @app_utils.cors
 def _state_house_slide_preview(slug, page):
     """
@@ -135,7 +135,7 @@ def _state_house_slide_preview(slug, page):
 
     return render_template('_slide_preview.html', **context)
 
-@app.route('/preview/state-senate-<slug>/')
+@app.route('/preview/state-senate-<slug>/index.html')
 @app_utils.cors
 def _state_senate_slide_preview(slug):
     """
@@ -147,7 +147,7 @@ def _state_senate_slide_preview(slug):
 
     return render_template('_slide_preview.html', **context)
 
-@app.route('/preview/<slug>/')
+@app.route('/preview/<slug>/index.html')
 @app_utils.cors
 def _slide_preview(slug):
     """
