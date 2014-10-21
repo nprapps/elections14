@@ -3,7 +3,8 @@
         <div class="slide-content">
             <div class="state-header">
                 <h1><span class="stateface stateface-{{ state_postal|lower }}"></span></h1>
-                <h2>{{ state_name }}{% if page %} (Page {{ page }} of 2){% endif %}</h2>
+                <h2>{{ state_name }}</h2>
+                <h3 class="page">{% if page %} (Page {{ page }} of 2){% endif %}</h3>
             </div>
 
             <div class="state-results">

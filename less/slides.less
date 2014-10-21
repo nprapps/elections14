@@ -404,11 +404,13 @@
 
 .state-slide {
 	color: #fff;
+    background-image: url('../assets/elections-background-1.jpg');
+    background-size: cover;
+    height: 100%;
+    margin-bottom: @line-height-computed;
 
-    .slide-content {
-        @media screen and (min-width: @screen-md){
-        	display: table;
-        }
+    @media screen and (min-width: @screen-md){
+    	display: table;
     }
 
     .state-header,
@@ -437,6 +439,10 @@
 	    .stateface {
 	    	font-size: 20vw;
 	    	line-height: 1;
+	    }
+
+	    .page {
+	    	font-size: 18px;
 	    }
     }
 
@@ -492,10 +498,21 @@
         }
     }
 
-    .house .races {
-        @media screen and (min-height: 700px) and (min-width: 1100px){
-            font-size: 24px;
-        }
+    .house,
+    .senate,
+    .governor {
+    	.races {
+	        @media screen and (min-height: 700px) and (min-width: 1100px){
+	            font-size: 24px;
+	        }
+
+	        .candidate,
+	        .candidate-total {
+	        	&.dem   { background: fadeout(@blueDim, 30%); }
+	        	&.gop   { background: fadeout(@redDim, 30%); }
+		        &.other { background: fadeout(@greenDim, 30%); }
+	        }
+	    }
     }
 }
 
