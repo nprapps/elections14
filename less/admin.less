@@ -5,27 +5,6 @@
 * Basic layout
 */
 
-body {
-	padding-top: 70px + @line-height-computed;
-}
-
-header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 60px;
-	z-index: 100;
-	padding: @grid-gutter-width / 2;
-	background: #333;
-
-	h1 {
-		margin: 0;
-		color: #999;
-		font-size: @font-size-base * 2;
-	}
-}
-
 .container-fluid {
 	padding: 0 @grid-gutter-width;
 }
@@ -129,6 +108,11 @@ ol.sortable li:after {
 			a {
 				color: white;
 			}
+		}
+
+		.dragger {
+			padding: 0 10px;
+			cursor: move;
 		}
 	}
 }

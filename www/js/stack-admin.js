@@ -11,6 +11,7 @@ var $save = null;
 var initDragAndDrop = function() {
     group = $(".js-droppable-and-draggable").sortable({
         group: 'stack',
+        handle: 'span.fa-align-justify',
         onDragStart: function (item, container, _super) {
             // Duplicate items of the no drop area
             if(!container.options.drop)
@@ -19,13 +20,6 @@ var initDragAndDrop = function() {
         },
         onDrop: function(item, container, _super) {
             postData = group.sortable("serialize").get();
-            // $.ajax({
-            //     type:"POST",
-            //     url: "/elections14/admin/stack/save",
-            //     data: JSON.stringify(postData),
-            //     dataType: "json",
-            //     contentType: "application/json",
-            // });
             _super(item, container)
         },
     });
@@ -42,8 +36,9 @@ var offItemsHover = function() {
 var onAddClick = function() {
     var $item = $(this).parents('.item');
     var slide = $item.data('slide');
+    var time = $item.data('time');
 
-    var newItem = $('<li class="item" data-slide="' + slide + '">' + slide + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div></li>'
+    var newItem = $('<span class="dragger fa fa-align-justify"></span> <li class="item" data-slide="' + slide + '">' + slide + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div></li>'
     )
 
     $timeline.append(newItem);
