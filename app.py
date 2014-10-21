@@ -124,6 +124,7 @@ def _stack_json():
     return js, 200, { 'Content-Type': 'application/javascript' }
 
 @app.route('/preview/state-house-<string:slug>-<int:page>/')
+@app_utils.cors
 def _state_house_slide_preview(slug, page):
     """
     Preview a state slide outside of the stack.
@@ -135,6 +136,7 @@ def _state_house_slide_preview(slug, page):
     return render_template('_slide_preview.html', **context)
 
 @app.route('/preview/state-senate-<slug>/')
+@app_utils.cors
 def _state_senate_slide_preview(slug):
     """
     Preview a state slide outside of the stack.
@@ -146,6 +148,7 @@ def _state_senate_slide_preview(slug):
     return render_template('_slide_preview.html', **context)
 
 @app.route('/preview/<slug>/')
+@app_utils.cors
 def _slide_preview(slug):
     """
     Preview a slide outside of the stack.
