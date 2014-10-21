@@ -404,28 +404,36 @@
 
 .state-slide {
 	color: #fff;
+    background-image: url('../assets/elections-background-1.jpg');
+    background-size: cover;
+    height: 100%;
+    margin-bottom: @line-height-computed;
 
-    .slide-content {
-        @media screen and (min-width: @screen-md){
-        	display: table;
-        }
-    }
+    @media screen and (min-width: @screen-md){
 
-    .state-header,
-    .state-results {
-    	@media screen and (min-width: @screen-md){
-    		display: table-cell;
-    		padding: @grid-gutter-width;
+    	.state-results-wrapper {
+    		display: table;
+    		width: 100%;
+    	}
+
+    	.state-header,
+    	.state-results {
+			display: table-cell;
+			padding: @grid-gutter-width;
+    	}
+
+    	.state-header {
+    		width: 25%;
+    		vertical-align: middle;
+    		border-right: 2px solid #999;
+    	}
+
+    	.state-results {
+        	width: 75%;
     	}
     }
 
     .state-header {
-    	@media screen and (min-width: @screen-md){
-        	width: 25%;
-        	vertical-align: middle;
-        	border-right: 2px solid #999;
-        }
-
     	text-align: center;
     	color: #fff;
 
@@ -438,13 +446,13 @@
 	    	font-size: 20vw;
 	    	line-height: 1;
 	    }
+
+	    .page {
+	    	font-size: 18px;
+	    }
     }
 
     .state-results {
-    	@media screen and (min-width: @screen-md){
-        	width: 75%;
-        }
-
         h3 {
         	margin-bottom: @line-height-computed;
         }
@@ -492,10 +500,67 @@
         }
     }
 
-    .house .races {
-        @media screen and (min-height: 700px) and (min-width: 1100px){
-            font-size: 24px;
-        }
+    .house,
+    .senate,
+    .governor {
+    	.races {
+	        @media screen and (min-height: 700px) and (min-width: 1100px){
+	            font-size: 24px;
+	        }
+
+	        .candidate,
+	        .candidate-total {
+	        	&.dem   { background: fadeout(@blueDim, 30%); }
+	        	&.gop   { background: fadeout(@redDim, 30%); }
+		        &.other { background: fadeout(@greenDim, 30%); }
+	        }
+	    }
     }
+}
+
+.legend {
+	font-family: 'Cooper Hewitt';
+	font-weight: 300;
+
+	.container-fluid {
+		margin: @grid-gutter-width;
+		background: fadeout(@blueDim, 30%);
+		padding: @grid-gutter-width / 2;
+		font-size: 3.5vmin;
+	}
+
+	ul {
+		.make-md-column(4);
+
+		img {
+			width: 10px;
+		}
+	}
+
+	.key-color {
+		.square(20px);
+		display: inline-block;
+		border-radius: 10px;
+		margin-right: 10px;
+
+		&.dem { background: @blue; }
+		&.gop { background: @red; }
+		&.other { background: @green; }
+	}
+
+	.winner {
+		display: inline-block;
+		background: @blue;
+		border-radius: 5px;
+		padding: 0 5px;
+	}
+
+	.reporting {
+		color: @yellow;
+	}
+
+	.seat-held {
+		color: @red;
+	}
 }
 
