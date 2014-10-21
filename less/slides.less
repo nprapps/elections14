@@ -409,29 +409,27 @@
     height: 100%;
     margin-bottom: @line-height-computed;
 
-    @media screen and (min-width: @screen-md){
 
-    	.state-results-wrapper {
-    		display: table;
-    		width: 100%;
-    	}
+	.state-results-wrapper {
+		display: table;
+		width: 100%;
+	}
 
-    	.state-header,
-    	.state-results {
-			display: table-cell;
-			padding: @grid-gutter-width;
-    	}
+	.state-header,
+	.state-results {
+		display: table-cell;
+		padding: @grid-gutter-width;
+	}
 
-    	.state-header {
-    		width: 25%;
-    		vertical-align: middle;
-    		border-right: 2px solid #999;
-    	}
+	.state-header {
+		width: 25%;
+		vertical-align: middle;
+		border-right: 2px solid #999;
+	}
 
-    	.state-results {
-        	width: 75%;
-    	}
-    }
+	.state-results {
+    	width: 75%;
+	}
 
     .state-header {
     	text-align: center;
@@ -443,7 +441,7 @@
 	    }
 
 	    .stateface {
-	    	font-size: 20vw;
+	    	font-size: 20vmin;
 	    	line-height: 1;
 	    }
 
@@ -512,11 +510,21 @@
 	            font-size: 24px;
 	        }
 
+	        .results-status.called {
+	        	color: #999;
+	        }
+
 	        .candidate,
 	        .candidate-total {
 	        	&.dem   { background: fadeout(@blueDim, 30%); }
 	        	&.gop   { background: fadeout(@redDim, 30%); }
 		        &.other { background: fadeout(@greenDim, 30%); }
+
+		        &.winner {
+    	        	&.dem   { background: fadeout(@blue, 40%); }
+    	        	&.gop   { background: fadeout(@red, 40%); }
+    		        &.other { background: fadeout(@green, 40%); }
+		        }
 	        }
 	    }
     }
