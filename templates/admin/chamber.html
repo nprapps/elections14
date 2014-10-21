@@ -2,12 +2,8 @@
 {% block title %}The U.S. {{ chamber.title() }}{% endblock %}
 
 {% block extra_css %}
-{% if S3_BASE_URL == 'http://127.0.0.1:8000' %}
 {{ CSS.push('less/chamber.less') }}
 {{ CSS.render('css/chamber.min.css') }}
-{% else %}
-<link rel="stylesheet" href="{{ S3_BASE_URL }}/css/chamber.less.css">
-{% endif %}
 {% endblock %}
 
 {% block outer_content %}
