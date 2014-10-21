@@ -19,12 +19,12 @@
                 <ul class="list-unstyled">
                     {% for slide in graphics %}
                     <li class="item" data-slide="{{ slide.slug }}">
-                        <p class="slug"><a href="http://127.0.0.1:8000/preview/{{ slide.slug }}" target="_blank">{{ slide.slug }}</a></p>
+                        <p class="slug"><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank">{{ slide.slug }}</a></p>
                         <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
 
                         <div class="controls">
                             <a class="add" href="#"><span class="fa fa-plus"></span></a>
-                            <a href="http://127.0.0.1:8000/preview/{{ slide.slug }}/?share" target="_blank"><span class="fa fa-share"></span></a>
+                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/?share" target="_blank"><span class="fa fa-share"></span></a>
                         </div>
                     </li>
                     {% endfor %}
@@ -35,12 +35,12 @@
                 <ul class="list-unstyled">
                     {% for slide in news %}
                     <li class="item" data-slide="{{ slide.slug }}" data-time ="{{ slide.time_on_screen }}">
-                        <p class="slug"><a href="http://127.0.0.1:8000/preview/{{ slide.slug }}" target="_blank">{{ slide.slug }}</a></p>
+                        <p class="slug"><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}" target="_blank">{{ slide.slug }}</a></p>
                         <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
                         <p>{{ slide.body|smarty }}</p>
                         <div class="controls">
                             <a class="add" href="#"><span class="fa fa-plus"></span></a>
-                            <a class="preview" href="http://127.0.0.1:8000/preview/{{ slide.slug }}/?share" target="_blank"><span class="fa fa-share"></span></a>
+                            <a class="preview" href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/?share" target="_blank"><span class="fa fa-share"></span></a>
                         </div>
                     </li>
                     {% endfor %}
