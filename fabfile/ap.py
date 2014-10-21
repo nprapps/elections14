@@ -15,119 +15,6 @@ from elections import AP
 
 SLEEP_INTERVAL = 60 
 SECRETS = app_config.get_secrets()
-CACHE_FILE = '.ap_cache.json'
-
-def _init_ap(endpoint):
-    """
-    Make a request to an AP init endpoint.
-    """
-    url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
-    headers = {}
-
-    try:
-        with open(CACHE_FILE) as f:
-            cache = json.load(f)
-    except IOError:
-        cache = {}
-
-    if endpoint in cache:
-        url = cache[endpoint]['nextrequest']
-        headers['If-Modified-Since'] = cache[endpoint]['Last-Modified']
-        headers['If-None-Match'] = cache[endpoint]['Etag']
-
-        # If using cache, other params have already been added to url
-        params = {
-            'apiKey': SECRETS['AP_API_KEY']
-        }
-    else:
-        params = {
-            'officeID': 'S,H,G,I',
-            'format': 'json',
-            'apiKey': SECRETS['AP_API_KEY']
-        }
-
-    params = {
-        'officeID': 'S,H,G,I',
-        'format': 'json',
-        'apiKey': SECRETS['AP_API_KEY']
-    }
-
-    response = requests.get(url, params=params)
-
-    if response.status_code == 304:
-        print '%s: already up to date' % endpoint
-        return
-    elif response.status_code == 403:
-        print '%s: rate-limited' % endpoint
-        return
-    elif response.status_code != 200:
-        print '%s: returned %i' % (endpoint, response.status_code)
-        return
-
-    cache[endpoint] = {
-        'response': response.json(),
-        'nextrequest': response.json()['nextrequest'],
-        'Last-Modified': response.headers['Last-Modified'],
-        'Etag': response.headers['Etag']
-    }
-
-    with open(CACHE_FILE, 'w') as f:
-        json.dump(cache, f, indent=4)
-
-    print '%s: inited' % endpoint
-
-def _update_ap(endpoint, use_cache=True):
-    """
-    Make a request to an AP update endpoint.
-    """
-    url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
-    headers = {}
-
-    try:
-        with open(CACHE_FILE) as f:
-            cache = json.load(f)
-    except IOError:
-        cache = {}
-
-    if endpoint in cache:
-        url = cache[endpoint]['nextrequest']
-        headers['If-Modified-Since'] = cache[endpoint]['Last-Modified']
-        headers['If-None-Match'] = cache[endpoint]['Etag']
-
-        # If using cache, other params have already been added to url
-        params = {
-            'apiKey': SECRETS['AP_API_KEY']
-        }
-    else:
-        params = {
-            'officeID': 'S,H,G,I',
-            'format': 'json',
-            'apiKey': SECRETS['AP_API_KEY']
-        }
-
-    response = requests.get(url, params=params, headers=headers)
-
-    if response.status_code == 304:
-        print '%s: already up to date' % endpoint
-        return
-    elif response.status_code == 403:
-        print '%s: rate-limited' % endpoint
-        return
-    elif response.status_code != 200:
-        print '%s: returned %i' % (endpoint, response.status_code)
-        return
-
-    cache[endpoint] = {
-        'response': response.json(),
-        'nextrequest': response.json()['nextrequest'],
-        'Last-Modified': response.headers['Last-Modified'],
-        'Etag': response.headers['Etag']
-    }
-
-    with open(CACHE_FILE, 'w') as f:
-        json.dump(cache, f, indent=4)
-
-    print '%s: updated' % endpoint
 
 @task
 def bootstrap():
@@ -180,7 +67,6 @@ def process_race(race):
         'seat_number': race.seat_number,
         'race_id': race.ap_race_number,
         'race_type': race.race_type,
-        #'last_updated': race.get('lastUpdated') # This doesn't exist in race object in FTP
     }
     return ret
 
