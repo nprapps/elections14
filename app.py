@@ -152,7 +152,7 @@ def _slide_preview(slug):
     """
     context = make_context()
 
-    context['body'] = _slide(slug).data
+    context['body'] = _slide(slug).data.decode('utf-8')
     context['slug'] = slug
 
     return render_template('_slide_preview.html', **context)

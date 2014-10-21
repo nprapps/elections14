@@ -143,7 +143,7 @@ def render_slides():
         slug = slide.slug
         view_name = '_slide'
 
-        if slug == 'state':
+        if slug in ['state-senate', 'state-house']:
             continue
 
         # Silly fix because url_for require a context
