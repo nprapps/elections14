@@ -446,10 +446,24 @@ def _save_house_row(row, quiet=False):
         district = int(row['district'][2:])
         existing = models.Race.get(models.Race.office_name == 'U.S. House', models.Race.state_postal == state_postal, models.Race.seat_number == district)
 
+        existing.previous_party = row['party']
+
         if row['featured'] == '1':
             existing.featured_race = True
 
-        existing.previous_party = row['party']
+        if row['obama_gop'] == '1':
+            existing.obama_gop = True
+
+        if row['romney_dem'] == '1':
+            existing.romney_dem = True
+
+        if row['bluedog'] == '1':
+            existing.bluedog = True
+
+        if row['rematch_result'] and row['rematch_description']:
+            existing.rematch_result = row['rematch_result']
+            existing.rematch_description = row['rematch_description']
+
         existing.save()
 
     except models.Race.DoesNotExist:
