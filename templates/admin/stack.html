@@ -24,7 +24,7 @@
 
                         <div class="controls">
                             <a class="add" href="#"><span class="fa fa-plus"></span></a>
-                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html?share" target="_blank"><span class="fa fa-share"></span></a>
+                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html#share" target="_blank"><span class="fa fa-share"></span></a>
                         </div>
                     </li>
                     {% endfor %}
@@ -40,7 +40,7 @@
                         <p>{{ slide.body|smarty }}</p>
                         <div class="controls">
                             <a class="add" href="#"><span class="fa fa-plus"></span></a>
-                            <a class="preview" href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html?share" target="_blank"><span class="fa fa-share"></span></a>
+                            <a class="preview" href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html#share" target="_blank"><span class="fa fa-share"></span></a>
                         </div>
                     </li>
                     {% endfor %}
