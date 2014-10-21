@@ -50,7 +50,7 @@
 
         $(document).ready(function() {
 
-            if (window.location.search.indexOf('share') >= 0) {
+            if (window.location.hash === '#share') {
                 $('body').prepend('<link rel="stylesheet" href="/less/share-ui.less">');
             }
             else {
