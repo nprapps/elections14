@@ -401,15 +401,28 @@
             .candidate-total {
                 width: 7%;
                 text-align: right;
-                &.dem { background: @blueDim; }
-                &.gop { background: @redDim; }
-                &.other { background: @greenDim; }
-                &.reporting{
+                padding: 0 1px 0 0;
+                background: transparent;
+
+                .candidate-total-wrapper {
+                    display: block;
+                    height: 100%;
+                    padding: 5px;
+                }
+
+                &.dem .candidate-total-wrapper { background: @blueDim; }
+                &.gop .candidate-total-wrapper { background: @redDim; }
+                &.other .candidate-total-wrapper { background: @greenDim; }
+                &.reporting .candidate-total-wrapper {
                     &:after{
                                 content:"%";
                                 font-size:80%;
                                 vertical-align:top;
                     }
+                }
+
+                + .candidate-total {
+                    padding: 0 0 0 1px;
                 }
             }
 
@@ -420,6 +433,14 @@
                 &.dem { background: @blue; }
                 &.gop { background: @red; }
                 &.other { background: @green; }
+
+                &.candidate-total {
+                    background: transparent;
+
+                    &.dem .candidate-total-wrapper { background: @blue; }
+                    &.gop .candidate-total-wrapper { background: @red; }
+                    &.other .candidate-total-wrapper { background: @green; }
+                }
             }
 
 
@@ -429,7 +450,6 @@
 
             .id-5083, .id-19638, .id-18556{
                 letter-spacing:-.07em;
-                text-transform:capitalize !important;
             }
         }
         td{
@@ -437,10 +457,14 @@
                 border-radius: 5px 0 0 5px;
             }
             &:nth-child(5){
-                border-radius: 0 5px 5px 0;
+                .candidate-total-wrapper {
+                    border-radius: 0 5px 5px 0;
+                }
             }
             &:nth-child(6){
-                border-radius: 5px 0 0 5px;
+                .candidate-total-wrapper {
+                    border-radius: 5px 0 0 5px;
+                }
             }
             &:nth-child(7){
                 border-radius: 0 5px 5px 0;
