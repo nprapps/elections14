@@ -141,33 +141,32 @@ def render_slides():
 
     for slide in slides:
         slug = slide.slug
-        view_name = '_slide'
 
         if slug in ['state-senate', 'state-house']:
             continue
 
-        # Silly fix because url_for require a context
-        with app.app.test_request_context():
-            path = url_for(view_name, slug=slug)
+        for view_name in ['_slide', '_slide_preview']:
+            with app.app.test_request_context():
+                path = url_for(view_name, slug=slug)
 
-        with app.app.test_request_context(path=path):
-            print 'Rendering %s' % path
+            with app.app.test_request_context(path=path):
+                print 'Rendering %s' % path
 
-            view = app.__dict__[view_name]
-            content = view(slug)
+                view = app.__dict__[view_name]
+                content = view(slug)
 
-        path = '%s%s' % (output_path, path)
+            path = '%s%s' % (output_path, path)
 
-        # Ensure path exists
-        head = os.path.split(path)[0]
+            # Ensure path exists
+            head = os.path.split(path)[0]
 
-        try:
-            os.makedirs(head)
-        except OSError:
-            pass
+            try:
+                os.makedirs(head)
+            except OSError:
+                pass
 
-        with open(path, 'w') as f:
-            f.write(content.data)
+            with open(path, 'w') as f:
+                f.write(content.data)
 
     render_states()
 
@@ -183,13 +182,16 @@ def render_states(compiled_includes={}):
     for postal, state in app_config.STATES.items():
         to_render = [
             ('_state_senate_slide', { 'slug': postal }),
-            ('_state_house_slide', { 'slug': postal, 'page': 1 })
+            ('_state_senate_slide_preview', { 'slug': postal }),
+            ('_state_house_slide', { 'slug': postal, 'page': 1 }),
+            ('_state_house_slide_preview', { 'slug': postal, 'page': 1 })
         ]
             
         if postal in app_config.PAGINATED_STATES:
-            to_render.append(
-                ('_state_house_slide', { 'slug': postal, 'page': 2 })
-            )
+            to_render.extend([
+                ('_state_house_slide', { 'slug': postal, 'page': 2 }),
+                ('_state_house_slide_preview', { 'slug': postal, 'page': 2 })
+            ])
 
         for view_name, view_kwargs in to_render: 
             # Silly fix because url_for require a context

@@ -17,7 +17,7 @@ def update():
 
     data = SlideSequence.stack()
 
-    print 'Updating stack' 
+    print 'Updating stack'
 
     with open('www/live-data/stack.json', 'w') as f:
         json.dump(data, f)
@@ -25,5 +25,5 @@ def update():
     if env.settings:
         deploy_json(
             'www/live-data/stack.json',
-            'live-data/stack.json' 
+            'live-data/stack.json'
         )

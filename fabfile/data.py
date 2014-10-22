@@ -202,6 +202,8 @@ def load_calls(path):
 
     races_updated = 0
     candidates_updated = 0
+    num_winners = 0
+    num_runoff_winners = 0
 
     print 'Loading latest calls from AP update data on disk'
 
@@ -212,20 +214,32 @@ def load_calls(path):
         race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
         race_model.ap_called = True
-
         race_model.ap_called_time = datetime.strptime(race['ap_called_time'], '%Y-%m-%dT%H:%M:%SZ')
+
+        if race.get('ap_winner'):
+            candidate_model = models.Candidate.get(models.Candidate.candidate_id == race['ap_winner'])
+            candidate_model.ap_winner = True
+            candidate_model.save()
+            candidates_updated += 1
+            num_winners += 1
+
+        if race.get('ap_runoff_winners'):
+            race_model.number_in_runoff = len(race['ap_runoff_winners'])
+
+            for id in race['ap_runoff_winners']:
+                candidate_model = models.Candidate.get(models.Candidate.candidate_id == id)
+                candidate_model.ap_runoff_winner = True
+                candidate_model.save()
+                candidates_updated += 1
+                num_runoff_winners += 1
+
         race_model.save()
-
         races_updated += 1
-
-        candidate_model = models.Candidate.get(models.Candidate.candidate_id == race['ap_winner'])
-        candidate_model.ap_winner = True
-        candidate_model.save()
-
-        candidates_updated += 1
 
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated
+    print 'Found %i winners' % num_winners
+    print 'Found %i runoff winners' % num_runoff_winners
 
 @task
 def load_incumbents(path):
@@ -662,18 +676,29 @@ def play_fake_results(update_interval=60):
 
     print "Playing back results, ctrl-c to stop"
 
-    closing_times = models.Race.select(fn.Distinct(models.Race.poll_closing_time)).order_by(models.Race.poll_closing_time)
+    ct_query = models.Race.select(fn.Distinct(models.Race.poll_closing_time)).order_by(models.Race.poll_closing_time)
+    closing_times = [ct.poll_closing_time for ct in ct_query]
+    closing_times = closing_times * 2
+    closing_times.sort()
+
     try:
-        for ct in closing_times:
-            print "Polls close at %s" % ct.poll_closing_time
-            races = models.Race.select().where(models.Race.poll_closing_time == ct.poll_closing_time)
-            for race in races:
-                race.precincts_total = random.randint(2000, 4000)
-                race.precincts_reporting = random.randint(200, race.precincts_total)
-                race.ap_called = True
-                race.accept_ap_call = True
-                _fake_results(race)
-                race.save()
+        for i, ct in enumerate(closing_times):
+            races = models.Race.select().where(models.Race.poll_closing_time == ct)
+            if i % 2 == 0:
+                print "Polls close at %s, precincts reporting" % ct
+                for race in races:
+                    race.precincts_total = random.randint(2000, 4000)
+                    race.precincts_reporting = random.randint(200, race.precincts_total - 200)
+                    _fake_results(race)
+                    race.save()
+            else:
+                print "Races are called!"
+                for race in races:
+                    race.ap_called = True
+                    race.accept_ap_call = True
+                    race.precincts_reporting = random.randint(race.precincts_total - 500, race.precincts_total)
+                    _fake_results(race)
+                    race.save()
 
             sleep(float(update_interval))
 
