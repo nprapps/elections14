@@ -82,9 +82,7 @@ SERVER_SERVICES = [
     ('app', SERVER_REPOSITORY_PATH, 'ini'),
     ('uwsgi', '/etc/init', 'conf'),
     ('nginx', '/etc/nginx/locations-enabled', 'conf'),
-    ('stack', '/etc/init', 'conf'),
-    ('liveblog', '/etc/init', 'conf'),
-    ('instagram', '/etc/init', 'conf'),
+    ('deploy', '/etc/init', 'conf'),
 ]
 
 # These variables will be set at runtime. See configure_targets() below
@@ -135,16 +133,12 @@ CHROMECAST_APP_ID = '8408F716'
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
 SLIDE_ROTATE_INTERVAL = 5
-STACK_UPDATE_INTERVAL = 60
 
 TUMBLR_NAME = '' # See below
 TUMBLR_NOT_BEFORE = None # See below
 TUMBLR_AUTO_REFRESH = None # See below
-TUMBLR_REFRESH_INTERVAL = 5
 
-INSTAGRAM_REFRESH_INTERVAL = 15
-
-AP_RESULTS_REFRESH_INTERVAL = 60
+DEPLOY_INTERVAL = 60
 
 STATES = {
     'AK': 'Alaska',
