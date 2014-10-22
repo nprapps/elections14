@@ -3,6 +3,10 @@
 @import "less/lib/bootstrap/mixins.less";
 @import "less/lib/bootstrap/grid.less";
 
+.text-shadow {
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
 .slide-content{
     .tumblr {
         background-image: url('../assets/elections-background-1.jpg');
@@ -15,13 +19,28 @@
         .date {
             font-size: 1.75vw;
             margin-bottom: 1.5vw;
+            .text-shadow;
         }
 
         .post-footer {
             color: @grayMedium;
             font-size: 1.75vw;
+            .text-shadow;
         }
     }
+
+    /*.tumblr:after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../assets/elections-background-1.jpg'); 
+        width: 100%;
+        height: 100%;
+        opacity : 0.2;
+        z-index: -1;
+    }*/
 
     .tumblr-text-post {
         .wrapper {
@@ -34,6 +53,7 @@
                 font-size: 4vw;
                 margin-bottom: 2%;
                 font-weight: bold;
+                .text-shadow;
             }
 
             .body {
@@ -43,6 +63,7 @@
                 p {
                     font-size: 3vw;
                     line-height: 3.7vw;
+                    .text-shadow;
                 }
             }
         }
@@ -76,8 +97,9 @@
                     margin-bottom: 5%;
 
                     p {
-                        font-size: 3vw;
-                        line-height: 4.2vw;
+                        font-size: 2.75vw;
+                        line-height: 3.25vw;
+                        .text-shadow;
                     }
                 }
             }
@@ -86,16 +108,16 @@
 
     .tumblr-quote-post {
         .wrapper {
+            padding: 0 5%;
             position: relative;
             top: 50%;
             transform: translateY(-50%);
-            -webkit-transform: translateY(-50%);
 
             blockquote {
-                font-size: 6vmin;
-                line-height: 8vmin;
+                font-size: 3vw;
+                line-height: 4.25vw;
                 border: none;
-                padding:0;
+                padding: 0;
                 @media all and (-webkit-min-device-pixel-ratio:0) {
                     -webkit-margin-before: 0;
                     -webkit-margin-after: 0;
@@ -104,9 +126,9 @@
                     text-indent: -0.31em;
                 }
 
-                span{
-                    background-color:@blueDarker;
-                    padding:.7vmin;
+                span {
+                    background-color: @blueDarker;
+                    padding: 0.7vw;
                     -ms-box-decoration-break: clone;
                     -webkit-box-decoration-break: clone;
                     -o-box-decoration-break: clone;
@@ -114,12 +136,12 @@
                 }
 
                 footer {
-                    margin-top: 1vmin;
+                    margin-top: 3%;
                     border: none;
                     padding-left: 0;
 
                     cite {
-                        font-size: 4vmin;
+                        font-size: 2.5vw;
                         text-transform: uppercase;
                         letter-spacing: .05em;
                     }
