@@ -1,7 +1,6 @@
 @import "less/variables.less";
 @import "less/lib/bootstrap/variables.less";
 @import "less/lib/bootstrap/mixins.less";
-@import "less/lib/bootstrap/grid.less";
 
 .slide-content{
     .tumblr {
@@ -458,13 +457,14 @@
     }
 
     .results-wrapper {
-        .make-row();
         margin-bottom: @line-height-computed * 2;
     }
 
     .current-results,
     .projected-results {
-        .make-md-column(6);
+        width: 50%;
+        float: left;
+        margin-bottom: @line-height-computed;
 
         p {
         	border-left: 1px solid #ccc;
@@ -481,11 +481,19 @@
         }
     }
 
+    .current-results {
+    	padding-right: 15px;
+    }
+
+    .projected-results {
+    	padding-left: 15px;
+    }
+
     .house,
     .senate,
     .governor {
     	.races {
-	        font-size: 3vmin;
+	        font-size: 2.5vmin;
 
 	        .results-status.called {
 	        	color: #999;
@@ -516,11 +524,32 @@
 		background: fadeout(@blueDark, 30%);
 		padding: @grid-gutter-width / 2;
 		font-size: 3vmin;
+
+		@media screen and (max-width: 767px){
+			font-size: 2vmin;
+		}
 	}
 
 	ul {
-		.make-md-column(4);
+		float: left;
+		width: 33.33333333%;
 		margin-bottom: 0;
+		position: relative;
+		min-height: 1px;
+		padding-left: 15px;
+		padding-right: 15px;
+
+		+ ul li {
+			padding-left: 65px;
+		}
+	}
+
+	li {
+		position: relative;
+
+		sup {
+			top: -0.3em;
+		}
 	}
 
 	.key-color {
@@ -539,7 +568,6 @@
 		background: @blue;
 		border-radius: 5px;
 		padding: 0 5px;
-		margin-left: 55px;
 	}
 
 	.incumbent {
@@ -554,6 +582,7 @@
 
 	.seat-held {
 		color: @red;
+		font-weight: 500;
 	}
 
 	.pickup {
@@ -568,9 +597,11 @@
 	.seat-held,
 	.pickup {
 		width: 50px;
-		display: inline-block;
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
 		text-align: right;
-		margin-right: 5px;
 	}
 }
 
