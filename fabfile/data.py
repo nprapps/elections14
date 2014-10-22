@@ -687,18 +687,29 @@ def play_fake_results(update_interval=60):
 
     print "Playing back results, ctrl-c to stop"
 
-    closing_times = models.Race.select(fn.Distinct(models.Race.poll_closing_time)).order_by(models.Race.poll_closing_time)
+    ct_query = models.Race.select(fn.Distinct(models.Race.poll_closing_time)).order_by(models.Race.poll_closing_time)
+    closing_times = [ct.poll_closing_time for ct in ct_query]
+    closing_times = closing_times * 2
+    closing_times.sort()
+
     try:
-        for ct in closing_times:
-            print "Polls close at %s" % ct.poll_closing_time
-            races = models.Race.select().where(models.Race.poll_closing_time == ct.poll_closing_time)
-            for race in races:
-                race.precincts_total = random.randint(2000, 4000)
-                race.precincts_reporting = random.randint(200, race.precincts_total)
-                race.ap_called = True
-                race.accept_ap_call = True
-                _fake_results(race)
-                race.save()
+        for i, ct in enumerate(closing_times):
+            races = models.Race.select().where(models.Race.poll_closing_time == ct)
+            if i % 2 == 0:
+                print "Polls close at %s, precincts reporting" % ct
+                for race in races:
+                    race.precincts_total = random.randint(2000, 4000)
+                    race.precincts_reporting = random.randint(200, race.precincts_total - 200)
+                    _fake_results(race)
+                    race.save()
+            else:
+                print "Races are called!"
+                for race in races:
+                    race.ap_called = True
+                    race.accept_ap_call = True
+                    race.precincts_reporting = random.randint(race.precincts_total - 500, race.precincts_total)
+                    _fake_results(race)
+                    race.save()
 
             sleep(float(update_interval))
 
