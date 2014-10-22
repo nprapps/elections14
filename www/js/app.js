@@ -416,7 +416,7 @@ var hideStateFace = function() {
     $stateName.css('opacity', 0);
 
     if ($stateface.height() > 0 && $stateface.width() > 0) {
-        $typeahead.css('top', '-23vw');
+        $typeahead.css('top', '-15vw');
     }
 }
 
