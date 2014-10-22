@@ -4,19 +4,41 @@ from decimal import Decimal, InvalidOperation
 from functools import wraps
 from flask import make_response
 
-SENATE_MAJORITY = 51
 SENATE_INITIAL_BOP = {
-    'dem': 32,
-    'gop': 30,
-    'other': 2,
+    'dem': {
+        'has': 32,
+        'needs': 18,
+        'picked_up': 0,
+    },
+    'gop': {
+        'has': 30,
+        'needs': 21,
+        'picked_up': 0,
+    },
+    'other': {
+        'has': 2,
+        'needs': 49,
+        'picked_up': 0,
+    },
 }
 
 HOUSE_PAGE_LIMIT = 36
-HOUSE_MAJORITY = 218
 HOUSE_INITIAL_BOP = {
-    'dem': 0,
-    'gop': 0,
-    'other': 0,
+    'dem': {
+        'has': 0,
+        'needs': 218,
+        'picked_up': 0,
+    },
+    'gop': {
+        'has': 0,
+        'needs': 218,
+        'picked_up': 0,
+    },
+    'other': {
+        'has': 0,
+        'needs': 218,
+        'picked_up': 0,
+    },
 }
 
 def cors(f):
@@ -44,16 +66,10 @@ def group_races_by_closing_time(races):
 
     return sorted(results.items())
 
-def calculate_bop(races, majority, initial):
+def calculate_bop(races, bop):
     """
     Calculate a balance of power
     """
-    bop = {key: {
-        'has': value,
-        'needs': majority - value,
-        'picked_up': 0,
-    } for key, value in initial.items()}
-
     winning_races = [race for race in races if race.is_called()]
     for race in winning_races:
         winner = race.get_winning_party()

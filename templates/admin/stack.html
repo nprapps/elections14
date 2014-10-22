@@ -52,7 +52,7 @@
                 <p>Stack length: <span class="stack-time">{{ time }}</span> seconds</p>
                 <ol class="sortable list-unstyled js-droppable-and-draggable">
                     {% for slide in sequence %}
-                    <li class="item" data-slide="{{ slide.slide }}">
+                    <li class="item" data-slide="{{ slide.slide }}" data-time="{{ slide.time_on_screen }}">
                         <span class="dragger fa fa-align-justify"></span> {{ slide.slide }}
                         <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div>
                     </li>
