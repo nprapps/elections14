@@ -1,0 +1,152 @@
+@action: #538ecd;
+@body: #4a4a4a;
+
+
+html, body {
+    margin: 0; padding-bottom: 15px;
+}
+body  {
+    color: @body;
+    font-family: Gotham SSm, verdana;
+    text-align: center;
+}
+a {
+    color: @action;
+    text-decoration: none;
+}
+a:focus, a:hover {
+    text-decoration: underline;
+}
+.wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.top {
+    background: url('../assets/promo/background.jpg') no-repeat center black;
+    background-size: 100% 100%;
+    color: white;
+    min-height: 800px;
+    .logo {
+        margin-top: 15px;
+    }
+    h1, h2 {
+        font-weight: normal;
+    }
+    h1 {
+        font-family: Georgia;
+            font-size: 46px;
+            margin-top: 15px;
+    }
+    h2 {
+            font-size: 26px;
+    }
+    .bottom {
+        background: rgba(0,0,0,.5);
+        padding: 2%;
+        width: 96%;
+        p {
+            font-size: 26px;      
+        }
+        .date {
+            font-size: 30px;
+        }
+    }
+}
+
+.description {
+    .wrap {
+        max-width: 900px;
+    }
+    h3 {
+        font-family: Georgia;
+        font-size: 30px;
+    }
+    p {
+        font-size: 26px;
+    }
+    .steps {
+    color: #ccc;
+    font-family: Georgia;
+    font-weight: bold;
+        li {
+            border-bottom: 1px solid #ccc;
+            font-size: 24px;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            span {
+                color: @body;
+                font-weight: normal;
+                font-family: Gotham SSm, verdana;
+            }
+        }
+        .last {
+            border-bottom: none;
+        }
+    }
+    .email {
+        font-size: 16px; padding: 4px; margin: 3px 0;
+        border: 1px solid #ccc;
+    }
+    .button {
+        background: @action;
+        color: white;
+        display: inline-block;
+        font-size: 16px; padding: 4px 10px;
+        font-family: Gotham SSm, verdana;
+        font-weight: normal;
+    }
+    .open-up {
+        margin-top: 120px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .top {
+        background-size: cover;
+        min-height: 0;
+        .logo {
+            height: 24px; 
+        }
+        h1 {
+            font-size: 36px;
+        }
+        h2 {
+            font-size: 16px;
+        }
+        .bottom {
+            p {
+                font-size: 16px;      
+            }
+            .date {
+                font-size: 20px;
+                .icon-cal {
+                    height: 16px;
+                }
+            }
+        }
+    }
+    .hero {
+        width: 96%;
+    }
+    .wrap {
+        margin: 0 2%;
+    }
+
+    .description {
+        h3 {
+            font-size: 26px;
+        }
+        p {
+            font-size: 16px;
+        }
+        .steps {
+            li {
+                font-size: 16px;
+            }
+        }
+    }
+
+}
+

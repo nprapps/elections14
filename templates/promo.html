@@ -1,7 +1,91 @@
-{% extends '_base.html' %}
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+  	<title></title>
+    <meta name="viewport" content="width=device-width" />
+  	<meta name="description" content="" />
+    <meta name="keywords" content="" />
+  	<meta name="robots" content="" />
+    <link rel="stylesheet" href="http://s.npr.org/templates/css/fonts/GothamSSm.css" />
+    <!-- CSS -->
+    {{ CSS.push('less/promo.less') }}
+    {{ CSS.render('css/promo.min.css') }}
+  </head>
 
-{% block outer_content %}
+  <body>
+      <section class="top">
+          <div class="wrap">
+        <svg class="logo" version="1.1"
+        	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+        	 x="0px" y="0px" width="107.2px" height="37.6px" viewBox="0 0 107.2 37.6" enable-background="new 0 0 107.2 37.6"
+        	 xml:space="preserve">
+        <defs>
+        </defs>
+        <g opacity="0.5">
+        	<path fill="#FFFFFF" d="M21.7,27.8V17.3c0-1.5-0.3-2.7-0.9-3.4c-0.6-0.7-1.6-1.1-2.9-1.1c-0.6,0-1.3,0.2-2,0.5
+        		c-0.7,0.3-1.3,0.8-1.7,1.3v13.1h-4.2V9.6h3l0.8,1.7c1.2-1.3,2.8-2,5.1-2c2.2,0,3.9,0.6,5.1,1.9c1.2,1.3,1.9,3.1,1.9,5.4v11.1H21.7z
+        		"/>
+        	<path fill="#FFFFFF" d="M52.4,12.9c1.9,0,3.3,0.4,4.2,1.3c0.8,0.9,1.3,2.4,1.3,4.5c0,2-0.4,3.5-1.3,4.4c-0.9,0.9-2.2,1.4-4.2,1.4
+        		c-1,0-1.9-0.3-2.7-0.9v-9.5C50.5,13.3,51.4,12.9,52.4,12.9z M53.3,28.1c2.8,0,4.9-0.8,6.5-2.4c1.6-1.6,2.4-3.9,2.4-6.9
+        		c0-6.4-2.9-9.5-8.7-9.5c-1.5,0-2.9,0.5-3.9,1.5V9.6h-4.2v25.2h4.2v-7.5C50.8,27.9,52,28.1,53.3,28.1z"/>
+        	<path fill="#FFFFFF" d="M93.7,13.6c-0.8-0.5-1.6-0.7-2.5-0.7c-1,0-1.8,0.4-2.6,1.3c-0.8,0.9-1.1,2-1.1,3.3v10.3h-4.2V9.6h4.2v1.7
+        		c1.2-1.4,2.7-2,4.7-2c1.4,0,2.5,0.2,3.3,0.7L93.7,13.6z"/>
+        	<rect x="35.4" y="1.1" fill="#FFFFFF" width="1.1" height="35.6"/>
+        	<rect x="70.8" y="1.1" fill="#FFFFFF" width="1.1" height="35.6"/>
+        	<path fill="#FFFFFF" d="M107.2,37.6H0V0h107.2V37.6z M1.1,36.5h105V1.1H1.1V36.5z"/>
+        </g>
+        </svg>
+        <h1>Elections are important.</h1>
+        <h2>This election is going to determine who controls the Senate,<br/>
+          and a bunch of other stuff TK. So we’re throwing a party.</h2>
+        <img class="hero" src="assets/promo/hero.png" width="562" />
+        </div>
 
-<h1>PROMO</h1>
+        <div class="bottom">
+        <div class="wrap">
+          <p>Join us live from NPR studios for special election coverage<br/> 
+            from your laptop and/or Chromecast device...</p>
+          <p class="date">
+            <svg class="icon-cal" version="1.1"
+            	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+            	 x="0px" y="0px" width="28px" height="32px" viewBox="0 0 28 32" enable-background="new 0 0 28 32" xml:space="preserve">
+            <defs>
+            </defs>
+            <path fill="#6FA0D5" d="M0,30c0,1.1,0.9,2,2,2h24c1.1,0,2-0.9,2-2V12H0V30z M8,20h4v-4h4v4h4v4h-4v4h-4v-4H8V20z M28,6v4H0V6
+            	c0-1.1,0.9-2,2-2h2V2c0-1.1,0.9-2,2-2s2,0.9,2,2v2h12V2c0-1.1,0.9-2,2-2s2,0.9,2,2v2h2C27.1,4,28,4.9,28,6z"/>
+            </svg>
+            <strong>Tuesday, November 4th, 2014</strong> starting at 7:00&nbsp;PM&nbsp;EST</p>
+        </div>
+        </div>        
 
-{% endblock %}
+      </section>
+
+      <section class="description">
+      <div class="wrap">
+        <p><img class="hosts" src="assets/promo/hosts.png" width="263" /></p>
+        <h3>We’re throwing an election party and you should too!</h3>
+        <p>Invite your friends and family to join us on election night for live<br/> 
+          coverage with our hosts Robert Siegel and Melissa Block.</p>
+        <h3 class="open-up">You’re invited!</h3>
+        <ol class="steps">
+          <li><span><strong>Get updates</strong><br/> Inside access to our special election night coverage and helpful reminders.</span>
+            <form>
+              <input class="email" placeholder="Email" type="email" /><br/>
+                <a class="button" href="">Sign-up!</a>
+            </form>
+          </li>
+          <li><span><strong>Invite your friends &amp; family</strong><br/> Host a party and join us on election night for live coverage and special access.</span><br/>
+            <a class="button" href="">Create Invitation</a>
+          </li>
+          <li class="last"><span><strong>Share recipes</strong><br/> On election night, post your favorite recipes from your home state on Instagram.</span><br/>
+            #hashtag
+          </li>
+        </ol>
+        <h3 class="open-up">Sincerely,</h3>
+        <p>Your friends at NPR Politics<br/>
+          <a href="http://nprpolitics.tumblr.com/">nprpolitics.tumblr.com</a> and <a href="http://twitter.com/nprpolitics">@nprpolitics</a></p>
+      </div>
+      </section>
+  </body>
+</html>
