@@ -8,6 +8,9 @@ import sys
 import traceback
 
 def safe_execute(*args, **kwargs):
+    """
+    Wrap execute() so that all exceptions are caught and logged.
+    """
     try:
         execute(*args, **kwargs)
     except:
