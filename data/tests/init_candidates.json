@@ -4,48 +4,50 @@
         "first_name": "Aelea",
         "last_name": "Christofferson",
         "candidate_id": "4848",
-        "race_id": "OR-38529"
+        "race_id": "38529-OR"
     },
     {
         "party": "GOP",
         "first_name": "Greg",
         "last_name": "Walden",
         "candidate_id": "4642",
-        "race_id": "OR-38529"
+        "race_id": "38529-OR"
     },
     {
         "party": "Lib",
         "first_name": "Sharon",
         "last_name": "Durbin",
         "candidate_id": "4979",
-        "race_id": "OR-38529"
+        "race_id": "38529-OR"
     },
     {
         "party": "Dem",
         "first_name": "Connie",
         "last_name": "Johnson",
         "candidate_id": "44646",
-        "race_id": "OK-38145"
+        "race_id": "38145-OK"
     },
     {
         "party": "GOP",
         "first_name": "James",
         "last_name": "Lankford",
         "candidate_id": "44647",
-        "race_id": "OK-38145"
+        "race_id": "38145-OK"
     },
     {
-        "party": "No",
-        "first_name": null,
+        "first_name": "",
         "last_name": "No",
-        "candidate_id": "35040",
-        "race_id": "MI-24549"
+        "incumbent": false,
+        "candidate_id": "3",
+        "race_id": "27456-MO",
+        "party": "No"
     },
     {
-        "party": "Yes",
-        "first_name": null,
+        "first_name": "",
         "last_name": "Yes",
-        "candidate_id": "35041",
-        "race_id": "MI-24549"
+        "incumbent": false,
+        "candidate_id": "2",
+        "race_id": "27456-MO",
+        "party": "Yes"
     }
-]
+ ]

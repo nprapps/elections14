@@ -51,7 +51,6 @@ class DataTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
-
             race = Race.get(Race.race_id == '38529-OR')
 
             candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
