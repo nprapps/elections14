@@ -9,7 +9,7 @@ import app_config
 @task
 def liveblog():
     """
-    Fetch new Tumblr posts indenfinitely.
+    Fetch new Tumblr posts indefinitely.
     """
     while True:
         execute('liveblog.update')
@@ -19,7 +19,7 @@ def liveblog():
 @task
 def stack():
     """
-    Rotate slides indenfinitely.
+    Rotate slides indefinitely.
     """
     while True:
         execute('stack.update')
@@ -38,6 +38,9 @@ def instagram():
 
 @task
 def results():
+    """
+    Fetch results indefinitely.
+    """
     while True:
         execute('ap.update')
         execute('data.load_updates', 'data/update.json')
