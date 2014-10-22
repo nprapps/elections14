@@ -55,12 +55,13 @@ def stack():
     for slide in sequence:
         time += slide.slide.time_on_screen
 
-
-    for slide in sequence_dicts:
-        print slide
+    for slide_dict in sequence_dicts:
+        for slide in sequence:
+            if slide.slide.slug == slide_dict['slide']:
+                slide_dict['time_on_screen'] = slide.slide.time_on_screen
 
     context.update({
-        'sequence': SlideSequence.select().dicts(),
+        'sequence': sequence_dicts,
         'slides': Slide.select().dicts(),
         'graphics': Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) != 'tumblr').order_by(Slide.slug).dicts(),
         'news':  Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) == 'tumblr').order_by(Slide.slug).dicts(),

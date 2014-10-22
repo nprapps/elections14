@@ -7,6 +7,7 @@ var $preview = null;
 var $remove = null;
 var $timeline = null;
 var $saveForm = null;
+var $stackTime = null;
 
 var initDragAndDrop = function() {
     group = $(".js-droppable-and-draggable").sortable({
@@ -36,12 +37,15 @@ var offItemsHover = function() {
 var onAddClick = function() {
     var $item = $(this).parents('.item');
     var slide = $item.data('slide');
-    var time = $item.data('time');
+    var slideTime = parseInt($item.data('time'));
+    var currentStackTime = parseInt($stackTime.text());
 
-    var newItem = $('<li class="item" data-slide="' + slide + '"><span class="dragger fa fa-align-justify"></span>' + slide + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div></li>'
+    var newItem = $('<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '"><span class="dragger fa fa-align-justify"></span>' + slide + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div></li>'
     )
 
     $timeline.append(newItem);
+
+    $stackTime.text(currentStackTime + slideTime);
 
     // reset event handlers to account for new button
     $remove = $('.remove');
@@ -50,7 +54,13 @@ var onAddClick = function() {
 
 var onRemoveClick = function() {
     var $item = $(this).parents('.item');
+    var slideTime = parseInt($item.data('time'));
+    var currentStackTime = parseInt($stackTime.text());
+
+    var $item = $(this).parents('.item');
     $item.remove();
+
+    $stackTime.text(currentStackTime - slideTime);
 }
 
 var onSaveFormSubmit = function() {
@@ -71,6 +81,7 @@ $(document).ready(function() {
     $preview = $('.preview');
     $remove = $('.remove');
     $saveForm = $('.send-stack');
+    $stackTime = $('.stack-time');
 
     $items.hover(onItemsHover, offItemsHover);
     $add.on('click', onAddClick);
