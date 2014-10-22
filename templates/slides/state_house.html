@@ -38,7 +38,7 @@
                     <h4>Projected</h4>
                     <p>
                         <span class="bar-wrapper">
-                            <span class="bar gop" width="{{ called_gop_percent }}%"></span>
+                            <span class="bar gop" style="width: {{ called_gop_percent }}%;"></span>
                         </span>
                         {% if called_gop_number %}
                         <span class="bar-label" style="left: {{ called_gop_percent }}%">{{ called_gop_number }}</span>
@@ -46,7 +46,7 @@
                     </p>
                     <p>
                         <span class="bar-wrapper">
-                            <span class="bar dem" width="{{ called_dem_percent }}%"></span>
+                            <span class="bar dem" style="width: {{ called_dem_percent }}%";></span>
                         </span>
                         {% if called_dem_number %}
                         <span class="bar-label" style="left: {{ called_dem_percent }}%">{{ called_dem_number }}</span>
@@ -55,7 +55,7 @@
                     {% if called_other_number %}
                     <p>
                         <span class="bar-wrapper">
-                            <span class="bar other" width="{{ called_other_percent }}%"></span>
+                            <span class="bar other" style="width: {{ called_other_percent }}%;"></span>
                         </span>
                         <span class="bar-label" style="left: {{ called_other_percent }}%">{{ called_other_number }}</span>
                     </p>

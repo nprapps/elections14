@@ -267,18 +267,28 @@ def write_calls(path):
         if not race.get('raceID'):
             continue
 
-        winners = race.get('candidates')
-
-        if len(winners) > 1:
-            print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (_generate_race_id(race), race['raceType'], race['statePostal'])
-
-        winner = winners[0]
-
-        calls.append({
+        call = {
             'race_id': _generate_race_id(race),
             'ap_called_time':race.get('callTimestamp'),
-            'ap_winner': winner['candidateID'] 
-        })
+        }
+
+        winners = [candidate for candidate in race.get('candidates') if candidate.get('winner') == 'X']
+        runoff_winners = [candidate for candidate in race.get('candidates') if candidate.get('winner') == 'R']
+
+        if len(winners) and len(runoff_winners):
+            print 'ERROR: Race has winners and runoff winners! (%s, %s, %s)' % (_generate_race_id(race), race['raceType'], race['statePostal'])
+            continue
+
+        if len(winners):
+            if len(winners) > 1:
+                print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (_generate_race_id(race), race['raceType'], race['statePostal'])
+            winner = winners[0]
+            call['ap_winner'] = winner['candidateID']
+
+        elif len(runoff_winners):
+            call['ap_runoff_winners'] = [candidate['candidateID'] for candidate in runoff_winners]
+
+        calls.append(call)
 
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)

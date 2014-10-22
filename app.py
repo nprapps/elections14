@@ -63,7 +63,7 @@ def index():
     """
     races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
-    context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_MAJORITY, app_utils.SENATE_INITIAL_BOP)
+    context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(races)
 
     if app_config.DEPLOY_PROMO:
@@ -106,22 +106,33 @@ def _stack_json():
     # should see two
     for i, d in enumerate(data):
         if d['slug'] == 'state-house':
+            one = copy(d)
+            one['slug'] = 'state-house-1'
+
+            two = copy(d)
+            two['slug'] = 'state-house-2'
+
+            data[i:i + 1] = [
+                one,
+                two
+            ]
+
             break
 
-    one = copy(d)
-    one['slug'] = 'state-house-1'
-
-    two = copy(d)
-    two['slug'] = 'state-house-2'
-
-    data[i:i + 1] = [
-        one,
-        two
-    ]
 
     js = json.dumps(data)
 
     return js, 200, { 'Content-Type': 'application/javascript' }
+
+@app.route('/preview/state-house/index.html')
+@app.route('/preview/state-senate/index.html')
+def _state_picker_preview():
+    """
+    Preview a state slide outside of the stack.
+    """
+    context = make_context()
+
+    return render_template('_state_picker_preview.html', **context)
 
 @app.route('/preview/state-house-<string:slug>-<int:page>/index.html')
 @app_utils.cors
