@@ -324,24 +324,13 @@
 }
 
 #graphic-bop {
-	position: relative;
-	margin-bottom: 11px;
+    .chart {
+        float: left;
 
-	&:before {
-		content: ' ';
-		display: table;
-	}
-	&:after {
-		content: ' ';
-		display: table;
-		clear: both;
-	}
-
-	.chart {
-		float: left;
-
-		&.house { margin-right: 22px; }
-	}
+        &.house {
+            margin-right: 22px;
+        }
+    }
 
 	.majority {
 		line {
