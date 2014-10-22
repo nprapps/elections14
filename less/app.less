@@ -17,26 +17,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/*
-** SLIDE DEFAULTS
-*/
-h1, h2, h3{
-    margin:0;
-}
-h2{
-    font-size: 5vmin;
-}
-h3{
-    font-size: 3.5vmin;
-}
-
-p{
-    font-size: 2vmin;
-    @media screen and (max-width: @screen-sm){
-        font-size: 2vmin;
-    }
-}
-
 .btn-lg{
     padding: 3vmin 3vmin;
     font-size: 3.5vmin;
@@ -51,34 +31,21 @@ p{
 
 #landscape-wrapper {
     width: 100%;
-    //position: relative;
-    //top: 50%;
-    //transform: translateY(-50%);
 }
 
 #stack {
     display: none;
-    overflow: hidden;
 }
 
 .slide {
     display: none;
     color: @musicLight;
-}
-
-.slide-inner {
-    display: table;
-    background-color: @blueDarker;
-    //width: 100%;
-    //height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .slide-content {
-    display: table-cell;
-
-    img {
-        width: 100%;
-    }
+    .vertical-center;
 }
 
 /*
@@ -86,28 +53,27 @@ p{
 */
 
 .welcome.slide {
-    //background-image: url('../assets/elections-background-1.jpg');
-    //background-size: cover;
+    display: block;
     opacity: 0;
     .transition(opacity 3s ease);
-    display: block;
 
-    /*&:after {
+    &:after {
         content : "";
         display: block;
         position: absolute;
         top: 0;
         left: 0;
+        background-image: url('../assets/elections-background-1.jpg');
         background-size: cover;
         width: 100%;
         height: 100%;
         opacity : 0.5;
         z-index: -1;
-    }*/
+    }
 
     .logo-wrapper {
         width: 10%;
-        margin: 2% auto 2%;
+        margin: 0 auto 2%;
         fill: @grayMedium;
     }
 
@@ -143,7 +109,7 @@ p{
         max-width: 45%;
 
         .icon {
-            width: 15vw;
+            width: 10vw;
             height: auto;
             float: left;
             opacity: 0.25;

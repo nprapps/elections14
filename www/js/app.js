@@ -274,8 +274,8 @@ var resizeSlide = function(slide) {
     slide.width($w);
     slide.height($h - headerHeight);
 
-    slide.find('.slide-content').width($w);
-    slide.find('.slide-content').height($h - headerHeight);
+    slide.find('.slide-inner').width($w);
+    slide.find('.slide-inner').height($h - headerHeight);
 }
 
 var rotatePhone = function() {
