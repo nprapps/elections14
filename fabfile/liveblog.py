@@ -13,6 +13,8 @@ import models
 
 LIMIT = 20
 
+UNSUPPORTED_TYPES = ['video', 'audio', 'link', 'chat', 'answer']
+
 @task
 def update():
     """
@@ -38,7 +40,7 @@ def update():
         posts = data['response']['posts']
 
         for post in posts:
-            if post['type'] == 'video':
+            if post['type'] in UNSUPPORTED_TYPES:
                 continue
 
             if datetime.fromtimestamp(post['timestamp']) < app_config.TUMBLR_NOT_BEFORE:

@@ -1,0 +1,101 @@
+{% extends '_base.html' %}
+
+{% block extra_css %}
+<style>
+    .template-picker {
+        position: relative;
+        margin-top: 10%;
+    }
+</style>
+{% endblock %}
+
+{% block outer_content %}
+<div class="state-picker">
+    <div class="picker">
+        <input class="typeahead" type="text" placeholder="&#xf002;&nbsp;&nbsp; Select a state">
+    </div>
+
+    <div class="template-picker">
+        <a href="#" class="btn btn-lg state-picker-submit">Preview</a>
+        <a href="#" class="btn btn-lg state-picker-submit">Share</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_foot_js %}
+{{ JS.render('js/state-picker.min.js')}}
+
+<script type="text/javascript">
+
+var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+];
+
+var substringMatcher = function(strs) {
+    return function findMatches(q, cb) {
+        var matches = [];
+
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(strs, function(i, str) {
+            var queryLength = q.length;
+            var normalizedString = str.toLowerCase();
+            if (normalizedString.substring(0, queryLength) === q.toLowerCase()) {
+                // the typeahead jQuery plugin expects suggestions to a
+                // JavaScript object, refer to typeahead docs for more info
+                matches.push({ value: str });
+            }
+        });
+
+        cb(matches);
+    };
+};
+
+var onStatePickerSubmitClick = function() {
+    var input = $('.typeahead').typeahead('val');
+    if (input) {
+        var inverted = _.invert(APP_CONFIG.STATES);
+        var state = inverted[input]
+    }
+
+    var path = window.location.href;
+    path = path.substr(0, path.lastIndexOf('/'));
+    path += '-' + state;
+
+    if (window.location.pathname.split('/')[2] == 'state-house') {
+        path += '-1';
+    }
+    path += '/index.html';
+
+    if ($(this).text() == "Share") {
+        path += '#share';
+    }
+
+    window.location.href = path
+}
+
+$(document).ready(function() {
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        name: 'states',
+        displayKey: 'value',
+        source: substringMatcher(STATES)
+    });
+
+    $('.state-picker-submit').on('click', onStatePickerSubmitClick);
+});
+
+</script>
+
+{% endblock %}
