@@ -39,25 +39,25 @@
                     <p>
                         <span class="bar-wrapper">
                             <span class="bar gop" style="width: {{ called_gop_percent }}%;"></span>
+                            {% if called_gop_number %}
+                            <span class="bar-label" style="left: {{ called_gop_percent }}%">{{ called_gop_number }}</span>
+                            {% endif %}
                         </span>
-                        {% if called_gop_number %}
-                        <span class="bar-label" style="left: {{ called_gop_percent }}%">{{ called_gop_number }}</span>
-                        {% endif %}
                     </p>
                     <p>
                         <span class="bar-wrapper">
                             <span class="bar dem" style="width: {{ called_dem_percent }}%";></span>
+                            {% if called_dem_number %}
+                            <span class="bar-label" style="left: {{ called_dem_percent }}%">{{ called_dem_number }}</span>
+                            {% endif %}
                         </span>
-                        {% if called_dem_number %}
-                        <span class="bar-label" style="left: {{ called_dem_percent }}%">{{ called_dem_number }}</span>
-                        {% endif %}
                     </p>
                     {% if called_other_number %}
                     <p>
                         <span class="bar-wrapper">
                             <span class="bar other" style="width: {{ called_other_percent }}%;"></span>
+                            <span class="bar-label" style="left: {{ called_other_percent }}%">{{ called_other_number }}</span>
                         </span>
-                        <span class="bar-label" style="left: {{ called_other_percent }}%">{{ called_other_number }}</span>
                     </p>
                     {% endif %}
                 </div>

@@ -335,8 +335,11 @@ p{
         height: 4vw;
         display: block;
         overflow: hidden;
-        line-height: 3vw;
+        line-height: 3.5vw;
         padding: .2vw .5vw;
+        @media screen and (max-width: @screen-sm){
+            height:6vw;
+        }
 
 
         .logo {
@@ -345,6 +348,9 @@ p{
             margin: 0 .5% 0 0;
             float:left;
             fill: @grayMedium;
+            @media screen and (max-width: @screen-sm){
+                width:10vw;
+            }
         }
 
         .leaderboard {
@@ -355,10 +361,10 @@ p{
 
         h2, p, a, span {
             font-size: 1.5vw;
-            line-height: 3vw;
+            line-height: 3.5vw;
             @media screen and (max-width: @screen-sm){
-                font-size: 2vw;
-                line-height:4vw;
+                font-size: 2.5vw;
+                line-height:5vw;
             }
         }
         span{
@@ -370,7 +376,7 @@ p{
             padding:0 1vw;
             float: left;
             box-sizing: border-box;
-            line-height: 2vw;
+            line-height: 3.5vw;
             &:last-child{
                 margin-right: 0;
                 padding-right:0;
@@ -388,10 +394,7 @@ p{
             }
 
             h2 {
-                text-transform: uppercase;
                 margin-top: 0;
-                font-family: 'Cooper Hewitt';
-                letter-spacing: 0.05em;
             }
 
             .total {

@@ -40,7 +40,11 @@ var onAddClick = function() {
     var slideTime = parseInt($item.data('time'));
     var currentStackTime = parseInt($stackTime.text());
 
-    var newItem = $('<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '"><span class="dragger fa fa-align-justify"></span>' + slide + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div></li>'
+    if ($(this).parents('.news')) {
+        var body = $item.find('.tumblr');
+    }
+
+    var newItem = $('<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '"><span class="dragger fa fa-align-justify"></span>' + slide + body.html() + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div></li>'
     )
 
     $timeline.append(newItem);
