@@ -499,8 +499,7 @@
 	        	color: #999;
 	        }
 
-	        .candidate,
-	        .candidate-total {
+	        .candidate {
 	        	&.dem   { background: fadeout(@blueDim, 30%); }
 	        	&.gop   { background: fadeout(@redDim, 30%); }
 		        &.other { background: fadeout(@greenDim, 30%); }
@@ -509,6 +508,18 @@
     	        	&.dem   { background: @blue; }
     	        	&.gop   { background: @red; }
     		        &.other { background: @green; }
+		        }
+	        }
+
+	        .candidate-total {
+	        	&.dem .candidate-total-wrapper   { background: fadeout(@blueDim, 30%); }
+	        	&.gop .candidate-total-wrapper   { background: fadeout(@redDim, 30%); }
+		        &.other .candidate-total-wrapper { background: fadeout(@greenDim, 30%); }
+
+		        &.winner {
+    	        	&.dem .candidate-total-wrapper   { background: @blue; }
+    	        	&.gop .candidate-total-wrapper   { background: @red; }
+    		        &.other .candidate-total-wrapper { background: @green; }
 		        }
 	        }
 	    }
