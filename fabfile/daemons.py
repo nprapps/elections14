@@ -41,6 +41,6 @@ def results():
     while True:
         execute('ap.update')
         execute('data.load_updates', 'data/update.json')
-        execute('render.render_slides')
-        execute('render.render_big_boards')
+        execute('deploy_slides')
+        execute('deploy_big_boards')
         sleep(app_config.AP_RESULTS_REFRESH_INTERVAL)
