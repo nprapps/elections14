@@ -3,6 +3,7 @@
 import argparse
 import datetime
 import logging
+import subprocess
 
 from flask import Flask, render_template
 from flask_peewee.auth import Auth
@@ -83,6 +84,9 @@ def save_stack():
     # Rebuild sequence table
     for i, row in enumerate(data[0]):
         SlideSequence.create(order=i, slide=row['slide'])
+
+    if app_config.DEPLOYMENT_TARGET:
+        subprocess.check_output(['fab', app_config.DEPLOYMENT_TARGET, 'stack.update'], stderr=subprocess.STDOUT)
 
     return "Saved sequence"
 
