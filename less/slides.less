@@ -2,6 +2,12 @@
 @import "less/lib/bootstrap/variables.less";
 @import "less/lib/bootstrap/mixins.less";
 
+.vertical-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .text-shadow {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
@@ -43,10 +49,8 @@
 
     .tumblr-text-post {
         .wrapper {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
             padding: 0 5%;
+            .vertical-center;
 
             h2 {
                 font-size: 4vw;
@@ -88,16 +92,14 @@
 
             .centered {
                 padding: 0 5%;
-                position: relative;
-                top: 45%;
-                transform: translateY(-50%);
+                .vertical-center;
 
                 .body {
                     margin-bottom: 5%;
 
                     p {
-                        font-size: 2.75vw;
-                        line-height: 3.25vw;
+                        font-size: 2.5vw;
+                        line-height: 3vw;
                         .text-shadow;
                     }
                 }
@@ -108,9 +110,7 @@
     .tumblr-quote-post {
         .wrapper {
             padding: 0 5%;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
+            .vertical-center;
 
             blockquote {
                 font-size: 3vw;
