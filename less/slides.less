@@ -6,7 +6,6 @@
 .slide-content{
     .tumblr {
         background-image: url('../assets/elections-background-1.jpg');
-        padding: 50px;
         height: 100%;
 
         a {
@@ -14,13 +13,13 @@
         }
 
         .date {
-            font-size: 3vmin;
-            margin-bottom: 2vmin;
+            font-size: 2vw;
+            margin-bottom: 2vw;
         }
 
         .post-footer {
             color: @grayMedium;
-            font-size: 3.5vmin;
+            font-size: 2vw;
         }
     }
 
@@ -51,9 +50,6 @@
         .image {
             float: left;
             width: 50%;
-            position: relative;
-            top: 45%;
-            transform: translateY(-50%);
 
             img {
                 width: 100%;
@@ -62,18 +58,23 @@
         }
 
         .caption {
-            float: right;
-            width: 45%;
-            position: relative;
-            top: 45%;
-            transform: translateY(-50%);
+            float: left;
+            width: 50%;
+            height: 100%;
 
-            .body {
-                margin-bottom: 2vmin;
+            .centered {
+                padding: 0 5%;
+                position: relative;
+                top: 45%;
+                transform: translateY(-50%);
 
-                p {
-                    font-size: 4.5vmin;
-                    line-height: 5.2vmin;
+                .body {
+                    margin-bottom: 5%;
+
+                    p {
+                        font-size: 3vw;
+                        line-height: 4.2vw;
+                    }
                 }
             }
         }

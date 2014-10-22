@@ -1,123 +1,126 @@
 {% extends '_base.html' %}
 
 {% block outer_content %}
-<div class="slide welcome">
-    <div class="slide-inner">
-        <div class="slide-content">
-            {% include '_logo.svg' %}
-            <div class="intro-text">
-                <p>Hosted by Robert Siegel and Melissa Block</p>
-                <h1>2014</h1>
-                <h2>Election Party!</h2>
-
-                <div class="call-to-action">
-                    <p class="rotate">Please rotate your phone</p>
-                    <button class="btn btn-lg welcome-button">Get Started</button>
+<div id="landscape-wrapper">
+    <div class="slide welcome">
+        <div class="slide-inner">
+            <div class="slide-content">
+                <div class="logo-wrapper">
+                {% include '_logo.svg' %}
                 </div>
-            </div>
-
-
-            <div class="tv-prompt">
-                <img class="icon" src="assets/tv.svg">
-                <h3>Stream on your TV</h3>
-
-                <p>Use your Apple TV, <a class="cast-start" href="#">Chromecast</a>, or Roku device.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="state-picker slide">
-    <div class="slide-inner">
-        <div class="slide-content">
-            <h2>Get up to the minute results on your state</h2>
-
-            <form role="form" class="state-picker-form">
-                <div class="form-group">
-                    <div class="state">
-                        <span class="stateface"></span>
-                        <h3 class="state-name"></h3>
+                <div class="intro-text">
+                    <p>Hosted by Robert Siegel and Melissa Block</p>
+                    <div class="election-logo-wrapper">
+                        {% include '_election_party.svg' %}
                     </div>
 
-                    <input class="typeahead" type="text" placeholder="&#xf002;&nbsp;&nbsp; Select a different state">
+                    <div class="call-to-action">
+                        <p class="rotate">Please rotate your phone</p>
+                        <button class="btn btn-lg welcome-button">Get Started</button>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-lg state-picker-submit">Join the party</button>
-            </form>
-        </div>
-    </div>
-</div>
 
-<div class="cast-controls slide">
-    <div class="slide-inner">
-        <div class="slide-content">
-            <h2>Chromecast Menu</h2>
-
-            <ul class="menu">
-                <li><a class="mute" href="#">Mute</a></li>
-                <li><a class="change-state" href="#">Change state</a></li>
-                <li><a data-toggle="modal" data-backdrop="static" data-target="#share-modal" href="#">Share</a></li>
-                <li><a class="cast-stop" href="#">Stop casting</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div id="stack">
-    <div class="header-container">
-        <div class="results-header index">
-            {% include '_logo.svg' %}
-
-            <span class="hashtag">#nprparty</span>
-            {% if bop %}
-            <div class="leaderboard">
-                <div class="results-header-group">
-                <h2>Senate Results:</h2>
-                </div>
-                <div class="results-header-group dem">
-                    <h2 class="party">Dem</h2>
-                    <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
-                </div>
-                <div class="results-header-group gop">
-                    <h2 class="party">GOP</h2>
-                    <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
-                    </tr>
-                </div>
-                <div class="results-header-group not-called">
-                    <h2 class="party">Not Called</h2>
-                    <p class="total"><span class="count">{{ not_called }}</span></p>
+                <div class="tv-prompt">
+                    <img class="icon" src="assets/tv.svg">
+                    <p>Use your Apple TV, <a class="cast-start" href="#">Chromecast</a>, or Roku device.</p>
                 </div>
             </div>
-            {% endif %}
         </div>
+    </div>
 
-        <div class="results-header header-controls">
-            <a href="#" data-toggle="modal" data-backdrop="static" data-target="#share-modal">Share <span class="fa fa-share"></span></a>
+    <div class="state-picker slide">
+        <div class="slide-inner">
+            <div class="slide-content">
+                <h2>Get up to the minute results on your state</h2>
 
-            <div class="right-controls">
-                <div class="state results-header-group">
-                    <a class="state-picker-link" href="#"><p>Virginia</p></a>
+                <form role="form" class="state-picker-form">
+                    <div class="form-group">
+                        <div class="state">
+                            <span class="stateface"></span>
+                            <h3 class="state-name"></h3>
+                        </div>
+
+                        <input class="typeahead" type="text" placeholder="&#xf002;&nbsp;&nbsp; Select a different state">
+                    </div>
+
+                    <button type="submit" class="btn btn-lg state-picker-submit">Join the party</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="cast-controls slide">
+        <div class="slide-inner">
+            <div class="slide-content">
+                <h2>Chromecast Menu</h2>
+
+                <ul class="menu">
+                    <li><a class="mute" href="#">Mute</a></li>
+                    <li><a class="change-state" href="#">Change state</a></li>
+                    <li><a data-toggle="modal" data-backdrop="static" data-target="#share-modal" href="#">Share</a></li>
+                    <li><a class="cast-stop" href="#">Stop casting</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="stack">
+        <div class="header-container">
+            <div class="results-header index">
+                {% include '_logo.svg' %}
+
+                <span class="hashtag">#nprparty</span>
+                {% if bop %}
+                <div class="leaderboard">
+                    <div class="results-header-group">
+                    <h2>Senate Results:</h2>
+                    </div>
+                    <div class="results-header-group dem">
+                        <h2 class="party">Dem</h2>
+                        <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
+                    </div>
+                    <div class="results-header-group gop">
+                        <h2 class="party">GOP</h2>
+                        <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
+                        </tr>
+                    </div>
+                    <div class="results-header-group not-called">
+                        <h2 class="party">Not Called</h2>
+                        <p class="total"><span class="count">{{ not_called }}</span></p>
+                    </div>
                 </div>
-                <div class="chromecast">
-                    <p><a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /></a></p>
-                </div>
-                <div class="volume results-header-group">
-                    <div id="audio-ambient">
-                        <div id="pop-audio" class="jp-jplayer"></div>
-                        <div id="jp_container_1" class="jp-audio">
-                            <div class="jp-type-single">
-                                <div class="jp-gui jp-interface">
-                                    <div class="jp-controls">
-                                        <a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="stop"><img class="volume-icon" src="assets/icon-mute.svg"></a>
-                                        <a href="javascript:;" class="jp-pause nav-btn" tabindex="1" title="play"><img class="volume-icon" src="assets/icon-volume.svg"></a>
+                {% endif %}
+            </div>
+
+            <div class="results-header header-controls">
+                <a href="#" data-toggle="modal" data-backdrop="static" data-target="#share-modal">Share <span class="fa fa-share"></span></a>
+
+                <div class="right-controls">
+                    <div class="state results-header-group">
+                        <a class="state-picker-link" href="#"><p>Virginia</p></a>
+                    </div>
+                    <div class="chromecast">
+                        <p><a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /></a></p>
+                    </div>
+                    <div class="volume results-header-group">
+                        <div id="audio-ambient">
+                            <div id="pop-audio" class="jp-jplayer"></div>
+                            <div id="jp_container_1" class="jp-audio">
+                                <div class="jp-type-single">
+                                    <div class="jp-gui jp-interface">
+                                        <div class="jp-controls">
+                                            <a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="stop"><img class="volume-icon" src="assets/icon-mute.svg"></a>
+                                            <a href="javascript:;" class="jp-pause nav-btn" tabindex="1" title="play"><img class="volume-icon" src="assets/icon-volume.svg"></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="fullscreen results-header-group">
-                    <a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"></a>
+                    <div class="fullscreen results-header-group">
+                        <a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"></a>
+                    </div>
                 </div>
             </div>
         </div>

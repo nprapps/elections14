@@ -110,7 +110,7 @@ var onDocumentReady = function(e) {
     } else {
         // Prepare welcome screen
         $welcomeScreen.css('opacity', 1);
-        resizeSlide($welcomeScreen);
+        //resizeSlide($welcomeScreen);
         rotatePhone();
 
         // Configure share panel
@@ -133,6 +133,7 @@ var onDocumentReady = function(e) {
         setUpAudio(true);
     }
 
+    onWindowResize();
     setupStateTypeahead();
 }
 
@@ -238,6 +239,20 @@ var onCastMute = function() {
  * Resize current slide.
  */
 var onWindowResize = function() {
+    var width = $(window).width();
+    var height = $(window).height();
+    
+    var target_width = 1280;
+    var target_height = 720;
+
+    var new_height = width * 9 / 16;
+    var padding = (new_height - height) / 2;
+
+    $('#landscape-wrapper').css({
+        'height': new_height + 'px',
+        'padding-top': padding + 'px'
+    });
+
     var thisSlide = $('.slide');
     resizeSlide(thisSlide);
     rotatePhone();
@@ -470,8 +485,8 @@ var onClippyCopy = function(e) {
  * Resize a slide to fit the viewport.
  */
 var resizeSlide = function(slide) {
-    var $w = $(window).width();
-    var $h = $(window).height();
+    var $w = $('#landscape-wrapper').width();
+    var $h = $('#landscape-wrapper').height();
     var headerHeight = $header.height();
 
     slide.width($w);

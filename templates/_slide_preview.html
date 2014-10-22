@@ -4,7 +4,9 @@
     {% include '_fonts.html' %}
 
     {# Unfortunante hack because we're deploying this to staging and it can't compile a less file on demand #}
-    <link rel="stylesheet" href="/css/app.less.css" />
+    {# <link rel="stylesheet" href="/css/app.less.css" /> #}
+    {{ CSS.push('less/app.less') }}
+    {{ CSS.render('preview.less.css') }}
 
     <!-- ugly includes because slide js is inlined and can't pickup the stuff from the base template -->
     <script src="/js/lib/d3.v3.min.js"></script>
@@ -22,30 +24,51 @@
 </head>
 
 <body>
-    <div id="stack" class="stack" style="display: block;">
-        {{ body|smarty }}
-    </div>
-    <div class="share-footer">
-        <div class="share-title">
-            {% include '_election_party.svg' %}
+    <div id="landscape-wrapper">
+        <div id="stack" class="stack" style="display: block;">
+            {{ body|smarty }}
         </div>
+        <div class="share-footer">
+            <div class="share-title">
+                {% include '_election_party.svg' %}
+            </div>
 
-        <div class="share-url">
-            <h2>npr.org/election</h2>
+            <div class="share-url">
+                <h2>npr.org/election</h2>
+            </div>
         </div>
     </div>
 
     <script>
-        var resizeSlide = function() {
-            var $slide = $('.slide');
-            var w = $(window).width();
-            var h = $(window).height();
+        var onWindowResize = function() {
+            var width = $(window).width();
+            var height = $(window).height();
+            
+            var target_width = 1280;
+            var target_height = 720;
 
-            $slide.width(w);
-            $slide.height(h);
+            var new_height = width * 9 / 16;
+            var padding = (new_height - height) / 2;
 
-            $slide.find('.slide-content').width(w);
-            $slide.find('.slide-content').height(h);
+            $('#landscape-wrapper').css({
+                'height': new_height + 'px',
+                'padding-top': padding + 'px'
+            });
+
+            var thisSlide = $('.slide');
+            resizeSlide(thisSlide);
+        }
+
+        var resizeSlide = function(slide) {
+            var $w = $('#landscape-wrapper').width();
+            var $h = $('#landscape-wrapper').height();
+            var headerHeight = 0;
+
+            slide.width($w);
+            slide.height($h - headerHeight);
+
+            slide.find('.slide-content').width($w);
+            slide.find('.slide-content').height($h - headerHeight);
         }
 
         $(document).ready(function() {
@@ -54,8 +77,9 @@
                 $('body').prepend('<link rel="stylesheet" href="/css/share-ui.less.css">');
             }
             else {
-                resizeSlide();
-                $(window).on('resize', resizeSlide);
+                $(window).on('resize', onWindowResize);
+
+                onWindowResize();
             }
 
         })
