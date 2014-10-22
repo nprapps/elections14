@@ -19,7 +19,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     padding: 1.5vw 1.5vw;
     font-size: 2vw;
     letter-spacing: .03em;
-    border-radius: 0.5vmin;
+    border-radius: 0.5vw;
     text-transform: uppercase;
 
     &:hover {
@@ -130,6 +130,8 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 }
 
 .cast-controls {
+    text-align: center;
+
     &:after {
         content : "";
         display: block;
@@ -144,13 +146,15 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
         z-index: -1;
     }
 
-    text-align: center;
-    padding-top: 6vmin;
+    .centered {
+        .vertical-center;
+    }
 
     h2 {
         font-size: 3vw;
         font-weight: bold;
         padding-bottom: 2vw;
+        margin: 0;
     }
 
     ul.menu {
@@ -310,6 +314,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     width: 100%;
 
     box-shadow: inset 0 5vw 5vw -5vw black;
+
     .results-header {
         color: @grayMedium;
         height: 4vw;
@@ -444,9 +449,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
                 width: 2vw;
                 height: 2vw;
             }
+
             .expand {
                 width: 1.5vw;
-                height: 1.5 vw;
+                height: 1.5vw;
             }
 
             .volume-icon,
