@@ -246,16 +246,36 @@ var onWindowResize = function() {
     var target_height = 720;
 
     var new_height = width * 9 / 16;
-    var padding = (new_height - height) / 2;
+    var padding = (height - new_height) / 2;
+
+    if (padding < 0) {
+        padding = 0;
+    }
 
     $('#landscape-wrapper').css({
         'height': new_height + 'px',
-        'padding-top': padding + 'px'
+        'position': 'absolute',
+        'top': padding + 'px'
     });
 
     var thisSlide = $('.slide');
     resizeSlide(thisSlide);
     rotatePhone();
+}
+
+/*
+ * Resize a slide to fit the viewport.
+ */
+var resizeSlide = function(slide) {
+    var $w = $('#landscape-wrapper').width();
+    var $h = $('#landscape-wrapper').height();
+    var headerHeight = $header.height();
+
+    slide.width($w);
+    slide.height($h - headerHeight);
+
+    slide.find('.slide-content').width($w);
+    slide.find('.slide-content').height($h - headerHeight);
 }
 
 var rotatePhone = function() {
@@ -479,21 +499,6 @@ var onClippyCopy = function(e) {
     alert('Copied to your clipboard!');
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'summary-copied']);
-}
-
-/*
- * Resize a slide to fit the viewport.
- */
-var resizeSlide = function(slide) {
-    var $w = $('#landscape-wrapper').width();
-    var $h = $('#landscape-wrapper').height();
-    var headerHeight = $header.height();
-
-    slide.width($w);
-    slide.height($h - headerHeight);
-
-    slide.find('.slide-content').width($w);
-    slide.find('.slide-content').height($h - headerHeight);
 }
 
 

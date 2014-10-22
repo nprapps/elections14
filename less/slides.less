@@ -46,10 +46,18 @@
         }
     }
 
+    .centered {
+        position: relative;
+        top: 45%;
+        transform: translateY(-50%);
+    }
+
     .tumblr-image-post {
+        // Width is fixed so resulting area is square
         .image {
             float: left;
-            width: 50%;
+            width: 56.25%;
+            height: 100%;
 
             img {
                 width: 100%;
@@ -59,14 +67,11 @@
 
         .caption {
             float: left;
-            width: 50%;
+            width: 43.75%;
             height: 100%;
 
             .centered {
                 padding: 0 5%;
-                position: relative;
-                top: 45%;
-                transform: translateY(-50%);
 
                 .body {
                     margin-bottom: 5%;
