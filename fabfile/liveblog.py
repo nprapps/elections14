@@ -89,8 +89,11 @@ def _render_post(post):
         image = None
         for size in post['photos'][0]['alt_sizes']:
             if not image or size['width'] > image['width']:
-                image = size
+                if size['width'] < 960:
+                    image = size
         post['image'] = image
+
+        print image
 
     with open('templates/%s' % filename) as f:
         template = Template(f.read())
