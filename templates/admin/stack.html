@@ -18,8 +18,10 @@
                 <h2>Graphics</h2>
                 <ul class="list-unstyled">
                     {% for slide in graphics %}
-                    <li class="item" data-slide="{{ slide.slug }}">
-                        <p class="slug"><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html" target="_blank">{{ slide.slug }}</a></p>
+                    <li class="item" data-slide="{{ slide.slug }}" data-time ="{{ slide.time_on_screen }}">
+                        <p class="slug">
+                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html" target="_blank">{{ slide.slug }}</a>
+                        </p>
                         <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
 
                         <div class="controls">
@@ -52,7 +54,7 @@
                 <p>Stack length: <span class="stack-time">{{ time }}</span> seconds</p>
                 <ol class="sortable list-unstyled js-droppable-and-draggable">
                     {% for slide in sequence %}
-                    <li class="item" data-slide="{{ slide.slide }}">
+                    <li class="item" data-slide="{{ slide.slide }}" data-time="{{ slide.time_on_screen }}">
                         <span class="dragger fa fa-align-justify"></span> {{ slide.slide }}
                         <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div>
                     </li>

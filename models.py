@@ -150,6 +150,15 @@ class Race(SlugModel):
 
         return None
 
+    def get_runoff_winners(self):
+        """
+        Get candidates who will appear in a runoff
+        """
+        if self.accept_ap_call and self.number_in_runoff:
+            return self.candidates.where(Candidate.ap_runoff_winner == True)
+        else:
+            return None
+
     def is_called(self):
         """
         Has this race been called?
@@ -307,6 +316,7 @@ class Candidate(SlugModel):
     ballot_order = CharField(null=True)
     vote_count = IntegerField(default=False)
     ap_winner = BooleanField(default=False)
+    ap_runoff_winner = BooleanField(default=False)
 
     # NPR data
     slug = CharField(max_length=255)

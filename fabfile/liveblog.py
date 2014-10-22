@@ -13,6 +13,8 @@ import models
 
 LIMIT = 20
 
+UNSUPPORTED_TYPES = ['video', 'audio', 'link', 'chat', 'answer']
+
 @task
 def update():
     """
@@ -38,7 +40,7 @@ def update():
         posts = data['response']['posts']
 
         for post in posts:
-            if post['type'] == 'video':
+            if post['type'] in UNSUPPORTED_TYPES:
                 continue
 
             if datetime.fromtimestamp(post['timestamp']) < app_config.TUMBLR_NOT_BEFORE:
@@ -64,13 +66,6 @@ def _create_slide(post):
         print 'Creating post %s' % slug
         slide = models.Slide.create(slug=slug, name=post_title, body=rendered_post, view_name='_slide')
 
-        order = (models.SlideSequence.last() or 0) + 1
-
-        sequence = models.SlideSequence.create(order=order, slide=slide)
-        sequence.save()
-
-        print '%s is slide number %s' % (slide.name, order)
-
 def _render_post(post):
     # Parse GMT date from API
     post_date = parse(post['date'])
@@ -87,7 +82,8 @@ def _render_post(post):
         image = None
         for size in post['photos'][0]['alt_sizes']:
             if not image or size['width'] > image['width']:
-                image = size
+                if size['width'] < 960:
+                    image = size
         post['image'] = image
 
     with open('templates/%s' % filename) as f:

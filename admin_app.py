@@ -3,6 +3,7 @@
 import argparse
 import datetime
 import logging
+import subprocess
 
 from flask import Flask, render_template
 from flask_peewee.auth import Auth
@@ -55,12 +56,13 @@ def stack():
     for slide in sequence:
         time += slide.slide.time_on_screen
 
-
-    for slide in sequence_dicts:
-        print slide
+    for slide_dict in sequence_dicts:
+        for slide in sequence:
+            if slide.slide.slug == slide_dict['slide']:
+                slide_dict['time_on_screen'] = slide.slide.time_on_screen
 
     context.update({
-        'sequence': SlideSequence.select().dicts(),
+        'sequence': sequence_dicts,
         'slides': Slide.select().dicts(),
         'graphics': Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) != 'tumblr').order_by(Slide.slug).dicts(),
         'news':  Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) == 'tumblr').order_by(Slide.slug).dicts(),
@@ -82,6 +84,9 @@ def save_stack():
     # Rebuild sequence table
     for i, row in enumerate(data[0]):
         SlideSequence.create(order=i, slide=row['slide'])
+
+    if app_config.DEPLOYMENT_TARGET:
+        subprocess.check_output(['fab', app_config.DEPLOYMENT_TARGET, 'stack.update'], stderr=subprocess.STDOUT)
 
     return "Saved sequence"
 

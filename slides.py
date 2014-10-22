@@ -23,7 +23,7 @@ def senate_big_board():
     races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
 
     context['poll_groups'] = app_utils.group_races_by_closing_time(races)
-    context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_MAJORITY, app_utils.SENATE_INITIAL_BOP)
+    context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(races)
 
     return render_template('slides/race_results.html', **context)
@@ -49,7 +49,7 @@ def house_big_board(page):
         featured_races = all_featured_races[:app_utils.HOUSE_PAGE_LIMIT]
 
     context['poll_groups'] = app_utils.group_races_by_closing_time(featured_races)
-    context['bop'] = app_utils.calculate_bop(all_races, app_utils.HOUSE_MAJORITY, app_utils.HOUSE_INITIAL_BOP)
+    context['bop'] = app_utils.calculate_bop(all_races, app_utils.HOUSE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(all_races)
     context['seat_number'] = ".seat_number"
 
@@ -119,8 +119,8 @@ def balance_of_power():
     house_races = Race.select().where(Race.office_name == 'U.S. House').order_by(Race.state_postal)
     senate_races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
-    context['house_bop'] = app_utils.calculate_bop(house_races, app_utils.HOUSE_MAJORITY, app_utils.HOUSE_INITIAL_BOP)
-    context['senate_bop'] = app_utils.calculate_bop(senate_races, app_utils.SENATE_MAJORITY, app_utils.SENATE_INITIAL_BOP)
+    context['house_bop'] = app_utils.calculate_bop(house_races, app_utils.HOUSE_INITIAL_BOP)
+    context['senate_bop'] = app_utils.calculate_bop(senate_races, app_utils.SENATE_INITIAL_BOP)
     context['house_not_called'] = app_utils.calculate_seats_left(house_races)
     context['senate_not_called'] = app_utils.calculate_seats_left(senate_races)
 
