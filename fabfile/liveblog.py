@@ -66,13 +66,6 @@ def _create_slide(post):
         print 'Creating post %s' % slug
         slide = models.Slide.create(slug=slug, name=post_title, body=rendered_post, view_name='_slide')
 
-        order = (models.SlideSequence.last() or 0) + 1
-
-        sequence = models.SlideSequence.create(order=order, slide=slide)
-        sequence.save()
-
-        print '%s is slide number %s' % (slide.name, order)
-
 def _render_post(post):
     # Parse GMT date from API
     post_date = parse(post['date'])
@@ -92,8 +85,6 @@ def _render_post(post):
                 if size['width'] < 960:
                     image = size
         post['image'] = image
-
-        print image
 
     with open('templates/%s' % filename) as f:
         template = Template(f.read())
