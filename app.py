@@ -254,18 +254,20 @@ def _slide(slug):
     Serve up slide html fragment
     """
     from models import Slide
+    
+    context = make_context()
 
     slide = Slide.get(Slide.slug == slug)
     view_name = slide.view_name
 
     if view_name == '_slide':
-        body = slide.body
+        context['body'] = slide.body
     else:
-        body = slides.__dict__[view_name]()
+        context['body'] = slides.__dict__[view_name]()
 
-    time_on_screen = slide.time_on_screen
+    context['time_on_screen'] = slide.time_on_screen
 
-    return render_template('_slide.html', body=body, time_on_screen=time_on_screen)
+    return render_template('_slide.html', **context)
 
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)

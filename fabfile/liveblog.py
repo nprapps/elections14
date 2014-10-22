@@ -76,7 +76,7 @@ def _render_post(post):
     # Format for display
     post['formatted_date'] = post_date.astimezone(eastern).strftime('%I:%M %p EST')
 
-    filename = '_tumblr_%s.html' % post['type']
+    filename = 'slides/tumblr_%s.html' % post['type']
 
     if post['type'] == 'photo':
         image = None

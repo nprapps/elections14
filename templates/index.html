@@ -5,24 +5,26 @@
     <div class="slide welcome">
         <div class="slide-inner">
             <div class="slide-content">
-                <div class="logo-wrapper">
-                {% include '_logo.svg' %}
-                </div>
-                <div class="intro-text">
-                    <p>Hosted by Robert Siegel and Melissa Block</p>
-                    <div class="election-logo-wrapper">
-                        {% include '_election_party.svg' %}
+                <div class="centered">
+                    <div class="logo-wrapper">
+                    {% include '_logo.svg' %}
+                    </div>
+                    <div class="intro-text">
+                        <p>Hosted by Robert Siegel and Melissa Block</p>
+                        <div class="election-logo-wrapper">
+                            {% include '_election_party.svg' %}
+                        </div>
+
+                        <div class="call-to-action">
+                            <p class="rotate">Please rotate your phone</p>
+                            <button class="btn btn-lg welcome-button">Get Started</button>
+                        </div>
                     </div>
 
-                    <div class="call-to-action">
-                        <p class="rotate">Please rotate your phone</p>
-                        <button class="btn btn-lg welcome-button">Get Started</button>
+                    <div class="tv-prompt">
+                        <img class="icon" src="assets/tv.svg">
+                        <p>Use your Apple TV, <a class="cast-start" href="#">Chromecast</a>, or Roku device.</p>
                     </div>
-                </div>
-
-                <div class="tv-prompt">
-                    <img class="icon" src="assets/tv.svg">
-                    <p>Use your Apple TV, <a class="cast-start" href="#">Chromecast</a>, or Roku device.</p>
                 </div>
             </div>
         </div>
@@ -31,20 +33,22 @@
     <div class="slide state-picker">
         <div class="slide-inner">
             <div class="slide-content">
-                <h2>Get up to the minute results for your state</h2>
+                <div class="centered">
+                    <h2>Get up to the minute results for your state</h2>
 
-                <form role="form" class="state-picker-form">
-                    <div class="form-group">
-                        <div class="state">
-                            <span class="stateface"></span>
-                            <h3 class="state-name"></h3>
+                    <form role="form" class="state-picker-form">
+                        <div class="form-group">
+                            <div class="state">
+                                <span class="stateface"></span>
+                                <h3 class="state-name"></h3>
+                            </div>
+
+                            <input class="typeahead" type="text" placeholder="&#xf002;&nbsp;&nbsp; Select a different state">
                         </div>
 
-                        <input class="typeahead" type="text" placeholder="&#xf002;&nbsp;&nbsp; Select a different state">
-                    </div>
-
-                    <button type="submit" class="btn btn-lg state-picker-submit">Join the party</button>
-                </form>
+                        <button type="submit" class="btn btn-lg state-picker-submit">Join the party</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

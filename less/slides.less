@@ -2,29 +2,11 @@
 @import "less/lib/bootstrap/variables.less";
 @import "less/lib/bootstrap/mixins.less";
 
-.slide-content{
-    .tumblr {
-        background-image: url('../assets/elections-background-1.jpg');
-        height: 100%;
+.tumblr {
+    background-image: url('../assets/elections-background-1.jpg');
+    height: 100%;
 
-        a {
-            color: @grayMedium;
-        }
-
-        .date {
-            font-size: 1.75vw;
-            margin-bottom: 1.5vw;
-            .text-shadow;
-        }
-
-        .post-footer {
-            color: @grayMedium;
-            font-size: 1.75vw;
-            .text-shadow;
-        }
-    }
-
-    /*.tumblr:after {
+    /*&:after {
         content : "";
         display: block;
         position: absolute;
@@ -37,120 +19,124 @@
         z-index: -1;
     }*/
 
-    .tumblr-text-post {
-        .wrapper {
+    a {
+        color: @grayMedium;
+    }
+
+    .date {
+        font-size: 1.75vw;
+        margin-bottom: 1.5vw;
+        .text-shadow;
+    }
+
+    .post-footer {
+        color: @grayMedium;
+        font-size: 1.75vw;
+        .text-shadow;
+    }
+}
+
+.tumblr-text-post {
+    .wrapper {
+        padding: 0 5%;
+        .vertical-center;
+
+        h2 {
+            font-size: 4vw;
+            margin-bottom: 2%;
+            font-weight: bold;
+            .text-shadow;
+        }
+
+        .body {
+            margin-top: 3%;
+            margin-bottom: 2%;
+
+            p {
+                font-size: 3vw;
+                line-height: 3.7vw;
+                .text-shadow;
+            }
+        }
+    }
+}
+
+.tumblr-image-post {
+    // Width is fixed so resulting area is square
+    .image {
+        float: left;
+        width: 56.25%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .caption {
+        float: left;
+        width: 43.75%;
+        height: 100%;
+
+        .centered {
             padding: 0 5%;
             .vertical-center;
 
-            h2 {
-                font-size: 4vw;
-                margin-bottom: 2%;
-                font-weight: bold;
-                .text-shadow;
-            }
-
             .body {
-                margin-top: 3%;
-                margin-bottom: 2%;
+                margin-bottom: 5%;
 
                 p {
-                    font-size: 3vw;
-                    line-height: 3.7vw;
+                    font-size: 2.5vw;
+                    line-height: 3vw;
                     .text-shadow;
                 }
             }
         }
     }
+}
 
-    .tumblr-image-post {
-        // Width is fixed so resulting area is square
-        .image {
-            float: left;
-            width: 56.25%;
-            height: 100%;
+.tumblr-quote-post {
+    .wrapper {
+        padding: 0 5%;
+        .vertical-center;
 
-            img {
-                width: 100%;
-                height: auto;
+        blockquote {
+            font-size: 3vw;
+            line-height: 4.25vw;
+            border: none;
+            padding: 0;
+            @media all and (-webkit-min-device-pixel-ratio:0) {
+                -webkit-margin-before: 0;
+                -webkit-margin-after: 0;
+                -webkit-margin-start: 0;
+                -webkit-margin-end: 0;
+                text-indent: -0.31em;
             }
-        }
 
-        .caption {
-            float: left;
-            width: 43.75%;
-            height: 100%;
-
-            .centered {
-                padding: 0 5%;
-                .vertical-center;
-
-                .body {
-                    margin-bottom: 5%;
-
-                    p {
-                        font-size: 2.5vw;
-                        line-height: 3vw;
-                        .text-shadow;
-                    }
-                }
+            span {
+                background-color: @blueDarker;
+                padding: 0.7vw;
+                -ms-box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+                -o-box-decoration-break: clone;
+                box-decoration-break: clone;
             }
-        }
-    }
 
-    .tumblr-quote-post {
-        .wrapper {
-            padding: 0 5%;
-            .vertical-center;
-
-            blockquote {
-                font-size: 3vw;
-                line-height: 4.25vw;
+            footer {
+                margin-top: 3%;
                 border: none;
-                padding: 0;
-                @media all and (-webkit-min-device-pixel-ratio:0) {
-                    -webkit-margin-before: 0;
-                    -webkit-margin-after: 0;
-                    -webkit-margin-start: 0;
-                    -webkit-margin-end: 0;
-                    text-indent: -0.31em;
-                }
+                padding-left: 0;
 
-                span {
-                    background-color: @blueDarker;
-                    padding: 0.7vw;
-                    -ms-box-decoration-break: clone;
-                    -webkit-box-decoration-break: clone;
-                    -o-box-decoration-break: clone;
-                    box-decoration-break: clone;
-                }
-
-                footer {
-                    margin-top: 3%;
-                    border: none;
-                    padding-left: 0;
-
-                    cite {
-                        font-size: 2.5vw;
-                        text-transform: uppercase;
-                        letter-spacing: .05em;
-                    }
+                cite {
+                    font-size: 2.5vw;
+                    text-transform: uppercase;
+                    letter-spacing: .05em;
                 }
             }
-        }
-    }
-
-    .instagram-grid {
-        margin: 0 auto;
-        max-width: 1280px;
-
-        .photo {
-            display: inline-block;
-            float: left;
-            width: 25%;
         }
     }
 }
-
 
 /* GRAPHICS */
 

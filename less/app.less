@@ -7,11 +7,9 @@
 @import "less/results.less";
 @import "less/slides.less";
 
-
 body {
     background-color: black;
 }
-
 
 h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -44,6 +42,18 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     height: 100%;
 }
 
+.slide-inner {
+    // This gets resized in JS
+}
+
+.slide-content {
+    height: 100%;
+}
+
+.centered {
+    .vertical-center;
+}
+
 /*
 ** WELCOME SLIDES
 */
@@ -52,10 +62,6 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     display: block;
     opacity: 0;
     .transition(opacity 3s ease);
-
-    .slide-content {
-        .vertical-center;
-    }
 
     &:after {
         content : "";
