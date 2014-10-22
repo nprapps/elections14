@@ -128,19 +128,25 @@ def write_calls(ticket, path):
         with open(path) as f:
             previous_calls = json.load(f)
             called_ids = [call.get('race_id') for call in previous_calls]
+    else:
+        previous_calls = []
 
     for race in ticket.races:
         if race.ap_race_number not in called_ids:
-            winners = [candidate for candidate in race.candidates if candidate.is_winner]
+            winners = [candidate.ap_natl_number for candidate in race.candidates if candidate.is_winner]
+            runoff_winners = [candidate.ap_natl_number for candidate in race.candidates if candidate.is_runoff]
 
-            if len(winners) > 1:
-                print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (race.ap_race_number, race.race_type, race.state_postal)
-
-            if len(winners):
-                winner = winners[0]
+            if len(runoff_winners):
                 new_calls.append({
                     'race_id': race.ap_race_number,
-                    'ap_winner': winner.ap_natl_number,
+                    'ap_runoff_winners': runoff_winners,
+                    'ap_called_time': datetime.strftime(mod_time, '%Y-%m-%dT%H:%M:%SZ'),
+                })
+
+            if len(winners):
+                new_calls.append({
+                    'race_id': race.ap_race_number,
+                    'ap_winner': winners[0],
                     'ap_called_time': datetime.strftime(mod_time, '%Y-%m-%dT%H:%M:%SZ'),
                 })
 
