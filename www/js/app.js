@@ -269,7 +269,7 @@ var onWindowResize = function() {
 var resizeSlide = function(slide) {
     var $w = $('#landscape-wrapper').width();
     var $h = $('#landscape-wrapper').height();
-    var headerHeight = $header.height();
+    var headerHeight = 0;
 
     slide.width($w);
     slide.height($h - headerHeight);

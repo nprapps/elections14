@@ -1,22 +1,24 @@
 <div id="balance-of-power" class="graphic">
-	{% if COPY.graphic_slides.headline_bop %}<h1>{{ COPY.graphic_slides.headline_bop }}</h1>{% endif %}
-	{% if COPY.graphic_slides.subhed_bop %}<h2>{{ COPY.graphic_slides.subhed_bop }}</h2>{% endif %}
+    <div class="wrapper">
+        {% if COPY.graphic_slides.headline_bop %}<h1>{{ COPY.graphic_slides.headline_bop }}</h1>{% endif %}
+        {% if COPY.graphic_slides.subhed_bop %}<h2>{{ COPY.graphic_slides.subhed_bop }}</h2>{% endif %}
 
-	<div id="graphic-bop"></div>
+        <div id="graphic-bop"></div>
 
-	{% if COPY.graphic_slides.footnote_bop %}
-	<div class="footnotes">
-		<h4>Notes</h4>
-		<p>{{ COPY.graphic_slides.footnote_bop }}</p>
-	</div>
-	{% endif %}
+        {% if COPY.graphic_slides.footnote_bop %}
+        <div class="footnotes">
+            <h4>Notes</h4>
+            <p>{{ COPY.graphic_slides.footnote_bop }}</p>
+        </div>
+        {% endif %}
 
-	<div class="footer">
-		{% if COPY.graphic_slides.source_bop %}
-		<p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;Last updated: Nov. 4, 2014, at 8:15 p.m. ET.
-		</p>
-		{% endif %}
-	</div>
+        <div class="footer">
+            {% if COPY.graphic_slides.source_bop %}
+            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;Last updated: Nov. 4, 2014, at 8:15 p.m. ET.
+            </p>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
