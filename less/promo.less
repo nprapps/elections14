@@ -1,3 +1,5 @@
+@import "less/lib/bootstrap/bootstrap";
+
 @action: #538ecd;
 @body: #4a4a4a;
 
@@ -20,13 +22,15 @@ a:focus, a:hover {
 .wrap {
     max-width: 1280px;
     margin: 0 auto;
+    padding: 0 15px;
 }
 
 .top {
     background: url('../assets/promo/background.jpg') no-repeat center black;
     background-size: 100% 100%;
     color: white;
-    min-height: 800px;
+    margin-bottom: 30px;
+
     .logo {
         margin-top: 15px;
     }
@@ -35,11 +39,13 @@ a:focus, a:hover {
     }
     h1 {
         font-family: Georgia;
-            font-size: 46px;
-            margin-top: 15px;
+        font-size: 46px;
+        margin-top: 15px;
     }
     h2 {
-            font-size: 26px;
+        font-size: 26px;
+        line-height: 1.3;
+        margin-bottom: 15px;
     }
     .bottom {
         background: rgba(0,0,0,.5);
@@ -60,45 +66,96 @@ a:focus, a:hover {
     }
     h3 {
         font-family: Georgia;
-        font-size: 30px;
+        font-size: 36px;
+        margin-bottom: 15px;
     }
     p {
         font-size: 26px;
     }
     .steps {
-    color: #ccc;
-    font-family: Georgia;
-    font-weight: bold;
+        list-style: none;
+
         li {
-            border-bottom: 1px solid #ccc;
-            font-size: 24px;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-left: 50px;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
             text-align: left;
-            span {
+            counter-increment:li;
+            position: relative;
+            overflow: hidden;
+
+            &:before {
+                font-family: Georgia;
+                color: #ccc;
+                content:counter(li);
+                position: absolute;
+                top: -5px;
+                left: 0;
+                font-size: 42px;
+                line-height: 1;
+                padding-right: 15px;
+                font-weight: normal;
+            }
+
+            h4,
+            p {
                 color: @body;
+                font-size: 18px;
                 font-weight: normal;
                 font-family: Gotham SSm, verdana;
+
+                @media only screen and (min-width: 768px) {
+                    font-size: 24px;
+                }
+            }
+
+            h4 {
+                font-weight: bold;
+            }
+
+            p {
+                line-height: 1.3;
+
+                @media only screen and (min-width: 768px) {
+                    padding-right: 30px;
+                    width: 50%;
+                    float: left;
+                }
+            }
+
+            .create-invitation {
+                @media only screen and (min-width: 768px) {
+                    width: 50%;
+                    float: right;
+                }
             }
         }
         .last {
             border-bottom: none;
+
+            @media screen and (max-width: 767px){
+                .pull-right {
+                    float: none !important;
+                }
+            }
         }
     }
     .email {
-        font-size: 16px; padding: 4px; margin: 3px 0;
-        border: 1px solid #ccc;
+        font-family: Gotham SSm, verdana;
+        border-radius: 0;
     }
-    .button {
+    .button.btn {
         background: @action;
         color: white;
-        display: inline-block;
-        font-size: 16px; padding: 4px 10px;
-        font-family: Gotham SSm, verdana;
-        font-weight: normal;
+        border-radius: 0;
     }
     .open-up {
-        margin-top: 120px;
+        margin-top: 30px;
+
+        @media only screen and (min-width: 768px) {
+            margin-top: 120px;
+        }
     }
 }
 
@@ -140,11 +197,6 @@ a:focus, a:hover {
         }
         p {
             font-size: 16px;
-        }
-        .steps {
-            li {
-                font-size: 16px;
-            }
         }
     }
 
