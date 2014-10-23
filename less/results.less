@@ -36,14 +36,6 @@
         color:@white;
         border-collapse: separate;
         font-size: 1vw;
-        //width: 100vw; 
-        //height: 1vw; 
-        //max-height: 33.33vh;
-        //max-width: 177.78vh; /* 16/9 = 1.778 */
-        //margin: auto;
-    /*    position: absolute;*/
-        top:0;bottom:0; /* vertical center */
-        left:0;right:0; /* horizontal center */
     }
 
     .results,.results-header {
@@ -56,7 +48,6 @@
         p {
             margin-top: 0;
             font-family: 'Cooper Hewitt';
-            // color:@white;
         }
     }
 
@@ -184,7 +175,15 @@
             letter-spacing: 0.05em;
             color: @gray-light;
             margin-bottom: 0;
-            border-bottom: 5px solid @gray-light;
+
+            // Psuedo-border so it works with viewport units
+            &:after {
+                height: 0.20vw;
+                width: 100%;
+                display: block;
+                background-color: @gray-light;
+                content: "";
+            }
 
             .time {
                 padding: 0.25vw 0;
