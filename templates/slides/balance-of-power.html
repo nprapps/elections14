@@ -63,12 +63,12 @@
 	 * Render the graphic
 	 */
 	function render() {
-		var container_width = $('#stack').find('.slide-inner').width();
+		var container_width = $('#landscape-wrapper').width();
 		gutter_width = Math.floor(container_width * .01); // 1vw
 		var graphic_width = Math.floor((container_width - gutter_width) / 2);
 		
 		label_width = Math.floor(container_width * .04); // 4vw
-		side_margin = Math.floor(container_width * .01); // 1vw
+		side_margin = Math.floor(container_width * .03); // 3vw
 
 		// clear out existing graphics
 		$graphic.empty();
