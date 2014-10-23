@@ -107,6 +107,7 @@ def bootstrap():
     load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
+    load_governor_extra('data/governor-extra.csv')
     load_ballot_measures_extra('data/ballot-measures-extra.csv')
 
 def load_races(path):
@@ -526,6 +527,43 @@ def _save_senate_row(row, quiet):
     except models.Race.DoesNotExist:
         if not quiet:
             print 'Senate race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
+
+@task
+def load_governor_extra(path, quiet=False):
+    """
+    Load extra data (last party in power) for
+    senate
+    """
+    print 'Loading governor extra data from disk'
+
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            _save_governor_row(row, quiet)
+
+def _save_governor_row(row, quiet):
+    """
+    Merge senate data with existing record
+    """
+    import models
+
+    try:
+        state_postal = row['state']
+
+        existing = models.Race.get(models.Race.office_name == 'Governor', models.Race.state_postal == state_postal)
+        existing.previous_party = row['party']
+
+        if row['female_incumbent'] == '1':
+            existing.female_incumbent = True
+
+        if row['female_candidate'] == '1':
+            existing.female_candidate = True
+
+        existing.save()
+
+    except models.Race.DoesNotExist:
+        if not quiet:
+            print 'Governor race in %s does not exist in AP data' % (row['state'])
 
 @task
 def load_ballot_measures_extra(path, quiet=False):
