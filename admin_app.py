@@ -12,7 +12,7 @@ from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin, ModelAdmin
-from models import Slide, SlideSequence, Race, Candidate
+from models import Slide, SlideSequence, Race, Candidate, DEMOCRAT_INDIES, REPUBLICAN_INDIES
 from peewee import fn
 
 import app as main_app
@@ -122,6 +122,7 @@ def chamber(chamber):
     """
     Read/update list of chamber candidates.
     """
+    indies = DEMOCRAT_INDIES.keys() + REPUBLICAN_INDIES.keys()
     chamber_slug = 'H'
 
     if chamber == 'senate':
@@ -136,7 +137,7 @@ def chamber(chamber):
         .join(Race)\
         .where(
             Race.office_id == chamber_slug,
-            (Candidate.party == 'Dem') | (Candidate.party == 'GOP')
+            (Candidate.party == 'Dem') | (Candidate.party == 'GOP') | (Race.race_id << indies)
         )
 
     candidates = candidates.order_by(
