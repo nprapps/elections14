@@ -73,6 +73,13 @@ def index():
 
     return render_template(template_file, **context), 200,
 
+@app.route('/promo/')
+def _promo():
+    """
+    Test promo template.
+    """
+    return render_template('promo.html', **make_context())
+
 @app.route('/comments/')
 def comments():
     """
