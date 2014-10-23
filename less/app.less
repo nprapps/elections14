@@ -106,10 +106,6 @@ svg {
     }
 
     .call-to-action {
-        .rotate {
-            display: none;
-        }
-
         .welcome-button {
             background-color: @red;
             border: @red;
@@ -122,9 +118,11 @@ svg {
         max-width: 45%;
 
         .icon {
-            width: 10vw;
+            width: 6vw;
             height: auto;
             float: left;
+            margin-top: 2vw;
+            margin-right: 2vw;
             opacity: 0.25;
         }
 
@@ -456,3 +454,14 @@ svg {
     display: none;
 }
 
+.rotate-phone-wrapper {
+    color: white;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .rotate {
+        text-align: center;
+    }
+    font-size: 5vw;
+}
