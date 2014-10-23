@@ -21,7 +21,9 @@ db = PostgresqlDatabase(
 DEMOCRAT_INDIES = {
     'KS-17585': '6081', # KS senate, Greg Orman
 }
-REPUBLICAN_INDIES = {}
+REPUBLICAN_INDIES = {
+    'CA-5707': '19804', # CA House District 17, Ro Khanna
+}
 
 def slugify(bits):
     """
@@ -299,7 +301,7 @@ class Race(SlugModel):
         try:
             if self.race_id in REPUBLICAN_INDIES.keys():
                 candidate_id = REPUBLICAN_INDIES[self.race_id]
-                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
+                gop = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
                 gop = self.candidates.where(self.candidates.model_class.party == "GOP").get()
         except Candidate.DoesNotExist:
