@@ -4,11 +4,15 @@
     {% include '_fonts.html' %}
 
     {# Unfortunante hack because we're deploying this to staging and it can't compile a less file on demand #}
-    {# <link rel="stylesheet" href="/css/app.less.css" /> #}
-    {{ CSS.push('less/app.less') }}
-    {{ CSS.render('preview.less.css') }}
 
-    <!-- ugly includes because slide js is inlined and can't pickup the stuff from the base template -->
+    {% if DEPLOYMENT_TARGET %}
+        {# <link rel="stylesheet" href="/css/app.less.css" /> #}
+    {% else %}
+        {{ CSS.push('less/app.less') }}
+        {{ CSS.render('preview.less.css') }}
+    {% endif %}
+
+    {# ugly includes because slide js is inlined and can't pickup the stuff from the base template #}
     <script src="/js/lib/d3.v3.min.js"></script>
     {{ JS.push('js/lib/modernizr.js') }}
     {{ JS.push('js/lib/jquery.js') }}
@@ -18,7 +22,6 @@
     <style>
         .slide {
             display: block;
-            background-color: #141D24;
         }
     </style>
 </head>
@@ -44,9 +47,6 @@
             var width = $(window).width();
             var height = $(window).height();
             
-            var target_width = 1280;
-            var target_height = 720;
-
             var new_height = width * 9 / 16;
             var padding = (height - new_height) / 2;
 
@@ -62,7 +62,6 @@
 
             var thisSlide = $('.slide');
             resizeSlide(thisSlide);
-            rotatePhone();
         }
 
         /*
@@ -81,7 +80,6 @@
         }
 
         $(document).ready(function() {
-
             if (window.location.hash === '#share') {
                 $('body').prepend('<link rel="stylesheet" href="/css/share-ui.less.css">');
             }
