@@ -274,6 +274,15 @@ class Race(SlugModel):
 
         return flat
 
+    def is_uncontested(self):
+        """
+        Return true if uncontested
+        """
+        if self.candidates.count() == 1:
+            return True
+        else:
+            return False
+
     def top_candidates(self):
         """
         Return (dem, gop) pair
