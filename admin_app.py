@@ -12,9 +12,10 @@ from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin, ModelAdmin
-from models import Slide, SlideSequence, Race, Candidate
+from models import Slide, SlideSequence, Race, Candidate, DEMOCRAT_INDIES, REPUBLICAN_INDIES
 from peewee import fn
 
+import app as main_app
 import app_config
 from render_utils import make_context, urlencode_filter, smarty_filter
 import static_app
@@ -83,7 +84,7 @@ def save_stack():
     """
     Save new stack sequence.
     """
-    from flask import request
+    from flask import request, url_for
 
     data = request.json
     SlideSequence.delete().execute()
@@ -92,10 +93,16 @@ def save_stack():
     for i, row in enumerate(data[0]):
         SlideSequence.create(order=i, slide=row['slide'])
 
-    data = SlideSequence.stack()
+    with main_app.app.test_request_context():
+        path = url_for('_stack_json')
+
+    with main_app.app.test_request_context(path=path):
+
+        view = main_app.__dict__['_stack_json']
+        content = view()
 
     with open('www/live-data/stack.json', 'w') as f:
-        json.dump(data, f)
+        f.write(content.data)
 
     if app_config.DEPLOYMENT_TARGET:
         for bucket in app_config.S3_BUCKETS:
@@ -115,6 +122,7 @@ def chamber(chamber):
     """
     Read/update list of chamber candidates.
     """
+    indies = DEMOCRAT_INDIES.keys() + REPUBLICAN_INDIES.keys()
     chamber_slug = 'H'
 
     if chamber == 'senate':
@@ -129,7 +137,7 @@ def chamber(chamber):
         .join(Race)\
         .where(
             Race.office_id == chamber_slug,
-            (Candidate.party == 'Dem') | (Candidate.party == 'GOP')
+            (Candidate.party == 'Dem') | (Candidate.party == 'GOP') | (Race.race_id << indies)
         )
 
     candidates = candidates.order_by(
