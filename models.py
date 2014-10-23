@@ -150,6 +150,15 @@ class Race(SlugModel):
 
         return None
 
+    def is_runoff(self):
+        """
+        Did the race lead to a runoff?
+        """
+        if self.accept_ap_call and self.number_in_runoff:
+            return True
+        else:
+            return False
+
     def get_runoff_winners(self):
         """
         Get candidates who will appear in a runoff
