@@ -117,6 +117,7 @@ class Race(SlugModel):
     romney_dem = BooleanField(default=False)
     bluedog = BooleanField(default=False)
     female_candidate = BooleanField(default=False)
+    female_incumbent = BooleanField(default=False)
     rematch_result = TextField(null=True, default=None)
     rematch_description = TextField(null=True, default=None)
 
