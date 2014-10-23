@@ -98,6 +98,23 @@ def _big_board(slug):
 
     return render_template('_big_board_wrapper.html', **context)
 
+@app.route('/bop.html')
+@app_utils.cors
+def _bop_json():
+    """
+    Serve the most recent bop data
+    """
+    from models import Race
+
+    context = make_context()
+
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+
+    context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_INITIAL_BOP)
+    context['not_called'] = app_utils.calculate_seats_left(races)
+
+    return render_template('bop.html', **context)
+
 @app.route('/live-data/stack.json')
 @app_utils.cors
 def _stack_json():
@@ -260,7 +277,7 @@ def _slide(slug):
     Serve up slide html fragment
     """
     from models import Slide
-    
+
     context = make_context()
 
     slide = Slide.get(Slide.slug == slug)
