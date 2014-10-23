@@ -71,6 +71,7 @@ def calculate_bop(races, bop):
     Calculate a balance of power
     """
     winning_races = [race for race in races if race.is_called()]
+
     for race in winning_races:
         winner = race.get_winning_party()
 
@@ -82,6 +83,8 @@ def calculate_bop(races, bop):
             bop[winner]['picked_up'] += 1
             if race.previous_party:
                 bop[race.previous_party]['picked_up'] -= 1
+
+    print bop
 
     return bop
 
