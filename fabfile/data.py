@@ -514,6 +514,13 @@ def _save_senate_row(row, quiet):
 
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
         existing.previous_party = row['party']
+
+        if row['female_incumbent'] == '1':
+            existing.female_incumbent = True
+
+        if row['female_candidate'] == '1':
+            existing.female_candidate = True
+
         existing.save()
 
     except models.Race.DoesNotExist:
