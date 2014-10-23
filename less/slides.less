@@ -385,7 +385,7 @@
 	.state-header,
 	.state-results {
 		display: table-cell;
-		padding: @grid-gutter-width;
+		padding: 0 2vw;
 	}
 
 	.state-header {
@@ -404,39 +404,44 @@
 
     	h2 {
 	    	text-transform: uppercase;
-	    	font-size: 32px;
+	    	font-size: 2vw;
 	    }
 
 	    .stateface {
-	    	font-size: 20vmin;
+	    	font-size: 20vw;
 	    	line-height: 1;
 	    }
 
 	    .page {
-	    	font-size: 14px;
+	    	font-size: 1.5vw;
 	    	color: #999;
 	    	text-transform: uppercase;
-	    	margin-top: 10px;
+	    	margin-top: 1vw;
 	    }
     }
 
     .state-results {
         h3 {
-        	margin-bottom: @line-height-computed;
+        	font-size: 2vw;
         }
 
-        p {
-        	line-height: 30px;
+        h4 {
+        	font-size: 1.5vw;
+        }
+
+        h3,
+        h4 {
+        	margin: 0 0 1vw;
         }
 
         .bar-wrapper {
         	display: inline-block;
         	position: relative;
-        	height: 30px;
+        	height: 3vw;
         }
 
         .bar {
-        	height: 30px;
+        	height: 3vw;
         }
 
         .bar-label {
@@ -453,7 +458,7 @@
     .projected-results {
         width: 50%;
         float: left;
-        margin-bottom: @line-height-computed;
+        margin-bottom: 2vw;
 
         p {
         	border-left: 1px solid #ccc;
@@ -461,7 +466,8 @@
         	padding: 10px 0;
 	        font-family: 'Cooper Hewitt';
 	        font-weight: 300;
-	        font-size: 24px;
+	        font-size: 2vw;
+	        line-height: 3vw;
 	        overflow: hidden;
 
         	+ p {
@@ -481,8 +487,10 @@
     .house,
     .senate,
     .governor {
+    	padding-top: 0.5vw;
+
     	.races {
-	        font-size: 2.5vmin;
+	        font-size: 2vw;
 
 	        .results-status.called {
 	        	color: #999;
@@ -520,28 +528,31 @@
 	font-weight: 300;
 
 	.container-fluid {
-		margin: @grid-gutter-width;
+		margin: 2vw;
 		background: fadeout(@blueDark, 30%);
-		padding: @grid-gutter-width / 2;
-		font-size: 3vmin;
+		padding: 2vw;
+		font-size: 2vw;
 	}
 
 	ul {
 		float: left;
-		width: 33.33333333%;
+		width: 31vw;
 		margin-bottom: 0;
 		position: relative;
 		min-height: 1px;
-		padding-left: 15px;
-		padding-right: 15px;
+		padding-left: 1vw;
+		padding-right: 1vw;
+		box-sizing: border-box;
+		line-height: 1.1;
 
 		+ ul li {
-			padding-left: 65px;
+			padding-left: 5vw;
 		}
 	}
 
 	li {
 		position: relative;
+		margin-bottom: 0.5vw;
 
 		sup {
 			top: -0.3em;
@@ -549,10 +560,10 @@
 	}
 
 	.key-color {
-		.square(20px);
+		.square(2vw);
 		display: inline-block;
-		border-radius: 10px;
-		margin-right: 10px;
+		border-radius: 1vw;
+		margin-right: 1vw;
 
 		&.dem { background: @blue; }
 		&.gop { background: @red; }
@@ -562,13 +573,14 @@
 	.winner {
 		display: inline-block;
 		background: @blue;
-		border-radius: 5px;
-		padding: 0 5px;
+		border-radius: 0.5vw;
+		padding: 0 0.5vw;
 	}
 
 	.incumbent {
 		img {
-			width: 8px;
+			width: 1vw;
+			display: inline-block;
 		}
 	}
 
@@ -584,7 +596,7 @@
 	.pickup {
 		font-weight: 500;
 		font-style: italic;
-		font-size: 16px;
+		font-size: 1.5vw;
 		color: @blue;
 	}
 
@@ -592,7 +604,7 @@
 	.reporting,
 	.seat-held,
 	.pickup {
-		width: 50px;
+		width: 3vw;
 		display: block;
 		position: absolute;
 		top: 0;
