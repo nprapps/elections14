@@ -20,9 +20,11 @@ db = PostgresqlDatabase(
 # Indepdendent candidate overrides, (AP race_id, candidate_id) two-tuple mapping
 DEMOCRAT_INDIES = {
     '17585-KS': '6081-KS', # KS senate, Greg Orman
+    '20157-LA': '23579-LA', # LA Senate, Mary Landrieu
 }
 REPUBLICAN_INDIES = {
     '5707-CA': '19804-KS', # CA House District 17, Ro Khanna
+    '20157-LA': '23859-LA', # LA Senate, Bill Cassidy
 }
 
 def slugify(bits):

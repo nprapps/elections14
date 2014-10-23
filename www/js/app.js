@@ -53,7 +53,7 @@ var onDocumentReady = function(e) {
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
     $welcomeSubmitButton = $('.state-picker-submit');
-    $rotate = $('.rotate');
+    $rotate = $('.rotate-phone-wrapper');
 
     $statePickerForm  = $('form.state-picker-form');
     $statePickerScreen = $('.state-picker');
@@ -68,7 +68,7 @@ var onDocumentReady = function(e) {
     $castStop = $('.cast-stop');
 
     $audioPlayer = $('#pop-audio');
-    $fullScreenButton = $('.fullscreen p');
+    $fullScreenButton = $('.fullscreen a');
     $chromecastButton = $('.chromecast');
     $stack = $('#stack');
     $header = $('.index');
@@ -343,14 +343,38 @@ var substringMatcher = function(strs) {
  */
 var onFullScreenButtonClick = function() {
     var elem = document.getElementById("stack");
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      elem.msRequestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen();
+
+    var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+
+    console.log(fullscreenElement);
+
+    if (fullscreenElement) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+        else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        }
+        else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-expand.svg');
+    }
+    else {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        }
+        else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+        else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        }
+        else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        }
+
+        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-shrink.svg');
     }
 }
 

@@ -74,7 +74,7 @@ def index():
     return render_template(template_file, **context), 200,
 
 @app.route('/promo/')
-def _promo():
+def promo():
     """
     Test promo template.
     """
