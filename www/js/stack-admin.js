@@ -41,11 +41,7 @@ var onAddClick = function() {
     var name = $item.data('name');
     var currentStackTime = parseInt($stackTime.text());
 
-    if ($(this).parents('.news')) {
-        var body = $item.find('.tumblr');
-    }
-
-    var newItem = $('<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '" data-name="' + name + '"><span class="dragger fa fa-align-justify"></span>' + name + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></div></li>'
+    var newItem = $('<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '" data-name="' + name + '"><span class="dragger fa fa-align-justify"></span><a href="' + APP_CONFIG.S3_BASE_URL + '/preview/' + slide + '/index.html" target="_blank"> ' + name + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></div></li>'
     )
 
     $timeline.append(newItem);
@@ -53,7 +49,7 @@ var onAddClick = function() {
     $stackTime.text(currentStackTime + slideTime);
 
     // reset event handlers to account for new button
-    $remove = $('.remove');
+    $remove = $(this).find('.remove');
     $remove.on('click', onRemoveClick);
 }
 
@@ -62,7 +58,6 @@ var onRemoveClick = function() {
     var slideTime = parseInt($item.data('time'));
     var currentStackTime = parseInt($stackTime.text());
 
-    var $item = $(this).parents('.item');
     $item.remove();
 
     $stackTime.text(currentStackTime - slideTime);
