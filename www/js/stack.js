@@ -109,6 +109,8 @@ var STACK = (function () {
         }
 
         var slug = _stack[_currentSlide]['slug'];
+        var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
+        console.log(timeOnScreen);
 
         if (slug === 'state-senate') {
             // If no state selected, skip to next
