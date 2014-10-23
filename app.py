@@ -150,7 +150,7 @@ def _state_house_slide_preview(slug, page):
 
     context['body'] = _state_house_slide(slug, page).data
 
-    return render_template('_slide_preview.html', **context)
+    return render_template('slide_preview.html', **context)
 
 @app.route('/preview/state-senate-<slug>/index.html')
 @app_utils.cors
@@ -162,7 +162,7 @@ def _state_senate_slide_preview(slug):
 
     context['body'] = _state_senate_slide(slug).data
 
-    return render_template('_slide_preview.html', **context)
+    return render_template('slide_preview.html', **context)
 
 @app.route('/preview/<slug>/index.html')
 @app_utils.cors
@@ -175,7 +175,7 @@ def _slide_preview(slug):
     context['body'] = _slide(slug).data.decode('utf-8')
     context['slug'] = slug
 
-    return render_template('_slide_preview.html', **context)
+    return render_template('slide_preview.html', **context)
 
 @app.route('/slides/state-house-<string:slug>-<int:page>.html')
 @app_utils.cors

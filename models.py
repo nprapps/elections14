@@ -423,7 +423,8 @@ class SlideSequence(BaseModel):
 
         for sequence in sequences:
             data.append({
-                'slug': sequence.slide.slug
+                'slug': sequence.slide.slug,
+                'time_on_screen': sequence.slide.time_on_screen
             })
 
         return data
