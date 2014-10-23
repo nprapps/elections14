@@ -15,6 +15,10 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+svg {
+    max-height: 100%; // Fix webkit svg height bug http://stackoverflow.com/questions/7570917/svg-height-incorrectly-calculated-in-webkit-browsers
+}
+
 .btn-lg{
     padding: 1.5vw 1.5vw;
     font-size: 2vw;
@@ -222,6 +226,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
 
     .twitter-typeahead {
         position: relative;
+        width: 50vw; //fixes safari alignment
         top: 0;
         -webkit-transition: all 0.5s;
         transition: all 0.5s;
@@ -349,6 +354,7 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
             white-space: nowrap;
             padding: 0 1vw;
             float: left;
+            overflow: hidden;
 
             &:last-child{
                 margin-right: 0;
