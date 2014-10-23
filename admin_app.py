@@ -103,8 +103,8 @@ def save_stack():
             b = c.get_bucket(bucket['bucket_name'])
             k = Key(b)
             k.key = 'live-data/stack.json'
-            k.set_contents_from_filename('www/live-data/stack.json', {
-                'cache-control' = 'max-age=5'
+            k.set_contents_from_filename('www/live-data/stack.json', headers={
+                'cache-control': 'max-age=5'
             })
             k.make_public()
 
