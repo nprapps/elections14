@@ -242,7 +242,7 @@ def load_calls(path):
                 candidates_updated += 1
                 num_runoff_winners += 1
 
-        if race.get('ap_winner') or race.get('ap_runoff_winner'):
+        if race.get('ap_winner') or race.get('ap_runoff_winners'):
             race_model.ap_called = True
             race_model.ap_called_time = datetime.strptime(race['ap_called_time'], '%Y-%m-%dT%H:%M:%SZ')
             race_model.save()
