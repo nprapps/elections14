@@ -71,7 +71,6 @@ def index():
     else:
         template_file = 'index.html'
 
-
     return render_template(template_file, **context), 200,
 
 @app.route('/comments/')
