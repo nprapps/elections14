@@ -14,8 +14,7 @@
 
         <div class="footer">
             {% if COPY.graphic_slides.source_bop %}
-            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;Last updated: Nov. 4, 2014, at 8:15 p.m. ET.
-            </p>
+            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="graphic-timestamp"></span>.</p>
             {% endif %}
         </div>
     </div>
@@ -24,6 +23,7 @@
 <script type="text/javascript">
 (function() {
 	var $graphic;
+	var $timestamp;
 
 	var data_house = [
 		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ house_bop.dem.has }}, 'net': {{ house_bop.dem.picked_up }} },
@@ -53,6 +53,7 @@
 	var num_x_ticks = 5;
 	var round_increment = 10;
 	var side_margin;
+	var timestamp = {{ TIMESTAMP }} * 1000;
 
 	var fmt_comma = d3.format(',');
 	var fmt_year_abbrev = d3.time.format('%y');
@@ -73,8 +74,11 @@
 		// clear out existing graphics
 		$graphic.empty();
 	
-		draw_chart('house', graphic_width);    
-		draw_chart('senate', graphic_width);    
+		draw_chart('house', graphic_width);
+		draw_chart('senate', graphic_width);
+		
+		var ts = moment(timestamp).fromNow();
+		$timestamp.empty().append(ts);
 	}
 
 	function draw_chart(id, graphic_width) {
@@ -248,6 +252,7 @@
 
 	if (Modernizr.svg) {
 		$graphic = $('#graphic-bop');
+		$timestamp = $('.graphic-timestamp');
 		render();
 		$(window).on('resize', render);
 	}
