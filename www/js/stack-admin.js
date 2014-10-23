@@ -49,7 +49,7 @@ var onAddClick = function() {
     $stackTime.text(currentStackTime + slideTime);
 
     // reset event handlers to account for new button
-    $remove = $(this).find('.remove');
+    $remove = $(newItem).find('.remove');
     $remove.on('click', onRemoveClick);
 }
 
