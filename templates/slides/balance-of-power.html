@@ -48,13 +48,11 @@
 	var bar_gap = 5;
 	var bar_height = 30;
 	var color;
-	var graphic_margin = 6;
-	var is_mobile = false;
-	var label_width = 35;
-	var mobile_threshold = 480;
+	var gutter_width;
+	var label_width;
 	var num_x_ticks = 5;
 	var round_increment = 10;
-	var side_margin = 11;
+	var side_margin;
 
 	var fmt_comma = d3.format(',');
 	var fmt_year_abbrev = d3.time.format('%y');
@@ -65,14 +63,12 @@
 	 * Render the graphic
 	 */
 	function render() {
-		var container_width = $('#stack').width();
-		var graphic_width = Math.floor((container_width - 22) / 2);
-
-		if (container_width <= mobile_threshold) {
-			is_mobile = true;
-		} else {
-			is_mobile = false;
-		}
+		var container_width = $('#stack').find('.slide-inner').width();
+		gutter_width = Math.floor(container_width * .01); // 1vw
+		var graphic_width = Math.floor((container_width - gutter_width) / 2);
+		
+		label_width = Math.floor(container_width * .04); // 4vw
+		side_margin = Math.floor(container_width * .01); // 1vw
 
 		// clear out existing graphics
 		$graphic.empty();
@@ -92,8 +88,14 @@
 	
 		var graph = d3.select('#graphic-bop')
 			.append('div')
-				.attr('class', 'chart ' + classify(id))
-				.attr('width', graphic_width);
+				.attr('class', 'chart chart-' + classify(id))
+				.attr('style', function() {
+					var s = 'width: ' + graphic_width + 'px;';
+					if (id == 'house') {
+						s += ' margin-right: ' + gutter_width + 'px;';
+					}
+					return s;
+				});
 
 		var header = graph.append('h3')
 			.attr('style', 'margin-left: ' + margin['left'] + 'px;')

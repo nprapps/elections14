@@ -18,17 +18,11 @@
     {{ JS.push('js/lib/jquery.js') }}
     {{ JS.push('js/lib/jquery.columnizer.js') }}
     {{ JS.render('js/preview-header.min.js') }}
-
-    <style>
-        .slide {
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
     <div id="landscape-wrapper">
-        <div id="stack" class="stack" style="display: block;">
+        <div id="stack" class="stack">
             {{ body|smarty }}
         </div>
         <div class="share-footer">
@@ -87,6 +81,9 @@
                 $(window).on('resize', onWindowResize);
 
                 onWindowResize();
+
+                $('#stack').show();
+                $('.slide').show();
             }
 
         })
