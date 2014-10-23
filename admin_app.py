@@ -2,9 +2,12 @@
 
 import argparse
 import datetime
+import json
 import logging
 import subprocess
 
+import boto
+from boto.s3.key import Key
 from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
@@ -89,8 +92,18 @@ def save_stack():
     for i, row in enumerate(data[0]):
         SlideSequence.create(order=i, slide=row['slide'])
 
+    data = SlideSequence.stack()
+
+    with open('www/live-data/stack.json', 'w') as f:
+        json.dump(data, f)
+
     if app_config.DEPLOYMENT_TARGET:
-        subprocess.check_output(['fab', app_config.DEPLOYMENT_TARGET, 'stack.update'], stderr=subprocess.STDOUT)
+        for bucket in app_config.S3_BUCKETS:
+            c = boto.connect_s3()
+            b = c.get_bucket(bucket['bucket_name'])
+            k = Key(b)
+            k.key = 'live-data/stack.json'
+            k.set_contents_from_filename('www/live-data/stack.json')
 
     return "Saved sequence"
 
