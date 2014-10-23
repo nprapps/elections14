@@ -59,6 +59,7 @@ def stack():
     for slide_dict in sequence_dicts:
         for slide in sequence:
             if slide.slide.slug == slide_dict['slide']:
+                slide_dict['name'] = slide.slide.name
                 slide_dict['time_on_screen'] = slide.slide.time_on_screen
 
                 if slide_dict['slide'].startswith('tumblr'):

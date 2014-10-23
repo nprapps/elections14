@@ -51,7 +51,7 @@ def update():
 
 def _create_slide(post):
     slug = 'tumblr-%i' % post['id']
-    post_title = post['slug']
+    post_title = post.get('title', None) or post['slug']
     view_name = 'tumblr_%s' % post['type']
     data = json.dumps(post)
 
