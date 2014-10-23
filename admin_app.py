@@ -15,6 +15,7 @@ from flask_peewee.admin import Admin, ModelAdmin
 from models import Slide, SlideSequence, Race, Candidate
 from peewee import fn
 
+import app as main_app
 import app_config
 from render_utils import make_context, urlencode_filter, smarty_filter
 import static_app
@@ -83,7 +84,7 @@ def save_stack():
     """
     Save new stack sequence.
     """
-    from flask import request
+    from flask import request, url_for
 
     data = request.json
     SlideSequence.delete().execute()
@@ -92,10 +93,16 @@ def save_stack():
     for i, row in enumerate(data[0]):
         SlideSequence.create(order=i, slide=row['slide'])
 
-    data = SlideSequence.stack()
+    with main_app.app.test_request_context():
+        path = url_for('_stack_json')
+
+    with main_app.app.test_request_context(path=path):
+
+        view = main_app.__dict__['_stack_json']
+        content = view()
 
     with open('www/live-data/stack.json', 'w') as f:
-        json.dump(data, f)
+        f.write(content.data)
 
     if app_config.DEPLOYMENT_TARGET:
         for bucket in app_config.S3_BUCKETS:
