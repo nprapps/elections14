@@ -390,7 +390,7 @@ class Slide(SlugModel):
 
     slug = CharField(max_length=255, primary_key=True)
     name = CharField(max_length=255)
-    body = TextField()
+    data = TextField(null=True)
     view_name = CharField(max_length=255)
     time_on_screen = IntegerField(default=15)
 

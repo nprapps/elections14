@@ -1,15 +1,13 @@
-<div class="tumblr tumblr-text-post">
-    <div class="wrapper">
-        {% if title %}
-        <h2>{{ title }}</h2>
-        {% endif %}
-        <div class="date">{{ formatted_date }}</div>
+<div class="wrapper">
+    {% if post.title %}
+    <h2>{{ post.title|safe }}</h2>
+    {% endif %}
+    <div class="date">{{ formatted_date }}</div>
 
-        <div class="body">
-            {{ body }}
-        </div>
-        <div class="post-footer">
-            <a class="tumblr-link" href="{{ post_url }}">nprpolitics.tumblr.com</a> / <a class="twitter-link" href="http://twitter.com/nprpolitics"></span>@nprpolitics</a>
-        </div>
+    <div class="body">
+        {{ post.body|safe }}
+    </div>
+    <div class="post-footer">
+        <a class="tumblr-link" href="{{ post.post_url }}">nprpolitics.tumblr.com</a> / <a class="twitter-link" href="http://twitter.com/nprpolitics"></span>@nprpolitics</a>
     </div>
 </div>

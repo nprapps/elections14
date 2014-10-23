@@ -1,16 +1,14 @@
-<div class="tumblr tumblr-quote-post">
-    <div class="wrapper">
-        <div class="date">{{ formatted_date }}</div>
-        <blockquote>
-            <span class="highlight">
-                &ldquo;{{ text }}&rdquo;
-            </span>
-            <footer>
-                <cite><span class="highlight">&mdash; {{ source }}</span></cite>
-            </footer>
-        </blockquote>
-        <div class="post-footer">
-            <a class="tumblr-link" href="{{ post_url }}">nprpolitics.tumblr.com</a> / <a class="twitter-link" href="http://twitter.com/nprpolitics"></span>@nprpolitics</a>
-        </div>
+<div class="wrapper">
+    <div class="date">{{ formatted_date }}</div>
+    <blockquote>
+        <span class="highlight">
+            &ldquo;{{ post.text|safe }}&rdquo;
+        </span>
+        <footer>
+            <cite><span class="highlight">&mdash; {{ post.source|safe }}</span></cite>
+        </footer>
+    </blockquote>
+    <div class="post-footer">
+        <a class="tumblr-link" href="{{ post.post_url }}">nprpolitics.tumblr.com</a> / <a class="twitter-link" href="http://twitter.com/nprpolitics"></span>@nprpolitics</a>
     </div>
 </div>

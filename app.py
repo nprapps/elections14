@@ -260,11 +260,12 @@ def _slide(slug):
     slide = Slide.get(Slide.slug == slug)
     view_name = slide.view_name
 
-    if view_name == '_slide':
-        context['body'] = slide.body
+    if slide.data:
+        context['body'] = slides.__dict__[view_name](slide.data)
     else:
         context['body'] = slides.__dict__[view_name]()
 
+    context['slide_class'] = view_name.replace('_', '-')
     context['time_on_screen'] = slide.time_on_screen
 
     return render_template('_slide.html', **context)

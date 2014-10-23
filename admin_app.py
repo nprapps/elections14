@@ -60,7 +60,7 @@ def stack():
         for slide in sequence:
             if slide.slide.slug == slide_dict['slide']:
                 slide_dict['time_on_screen'] = slide.slide.time_on_screen
-                slide_dict['body'] = slide.slide.body
+
                 if slide_dict['slide'].startswith('tumblr'):
                     slide_dict['news_item'] = True
 

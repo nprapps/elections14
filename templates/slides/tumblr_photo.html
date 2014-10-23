@@ -1,16 +1,14 @@
-<div class="tumblr tumblr-image-post">
-    <div class="image">
-        <img src="{{ image.url }}">
-    </div>
-    <div class="caption">
-        <div class="centered">
-            <div class="date">{{ formatted_date }}</div>
-            <div class="body">{{ caption }}</div>
+<div class="image">
+    <img src="{{ image.url }}">
+</div>
+<div class="caption">
+    <div class="centered">
+        <div class="date">{{ formatted_date }}</div>
+        <div class="body">{{ post.caption|safe }}</div>
 
-            <div class="post-footer">
-                <a class="tumblr-link" href="{{ post_url }}">nprpolitics.tumblr.com</a><br />
-                <a class="twitter-link" href="http://twitter.com/nprpolitics"></span>@nprpolitics</a>
-            </div>
+        <div class="post-footer">
+            <a class="tumblr-link" href="{{ post.post_url }}">nprpolitics.tumblr.com</a><br />
+            <a class="twitter-link" href="http://twitter.com/nprpolitics"></span>@nprpolitics</a>
         </div>
     </div>
 </div>

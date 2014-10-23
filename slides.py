@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
 import datetime
+import json
 
+from dateutil.parser import parse
 from flask import render_template
+import pytz
 
 from render_utils import make_context
 
@@ -103,6 +106,50 @@ def ballot_measures_big_board():
 
     return render_template('slides/ballot_measure_results.html', **context)
 
+def _format_tumblr_date(post):
+    # Parse GMT date from API
+    post_date = parse(post['date'])
+
+    # Convert to Eastern time (EDT or EST)
+    eastern = pytz.timezone('US/Eastern')
+
+    return post_date.astimezone(eastern).strftime('%I:%M %p EST')
+
+def tumblr_text(data):
+    post = json.loads(data)
+    
+    context = make_context()
+    context['post'] = post
+    context['formatted_date'] = _format_tumblr_date(post)
+
+    return render_template('slides/tumblr_text.html', **context) 
+
+def tumblr_photo(data):
+    post = json.loads(data)
+    
+    context = make_context()
+    context['post'] = post
+    context['formatted_date'] = _format_tumblr_date(post)
+
+    image = None
+
+    for size in post['photos'][0]['alt_sizes']:
+        if not image or size['width'] > image['width']:
+            if size['width'] < 960:
+                image = size
+
+    context['image'] = image
+
+    return render_template('slides/tumblr_photo.html', **context) 
+
+def tumblr_quote(data):
+    post = json.loads(data)
+    
+    context = make_context()
+    context['post'] = post
+    context['formatted_date'] = _format_tumblr_date(post)
+
+    return render_template('slides/tumblr_quote.html', **context) 
 
 def balance_of_power():
     """
