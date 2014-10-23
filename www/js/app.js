@@ -241,7 +241,7 @@ var onCastMute = function() {
 var onWindowResize = function() {
     var width = $(window).width();
     var height = $(window).height();
-    
+
     var target_width = 1280;
     var target_height = 720;
 
@@ -372,9 +372,7 @@ var onControlsHover = function() {
 var offControlsHover = function() {
     $headerControls.data('hover', false);
     $headerControls.fadeOut(200, function() {
-        $header.fadeIn(200, function() {
-            $('body').data('mouse-moving', true);
-        });
+        $header.fadeIn(200);
     });
 }
 
