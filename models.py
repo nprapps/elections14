@@ -21,7 +21,9 @@ db = PostgresqlDatabase(
 DEMOCRAT_INDIES = {
     'KS-17585': '6081', # KS senate, Greg Orman
 }
-REPUBLICAN_INDIES = {}
+REPUBLICAN_INDIES = {
+    'CA-5707': '19804', # CA House District 17, Ro Khanna
+}
 
 def slugify(bits):
     """
@@ -150,6 +152,15 @@ class Race(SlugModel):
 
         return None
 
+    def is_runoff(self):
+        """
+        Did the race lead to a runoff?
+        """
+        if self.accept_ap_call and self.number_in_runoff:
+            return True
+        else:
+            return False
+
     def get_runoff_winners(self):
         """
         Get candidates who will appear in a runoff
@@ -265,6 +276,15 @@ class Race(SlugModel):
 
         return flat
 
+    def is_uncontested(self):
+        """
+        Return true if uncontested
+        """
+        if self.candidates.count() == 1:
+            return True
+        else:
+            return False
+
     def top_candidates(self):
         """
         Return (dem, gop) pair
@@ -281,7 +301,7 @@ class Race(SlugModel):
         try:
             if self.race_id in REPUBLICAN_INDIES.keys():
                 candidate_id = REPUBLICAN_INDIES[self.race_id]
-                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
+                gop = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
                 gop = self.candidates.where(self.candidates.model_class.party == "GOP").get()
         except Candidate.DoesNotExist:
