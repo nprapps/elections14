@@ -104,6 +104,7 @@ def save_stack():
             k = Key(b)
             k.key = 'live-data/stack.json'
             k.set_contents_from_filename('www/live-data/stack.json')
+            k.make_public()
 
     return "Saved sequence"
 
