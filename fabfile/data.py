@@ -225,9 +225,6 @@ def load_calls(path):
     for race in races:
         race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
-        race_model.ap_called = True
-        race_model.ap_called_time = datetime.strptime(race['ap_called_time'], '%Y-%m-%dT%H:%M:%SZ')
-
         if race.get('ap_winner'):
             candidate_model = models.Candidate.get(models.Candidate.candidate_id == race['ap_winner'])
             candidate_model.ap_winner = True
@@ -245,8 +242,11 @@ def load_calls(path):
                 candidates_updated += 1
                 num_runoff_winners += 1
 
-        race_model.save()
-        races_updated += 1
+        if race.get('ap_winner') or race.get('ap_runoff_winner'):
+            race_model.ap_called = True
+            race_model.ap_called_time = datetime.strptime(race['ap_called_time'], '%Y-%m-%dT%H:%M:%SZ')
+            race_model.save()
+            races_updated += 1
 
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated

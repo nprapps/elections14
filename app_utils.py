@@ -75,7 +75,7 @@ def calculate_bop(races, initial_bop):
     """
     bop = deepcopy(initial_bop)
 
-    winning_races = [race for race in races if race.is_called()]
+    winning_races = [race for race in races if race.is_called() and not race.is_runoff()]
 
     for race in winning_races:
         winner = race.get_winning_party()
