@@ -141,39 +141,40 @@
     }
 
 	h1 {
-		margin: 0 0 22px 0;
-		font-size: 24px;
+		margin: 0 0 1.5vw 0;
+		font-size: 3vw;
 		text-align: center;
 	}
 
 	h2 {
 		font-weight: normal;
-		font-size: 12px;
-		margin: -16px 0 22px 0;
+		font-size: 2.5vw;
+		margin: -1vw 0 1vw 0;
 		text-align: center;
 	
     }
 	h3 {
-		margin: 0 0 11px 0;
-		font-size: 14px;
+		margin: 0 0 .5vw 0;
+		font-size: 2vw;
 		text-align: center;
 	}
 
 	.footnotes {
-		margin-bottom: 20px;
+		margin-bottom: 1vw;
 		color: @grayMedium;
 
 		h4 {
-			margin: 2px 0 7px 0;
-			font-size: 11px;
+			margin: 0 0 .5vw 0;
+			font-size: 1vw;
 		}
 	}
 	.footnotes p,
 	.footer p {
-		margin: 2px 0 0 0;
-		font-size: 11px;
+		margin: .25vw 0 0 0;
+		font-size: 1vw;
 		line-height: 1.3;
 		color: @grayMedium;
+		text-align: center;
 	}
 
 	.r { color: @red; }
@@ -181,7 +182,7 @@
 	.i { color: @green; }
 
 	.axis {
-		font-size: 11px;
+		font-size: 1vw;
 		fill: #787878;
 
 		line,
@@ -213,11 +214,11 @@
 		.not-yet-called { fill: @musicDark; }
 	}
 
-	.value { font-size: 11px; }
+	.value { font-size: 1.25vw; }
 
 	.labels {
 		text-align: right;
-		font-size: 12px;
+		font-size: 1.25vw;
 		line-height: 1.3;
 		fill: @musicLight;
 		font-weight: 500;
@@ -237,7 +238,7 @@
 			& > li {
 				margin: 0 0 6px 0;
 				padding: 0;
-				font-size: 12px;
+				font-size: 1.25vw;
 
 				i.state {
 					font-family: StateFaceRegular;
@@ -267,20 +268,12 @@
 			margin: 0 0 6px 0;
 			padding: 0;
 			list-style-type: none;
+			.clearfix();
 
-			&:before {
-				content: ' ';
-				display: table;
-			}
-			&:after {
-				content: ' ';
-				display: table;
-				clear: both;
-			}
 			& > li {
 				margin: 0 0 5px 0;
 				padding: 0;
-				font-size: 11px;
+				font-size: 1vw;
 				width: 20%;
 				float: left;
 				display: table;
@@ -299,7 +292,7 @@
 						border-radius: 6px;
 						width: 40px;
 						text-align: center;
-						font-size: 10px;
+						font-size: 1vw;
 					}
 					&.d { background-color: @blue; }
 					&.r { background-color: @red; }
@@ -315,12 +308,11 @@
 }
 
 #graphic-bop {
+	.clearfix();
+
     .chart {
         float: left;
-
-        &.house {
-            margin-right: 22px;
-        }
+        padding-bottom: 1vw;
     }
 
 	.majority {
@@ -330,22 +322,15 @@
 		}
 		text {
 			fill: @musicLight;
-			font-size: 10px;
+			font-size: 1vw;
 			font-style: italic;
 		}
 	}
 }
 
 .graphic.poll-closing {
-	&:before {
-		content: ' ';
-		display: table;
-	}
-	&:after {
-		content: ' ';
-		display: table;
-		clear: both;
-	}
+	.clearfix();
+
 	.poll-map {
 		width: 47%;
 		float: left;
@@ -361,7 +346,7 @@
 	}
 	h3 {
 		text-align: left;
-		margin-bottom: 11px;
+		margin-bottom: 1vw;
 	}
 }
 
