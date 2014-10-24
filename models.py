@@ -122,6 +122,7 @@ class Race(SlugModel):
     female_incumbent = BooleanField(default=False)
     rematch_result = TextField(null=True, default=None)
     rematch_description = TextField(null=True, default=None)
+    freshmen = BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s: %s-%s' % (

@@ -188,6 +188,16 @@ def house_freshmen():
     """
     context = make_context()
 
+    from models import Race
+
+    races = Race.select().where(Race.freshmen == True)
+
+    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    context['races_not_called'] = [race for race in races if not race.is_called()]
+
+    context['races_count'] = races.count()
+
     return render_template('slides/house-freshmen.html', **context)
 
 def incumbents_lost():
@@ -195,6 +205,8 @@ def incumbents_lost():
     Ongoing list of which incumbents lost their elections
     """
     context = make_context()
+
+    from models import Race
 
     return render_template('slides/incumbents-lost.html', **context)
 
