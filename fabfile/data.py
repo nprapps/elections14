@@ -479,6 +479,9 @@ def _save_house_row(row, quiet=False):
             existing.rematch_result = row['rematch_result']
             existing.rematch_description = row['rematch_description']
 
+        if row['freshmen'] == '1':
+            existing.freshmen = True
+
         existing.save()
 
     except models.Race.DoesNotExist:
@@ -639,10 +642,6 @@ def mock_results(folder='data'):
     import models
 
     print "Generating fake data"
-
-    for candidate in models.Candidate.select():
-        candidate.incumbent = False
-        candidate.save()
 
     for race in models.Race.select():
         race.accept_ap_call = False
