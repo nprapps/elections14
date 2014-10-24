@@ -1,7 +1,13 @@
 @import "less/variables.less";
 
 @viewport-width: 720px;
-@viewport-height: 480px;
+@viewport-height: 465px;
+@footer-height: 60px;
+
+#landscape-wrapper {
+    width: @viewport-width;
+    height: @viewport-height;
+}
 
 .slide-content {
     width: @viewport-width;
@@ -15,10 +21,12 @@
 .share-footer {
     color: white;
     display: block;
-    height: 60px;
+    height: @footer-height;
     width: @viewport-width;
     padding: 0 50px;
     background-color: @blueDark;
+    position: absolute;
+    bottom: 0;
 
     .share-title, .share-url {
         position: relative;

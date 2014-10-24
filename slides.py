@@ -39,7 +39,8 @@ def house_big_board(page):
 
     context = make_context()
 
-    context['page_title'] = 'House Page %s of 2' % page
+    context['page_title'] = 'House'
+    context['current_page'] = page
     context['page_class'] = 'house'
     context['column_number'] = 2
 
