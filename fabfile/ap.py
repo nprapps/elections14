@@ -329,7 +329,7 @@ def record():
     """
     Begin recording AP data for playback later.
     """
-    update_interval = 60 * 5 
+    update_interval = 60
     folder = datetime.now().strftime('%Y-%m-%d')
     root = 'data/recording/%s' % folder
 
