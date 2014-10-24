@@ -1,88 +1,36 @@
 <div id="incumbents-lost" class="graphic">
 	{% if COPY.graphic_slides.headline_incumbents_lost %}<h1>{{ COPY.graphic_slides.headline_incumbents_lost }}</h1>{% endif %}
 	{% if COPY.graphic_slides.subhed_incumbents_lost %}<h2>{{ COPY.graphic_slides.subhed_incumbents_lost }}</h2>{% endif %}
-	
+
 	<div class="candidate-list">
 		<h3>U.S. Senate (10)</h3>
 		<ul>
+			{% for race in called_senate_races %}
+			{% for candidate in race.candidates %}
+			{% if candidate.incumbent and race.is_called() and not race.is_runoff() and not candidate.is_winner() %}
 			<li>
-				<span class="district d">TX</span>
-				<span class="name">Shaheen</span>
+				<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}</span>
+				<span class="name">{{ candidate.last_name }}</span>
 			</li>
-			<li>
-				<span class="district d">TX</span>
-				<span class="name">Shaheen</span>
-			</li>
-			<li>
-				<span class="district d">TX</span>
-				<span class="name">Shaheen</span>
-			</li>
-			<li>
-				<span class="district d">TX</span>
-				<span class="name">Shaheen</span>
-			</li>
-			<li>
-				<span class="district d">TX</span>
-				<span class="name">Shaheen</span>
-			</li>
-			<li>
-				<span class="district r">AL</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district r">AL</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district r">AL</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district r">AL</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district r">AL</span>
-				<span class="name">Sessions</span>
-			</li>
+			{% endif %}
+			{% endfor %}
+			{% endfor %}
 		</ul>
 	</div>
 
 	<div class="candidate-list">
 		<h3>U.S. House (8)</h3>
 		<ul>
+			{% for race in called_house_races %}
+			{% for candidate in race.candidates %}
+			{% if race.is_called() and not candidate.is_winner() and candidate.incumbent %}
 			<li>
-				<span class="district d">TX-6</span>
-				<span class="name">Shaheen</span>
+				<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}-{{ race.seat_number }}</span>
+				<span class="name">{{ candidate.last_name }}</span>
 			</li>
-			<li>
-				<span class="district d">TX-6</span>
-				<span class="name">Shaheen</span>
-			</li>
-			<li>
-				<span class="district d">TX-6</span>
-				<span class="name">Shaheen</span>
-			</li>
-			<li>
-				<span class="district d">TX-6</span>
-				<span class="name">Shaheen</span>
-			</li>
-			<li>
-				<span class="district r">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district r">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district r">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district r">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
+			{% endif %}
+			{% endfor %}
+			{% endfor %}
 		</ul>
 	</div>
 </div>
