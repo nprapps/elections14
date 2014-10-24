@@ -84,6 +84,8 @@ www/results
 .states_gzip
 .big_boards_gzip
 .big_boards_html
+.bop_html
+.bop_gzip
 .gzip_theme
 .tests
 data/recording
