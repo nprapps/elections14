@@ -80,23 +80,30 @@
 
         .leaderboard {
             float: right;
+            display: table;
         }
 
         .results-header-group {
-            white-space: nowrap;
-            float: left;
+            display: table-cell;
             border-left: 2px solid @gray;
             box-sizing: border-box;
-            padding-left: 1.5vw;
+            padding-left: 1vw;
+            padding-right: 1vw;
+            white-space: nowrap;
+            overflow: hidden;
 
             &:first-child {
                 border-left: none;
             }
 
+            &:last-child {
+                padding-right: 0;
+            }
+
             .party,
             .total,
-            .seats-needed {
-                display: inline-block;
+            .seats-needed, {
+                display: inline;
             }
 
             h2, p {
@@ -118,8 +125,7 @@
 
             .seats-needed {
                 color: #666;
-                margin-left: 2vw;
-                margin-right: 2vw;
+                padding-left: 1vw;
 
                 .count {
                     display: inline-block;
@@ -128,15 +134,16 @@
             }
 
             &.other {
-                margin-right: 2vw;
+                .total {
+                    padding: 0;
+                    display: inline-block;
+                }
             }
 
             &.not-called {
                 h2 {
-                    display: inline-block;
+                    display: inline;
                 }
-
-                white-space: nowrap;
             }
         }
 
@@ -155,7 +162,7 @@
             display: inline-block;
             color: @white;
             text-align: center;
-            padding: 0 0.5vw;
+            padding: 0 1vw;
             min-width: 3vw;
             height: 3vw;
             line-height: 3vw;

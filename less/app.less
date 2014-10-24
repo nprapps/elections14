@@ -342,6 +342,7 @@ svg {
 
         .leaderboard {
             float: right;
+            display: table;
         }
 
         h2, p, a, span {
@@ -356,7 +357,7 @@ svg {
         .results-header-group {
             white-space: nowrap;
             padding: 0 1vw;
-            float: left;
+            display: table-cell;
             overflow: hidden;
 
             &:last-child{
@@ -367,7 +368,7 @@ svg {
             .party,
             .total,
             .seats-needed {
-                display: inline-block;
+                display: inline;
                 font-family: 'Cooper Hewitt';
                 text-transform: uppercase;
             }
@@ -387,7 +388,7 @@ svg {
 
             &.not-called {
                 h2 {
-                    display: inline-block;
+                    display: inline;
                 }
 
                 white-space: nowrap;
@@ -405,10 +406,11 @@ svg {
             display: inline-block;
             text-align: center;
             box-sizing:border-box;
-            width:3vw;
+            min-width:3vw;
             height:3vw;
             line-height: 3vw;
             border-radius: 1.5vw;
+            padding: 0 0.5vw;
         }
     }
 
