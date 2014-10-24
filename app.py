@@ -100,7 +100,7 @@ def _big_board(slug):
 
 @app.route('/bop.html')
 @app_utils.cors
-def _bop_json():
+def _bop():
     """
     Serve the most recent bop data
     """

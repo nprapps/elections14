@@ -31,6 +31,7 @@ def deploy():
         safe_execute('liveblog.update')
         safe_execute('deploy_slides')
         safe_execute('deploy_big_boards')
+        safe_execute('deploy_bop')
 
         duration = int(time() - start)
         wait = app_config.DEPLOY_INTERVAL - duration
