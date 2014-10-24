@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from datetime import datetime
 
 from fabric.api import local, require, settings, task
 from fabric.state import env
@@ -165,6 +166,9 @@ def deploy_slides():
 
 @task
 def deploy_big_boards():
+    """
+    Deploy big boards to S3.
+    """
     local('rm -rf .big_boards_html .big_boards_gzip')
     render.render_big_boards()
     utils._gzip('www', '.gzip')
@@ -173,11 +177,14 @@ def deploy_big_boards():
     utils._deploy_to_s3('.big_boards_gzip')
 
 @task
-def deploy_instagram_photos():
+def deploy_bop():
     """
-    Deploy downloaded Instagram photos to S3.
+    Deploy latest BOP.
     """
-    utils._deploy_to_s3('www/assets/instagram')
+    local('rm -rf .bop_html .bop_gzip')
+    render.render_bop()
+    utils._gzip('.bop_html', '.bop_gzip')
+    utils._deploy_to_s3('.bop_gzip')
 
 @task
 def deploy():
