@@ -21,6 +21,7 @@ var $fullScreenButton = null;
 var $statePickerLink = null;
 var $chromecastButton = null;
 var $audioPlayer = null;
+var $bop = null;
 var $stack = null;
 
 var $shareModal = null;
@@ -70,6 +71,7 @@ var onDocumentReady = function(e) {
     $audioPlayer = $('#pop-audio');
     $fullScreenButton = $('.fullscreen a');
     $chromecastButton = $('.chromecast');
+    $bop = $('.leaderboard');
     $stack = $('#stack');
     $header = $('.index');
     $headerControls = $('.header-controls');
@@ -135,6 +137,7 @@ var onDocumentReady = function(e) {
 
     onWindowResize();
     setupStateTypeahead();
+    checkBop();
 }
 
 /*
@@ -477,6 +480,12 @@ var onLocateIP = function(response) {
     $.cookie('state', state, { expires: 30 });
 
     loadState();
+}
+
+var checkBop = function() {
+    setInterval(function() {
+        $bop.load('/bop.html');
+    }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
 }
 
 /*

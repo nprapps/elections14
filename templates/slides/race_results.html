@@ -1,7 +1,7 @@
 <div class="results-wrapper hide-results {{ page_class }}">
     <div class="results-inner results-container">
         <div class="results-header">
-            <h1>{{ page_title }}</h1>
+            <h1>{{ page_title }}{% if current_page %} <span class="page">{{ current_page }} of 2</span>{% endif %}</h1>
             {% if bop %}
             <div class="leaderboard">
                 <div class="results-header-group dem">

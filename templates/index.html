@@ -76,24 +76,7 @@
 
                 <span class="hashtag">#nprparty</span>
                 {% if bop %}
-                <div class="leaderboard">
-                    <div class="results-header-group">
-                    <h2>Senate Results:</h2>
-                    </div>
-                    <div class="results-header-group dem">
-                        <h2 class="party">Dem</h2>
-                        <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
-                    </div>
-                    <div class="results-header-group gop">
-                        <h2 class="party">GOP</h2>
-                        <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
-                        </tr>
-                    </div>
-                    <div class="results-header-group not-called">
-                        <h2 class="party">Not Called</h2>
-                        <p class="total"><span class="count">{{ not_called }}</span></p>
-                    </div>
-                </div>
+                    {% include 'bop.html' %}
                 {% endif %}
             </div>
 
