@@ -7,6 +7,7 @@ var $rotate = null;
 var $statePickerScreen = null;
 var $statePickerSubmitButton = null;
 var $statePickerForm = null;
+var $stateWrapper = null;
 var $stateface = null;
 var $stateName = null;
 var $typeahead = null;
@@ -59,6 +60,7 @@ var onDocumentReady = function(e) {
     $statePickerForm  = $('form.state-picker-form');
     $statePickerScreen = $('.state-picker');
     $statePickerLink = $ ('.state-picker-link');
+    $stateWrapper = $('.state');
     $stateface = $('.stateface');
     $stateName = $('.state-name');
 
@@ -128,7 +130,7 @@ var onDocumentReady = function(e) {
             state = $.cookie('state');
             loadState();
         }
-        if (geoip2 && !($.cookie('state'))) {
+        if (typeof geoip2 == 'object' && !($.cookie('state'))) {
             geoip2.city(onLocateIP);
         }
 
@@ -440,8 +442,8 @@ var hideStateFace = function() {
     $stateface.css('opacity', 0);
     $stateName.css('opacity', 0);
 
-    if ($stateface.height() > 0 && $stateface.width() > 0) {
-        $typeahead.css('top', '-15vw');
+    if ($stateWrapper.height() > 0 && $stateWrapper.width() > 0) {
+        $typeahead.css('top', '-20vw');
     }
 }
 
