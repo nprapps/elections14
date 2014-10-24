@@ -75,18 +75,22 @@
         }
 
         $(document).ready(function() {
+            {% if DEPLOYMENT_TARGET %}
+            var share_css = '{{ S3_BASE_URL }}/css/share-ui.less.css';
+            {% else %}
+            var share_css = '/less/share-ui.less';
+            {% endif %}
+
             if (window.location.hash === '#share') {
-                $('body').prepend('<link rel="stylesheet" href="/css/share-ui.less.css">');
-            }
-            else {
+                $('body').prepend('<link rel="stylesheet" href="' + share_css + '">');
+            } else {
                 $(window).on('resize', onWindowResize);
 
                 onWindowResize();
-
-                $('#stack').show();
-                $('.slide').show();
             }
 
+            $('#stack').show();
+            $('.slide').show();
         })
     </script>
 </body>
