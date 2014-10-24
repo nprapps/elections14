@@ -32,6 +32,8 @@ var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 
 var state = null;
+var station = null;
+var streamUrl = 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3';
 var firstShareLoad = true;
 var is_casting = false;
 
@@ -102,7 +104,7 @@ var onDocumentReady = function(e) {
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
         CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
 
-        setUpAudio(false);
+        localizeRadio();
 
         STACK.start();
     } else if (IS_FAKE_CASTER) {
@@ -132,7 +134,7 @@ var onDocumentReady = function(e) {
             geoip2.city(onLocateIP);
         }
 
-        setUpAudio(true);
+        localizeRadio();
     }
 
     onWindowResize();
@@ -475,9 +477,13 @@ var onStatePickerLink = function() {
  */
 var onLocateIP = function(response) {
     var place = response.most_specific_subdivision.iso_code;
+
     $('#option-' + place).prop('selected', true);
     state = place;
     $.cookie('state', state, { expires: 30 });
+
+    latitude = response.location.latitude;
+    longitude = response.location.longitude;
 
     loadState();
 }
@@ -488,19 +494,123 @@ var checkBop = function() {
     }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
 }
 
+var MOCK_LOCALIZATION_RESPONSE = {
+    error: false,
+    data: {
+        callletters: "WAMU_FM",
+        streamGuid: "4fcf71471a22460b8c99eb9f58fac6ca",
+        logo: "//media.npr.org/images/stations/logos/wamu_fm.gif"
+    }
+};
+
 /*
- * Display the comment count.
+ * Find local radio station.
  */
-var showCommentCount = function(count) {
-    $commentCount.text(count);
+var localizeRadio = function() {
+    if ($.cookie('streamUrl')) {
+        station = $.cookie('station');
+        streamUrl = $.cookie('streamUrl');
 
-    if (count > 0) {
-        $commentCount.addClass('has-comments');
+        setUpAudio();
+    } else {
+        /*$.ajax({
+            'dataType': 'jsonp',
+            'url': 'http://api.npr.org/v2/local/stream/basic',
+            'data': {
+            },
+            'success': onLocalizeResponse
+        });*/
+
+       onLocalizeResponse(MOCK_LOCALIZATION_RESPONSE);
+    }
+}
+
+/*
+ * Local radio station found.
+ */
+var onLocalizeResponse = function(data) {
+    if (data['error']) {
+        onLocalizationFailed();
     }
 
-    if (count > 1) {
-        $commentCount.next('.comment-label').text('Comments');
+    var callLetters = data['data']['callletters'];
+
+    // Strip "_FM"
+    if (callLetters.indexOf('_') > 0) {
+        callLetters = callLetters.substring(0, callLetters.indexOf('_'));
     }
+
+    // Note: works thanks to CORS headers on api.npr.org
+    $.ajax({
+        'dataType': 'json',
+        'url': 'http://api.npr.org/stations',
+        'data': {
+            'callLetters': callLetters,
+            'apiKey': APP_CONFIG.NPR_API_KEY,
+            'format': 'json'
+        },
+        'success': onStreamFound,
+        'error': onLocalizationFailed
+
+    });
+}
+
+/*
+ * Station API lookup completed.
+ */
+var onStreamFound = function(data) {
+    var stationData = data['station'][0];
+
+    station = stationData['callLetters']['$text'];
+    
+    for (var i = 0; i < stationData['url'].length; i++) {
+        var url = stationData['url'][i];
+
+        if (url['typeId'] == '10') {
+            streamUrl = url['$text']
+            break
+        }
+    }
+
+    $.cookie('station', station, { expires: 30 });
+    $.cookie('streamUrl', streamUrl, { expires: 30 });
+
+    setUpAudio();
+}
+
+/*
+ * Local radio station lookup failed.
+ */
+var onLocalizationFailed = function() {
+    station = null;
+    streamUrl = 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3';
+
+    $.cookie('station', station, { expires: 30 });
+    $.cookie('streamUrl', streamUrl, { expires: 30 });
+    
+    setUpAudio();
+}
+
+/*
+ * Setup audio playback.
+ */
+var setUpAudio = function(startPaused) {
+    $audioPlayer.jPlayer({
+        ready: function () {
+            $(this).jPlayer('setMedia', {
+                mp3: streamUrl 
+            })
+
+            if (IS_CAST_RECEIVER) {
+                $(this).jPlayer('play');
+            } else {
+                $(this).jPlayer('pause');
+            }
+        },
+        swfPath: 'js/lib',
+        supplied: 'mp3',
+        loop: false,
+    });
 }
 
 /*
@@ -530,29 +640,6 @@ var onClippyCopy = function(e) {
     alert('Copied to your clipboard!');
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'summary-copied']);
-}
-
-
-/*
- * Setup audio playback.
- */
-var setUpAudio = function(startPaused) {
-    $audioPlayer.jPlayer({
-        ready: function () {
-            $(this).jPlayer('setMedia', {
-                mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
-            })
-
-            if (startPaused) {
-                $(this).jPlayer('pause');
-            } else {
-                $(this).jPlayer('play');
-            }
-        },
-        swfPath: 'js/lib',
-        supplied: 'mp3',
-        loop: false,
-    });
 }
 
 $(onDocumentReady);
