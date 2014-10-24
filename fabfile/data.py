@@ -611,11 +611,11 @@ def mock_slides():
     _mock_empty_slide('Balance of Power', 'balance_of_power', 10, it.next())
     _mock_empty_slide('State Senate', '_state_senate_slide', 20, it.next())
     _mock_empty_slide('State House', '_state_house_slide', 20, it.next())
-    #_mock_empty_slide('Romney Dems', 'romney_dems', 10, it.next())
-    #_mock_empty_slide('Obama Reps', 'obama_reps', 10, it.next())
-    #_mock_empty_slide('Incumbents Lost', 'incumbents_lost', 10, it.next())
-    #_mock_empty_slide('Blue Dogs', 'blue_dogs', 10, it.next())
-    #_mock_empty_slide('House Freshmen', 'house_freshmen', 10, it.next())
+    _mock_empty_slide('Romney Dems', 'romney_dems', 10, it.next())
+    _mock_empty_slide('Obama Reps', 'obama_reps', 10, it.next())
+    _mock_empty_slide('Incumbents Lost', 'incumbents_lost', 10, it.next())
+    _mock_empty_slide('Blue Dogs', 'blue_dogs', 10, it.next())
+    _mock_empty_slide('House Freshmen', 'house_freshmen', 10, it.next())
 
 def _mock_slide_from_image(filename, i):
     import models
