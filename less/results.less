@@ -29,7 +29,7 @@
 .house, .senate, .governor, .ballot-measures {
     padding: 4vw 3% 0 3%;
     height: 100%;
-    
+
     table {
         font-family: 'Cooper Hewitt';
         font-weight: 400;
@@ -70,6 +70,7 @@
                 font-weight: 400;
                 color: #999;
                 line-height: 3vw;
+                vertical-align: top;
             }
         }
 
@@ -86,7 +87,7 @@
             float: left;
             border-left: 2px solid @gray;
             box-sizing: border-box;
-            padding-left: 2vw;
+            padding-left: 1.5vw;
 
             &:first-child {
                 border-left: none;
@@ -100,6 +101,7 @@
 
             h2, p {
                 margin: 0;
+                font-size: 1.5vw;
             }
 
             h2 {
@@ -111,16 +113,17 @@
             .total,
             .seats-needed {
                 white-space: nowrap;
+                text-shadow: none;
             }
 
             .seats-needed {
-                color: @gray-light;
+                color: #666;
                 margin-left: 2vw;
                 margin-right: 2vw;
 
                 .count {
                     display: inline-block;
-                    background: @gray-light;
+                    background: #666;
                 }
             }
 
@@ -140,24 +143,25 @@
         .dem  { color: @blue; }
         .gop   { color: @red; }
         .other { color: @green; }
-        .not-called { color: @gray-light; }
+        .not-called { color: #666; }
 
         .dem .percentage   { background: @blue; }
         .gop .percentage   { background: @red; }
         .other .percentage { background: @green; }
-        .not-called .count { background: @gray-light; }
+        .not-called .count { background: #666; }
 
         .percentage,
         .count {
             display: inline-block;
             color: @white;
             text-align: center;
-            padding: 0 5%;
+            padding: 0 0.5vw;
             min-width: 3vw;
             height: 3vw;
             line-height: 3vw;
             border-radius: 2vw;
             box-sizing: border-box;
+            text-shadow: rgba(0,0,0, 0.8) 0 0 2px;
         }
     }
 
@@ -327,6 +331,11 @@
                     margin-left: 1px;
                     margin-right: 0;
                 }
+            }
+
+            .candidate,
+            .candidate-total {
+                text-shadow: rgba(0,0,0, 0.8) 0 0 2px;
             }
 
             .winner {
