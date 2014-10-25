@@ -198,15 +198,11 @@
 				.attr('y', function(d, i) { 
 					return i * (bar_height + bar_gap);
 				})
-				.attr('width', 0)
+				.attr('width', x(d['seats']))
 				.attr('height', bar_height)
 				.attr('class', function(d, i) { 
 					return 'bar-' + i + ' ' + classify(d['party']);
-				})
-				.transition()
-					.attr('width', function(d){
-						return x(d['seats']);
-					});
+				});
 	
 		var majority_marker = svg.append('g')
 			.attr('class', 'majority');
@@ -239,12 +235,12 @@
 				})
 				.attr('dx', function(d) {
 					if (x(d['seats']) > 20) {
-						return -(Math.ceil(container_width * .01));
+						return -(Math.ceil(container_width * .015));
 					} else {
-						return 6;
+						return Math.ceil(container_width * .015);
 					}
 				})
-				.attr('dy', Math.ceil((bar_height / 2) + (value_height / 4)))
+				.attr('dy', Math.ceil((bar_height / 2) + (value_height / 3)))
 				.attr('text-anchor', function(d) {
 					if (x(d['seats']) > 20) {
 						return 'end';
