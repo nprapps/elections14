@@ -22,6 +22,8 @@
 
 <script type="text/javascript">
 (function() {
+	var $container;
+	var $content;
 	var $graphic;
 	var $timestamp;
 
@@ -45,13 +47,13 @@
 	var total_house = 435;
 	var total_senate = 100;
 
-	var bar_gap = 5;
-	var bar_height = 30;
 	var color;
 	var gutter_width;
 	var label_width;
+	var margin;
 	var num_x_ticks = 5;
 	var round_increment = 10;
+	var page_padding_vw;
 	var side_margin;
 	var timestamp = {{ TIMESTAMP }} * 1000;
 
@@ -64,32 +66,63 @@
 	 * Render the graphic
 	 */
 	function render() {
-		var container_width = $('#landscape-wrapper').width();
-		gutter_width = Math.floor(container_width * .01); // 1vw
-		var graphic_width = Math.floor((container_width - gutter_width) / 2);
-		
-		label_width = Math.floor(container_width * .04); // 4vw
-		side_margin = Math.floor(container_width * .03); // 3vw
-
 		// clear out existing graphics
 		$graphic.empty();
-	
-		draw_chart('house', graphic_width);
-		draw_chart('senate', graphic_width);
 		
+		// compute dimensions
+		var container_width = Math.floor($container.width());
+		var container_height = Math.floor((container_width * 9) / 16);
+		var container_padding_top = Math.ceil((container_width * .09) * 2);
+		var container_padding_sides = Math.ceil(container_width * .06); // 3vw side margins
+		
+		var content_height =
+			Math.floor(
+				(container_width * .03) + (container_width * .02) // h1 height
+//			  + (container_width * .025) - (container_width * .01) + (container_width * .01) // h2 height
+			  + (container_width * .02) + (container_width * .015) // h3 height
+			  + (container_width * .01) + (container_width * .0025) // footer height
+			);
+
+		gutter_width = Math.floor(container_width * .03); // 3vw
+		var graphic_height = container_height - content_height - container_padding_top;
+		var graphic_width = Math.floor((container_width - container_padding_sides - gutter_width) / 2);
+		
+		/*
+		console.log('------------------------------');
+		console.log('container dimensions: ' + container_width + ' x ' + container_height);
+		console.log('container padding: ' + container_padding_top + ', ' + container_padding_sides);
+		console.log('content_height: ' + content_height);
+		console.log('graphic dimensions: ' + graphic_width + ' x ' + graphic_height);
+		console.log('total height: ' + (container_padding_top + content_height + graphic_height));
+		*/
+		
+		label_width = Math.floor(container_width * .06); // 4vw
+		margin = { 
+			top: 20, 
+			right: 10, 
+			bottom: 20, 
+			left: (label_width + 6)
+		};
+		
+		// draw charts
+		draw_chart('house', graphic_width, graphic_height);
+		draw_chart('senate', graphic_width, graphic_height);
+		
+		// set timestamp, make relative
 		var ts = moment(timestamp).fromNow();
 		$timestamp.empty().append(ts);
 	}
 
-	function draw_chart(id, graphic_width) {
+	function draw_chart(id, graphic_width, graphic_height) {
 		var graphic_data = eval('data_' + id);
 		var majority = eval('majority_' + id);
 		var majority_rounded = Math.ceil(majority / round_increment) * round_increment;
-		var margin = { top: 20, right: 10, bottom: 20, left: (label_width + 6) };
 		var num_bars = graphic_data.length;
 		var width = graphic_width - margin['left'] - margin['right'];
-		var height = ((bar_height + bar_gap) * num_bars);
-	
+		var height = graphic_height - margin['top'] - margin['bottom'];
+		var bar_gap = Math.ceil(height * .01);
+		var bar_height = Math.floor(((height - (bar_gap * num_bars)) / num_bars));
+		
 		var graph = d3.select('#graphic-bop')
 			.append('div')
 				.attr('class', 'chart chart-' + classify(id))
@@ -253,6 +286,8 @@
 	if (Modernizr.svg) {
 		$graphic = $('#graphic-bop');
 		$timestamp = $('.graphic-timestamp');
+		$container = $('#landscape-wrapper');
+		$content = $('#balance-of-power');
 		render();
 		$(window).on('resize', render);
 	}
