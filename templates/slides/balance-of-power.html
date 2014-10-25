@@ -48,6 +48,11 @@
 	var total_senate = 100;
 
 	var color;
+	var container_width;
+	var container_height;
+	var container_padding_top;
+	var container_padding_sides;
+	var content_height;
 	var gutter_width;
 	var label_width;
 	var margin;
@@ -56,6 +61,7 @@
 	var page_padding_vw;
 	var side_margin;
 	var timestamp = {{ TIMESTAMP }} * 1000;
+	var value_height;
 
 	var fmt_comma = d3.format(',');
 	var fmt_year_abbrev = d3.time.format('%y');
@@ -70,20 +76,21 @@
 		$graphic.empty();
 		
 		// compute dimensions
-		var container_width = Math.floor($container.width());
-		var container_height = Math.floor((container_width * 9) / 16);
-		var container_padding_top = Math.ceil((container_width * .09) * 2);
-		var container_padding_sides = Math.ceil(container_width * .06); // 3vw side margins
-		
-		var content_height =
+		container_width = Math.floor($container.width());
+		container_height = Math.floor((container_width * 9) / 16);
+		container_padding_sides = Math.ceil(parseFloat($content.css('paddingLeft')) + parseFloat($content.css('paddingRight')));
+		container_padding_top = container_padding_sides * 3;
+
+		content_height =
 			Math.floor(
 				(container_width * .03) + (container_width * .02) // h1 height
 //			  + (container_width * .025) - (container_width * .01) + (container_width * .01) // h2 height
 			  + (container_width * .02) + (container_width * .015) // h3 height
-			  + (container_width * .01) + (container_width * .0025) // footer height
+			  + (container_width * .015) + (container_width * .0025) // footer height
 			);
 
 		gutter_width = Math.floor(container_width * .03); // 3vw
+
 		var graphic_height = container_height - content_height - container_padding_top;
 		var graphic_width = Math.floor((container_width - container_padding_sides - gutter_width) / 2);
 		
@@ -96,13 +103,14 @@
 		console.log('total height: ' + (container_padding_top + content_height + graphic_height));
 		*/
 		
-		label_width = Math.floor(container_width * .06); // 4vw
+		label_width = Math.floor(container_width * .06); // 6vw
 		margin = { 
 			top: 20, 
 			right: 10, 
 			bottom: 20, 
 			left: (label_width + 6)
 		};
+		value_height = Math.floor(container_width * .02); // 2vw
 		
 		// draw charts
 		draw_chart('house', graphic_width, graphic_height);
@@ -199,7 +207,6 @@
 					.attr('width', function(d){
 						return x(d['seats']);
 					});
-				
 	
 		svg.append('g')
 			.attr('class', 'value')
@@ -214,12 +221,12 @@
 				})
 				.attr('dx', function(d) {
 					if (x(d['seats']) > 20) {
-						return -6;
+						return -(Math.ceil(container_width * .01));
 					} else {
 						return 6;
 					}
 				})
-				.attr('dy', (bar_height / 2) + 3)
+				.attr('dy', Math.ceil((bar_height / 2) + (value_height / 4)))
 				.attr('text-anchor', function(d) {
 					if (x(d['seats']) > 20) {
 						return 'end';
@@ -240,7 +247,7 @@
 				.text(function(d) { 
 					return d['seats'].toFixed(0);
 				});
-
+		
 		svg.append('g')
 			.attr('class', 'labels')
 			.selectAll('text')
