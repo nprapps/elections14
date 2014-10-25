@@ -208,6 +208,12 @@ def incumbents_lost():
 
     from models import Race
 
+    senate_races = Race.select().where(Race.office_name == 'U.S. Senate')
+    house_races = Race.select().where(Race.office_name == 'U.S. House')
+
+    context['called_senate_races'] = [race for race in senate_races if race.is_called()]
+    context['called_house_races'] = [race for race in house_races if race.is_called()]
+
     return render_template('slides/incumbents-lost.html', **context)
 
 def obama_reps():
