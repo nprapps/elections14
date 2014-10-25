@@ -198,7 +198,9 @@
 				.attr('y', function(d, i) { 
 					return i * (bar_height + bar_gap);
 				})
-				.attr('width', x(d['seats']))
+				.attr('width', function(d) {
+					return x(d['seats']);
+				})
 				.attr('height', bar_height)
 				.attr('class', function(d, i) { 
 					return 'bar-' + i + ' ' + classify(d['party']);
