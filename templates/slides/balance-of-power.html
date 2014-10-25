@@ -83,10 +83,10 @@
 
 		content_height =
 			Math.floor(
-				(container_width * .03) + (container_width * .02) // h1 height
+				(container_width * .03) + (container_width * .03) // h1 height
 //			  + (container_width * .025) - (container_width * .01) + (container_width * .01) // h2 height
 			  + (container_width * .02) + (container_width * .015) // h3 height
-			  + (container_width * .015) + (container_width * .0025) // footer height
+			  + (container_width * .015) + (container_width * .005) // footer height
 			);
 
 		gutter_width = Math.floor(container_width * .03); // 3vw
@@ -103,9 +103,9 @@
 		console.log('total height: ' + (container_padding_top + content_height + graphic_height));
 		*/
 		
-		label_width = Math.floor(container_width * .06); // 6vw
+		label_width = Math.floor(container_width * .05); // 6vw
 		margin = { 
-			top: 20, 
+			top: 0, 
 			right: 10, 
 			bottom: 20, 
 			left: (label_width + 6)
@@ -144,7 +144,7 @@
 
 		var header = graph.append('h3')
 			.attr('style', 'margin-left: ' + margin['left'] + 'px;')
-			.text(eval('header_' + id));
+			.html(eval('header_' + id) + '<span>Majority: ' + majority + '</span>');
 	
 		var x = d3.scale.linear()
 			.domain([0,
@@ -200,7 +200,7 @@
 				})
 				.attr('width', function(d) {
 					return x(d['seats']);
-				})
+				})	
 				.attr('height', bar_height)
 				.attr('class', function(d, i) { 
 					return 'bar-' + i + ' ' + classify(d['party']);
@@ -215,15 +215,6 @@
 			.attr('x2', x(majority))
 			.attr('y2', height);
 
-		majority_marker.append('text')
-			.attr('class', 'majority')
-			.attr('x', x(majority))
-			.attr('y', 0)
-			.attr('dx', '1')
-			.attr('dy', '-6')
-			.attr('text-anchor', 'end')
-			.html('Majority: ' + majority);
-
 		svg.append('g')
 			.attr('class', 'value')
 			.selectAll('text')
@@ -237,9 +228,9 @@
 				})
 				.attr('dx', function(d) {
 					if (x(d['seats']) > 20) {
-						return -(Math.ceil(container_width * .015));
+						return -(Math.ceil(container_width * .01));
 					} else {
-						return Math.ceil(container_width * .015);
+						return Math.ceil(container_width * .01);
 					}
 				})
 				.attr('dy', Math.ceil((bar_height / 2) + (value_height / 3)))
@@ -269,13 +260,13 @@
 			.selectAll('text')
 				.data(graphic_data)
 			.enter().append('text')
-				.attr('x', -margin['left'] + 6)
+				.attr('x', -6)
 				.attr('y', function(d,i) {
 					return (i * (bar_height + bar_gap));
 				})
-				.attr('dx', -6)
-				.attr('dy', (bar_height / 2) + 4)
-				.attr('text-anchor', 'begin')
+				.attr('dx', -(Math.ceil(container_width * .01)))
+				.attr('dy', Math.ceil((bar_height / 2) + (value_height / 3)))
+				.attr('text-anchor', 'end')
 				.attr('class', function(d) {
 					return classify(d['party']);
 				})
