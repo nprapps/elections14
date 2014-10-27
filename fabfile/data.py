@@ -10,7 +10,7 @@ import json
 import random
 
 import copytext
-from fabric.api import env, local, require, run, settings, task
+from fabric.api import env, local, execute, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
@@ -714,6 +714,11 @@ def play_fake_results(update_interval=60):
                     _fake_results(race)
                     race.save()
 
+            execute('liveblog.update')
+            execute('deploy_slides')
+            execute('deploy_big_boards')
+            execute('deploy_bop')
+
             sleep(float(update_interval))
 
         print "All done, resetting results"
@@ -747,3 +752,15 @@ def reset_results():
             candidate.save()
 
         race.save()
+
+"""
+Dangerous commands
+"""
+
+@task
+def tlaloc_god_of_thunder():
+    """
+    Kick all database connections
+    """
+    with settings(warn_only=True):
+        query("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'elections14';")
