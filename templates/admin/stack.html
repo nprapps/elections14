@@ -20,13 +20,12 @@
                     {% for slide in graphics %}
                     <li class="item" data-slide="{{ slide.slug }}" data-time ="{{ slide.time_on_screen }}" data-name="{{ slide.name }}">
                         <p class="slug">
-                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html" target="_blank">{{ slide.name }}</a>
+                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html" target="_blank">{{ slide.name }}</a> <span class="time pull">{{ slide.time_on_screen }}s</span>
                         </p>
-                        <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
 
                         <div class="controls">
+                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html#share" target="_blank"><span class="fa fa-search"></span></a>
                             <a class="add"><span class="fa fa-plus"></span></a>
-                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html#share" target="_blank"><span class="fa fa-share"></span></a>
                         </div>
                     </li>
                     {% endfor %}
