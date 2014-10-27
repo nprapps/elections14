@@ -32,6 +32,7 @@ var $commentCount = null;
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
+var reloadTimestamp = null;
 
 var state = null;
 var firstShareLoad = true;
@@ -52,6 +53,7 @@ var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
  * Run on page load.
  */
 var onDocumentReady = function(e) {
+
     // Cache jQuery references
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
@@ -81,6 +83,9 @@ var onDocumentReady = function(e) {
     $headerControls = $('.header-controls');
     $shareModal = $('#share-modal');
     $commentCount = $('.comment-count');
+
+    reloadTimestamp = moment();
+    console.log(reloadTimestamp);
 
 
     // Bind events
@@ -113,35 +118,50 @@ var onDocumentReady = function(e) {
         is_casting = true;
         state = 'TX';
         onCastStarted();
-    } else {
+    }
+    else if ($.cookie('reload')) {
+        $.removeCookie('reload');
+        $welcomeScreen.hide();
+        setupUI();
+        STACK.start();
+    }
+    else {
         // Prepare welcome screen
         $welcomeScreen.css('opacity', 1);
         $chromecastIndexHeader.css('opacity', 1);
-        rotatePhone();
 
-        // Configure share panel
-        ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
-        var clippy = new ZeroClipboard($(".clippy"));
-
-        clippy.on('ready', function(readyEvent) {
-            clippy.on('aftercopy', onClippyCopy);
-        });
-
-        // Geolocate
-        if ($.cookie('state')) {
-            state = $.cookie('state');
-            loadState();
-        }
-        if (typeof geoip2 == 'object' && !($.cookie('state'))) {
-            geoip2.city(onLocateIP);
-        }
-
-        setUpAudio(true);
+        setupUI();
     }
 
     onWindowResize();
     setupStateTypeahead();
     checkBop();
+    checkTimestamp();
+}
+
+var setupUI = function() {
+    rotatePhone();
+
+    // Configure share panel
+    ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
+    var clippy = new ZeroClipboard($(".clippy"));
+
+    clippy.on('ready', function(readyEvent) {
+        clippy.on('aftercopy', onClippyCopy);
+    });
+
+    checkTimestamp();
+
+    // Geolocate
+    if ($.cookie('state')) {
+        state = $.cookie('state');
+        loadState();
+    }
+    if (typeof geoip2 == 'object' && !($.cookie('state'))) {
+        geoip2.city(onLocateIP);
+    }
+
+    setUpAudio(true);
 }
 
 /*
@@ -157,7 +177,8 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
 
     if (loaded) {
         CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
-    	$chromecastIndexHeader.empty().append('<span class="cast-enabled"><a href="#" class="cast-start"><img src="assets/chromecast_off.svg" alt="Google Cast Ready" /></a></span>');
+    	$chromecastIndexHeader.find('.cast-enabled').show();
+    	$chromecastIndexHeader.find('.cast-disabled').hide();
     }
 }
 
@@ -470,6 +491,19 @@ var onLocateIP = function(response) {
 var checkBop = function() {
     setInterval(function() {
         $bop.load('/bop.html');
+    }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
+}
+
+var checkTimestamp = function() {
+    setInterval(function() {
+        $.getJSON('/live-data/timestamp.json', function(data) {
+            var newTime = moment(data);
+            if (reloadTimestamp.isBefore(newTime)) {
+                $.cookie('reload', true);
+                window.location.reload(true);
+            }
+
+        })
     }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
 }
 

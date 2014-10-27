@@ -139,6 +139,7 @@ TUMBLR_NOT_BEFORE = None # See below
 TUMBLR_AUTO_REFRESH = None # See below
 
 DEPLOY_INTERVAL = 60
+RELOAD_CHECK_INTERVAL = 300
 
 STATES = {
     'AK': 'Alaska',

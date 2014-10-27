@@ -7,7 +7,7 @@
 @import "less/results.less";
 @import "less/slides.less";
 
-body {
+body, #stack {
     background-color: black;
 }
 
@@ -94,23 +94,29 @@ svg {
         width: 60%;
         margin: 0 auto 3%;
     }
-    
+
     .cast-header {
     	position: absolute;
     	top: 1vw;
     	right: 1vw;
     	text-align: right;
-    	opacity: 0;
-    	
-    	.cast-enabled img {
-    		width: auto;
-    		height: 5vw;
-    		min-height: 25px;
+
+    	.cast-enabled {
+    		display: none;
+
+			img {
+				width: auto;
+				height: 5vw;
+				min-height: 25px;
+			}
     	}
-    	.cast-disabled img {
-    		width: auto;
-    		height: 3vw;
-    		min-height: 30px;
+
+    	.cast-disabled {
+			img {
+				width: auto;
+				height: 3vw;
+				min-height: 30px;
+			}
     	}
     }
 
@@ -169,12 +175,12 @@ svg {
         opacity : 0.5;
         z-index: -1;
     }
-    
+
     .centered {
         .vertical-center;
         padding-bottom: 12vw;
     }
-    
+
     .header-container .results-header span { float: left; }
 
     h2 {
@@ -191,19 +197,19 @@ svg {
 		padding: 0 .75vw;
 		margin: 0 auto;
 		border: 1px solid @grayMedium;
-		
+
         li {
             padding: 1.5vw .75vw;
             font-size: 1.5vw;
             font-weight: bold;
             border-top: 2px solid @grayMedium;
-            
+
             &:first-child { border-top: none; }
-            
+
             a { display: block; }
         }
     }
-    
+
     .legend {
     	position: absolute;
     	bottom: 0;
