@@ -141,6 +141,8 @@
 
 /* GRAPHICS */
 
+.slide-inner { overflow: hidden; }
+
 .graphic {
 	color: @musicLight;
 	padding: 0 3vw;
@@ -151,24 +153,23 @@
     }
 
 	h1 {
-		margin: 0 0 3vw 0;
+		margin: 0 0 2vw 0;
 		font-size: 3vw;
 		text-align: center;
 		font-weight: 700;
 		text-transform: uppercase;
 	}
-
 	h2 {
 		font-weight: normal;
-		font-size: 2.5vw;
-		margin: -1vw 0 2vw 0;
+		font-size: 1.5vw;
+		margin: -1.5vw 0 2vw 0;
+		color: @grayMedium;
 		text-align: center;
 	
     }
 	h3 {
 		margin: 0 0 1.5vw 0;
 		font-size: 2vw;
-//		text-align: center;
 		font-weight: 700;
 		text-transform: uppercase;
 		
@@ -250,7 +251,6 @@
 		line-height: 1.3;
 		fill: @musicLight;
 		font-family: 'Cooper Hewitt';
-//		font-weight: 500;
 
 		.not-yet-called {
 			fill: @grayMedium;
@@ -290,46 +290,50 @@
 		}
 	}
 	.candidate-list {
-		border-top: 1px solid @blueDark;
-		padding-top: 11px;
+		border-top: 1px solid @musicDark;
+		padding-top: 1vw;
+		padding-bottom: 1vw;
+		.clearfix();
+		
+		h3 { 
+			font-size: 1.25vw;
+			margin-bottom: .75vw;
+			
+			span { 
+				padding-left: .5vw;
+				font-size: 1vw;
+			}
+		}
 
 		ul {
-			margin: 0 0 6px 0;
+			margin: 0;
 			padding: 0;
 			list-style-type: none;
 			.clearfix();
-
-			& > li {
-				margin: 0 0 5px 0;
+			
+			& li {
+				margin: 0 0 .2vw 0;
 				padding: 0;
-				font-size: 1vw;
-				width: 20%;
-				float: left;
+				text-indent: 0;
+				font-family: 'Cooper Hewitt';
+				font-size: 1.25vw;
 				display: table;
+				width: 15vw;
+				float: left;
 
-				span {
+				span { 
 					display: table-cell;
-				}
-				.district {
-					width: 30px;
 
-					&.d,
-					&.r,
-					&.i {
+					&.district {
+						width: 4vw;
 						color: #fff;
-						padding: 0 3px;
-						border-radius: 6px;
-						width: 40px;
 						text-align: center;
-						font-size: 1vw;
+
+						&.d { color: @blue; }
+						&.r { color: @red; }
+						&.i { color: @green; }
 					}
-					&.d { background-color: @blue; }
-					&.r { background-color: @red; }
-					&.i { background-color: @green; }
-				}
-				.name {
-					letter-spacing: 0.1;
-					padding-left: 5px;
+					&.name { padding-left: .75vw; }
 				}
 			}
 		}
