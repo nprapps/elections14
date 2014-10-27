@@ -1,19 +1,18 @@
 <div class="results-wrapper hide-results {{ page_class }}">
     <div class="results-inner results-container">
         <div class="results-header">
-            <h1>{{ page_title }}</h1>
+            <h1>{{ page_title }}{% if current_page %} <span class="page">{{ current_page }} of 2</span>{% endif %}</h1>
             {% if bop %}
             <div class="leaderboard">
                 <div class="results-header-group dem">
                     <h2 class="party">Dem</h2>
                     <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
-                    <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.dem.needs }}</span></p>
+                    <p class="seats-needed">Needs <span class="count">{{ bop.dem.needs }}</span></p>
                 </div>
                 <div class="results-header-group gop">
                     <h2 class="party">GOP</h2>
                     <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
-                    <p class="seats-needed" colspan="2">Needs <span class="count">{{ bop.gop.needs }}</span></td>
-                    </tr>
+                    <p class="seats-needed">Needs <span class="count">{{ bop.gop.needs }}</span></p>
                 </div>
                 <div class="results-header-group other">
                     <h2 class="party">Other</h2>

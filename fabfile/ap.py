@@ -174,9 +174,15 @@ def _generate_race_id(obj, state_postal=None):
     Makes an unique compound ID out of statePostal and raceID
     """
     if state_postal:
-        return '%s-%s' % (state_postal, obj['raceID'])
+        return '%s-%s' % (obj['raceID'], state_postal)
     else:
-        return '%s-%s' % (obj['statePostal'], obj['raceID'])
+        return '%s-%s' % (obj['raceID'], obj['statePostal'])
+
+def _generate_candidate_id(obj, state_postal=None):
+    """
+    Makes an unique compound ID out of statePostal and candidateID
+    """
+    return '%s-%s' % (obj['candidateID'], state_postal)
 
 def write_init_races(path):
     """
@@ -212,7 +218,7 @@ def write_init_candidates(path):
 
     for candidate in init_candidates:
         candidates.append({
-            'candidate_id': candidate.get('candidateID'),
+            'candidate_id': _generate_candidate_id(candidate, candidate.get('statePostal')),
             'last_name': candidate.get('last'),
             'party': candidate.get('party'),
             'first_name': candidate.get('first'),
@@ -246,7 +252,7 @@ def write_update(path):
 
         for candidate in stateRU.get('candidates'):
             update['candidates'].append({
-                'candidate_id': candidate.get('candidateID'),
+                'candidate_id': _generate_candidate_id(candidate, stateRU.get('statePostal')),
                 'vote_count': candidate.get('voteCount')
             })
 
@@ -269,7 +275,7 @@ def write_calls(path):
 
         call = {
             'race_id': _generate_race_id(race),
-            'ap_called_time':race.get('callTimestamp'),
+            'ap_called_time': race.get('callTimestamp'),
         }
 
         winners = [candidate for candidate in race.get('candidates') if candidate.get('winner') == 'X']
@@ -283,10 +289,10 @@ def write_calls(path):
             if len(winners) > 1:
                 print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (_generate_race_id(race), race['raceType'], race['statePostal'])
             winner = winners[0]
-            call['ap_winner'] = winner['candidateID']
+            call['ap_winner'] = _generate_candidate_id(winner, race.get('statePostal')) 
 
         elif len(runoff_winners):
-            call['ap_runoff_winners'] = [candidate['candidateID'] for candidate in runoff_winners]
+            call['ap_runoff_winners'] = [_generate_candidate_id(candidate, race.get('statePostal')) for candidate in runoff_winners]
 
         calls.append(call)
 
@@ -311,7 +317,7 @@ def write_incumbents(path):
 
         for candidate in stateRU.get('candidates'):
             incumbents.append({
-                'candidate_id': candidate.get('candidateID'),
+                'candidate_id': _generate_candidate_id(candidate, stateRU.get('statePostal')),
                 'incumbent': candidate.get('incumbent', False)
             })
 
@@ -323,7 +329,7 @@ def record():
     """
     Begin recording AP data for playback later.
     """
-    update_interval = 60 * 5 
+    update_interval = 60
     folder = datetime.now().strftime('%Y-%m-%d')
     root = 'data/recording/%s' % folder
 

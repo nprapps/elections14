@@ -16,13 +16,12 @@
                         </div>
 
                         <div class="call-to-action">
-                            <p class="rotate">Please rotate your phone</p>
-                            <button class="btn btn-lg welcome-button">Get Started</button>
+                            <button class="btn btn-lg welcome-button">Go</button>
                         </div>
                     </div>
 
                     <div class="tv-prompt">
-                        <img class="icon" src="assets/tv.svg">
+                        <img class="icon" src="assets/icon-tv.svg">
                         <p>Use your Apple TV, <a class="cast-start" href="#">Chromecast</a>, or Roku device.</p>
                     </div>
                 </div>
@@ -46,7 +45,7 @@
                             <input class="typeahead" type="text" placeholder="&#xf002;&nbsp;&nbsp; Select a different state">
                         </div>
 
-                        <button type="submit" class="btn btn-lg state-picker-submit">Join the party</button>
+                        <button type="submit" class="btn btn-lg state-picker-submit">Go</button>
                     </form>
                 </div>
             </div>
@@ -77,24 +76,7 @@
 
                 <span class="hashtag">#nprparty</span>
                 {% if bop %}
-                <div class="leaderboard">
-                    <div class="results-header-group">
-                    <h2>Senate Results:</h2>
-                    </div>
-                    <div class="results-header-group dem">
-                        <h2 class="party">Dem</h2>
-                        <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
-                    </div>
-                    <div class="results-header-group gop">
-                        <h2 class="party">GOP</h2>
-                        <p class="total"><span class="percentage">{{ bop.gop.has }}</span> <span class="change">{{ bop.gop.picked_up|signed }}</span></p>
-                        </tr>
-                    </div>
-                    <div class="results-header-group not-called">
-                        <h2 class="party">Not Called</h2>
-                        <p class="total"><span class="count">{{ not_called }}</span></p>
-                    </div>
-                </div>
+                    {% include 'bop.html' %}
                 {% endif %}
             </div>
 
@@ -132,20 +114,29 @@
     </div>
 </div>
 
-{% include '_share_modal.html' %}
-{% endblock outer_content %}
+<div class="rotate-phone-wrapper">
+    <p class="rotate">Please rotate your phone</p>
+</div>
 
-{% block extra_foot_js %}
+
+{% include '_share_modal.html' %}
+
 <script src="//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript"></script>
 <script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
 <script src="js/lib/d3.v3.min.js"></script>
+{% endblock outer_content %}
+
+{% block extra_foot_js %}
+{{ JS.push('js/lib/jquery.cookie.js') }}
+{{ JS.push('js/lib/jquery.columnizer.js') }}
+{{ JS.push('js/lib/ZeroClipboard.js') }}
+{{ JS.push('js/lib/typeahead.js') }}
 {{ JS.push('js/lib/jquery.jplayer.js') }}
 {{ JS.push('js/chromecast_receiver.js') }}
 {{ JS.push('js/chromecast_sender.js') }}
 {{ JS.push('js/stack.js') }}
 {{ JS.push('js/app.js') }}
 {{ JS.push('js/stack.js') }}
-{{ JS.push('js/analytics.js') }}
 {{ JS.render('js/index-footer.min.js') }}
 {% endblock extra_foot_js %}
 

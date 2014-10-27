@@ -9,7 +9,7 @@
         {# <link rel="stylesheet" href="/css/app.less.css" /> #}
     {% else %}
         {{ CSS.push('less/app.less') }}
-        {{ CSS.render('preview.less.css') }}
+        {{ CSS.render('preview.min.css') }}
     {% endif %}
 
     {# ugly includes because slide js is inlined and can't pickup the stuff from the base template #}
@@ -17,18 +17,13 @@
     {{ JS.push('js/lib/modernizr.js') }}
     {{ JS.push('js/lib/jquery.js') }}
     {{ JS.push('js/lib/jquery.columnizer.js') }}
+    {{ JS.push('js/lib/moment.js') }}
     {{ JS.render('js/preview-header.min.js') }}
-
-    <style>
-        .slide {
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
     <div id="landscape-wrapper">
-        <div id="stack" class="stack" style="display: block;">
+        <div id="stack" class="stack">
             {{ body|smarty }}
         </div>
         <div class="share-footer">
@@ -80,15 +75,22 @@
         }
 
         $(document).ready(function() {
+            {% if DEPLOYMENT_TARGET %}
+            var share_css = '{{ S3_BASE_URL }}/css/share-ui.less.css';
+            {% else %}
+            var share_css = '/less/share-ui.less';
+            {% endif %}
+
             if (window.location.hash === '#share') {
-                $('body').prepend('<link rel="stylesheet" href="/css/share-ui.less.css">');
-            }
-            else {
+                $('body').prepend('<link rel="stylesheet" href="' + share_css + '">');
+            } else {
                 $(window).on('resize', onWindowResize);
 
                 onWindowResize();
             }
 
+            $('#stack').show();
+            $('.slide').show();
         })
     </script>
 </body>

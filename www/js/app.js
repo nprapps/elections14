@@ -7,6 +7,7 @@ var $rotate = null;
 var $statePickerScreen = null;
 var $statePickerSubmitButton = null;
 var $statePickerForm = null;
+var $stateWrapper = null;
 var $stateface = null;
 var $stateName = null;
 var $typeahead = null;
@@ -21,6 +22,7 @@ var $fullScreenButton = null;
 var $statePickerLink = null;
 var $chromecastButton = null;
 var $audioPlayer = null;
+var $bop = null;
 var $stack = null;
 
 var $shareModal = null;
@@ -53,11 +55,12 @@ var onDocumentReady = function(e) {
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
     $welcomeSubmitButton = $('.state-picker-submit');
-    $rotate = $('.rotate');
+    $rotate = $('.rotate-phone-wrapper');
 
     $statePickerForm  = $('form.state-picker-form');
     $statePickerScreen = $('.state-picker');
     $statePickerLink = $ ('.state-picker-link');
+    $stateWrapper = $('.state');
     $stateface = $('.stateface');
     $stateName = $('.state-name');
 
@@ -68,8 +71,9 @@ var onDocumentReady = function(e) {
     $castStop = $('.cast-stop');
 
     $audioPlayer = $('#pop-audio');
-    $fullScreenButton = $('.fullscreen p');
+    $fullScreenButton = $('.fullscreen a');
     $chromecastButton = $('.chromecast');
+    $bop = $('.leaderboard');
     $stack = $('#stack');
     $header = $('.index');
     $headerControls = $('.header-controls');
@@ -126,7 +130,7 @@ var onDocumentReady = function(e) {
             state = $.cookie('state');
             loadState();
         }
-        if (geoip2 && !($.cookie('state'))) {
+        if (typeof geoip2 == 'object' && !($.cookie('state'))) {
             geoip2.city(onLocateIP);
         }
 
@@ -135,6 +139,7 @@ var onDocumentReady = function(e) {
 
     onWindowResize();
     setupStateTypeahead();
+    checkBop();
 }
 
 /*
@@ -241,7 +246,7 @@ var onCastMute = function() {
 var onWindowResize = function() {
     var width = $(window).width();
     var height = $(window).height();
-    
+
     var target_width = 1280;
     var target_height = 720;
 
@@ -343,14 +348,38 @@ var substringMatcher = function(strs) {
  */
 var onFullScreenButtonClick = function() {
     var elem = document.getElementById("stack");
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      elem.msRequestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen();
+
+    var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+
+    console.log(fullscreenElement);
+
+    if (fullscreenElement) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+        else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        }
+        else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-expand.svg');
+    }
+    else {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        }
+        else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+        else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        }
+        else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        }
+
+        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-shrink.svg');
     }
 }
 
@@ -372,9 +401,7 @@ var onControlsHover = function() {
 var offControlsHover = function() {
     $headerControls.data('hover', false);
     $headerControls.fadeOut(200, function() {
-        $header.fadeIn(200, function() {
-            $('body').data('mouse-moving', true);
-        });
+        $header.fadeIn(200);
     });
 }
 
@@ -415,8 +442,8 @@ var hideStateFace = function() {
     $stateface.css('opacity', 0);
     $stateName.css('opacity', 0);
 
-    if ($stateface.height() > 0 && $stateface.width() > 0) {
-        $typeahead.css('top', '-15vw');
+    if ($stateWrapper.height() > 0 && $stateWrapper.width() > 0) {
+        $typeahead.css('top', '-20vw');
     }
 }
 
@@ -455,6 +482,12 @@ var onLocateIP = function(response) {
     $.cookie('state', state, { expires: 30 });
 
     loadState();
+}
+
+var checkBop = function() {
+    setInterval(function() {
+        $bop.load('/bop.html');
+    }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
 }
 
 /*

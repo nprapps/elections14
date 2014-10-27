@@ -6,6 +6,19 @@
         position: relative;
         margin-top: 10%;
     }
+
+    .house-pagination {
+        margin-top: 50px;
+        display: none;
+        width: 100%;
+        color: white;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .radio input[type="radio"] {
+        float: none;
+    }
 </style>
 {% endblock %}
 
@@ -13,6 +26,25 @@
 <div class="state-picker">
     <div class="picker">
         <input class="typeahead" type="text" placeholder="&#xf002;&nbsp;&nbsp; Select a state">
+    </div>
+
+    <div class="house-pagination">
+        <p>This state has two pages for its house results. Which page do you want to preview?</p>
+
+        <form role="form">
+            <div class="radio">
+              <label>
+                <input type="radio" name="house-page" id="optionsRadios1" value="1" checked>
+                Page 1
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="house-page" id="optionsRadios2" value="2">
+                Page 2
+              </label>
+            </div>
+        </form>
     </div>
 
     <div class="template-picker">
@@ -23,6 +55,10 @@
 {% endblock %}
 
 {% block extra_foot_js %}
+{{ JS.push('js/lib/jquery.js') }}
+{{ JS.push('js/app_config.js') }}
+{{ JS.push('js/lib/typeahead.js') }}
+
 {{ JS.render('js/state-picker.min.js')}}
 
 <script type="text/javascript">
@@ -58,6 +94,18 @@ var substringMatcher = function(strs) {
     };
 };
 
+var checkState = function() {
+    var input = $('.typeahead').typeahead('val');
+    if (input) {
+        var inverted = _.invert(APP_CONFIG.STATES);
+        var state = inverted[input]
+    }
+
+    if (APP_CONFIG.PAGINATED_STATES.indexOf(state) >= 0 && window.location.pathname.split('/')[2] == 'state-house') {
+        $('.house-pagination').show();
+    }
+}
+
 var onStatePickerSubmitClick = function() {
     var input = $('.typeahead').typeahead('val');
     if (input) {
@@ -70,8 +118,18 @@ var onStatePickerSubmitClick = function() {
     path += '-' + state;
 
     if (window.location.pathname.split('/')[2] == 'state-house') {
-        path += '-1';
+
+        if ($('.house-pagination').is(':visible')) {
+            var page = $('input[name=house-page]:checked').val();
+        }
+
+        else {
+            page = '1'
+        }
+
+        path += '-' + page;
     }
+
     path += '/index.html';
 
     if ($(this).text() == "Share") {
@@ -92,6 +150,7 @@ $(document).ready(function() {
         displayKey: 'value',
         source: substringMatcher(STATES)
     });
+    $('.typeahead').on('typeahead:selected', checkState);
 
     $('.state-picker-submit').on('click', onStatePickerSubmitClick);
 });

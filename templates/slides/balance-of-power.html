@@ -14,8 +14,7 @@
 
         <div class="footer">
             {% if COPY.graphic_slides.source_bop %}
-            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;Last updated: Nov. 4, 2014, at 8:15 p.m. ET.
-            </p>
+            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="graphic-timestamp"></span>.</p>
             {% endif %}
         </div>
     </div>
@@ -23,7 +22,10 @@
 
 <script type="text/javascript">
 (function() {
+	var $container;
+	var $content;
 	var $graphic;
+	var $timestamp;
 
 	var data_house = [
 		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ house_bop.dem.has }}, 'net': {{ house_bop.dem.picked_up }} },
@@ -45,16 +47,21 @@
 	var total_house = 435;
 	var total_senate = 100;
 
-	var bar_gap = 5;
-	var bar_height = 30;
 	var color;
-	var graphic_margin = 6;
-	var is_mobile = false;
-	var label_width = 35;
-	var mobile_threshold = 480;
+	var container_width;
+	var container_height;
+	var container_padding_top;
+	var container_padding_sides;
+	var content_height;
+	var gutter_width;
+	var label_width;
+	var margin;
 	var num_x_ticks = 5;
 	var round_increment = 10;
-	var side_margin = 11;
+	var page_padding_vw;
+	var side_margin;
+	var timestamp = {{ TIMESTAMP }} * 1000;
+	var value_height;
 
 	var fmt_comma = d3.format(',');
 	var fmt_year_abbrev = d3.time.format('%y');
@@ -65,39 +72,79 @@
 	 * Render the graphic
 	 */
 	function render() {
-		var container_width = $('#stack').width();
-		var graphic_width = Math.floor((container_width - 22) / 2);
-
-		if (container_width <= mobile_threshold) {
-			is_mobile = true;
-		} else {
-			is_mobile = false;
-		}
-
 		// clear out existing graphics
 		$graphic.empty();
-	
-		draw_chart('house', graphic_width);    
-		draw_chart('senate', graphic_width);    
+		
+		// compute dimensions
+		container_width = Math.floor($container.width());
+		container_height = Math.floor((container_width * 9) / 16);
+		container_padding_sides = Math.ceil(parseFloat($content.css('paddingLeft')) + parseFloat($content.css('paddingRight')));
+		container_padding_top = container_padding_sides * 3;
+
+		content_height =
+			Math.floor(
+				(container_width * .03) + (container_width * .03) // h1 height
+//			  + (container_width * .025) - (container_width * .01) + (container_width * .01) // h2 height
+			  + (container_width * .02) + (container_width * .015) // h3 height
+			  + (container_width * .015) + (container_width * .005) // footer height
+			);
+
+		gutter_width = Math.floor(container_width * .03); // 3vw
+
+		var graphic_height = container_height - content_height - container_padding_top;
+		var graphic_width = Math.floor((container_width - container_padding_sides - gutter_width) / 2);
+		
+		/*
+		console.log('------------------------------');
+		console.log('container dimensions: ' + container_width + ' x ' + container_height);
+		console.log('container padding: ' + container_padding_top + ', ' + container_padding_sides);
+		console.log('content_height: ' + content_height);
+		console.log('graphic dimensions: ' + graphic_width + ' x ' + graphic_height);
+		console.log('total height: ' + (container_padding_top + content_height + graphic_height));
+		*/
+		
+		label_width = Math.floor(container_width * .05); // 6vw
+		margin = { 
+			top: 0, 
+			right: 10, 
+			bottom: 20, 
+			left: (label_width + 6)
+		};
+		value_height = Math.floor(container_width * .02); // 2vw
+		
+		// draw charts
+		draw_chart('house', graphic_width, graphic_height);
+		draw_chart('senate', graphic_width, graphic_height);
+		
+		// set timestamp, make relative
+		var ts = moment(timestamp).fromNow();
+		$timestamp.empty().append(ts);
 	}
 
-	function draw_chart(id, graphic_width) {
+	function draw_chart(id, graphic_width, graphic_height) {
 		var graphic_data = eval('data_' + id);
 		var majority = eval('majority_' + id);
 		var majority_rounded = Math.ceil(majority / round_increment) * round_increment;
-		var margin = { top: 20, right: 10, bottom: 20, left: (label_width + 6) };
 		var num_bars = graphic_data.length;
 		var width = graphic_width - margin['left'] - margin['right'];
-		var height = ((bar_height + bar_gap) * num_bars);
-	
+		var height = graphic_height - margin['top'] - margin['bottom'];
+		var bar_gap = Math.ceil(height * .01);
+		var bar_height = Math.floor(((height - (bar_gap * num_bars)) / num_bars));
+		
 		var graph = d3.select('#graphic-bop')
 			.append('div')
-				.attr('class', 'chart ' + classify(id))
-				.attr('width', graphic_width);
+				.attr('class', 'chart chart-' + classify(id))
+				.attr('style', function() {
+					var s = 'width: ' + graphic_width + 'px;';
+					if (id == 'house') {
+						s += ' margin-right: ' + gutter_width + 'px;';
+					}
+					return s;
+				});
 
 		var header = graph.append('h3')
 			.attr('style', 'margin-left: ' + margin['left'] + 'px;')
-			.text(eval('header_' + id));
+			.html(eval('header_' + id) + '<span>Majority: ' + majority + '</span>');
 	
 		var x = d3.scale.linear()
 			.domain([0,
@@ -151,17 +198,23 @@
 				.attr('y', function(d, i) { 
 					return i * (bar_height + bar_gap);
 				})
-				.attr('width', 0)
+				.attr('width', function(d) {
+					return x(d['seats']);
+				})	
 				.attr('height', bar_height)
 				.attr('class', function(d, i) { 
 					return 'bar-' + i + ' ' + classify(d['party']);
-				})
-				.transition()
-					.attr('width', function(d){
-						return x(d['seats']);
-					});
-				
+				});
 	
+		var majority_marker = svg.append('g')
+			.attr('class', 'majority');
+	
+		majority_marker.append('line')
+			.attr('x1', x(majority))
+			.attr('y1', 0)
+			.attr('x2', x(majority))
+			.attr('y2', height);
+
 		svg.append('g')
 			.attr('class', 'value')
 			.selectAll('text')
@@ -175,12 +228,12 @@
 				})
 				.attr('dx', function(d) {
 					if (x(d['seats']) > 20) {
-						return -6;
+						return -(Math.ceil(container_width * .01));
 					} else {
-						return 6;
+						return Math.ceil(container_width * .01);
 					}
 				})
-				.attr('dy', (bar_height / 2) + 3)
+				.attr('dy', Math.ceil((bar_height / 2) + (value_height / 3)))
 				.attr('text-anchor', function(d) {
 					if (x(d['seats']) > 20) {
 						return 'end';
@@ -201,43 +254,25 @@
 				.text(function(d) { 
 					return d['seats'].toFixed(0);
 				});
-
+		
 		svg.append('g')
 			.attr('class', 'labels')
 			.selectAll('text')
 				.data(graphic_data)
 			.enter().append('text')
-				.attr('x', -margin['left'] + 6)
+				.attr('x', -6)
 				.attr('y', function(d,i) {
 					return (i * (bar_height + bar_gap));
 				})
-				.attr('dx', -6)
-				.attr('dy', (bar_height / 2) + 4)
-				.attr('text-anchor', 'begin')
+				.attr('dx', -(Math.ceil(container_width * .01)))
+				.attr('dy', Math.ceil((bar_height / 2) + (value_height / 3)))
+				.attr('text-anchor', 'end')
 				.attr('class', function(d) {
 					return classify(d['party']);
 				})
 				.text(function(d) { 
 					return d['party_abbr'];
 				});
-	
-		var majority_marker = svg.append('g')
-			.attr('class', 'majority');
-	
-		majority_marker.append('line')
-			.attr('x1', x(majority))
-			.attr('y1', 0)
-			.attr('x2', x(majority))
-			.attr('y2', height);
-
-		majority_marker.append('text')
-			.attr('class', 'majority')
-			.attr('x', x(majority))
-			.attr('y', 0)
-			.attr('dx', '1')
-			.attr('dy', '-6')
-			.attr('text-anchor', 'end')
-			.html('Majority: ' + majority + '&#11022;');
 	}
 
 	function classify(str) {
@@ -246,6 +281,9 @@
 
 	if (Modernizr.svg) {
 		$graphic = $('#graphic-bop');
+		$timestamp = $('.graphic-timestamp');
+		$container = $('#landscape-wrapper');
+		$content = $('#balance-of-power');
 		render();
 		$(window).on('resize', render);
 	}

@@ -39,7 +39,8 @@ def house_big_board(page):
 
     context = make_context()
 
-    context['page_title'] = 'House Page %s of 2' % page
+    context['page_title'] = 'House'
+    context['current_page'] = page
     context['page_class'] = 'house'
     context['column_number'] = 2
 
@@ -117,16 +118,16 @@ def _format_tumblr_date(post):
 
 def tumblr_text(data):
     post = json.loads(data)
-    
+
     context = make_context()
     context['post'] = post
     context['formatted_date'] = _format_tumblr_date(post)
 
-    return render_template('slides/tumblr_text.html', **context) 
+    return render_template('slides/tumblr_text.html', **context)
 
 def tumblr_photo(data):
     post = json.loads(data)
-    
+
     context = make_context()
     context['post'] = post
     context['formatted_date'] = _format_tumblr_date(post)
@@ -140,16 +141,16 @@ def tumblr_photo(data):
 
     context['image'] = image
 
-    return render_template('slides/tumblr_photo.html', **context) 
+    return render_template('slides/tumblr_photo.html', **context)
 
 def tumblr_quote(data):
     post = json.loads(data)
-    
+
     context = make_context()
     context['post'] = post
     context['formatted_date'] = _format_tumblr_date(post)
 
-    return render_template('slides/tumblr_quote.html', **context) 
+    return render_template('slides/tumblr_quote.html', **context)
 
 def balance_of_power():
     """
@@ -187,6 +188,16 @@ def house_freshmen():
     """
     context = make_context()
 
+    from models import Race
+
+    races = Race.select().where(Race.freshmen == True)
+
+    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    context['races_not_called'] = [race for race in races if not race.is_called()]
+
+    context['races_count'] = races.count()
+
     return render_template('slides/house-freshmen.html', **context)
 
 def incumbents_lost():
@@ -195,6 +206,14 @@ def incumbents_lost():
     """
     context = make_context()
 
+    from models import Race
+
+    senate_races = Race.select().where(Race.office_name == 'U.S. Senate')
+    house_races = Race.select().where(Race.office_name == 'U.S. House')
+
+    context['called_senate_races'] = [race for race in senate_races if race.is_called()]
+    context['called_house_races'] = [race for race in house_races if race.is_called()]
+
     return render_template('slides/incumbents-lost.html', **context)
 
 def obama_reps():
@@ -202,6 +221,16 @@ def obama_reps():
     Ongoing list of Incumbent Republicans In Districts Barack Obama Won In 2012
     """
     context = make_context()
+
+    from models import Race
+
+    races = Race.select().where(Race.obama_gop == True)
+
+    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    context['races_not_called'] = [race for race in races if not race.is_called()]
+
+    context['races_count'] = races.count()
 
     return render_template('slides/obama-reps.html', **context)
 
@@ -253,7 +282,17 @@ def romney_dems():
     """
     Ongoing list of Incumbent Democrats In Districts Mitt Romney Won In 2012
     """
+    from models import Race
+
     context = make_context()
+
+    races = Race.select().where(Race.romney_dem == True)
+
+    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    context['races_not_called'] = [race for race in races if not race.is_called()]
+
+    context['races_count'] = races.count()
 
     return render_template('slides/romney-dems.html', **context)
 

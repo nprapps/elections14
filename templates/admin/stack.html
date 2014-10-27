@@ -25,7 +25,7 @@
                         <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
 
                         <div class="controls">
-                            <a class="add" href="#"><span class="fa fa-plus"></span></a>
+                            <a class="add"><span class="fa fa-plus"></span></a>
                             <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html#share" target="_blank"><span class="fa fa-share"></span></a>
                         </div>
                     </li>
@@ -40,7 +40,7 @@
                         <p class="slug"><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html" target="_blank">{{ slide.name }}</a></p>
                         <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
                         <div class="controls">
-                            <a class="add" href="#"><span class="fa fa-plus"></span></a>
+                            <a class="add"><span class="fa fa-plus"></span></a>
                             <a class="preview" href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html#share" target="_blank"><span class="fa fa-share"></span></a>
                         </div>
                     </li>
@@ -61,7 +61,7 @@
                             {{ slide.body|smarty }}
                         </div>
                         {% endif %}
-                        <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></a></div>
+                        <div class="controls"><a class="remove"><span class="fa fa-times"></span></a></div>
                     </li>
                     {% endfor %}
                 </ol>
@@ -77,6 +77,7 @@
 
 {{ JS.push('js/lib/jquery.js') }}
 {{ JS.push('js/lib/jquery-sortable.js') }}
+{{ JS.push('js/app_config.js') }}
 {{ JS.push('js/stack-admin.js') }}
 {{ JS.render('js/admin-app-footer.min.js') }}
 

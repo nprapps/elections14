@@ -3,22 +3,20 @@
 @import "less/lib/bootstrap/mixins.less";
 
 .tumblr-text, .tumblr-photo, .tumblr-quote {
-    background-image: url('../assets/elections-background-1.jpg');
-    background-size: cover;
     height: 100%;
 
-    /*.slide-inner:after {
+    .slide-inner:after {
         content : "";
         display: block;
         position: absolute;
         top: 0;
         left: 0;
-        background-image: url('../assets/elections-background-1.jpg'); 
+        background-size: cover;
         width: 100%;
         height: 100%;
-        opacity : 0.2;
+        opacity : 0.5;
         z-index: -1;
-    }*/
+    }
 
     a {
         color: @grayMedium;
@@ -35,6 +33,18 @@
         font-size: 1.75vw;
         .text-shadow;
     }
+}
+
+.tumblr-text .slide-inner:after {
+    background-image: url('../assets/tumblr-text-background.jpg'); 
+}
+
+.tumblr-photo .slide-inner:after {
+    background-image: url('../assets/tumblr-photo-background.jpg'); 
+}
+
+.tumblr-quote .slide-inner:after {
+    background-image: url('../assets/tumblr-quote-background.jpg'); 
 }
 
 .tumblr-text {
@@ -131,9 +141,11 @@
 
 /* GRAPHICS */
 
+.slide-inner { overflow: hidden; }
+
 .graphic {
 	color: @musicLight;
-    padding-top: 4vw;
+	padding: 0 3vw;
     height: 100%;
 
     .wrapper {
@@ -141,39 +153,46 @@
     }
 
 	h1 {
-		margin: 0 0 22px 0;
-		font-size: 24px;
+		margin: 0 0 2vw 0;
+		font-size: 3vw;
 		text-align: center;
+		font-weight: 700;
+		text-transform: uppercase;
 	}
-
 	h2 {
 		font-weight: normal;
-		font-size: 12px;
-		margin: -16px 0 22px 0;
+		font-size: 1.5vw;
+		margin: -1.5vw 0 2vw 0;
+		color: @grayMedium;
 		text-align: center;
 	
     }
 	h3 {
-		margin: 0 0 11px 0;
-		font-size: 14px;
-		text-align: center;
+		margin: 0 0 1.5vw 0;
+		font-size: 2vw;
+		font-weight: 700;
+		text-transform: uppercase;
+		
+		span {
+			font-size: 1.3vw;
+			font-weight: 400;
+			color: #999;
+			line-height: 1;
+			padding-left: 1vw;
+		}
 	}
 
 	.footnotes {
-		margin-bottom: 20px;
+		margin-bottom: 0;
 		color: @grayMedium;
-
-		h4 {
-			margin: 2px 0 7px 0;
-			font-size: 11px;
-		}
 	}
 	.footnotes p,
 	.footer p {
-		margin: 2px 0 0 0;
-		font-size: 11px;
+		margin: .5vw 0 0 0;
+		font-size: 1.25vw;
 		line-height: 1.3;
 		color: @grayMedium;
+		text-align: center;
 	}
 
 	.r { color: @red; }
@@ -181,7 +200,7 @@
 	.i { color: @green; }
 
 	.axis {
-		font-size: 11px;
+		font-size: 1vw;
 		fill: #787878;
 
 		line,
@@ -198,29 +217,35 @@
 	.grid {
 		path { display: none; }
 		.tick {
-			stroke: #787878;
-			stroke-dasharray: 2px 3px;
+			stroke: #454545;
+//			stroke-dasharray: 2px 3px;
 			stroke-width: 1px;
 			shape-rendering: crispEdges;
 		}
 	}
 
 	.bars {
-		rect { shape-rendering: crispEdges; }
+		rect { 
+			shape-rendering: crispEdges;
+			opacity: 0.85;
+		}
 		.democratic { fill: @blue; }
 		.republican { fill: @red; }
 		.independent { fill: @green; }
 		.not-yet-called { fill: @musicDark; }
 	}
 
-	.value { font-size: 11px; }
+	.value { 
+		font-family: 'Cooper Hewitt';
+		font-size: 2vw;
+		line-height: 1;
+	}
 
 	.labels {
-		text-align: right;
-		font-size: 12px;
+		font-size: 1.75vw;
 		line-height: 1.3;
 		fill: @musicLight;
-		font-weight: 500;
+		font-family: 'Cooper Hewitt';
 
 		.not-yet-called {
 			fill: @grayMedium;
@@ -237,7 +262,7 @@
 			& > li {
 				margin: 0 0 6px 0;
 				padding: 0;
-				font-size: 12px;
+				font-size: 1.25vw;
 
 				i.state {
 					font-family: StateFaceRegular;
@@ -260,54 +285,50 @@
 		}
 	}
 	.candidate-list {
-		border-top: 1px solid @blueDark;
-		padding-top: 11px;
+		border-top: 1px solid @musicDark;
+		padding-top: 1vw;
+		padding-bottom: 1vw;
+		.clearfix();
+		
+		h3 { 
+			font-size: 1.25vw;
+			margin-bottom: .75vw;
+			
+			span { 
+				padding-left: .5vw;
+				font-size: 1vw;
+			}
+		}
 
 		ul {
-			margin: 0 0 6px 0;
+			margin: 0;
 			padding: 0;
 			list-style-type: none;
-
-			&:before {
-				content: ' ';
-				display: table;
-			}
-			&:after {
-				content: ' ';
-				display: table;
-				clear: both;
-			}
-			& > li {
-				margin: 0 0 5px 0;
+			.clearfix();
+			
+			& li {
+				margin: 0 0 .2vw 0;
 				padding: 0;
-				font-size: 11px;
-				width: 20%;
-				float: left;
+				text-indent: 0;
+				font-family: 'Cooper Hewitt';
+				font-size: 1.25vw;
 				display: table;
+				width: 15vw;
+				float: left;
 
-				span {
+				span { 
 					display: table-cell;
-				}
-				.district {
-					width: 30px;
 
-					&.d,
-					&.r,
-					&.i {
+					&.district {
+						width: 4vw;
 						color: #fff;
-						padding: 0 3px;
-						border-radius: 6px;
-						width: 40px;
 						text-align: center;
-						font-size: 10px;
+
+						&.d { color: @blue; }
+						&.r { color: @red; }
+						&.i { color: @green; }
 					}
-					&.d { background-color: @blue; }
-					&.r { background-color: @red; }
-					&.i { background-color: @green; }
-				}
-				.name {
-					letter-spacing: 0.1;
-					padding-left: 5px;
+					&.name { padding-left: .75vw; }
 				}
 			}
 		}
@@ -315,12 +336,11 @@
 }
 
 #graphic-bop {
+	.clearfix();
+
     .chart {
         float: left;
-
-        &.house {
-            margin-right: 22px;
-        }
+        padding-bottom: 1vw;
     }
 
 	.majority {
@@ -330,22 +350,16 @@
 		}
 		text {
 			fill: @musicLight;
-			font-size: 10px;
+			font-size: 1.25vw;
+			font-family: 'Cooper Hewitt';
 			font-style: italic;
 		}
 	}
 }
 
 .graphic.poll-closing {
-	&:before {
-		content: ' ';
-		display: table;
-	}
-	&:after {
-		content: ' ';
-		display: table;
-		clear: both;
-	}
+	.clearfix();
+
 	.poll-map {
 		width: 47%;
 		float: left;
@@ -361,7 +375,7 @@
 	}
 	h3 {
 		text-align: left;
-		margin-bottom: 11px;
+		margin-bottom: 1vw;
 	}
 }
 
@@ -375,7 +389,7 @@
     background-size: cover;
     height: 100%;
     margin-bottom: @line-height-computed;
-
+    padding-top: 4vw;
 
 	.state-results-wrapper {
 		display: table;
@@ -385,7 +399,7 @@
 	.state-header,
 	.state-results {
 		display: table-cell;
-		padding: @grid-gutter-width;
+		padding: 0 2vw;
 	}
 
 	.state-header {
@@ -404,39 +418,44 @@
 
     	h2 {
 	    	text-transform: uppercase;
-	    	font-size: 32px;
+	    	font-size: 2vw;
 	    }
 
 	    .stateface {
-	    	font-size: 20vmin;
+	    	font-size: 20vw;
 	    	line-height: 1;
 	    }
 
 	    .page {
-	    	font-size: 14px;
+	    	font-size: 1.3vw;
 	    	color: #999;
 	    	text-transform: uppercase;
-	    	margin-top: 10px;
+	    	margin-top: 1vw;
 	    }
     }
 
     .state-results {
         h3 {
-        	margin-bottom: @line-height-computed;
+        	font-size: 2vw;
         }
 
-        p {
-        	line-height: 30px;
+        h4 {
+        	font-size: 1.3vw;
+        }
+
+        h3,
+        h4 {
+        	margin: 0 0 1vw;
         }
 
         .bar-wrapper {
         	display: inline-block;
         	position: relative;
-        	height: 30px;
+        	height: 3vw;
         }
 
         .bar {
-        	height: 30px;
+        	height: 3vw;
         }
 
         .bar-label {
@@ -453,7 +472,7 @@
     .projected-results {
         width: 50%;
         float: left;
-        margin-bottom: @line-height-computed;
+        margin-bottom: 2vw;
 
         p {
         	border-left: 1px solid #ccc;
@@ -461,7 +480,8 @@
         	padding: 10px 0;
 	        font-family: 'Cooper Hewitt';
 	        font-weight: 300;
-	        font-size: 24px;
+	        font-size: 2vw;
+	        line-height: 3vw;
 	        overflow: hidden;
 
         	+ p {
@@ -481,8 +501,10 @@
     .house,
     .senate,
     .governor {
+    	padding-top: 0.5vw;
+
     	.races {
-	        font-size: 2.5vmin;
+	        font-size: 2vw;
 
 	        .results-status.called {
 	        	color: #999;
@@ -519,29 +541,39 @@
 	font-family: 'Cooper Hewitt';
 	font-weight: 300;
 
+	> h3 {
+		padding-left: 2vw;
+		text-transform: uppercase;
+		font-size: 1.3vw;
+		margin-bottom: 0;
+	}
+
 	.container-fluid {
-		margin: @grid-gutter-width;
+		margin: 1vw 2vw;
 		background: fadeout(@blueDark, 30%);
-		padding: @grid-gutter-width / 2;
-		font-size: 3vmin;
+		padding: 2vw;
+		font-size: 2vw;
 	}
 
 	ul {
 		float: left;
-		width: 33.33333333%;
+		width: 31vw;
 		margin-bottom: 0;
 		position: relative;
 		min-height: 1px;
-		padding-left: 15px;
-		padding-right: 15px;
+		padding-left: 1vw;
+		padding-right: 1vw;
+		box-sizing: border-box;
+		line-height: 1.1;
 
 		+ ul li {
-			padding-left: 65px;
+			padding-left: 5vw;
 		}
 	}
 
 	li {
 		position: relative;
+		margin-bottom: 0.5vw;
 
 		sup {
 			top: -0.3em;
@@ -549,10 +581,10 @@
 	}
 
 	.key-color {
-		.square(20px);
+		.square(2vw);
 		display: inline-block;
-		border-radius: 10px;
-		margin-right: 10px;
+		border-radius: 1vw;
+		margin-right: 1vw;
 
 		&.dem { background: @blue; }
 		&.gop { background: @red; }
@@ -562,18 +594,20 @@
 	.winner {
 		display: inline-block;
 		background: @blue;
-		border-radius: 5px;
-		padding: 0 5px;
+		border-radius: 0.5vw;
+		padding: 0 0.5vw;
 	}
 
 	.incumbent {
 		img {
-			width: 8px;
+			width: 0.8vw;
+			display: inline-block;
 		}
 	}
 
 	.reporting {
 		color: @yellow;
+		font-weight: 500;
 	}
 
 	.seat-held {
@@ -584,7 +618,7 @@
 	.pickup {
 		font-weight: 500;
 		font-style: italic;
-		font-size: 16px;
+		font-size: 1.5vw;
 		color: @blue;
 	}
 
@@ -592,7 +626,7 @@
 	.reporting,
 	.seat-held,
 	.pickup {
-		width: 50px;
+		width: 3vw;
 		display: block;
 		position: absolute;
 		top: 0;
