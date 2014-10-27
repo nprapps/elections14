@@ -150,10 +150,13 @@ svg {
         opacity : 0.5;
         z-index: -1;
     }
-
+    
     .centered {
         .vertical-center;
+        padding-bottom: 12vw;
     }
+    
+    .header-container .results-header span { float: left; }
 
     h2 {
         font-size: 3vw;
@@ -165,15 +168,29 @@ svg {
     ul.menu {
         list-style-type: none;
         text-align: left;
-
+		width: 45vw;
+		padding: 0 .75vw;
+		margin: 0 auto;
+		border: 1px solid @grayMedium;
+		
         li {
-            width: 40vw;
-            padding: 1vw;
-            font-size: 2.5vw;
-            margin-left: auto;
-            margin-right: auto;
-            border: 1px solid @grayMedium;
+            padding: 1.5vw .75vw;
+            font-size: 1.5vw;
+            font-weight: bold;
+            border-top: 2px solid @grayMedium;
+            
+            &:first-child { border-top: none; }
+            
+            a { display: block; }
         }
+    }
+    
+    .legend {
+    	position: absolute;
+    	bottom: 0;
+    	left: 0;
+    	width: 100%;
+    	text-align: left;
     }
 }
 
@@ -351,7 +368,7 @@ svg {
         }
 
         span{
-            text-align:middle;
+            text-align: center;
         }
 
         .results-header-group {
