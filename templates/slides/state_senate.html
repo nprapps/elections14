@@ -1,24 +1,26 @@
 <div class="state-slide">
-    <div class="state-results-wrapper">
-        <div class="state-header">
-            <h1><span class="stateface stateface-{{ state_postal|lower }}"></span></h1>
-            <h2>{{ state_name }}</h2>
-        </div>
-
-        <div class="state-results">
-            {% for label, class, races in [('Governor', 'governor', governor), ('U.S. Senate', 'senate', senate)] %}
-            {% if races.count() %}
-            <h3>{{ label }} results</h3>
-            <div class="{{ label|lower }}">
-                <div class="results">
-                    {% include '_race_results_table.html' %}
-                </div>
+    <div class="wrapper">
+        <div class="state-results-wrapper">
+            <div class="state-header">
+                <h1><span class="stateface stateface-{{ state_postal|lower }}"></span></h1>
+                <h2>{{ state_name }}</h2>
             </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
 
-    {% include '_legend.html' %}
+            <div class="state-results">
+                {% for label, class, races in [('Governor', 'governor', governor), ('U.S. Senate', 'senate', senate)] %}
+                {% if races.count() %}
+                <h3>{{ label }} results</h3>
+                <div class="{{ label|lower }}">
+                    <div class="results">
+                        {% include '_race_results_table.html' %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        {% include '_legend.html' %}
+    </div>
 </div>
 
