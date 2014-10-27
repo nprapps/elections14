@@ -1,0 +1,16 @@
+<div class="state-slide">
+    <div class="state-results-wrapper">
+        <div class="state-results">
+            {% if races.count() %}
+            <h3>Recently Called {{ label }} Results</h3>
+            <div class="house">
+               <div class="results">
+                   {% include '_race_results_table.html' %}
+               </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include '_legend.html' %}
+</div>
