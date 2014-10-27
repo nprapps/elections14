@@ -1,17 +1,15 @@
 #!/usr/bin/env python
 
-from datetime import datetime, date
-import time
+import app_config
 import json
 import os
-from time import sleep
-
-from fabric.api import task
 import requests
+import time
 
-import app_config
-
+from datetime import datetime, date
 from elections import AP
+from fabric.api import task
+from time import sleep
 
 SLEEP_INTERVAL = 60 
 SECRETS = app_config.get_secrets()
