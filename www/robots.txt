@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /promo/
+Disallow: /slides/
+Disallow: /stack/ 
+Disallow: /test/
+
+Sitemap: http://elections.npr.org/sitemap.xml
