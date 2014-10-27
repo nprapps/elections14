@@ -227,7 +227,7 @@ var STACK = (function () {
                         $stack.append($newSlide);
                         resizeSlide($newSlide)
 
-                        if ($newSlide.find('.leaderboard').length > 0) {
+                        if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
                             $header.find('.leaderboard').fadeOut();
                         }
                         else {
@@ -242,7 +242,7 @@ var STACK = (function () {
                     $stack.append($newSlide);
                     resizeSlide($newSlide);
 
-                    if ($newSlide.find('.results-header').length > 0) {
+                    if (($newSlide.find('.results-header').length > 0) || ($newSlide.find('.balance-of-power').length > 0)) {
                         $header.find('.leaderboard').fadeOut();
                     }
                     else {
