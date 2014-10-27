@@ -108,6 +108,7 @@ def bootstrap():
     load_senate_extra('data/senate-extra.csv')
     load_governor_extra('data/governor-extra.csv')
     load_ballot_measures_extra('data/ballot-measures-extra.csv')
+    create_slides()
 
 def load_races(path):
     """
@@ -560,7 +561,7 @@ def _save_ballot_measure_row(row, quiet):
             print 'Ballot measure %s (%s) does not exist in AP data' % (row['race_id'], row['description'])
 
 @task
-def mock_slides():
+def create_slides():
     """
     Load mockup slides from assets directory.
     """
@@ -570,31 +571,24 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
-    _mock_empty_slide('Senate Big Board', 'senate_big_board', 20, it.next())
-    _mock_empty_slide('House Big Board One', 'house_big_board_one', 20, it.next())
-    _mock_empty_slide('House Big Board Two', 'house_big_board_two', 20, it.next())
-    _mock_empty_slide('Governor Big Board', 'governor_big_board', 20, it.next())
-    _mock_empty_slide('Ballot Measures Big Board', 'ballot_measures_big_board', 20, it.next())
-    _mock_empty_slide('Balance of Power', 'balance_of_power', 10, it.next())
-    _mock_empty_slide('State Senate', '_state_senate_slide', 20, it.next())
-    _mock_empty_slide('State House', '_state_house_slide', 20, it.next())
-    _mock_empty_slide('Romney Dems', 'romney_dems', 10, it.next())
-    _mock_empty_slide('Obama Reps', 'obama_reps', 10, it.next())
-    _mock_empty_slide('Incumbents Lost', 'incumbents_lost', 10, it.next())
-    _mock_empty_slide('Blue Dogs', 'blue_dogs', 10, it.next())
-    _mock_empty_slide('House Freshmen', 'house_freshmen', 10, it.next())
-    _mock_empty_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
-    _mock_empty_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
-    _mock_empty_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
+    _create_slide('Senate Big Board', 'senate_big_board', 20, it.next())
+    _create_slide('House Big Board One', 'house_big_board_one', 20, it.next())
+    _create_slide('House Big Board Two', 'house_big_board_two', 20, it.next())
+    _create_slide('Governor Big Board', 'governor_big_board', 20, it.next())
+    _create_slide('Ballot Measures Big Board', 'ballot_measures_big_board', 20, it.next())
+    _create_slide('Balance of Power Graphic', 'balance_of_power', 10, it.next())
+    _create_slide('State Senate Results', '_state_senate_slide', 20, it.next())
+    _create_slide('State House Results', '_state_house_slide', 20, it.next())
+    _create_slide('Democrats in Romney-Won Districts', 'romney_dems', 10, it.next())
+    _create_slide('Republicans in Obama-Won Districts', 'obama_reps', 10, it.next())
+    _create_slide('Incumbent Losers', 'incumbents_lost', 10, it.next())
+    _create_slide('Blue Dog Democrat Results', 'blue_dogs', 10, it.next())
+    _create_slide('House Freshmen Results', 'house_freshmen', 10, it.next())
+    _create_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
+    _create_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
+    _create_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
 
-def _mock_slide_from_image(filename, i):
-    import models
-
-    body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
-    slide = models.Slide.create(body=body, name=filename)
-    models.SlideSequence.create(order=i, slide=slide)
-
-def _mock_empty_slide(slug, view, time_on_screen, i):
+def _create_slide(slug, view, time_on_screen, i):
     import models
 
     body = ''
