@@ -157,7 +157,8 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
 
     if (loaded) {
         CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
-    	$chromecastIndexHeader.empty().append('<span class="cast-enabled"><a href="#" class="cast-start"><img src="assets/chromecast_off.svg" alt="Google Cast Ready" /></a></span>');
+    	$chromecastIndexHeader.find('.cast-enabled').show();
+    	$chromecastIndexHeader.find('.cast-disabled').hide();
     }
 }
 
