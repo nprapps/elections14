@@ -231,6 +231,22 @@ def nuke_confs():
             elif service == 'app':
                 sudo('rm %s' % app_config.UWSGI_SOCKET_PATH)
 
+@task
+def start_service(service):
+    """
+    Start a service on the server.
+    """
+    service_name = _get_installed_service_name(service)
+    sudo('service %s start' % service_name)
+
+@task
+def stop_service(service):
+    """
+    Stop a service on the server
+    """
+    service_name = _get_installed_service_name(service)
+    sudo('service %s stop' % service_name)
+
 """
 Fabcasting
 """

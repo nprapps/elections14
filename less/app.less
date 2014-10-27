@@ -100,17 +100,23 @@ svg {
     	top: 1vw;
     	right: 1vw;
     	text-align: right;
-    	opacity: 0;
     	
-    	.cast-enabled img {
-    		width: auto;
-    		height: 5vw;
-    		min-height: 25px;
+    	.cast-enabled {
+    		display: none;
+
+			img {
+				width: auto;
+				height: 5vw;
+				min-height: 25px;
+			}
     	}
-    	.cast-disabled img {
-    		width: auto;
-    		height: 3vw;
-    		min-height: 30px;
+    	
+    	.cast-disabled {
+			img {
+				width: auto;
+				height: 3vw;
+				min-height: 30px;
+			}
     	}
     }
 

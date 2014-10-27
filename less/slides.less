@@ -2,7 +2,9 @@
 @import "less/lib/bootstrap/variables.less";
 @import "less/lib/bootstrap/mixins.less";
 
-.tumblr-text, .tumblr-photo, .tumblr-quote {
+.tumblr-photo, 
+.tumblr-quote,
+.tumblr-text {
     height: 100%;
 
     .slide-inner:after {
@@ -18,9 +20,7 @@
         z-index: -1;
     }
 
-    a {
-        color: @grayMedium;
-    }
+    a { color: @grayMedium; }
 
     .date {
         font-size: 1.75vw;
@@ -67,6 +67,20 @@
                 font-size: 3vw;
                 line-height: 3.7vw;
                 .text-shadow;
+                margin-bottom: 2vw;
+            }
+            
+            ol { 
+            	margin-bottom: 2vw;
+            	padding-left: 3vw;
+            }
+            ul {
+            	margin-bottom: 2vw;
+            	padding-left: 2vw;
+            }
+            li {
+            	font-size: 2vw;
+            	margin-bottom: 1vw;
             }
         }
     }
@@ -296,7 +310,7 @@
 			
 			span { 
 				padding-left: .5vw;
-				font-size: 1vw;
+				font-size: 1.25vw;
 			}
 		}
 
@@ -332,6 +346,25 @@
 				}
 			}
 		}
+	}
+}
+
+#obama-reps .candidate-list,
+#romney-dems .candidate-list {
+	padding-top: 2vw;
+	padding-bottom: 2vw;
+	
+	h3 { 
+		font-size: 1.75vw;
+		
+		span { font-size: 1.75vw; }
+	}
+	ul li {
+		font-size: 1.75vw;
+		width: 23vw;
+		margin-bottom: .5vw;
+		
+		span.district { width: 6vw; }
 	}
 }
 
