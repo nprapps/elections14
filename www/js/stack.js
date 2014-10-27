@@ -117,6 +117,12 @@ var STACK = (function () {
                 return;
             }
 
+            // If we're tracking any races in this state
+            if (APP_CONFIG.NO_RACES.indexOf(state) >= 0) {
+                rotateSlide();
+                return;
+            }
+
             slide_path = 'slides/state-senate-' + state + '.html';
         }
         else if (slug === 'state-house-1') {
@@ -126,11 +132,23 @@ var STACK = (function () {
                 return;
             }
 
+            // If we're tracking any races in this state
+            if (APP_CONFIG.NO_RACES.indexOf(state) >= 0) {
+                rotateSlide();
+                return;
+            }
+
             slide_path = 'slides/state-house-' + state + '-' + '1.html';
         }
         else if (slug === 'state-house-2') {
             // If no state selected, skip to next
             if (!state) {
+                rotateSlide();
+                return;
+            }
+
+            // If we're tracking any races in this state
+            if (APP_CONFIG.NO_RACES.indexOf(state) >= 0) {
                 rotateSlide();
                 return;
             }
