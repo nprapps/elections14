@@ -23,7 +23,7 @@ DEMOCRAT_INDIES = {
     '20157-LA': '23579-LA',  # LA Senate, Mary Landrieu (D)
 }
 REPUBLICAN_INDIES = {
-    '5707-CA': '19804-KS',   # CA House District 17, Ro Khanna (D)
+    '5707-CA': '19804-CA',   # CA House District 17, Ro Khanna (D)
     '20157-LA': '23859-LA',  # LA Senate, Bill Cassidy (R)
 }
 
