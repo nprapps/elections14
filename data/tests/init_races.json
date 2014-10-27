@@ -4,7 +4,7 @@
         "seat_name": "District 2",
         "state_postal": "OR",
         "last_updated": "2014-09-26T16:26:50Z",
-        "race_id": "OR-38529",
+        "race_id": "38529-OR",
         "seat_number": "2",
         "office_name": "U.S. House",
         "race_type": "G"
@@ -14,19 +14,18 @@
         "seat_name": "2010",
         "state_postal": "OK",
         "last_updated": "2014-10-08T18:33:17Z",
-        "race_id": "OK-38145",
+        "race_id": "38145-OK",
         "seat_number": "2",
         "office_name": "U.S. Senate",
         "race_type": "G"
     },
     {
+        "office_name": "Amendment",
+        "seat_name": "3 - Require Teach Evals",
+        "seat_number": "2",
+        "race_type": "G",
         "office_id": "I",
-        "seat_name": "14-1 Wolf Hunting Season",
-        "state_postal": "MI",
-        "last_updated": "2014-10-15T16:18:19Z",
-        "race_id": "MI-24549",
-        "seat_number": null,
-        "office_name": "Proposal",
-        "race_type": "G"
+        "state_postal": "MO",
+        "race_id": "27456-MO"
     }
 ]

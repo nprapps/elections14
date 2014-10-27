@@ -103,7 +103,6 @@ def bootstrap():
 
     load_races('data/init_races.json')
     load_candidates('data/init_candidates.json')
-    load_incumbents('data/incumbents.json')
     load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
@@ -131,7 +130,6 @@ def load_races(path):
                 seat_number = race['seat_number'],
                 race_id = race['race_id'],
                 race_type = race['race_type'],
-                last_updated = race['last_updated'],
             )
 
     print 'Loaded %i races' % len(races)
@@ -155,6 +153,7 @@ def load_candidates(path):
                 party = candidate['party'],
                 race = models.Race.get(models.Race.race_id == candidate['race_id']),
                 candidate_id = candidate['candidate_id'],
+                incumbent = candidate['incumbent'],
             )
 
     print 'Loaded %i candidates' % len(candidates)
@@ -176,18 +175,8 @@ def load_updates(path):
 
     for race in races:
         race_model = models.Race.get(models.Race.race_id == race['race_id'])
-
-        # If race has not been updated, skip
-        last_updated = datetime.strptime(race['last_updated'], '%Y-%m-%dT%H:%M:%SZ')
-
-        if race_model.last_updated == last_updated:
-            continue
-
-        race_model.is_test = race['is_test']
         race_model.precincts_reporting = race['precincts_reporting']
         race_model.precincts_total = race['precincts_total']
-        race_model.last_updated = last_updated
-
         race_model.save()
 
         races_updated += 1
@@ -196,7 +185,8 @@ def load_updates(path):
             # Select candidate by candidate_id AND race_id, since they can appear in multiple races
             candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
-            candidate_model.vote_count = candidate['vote_count']
+            if candidate.get('vote_count'):
+                candidate_model.vote_count = candidate['vote_count']
 
             candidate_model.save()
 
@@ -252,32 +242,6 @@ def load_calls(path):
     print 'Updated %i candidates' % candidates_updated
     print 'Found %i winners' % num_winners
     print 'Found %i runoff winners' % num_runoff_winners
-
-@task
-def load_incumbents(path):
-    """
-    Update canidate incumbent status from the AP intermediary files.
-    """
-    import models
-
-    candidates_updated = 0
-    candidates_skipped = 0
-
-    print 'Loading incumbent data from AP update data on disk'
-
-    with open(path) as f:
-        candidates = json.load(f)
-
-    for candidate in candidates:
-        try:
-            candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'])
-            candidate_model.incumbent = candidate['incumbent']
-            candidate_model.save()
-            candidates_updated += 1
-        except models.Candidate.DoesNotExist:
-            candidates_skipped +=1
-
-    print 'Updated incumbent status for %i candidates (%i skipped)' % (candidates_updated, candidates_skipped)
 
 @task
 def update_featured_social():
@@ -512,7 +476,7 @@ def _save_senate_row(row, quiet):
         state_postal = row['state']
         seat_number = row['seat_number']
         if seat_number == '':
-            seat_number = None
+            seat_number = 0
         else:
             seat_number = int(seat_number)
 
@@ -619,6 +583,9 @@ def mock_slides():
     _mock_empty_slide('Incumbents Lost', 'incumbents_lost', 10, it.next())
     _mock_empty_slide('Blue Dogs', 'blue_dogs', 10, it.next())
     _mock_empty_slide('House Freshmen', 'house_freshmen', 10, it.next())
+    _mock_empty_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
+    _mock_empty_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
+    _mock_empty_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
 
 def _mock_slide_from_image(filename, i):
     import models

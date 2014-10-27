@@ -216,6 +216,8 @@ def get_secrets():
     secrets = [
         'ADMIN_PASSWORD',
         'AP_API_KEY',
+        'AP_FTP_USER',
+        'AP_FTP_PASSWORD',
         'POSTGRES_USER',
         'POSTGRES_PASSWORD',
         'POSTGRES_HOST',
