@@ -117,7 +117,6 @@ var onDocumentReady = function(e) {
         // Prepare welcome screen
         $welcomeScreen.css('opacity', 1);
         $chromecastIndexHeader.css('opacity', 1);
-        //resizeSlide($welcomeScreen);
         rotatePhone();
 
         // Configure share panel
@@ -387,28 +386,6 @@ var onFullScreenButtonClick = function() {
 
         $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-shrink.svg');
     }
-}
-
-
-
-/*
- * Enable header hover.
- */
-var onControlsHover = function() {
-    $headerControls.data('hover', true);
-    $header.fadeOut(200, function() {
-        $headerControls.fadeIn(200);
-    });
-}
-
-/*
- * Disable header hover.
- */
-var offControlsHover = function() {
-    $headerControls.data('hover', false);
-    $headerControls.fadeOut(200, function() {
-        $header.fadeIn(200);
-    });
 }
 
 /*

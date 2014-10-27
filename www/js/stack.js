@@ -12,6 +12,9 @@ var STACK = (function () {
     var _stackRequest = null;
     var _rotateRequest = null;
 
+    var _mouseMoving = false;
+    var _hover = false;
+
     /*
      * Setup the stack display.
      */
@@ -62,35 +65,80 @@ var STACK = (function () {
      * Show the header.
      */
     var onMoveMouse = function() {
-        if (!($('body').data('mouse-moving'))) {
-            $header.fadeOut(200, function() {
-                $('body').data('mouse-moving', true);
-                $headerControls.fadeIn(200);
-            });
-
+        if (_hover) {
+            return;
         }
+
+        if (_mouseMoving) {
+            clearTimeout(_mouseMoveTimer);
+            _mouseMoveTimer = setTimeout(onEndMouse, 1500);
+
+            return;
+        }
+
+        _mouseMoving = true;
+
+        $header.fadeOut(200, function() {
+            $headerControls.fadeIn(200);
+        });
 
         if (_mouseMoveTimer) {
             clearTimeout(_mouseMoveTimer);
         }
 
-        _mouseMoveTimer = setTimeout(onEndMouse, 400);
+        _mouseMoveTimer = setTimeout(onEndMouse, 1500);
     }
 
     /*
      * Hide the header.
      */
     var onEndMouse = function() {
-
-        if (!($headerControls.data('hover'))) {
-            $headerControls.fadeOut(200, function() {
-                $header.fadeIn(200, function() {
-                    $('body').data('mouse-moving', false);
-                });
-            });
+        if (!_mouseMoving) {
+            return;
         }
+
+        _mouseMoving = false;
+
+        if (_hover) {
+            return;
+        }
+
+        $headerControls.fadeOut(200, function() {
+            $header.fadeIn(200, function() {
+            });
+        });
     }
 
+    /*
+     * Enable header hover.
+     */
+    var onControlsHover = function() {
+        if (_hover) {
+            return;
+        }
+
+        _hover = true;
+
+        $header.fadeOut(200, function() {
+            $headerControls.fadeIn(200);
+        });
+    }
+
+    /*
+     * Disable header hover.
+     */
+    var offControlsHover = function() {
+        if (!_hover) {
+            return;
+        }
+
+
+        $headerControls.fadeOut(200, function() {
+            $header.fadeIn(200, function() {
+                _hover = false;
+            });
+        });
+    }
 
     /*
      * Rotate to the next slide in the stack.
@@ -179,7 +227,7 @@ var STACK = (function () {
                         $stack.append($newSlide);
                         resizeSlide($newSlide)
 
-                        if ($newSlide.find('.leaderboard').length > 0) {
+                        if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
                             $header.find('.leaderboard').fadeOut();
                         }
                         else {
@@ -194,7 +242,7 @@ var STACK = (function () {
                     $stack.append($newSlide);
                     resizeSlide($newSlide);
 
-                    if ($newSlide.find('.results-header').length > 0) {
+                    if (($newSlide.find('.results-header').length > 0) || ($newSlide.find('.balance-of-power').length > 0)) {
                         $header.find('.leaderboard').fadeOut();
                     }
                     else {

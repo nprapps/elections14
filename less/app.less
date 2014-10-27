@@ -382,7 +382,7 @@ svg {
         }
 
         h2, p, a, span {
-            font-size: 1.3vw;
+            font-size: 1.5vw;
             line-height: 3.5vw;
         }
 
@@ -416,6 +416,8 @@ svg {
             .senate-header {
                 text-transform: uppercase;
                 font-weight: bold;
+                line-height: 1;
+                font-size: 1.7vw;
             }
 
             .total {
@@ -432,13 +434,18 @@ svg {
             }
         }
 
-        .dem .percentage   {  background: @blueDim; }
-        .gop .percentage   {  background: @redDim; }
-        .not-called .count {  background: @gray; }
+        .dem { color: fadeout(@blue, 25%); }
+        .gop { color: fadeout(@red, 25%); }
+        .not-called { color: fadeout(#666, 25%); }
+
+        .dem .percentage   {  background: fadeout(@blue, 25%); }
+        .gop .percentage   {  background: fadeout(@red, 25%); }
+        .not-called .count {  background: fadeout(@gray, 25%); }
 
         .percentage,
         .count {
             margin-top: 0;
+            color: #fff;
             font-family: 'Cooper Hewitt';
             display: inline-block;
             text-align: center;
