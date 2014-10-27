@@ -619,6 +619,9 @@ def mock_slides():
     _mock_empty_slide('Incumbents Lost', 'incumbents_lost', 10, it.next())
     _mock_empty_slide('Blue Dogs', 'blue_dogs', 10, it.next())
     _mock_empty_slide('House Freshmen', 'house_freshmen', 10, it.next())
+    _mock_empty_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
+    _mock_empty_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
+    _mock_empty_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
 
 def _mock_slide_from_image(filename, i):
     import models

@@ -47,7 +47,7 @@ def _deploy_to_s3(path='.gzip'):
     for bucket in app_config.S3_BUCKETS:
         local(sync % (path, 's3://%s/' % bucket['bucket_name'], bucket['region']))
         local(sync_gzip % (path, 's3://%s/' % bucket['bucket_name'], bucket['region']))
-        local(sync_assets % ('www/assets/', 's3://%s/%s/assets/' % (bucket['bucket_name'], app_config.PROJECT_SLUG), bucket['region']))
+        local(sync_assets % ('www/assets/', 's3://%s/assets/' % (bucket['bucket_name']), bucket['region']))
 
 def deploy_json(src, dst):
     """
