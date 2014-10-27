@@ -152,11 +152,73 @@ def tumblr_quote(data):
 
     return render_template('slides/tumblr_quote.html', **context)
 
+def recent_senate_calls():
+    """
+    Get the most recent called Senate races
+    """
+    from models import Race
+
+    context = make_context()
+
+    context['races'] = Race.select().where(
+        (Race.office_name == 'U.S. Senate') &
+        (Race.ap_called == True) |
+        (Race.npr_called == True)
+    ).order_by(
+        Race.ap_called_time.desc(),
+        Race.npr_called_time.desc()
+    ).limit(3)
+
+    context['label'] = 'Senate'
+
+    return render_template('slides/recent-calls.html', **context)
+
+def recent_house_calls():
+    """
+    Get the most recent called Senate races
+    """
+    from models import Race
+
+    context = make_context()
+
+    context['races'] = Race.select().where(
+        (Race.office_name == 'U.S. House') &
+        (Race.ap_called == True) |
+        (Race.npr_called == True)
+    ).order_by(
+        Race.ap_called_time.desc(),
+        Race.npr_called_time.desc()
+    ).limit(3)
+
+    context['label'] = 'House'
+
+    return render_template('slides/recent-calls.html', **context)
+
+def recent_governor_calls():
+    """
+    Get the most recent called Senate races
+    """
+    from models import Race
+
+    context = make_context()
+
+    context['races'] = Race.select().where(
+        (Race.office_name == 'Governor') &
+        (Race.ap_called == True) |
+        (Race.npr_called == True)
+    ).order_by(
+        Race.ap_called_time.desc(),
+        Race.npr_called_time.desc()
+    ).limit(3)
+
+    context['label'] = 'Governor'
+
+    return render_template('slides/recent-calls.html', **context)
+
 def balance_of_power():
     """
     Serve up the balance of power graph
     """
-
     from models import Race
 
     context = make_context()
