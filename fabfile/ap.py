@@ -17,8 +17,7 @@ def _generate_candidate_id(candidate, race):
     """
     Makes an unique compound ID
     """
-    return candidate.ap_polra_number
-    #return '%s-%s' % (candidate.ap_natl_number, race.state_postal)
+    return '%s-%s' % (candidate.ap_polra_number, race.state_postal)
 
 @task
 def bootstrap():
@@ -43,11 +42,6 @@ def init(output_dir='data'):
         for candidate in race.candidates:
             id = _generate_candidate_id(candidate, race)
             candidates.append(process_candidate(candidate, race))
-            if id not in natl_numbers:
-                natl_numbers.append(id)
-            else:
-                #import ipdb; ipdb.set_trace();
-                print "REPEAT %s - %s %s - %s" % (candidate, candidate.ap_race_number, race, candidate.vote_total)
 
     with open('%s/init_races.json' % output_dir, 'w') as f:
         json.dump(races, f, indent=4)
