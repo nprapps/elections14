@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from datetime import datetime
+import json
 
 from fabric.api import local, require, settings, task
 from fabric.state import env
@@ -195,6 +196,20 @@ def deploy():
 
     deploy_server()
     deploy_client()
+
+@task
+def reset_browsers():
+    """
+    Deploy a timestamp so the client will reset their page. For bugfixes
+    """
+    require('settings', provided_by=[production, staging])
+
+    now = datetime.now()
+
+    with open('www/live-data/timestamp.json', 'w') as f:
+        json.dump(now.isoformat(), f)
+
+    utils.deploy_json('www/live-data/timestamp.json', 'live-data/timestamp.json')
 
 """
 Destruction
