@@ -2,17 +2,8 @@
 
 {% block extra_css %}
 {{ CSS.push('less/app.less') }}
+{{ CSS.push('less/studio-big-board.less') }}
 {{ CSS.render('css/big_board.min.css') }}
-
-<style>
-body {
-    background-color: #141D24;
-}
-
-.slide {
-    display: block;
-}
-</style>
 {% endblock extra_css %}
 
 {% block outer_content %}
