@@ -15,6 +15,7 @@ var $typeahead = null;
 var $chromecastScreen = null;
 var $chromecastMute = null;
 var $chromecastChangeState = null;
+var $chromecastIndexHeader = null;
 
 var $header = null;
 var $headerControls = null;
@@ -67,6 +68,7 @@ var onDocumentReady = function(e) {
     $chromecastScreen = $('.cast-controls');
     $chromecastMute = $chromecastScreen.find('.mute');
     $chromecastChangeState = $chromecastScreen.find('.change-state');
+    $chromecastIndexHeader = $welcomeScreen.find('.cast-header');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
 
@@ -114,6 +116,7 @@ var onDocumentReady = function(e) {
     } else {
         // Prepare welcome screen
         $welcomeScreen.css('opacity', 1);
+        $chromecastIndexHeader.css('opacity', 1);
         //resizeSlide($welcomeScreen);
         rotatePhone();
 
@@ -146,6 +149,8 @@ var onDocumentReady = function(e) {
  * Setup Chromecast if library is available.
  */
 window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
+    $chromecastIndexHeader = $('.welcome').find('.cast-header');
+
     // Don't init sender if in receiver mode
     if (IS_CAST_RECEIVER) {
         return;
@@ -153,6 +158,7 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
 
     if (loaded) {
         CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
+    	$chromecastIndexHeader.empty().append('<span class="cast-enabled"><a href="#" class="cast-start"><img src="assets/chromecast_off.svg" alt="Google Cast Ready" /></a></span>');
     }
 }
 

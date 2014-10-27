@@ -3,6 +3,9 @@
 {% block outer_content %}
 <div id="landscape-wrapper">
     <div class="slide welcome">
+    	<div class="cast-header">
+			<span class="cast-disabled"><a href="http://www.google.com/chrome/devices/chromecast/" target="_blank"><img src="assets/chromecast_ready.svg" alt="Google Cast Ready" /></a></span>
+    	</div>
         <div class="slide-inner">
             <div class="slide-content">
                 <div class="centered">
@@ -147,6 +150,7 @@
 {{ JS.push('js/stack.js') }}
 {{ JS.push('js/app.js') }}
 {{ JS.push('js/stack.js') }}
+{{ JS.push('js/analytics.js') }}
 {{ JS.render('js/index-footer.min.js') }}
 {% endblock extra_foot_js %}
 
