@@ -1,37 +1,37 @@
-name,state,seat_number,party,incumbent
-Alabama,AL,,gop,1
-Alaska,AK,,dem,1
-Arkansas,AR,,dem,1
-Colorado,CO,,dem,1
-Delaware,DE,,dem,1
-Georgia,GA,,gop,
-Hawaii,HI,,dem,
-Idaho,ID,,gop,1
-Illinois,IL,,dem,1
-Iowa,IA,,dem,
-Kansas,KS,,gop,1
-Kentucky,KY,,gop,1
-Louisiana (blanket primary,LA,,dem,1
-Maine,ME,,gop,1
-Massachusetts,MA,,dem,1
-Michigan,MI,,dem,
-Minnesota,MN,,dem,1
-Mississippi,MS,,gop,1
-Montana,MT,,dem,
-Nebraska,NE,,gop,
-New Hampshire,NH,,dem,1
-New Jersey,NJ,,dem,1
-New Mexico,NM,,dem,1
-North Carolina,NC,,dem,1
-Oklahoma,OK,,gop,1
-Oklahoma,OK,2,gop,
-Oregon,OR,,dem,1
-Rhode Island,RI,,dem,1
-South Carolina,SC,,gop,1
-South Carolina,SC,2,gop,1
-South Dakota,SD,,dem,
-Tennessee,TN,,gop,1
-Texas,TX,,gop,1
-Virginia,VA,,dem,1
-West Virginia,WV,,dem,
-Wyoming,WY,,gop,1
+name,state,seat_number,party,incumbent,female_candidate,female_incumbent
+Alabama,AL,,gop,1,,
+Alaska,AK,,dem,1,,
+Arkansas,AR,,dem,1,,
+Colorado,CO,,dem,1,,
+Delaware,DE,,dem,1,,
+Georgia,GA,,gop,,1,
+Hawaii,HI,,dem,,,
+Idaho,ID,,gop,1,,
+Illinois,IL,,dem,1,,
+Iowa,IA,,dem,,1,
+Kansas,KS,,gop,1,,
+Kentucky,KY,,gop,1,1,
+Louisiana (blanket primary,LA,,dem,1,,1
+Maine,ME,,gop,1,1,1
+Massachusetts,MA,,dem,1,,
+Michigan,MI,,dem,,1,
+Minnesota,MN,,dem,1,,
+Mississippi,MS,,gop,1,,
+Montana,MT,,dem,,1,
+Nebraska,NE,,gop,,,
+New Hampshire,NH,,dem,1,,1
+New Jersey,NJ,,dem,1,,
+New Mexico,NM,,dem,1,,
+North Carolina,NC,,dem,1,,1
+Oklahoma,OK,,gop,1,,
+Oklahoma,OK,2,gop,,1,
+Oregon,OR,,dem,1,1,
+Rhode Island,RI,,dem,1,,
+South Carolina,SC,,gop,1,,
+South Carolina,SC,2,gop,1,1,
+South Dakota,SD,,dem,,,
+Tennessee,TN,,gop,1,,
+Texas,TX,,gop,1,,
+Virginia,VA,,dem,1,,
+West Virginia,WV,,dem,,1,
+Wyoming,WY,,gop,1,,

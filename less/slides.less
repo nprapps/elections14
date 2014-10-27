@@ -2,178 +2,189 @@
 @import "less/lib/bootstrap/variables.less";
 @import "less/lib/bootstrap/mixins.less";
 
-.slide-content{
-    .tumblr {
-        background-image: url('../assets/elections-background-1.jpg');
-        padding: 50px;
+.tumblr-text, .tumblr-photo, .tumblr-quote {
+    height: 100%;
+
+    .slide-inner:after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        width: 100%;
         height: 100%;
-
-        a {
-            color: @grayMedium;
-        }
-
-        .date {
-            font-size: 3vmin;
-            margin-bottom: 2vmin;
-        }
-
-        .post-footer {
-            color: @grayMedium;
-            font-size: 3.5vmin;
-        }
+        opacity : 0.5;
+        z-index: -1;
     }
 
-    .tumblr-text-post {
-        .wrapper {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-
-            h2 {
-                font-size: 40px;
-                margin-bottom: 20px;
-            }
-
-            .body {
-                margin-top: 5vmin;
-                margin-bottom: 5vmin;
-
-                p {
-                    font-size: 4.5vmin;
-                    line-height: 5.2vmin;
-                }
-            }
-        }
+    a {
+        color: @grayMedium;
     }
 
-    .tumblr-image-post {
-        .image {
-            float: left;
-            width: 50%;
-            position: relative;
-            top: 45%;
-            transform: translateY(-50%);
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-        }
-
-        .caption {
-            float: right;
-            width: 45%;
-            position: relative;
-            top: 45%;
-            transform: translateY(-50%);
-
-            .body {
-                margin-bottom: 2vmin;
-
-                p {
-                    font-size: 4.5vmin;
-                    line-height: 5.2vmin;
-                }
-            }
-        }
+    .date {
+        font-size: 1.75vw;
+        margin-bottom: 1.5vw;
+        .text-shadow;
     }
 
-    .tumblr-quote-post {
-        .wrapper {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            -webkit-transform: translateY(-50%);
-
-            blockquote {
-                font-size: 6vmin;
-                line-height: 8vmin;
-                border: none;
-                padding:0;
-                @media all and (-webkit-min-device-pixel-ratio:0) {
-                    -webkit-margin-before: 0;
-                    -webkit-margin-after: 0;
-                    -webkit-margin-start: 0;
-                    -webkit-margin-end: 0;
-                    text-indent: -0.31em;
-                }
-
-                span{
-                    background-color:@blueDarker;
-                    padding:.7vmin;
-                    -ms-box-decoration-break: clone;
-                    -webkit-box-decoration-break: clone;
-                    -o-box-decoration-break: clone;
-                    box-decoration-break: clone;
-                }
-
-                footer {
-                    margin-top: 1vmin;
-                    border: none;
-                    padding-left: 0;
-
-                    cite {
-                        font-size: 4vmin;
-                        text-transform: uppercase;
-                        letter-spacing: .05em;
-                    }
-                }
-            }
-        }
+    .post-footer {
+        color: @grayMedium;
+        font-size: 1.75vw;
+        .text-shadow;
     }
+}
 
-    .instagram-grid {
-        margin: 0 auto;
-        max-width: 1280px;
+.tumblr-text .slide-inner:after {
+    background-image: url('../assets/tumblr-text-background.jpg'); 
+}
 
-        .photo {
-            display: inline-block;
-            float: left;
-            width: 25%;
+.tumblr-photo .slide-inner:after {
+    background-image: url('../assets/tumblr-photo-background.jpg'); 
+}
+
+.tumblr-quote .slide-inner:after {
+    background-image: url('../assets/tumblr-quote-background.jpg'); 
+}
+
+.tumblr-text {
+    .wrapper {
+        padding: 0 5%;
+        .vertical-center;
+
+        h2 {
+            font-size: 4vw;
+            margin-bottom: 2%;
+            font-weight: bold;
+            .text-shadow;
+        }
+
+        .body {
+            margin-top: 3%;
+            margin-bottom: 2%;
+
+            p {
+                font-size: 3vw;
+                line-height: 3.7vw;
+                .text-shadow;
+            }
         }
     }
 }
 
+.tumblr-photo {
+    // Width is fixed so resulting area is square
+    .image {
+        float: left;
+        width: 56.25%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .caption {
+        float: left;
+        width: 43.75%;
+        height: 100%;
+
+        .centered {
+            padding: 0 5%;
+            .vertical-center;
+
+            .body {
+                margin-bottom: 5%;
+
+                p {
+                    font-size: 2.5vw;
+                    line-height: 3vw;
+                    .text-shadow;
+                }
+            }
+        }
+    }
+}
+
+.tumblr-quote {
+    .wrapper {
+        padding: 0 5%;
+        .vertical-center;
+
+        blockquote {
+            font-size: 3vw;
+            line-height: 4.25vw;
+            border: none;
+            padding: 0;
+
+            span {
+                background-color: @blueDarker;
+                padding: 0.7vw;
+                box-decoration-break: clone;
+            }
+
+            footer {
+                margin-top: 3%;
+                border: none;
+                padding-left: 0;
+
+                cite {
+                    font-size: 2.5vw;
+                    text-transform: uppercase;
+                    letter-spacing: .05em;
+                }
+            }
+        }
+    }
+}
 
 /* GRAPHICS */
 
 .graphic {
-	-webkit-text-size-adjust: none;
 	color: @musicLight;
-	padding: 22px 11px;
+    padding-top: 4vw;
+    height: 100%;
+
+    .wrapper {
+        .vertical-center;
+    }
 
 	h1 {
-		margin: 0 0 22px 0;
-		font-size: 24px;
+		margin: 0 0 1.5vw 0;
+		font-size: 3vw;
 		text-align: center;
 	}
+
 	h2 {
 		font-weight: normal;
-		font-size: 12px;
-		margin: -16px 0 22px 0;
+		font-size: 2.5vw;
+		margin: -1vw 0 1vw 0;
 		text-align: center;
-	}
+	
+    }
 	h3 {
-		margin: 0 0 11px 0;
-		font-size: 14px;
+		margin: 0 0 1vw 0;
+		font-size: 2vw;
 		text-align: center;
 	}
 
 	.footnotes {
-		margin-bottom: 20px;
+		margin-bottom: 1vw;
 		color: @grayMedium;
 
 		h4 {
-			margin: 2px 0 7px 0;
-			font-size: 11px;
+			margin: 0 0 .5vw 0;
+			font-size: 1vw;
 		}
 	}
 	.footnotes p,
 	.footer p {
-		margin: 2px 0 0 0;
-		font-size: 11px;
+		margin: .25vw 0 0 0;
+		font-size: 1vw;
 		line-height: 1.3;
 		color: @grayMedium;
+		text-align: center;
 	}
 
 	.r { color: @red; }
@@ -181,7 +192,7 @@
 	.i { color: @green; }
 
 	.axis {
-		font-size: 11px;
+		font-size: 1vw;
 		fill: #787878;
 
 		line,
@@ -213,13 +224,17 @@
 		.not-yet-called { fill: @musicDark; }
 	}
 
-	.value { font-size: 11px; }
+	.value { 
+		font-family: 'Cooper Hewitt';
+		font-size: 1.5vw;
+	}
 
 	.labels {
 		text-align: right;
-		font-size: 12px;
+		font-size: 1.5vw;
 		line-height: 1.3;
 		fill: @musicLight;
+		font-family: 'Cooper Hewitt';
 		font-weight: 500;
 
 		.not-yet-called {
@@ -237,7 +252,7 @@
 			& > li {
 				margin: 0 0 6px 0;
 				padding: 0;
-				font-size: 12px;
+				font-size: 1.25vw;
 
 				i.state {
 					font-family: StateFaceRegular;
@@ -267,20 +282,12 @@
 			margin: 0 0 6px 0;
 			padding: 0;
 			list-style-type: none;
+			.clearfix();
 
-			&:before {
-				content: ' ';
-				display: table;
-			}
-			&:after {
-				content: ' ';
-				display: table;
-				clear: both;
-			}
 			& > li {
 				margin: 0 0 5px 0;
 				padding: 0;
-				font-size: 11px;
+				font-size: 1vw;
 				width: 20%;
 				float: left;
 				display: table;
@@ -299,7 +306,7 @@
 						border-radius: 6px;
 						width: 40px;
 						text-align: center;
-						font-size: 10px;
+						font-size: 1vw;
 					}
 					&.d { background-color: @blue; }
 					&.r { background-color: @red; }
@@ -315,24 +322,12 @@
 }
 
 #graphic-bop {
-	position: relative;
-	margin-bottom: 11px;
+	.clearfix();
 
-	&:before {
-		content: ' ';
-		display: table;
-	}
-	&:after {
-		content: ' ';
-		display: table;
-		clear: both;
-	}
-
-	.chart {
-		float: left;
-
-		&.house { margin-right: 22px; }
-	}
+    .chart {
+        float: left;
+        padding-bottom: 1vw;
+    }
 
 	.majority {
 		line {
@@ -341,22 +336,16 @@
 		}
 		text {
 			fill: @musicLight;
-			font-size: 10px;
+			font-size: 1.25vw;
+			font-family: 'Cooper Hewitt';
 			font-style: italic;
 		}
 	}
 }
 
 .graphic.poll-closing {
-	&:before {
-		content: ' ';
-		display: table;
-	}
-	&:after {
-		content: ' ';
-		display: table;
-		clear: both;
-	}
+	.clearfix();
+
 	.poll-map {
 		width: 47%;
 		float: left;
@@ -372,7 +361,7 @@
 	}
 	h3 {
 		text-align: left;
-		margin-bottom: 11px;
+		margin-bottom: 1vw;
 	}
 }
 
@@ -386,7 +375,7 @@
     background-size: cover;
     height: 100%;
     margin-bottom: @line-height-computed;
-
+    padding-top: 4vw;
 
 	.state-results-wrapper {
 		display: table;
@@ -396,7 +385,7 @@
 	.state-header,
 	.state-results {
 		display: table-cell;
-		padding: @grid-gutter-width;
+		padding: 0 2vw;
 	}
 
 	.state-header {
@@ -415,39 +404,44 @@
 
     	h2 {
 	    	text-transform: uppercase;
-	    	font-size: 32px;
+	    	font-size: 2vw;
 	    }
 
 	    .stateface {
-	    	font-size: 20vmin;
+	    	font-size: 20vw;
 	    	line-height: 1;
 	    }
 
 	    .page {
-	    	font-size: 14px;
+	    	font-size: 1.3vw;
 	    	color: #999;
 	    	text-transform: uppercase;
-	    	margin-top: 10px;
+	    	margin-top: 1vw;
 	    }
     }
 
     .state-results {
         h3 {
-        	margin-bottom: @line-height-computed;
+        	font-size: 2vw;
         }
 
-        p {
-        	line-height: 30px;
+        h4 {
+        	font-size: 1.3vw;
+        }
+
+        h3,
+        h4 {
+        	margin: 0 0 1vw;
         }
 
         .bar-wrapper {
         	display: inline-block;
         	position: relative;
-        	height: 30px;
+        	height: 3vw;
         }
 
         .bar {
-        	height: 30px;
+        	height: 3vw;
         }
 
         .bar-label {
@@ -464,7 +458,7 @@
     .projected-results {
         width: 50%;
         float: left;
-        margin-bottom: @line-height-computed;
+        margin-bottom: 2vw;
 
         p {
         	border-left: 1px solid #ccc;
@@ -472,7 +466,8 @@
         	padding: 10px 0;
 	        font-family: 'Cooper Hewitt';
 	        font-weight: 300;
-	        font-size: 24px;
+	        font-size: 2vw;
+	        line-height: 3vw;
 	        overflow: hidden;
 
         	+ p {
@@ -492,8 +487,10 @@
     .house,
     .senate,
     .governor {
+    	padding-top: 0.5vw;
+
     	.races {
-	        font-size: 2.5vmin;
+	        font-size: 2vw;
 
 	        .results-status.called {
 	        	color: #999;
@@ -530,33 +527,39 @@
 	font-family: 'Cooper Hewitt';
 	font-weight: 300;
 
-	.container-fluid {
-		margin: @grid-gutter-width;
-		background: fadeout(@blueDark, 30%);
-		padding: @grid-gutter-width / 2;
-		font-size: 3vmin;
+	> h3 {
+		padding-left: 2vw;
+		text-transform: uppercase;
+		font-size: 1.3vw;
+		margin-bottom: 0;
+	}
 
-		@media screen and (max-width: 767px){
-			font-size: 2vmin;
-		}
+	.container-fluid {
+		margin: 1vw 2vw;
+		background: fadeout(@blueDark, 30%);
+		padding: 2vw;
+		font-size: 2vw;
 	}
 
 	ul {
 		float: left;
-		width: 33.33333333%;
+		width: 31vw;
 		margin-bottom: 0;
 		position: relative;
 		min-height: 1px;
-		padding-left: 15px;
-		padding-right: 15px;
+		padding-left: 1vw;
+		padding-right: 1vw;
+		box-sizing: border-box;
+		line-height: 1.1;
 
 		+ ul li {
-			padding-left: 65px;
+			padding-left: 5vw;
 		}
 	}
 
 	li {
 		position: relative;
+		margin-bottom: 0.5vw;
 
 		sup {
 			top: -0.3em;
@@ -564,10 +567,10 @@
 	}
 
 	.key-color {
-		.square(20px);
+		.square(2vw);
 		display: inline-block;
-		border-radius: 10px;
-		margin-right: 10px;
+		border-radius: 1vw;
+		margin-right: 1vw;
 
 		&.dem { background: @blue; }
 		&.gop { background: @red; }
@@ -577,18 +580,20 @@
 	.winner {
 		display: inline-block;
 		background: @blue;
-		border-radius: 5px;
-		padding: 0 5px;
+		border-radius: 0.5vw;
+		padding: 0 0.5vw;
 	}
 
 	.incumbent {
 		img {
-			width: 8px;
+			width: 0.8vw;
+			display: inline-block;
 		}
 	}
 
 	.reporting {
 		color: @yellow;
+		font-weight: 500;
 	}
 
 	.seat-held {
@@ -599,7 +604,7 @@
 	.pickup {
 		font-weight: 500;
 		font-style: italic;
-		font-size: 16px;
+		font-size: 1.5vw;
 		color: @blue;
 	}
 
@@ -607,7 +612,7 @@
 	.reporting,
 	.seat-held,
 	.pickup {
-		width: 50px;
+		width: 3vw;
 		display: block;
 		position: absolute;
 		top: 0;

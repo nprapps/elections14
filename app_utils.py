@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from copy import deepcopy
+
 from decimal import Decimal, InvalidOperation
 from functools import wraps
 from flask import make_response
@@ -50,6 +52,7 @@ def cors(f):
         response = make_response(f(*args, **kwargs))
         response.headers['Access-Control-Allow-Origin'] = '*'
         return response
+
     return decorated_function
 
 def group_races_by_closing_time(races):
@@ -66,11 +69,14 @@ def group_races_by_closing_time(races):
 
     return sorted(results.items())
 
-def calculate_bop(races, bop):
+def calculate_bop(races, initial_bop):
     """
     Calculate a balance of power
     """
-    winning_races = [race for race in races if race.is_called()]
+    bop = deepcopy(initial_bop)
+
+    winning_races = [race for race in races if race.is_called() and not race.is_runoff()]
+
     for race in winning_races:
         winner = race.get_winning_party()
 

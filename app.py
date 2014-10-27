@@ -71,8 +71,14 @@ def index():
     else:
         template_file = 'index.html'
 
-
     return render_template(template_file, **context), 200,
+
+@app.route('/promo/')
+def promo():
+    """
+    Test promo template.
+    """
+    return render_template('promo.html', **make_context())
 
 @app.route('/comments/')
 def comments():
@@ -91,6 +97,23 @@ def _big_board(slug):
     context['body'] = _slide(slug).data
 
     return render_template('_big_board_wrapper.html', **context)
+
+@app.route('/bop.html')
+@app_utils.cors
+def _bop():
+    """
+    Serve the most recent bop data
+    """
+    from models import Race
+
+    context = make_context()
+
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+
+    context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_INITIAL_BOP)
+    context['not_called'] = app_utils.calculate_seats_left(races)
+
+    return render_template('bop.html', **context)
 
 @app.route('/live-data/stack.json')
 @app_utils.cors
@@ -144,7 +167,7 @@ def _state_house_slide_preview(slug, page):
 
     context['body'] = _state_house_slide(slug, page).data
 
-    return render_template('_slide_preview.html', **context)
+    return render_template('slide_preview.html', **context)
 
 @app.route('/preview/state-senate-<slug>/index.html')
 @app_utils.cors
@@ -156,7 +179,7 @@ def _state_senate_slide_preview(slug):
 
     context['body'] = _state_senate_slide(slug).data
 
-    return render_template('_slide_preview.html', **context)
+    return render_template('slide_preview.html', **context)
 
 @app.route('/preview/<slug>/index.html')
 @app_utils.cors
@@ -169,7 +192,7 @@ def _slide_preview(slug):
     context['body'] = _slide(slug).data.decode('utf-8')
     context['slug'] = slug
 
-    return render_template('_slide_preview.html', **context)
+    return render_template('slide_preview.html', **context)
 
 @app.route('/slides/state-house-<string:slug>-<int:page>.html')
 @app_utils.cors
@@ -255,17 +278,20 @@ def _slide(slug):
     """
     from models import Slide
 
+    context = make_context()
+
     slide = Slide.get(Slide.slug == slug)
     view_name = slide.view_name
 
-    if view_name == '_slide':
-        body = slide.body
+    if slide.data:
+        context['body'] = slides.__dict__[view_name](slide.data)
     else:
-        body = slides.__dict__[view_name]()
+        context['body'] = slides.__dict__[view_name]()
 
-    time_on_screen = slide.time_on_screen
+    context['slide_class'] = view_name.replace('_', '-')
+    context['time_on_screen'] = slide.time_on_screen
 
-    return render_template('_slide.html', body=body, time_on_screen=time_on_screen)
+    return render_template('_slide.html', **context)
 
 app.register_blueprint(static_app.static_app)
 app.register_blueprint(static_theme.theme)

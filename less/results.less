@@ -2,47 +2,40 @@
 @import "less/variables.less";
 @import "less/cooper_hewitt";
 
+.state-slide {
+    .bar-wrapper {
+        display: block;
+        width: 75%;
+        float: left;
+        height: 20px;
+    }
 
-.bar-wrapper {
-    display: block;
-    width: 75%;
-    float: left;
-    height: 20px;
+    .bar {
+        display: block;
+        float: left;
+        height: 20px;
+        &.gop {
+          background-color: @red;
+        }
+        &.dem {
+          background-color: @blue;
+        }
+        &.other {
+          background-color: @green;
+        }
+    }
 }
-.bar {
-    display: block;
-    float: left;
-    height: 20px;
-    &.gop {
-      background-color: @red;
-    }
-    &.dem {
-      background-color: @blue;
-    }
-    &.other {
-      background-color: @green;
-    }
-}
 
-
-
-
-.house, .senate, .governor, .ballot-measures{
+.house, .senate, .governor, .ballot-measures {
+    padding: 4vw 3% 0 3%;
     height: 100%;
+
     table {
         font-family: 'Cooper Hewitt';
         font-weight: 400;
         color:@white;
         border-collapse: separate;
-        font-size:10px;
-        width: 100vw; 
-        height: 1vw; 
-        max-height: 33.33vh;
-        max-width: 177.78vh; /* 16/9 = 1.778 */
-        margin: auto;
-    /*    position: absolute;*/
-        top:0;bottom:0; /* vertical center */
-        left:0;right:0; /* horizontal center */
+        font-size: 1.1vw;
     }
 
     .results,.results-header {
@@ -55,114 +48,67 @@
         p {
             margin-top: 0;
             font-family: 'Cooper Hewitt';
-            // color:@white;
         }
-    }
-
-    .results-container{
-        padding: 30px 40px;
-        @media screen and (max-width: @screen-sm){
-            padding: 6px;
-        }
-        height: 100%;
-    }
-
-    .results-header h2,
-    .results-header,
-    .races h2,
-    .races,
-    .poll-closing-group {
-
-        font-size:10px;
-        @media screen and (min-width: @screen-sm) and (min-height: 630px){
-            font-size: 10.6px;
-            line-height: 1;
-        }
-
-        @media screen and (min-width: 1100px) and (min-height: 700px){
-            font-size: 14px;
-            line-height: 1.1;
-        }
-
-        @media screen and (min-width: @screen-xl) and (min-height: 875px){
-            font-size: 22px;
-            line-height: 1;
-            font-weight:300;
-        }
-
-        @media screen and (min-width: @screen-big-board) and (min-height: 1000px){
-            font-size: 26px;
-            line-height: 1.2;
-            font-weight:300;
-        }
-    }
-
-    .results-header h2{
-        line-height: 18px;
     }
 
     .results-header {
+        font-size: 1.1vw;
         overflow: hidden;
-        margin-bottom: @line-height-computed / 2;
-        @media screen and (max-width: @screen-sm){
-            margin-bottom:5px;
-        }
+        margin-bottom: 1%;
 
         h1 {
+            font-size: 3vw;
             float: left;
             margin: 0;
-            // font-size:18px;
-            // letter-spacing: .05em;
+            font-family: 'Gotham SSm', Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #eee;
 
-            // @media screen and (min-width: @screen-md){
-            // font-size: 24px;
-            // }
+            .page {
+                font-size: 1.3vw;
+                font-weight: 400;
+                color: #999;
+                line-height: 3vw;
+                vertical-align: top;
+            }
+        }
 
-            // @media screen and (min-width: @screen-lg){
-            //     font-size: 36px;
-            // }
-
-            // @media screen and (min-width: @screen-big-board){
-            //     font-size: 46px;
-            // }
+        h2 {
+            font-size: 1.1vw;
         }
 
         .leaderboard {
             float: right;
+            display: table;
         }
 
         .results-header-group {
-            white-space: nowrap;
-
-            .party,
-            .total,
-            .seats-needed {
-                display: inline-block;
-            }
-
-            float: left;
-        }
-
-        h1 {
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-        .results-header-group {
+            display: table-cell;
             border-left: 2px solid @gray;
             box-sizing: border-box;
-            padding-left: 15px;
-            @media screen and (max-width: @screen-sm){
-                padding-left:5px;
-            }
+            padding-left: 1vw;
+            padding-right: 1vw;
+            white-space: nowrap;
+            overflow: hidden;
 
             &:first-child {
                 border-left: none;
             }
 
-            h2,
-            p {
+            &:last-child {
+                padding-right: 0;
+            }
+
+            .party,
+            .total,
+            .seats-needed, {
+                display: inline;
+            }
+
+            h2, p {
                 margin: 0;
+                font-size: 1.5vw;
             }
 
             h2 {
@@ -174,136 +120,96 @@
             .total,
             .seats-needed {
                 white-space: nowrap;
+                text-shadow: none;
             }
 
             .seats-needed {
-                color: @gray-light;
-                margin-left: 15px;
-                margin-right: 15px;
-                @media screen and (max-width: @screen-sm){
-                margin-left:5px;
-                margin-right:5px;
-                }
+                color: #666;
+                padding-left: 1vw;
 
                 .count {
                     display: inline-block;
-                    background: @gray-light;
+                    background: #666;
                 }
             }
 
             &.other {
-                margin-right: 15px;
-                @media screen and (max-width: @screen-sm){
-                margin-right:5px;
+                .total {
+                    padding: 0;
+                    display: inline-block;
                 }
             }
 
             &.not-called {
                 h2 {
-                    display: inline-block;
+                    display: inline;
                 }
-
-                white-space: nowrap;
             }
         }
-
 
         .dem  { color: @blue; }
         .gop   { color: @red; }
         .other { color: @green; }
-        .not-called { color: @gray-light; }
+        .not-called { color: #666; }
 
         .dem .percentage   { background: @blue; }
         .gop .percentage   { background: @red; }
         .other .percentage { background: @green; }
-        .not-called .count { background: @gray-light; }
+        .not-called .count { background: #666; }
 
         .percentage,
         .count {
             display: inline-block;
-            border-radius: 9px;
             color: @white;
             text-align: center;
-            line-height: 18px;
-            padding:0 5%;
-            min-width:18px;
-            height:18px;
-            box-sizing:border-box;
-
-            @media screen and (min-width: @screen-md){
-                min-width:38px;
-                height:38px;
-                line-height: 38px;
-                border-radius: 19px;
-            }
-
-            @media screen and (min-width: @screen-lg){
-                min-width:38px;
-                height:38px;
-                line-height: 38px;
-                border-radius: 19px;
-            }
-
-            @media screen and (min-width: @screen-xl){
-                min-width:42px;
-                height:42px;
-                line-height:42px;
-                border-radius:21px;
-
-            }
-
-            @media screen and (min-width: @screen-big-board){
-                min-width:52px;
-                height:52px;
-                line-height: 52px;
-                border-radius: 26px;
-            }
+            padding: 0 1vw;
+            min-width: 3vw;
+            height: 3vw;
+            line-height: 3vw;
+            border-radius: 2vw;
+            box-sizing: border-box;
+            text-shadow: rgba(0,0,0, 0.8) 0 0 2px;
         }
     }
 
-
-
-
     .results  {
+        font-size: 0.9vw;
         height: 100%;
 
         .column {
             box-sizing: border-box;
-            padding: 0 15px;
-            @media screen and (max-width: @screen-md){
-                padding: 0 6px;
-            }
+            padding: 0 1%;
+
             &.first {
                 padding-left: 0;
             }
+            
             &.last {
                 padding-right: 0;
-            }
-            @media screen and (max-width: 470px){
-                width:100% !important;
-                padding:0;
             }
         }
 
         .poll-closing-group {
+            font-size: 0.9vw;
             font-weight: 600;
-            letter-spacing:0.05em;
+            letter-spacing: 0.05em;
             color: @gray-light;
-            margin-bottom:0;
-            border-bottom: 5px solid @gray-light;
-            @media screen and (max-width: @screen-md){
-                border-bottom: 2px solid @gray-dark;
+            margin-bottom: 0;
+
+            // Psuedo-border so it works with viewport units
+            &:after {
+                height: 0.20vw;
+                width: 100%;
+                display: block;
+                background-color: @gray-light;
+                content: "";
             }
 
             .time {
-                padding: 3px 0;
-                @media screen and (max-width: @screen-md){
-                    padding:4.5px 0;
-                }
+                padding: 0.25vw 0;
                 display: inline-block;
             }
         }
-
 
         .races {
             width: 100%;
@@ -311,7 +217,7 @@
 
             td {
                 vertical-align: top;
-                padding: 5px;
+                padding: 0.2vw 0.4vw;
             }
 
             .results-status {
@@ -320,14 +226,11 @@
 
                 &.reporting, &.called {
                     color:@yellow;
-                    @media screen and (min-width: @screen-md){
-                        &:after{
-                            content:"% in";
-                            font-size:80%;
-                            vertical-align:top;
-                            margin-left:-2px;
-                            padding:0;
-                        }
+                    &:after{
+                        content: "% in";
+                        font-size: 80%;
+                        vertical-align: top;
+                        margin-left:-.1vw;
                     }
                 }
 
@@ -336,16 +239,16 @@
                 }
             }
             .pickup{
-                width:4%;
-                vertical-align:middle;
+                width: 4%;
+                vertical-align: middle;
             }
 
             .party-change{
                 &:after{
-                    font-weight:500;
-                    content:"+1";
+                    font-weight: 500;
+                    content: "+1";
                     font-style: italic;
-                    font-size:65%;
+                    font-size: 65%;
                 }
                 &.dem { color: @blue; }
                 &.gop { color: @red; }
@@ -367,7 +270,14 @@
             }
 
             .description {
-              width: 50%;
+                width: 48%;
+            }
+
+            .choice {
+                width: 10%;
+
+                &.no { background: @redDim; }
+                &.yes { background: @greenDim; }
             }
 
             .candidate {
@@ -380,20 +290,15 @@
                     font-size: 75%;
                     font-weight: normal;
                     letter-spacing: 0.05em;
+                    margin-left: 0.25vw;
                 }
 
                 &.incumbent {
-                    img{
-                        height:12px;
-                        width:auto;
-                        vertical-align:top;
-                        margin-left:2px;
-                    }
-                }
-
-                .fname{
-                    @media screen and (max-width: @screen-sm){
-                    display:none;
+                    img {
+                        height: 1vw;
+                        width: auto;
+                        vertical-align: top;
+                        margin-left: 0.25vw;
                     }
                 }
             }
@@ -401,73 +306,90 @@
             .candidate-total {
                 width: 7%;
                 text-align: right;
-                padding: 0 1px 0 0;
+                padding: 0;
                 background: transparent;
+                position: relative;
 
                 .candidate-total-wrapper {
                     display: block;
-                    height: 100%;
-                    padding: 5px;
+                    padding: 0.2vw 0.4vw;
+                    margin-right: 1px;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
                 }
 
                 &.dem .candidate-total-wrapper { background: @blueDim; }
-                &.gop .candidate-total-wrapper { background: @redDim; }
-                &.other .candidate-total-wrapper { background: @greenDim; }
+                &.gop .candidate-total-wrapper,
+                &.no .candidate-total-wrapper { background: @redDim; }
+                &.other .candidate-total-wrapper,
+                &.yes .candidate-total-wrapper { background: @greenDim; }
                 &.reporting .candidate-total-wrapper {
                     &:after{
-                                content:"%";
-                                font-size:80%;
-                                vertical-align:top;
+                        content:"%";
+                        font-size: 80%;
+                        vertical-align: top;
                     }
                 }
 
-                + .candidate-total {
-                    padding: 0 0 0 1px;
+                + .candidate-total .candidate-total-wrapper {
+                    margin-left: 1px;
+                    margin-right: 0;
                 }
             }
 
+            .candidate,
+            .candidate-total {
+                text-shadow: rgba(0,0,0, 0.8) 0 0 2px;
+            }
 
             .winner {
                 color: #fff;
 
                 &.dem { background: @blue; }
-                &.gop { background: @red; }
-                &.other { background: @green; }
+                &.gop,
+                &.no { background: @red; }
+                &.other,
+                &.yes { background: @green; }
 
                 &.candidate-total {
                     background: transparent;
 
                     &.dem .candidate-total-wrapper { background: @blue; }
-                    &.gop .candidate-total-wrapper { background: @red; }
-                    &.other .candidate-total-wrapper { background: @green; }
+                    &.gop .candidate-total-wrapper,
+                    &.no .candidate-total-wrapper { background: @red; }
+                    &.other .candidate-total-wrapper,
+                    &.yes .candidate-total-wrapper { background: @green; }
                 }
             }
 
-
             .candidate-total.gop{
-                text-align:left;
+                text-align: left;
             }
 
             .id-5083, .id-19638, .id-18556{
-                letter-spacing:-.07em;
+                letter-spacing: -0.07em;
             }
         }
+
         td{
             &:nth-child(4){
-                border-radius: 5px 0 0 5px;
+                border-radius: 0.5vw 0 0 0.5vw;
             }
             &:nth-child(5){
                 .candidate-total-wrapper {
-                    border-radius: 0 5px 5px 0;
+                    border-radius: 0 0.5vw 0.5vw 0;
                 }
             }
             &:nth-child(6){
                 .candidate-total-wrapper {
-                    border-radius: 5px 0 0 5px;
+                    border-radius: 0.5vw 0 0 0.5vw;
                 }
             }
             &:nth-child(7){
-                border-radius: 0 5px 5px 0;
+                border-radius: 0 0.5vw 0.5vw 0;
             }
         }
     }
@@ -478,70 +400,49 @@
         font-weight: 300;
         color:@white;
 
-        @media screen and (min-width: @screen-md){
-            font-size: 11px;
-            line-height: 1.5;
-            font-weight: 300;
-        }
-        @media screen and (min-width: @screen-lg){
-            font-size: 13px;
-            font-weight: 300;
-        }
-
-        @media screen and (min-width: @screen-xl){
-            font-size: 14px;
-            font-weight: 300;
-        }
-
-        @media screen and (min-width: @screen-big-board){
-            font-size: 19px;
-        }
-
-
         margin-top:20px;
-        @media screen and (max-width: @screen-md){
-            margin-top:20px;
-        }
         margin-bottom:20px;
         overflow:hidden;
         float:left;
 
-
-        .percent-ex{
+        .percent-ex {
             color:@yellow;
             display:inline-block;
         }
-        .percent-called-ex{
+        
+        .percent-called-ex {
             display:inline-block;
             color: @gray;
         }
-        .name-ex{
+
+        .name-ex {
             background-color: @blue;
             color: @white;
             padding: 0 2px;
             border-radius: 5px;
         }
 
-        .state-ex{
+        .state-ex {
             background-color:@blue;
             color:@white;
             padding: 0 2px;
         }
 
-        .state2-ex{
+        .state2-ex {
             color:@red;
         }
 
-        ul{
-            padding-left:0;
-            float:left;
-            padding-right:20px;
-            margin-bottom:0;
+        ul {
+            padding-left: 0;
+            float: left;
+            padding-right: 20px;
+            margin-bottom: 0;
         }
-        li{
-            list-style-type:none;
-            text-indent:none;
-            padding-left:0;
+
+        li {
+            list-style-type: none;
+            text-indent: none;
+            padding-left: 0;
         }
     }
 

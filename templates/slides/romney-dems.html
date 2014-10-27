@@ -1,70 +1,52 @@
 <div id="romney-dems" class="graphic">
 	{% if COPY.graphic_slides.headline_romney_dems %}<h1>{{ COPY.graphic_slides.headline_romney_dems }}</h1>{% endif %}
 	{% if COPY.graphic_slides.subhed_romney_dems %}<h2>{{ COPY.graphic_slides.subhed_romney_dems }}</h2>{% endif %}
-	
+
 	<div class="candidate-list">
-		<h3>{{ COPY.graphic_slides.subhed_won }} (3 of 12)</h3>
+		<h3>{{ COPY.graphic_slides.subhed_won }} ({{ races_won|length }} of {{ races_count }})</h3>
 		<ul>
+			{% for race in races_won %}
 			<li>
-				<span class="district d">TX-6</span>
-				<span class="name">Shaheen</span>
+				<span class="district d">{{ race.state_postal }}-{{ race.seat_number }}</span>
+				{% for candidate in race.candidates %}
+				{% if candidate.get_party() == 'dem' %}
+				<span class="name">{{ candidate.last_name }}</span>
+				{% endif %}
+				{% endfor %}
 			</li>
-			<li>
-				<span class="district d">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district d">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
+			{% endfor %}
 		</ul>
 	</div>
 
 	<div class="candidate-list">
-		<h3>{{ COPY.graphic_slides.subhed_lost }} (6 of 12)</h3>
+		<h3>{{ COPY.graphic_slides.subhed_lost }} ({{ races_lost|length }} of {{ races_count }})</h3>
 		<ul>
+			{% for race in races_lost %}
 			<li>
-				<span class="district d">TX-6</span>
-				<span class="name">Shaheen</span>
+				<span class="district d">{{ race.state_postal }}-{{ race.seat_number }}</span>
+				{% for candidate in race.candidates %}
+				{% if candidate.get_party() == 'dem' %}
+				<span class="name">{{ candidate.last_name }}</span>
+				{% endif %}
+				{% endfor %}
 			</li>
-			<li>
-				<span class="district d">TX-6</span>
-				<span class="name">Shaheen</span>
-			</li>
-			<li>
-				<span class="district d">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district d">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district d">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district d">TX-6</span>
-				<span class="name">Shaheen</span>
-			</li>
+			{% endfor %}
 		</ul>
 	</div>
 
 	<div class="candidate-list undecided">
-		<h3>{{ COPY.graphic_slides.subhed_tbd }} (3 of 12)</h3>
+		<h3>{{ COPY.graphic_slides.subhed_tbd }} ({{ races_not_called|length }} of {{ races_count }})</h3>
 		<ul>
+			{% for race in races_not_called %}
 			<li>
-				<span class="district d">AL-2</span>
-				<span class="name">Sessions</span>
+				<span class="district d">{{ race.state_postal }}-{{ race.seat_number }}</span>
+				{% for candidate in race.candidates %}
+				{% if candidate.get_party() == 'dem' %}
+				<span class="name">{{ candidate.last_name }}</span>
+				{% endif %}
+				{% endfor %}
 			</li>
-			<li>
-				<span class="district d">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
-			<li>
-				<span class="district d">AL-2</span>
-				<span class="name">Sessions</span>
-			</li>
+			{% endfor %}
 		</ul>
 	</div>
 </div>

@@ -25,9 +25,21 @@ def deploy():
     Harvest data and deploy slides indefinitely
     """
     while True:
+        start = time()
         safe_execute('ap.update')
         safe_execute('data.load_updates', 'data/update.json')
         safe_execute('liveblog.update')
         safe_execute('deploy_slides')
         safe_execute('deploy_big_boards')
-        sleep(app_config.DEPLOY_INTERVAL)
+        safe_execute('deploy_bop')
+
+        duration = int(time() - start)
+        wait = app_config.DEPLOY_INTERVAL - duration
+
+        print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
+
+        if wait < 0:
+            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.DEPLOY_INTERVAL)
+            wait = 0
+
+        sleep(wait)

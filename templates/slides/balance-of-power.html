@@ -1,27 +1,29 @@
 <div id="balance-of-power" class="graphic">
-	{% if COPY.graphic_slides.headline_bop %}<h1>{{ COPY.graphic_slides.headline_bop }}</h1>{% endif %}
-	{% if COPY.graphic_slides.subhed_bop %}<h2>{{ COPY.graphic_slides.subhed_bop }}</h2>{% endif %}
+    <div class="wrapper">
+        {% if COPY.graphic_slides.headline_bop %}<h1>{{ COPY.graphic_slides.headline_bop }}</h1>{% endif %}
+        {% if COPY.graphic_slides.subhed_bop %}<h2>{{ COPY.graphic_slides.subhed_bop }}</h2>{% endif %}
 
-	<div id="graphic-bop"></div>
+        <div id="graphic-bop"></div>
 
-	{% if COPY.graphic_slides.footnote_bop %}
-	<div class="footnotes">
-		<h4>Notes</h4>
-		<p>{{ COPY.graphic_slides.footnote_bop }}</p>
-	</div>
-	{% endif %}
+        {% if COPY.graphic_slides.footnote_bop %}
+        <div class="footnotes">
+            <h4>Notes</h4>
+            <p>{{ COPY.graphic_slides.footnote_bop }}</p>
+        </div>
+        {% endif %}
 
-	<div class="footer">
-		{% if COPY.graphic_slides.source_bop %}
-		<p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;Last updated: Nov. 4, 2014, at 8:15 p.m. ET.
-		</p>
-		{% endif %}
-	</div>
+        <div class="footer">
+            {% if COPY.graphic_slides.source_bop %}
+            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="graphic-timestamp"></span>.</p>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
 (function() {
 	var $graphic;
+	var $timestamp;
 
 	var data_house = [
 		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ house_bop.dem.has }}, 'net': {{ house_bop.dem.picked_up }} },
@@ -46,13 +48,12 @@
 	var bar_gap = 5;
 	var bar_height = 30;
 	var color;
-	var graphic_margin = 6;
-	var is_mobile = false;
-	var label_width = 35;
-	var mobile_threshold = 480;
+	var gutter_width;
+	var label_width;
 	var num_x_ticks = 5;
 	var round_increment = 10;
-	var side_margin = 11;
+	var side_margin;
+	var timestamp = {{ TIMESTAMP }} * 1000;
 
 	var fmt_comma = d3.format(',');
 	var fmt_year_abbrev = d3.time.format('%y');
@@ -63,20 +64,21 @@
 	 * Render the graphic
 	 */
 	function render() {
-		var container_width = $('#stack').width() - (side_margin * 2);
-		var graphic_width = Math.floor((container_width - 22) / 2);
-
-		if (container_width <= mobile_threshold) {
-			is_mobile = true;
-		} else {
-			is_mobile = false;
-		}
+		var container_width = $('#landscape-wrapper').width();
+		gutter_width = Math.floor(container_width * .01); // 1vw
+		var graphic_width = Math.floor((container_width - gutter_width) / 2);
+		
+		label_width = Math.floor(container_width * .04); // 4vw
+		side_margin = Math.floor(container_width * .03); // 3vw
 
 		// clear out existing graphics
 		$graphic.empty();
 	
-		draw_chart('house', graphic_width);    
-		draw_chart('senate', graphic_width);    
+		draw_chart('house', graphic_width);
+		draw_chart('senate', graphic_width);
+		
+		var ts = moment(timestamp).fromNow();
+		$timestamp.empty().append(ts);
 	}
 
 	function draw_chart(id, graphic_width) {
@@ -90,8 +92,14 @@
 	
 		var graph = d3.select('#graphic-bop')
 			.append('div')
-				.attr('class', 'chart ' + classify(id))
-				.attr('width', graphic_width);
+				.attr('class', 'chart chart-' + classify(id))
+				.attr('style', function() {
+					var s = 'width: ' + graphic_width + 'px;';
+					if (id == 'house') {
+						s += ' margin-right: ' + gutter_width + 'px;';
+					}
+					return s;
+				});
 
 		var header = graph.append('h3')
 			.attr('style', 'margin-left: ' + margin['left'] + 'px;')
@@ -235,7 +243,7 @@
 			.attr('dx', '1')
 			.attr('dy', '-6')
 			.attr('text-anchor', 'end')
-			.html('Majority: ' + majority + '&#11022;');
+			.html('Majority: ' + majority);
 	}
 
 	function classify(str) {
@@ -244,6 +252,7 @@
 
 	if (Modernizr.svg) {
 		$graphic = $('#graphic-bop');
+		$timestamp = $('.graphic-timestamp');
 		render();
 		$(window).on('resize', render);
 	}

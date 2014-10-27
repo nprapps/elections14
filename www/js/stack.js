@@ -64,9 +64,8 @@ var STACK = (function () {
     var onMoveMouse = function() {
         if (!($('body').data('mouse-moving'))) {
             $header.fadeOut(200, function() {
-                $headerControls.fadeIn(200, function() {
-                    $('body').data('mouse-moving', true);
-                });
+                $('body').data('mouse-moving', true);
+                $headerControls.fadeIn(200);
             });
 
         }
@@ -75,7 +74,7 @@ var STACK = (function () {
             clearTimeout(_mouseMoveTimer);
         }
 
-        _mouseMoveTimer = setTimeout(onEndMouse, 500);
+        _mouseMoveTimer = setTimeout(onEndMouse, 400);
     }
 
     /*
@@ -109,6 +108,7 @@ var STACK = (function () {
         }
 
         var slug = _stack[_currentSlide]['slug'];
+        var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
 
         if (slug === 'state-senate') {
             // If no state selected, skip to next

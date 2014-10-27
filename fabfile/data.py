@@ -106,6 +106,7 @@ def bootstrap():
     load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
+    load_governor_extra('data/governor-extra.csv')
     load_ballot_measures_extra('data/ballot-measures-extra.csv')
 
 def load_races(path):
@@ -213,9 +214,6 @@ def load_calls(path):
     for race in races:
         race_model = models.Race.get(models.Race.race_id == race['race_id'])
 
-        race_model.ap_called = True
-        race_model.ap_called_time = datetime.strptime(race['ap_called_time'], '%Y-%m-%dT%H:%M:%SZ')
-
         if race.get('ap_winner'):
             candidate_model = models.Candidate.get(models.Candidate.candidate_id == race['ap_winner'])
             candidate_model.ap_winner = True
@@ -233,8 +231,11 @@ def load_calls(path):
                 candidates_updated += 1
                 num_runoff_winners += 1
 
-        race_model.save()
-        races_updated += 1
+        if race.get('ap_winner') or race.get('ap_runoff_winners'):
+            race_model.ap_called = True
+            race_model.ap_called_time = datetime.strptime(race['ap_called_time'], '%Y-%m-%dT%H:%M:%SZ')
+            race_model.save()
+            races_updated += 1
 
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated
@@ -467,6 +468,9 @@ def _save_house_row(row, quiet=False):
             existing.rematch_result = row['rematch_result']
             existing.rematch_description = row['rematch_description']
 
+        if row['freshmen'] == '1':
+            existing.freshmen = True
+
         existing.save()
 
     except models.Race.DoesNotExist:
@@ -503,11 +507,55 @@ def _save_senate_row(row, quiet):
 
         existing = models.Race.get(models.Race.office_name == 'U.S. Senate', models.Race.state_postal == state_postal, models.Race.seat_number == seat_number)
         existing.previous_party = row['party']
+
+        if row['female_incumbent'] == '1':
+            existing.female_incumbent = True
+
+        if row['female_candidate'] == '1':
+            existing.female_candidate = True
+
         existing.save()
 
     except models.Race.DoesNotExist:
         if not quiet:
             print 'Senate race named %s %s does not exist in AP data' % (row['state'], row['seat_number'])
+
+@task
+def load_governor_extra(path, quiet=False):
+    """
+    Load extra data (last party in power) for
+    senate
+    """
+    print 'Loading governor extra data from disk'
+
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            _save_governor_row(row, quiet)
+
+def _save_governor_row(row, quiet):
+    """
+    Merge senate data with existing record
+    """
+    import models
+
+    try:
+        state_postal = row['state']
+
+        existing = models.Race.get(models.Race.office_name == 'Governor', models.Race.state_postal == state_postal)
+        existing.previous_party = row['party']
+
+        if row['female_incumbent'] == '1':
+            existing.female_incumbent = True
+
+        if row['female_candidate'] == '1':
+            existing.female_candidate = True
+
+        existing.save()
+
+    except models.Race.DoesNotExist:
+        if not quiet:
+            print 'Governor race in %s does not exist in AP data' % (row['state'])
 
 @task
 def load_ballot_measures_extra(path, quiet=False):
@@ -547,21 +595,19 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
-    _mock_empty_slide('senate big board', 'senate_big_board', 20, it.next())
-    _mock_empty_slide('house big board one', 'house_big_board_one', 20, it.next())
-    _mock_empty_slide('house big board two', 'house_big_board_two', 20, it.next())
-    _mock_empty_slide('governor big board', 'governor_big_board', 20, it.next())
-    _mock_empty_slide('ballot measures big board', 'ballot_measures_big_board', 20, it.next())
-    _mock_empty_slide('balance of power', 'balance_of_power', 10, it.next())
-    _mock_empty_slide('poll closing', 'poll_closing', 15, it.next())
-    _mock_empty_slide('state senate', '_state_senate_slide', 20, it.next())
-    _mock_empty_slide('state house', '_state_house_slide', 20, it.next())
-    _mock_empty_slide('romney dems', 'romney_dems', 10, it.next())
-    _mock_empty_slide('obama reps', 'obama_reps', 10, it.next())
-    _mock_empty_slide('incumbents lost', 'incumbents_lost', 10, it.next())
-    _mock_empty_slide('blue dogs', 'blue_dogs', 10, it.next())
-    _mock_empty_slide('house freshmen', 'house_freshmen', 10, it.next())
-#    execute('instagram.get_photos')
+    _mock_empty_slide('Senate Big Board', 'senate_big_board', 20, it.next())
+    _mock_empty_slide('House Big Board One', 'house_big_board_one', 20, it.next())
+    _mock_empty_slide('House Big Board Two', 'house_big_board_two', 20, it.next())
+    _mock_empty_slide('Governor Big Board', 'governor_big_board', 20, it.next())
+    _mock_empty_slide('Ballot Measures Big Board', 'ballot_measures_big_board', 20, it.next())
+    _mock_empty_slide('Balance of Power', 'balance_of_power', 10, it.next())
+    _mock_empty_slide('State Senate', '_state_senate_slide', 20, it.next())
+    _mock_empty_slide('State House', '_state_house_slide', 20, it.next())
+    _mock_empty_slide('Romney Dems', 'romney_dems', 10, it.next())
+    _mock_empty_slide('Obama Reps', 'obama_reps', 10, it.next())
+    _mock_empty_slide('Incumbents Lost', 'incumbents_lost', 10, it.next())
+    _mock_empty_slide('Blue Dogs', 'blue_dogs', 10, it.next())
+    _mock_empty_slide('House Freshmen', 'house_freshmen', 10, it.next())
 
 def _mock_slide_from_image(filename, i):
     import models
@@ -585,10 +631,6 @@ def mock_results(folder='data'):
     import models
 
     print "Generating fake data"
-
-    for candidate in models.Candidate.select():
-        candidate.incumbent = False
-        candidate.save()
 
     for race in models.Race.select():
         race.accept_ap_call = False

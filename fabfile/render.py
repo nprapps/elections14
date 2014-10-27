@@ -186,14 +186,14 @@ def render_states(compiled_includes={}):
             ('_state_house_slide', { 'slug': postal, 'page': 1 }),
             ('_state_house_slide_preview', { 'slug': postal, 'page': 1 })
         ]
-            
+
         if postal in app_config.PAGINATED_STATES:
             to_render.extend([
                 ('_state_house_slide', { 'slug': postal, 'page': 2 }),
                 ('_state_house_slide_preview', { 'slug': postal, 'page': 2 })
             ])
 
-        for view_name, view_kwargs in to_render: 
+        for view_name, view_kwargs in to_render:
             # Silly fix because url_for require a context
             with app.app.test_request_context():
                 path = url_for(view_name, **view_kwargs)
@@ -258,3 +258,30 @@ def render_big_boards(compiled_includes={}):
 
         with open('%sindex.html' % path, 'w') as f:
             f.write(content)
+
+@task
+def render_bop():
+    from flask import g, url_for
+
+    view_name = '_bop'
+    output_path = '.bop_html'
+
+    with app.app.test_request_context():
+        path = url_for(view_name)
+
+    with app.app.test_request_context(path=path):
+        view = app.__dict__[view_name]
+        content = view()
+
+    path = '%s%s' % (output_path, path)
+
+    # Ensure path exists
+    head = os.path.split(path)[0]
+
+    try:
+        os.makedirs(head)
+    except OSError:
+        pass
+
+    with open('%s' % path, 'w') as f:
+        f.write(content.data)

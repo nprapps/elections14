@@ -7,41 +7,23 @@
 @import "less/results.less";
 @import "less/slides.less";
 
-
 body {
-    background-color: @blueDarker;
+    background-color: black;
 }
-
 
 h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/*
-** SLIDE DEFAULTS
-*/
-h1, h2, h3{
-    margin:0;
-}
-h2{
-    font-size: 5vmin;
-}
-h3{
-    font-size: 3.5vmin;
-}
-
-p{
-    font-size: 2vmin;
-    @media screen and (max-width: @screen-sm){
-        font-size: 2vmin;
-    }
+svg {
+    max-height: 100%; // Fix webkit svg height bug http://stackoverflow.com/questions/7570917/svg-height-incorrectly-calculated-in-webkit-browsers
 }
 
 .btn-lg{
-    padding: 3vmin 3vmin;
-    font-size: 3.5vmin;
+    padding: 1.5vw 1.5vw;
+    font-size: 2vw;
     letter-spacing: .03em;
-    border-radius: 0.5vmin;
+    border-radius: 0.5vw;
     text-transform: uppercase;
 
     &:hover {
@@ -49,40 +31,44 @@ p{
     }
 }
 
+#landscape-wrapper {
+    width: 100%;
+}
+
 #stack {
+    width: 100%;
+    position: absolute;
+    top: 0;
     display: none;
-    overflow: hidden;
 }
 
 .slide {
     display: none;
     color: @musicLight;
-}
-
-.slide-inner {
-    display: table;
     width: 100%;
     height: 100%;
 }
 
+.slide-inner {
+    // This gets resized in JS
+}
+
 .slide-content {
-    display: table-cell;
-    width:100%;
-    img {
-        width: 100%;
-    }
     height: 100%;
 }
 
+.centered {
+    .vertical-center;
+}
 
 /*
 ** WELCOME SLIDES
 */
 
 .welcome.slide {
+    display: block;
     opacity: 0;
     .transition(opacity 3s ease);
-    display: block;
 
     &:after {
         content : "";
@@ -97,55 +83,29 @@ p{
         opacity : 0.5;
         z-index: -1;
     }
-    position: relative;
-    padding-top: 6vmin;
 
-    .logo {
-        width: 100%;
-        height: 6vmin;
-        margin-bottom:2vmin;
-        float:left;
+    .logo-wrapper {
+        width: 10%;
+        margin: 0 auto 2%;
         fill: @grayMedium;
+    }
+
+    .election-logo-wrapper {
+        width: 60%;
+        margin: 0 auto 3%;
     }
 
     .intro-text {
         text-align: center;
-        p{
-            font-size:3.5vmin;
-            line-height:3.5vmin;
-            margin-bottom:5vmin;
-        }
-        h1 {
-            text-shadow: -3px 3px 5px @blueDarker;
-            font-size: 17vmin;
-            font-weight: bold;
-            span {
-                font-size: 3vmin;
-                margin-right: 1vmin;
-                color: @blue;
-                vertical-align: middle;
 
-                &:nth-child(3n) {
-                    margin-right: 0;
-                }
-            }
-
-        }
-        h2{
-            text-shadow: -3px 3px 5px @blueDarker;
-            padding-bottom:2%;
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: 8vmin;
-            letter-spacing: .05em;
+        p {
+            font-size:  2.5vw;
+            line-height: 2.5vw;
+            margin-bottom: 5%;
         }
     }
 
     .call-to-action {
-        .rotate {
-            display: none;
-        }
-
         .welcome-button {
             background-color: @red;
             border: @red;
@@ -154,25 +114,29 @@ p{
     }
 
     .tv-prompt {
-        margin:8vmin auto 0 auto;
-        max-width:35%;
+        margin: 2% auto 0 auto;
+        max-width: 35%;
+
         .icon {
-            width:15vmin;
-            height:auto;
-            float:left;
+            width: 6vw;
+            height: auto;
+            float: left;
+            margin-top: 2vw;
+            margin-right: 2vw;
             opacity: 0.25;
         }
-        h3{
-            padding-top:4vmin;
-        }
-        h3, p{
-            font-size: 2vmin;
+
+        p {
+            padding-top: 3vw;
+            font-size: 1.5vw;
         }
 
     }
 }
 
 .cast-controls {
+    text-align: center;
+
     &:after {
         content : "";
         display: block;
@@ -187,13 +151,15 @@ p{
         z-index: -1;
     }
 
-    text-align: center;
-    padding-top: 6vmin;
+    .centered {
+        .vertical-center;
+    }
 
     h2 {
         font-size: 3vw;
         font-weight: bold;
         padding-bottom: 2vw;
+        margin: 0;
     }
 
     ul.menu {
@@ -212,6 +178,8 @@ p{
 }
 
 .state-picker {
+    text-align: center;
+
     &:after {
         content : "";
         display: block;
@@ -226,30 +194,41 @@ p{
         z-index: -1;
     }
 
-    text-align: center;
-    padding-top: 6vmin;
+    .slide-content {
+        .vertical-center;
+    }
+
+    h2 {
+        font-size: 2vw;
+    }
+
+    .form-group {
+        margin: 0;
+    }
 
     .state {
         width: 100%;
+        min-height: 20vw;
+
         .stateface {
-            font-size: 30vmin;
+            font-size: 10vw;
         }
+
         .stateface, .state-name {
             -webkit-transition: all 0.2s;
             transition: all 0.2s;
         }
-        .state-name {
-            position: relative;
-            top: -1.2vmin;
-        }
-    }
 
-    form {
-        margin-top: 2%;
+        .state-name {
+            font-size: 4vw;
+            position: relative;
+            top: -3vmin;
+        }
     }
 
     .twitter-typeahead {
         position: relative;
+        width: 50vw; //fixes safari alignment
         top: 0;
         -webkit-transition: all 0.5s;
         transition: all 0.5s;
@@ -260,22 +239,19 @@ p{
     .tt-hint {
         color: @musicLight;
         font-family: FontAwesome, 'Gotham Ssm';
-        width: 80vmin;
+        width: 50vw;
         height: 100%;
-        padding: 2vmin 1vmin;
-        font-size: 2vmin;
-        line-height: 2vmin;
+        padding: 2vw 1vw;
+        font-size: 2vw;
+        line-height: 2vw;
         border: 2px solid #bbb;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
         border-radius: 4px;
         outline: none;
     }
 
-
     .tt-dropdown-menu {
         text-align: left;
-        max-height: 18vmin;
+        max-height: 18vw;
         overflow-y: auto;
     }
 
@@ -284,53 +260,48 @@ p{
     }
 
     .typeahead:focus {
-      border: 2px solid @blue;
+        border: 2px solid @blue;
     }
 
     .tt-query {
-      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-         -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-              box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     }
 
     .tt-hint {
-      color: #999
+        color: #999
     }
 
     .tt-dropdown-menu {
         background-color: rgba(0,0,0,0);
         color: @blue;
-        width: 80vmin;
-        margin-top: 12px;
+        width: 50vw;
+        margin-top: 1vw;
         border: 1px solid #999;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
         border-radius: 2px;
-        // font-size: 24px;
     }
 
     .tt-suggestion {
-      padding: 3% 1%;
-      font-size: 2vmin;
-      line-height: 2vmin;
-      border-bottom: 1px solid #999;
+        padding: 3% 1%;
+        font-size: 2vw;
+        line-height: 2vw;
+        border-bottom: 1px solid #999;
 
-      &:last-child {
-        border: none;
-      }
+        &:last-child {
+            border: none;
+        }
     }
 
     .tt-suggestion.tt-cursor {
-      color: #fff;
-      background-color: @blue;
+        color: #fff;
+        background-color: @blue;
     }
 
     .tt-suggestion p {
-      margin: 0;
+        margin: 0;
     }
 
     .state-picker-submit {
-        margin-top: 3vmin;
+        margin-top: 2vw;
         background-color: @red;
         border: @red;
         color: @musicLight;
@@ -344,18 +315,22 @@ p{
 */
 
 .header-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
     box-shadow: inset 0 5vw 5vw -5vw black;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+
     .results-header {
         color: @grayMedium;
         height: 4vw;
         display: block;
         overflow: hidden;
         line-height: 3.5vw;
-        padding: .2vw .5vw;
-        @media screen and (max-width: @screen-sm){
-            height:6vw;
-        }
-
+        padding: .2vw 3vw;
 
         .logo {
             height:100%;
@@ -363,53 +338,48 @@ p{
             margin: 0 .5% 0 0;
             float:left;
             fill: @grayMedium;
-            @media screen and (max-width: @screen-sm){
-                width:10vw;
-            }
         }
 
         .leaderboard {
             float: right;
-            // width:60%;
+            display: table;
         }
-
 
         h2, p, a, span {
-            font-size: 1.5vw;
+            font-size: 1.3vw;
             line-height: 3.5vw;
-            @media screen and (max-width: @screen-sm){
-                font-size: 2.5vw;
-                line-height:5vw;
-            }
         }
+
         span{
             text-align:middle;
         }
 
         .results-header-group {
             white-space: nowrap;
-            padding:0 1vw;
-            float: left;
-            box-sizing: border-box;
-            line-height: 3.5vw;
+            padding: 0 1vw;
+            display: table-cell;
+            overflow: hidden;
+
             &:last-child{
                 margin-right: 0;
-                padding-right:0;
+                padding-right: 0;
             }
 
             .party,
             .total,
             .seats-needed {
-                display: inline-block;
+                display: inline;
+                font-family: 'Cooper Hewitt';
+                text-transform: uppercase;
             }
 
-            h2,
-            p {
+            h2, p {
                 margin: 0;
             }
 
-            h2 {
-                margin-top: 0;
+            .senate-header {
+                text-transform: uppercase;
+                font-weight: bold;
             }
 
             .total {
@@ -418,7 +388,7 @@ p{
 
             &.not-called {
                 h2 {
-                    display: inline-block;
+                    display: inline;
                 }
 
                 white-space: nowrap;
@@ -436,16 +406,11 @@ p{
             display: inline-block;
             text-align: center;
             box-sizing:border-box;
-            width:3vw;
+            min-width:3vw;
             height:3vw;
             line-height: 3vw;
             border-radius: 1.5vw;
-            @media screen and (max-width: @screen-sm){
-                min-width:4vw;
-                height:4vw;
-                line-height: 4vw;
-                border-radius: 2vw;
-            }
+            padding: 0 0.5vw;
         }
     }
 
@@ -479,9 +444,10 @@ p{
                 width: 2vw;
                 height: 2vw;
             }
+
             .expand {
                 width: 1.5vw;
-                height: 1.5 vw;
+                height: 1.5vw;
             }
 
             .volume-icon,
@@ -498,3 +464,14 @@ p{
     display: none;
 }
 
+.rotate-phone-wrapper {
+    color: white;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .rotate {
+        text-align: center;
+    }
+    font-size: 5vw;
+}

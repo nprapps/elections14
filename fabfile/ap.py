@@ -16,6 +16,13 @@ from elections import AP
 SLEEP_INTERVAL = 60 
 SECRETS = app_config.get_secrets()
 
+def _generate_candidate_id(candidate, race):
+    """
+    Makes an unique compound ID
+    """
+    return candidate.ap_polra_number
+    #return '%s-%s' % (candidate.ap_natl_number, race.state_postal)
+
 @task
 def bootstrap():
     init()
@@ -32,10 +39,18 @@ def init(output_dir='data'):
     races = []
     candidates = []
 
+    natl_numbers = []
+
     for race in ticket.races:
         races.append(process_race(race))
         for candidate in race.candidates:
-            candidates.append(process_candidate(candidate))
+            id = _generate_candidate_id(candidate, race)
+            candidates.append(process_candidate(candidate, race))
+            if id not in natl_numbers:
+                natl_numbers.append(id)
+            else:
+                #import ipdb; ipdb.set_trace();
+                print "REPEAT %s - %s %s - %s" % (candidate, candidate.ap_race_number, race, candidate.vote_total)
 
     with open('%s/init_races.json' % output_dir, 'w') as f:
         json.dump(races, f, indent=4)
@@ -70,12 +85,12 @@ def process_race(race):
     }
     return ret
 
-def process_candidate(candidate):
+def process_candidate(candidate, race):
     """
     Process a single candidate into our intermediary format.
     """
     ret = {
-        'candidate_id': candidate.ap_natl_number,
+        'candidate_id': _generate_candidate_id(candidate, race),
         'first_name': candidate.first_name,
         'last_name': candidate.last_name,
         'race_id': candidate.ap_race_number,

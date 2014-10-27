@@ -19,9 +19,13 @@ db = PostgresqlDatabase(
 
 # Indepdendent candidate overrides, (AP race_id, candidate_id) two-tuple mapping
 DEMOCRAT_INDIES = {
-    '17585-KS': '64420', # KS senate, Greg Orman
+    '17585-KS': '6081-KS',   # KS senate, Greg Orman (I)
+    '20157-LA': '23579-LA',  # LA Senate, Mary Landrieu (D)
 }
-REPUBLICAN_INDIES = {}
+REPUBLICAN_INDIES = {
+    '5707-CA': '19804-KS',   # CA House District 17, Ro Khanna (D)
+    '20157-LA': '23859-LA',  # LA Senate, Bill Cassidy (R)
+}
 
 def slugify(bits):
     """
@@ -115,8 +119,10 @@ class Race(SlugModel):
     romney_dem = BooleanField(default=False)
     bluedog = BooleanField(default=False)
     female_candidate = BooleanField(default=False)
+    female_incumbent = BooleanField(default=False)
     rematch_result = TextField(null=True, default=None)
     rematch_description = TextField(null=True, default=None)
+    freshmen = BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s: %s-%s' % (
@@ -149,6 +155,15 @@ class Race(SlugModel):
                         return 'other'
 
         return None
+
+    def is_runoff(self):
+        """
+        Did the race lead to a runoff?
+        """
+        if self.accept_ap_call and self.number_in_runoff:
+            return True
+        else:
+            return False
 
     def get_runoff_winners(self):
         """
@@ -265,6 +280,15 @@ class Race(SlugModel):
 
         return flat
 
+    def is_uncontested(self):
+        """
+        Return true if uncontested
+        """
+        if self.candidates.count() == 1:
+            return True
+        else:
+            return False
+
     def top_candidates(self):
         """
         Return (dem, gop) pair
@@ -281,7 +305,7 @@ class Race(SlugModel):
         try:
             if self.race_id in REPUBLICAN_INDIES.keys():
                 candidate_id = REPUBLICAN_INDIES[self.race_id]
-                dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
+                gop = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
                 gop = self.candidates.where(self.candidates.model_class.party == "GOP").get()
         except Candidate.DoesNotExist:
@@ -390,7 +414,7 @@ class Slide(SlugModel):
 
     slug = CharField(max_length=255, primary_key=True)
     name = CharField(max_length=255)
-    body = TextField()
+    data = TextField(null=True)
     view_name = CharField(max_length=255)
     time_on_screen = IntegerField(default=15)
 
@@ -423,7 +447,8 @@ class SlideSequence(BaseModel):
 
         for sequence in sequences:
             data.append({
-                'slug': sequence.slide.slug
+                'slug': sequence.slide.slug,
+                'time_on_screen': sequence.slide.time_on_screen
             })
 
         return data

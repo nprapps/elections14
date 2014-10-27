@@ -1,11 +1,9 @@
 # /usr/bin/env python
 
 from datetime import datetime
+import json
 
-from dateutil.parser import parse
 from fabric.api import task
-from jinja2 import Template
-import pytz
 import requests
 
 import app_config
@@ -52,42 +50,18 @@ def update():
         offset += LIMIT
 
 def _create_slide(post):
-    rendered_post = _render_post(post)
     slug = 'tumblr-%i' % post['id']
-    post_title = post['slug']
+    post_title = post.get('title', None) or post['slug']
+    view_name = 'tumblr_%s' % post['type']
+    data = json.dumps(post)
 
     try:
         slide = models.Slide.get(slug=slug)
         print 'Updating post %s' % slug
         slide.name = post_title
-        slide.body = rendered_post
+        slide.data = data 
         slide.save()
     except models.Slide.DoesNotExist:
         print 'Creating post %s' % slug
-        slide = models.Slide.create(slug=slug, name=post_title, body=rendered_post, view_name='_slide')
-
-def _render_post(post):
-    # Parse GMT date from API
-    post_date = parse(post['date'])
-
-    # Convert to Eastern time (EDT or EST)
-    eastern = pytz.timezone('US/Eastern')
-
-    # Format for display
-    post['formatted_date'] = post_date.astimezone(eastern).strftime('%I:%M %p EST')
-
-    filename = '_tumblr_%s.html' % post['type']
-
-    if post['type'] == 'photo':
-        image = None
-        for size in post['photos'][0]['alt_sizes']:
-            if not image or size['width'] > image['width']:
-                if size['width'] < 960:
-                    image = size
-        post['image'] = image
-
-    with open('templates/%s' % filename) as f:
-        template = Template(f.read())
-
-    return template.render(**post)
+        slide = models.Slide.create(slug=slug, name=post_title, data=data, view_name=view_name)
 
