@@ -111,7 +111,7 @@ def write_update(ticket, path):
 
         for candidate in race.candidates:
             update['candidates'].append({
-                'candidate_id': candidate.ap_natl_number,
+                'candidate_id': _generate_candidate_id(candidate, race),
                 'vote_count': candidate.vote_total
             })
 
@@ -139,8 +139,8 @@ def write_calls(ticket, path):
 
     for race in ticket.races:
         if race.ap_race_number not in called_ids:
-            winners = [candidate.ap_natl_number for candidate in race.candidates if candidate.is_winner]
-            runoff_winners = [candidate.ap_natl_number for candidate in race.candidates if candidate.is_runoff]
+            winners = [_generate_candidate_id(candidate, race) for candidate in race.candidates if candidate.is_winner]
+            runoff_winners = [_generate_candidate_id(candidate, race) for candidate in race.candidates if candidate.is_runoff]
 
             if len(runoff_winners):
                 new_calls.append({
