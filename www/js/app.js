@@ -282,7 +282,7 @@ var onWindowResize = function() {
     if (padding < 0) {
         padding = 0;
     }
-
+    
     $('#landscape-wrapper').css({
         'height': new_height + 'px',
         'position': 'absolute',
@@ -312,9 +312,14 @@ var resizeSlide = function(slide) {
 var rotatePhone = function() {
     if (Modernizr.touch && Modernizr.mq('(orientation: portrait)')) {
         $rotate.show();
+        $('html').addClass('device-portrait');
+		$('#landscape-wrapper').css({
+			'top': '3vw'
+		});
     }
     else {
         $rotate.hide();
+        $('html').removeClass('device-portrait');
     }
 }
 
