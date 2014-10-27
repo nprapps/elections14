@@ -27,9 +27,11 @@ body {
 {% block extra_foot_js %}
 <script type="text/javascript">
     setInterval(function() {
-        $('.results-wrapper').load(window.location + ' .results-inner', function() {
-            $('.results').columnize(colOpts);
+        $('.results-wrapper').load(window.location + ' .results-inner', function(response, status, xhr) {
+            if (status == "success") {
+                $('.results').columnize(colOpts);
+            }
         });
-        }, 60000);
+    }, 10000);
 </script>
 {% endblock %}
