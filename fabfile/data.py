@@ -10,7 +10,7 @@ import json
 import random
 
 import copytext
-from fabric.api import env, local, require, run, settings, task
+from fabric.api import env, local, execute, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
@@ -713,6 +713,11 @@ def play_fake_results(update_interval=60):
                     race.precincts_reporting = random.randint(race.precincts_total - 500, race.precincts_total)
                     _fake_results(race)
                     race.save()
+
+            execute('liveblog.update')
+            execute('deploy_slides')
+            execute('deploy_big_boards')
+            execute('deploy_bop')
 
             sleep(float(update_interval))
 
