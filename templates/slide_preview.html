@@ -6,7 +6,7 @@
     {# Unfortunante hack because we're deploying this to staging and it can't compile a less file on demand #}
 
     {% if DEPLOYMENT_TARGET %}
-        {# <link rel="stylesheet" href="/css/app.less.css" /> #}
+        <link rel="stylesheet" href="/css/app.less.css" />
     {% else %}
         {{ CSS.push('less/app.less') }}
         {{ CSS.render('preview.min.css') }}
@@ -41,7 +41,7 @@
         var onWindowResize = function() {
             var width = $(window).width();
             var height = $(window).height();
-            
+
             var new_height = width * 9 / 16;
             var padding = (height - new_height) / 2;
 
