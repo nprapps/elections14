@@ -162,8 +162,8 @@ def recent_senate_calls():
 
     context['races'] = Race.select().where(
         (Race.office_name == 'U.S. Senate') &
-        (Race.ap_called == True) |
-        (Race.npr_called == True)
+        (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
+        (Race.npr_called == True))
     ).order_by(
         Race.ap_called_time.desc(),
         Race.npr_called_time.desc()
@@ -183,8 +183,8 @@ def recent_house_calls():
 
     context['races'] = Race.select().where(
         (Race.office_name == 'U.S. House') &
-        (Race.ap_called == True) |
-        (Race.npr_called == True)
+        (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
+        (Race.npr_called == True))
     ).order_by(
         Race.ap_called_time.desc(),
         Race.npr_called_time.desc()
@@ -204,8 +204,8 @@ def recent_governor_calls():
 
     context['races'] = Race.select().where(
         (Race.office_name == 'Governor') &
-        (Race.ap_called == True) |
-        (Race.npr_called == True)
+        (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
+        (Race.npr_called == True))
     ).order_by(
         Race.ap_called_time.desc(),
         Race.npr_called_time.desc()
