@@ -11,7 +11,6 @@ from elections import AP
 from fabric.api import task
 from time import sleep
 
-SLEEP_INTERVAL = 60 
 SECRETS = app_config.get_secrets()
 
 def _generate_candidate_id(candidate, race):
