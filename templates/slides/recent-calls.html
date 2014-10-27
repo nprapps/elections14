@@ -1,5 +1,8 @@
 <div class="state-slide">
     <div class="state-results-wrapper">
+        <div class="state-header">
+            {% include '_election_party_vertical.svg' %}
+        </div>
         <div class="state-results">
             {% if races.count() %}
             <h3>Recently Called {{ label }} Results</h3>
