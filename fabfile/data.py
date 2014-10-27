@@ -38,6 +38,7 @@ def query(q):
 
     run(SERVER_POSTGRES_CMD % ('psql -q elections14 -c "%s"' % q))
 
+@task
 def server_reset_db():
     """
     Reset the database on a server.
