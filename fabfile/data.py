@@ -153,6 +153,7 @@ def load_candidates(path):
                 party = candidate['party'],
                 race = models.Race.get(models.Race.race_id == candidate['race_id']),
                 candidate_id = candidate['candidate_id'],
+                incumbent = candidate['incumbent'],
             )
 
     print 'Loaded %i candidates' % len(candidates)
@@ -241,32 +242,6 @@ def load_calls(path):
     print 'Updated %i candidates' % candidates_updated
     print 'Found %i winners' % num_winners
     print 'Found %i runoff winners' % num_runoff_winners
-
-@task
-def load_incumbents(path):
-    """
-    Update canidate incumbent status from the AP intermediary files.
-    """
-    import models
-
-    candidates_updated = 0
-    candidates_skipped = 0
-
-    print 'Loading incumbent data from AP update data on disk'
-
-    with open(path) as f:
-        candidates = json.load(f)
-
-    for candidate in candidates:
-        try:
-            candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'])
-            candidate_model.incumbent = candidate['incumbent']
-            candidate_model.save()
-            candidates_updated += 1
-        except models.Candidate.DoesNotExist:
-            candidates_skipped +=1
-
-    print 'Updated incumbent status for %i candidates (%i skipped)' % (candidates_updated, candidates_skipped)
 
 @task
 def update_featured_social():
