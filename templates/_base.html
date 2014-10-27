@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{{ COPY.content.project_name }}</title>
+    <title>{% block title %}{{ COPY.content.project_name }}{% endblock %}</title>
 
     <!-- META TAGS -->
     {% include '_meta.html' %}
@@ -36,6 +36,7 @@
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/moment.js') }}
     {{ JS.push('js/app_config.js') }}
+    {{ JS.push('js/analytics.js') }}
     {{ JS.push('js/copy.js') }}
     {{ JS.push('js/console.js') }}
     {{ JS.push('js/templates.js') }}
