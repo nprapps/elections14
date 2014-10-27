@@ -752,3 +752,15 @@ def reset_results():
             candidate.save()
 
         race.save()
+
+"""
+Dangerous commands
+"""
+
+@task
+def tlaloc_god_of_thunder():
+    """
+    Kick all database connections
+    """
+    with settings(warn_only=True):
+        query("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'elections14';")
