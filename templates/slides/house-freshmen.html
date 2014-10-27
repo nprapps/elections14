@@ -1,54 +1,75 @@
 <div id="house-freshmen" class="graphic">
-	{% if COPY.graphic_slides.headline_house_freshmen %}<h1>{{ COPY.graphic_slides.headline_house_freshmen }}</h1>{% endif %}
-	{% if COPY.graphic_slides.subhed_house_freshmen %}<h2>{{ COPY.graphic_slides.subhed_house_freshmen }}</h2>{% endif %}
+	<div class="wrapper">
+		{% if COPY.graphic_slides.headline_house_freshmen %}<h1>{{ COPY.graphic_slides.headline_house_freshmen }}</h1>{% endif %}
+		{% if COPY.graphic_slides.subhed_house_freshmen %}<h2>{{ COPY.graphic_slides.subhed_house_freshmen }}</h2>{% endif %}
 
-	<div class="candidate-list">
-		<h3>{{ COPY.graphic_slides.subhed_won }} ({{ races_won|length }} of {{ races_count }})</h3>
-		<ul>
-			{% for race in races_won %}
-			<li>
-				{% for candidate in race.candidates %}
-				{% if candidate.incumbent %}
-				<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}-{{ race.seat_number }}</span>
-				<span class="name">{{ candidate.last_name }}</span>
-				{% endif %}
+		<div class="candidate-list">
+			<h3>{{ COPY.graphic_slides.subhed_won }}
+				<span>({{ races_won|length }} of {{ races_count }})</span></h3>
+			<ul>
+				{% for race in races_won %}
+					{% for candidate in race.candidates %}
+					{% if candidate.incumbent %}
+					<li>
+						<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}-{{ race.seat_number }}</span>
+						<span class="name">{{ candidate.last_name }}</span>
+					</li>
+					{% endif %}
+					{% endfor %}
 				{% endfor %}
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
+			</ul>
+		</div>
 
-	<div class="candidate-list">
-		<h3>{{ COPY.graphic_slides.subhed_lost }} ({{ races_lost|length }} of {{ races_count }})</h3>
-		<ul>
-			{% for race in races_lost %}
-			<li>
-				{% for candidate in race.candidates %}
-				{% if candidate.incumbent %}
-
-				<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}-{{ race.seat_number }}</span>
-				<span class="name">{{ candidate.last_name }}</span>
-				{% endif %}
+		<div class="candidate-list">
+			<h3>{{ COPY.graphic_slides.subhed_lost }} 
+				<span>({{ races_lost|length }} of {{ races_count }})</span></h3>
+			<ul>
+				{% for race in races_lost %}
+					{% for candidate in race.candidates %}
+					{% if candidate.incumbent %}
+					<li>
+						<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}-{{ race.seat_number }}</span>
+						<span class="name">{{ candidate.last_name }}</span>
+					</li>
+					{% endif %}
+					{% endfor %}
 				{% endfor %}
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
+			</ul>
+		</div>
 
-	<div class="candidate-list undecided">
-		<h3>{{ COPY.graphic_slides.subhed_tbd }} ({{ races_not_called|length }} of {{ races_count }})</h3>
-		<ul>
-			{% for race in races_not_called %}
-			<li>
-				{% for candidate in race.candidates %}
-				{% if candidate.incumbent %}
-				<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}-{{ race.seat_number }}</span>
-
-				<span class="name">{{ candidate.last_name }}</span>
-				{% endif %}
+		<div class="candidate-list undecided">
+			<h3>{{ COPY.graphic_slides.subhed_tbd }}
+				<span>({{ races_not_called|length }} of {{ races_count }})</span></h3>
+			<ul>
+				{% for race in races_not_called|sort(attribute='state_postal') %}
+					{% for candidate in race.candidates %}
+					{% if candidate.incumbent %}
+					<li>
+						<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}-{{ race.seat_number }}</span>
+						<span class="name">{{ candidate.last_name }}</span>
+					</li>
+					{% endif %}
+					{% endfor %}
 				{% endfor %}
-			</li>
-			{% endfor %}
-		</ul>
+			</ul>
+		</div>
+
+        <div class="footer">
+            {% if COPY.graphic_slides.source_bop %}
+            <p>Source: {{ COPY.graphic_slides.source_house_freshmen }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="graphic-timestamp"></span>.</p>
+            {% endif %}
+        </div>
+
 	</div>
 </div>
+
+<script type="text/javascript">
+(function() {
+	var $timestamp = $('.graphic-timestamp');
+	var timestamp = {{ TIMESTAMP }} * 1000;
+
+	// set timestamp, make relative
+	var ts = moment(timestamp).fromNow();
+	$timestamp.empty().append(ts);
+})();
+</script>

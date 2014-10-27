@@ -202,6 +202,10 @@ PAGINATED_STATES = [
     'NY'
 ]
 
+NO_RACES = [
+    'DC'
+]
+
 """
 Utilities
 """
