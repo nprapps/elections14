@@ -1,52 +1,73 @@
 <div id="obama-reps" class="graphic">
-	{% if COPY.graphic_slides.headline_obama_reps %}<h1>{{ COPY.graphic_slides.headline_obama_reps }}</h1>{% endif %}
-	{% if COPY.graphic_slides.subhed_obama_reps %}<h2>{{ COPY.graphic_slides.subhed_obama_reps }}</h2>{% endif %}
+	<div class="wrapper">
 
-	<div class="candidate-list">
-		<h3>{{ COPY.graphic_slides.subhed_won }} ({{ races_won|length }} of {{ races_count }})</h3>
-		<ul>
-			{% for race in races_won %}
-			<li>
-				<span class="district r">{{ race.state_postal }}-{{ race.seat_number }}</span>
-				{% for candidate in race.candidates %}
-				{% if candidate.get_party() == 'gop' %}
-				<span class="name">{{ candidate.last_name }}</span>
-				{% endif %}
-				{% endfor %}
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
+		{% if COPY.graphic_slides.headline_obama_reps %}<h1>{{ COPY.graphic_slides.headline_obama_reps }}</h1>{% endif %}
+		{% if COPY.graphic_slides.subhed_obama_reps %}<h2>{{ COPY.graphic_slides.subhed_obama_reps }}</h2>{% endif %}
 
-	<div class="candidate-list">
-		<h3>{{ COPY.graphic_slides.subhed_lost }} ({{ races_lost|length }} of {{ races_count }})</h3>
-		<ul>
-			{% for race in races_lost %}
-			<li>
-				<span class="district r">{{ race.state_postal }}-{{ race.seat_number }}</span>
-				{% for candidate in race.candidates %}
-				{% if candidate.get_party() == 'gop' %}
-				<span class="name">{{ candidate.last_name }}</span>
-				{% endif %}
+		<div class="candidate-list">
+			<h3>{{ COPY.graphic_slides.subhed_won }} ({{ races_won|length }} of {{ races_count }})</h3>
+			<ul>
+				{% for race in races_won %}
+				<li>
+					<span class="district r">{{ race.state_postal }}-{{ race.seat_number }}</span>
+					{% for candidate in race.candidates %}
+					{% if candidate.get_party() == 'gop' %}
+					<span class="name">{{ candidate.last_name }}</span>
+					{% endif %}
+					{% endfor %}
+				</li>
 				{% endfor %}
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
+			</ul>
+		</div>
 
-	<div class="candidate-list undecided">
-		<h3>{{ COPY.graphic_slides.subhed_tbd }} ({{ races_not_called|length }} of {{ races_count }})</h3>
-		<ul>
-			{% for race in races_not_called %}
-			<li>
-				<span class="district r">{{ race.state_postal }}-{{ race.seat_number }}</span>
-				{% for candidate in race.candidates %}
-				{% if candidate.get_party() == 'gop' %}
-				<span class="name">{{ candidate.last_name }}</span>
-				{% endif %}
+		<div class="candidate-list">
+			<h3>{{ COPY.graphic_slides.subhed_lost }} ({{ races_lost|length }} of {{ races_count }})</h3>
+			<ul>
+				{% for race in races_lost %}
+				<li>
+					<span class="district r">{{ race.state_postal }}-{{ race.seat_number }}</span>
+					{% for candidate in race.candidates %}
+					{% if candidate.get_party() == 'gop' %}
+					<span class="name">{{ candidate.last_name }}</span>
+					{% endif %}
+					{% endfor %}
+				</li>
 				{% endfor %}
-			</li>
-			{% endfor %}
-		</ul>
+			</ul>
+		</div>
+
+		<div class="candidate-list undecided">
+			<h3>{{ COPY.graphic_slides.subhed_tbd }} ({{ races_not_called|length }} of {{ races_count }})</h3>
+			<ul>
+				{% for race in races_not_called %}
+				<li>
+					<span class="district r">{{ race.state_postal }}-{{ race.seat_number }}</span>
+					{% for candidate in race.candidates %}
+					{% if candidate.get_party() == 'gop' %}
+					<span class="name">{{ candidate.last_name }}</span>
+					{% endif %}
+					{% endfor %}
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+
+        <div class="footer">
+            {% if COPY.graphic_slides.source_bop %}
+            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="graphic-timestamp"></span>.</p>
+            {% endif %}
+        </div>
+
 	</div>
 </div>
+
+<script type="text/javascript">
+(function() {
+	var $timestamp = $('.graphic-timestamp');
+	var timestamp = {{ TIMESTAMP }} * 1000;
+
+	// set timestamp, make relative
+	var ts = moment(timestamp).fromNow();
+	$timestamp.empty().append(ts);
+})();
+</script>

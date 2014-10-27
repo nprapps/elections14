@@ -54,5 +54,22 @@
 			</ul>
 		</div>
 
+        <div class="footer">
+            {% if COPY.graphic_slides.source_bop %}
+            <p>Source: {{ COPY.graphic_slides.source_house_freshmen }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="graphic-timestamp"></span>.</p>
+            {% endif %}
+        </div>
+
 	</div>
 </div>
+
+<script type="text/javascript">
+(function() {
+	var $timestamp = $('.graphic-timestamp');
+	var timestamp = {{ TIMESTAMP }} * 1000;
+
+	// set timestamp, make relative
+	var ts = moment(timestamp).fromNow();
+	$timestamp.empty().append(ts);
+})();
+</script>
