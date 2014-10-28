@@ -85,8 +85,6 @@ var onDocumentReady = function(e) {
     $commentCount = $('.comment-count');
 
     reloadTimestamp = moment();
-    console.log(reloadTimestamp);
-
 
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
