@@ -96,6 +96,17 @@ def _big_board(slug):
 
     context['body'] = _slide(slug).data
 
+    if slug == 'senate-big-board':
+        title = 'Senate'
+    elif slug == 'house-big-board-one' or slug == 'house-big-board-two':
+        title = 'House of Reps'
+    elif slug == 'governor-big-board':
+        title = 'Governors'
+    elif slug == 'ballot-measures-big-board':
+        title = 'Ballot measures'
+
+    context['title'] = title
+
     return render_template('_big_board_wrapper.html', **context)
 
 @app.route('/bop.html')
