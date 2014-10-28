@@ -12,10 +12,8 @@
         </div>
         {% endif %}
 
-        <div class="footer">
-            {% if COPY.graphic_slides.source_bop %}
-            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="graphic-timestamp"></span>.</p>
-            {% endif %}
+        <div class="ap-credit">
+            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
         </div>
     </div>
 </div>
@@ -284,7 +282,7 @@
 
 	if (Modernizr.svg) {
 		$graphic = $('#graphic-bop');
-		$timestamp = $('.graphic-timestamp');
+		$timestamp = $('.ap-credit').find('.timestamp');
 		$container = $('#landscape-wrapper');
 		$content = $('#balance-of-power');
 		render();

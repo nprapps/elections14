@@ -2,6 +2,8 @@
 @import "less/lib/bootstrap/variables.less";
 @import "less/lib/bootstrap/mixins.less";
 
+/* TUMBLR */
+
 .tumblr-photo,
 .tumblr-quote,
 .tumblr-text {
@@ -164,6 +166,7 @@
     }
 }
 
+
 /* GRAPHICS */
 
 .slide-inner { overflow: hidden; }
@@ -206,19 +209,8 @@
 			padding-left: 1vw;
 		}
 	}
-
-	.footnotes {
-		margin-bottom: 0;
-		color: @grayMedium;
-	}
-	.footnotes p,
-	.footer p {
-		margin: .5vw 0 0 0;
-		font-size: 1.25vw;
-		line-height: 1.3;
-		color: @grayMedium;
-		text-align: center;
-	}
+	
+	.ap-footnote { text-align: center; }
 
 	.r { color: @red; }
 	.d { color: @blue; }
@@ -724,3 +716,21 @@
 	}
 }
 
+
+/* CREDIT */
+
+.ap-credit {
+	margin: .75vw 0 0 0;
+	font-size: 1vw;
+	line-height: 1.3;
+	color: @grayMedium;
+	text-align: left;
+	
+	.state-slide & {
+		margin-top: 1.5vw;
+	}
+
+	.graphic & {
+		text-align: center;
+	}
+}
