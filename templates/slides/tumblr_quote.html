@@ -1,9 +1,7 @@
 <div class="wrapper">
     <div class="date">{{ formatted_date }}</div>
     <blockquote>
-        <span class="highlight">
-            &ldquo;{{ post.text|safe }}&rdquo;
-        </span>
+        <p><span class="highlight">&ldquo;{{ post.text|safe }}&rdquo;</span></p>
         <footer>
             <cite><span class="highlight">&mdash; {{ post.source|safe }}</span></cite>
         </footer>
