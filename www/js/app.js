@@ -494,7 +494,7 @@ var onLocateIP = function(response) {
 var checkBop = function() {
     setInterval(function() {
         $bop.load('/bop.html');
-    }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
+    }, APP_CONFIG.CLIENT_BOP_INTERVAL * 1000);
 }
 
 var checkTimestamp = function() {
@@ -511,7 +511,7 @@ var checkTimestamp = function() {
                 }
             }
         })
-    }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
+    }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
 
 /*
