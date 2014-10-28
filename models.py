@@ -21,9 +21,10 @@ db = PostgresqlDatabase(
 DEMOCRAT_INDIES = {
     '17585-KS': '6081-KS',   # KS senate, Greg Orman (I)
     '20157-LA': '23579-LA',  # LA Senate, Mary Landrieu (D)
+    '2010-AK':  '6399-AK',   # AK gov, Bill Walker (I)
 }
 REPUBLICAN_INDIES = {
-    '5707-CA': '19804-CA',   # CA House District 17, Ro Khanna (D)
+    '5707-CA':  '19804-CA',  # CA House District 17, Ro Khanna (D)
     '20157-LA': '23859-LA',  # LA Senate, Bill Cassidy (R)
 }
 
