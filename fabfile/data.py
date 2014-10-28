@@ -16,6 +16,7 @@ from twitter import Twitter, OAuth
 
 import app_config
 import admin_app
+import daemons
 import servers
 import csv
 
@@ -80,6 +81,18 @@ def create_tables():
     admin_user = admin_app.auth.User(username='admin', email='', admin=True, active=True)
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
+
+
+@task
+def reset_server():
+    require('settings', provided_by=['production', 'staging'])
+
+    daemons.safe_execute('servers.stop_service', 'deploy')
+    daemons.safe_execute('servers.stop_service', 'uwsgi')
+    daemons.safe_execute('servers.fabcast', 'data.bootstrap deploy_bop deploy_big_boards deploy_slides')
+    daemons.safe_execute('servers.start_service', 'uwsgi')
+    daemons.safe_execute('servers.start_service', 'deploy')
+
 
 @task
 def bootstrap():
