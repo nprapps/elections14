@@ -288,6 +288,9 @@ var STACK = (function () {
                 }
 
                 _stackTimer = setTimeout(updateStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
+            },
+            'error': function() {
+                _stackTimer = setTimeout(updateStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
             }
         });
     }
