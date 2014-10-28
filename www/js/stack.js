@@ -216,6 +216,7 @@ var STACK = (function () {
 
         _rotateRequest = $.ajax({
             'url': slide_path,
+            'cache': false,
             'success': _onSlideSuccess,
             'error': _onSlideError
         });
@@ -276,9 +277,10 @@ var STACK = (function () {
      */
     var updateStack = function() {
         _stackRequest = $.ajax({
-            url: 'live-data/stack.json',
-            dataType: 'json',
-            success: function(data) {
+            'url': 'live-data/stack.json',
+            'dataType': 'json',
+            'cache': false,
+            'success': function(data) {
                 _nextStack = data;
 
                 if (!_rotateTimer) {

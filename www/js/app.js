@@ -499,13 +499,17 @@ var checkBop = function() {
 
 var checkTimestamp = function() {
     setInterval(function() {
-        $.getJSON('/live-data/timestamp.json', function(data) {
-            var newTime = moment(data);
-            if (reloadTimestamp.isBefore(newTime)) {
-                $.cookie('reload', true);
-                window.location.reload(true);
-            }
+        $.ajax({
+            'url': '/live-data/timestamp.json',
+            'cache': false,
+            'success': function(data) {
+                var newTime = moment(data);
 
+                if (reloadTimestamp.isBefore(newTime)) {
+                    $.cookie('reload', true);
+                    window.location.reload(true);
+                }
+            }
         })
     }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
 }
