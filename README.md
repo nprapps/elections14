@@ -131,6 +131,15 @@ Display the big board in the building
 
 The Senate big board is available on IPTV on channel 151. The internal IP address for administration is 10.32.64.205.
 
+Reset server and database
+-------------------------
+
+To reset a server and database, run:
+
+```
+fab staging master data.reset_server
+```
+
 Hide project secrets
 --------------------
 

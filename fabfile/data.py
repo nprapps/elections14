@@ -16,7 +16,9 @@ from twitter import Twitter, OAuth
 
 import app_config
 import admin_app
+import daemons
 import servers
+import stack
 import csv
 
 SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
@@ -81,6 +83,19 @@ def create_tables():
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
 
+
+@task
+def reset_server():
+    require('settings', provided_by=['production', 'staging'])
+
+    daemons.safe_execute('servers.stop_service', 'deploy_liveblog_slides')
+    daemons.safe_execute('servers.stop_service', 'deploy_results_slides')
+    daemons.safe_execute('servers.stop_service', 'uwsgi')
+    daemons.safe_execute('servers.fabcast', 'data.bootstrap deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
+    daemons.safe_execute('servers.start_service', 'uwsgi')
+    daemons.safe_execute('servers.start_service', 'deploy_liveblog_slides')
+    daemons.safe_execute('servers.start_service', 'deploy_results_slides')
+
 @task
 def bootstrap():
     """
@@ -101,6 +116,7 @@ def bootstrap():
     load_governor_extra('data/governor-extra.csv')
     load_ballot_measures_extra('data/ballot-measures-extra.csv')
     create_slides()
+    stack.deploy()
 
 def load_races(path):
     """
@@ -709,7 +725,7 @@ def play_fake_results(update_interval=60):
             execute('liveblog.update')
             execute('deploy_bop')
             execute('deploy_big_boards')
-            execute('deploy_slides')
+            execute('deploy_results_slides')
 
             sleep(float(update_interval))
 

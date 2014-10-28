@@ -3,6 +3,7 @@
 """
 Utilities used by multiple commands.
 """
+
 from fabric.api import local, prompt
 
 import app_config
@@ -26,6 +27,8 @@ def _deploy_to_s3(path='.gzip'):
     """
     Deploy the gzipped stuff to S3.
     """
+    print "Uploading %s to S3" % path
+
     # Clear files that should never be deployed
     local('rm -rf %s/live-data' % path)
     local('rm -rf %s/sitemap.xml' % path)
@@ -40,8 +43,8 @@ def _deploy_to_s3(path='.gzip'):
 
     exclude_flags += '--exclude "www/assets" '
 
-    sync = 'aws s3 sync %s/ %s --acl "public-read" ' + exclude_flags + ' --cache-control "max-age=5" --region "%s"'
-    sync_gzip = 'aws s3 sync %s/ %s --acl "public-read" --content-encoding "gzip" --exclude "*" ' + include_flags + ' --cache-control "max-age=5" --region "%s"'
+    sync = 'aws s3 sync %s/ %s --acl "public-read" ' + exclude_flags + ' --cache-control "max-age=5 no-cache no-store must-revalidate" --region "%s"'
+    sync_gzip = 'aws s3 sync %s/ %s --acl "public-read" --content-encoding "gzip" --exclude "*" ' + include_flags + ' --cache-control "max-age=5 no-cache no-store must-revalidate" --region "%s"'
     sync_assets = 'aws s3 sync %s/ %s --acl "public-read" --cache-control "max-age=86400" --region "%s"'
 
     for bucket in app_config.S3_BUCKETS:
@@ -53,8 +56,7 @@ def deploy_json(src, dst):
     """
     Deploy the gzipped stuff to S3.
     """
-    sync = 'aws s3 cp %s %s --acl "public-read" --cache-control "max-age=5" --region "%s"'
+    sync = 'aws s3 cp %s %s --acl "public-read" --cache-control "max-age=5 no-cache no-store must-revalidate" --region "%s"'
 
     for bucket in app_config.S3_BUCKETS:
         local(sync % (src, 's3://%s/%s' % (bucket['bucket_name'], dst), bucket['region']))
-
