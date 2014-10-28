@@ -3,6 +3,7 @@
 """
 Utilities used by multiple commands.
 """
+
 from fabric.api import local, prompt
 
 import app_config
@@ -59,4 +60,3 @@ def deploy_json(src, dst):
 
     for bucket in app_config.S3_BUCKETS:
         local(sync % (src, 's3://%s/%s' % (bucket['bucket_name'], dst), bucket['region']))
-

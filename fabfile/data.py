@@ -18,6 +18,7 @@ import app_config
 import admin_app
 import daemons
 import servers
+import stack
 import csv
 
 SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
@@ -95,7 +96,6 @@ def reset_server():
     daemons.safe_execute('servers.start_service', 'deploy_liveblog_slides')
     daemons.safe_execute('servers.start_service', 'deploy_results_slides')
 
-
 @task
 def bootstrap():
     """
@@ -116,6 +116,7 @@ def bootstrap():
     load_governor_extra('data/governor-extra.csv')
     load_ballot_measures_extra('data/ballot-measures-extra.csv')
     create_slides()
+    stack.deploy()
 
 def load_races(path):
     """
