@@ -20,7 +20,27 @@ def safe_execute(*args, **kwargs):
         del tb
 
 @task
-def deploy():
+def deploy_liveblog():
+    """
+    Get and update liveblog slides
+    """
+    while True:
+        start = time()
+        safe_execute('liveblog.update')
+        safe_execute('deploy_liveblog_slides')
+        duration = int(time() - start)
+        wait = app_config.LIVEBLOG_DEPLOY_INTERVAL - duration
+
+        print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
+
+        if wait < 0:
+            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.LIVEBLOG_DEPLOY_INTERVAL)
+            wait = 0
+
+        sleep(wait)
+
+@task
+def deploy_results():
     """
     Harvest data and deploy slides indefinitely
     """
@@ -28,18 +48,17 @@ def deploy():
         start = time()
         safe_execute('ap.update')
         safe_execute('data.load_updates', 'data/update.json')
-        safe_execute('liveblog.update')
         safe_execute('deploy_bop')
         safe_execute('deploy_big_boards')
-        safe_execute('deploy_slides')
+        safe_execute('deploy_results_slides')
 
         duration = int(time() - start)
-        wait = app_config.DEPLOY_INTERVAL - duration
+        wait = app_config.RESULTS_DEPLOY_INTERVAL - duration
 
         print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
 
         if wait < 0:
-            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.DEPLOY_INTERVAL)
+            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.RESULTS_DEPLOY_INTERVAL)
             wait = 0
 
         sleep(wait)
