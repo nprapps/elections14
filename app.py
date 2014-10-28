@@ -27,7 +27,7 @@ def format_board_time(dt):
     if not dt:
         return ''
 
-    return '{d:%l}:{d.minute:02}'.format(d=dt)
+    return '{d:%l}:{d.minute:02}'.format(d=dt) + ' EST'
 
 @app.template_filter()
 def format_percent(num):
