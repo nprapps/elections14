@@ -138,7 +138,7 @@ def render_liveblog_slides():
     slides = models.Slide.select()
 
     output_path = '.liveblog_slides_html'
-    os.mkdirs(output_path)
+    os.makedirs(output_path)
 
     for slide in slides:
         slug = slide.slug
