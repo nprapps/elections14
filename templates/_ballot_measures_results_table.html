@@ -2,10 +2,8 @@
       {% for race in races %}
       <tr class="race dontsplit">
           <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
-              {% if race.is_called() %}
-                  {{ race.precincts_reporting_percent()|format_percent }}
-              {% elif race.is_reporting() %}
-                  {{ race.precincts_reporting_percent()|format_percent }}
+              {% if race.is_called() or race.is_reporting() %}
+                  {{ race.precincts_reporting_percent()|format_precincts_percent }}
               {% else %}
                   &mdash;
               {% endif %}
