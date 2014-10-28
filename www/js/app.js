@@ -155,8 +155,13 @@ var setupUI = function() {
         state = $.cookie('state');
         loadState();
     }
+
     if (typeof geoip2 == 'object' && !($.cookie('state'))) {
         geoip2.city(onLocateIP);
+    }
+
+    if (typeof geoip2 != 'object' && !($.cookie('state'))) {
+        $('.typeahead').attr('placeholder', 'Select a state');
     }
 
     setUpAudio(true);
@@ -280,7 +285,7 @@ var onWindowResize = function() {
     if (padding < 0) {
         padding = 0;
     }
-    
+
     $('#landscape-wrapper').css({
         'height': new_height + 'px',
         'position': 'absolute',

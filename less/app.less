@@ -285,6 +285,23 @@ svg {
         outline: none;
     }
 
+    ::-webkit-input-placeholder::before {
+        font-family: FontAwesome;
+        content:'\f002  ';
+    }
+    ::-moz-placeholder::before  {
+        font-family: FontAwesome;
+        content:'\f002  ';
+     }
+    :-ms-input-placeholder::before  {
+        font-family: FontAwesome;
+        content:'\f002  ';
+    }
+    input:-moz-placeholder::before  {
+        font-family: FontAwesome;
+        content:'\f002  ';
+    }
+
     .tt-dropdown-menu {
         text-align: left;
         max-height: 18vw;
