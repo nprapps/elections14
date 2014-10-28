@@ -424,7 +424,6 @@ svg {
             .seats-needed {
                 display: inline;
                 font-family: 'Cooper Hewitt';
-                text-transform: uppercase;
             }
 
             h2, p {
@@ -454,11 +453,11 @@ svg {
 
         .dem { color: fadeout(@blue, 25%); }
         .gop { color: fadeout(@red, 25%); }
-        .not-called { color: fadeout(#666, 25%); }
+        .not-called { color: fadeout(@yellow, 25%); }
 
         .dem .percentage   {  background: fadeout(@blue, 25%); }
         .gop .percentage   {  background: fadeout(@red, 25%); }
-        .not-called .count {  background: fadeout(@gray, 25%); }
+        .not-called .count {  background: fadeout(@yellow, 25%); color: #000; }
 
         .percentage,
         .count {

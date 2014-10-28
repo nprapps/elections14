@@ -85,7 +85,7 @@
 
         .results-header-group {
             display: table-cell;
-            border-left: 2px solid @gray;
+            // border-left: 2px solid @gray;
             box-sizing: border-box;
             padding-left: 1vw;
             padding-right: 1vw;
@@ -114,7 +114,6 @@
             h2 {
                 letter-spacing: 0.05em;
                 font-weight: 500;
-                text-transform: uppercase;
             }
 
             .total,
@@ -124,12 +123,10 @@
             }
 
             .seats-needed {
-                color: #666;
                 padding-left: 1vw;
 
                 .count {
                     display: inline-block;
-                    background: #666;
                 }
             }
 
@@ -149,12 +146,14 @@
         .dem  { color: @blue; }
         .gop   { color: @red; }
         .other { color: @green; }
-        .not-called { color: #666; }
+        .not-called { color: @yellow; }
 
         .dem .percentage   { background: @blue; }
+        .dem .count   { background: @blueDim; }
         .gop .percentage   { background: @red; }
+        .gop .count   { background: @redDim; }
         .other .percentage { background: @green; }
-        .not-called .count { background: #666; }
+        .not-called .count { background: @yellow; color: #000; text-shadow: none; }
 
         .percentage,
         .count {
