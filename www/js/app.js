@@ -85,8 +85,6 @@ var onDocumentReady = function(e) {
     $commentCount = $('.comment-count');
 
     reloadTimestamp = moment();
-    console.log(reloadTimestamp);
-
 
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
@@ -282,7 +280,7 @@ var onWindowResize = function() {
     if (padding < 0) {
         padding = 0;
     }
-
+    
     $('#landscape-wrapper').css({
         'height': new_height + 'px',
         'position': 'absolute',
@@ -312,9 +310,14 @@ var resizeSlide = function(slide) {
 var rotatePhone = function() {
     if (Modernizr.touch && Modernizr.mq('(orientation: portrait)')) {
         $rotate.show();
+        $('html').addClass('device-portrait');
+		$('#landscape-wrapper').css({
+			'top': '3vw'
+		});
     }
     else {
         $rotate.hide();
+        $('html').removeClass('device-portrait');
     }
 }
 
@@ -496,13 +499,17 @@ var checkBop = function() {
 
 var checkTimestamp = function() {
     setInterval(function() {
-        $.getJSON('/live-data/timestamp.json', function(data) {
-            var newTime = moment(data);
-            if (reloadTimestamp.isBefore(newTime)) {
-                $.cookie('reload', true);
-                window.location.reload(true);
-            }
+        $.ajax({
+            'url': '/live-data/timestamp.json',
+            'cache': false,
+            'success': function(data) {
+                var newTime = moment(data);
 
+                if (reloadTimestamp.isBefore(newTime)) {
+                    $.cookie('reload', true);
+                    window.location.reload(true);
+                }
+            }
         })
     }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
 }
