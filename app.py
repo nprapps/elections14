@@ -96,6 +96,17 @@ def _big_board(slug):
 
     context['body'] = _slide(slug).data
 
+    if slug == 'senate-big-board':
+        title = 'Senate'
+    elif slug == 'house-big-board-one' or slug == 'house-big-board-two':
+        title = 'House of Reps'
+    elif slug == 'governor-big-board':
+        title = 'Governors'
+    elif slug == 'ballot-measures-big-board':
+        title = 'Ballot measures'
+
+    context['title'] = title
+
     return render_template('_big_board_wrapper.html', **context)
 
 @app.route('/bop.html')
@@ -128,12 +139,12 @@ def _stack_json():
     # There is one state slug to manipulate in the stack, but the client
     # should see two
     for i, d in enumerate(data):
-        if d['slug'] == 'state-house':
+        if d['slug'] == 'state-house-results':
             one = copy(d)
-            one['slug'] = 'state-house-1'
+            one['slug'] = 'state-house-results-1'
 
             two = copy(d)
-            two['slug'] = 'state-house-2'
+            two['slug'] = 'state-house-results-2'
 
             data[i:i + 1] = [
                 one,
@@ -147,8 +158,8 @@ def _stack_json():
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-@app.route('/preview/state-house/index.html')
-@app.route('/preview/state-senate/index.html')
+@app.route('/preview/state-house-results/index.html')
+@app.route('/preview/state-senate-results/index.html')
 def _state_picker_preview():
     """
     Preview a state slide outside of the stack.
@@ -157,7 +168,7 @@ def _state_picker_preview():
 
     return render_template('_state_picker_preview.html', **context)
 
-@app.route('/preview/state-house-<string:slug>-<int:page>/index.html')
+@app.route('/preview/state-house-results-<string:slug>-<int:page>/index.html')
 @app_utils.cors
 def _state_house_slide_preview(slug, page):
     """
@@ -169,7 +180,7 @@ def _state_house_slide_preview(slug, page):
 
     return render_template('slide_preview.html', **context)
 
-@app.route('/preview/state-senate-<slug>/index.html')
+@app.route('/preview/state-senate-results-<slug>/index.html')
 @app_utils.cors
 def _state_senate_slide_preview(slug):
     """
@@ -194,7 +205,7 @@ def _slide_preview(slug):
 
     return render_template('slide_preview.html', **context)
 
-@app.route('/slides/state-house-<string:slug>-<int:page>.html')
+@app.route('/slides/state-house-results-<string:slug>-<int:page>.html')
 @app_utils.cors
 def _state_house_slide(slug, page):
     """
@@ -202,7 +213,7 @@ def _state_house_slide(slug, page):
     """
     from models import Race, Slide
 
-    slide = Slide.get(Slide.slug == 'state-house')
+    slide = Slide.get(Slide.slug == 'state-house-results')
 
     slug = slug.upper()
 
@@ -238,7 +249,7 @@ def _state_house_slide(slug, page):
 
     return render_template('_slide.html', **context)
 
-@app.route('/slides/state-senate-<slug>.html')
+@app.route('/slides/state-senate-results-<slug>.html')
 @app_utils.cors
 def _state_senate_slide(slug):
     """
@@ -246,8 +257,7 @@ def _state_senate_slide(slug):
     """
     from models import Race, Slide
 
-    slide = Slide.get(Slide.slug == 'state-senate')
-
+    slide = Slide.get(Slide.slug == 'state-senate-results')
     slug = slug.upper()
 
     context = make_context()

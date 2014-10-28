@@ -38,22 +38,14 @@ def query(q):
 
     run(SERVER_POSTGRES_CMD % ('psql -q elections14 -c "%s"' % q))
 
+@task
 def server_reset_db():
     """
     Reset the database on a server.
     """
     with settings(warn_only=True):
-        services = ['deploy']
-        for service in services:
-            service_name = servers._get_installed_service_name(service)
-            local('sudo service %s stop' % service_name)
-
         local(SERVER_POSTGRES_CMD % ('dropdb %s' % app_config.PROJECT_SLUG))
         local(SERVER_POSTGRES_CMD % ('createdb %s' % app_config.PROJECT_SLUG))
-
-        for service in services:
-            service_name = servers._get_installed_service_name(service)
-            local('sudo service %s start' % service_name)
 
 def local_reset_db():
     """
@@ -715,9 +707,9 @@ def play_fake_results(update_interval=60):
                     race.save()
 
             execute('liveblog.update')
-            execute('deploy_slides')
-            execute('deploy_big_boards')
             execute('deploy_bop')
+            execute('deploy_big_boards')
+            execute('deploy_slides')
 
             sleep(float(update_interval))
 

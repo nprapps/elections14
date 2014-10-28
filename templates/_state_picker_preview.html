@@ -101,7 +101,7 @@ var checkState = function() {
         var state = inverted[input]
     }
 
-    if (APP_CONFIG.PAGINATED_STATES.indexOf(state) >= 0 && window.location.pathname.split('/')[2] == 'state-house') {
+    if (APP_CONFIG.PAGINATED_STATES.indexOf(state) >= 0 && window.location.pathname.split('/')[2] == 'state-house-results') {
         $('.house-pagination').show();
     }
 }
@@ -117,7 +117,7 @@ var onStatePickerSubmitClick = function() {
     path = path.substr(0, path.lastIndexOf('/'));
     path += '-' + state;
 
-    if (window.location.pathname.split('/')[2] == 'state-house') {
+    if (window.location.pathname.split('/')[2] == 'state-house-results') {
 
         if ($('.house-pagination').is(':visible')) {
             var page = $('input[name=house-page]:checked').val();

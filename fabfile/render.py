@@ -142,7 +142,7 @@ def render_slides():
     for slide in slides:
         slug = slide.slug
 
-        if slug in ['state-senate', 'state-house']:
+        if slug in ['state-senate-results', 'state-house-results']:
             continue
 
         for view_name in ['_slide', '_slide_preview']:

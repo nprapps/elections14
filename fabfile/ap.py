@@ -3,10 +3,9 @@
 import app_config
 import json
 import os
-import requests
 import time
 
-from datetime import datetime, date
+from datetime import datetime
 from elections import AP
 from fabric.api import task
 from time import sleep
@@ -35,12 +34,10 @@ def init(output_dir='data'):
     races = []
     candidates = []
 
-    natl_numbers = []
-
     for race in ticket.races:
         races.append(process_race(race))
+
         for candidate in race.candidates:
-            id = _generate_candidate_id(candidate, race)
             candidates.append(process_candidate(candidate, race))
 
     with open('%s/init_races.json' % output_dir, 'w') as f:
