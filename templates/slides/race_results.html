@@ -5,7 +5,7 @@
             {% if bop %}
             <div class="leaderboard">
                 <div class="results-header-group dem">
-                    <h2 class="party">Dem</h2>
+                    <h2 class="party">Dem.</h2>
                     <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
                     <p class="seats-needed">Needs <span class="count">{{ bop.dem.needs }}</span></p>
                 </div>
@@ -15,7 +15,7 @@
                     <p class="seats-needed">Needs <span class="count">{{ bop.gop.needs }}</span></p>
                 </div>
                 <div class="results-header-group other">
-                    <h2 class="party">Other</h2>
+                    <h2 class="party">Ind.</h2>
                     <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
                 </div>
                 <div class="results-header-group not-called">

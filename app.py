@@ -37,6 +37,18 @@ def format_percent(num):
     return int(round(num))
 
 @app.template_filter()
+def format_precincts_percent(num):
+    """
+    Format a percentage for precincts reporting
+    """
+    if num > 0 and num < 1:
+        return '<1'
+    if num > 99 and num < 100:
+        return '>99'
+    else:
+        return int(round(num))
+
+@app.template_filter()
 def signed(num):
     """
     Add sign to number (e.g. +1, -1)
