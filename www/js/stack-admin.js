@@ -26,14 +26,6 @@ var initDragAndDrop = function() {
     });
 }
 
-var onItemsHover = function() {
-    $(this).find('.controls').css('display', 'block');
-}
-
-var offItemsHover = function() {
-    $(this).find('.controls').css('display', 'none');
-}
-
 var onAddClick = function() {
     var $item = $(this).parents('.item');
     var slide = $item.data('slide');
@@ -83,7 +75,6 @@ $(document).ready(function() {
     $saveForm = $('.send-stack');
     $stackTime = $('.stack-time');
 
-    $items.hover(onItemsHover, offItemsHover);
     $add.on('click', onAddClick);
     $remove.on('click', onRemoveClick);
     $saveForm.submit(onSaveFormSubmit)
