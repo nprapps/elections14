@@ -206,7 +206,27 @@ def _slide_preview(slug):
     """
     Preview a slide outside of the stack.
     """
+    from models import SlideSequence
+
     context = make_context()
+
+    sequence = SlideSequence.select()
+
+    for slide in sequence:
+        if slide.slide.slug == slug:
+            context['in_sequence'] = True
+            previous_slide_order = slide.order - 1
+            next_slide_order = slide.order + 1
+            break
+    try:
+        context['previous_slide'] = SlideSequence.get(SlideSequence.order == previous_slide_order).slide.slug
+    except:
+        pass
+
+    try:
+        context['next_slide'] = SlideSequence.get(SlideSequence.order == next_slide_order).slide.slug
+    except:
+        pass
 
     context['body'] = _slide(slug).data.decode('utf-8')
     context['slug'] = slug

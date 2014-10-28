@@ -96,6 +96,8 @@ $(document).ready(function() {
             success: function(response, status) {
                 if (status == "success") {
                     $('.news-items-wrapper').html($(response).find('.news-items'));
+                    $('.news-items-wrapper .add').on('click', onAddClick);
+                    $('.news-items-wrapper .remove').on('click', onRemoveClick);
                 }
             }
         })
