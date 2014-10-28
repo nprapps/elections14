@@ -80,4 +80,17 @@ $(document).ready(function() {
     $saveForm.submit(onSaveFormSubmit)
 
     initDragAndDrop();
+
+    setInterval(function() {
+        $.ajax({
+            url: window.location,
+            cache: false,
+            dataType: 'html',
+            success: function(response, status) {
+                if (status == "success") {
+                    $('.news-items-wrapper').html($(response).find('.news-items'));
+                }
+            }
+        })
+    }, 15000);
 });
