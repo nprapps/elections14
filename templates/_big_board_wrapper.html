@@ -23,7 +23,6 @@
             cache: false,
             dataType: 'html',
             success: function(response, status) {
-                console.log(status);
                 if (status == "success") {
                     $('.results-wrapper').html($(response).find('.results-inner'));
                     $('.results').columnize(colOpts);
