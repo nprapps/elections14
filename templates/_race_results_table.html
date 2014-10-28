@@ -17,7 +17,7 @@
           </td>
           {% set candidate = race.top_candidates()[0] %}
           {% if candidate %}
-          <td class="candidate {{ candidate.get_party() }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.get_party() == "other" %} <span class="party">IND</span>{% endif %}{% if candidate.incumbent %}<img src="/assets/incumbent.svg"/>{% endif %}</td>
+          <td class="candidate {{ candidate.get_party() }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.get_party() == "other" %} <span class="party">IND</span>{% endif %}{% if candidate.incumbent %}<img src="/assets/incumbent.svg" alt="Incumbent" />{% endif %}</td>
           <td class="candidate-total {{ candidate.get_party() }}{% if candidate.is_winner() %} winner{% endif %}{% if race.is_reporting() %} reporting{% endif %}"><span class="candidate-total-wrapper">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</span></td>
           {% else %}
           <td class="candidate{% if race.is_uncontested() %} uncontested{% endif %}">
@@ -30,7 +30,7 @@
           {% set candidate = race.top_candidates()[1] %}
           {% if candidate %}
           <td class="candidate-total {{ candidate.get_party() }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}{% if race.is_reporting() %} reporting{% endif %}"><span class="candidate-total-wrapper">{% if race.is_reporting() %}{{ candidate.vote_percent()|format_percent }}{% else %}--{% endif %}</span></td>
-          <td class="candidate {{ candidate.get_party() }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.get_party() == "other" %} <span class="party">IND</span>{% endif %}{% if candidate.incumbent %}<img src="/assets/incumbent.svg"/>{% endif %}</td>
+          <td class="candidate {{ candidate.get_party() }} id-{{ candidate.candidate_id }}{% if candidate.is_winner() %} winner{% endif %}{% if candidate.incumbent %} incumbent{% endif %}"><span class="fname">{{ candidate.first_name }}</span> <span class="lname">{{ candidate.last_name }}</span>{% if candidate.get_party() == "other" %} <span class="party">IND</span>{% endif %}{% if candidate.incumbent %}<img src="/assets/incumbent.svg" alt="Incumbent" />{% endif %}</td>
           {% else %}
           <td class="candidate-total"><span class="candidate-total-wrapper"></span></td>
           <td class="candidate{% if race.is_uncontested() %} uncontested{% endif %}">
