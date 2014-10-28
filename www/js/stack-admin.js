@@ -8,6 +8,7 @@ var $remove = null;
 var $timeline = null;
 var $saveForm = null;
 var $stackTime = null;
+var $saveButton = null;
 
 var initDragAndDrop = function() {
     group = $(".js-droppable-and-draggable").sortable({
@@ -43,6 +44,9 @@ var onAddClick = function() {
     // reset event handlers to account for new button
     $remove = $(newItem).find('.remove');
     $remove.on('click', onRemoveClick);
+
+    $saveButton.removeClass('btn-default');
+    $saveButton.addClass('btn-primary');
 }
 
 var onRemoveClick = function() {
@@ -53,6 +57,8 @@ var onRemoveClick = function() {
     $item.remove();
 
     $stackTime.text(currentStackTime - slideTime);
+    $saveButton.removeClass('btn-default');
+    $saveButton.addClass('btn-primary');
 }
 
 var onSaveFormSubmit = function() {
@@ -74,6 +80,7 @@ $(document).ready(function() {
     $remove = $('.remove');
     $saveForm = $('.send-stack');
     $stackTime = $('.stack-time');
+    $saveButton = $('.save-btn');
 
     $add.on('click', onAddClick);
     $remove.on('click', onRemoveClick);
