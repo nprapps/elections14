@@ -1,19 +1,21 @@
 <div class="state-slide">
-    <div class="state-results-wrapper">
-        <div class="state-header">
-            {% include '_election_party_vertical.svg' %}
-        </div>
-        <div class="state-results">
-            {% if races.count() %}
-            <h3>Recently Called {{ label }} Results</h3>
-            <div class="house">
-               <div class="results">
-                   {% include '_race_results_table.html' %}
-               </div>
+    <div class="wrapper">
+        <div class="state-results-wrapper">
+            <div class="state-header">
+                {% include '_election_party_vertical.svg' %}
             </div>
-            {% endif %}
+            <div class="state-results">
+                {% if races.count() %}
+                <h3>Recently Called {{ label }} Results</h3>
+                <div class="house">
+                   <div class="results">
+                       {% include '_race_results_table.html' %}
+                   </div>
+                </div>
+                {% endif %}
+            </div>
         </div>
-    </div>
 
-    {% include '_legend.html' %}
+        {% include '_legend.html' %}
+    </div>
 </div>
