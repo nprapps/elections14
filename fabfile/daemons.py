@@ -29,6 +29,7 @@ def deploy_liveblog():
         safe_execute('liveblog.update')
         safe_execute('deploy_liveblog_slides')
         duration = int(time() - start)
+        wait = app_config.LIVEBLOG_DEPLOY_INTERVAL - duration
 
         print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
 
@@ -49,7 +50,7 @@ def deploy_results():
         safe_execute('data.load_updates', 'data/update.json')
         safe_execute('deploy_bop')
         safe_execute('deploy_big_boards')
-        safe_execute('deploy_state_slides')
+        safe_execute('deploy_results_slides')
 
         duration = int(time() - start)
         wait = app_config.RESULTS_DEPLOY_INTERVAL - duration
@@ -57,7 +58,7 @@ def deploy_results():
         print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
 
         if wait < 0:
-            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.DEPLOY_INTERVAL)
+            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.RESULTS_DEPLOY_INTERVAL)
             wait = 0
 
         sleep(wait)

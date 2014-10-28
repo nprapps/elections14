@@ -166,14 +166,14 @@ def deploy_liveblog_slides():
     utils._deploy_to_s3('.liveblog_slides_gzip')
 
 @task
-def deploy_state_slides():
+def deploy_results_slides():
     """
-    Deploy latest state slides to S3.
+    Deploy latest results slides to S3.
     """
-    local('rm -rf .state_slides_html .state_slides_gzip')
-    render.render_state_slides()
-    utils._gzip('.state_slides_html', '.state_slides_gzip')
-    utils._deploy_to_s3('.state_slides_gzip')
+    local('rm -rf .results_slides_html .results_slides_gzip')
+    render.render_results_slides()
+    utils._gzip('.results_slides_html', '.results_slides_gzip')
+    utils._deploy_to_s3('.results_slides_gzip')
 
 @task
 def deploy_big_boards():
