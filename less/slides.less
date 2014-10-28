@@ -2,7 +2,7 @@
 @import "less/lib/bootstrap/variables.less";
 @import "less/lib/bootstrap/mixins.less";
 
-.tumblr-photo, 
+.tumblr-photo,
 .tumblr-quote,
 .tumblr-text {
     height: 100%;
@@ -36,15 +36,15 @@
 }
 
 .tumblr-text .slide-inner:after {
-    background-image: url('../assets/tumblr-text-background.jpg'); 
+    background-image: url('../assets/tumblr-text-background.jpg');
 }
 
 .tumblr-photo .slide-inner:after {
-    background-image: url('../assets/tumblr-photo-background.jpg'); 
+    background-image: url('../assets/tumblr-photo-background.jpg');
 }
 
 .tumblr-quote .slide-inner:after {
-    background-image: url('../assets/tumblr-quote-background.jpg'); 
+    background-image: url('../assets/tumblr-quote-background.jpg');
 }
 
 .tumblr-text {
@@ -69,8 +69,8 @@
                 .text-shadow;
                 margin-bottom: 2vw;
             }
-            
-            ol { 
+
+            ol {
             	margin-bottom: 2vw;
             	padding-left: 3vw;
             }
@@ -179,14 +179,14 @@
 		margin: -1.5vw 0 2vw 0;
 		color: @grayMedium;
 		text-align: center;
-	
+
     }
 	h3 {
 		margin: 0 0 1.5vw 0;
 		font-size: 2vw;
 		font-weight: 700;
 		text-transform: uppercase;
-		
+
 		span {
 			font-size: 1.3vw;
 			font-weight: 400;
@@ -239,7 +239,7 @@
 	}
 
 	.bars {
-		rect { 
+		rect {
 			shape-rendering: crispEdges;
 			opacity: 0.85;
 		}
@@ -249,7 +249,7 @@
 		.not-yet-called { fill: @musicDark; }
 	}
 
-	.value { 
+	.value {
 		font-family: 'Cooper Hewitt';
 		font-size: 2vw;
 		line-height: 1;
@@ -303,12 +303,12 @@
 		padding-top: 1vw;
 		padding-bottom: 1vw;
 		.clearfix();
-		
-		h3 { 
+
+		h3 {
 			font-size: 1.25vw;
 			margin-bottom: .75vw;
-			
-			span { 
+
+			span {
 				padding-left: .5vw;
 				font-size: 1.25vw;
 			}
@@ -319,8 +319,8 @@
 			padding: 0;
 			list-style-type: none;
 			.clearfix();
-			
-			& li {
+
+			li {
 				margin: 0 0 .2vw 0;
 				padding: 0;
 				text-indent: 0;
@@ -330,7 +330,12 @@
 				width: 15vw;
 				float: left;
 
-				span { 
+				.house-freshmen & {
+					font-size: 1.2vw;
+					line-height: 1.1;
+				}
+
+				span {
 					display: table-cell;
 
 					&.district {
@@ -353,17 +358,17 @@
 #romney-dems .candidate-list {
 	padding-top: 2vw;
 	padding-bottom: 2vw;
-	
-	h3 { 
+
+	h3 {
 		font-size: 1.75vw;
-		
+
 		span { font-size: 1.75vw; }
 	}
 	ul li {
 		font-size: 1.75vw;
 		width: 23vw;
 		margin-bottom: .5vw;
-		
+
 		span.district { width: 6vw; }
 	}
 }
@@ -427,7 +432,7 @@
     .wrapper{
     	.vertical-center;
     }
-    
+
 	.state-results-wrapper {
 		display: table;
 		width: 100%;
