@@ -68,8 +68,16 @@ ol.sortable li:after {
 .item {
 	position: relative;
 	background-color: #eee;
-	border-bottom: 2px solid #999;
+	border-bottom: 2px solid #ccc;
 	padding: 10px;
+
+	a {
+		color: @text-color;
+	}
+
+	p {
+		margin: 0;
+	}
 
 	.controls {
 		display: none;
@@ -77,12 +85,16 @@ ol.sortable li:after {
 		right: 10px;
 		top: 10px;
 		a {
-			color: black;
+			color: @brand-primary;
 		}
 		span {
 			padding: 0 5px;
 		}
 		font-size: 20px;
+	}
+
+	.time {
+		color: #aaa;
 	}
 }
 
@@ -111,12 +123,14 @@ ol.sortable li:after {
 			right: 10px;
 			top: 7px;
 			background-color: red;
+			border-radius: 5px;
 			a {
 				color: white;
 			}
 		}
 
 		.dragger {
+			color: #999;
 			padding: 0 10px;
 			cursor: move;
 		}

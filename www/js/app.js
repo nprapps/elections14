@@ -15,6 +15,7 @@ var $typeahead = null;
 var $chromecastScreen = null;
 var $chromecastMute = null;
 var $chromecastChangeState = null;
+var $chromecastIndexHeader = null;
 
 var $header = null;
 var $headerControls = null;
@@ -31,6 +32,7 @@ var $commentCount = null;
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
+var reloadTimestamp = null;
 
 var state = null;
 var firstShareLoad = true;
@@ -51,6 +53,7 @@ var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
  * Run on page load.
  */
 var onDocumentReady = function(e) {
+
     // Cache jQuery references
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
@@ -67,6 +70,7 @@ var onDocumentReady = function(e) {
     $chromecastScreen = $('.cast-controls');
     $chromecastMute = $chromecastScreen.find('.mute');
     $chromecastChangeState = $chromecastScreen.find('.change-state');
+    $chromecastIndexHeader = $welcomeScreen.find('.cast-header');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
 
@@ -80,6 +84,7 @@ var onDocumentReady = function(e) {
     $shareModal = $('#share-modal');
     $commentCount = $('.comment-count');
 
+    reloadTimestamp = moment();
 
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
@@ -111,41 +116,58 @@ var onDocumentReady = function(e) {
         is_casting = true;
         state = 'TX';
         onCastStarted();
-    } else {
+    }
+    else if ($.cookie('reload')) {
+        $.removeCookie('reload');
+        $welcomeScreen.hide();
+        setupUI();
+        STACK.start();
+    }
+    else {
         // Prepare welcome screen
         $welcomeScreen.css('opacity', 1);
-        //resizeSlide($welcomeScreen);
-        rotatePhone();
+        $chromecastIndexHeader.css('opacity', 1);
 
-        // Configure share panel
-        ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
-        var clippy = new ZeroClipboard($(".clippy"));
-
-        clippy.on('ready', function(readyEvent) {
-            clippy.on('aftercopy', onClippyCopy);
-        });
-
-        // Geolocate
-        if ($.cookie('state')) {
-            state = $.cookie('state');
-            loadState();
-        }
-        if (typeof geoip2 == 'object' && !($.cookie('state'))) {
-            geoip2.city(onLocateIP);
-        }
-
-        setUpAudio(true);
+        setupUI();
     }
 
     onWindowResize();
     setupStateTypeahead();
     checkBop();
+    checkTimestamp();
+}
+
+var setupUI = function() {
+    rotatePhone();
+
+    // Configure share panel
+    ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
+    var clippy = new ZeroClipboard($(".clippy"));
+
+    clippy.on('ready', function(readyEvent) {
+        clippy.on('aftercopy', onClippyCopy);
+    });
+
+    checkTimestamp();
+
+    // Geolocate
+    if ($.cookie('state')) {
+        state = $.cookie('state');
+        loadState();
+    }
+    if (typeof geoip2 == 'object' && !($.cookie('state'))) {
+        geoip2.city(onLocateIP);
+    }
+
+    setUpAudio(true);
 }
 
 /*
  * Setup Chromecast if library is available.
  */
 window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
+    $chromecastIndexHeader = $('.welcome').find('.cast-header');
+
     // Don't init sender if in receiver mode
     if (IS_CAST_RECEIVER) {
         return;
@@ -153,6 +175,8 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
 
     if (loaded) {
         CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
+    	$chromecastIndexHeader.find('.cast-enabled').show();
+    	$chromecastIndexHeader.find('.cast-disabled').hide();
     }
 }
 
@@ -256,7 +280,7 @@ var onWindowResize = function() {
     if (padding < 0) {
         padding = 0;
     }
-
+    
     $('#landscape-wrapper').css({
         'height': new_height + 'px',
         'position': 'absolute',
@@ -286,9 +310,14 @@ var resizeSlide = function(slide) {
 var rotatePhone = function() {
     if (Modernizr.touch && Modernizr.mq('(orientation: portrait)')) {
         $rotate.show();
+        $('html').addClass('device-portrait');
+		$('#landscape-wrapper').css({
+			'top': '3vw'
+		});
     }
     else {
         $rotate.hide();
+        $('html').removeClass('device-portrait');
     }
 }
 
@@ -383,28 +412,6 @@ var onFullScreenButtonClick = function() {
     }
 }
 
-
-
-/*
- * Enable header hover.
- */
-var onControlsHover = function() {
-    $headerControls.data('hover', true);
-    $header.fadeOut(200, function() {
-        $headerControls.fadeIn(200);
-    });
-}
-
-/*
- * Disable header hover.
- */
-var offControlsHover = function() {
-    $headerControls.data('hover', false);
-    $headerControls.fadeOut(200, function() {
-        $header.fadeIn(200);
-    });
-}
-
 /*
  * Select the state.
  */
@@ -487,6 +494,23 @@ var onLocateIP = function(response) {
 var checkBop = function() {
     setInterval(function() {
         $bop.load('/bop.html');
+    }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
+}
+
+var checkTimestamp = function() {
+    setInterval(function() {
+        $.ajax({
+            'url': '/live-data/timestamp.json',
+            'cache': false,
+            'success': function(data) {
+                var newTime = moment(data);
+
+                if (reloadTimestamp.isBefore(newTime)) {
+                    $.cookie('reload', true);
+                    window.location.reload(true);
+                }
+            }
+        })
     }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
 }
 

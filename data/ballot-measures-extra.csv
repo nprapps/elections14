@@ -1,28 +1,28 @@
-state,race_id,description,subject
-AL,1970-AL,Right to Bear Arms,Gun Rights
-AL,1972-AL,Right to Hunt and Fish,Gun Rights
-AK,3093-AK,Marijuana Legalizaton,Marijuana
-AK,3094-AK,Minimum Wage Increase,Minimum Wage
-AZ,4200-AZ,State Sovereignty (Prop 122),Miscellaneous
-AR,6468-AR,Minimum Wage Increase (Issue 5),Minimum Wage
-CO,7573-CO,Definition of Personhood (Amendment 67),Abortion
-CO,7574-CO,Mandatory Labeling of GMOs (Prop 105),GMOs
-DC,9334-DC,Marijuana Legalizaton (Initiative 71),Marijuana
-FL,11681-FL,Medical Marijuana (Amendment 2),Marijuana
-IL,16329-IL,Minimum Wage Increase,Minimum Wage
-IL,16330-IL,Birth Control in Prescription Drug Coverage,Abortion
-ME,21269-ME,Bear Hunting Ban,Gun Rights
-MA,24699-MA,Paid Sick Days (Question 4),Economic
-MI,24549-MI,Wolf Hunting,Gun Rights
-MS,27131-MS,Right to Hunt and Fish,Gun Rights
-MO,27456-MO,Teacher Performance Evaluation (Amendment 3),Education
-NE,29334-NE,Minimum Wage Increase,Minimum Wage
-ND,35683-ND,Life Begins at Conception,Abortion
-OR,39072-OR,Fund for Post-Secondary Education,Education
-OR,39073-OR,Top Two Primary,Election Reform
-OR,39067-OR,Legalized Marijuana,Marijuana
-OR,39074-OR,Mandatory Labeling of GMOs,GMOs
-SD,42551-SD,Minimum Wage Increase,Minimum Wage
-TN,43705-TN,Legislative Powers Regarding Abortion,Abortion
-WA,49385-WA,Background Checks for Gun Purchases,Gun Rights
-WA,49384-WA,Gun Rights,Gun Rights
+state,old_id,p1,p2,race_id,description,subject
+AL,AL-1970,AL,1970,1970-AL,Right to Bear Arms,Gun Rights
+AL,AL-1972,AL,1972,1972-AL,Right to Hunt and Fish,Gun Rights
+AK,AK-3093,AK,3093,3093-AK,Marijuana Legalizaton,Marijuana
+AK,AK-3094,AK,3094,3094-AK,Minimum Wage Increase,Minimum Wage
+AZ,AZ-4200,AZ,4200,4200-AZ,State Sovereignty (Prop 122),Miscellaneous
+AR,AR-6468,AR,6468,6468-AR,Minimum Wage Increase (Issue 5),Minimum Wage
+CO,CO-7573,CO,7573,7573-CO,Definition of Personhood (Amendment 67),Abortion
+CO,CO-7574,CO,7574,7574-CO,Mandatory Labeling of GMOs (Prop 105),GMOs
+DC,DC-9334,DC,9334,9334-DC,Marijuana Legalizaton (Initiative 71),Marijuana
+FL,FL-11681,FL,11681,11681-FL,Medical Marijuana (Amendment 2),Marijuana
+IL,IL-16329,IL,16329,16329-IL,Minimum Wage Increase,Minimum Wage
+IL,IL-16330,IL,16330,16330-IL,Birth Control in Prescription Drug Coverage,Abortion
+ME,ME-21269,ME,21269,21269-ME,Bear Hunting Ban,Gun Rights
+MA,MA-24699,MA,24699,24699-MA,Paid Sick Days (Question 4),Economic
+MI,MI-24549,MI,24549,24549-MI,Wolf Hunting,Gun Rights
+MS,MS-27131,MS,27131,27131-MS,Right to Hunt and Fish,Gun Rights
+MO,MO-27456,MO,27456,27456-MO,Teacher Performance Evaluation (Amendment 3),Education
+NE,NE-29334,NE,29334,29334-NE,Minimum Wage Increase,Minimum Wage
+ND,ND-35683,ND,35683,35683-ND,Life Begins at Conception,Abortion
+OR,OR-39072,OR,39072,39072-OR,Fund for Post-Secondary Education,Education
+OR,OR-39073,OR,39073,39073-OR,Top Two Primary,Election Reform
+OR,OR-39067,OR,39067,39067-OR,Legalized Marijuana,Marijuana
+OR,OR-39074,OR,39074,39074-OR,Mandatory Labeling of GMOs,GMOs
+SD,SD-42551,SD,42551,42551-SD,Minimum Wage Increase,Minimum Wage
+TN,TN-43705,TN,43705,43705-TN,Legislative Powers Regarding Abortion,Abortion
+WA,WA-49385,WA,49385,49385-WA,Background Checks for Gun Purchases,Gun Rights
+WA,WA-49384,WA,49384,49384-WA,Gun Rights,Gun Rights

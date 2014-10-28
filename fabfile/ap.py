@@ -1,131 +1,22 @@
 #!/usr/bin/env python
 
-from datetime import datetime
-import time
+import app_config
 import json
 import os
+import time
+
+from datetime import datetime
+from elections import AP
+from fabric.api import task
 from time import sleep
 
-from fabric.api import task
-import requests
-
-import app_config
-
-SLEEP_INTERVAL = 60 
 SECRETS = app_config.get_secrets()
-CACHE_FILE = '.ap_cache.json'
 
-def _init_ap(endpoint):
+def _generate_candidate_id(candidate, race):
     """
-    Make a request to an AP init endpoint.
+    Makes an unique compound ID
     """
-    url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
-    headers = {}
-
-    try:
-        with open(CACHE_FILE) as f:
-            cache = json.load(f)
-    except IOError:
-        cache = {}
-
-    if endpoint in cache:
-        url = cache[endpoint]['nextrequest']
-        headers['If-Modified-Since'] = cache[endpoint]['Last-Modified']
-        headers['If-None-Match'] = cache[endpoint]['Etag']
-
-        # If using cache, other params have already been added to url
-        params = {
-            'apiKey': SECRETS['AP_API_KEY']
-        }
-    else:
-        params = {
-            'officeID': 'S,H,G,I',
-            'format': 'json',
-            'apiKey': SECRETS['AP_API_KEY']
-        }
-
-    params = {
-        'officeID': 'S,H,G,I',
-        'format': 'json',
-        'apiKey': SECRETS['AP_API_KEY']
-    }
-
-    response = requests.get(url, params=params)
-
-    if response.status_code == 304:
-        print '%s: already up to date' % endpoint
-        return
-    elif response.status_code == 403:
-        print '%s: rate-limited' % endpoint
-        return
-    elif response.status_code != 200:
-        print '%s: returned %i' % (endpoint, response.status_code)
-        return
-
-    cache[endpoint] = {
-        'response': response.json(),
-        'nextrequest': response.json()['nextrequest'],
-        'Last-Modified': response.headers['Last-Modified'],
-        'Etag': response.headers['Etag']
-    }
-
-    with open(CACHE_FILE, 'w') as f:
-        json.dump(cache, f, indent=4)
-
-    print '%s: inited' % endpoint
-
-def _update_ap(endpoint, use_cache=True):
-    """
-    Make a request to an AP update endpoint.
-    """
-    url = 'https://api.ap.org/v2/%s/2014-11-04' % endpoint
-    headers = {}
-
-    try:
-        with open(CACHE_FILE) as f:
-            cache = json.load(f)
-    except IOError:
-        cache = {}
-
-    if endpoint in cache:
-        url = cache[endpoint]['nextrequest']
-        headers['If-Modified-Since'] = cache[endpoint]['Last-Modified']
-        headers['If-None-Match'] = cache[endpoint]['Etag']
-
-        # If using cache, other params have already been added to url
-        params = {
-            'apiKey': SECRETS['AP_API_KEY']
-        }
-    else:
-        params = {
-            'officeID': 'S,H,G,I',
-            'format': 'json',
-            'apiKey': SECRETS['AP_API_KEY']
-        }
-
-    response = requests.get(url, params=params, headers=headers)
-
-    if response.status_code == 304:
-        print '%s: already up to date' % endpoint
-        return
-    elif response.status_code == 403:
-        print '%s: rate-limited' % endpoint
-        return
-    elif response.status_code != 200:
-        print '%s: returned %i' % (endpoint, response.status_code)
-        return
-
-    cache[endpoint] = {
-        'response': response.json(),
-        'nextrequest': response.json()['nextrequest'],
-        'Last-Modified': response.headers['Last-Modified'],
-        'Etag': response.headers['Etag']
-    }
-
-    with open(CACHE_FILE, 'w') as f:
-        json.dump(cache, f, indent=4)
-
-    print '%s: updated' % endpoint
+    return '%s-%s' % (candidate.ap_polra_number, race.state_postal)
 
 @task
 def bootstrap():
@@ -137,123 +28,88 @@ def init(output_dir='data'):
     """
     Initialize data from AP.
     """
-    try:
-        os.remove(CACHE_FILE)
-    except OSError:
-        pass
+    client = AP(SECRETS['AP_FTP_USER'], SECRETS['AP_FTP_PASSWORD'])
+    ticket = client.get_topofticket('2014-11-04')
 
-    _init_ap('init/races')
-    sleep(SLEEP_INTERVAL)
-    _init_ap('init/candidates')
+    races = []
+    candidates = []
 
-    write_init_races('%s/init_races.json' % output_dir)
-    write_init_candidates('%s/init_candidates.json' % output_dir)
+    for race in ticket.races:
+        races.append(process_race(race))
 
-@task
-def get_incumbents(output_dir='data'):
-    """
-    Get incumbent data from updates.
-    """
-    _update_ap('races')
+        for candidate in race.candidates:
+            candidates.append(process_candidate(candidate, race))
 
-    write_incumbents('%s/incumbents.json' % output_dir)
+    with open('%s/init_races.json' % output_dir, 'w') as f:
+        json.dump(races, f, indent=4)
+
+    with open('%s/init_candidates.json' % output_dir, 'w') as f:
+        json.dump(candidates, f, indent=4)
 
 @task
 def update(output_dir='data'):
     """
     Update data from AP.
     """
-    _update_ap('races')
-    _update_ap('calls')
+    client = AP(SECRETS['AP_FTP_USER'], SECRETS['AP_FTP_PASSWORD'])
+    ticket = client.get_topofticket('2014-11-04')
 
-    write_update('%s/update.json' % output_dir)
-    write_calls('%s/calls.json' % output_dir)
+    write_update(ticket, '%s/update.json' % output_dir)
+    write_calls(ticket, '%s/calls.json' % output_dir)
 
-def _generate_race_id(obj, state_postal=None):
+
+def process_race(race):
     """
-    Makes an unique compound ID out of statePostal and raceID
+    Process a single race into our intermediary format.
     """
-    if state_postal:
-        return '%s-%s' % (obj['raceID'], state_postal)
-    else:
-        return '%s-%s' % (obj['raceID'], obj['statePostal'])
+    ret = {
+        'state_postal': race.state_postal,
+        'office_id': race.office_id,
+        'office_name': race.office_name,
+        'seat_name': race.seat_name,
+        'seat_number': race.seat_number,
+        'race_id': race.ap_race_number,
+        'race_type': race.race_type,
+    }
+    return ret
 
-def _generate_candidate_id(obj, state_postal=None):
+def process_candidate(candidate, race):
     """
-    Makes an unique compound ID out of statePostal and candidateID
+    Process a single candidate into our intermediary format.
     """
-    return '%s-%s' % (obj['candidateID'], state_postal)
+    ret = {
+        'candidate_id': _generate_candidate_id(candidate, race),
+        'first_name': candidate.first_name,
+        'last_name': candidate.last_name,
+        'race_id': candidate.ap_race_number,
+        'party': candidate.party,
+        'incumbent': candidate.is_incumbent,
+    }
+    return ret
 
-def write_init_races(path):
+def write_update(ticket, path):
     """
-    Write AP data to intermediary files.
+    Write an update
     """
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
-
-    races = []
-    init_races = cache['init/races']['response']['races']
-
-    for race in init_races:
-        races.append({
-            'state_postal': race.get('statePostal'),
-            'office_id': race.get('officeID'),
-            'office_name': race.get('officeName'),
-            'seat_name': race.get('seatName'),
-            'seat_number': race.get('seatNum'),
-            'race_id': _generate_race_id(race),
-            'race_type': race.get('raceTypeID'),
-            'last_updated': race.get('lastUpdated')
-        })
-
-    with open(path, 'w') as f:
-        json.dump(races, f, indent=4)
-
-def write_init_candidates(path):
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
-
-    candidates = []
-    init_candidates = cache['init/candidates']['response']['candidates']
-
-    for candidate in init_candidates:
-        candidates.append({
-            'candidate_id': _generate_candidate_id(candidate, candidate.get('statePostal')),
-            'last_name': candidate.get('last'),
-            'party': candidate.get('party'),
-            'first_name': candidate.get('first'),
-            'race_id': _generate_race_id(candidate)
-        })
-
-    with open(path, 'w') as f:
-        json.dump(candidates, f, indent=4)
-
-def write_update(path):
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
-
-    # Updates
     updates = []
-    update_races = cache['races']['response'].get('races', [])
 
-    for race in update_races:
-        stateRU = race['reportingUnits'][0]
-
-        assert stateRU.get('level', None) == 'state'
-
+    for race in ticket.races:
         update = {
-            'race_id': _generate_race_id(race, stateRU.get('statePostal')),
-            'is_test': race.get('test'),
-            'precincts_reporting': stateRU.get('precinctsReporting'),
-            'precincts_total': stateRU.get('precinctsTotal'),
-            'last_updated': stateRU.get('lastUpdated'),
-            'candidates': []
+            'race_id': race.ap_race_number,
+            'precincts_reporting': 0,
+            'precincts_total': 0,
+            'candidates': [],
         }
 
-        for candidate in stateRU.get('candidates'):
+        for ru in race.reporting_units:
+            update['precincts_total'] += ru.precincts_total
+            if ru.precincts_reporting:
+                update['precincts_reporting'] += ru.precincts_reporting
+
+        for candidate in race.candidates:
             update['candidates'].append({
-                'candidate_id': _generate_candidate_id(candidate, stateRU.get('statePostal')),
-                'vote_count': candidate.get('voteCount')
+                'candidate_id': _generate_candidate_id(candidate, race),
+                'vote_count': candidate.vote_total
             })
 
         updates.append(update)
@@ -261,75 +117,56 @@ def write_update(path):
     with open(path, 'w') as f:
         json.dump(updates, f, indent=4)
 
-def write_calls(path):
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
- 
-    # Calls
-    calls = []
-    update_calls = cache['calls']['response']['calls']
+def write_calls(ticket, path):
+    """
+    Write call data to disk
+    """
+    new_calls = []
+    called_ids = []
 
-    for race in update_calls:
-        if not race.get('raceID'):
-            continue
+    mod_string = ticket.client.ftp.sendcmd('MDTM %s' % ticket.results_file_path)
+    mod_time = datetime.strptime(mod_string[4:], '%Y%m%d%H%M%S')
 
-        call = {
-            'race_id': _generate_race_id(race),
-            'ap_called_time': race.get('callTimestamp'),
-        }
+    if os.path.isfile(path):
+        with open(path) as f:
+            previous_calls = json.load(f)
+            called_ids = [call.get('race_id') for call in previous_calls]
+    else:
+        previous_calls = []
 
-        winners = [candidate for candidate in race.get('candidates') if candidate.get('winner') == 'X']
-        runoff_winners = [candidate for candidate in race.get('candidates') if candidate.get('winner') == 'R']
+    for race in ticket.races:
+        if race.ap_race_number not in called_ids:
+            winners = [_generate_candidate_id(candidate, race) for candidate in race.candidates if candidate.is_winner]
+            runoff_winners = [_generate_candidate_id(candidate, race) for candidate in race.candidates if candidate.is_runoff]
 
-        if len(winners) and len(runoff_winners):
-            print 'ERROR: Race has winners and runoff winners! (%s, %s, %s)' % (_generate_race_id(race), race['raceType'], race['statePostal'])
-            continue
+            if len(runoff_winners):
+                new_calls.append({
+                    'race_id': race.ap_race_number,
+                    'ap_runoff_winners': runoff_winners,
+                    'ap_called_time': datetime.strftime(mod_time, '%Y-%m-%dT%H:%M:%SZ'),
+                })
 
-        if len(winners):
-            if len(winners) > 1:
-                print 'WARN: Found race with multiple winners! (%s, %s, %s)' % (_generate_race_id(race), race['raceType'], race['statePostal'])
-            winner = winners[0]
-            call['ap_winner'] = _generate_candidate_id(winner, race.get('statePostal')) 
+            if len(winners):
+                new_calls.append({
+                    'race_id': race.ap_race_number,
+                    'ap_winner': winners[0],
+                    'ap_called_time': datetime.strftime(mod_time, '%Y-%m-%dT%H:%M:%SZ'),
+                })
 
-        elif len(runoff_winners):
-            call['ap_runoff_winners'] = [_generate_candidate_id(candidate, race.get('statePostal')) for candidate in runoff_winners]
+        else:
+            print "Skipped %s, already called" % race.ap_race_number
 
-        calls.append(call)
+    calls = previous_calls + new_calls
 
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)
-
-def write_incumbents(path):
-    """
-    Write incumbent data to a file
-    """
-
-    with open(CACHE_FILE) as f:
-        cache = json.load(f)
-
-    incumbents = []
-    races = cache['races']['response'].get('races', [])
-
-    for race in races:
-        stateRU = race['reportingUnits'][0]
-
-        assert stateRU.get('level', None) == 'state'
-
-        for candidate in stateRU.get('candidates'):
-            incumbents.append({
-                'candidate_id': _generate_candidate_id(candidate, stateRU.get('statePostal')),
-                'incumbent': candidate.get('incumbent', False)
-            })
-
-    with open(path, 'w') as f:
-        json.dump(incumbents, f, indent=4)
 
 @task
 def record():
     """
     Begin recording AP data for playback later.
     """
-    update_interval = 60
+    update_interval = 60 * 5 
     folder = datetime.now().strftime('%Y-%m-%d')
     root = 'data/recording/%s' % folder
 
@@ -342,6 +179,7 @@ def record():
     while True:
         timestamp = time.time()
         folder = '%s/%s' % (root, timestamp)
+        print "Writing to %s" % folder
 
         os.mkdir(folder)
 
@@ -366,6 +204,7 @@ def playback(folder_name='2014-10-06', update_interval=60):
         print '==== LOADING NEXT DATA (%s) ====' % timestamp
         path = '%s/%s' % (folder, timestamp)
         data.load_updates('%s/update.json' % path)
+        data.load_calls('%s/calls.json' % path)
         sleep(int(update_interval))
 
     print '==== PLAYBACK COMPLETE ===='

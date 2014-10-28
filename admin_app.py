@@ -111,7 +111,7 @@ def save_stack():
             k = Key(b)
             k.key = 'live-data/stack.json'
             k.set_contents_from_filename('www/live-data/stack.json', headers={
-                'cache-control': 'max-age=5'
+                'cache-control': 'max-age=5 no-cache no-store must-revalidate'
             })
             k.make_public()
 

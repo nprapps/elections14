@@ -20,7 +20,7 @@ class RaceTestCase(unittest.TestCase):
         with test_database(test_db, [Race, Candidate], create_tables=True):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
-            race = Race.get(Race.race_id == 'OR-38529')
+            race = Race.get(Race.race_id == '38529-OR')
 
 
             self.assertIsNone(race.get_winning_party())
@@ -166,7 +166,7 @@ class RaceTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
 
-            race = Race.get(Race.race_id == 'OR-38529')
+            race = Race.get(Race.race_id == '38529-OR')
 
             self.assertFalse(race.has_incumbent())
 
@@ -182,7 +182,7 @@ class RaceTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
 
-            race = Race.get(Race.race_id == 'OR-38529')
+            race = Race.get(Race.race_id == '38529-OR')
             self.assertTrue(race.is_reporting())
             self.assertEqual(race.count_votes(), 600000)
 
@@ -192,7 +192,7 @@ class RaceTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
 
-            race = Race.get(Race.race_id == 'OR-38529')
+            race = Race.get(Race.race_id == '38529-OR')
             top_candidates = race.top_candidates()
             self.assertEqual(top_candidates[0].party, 'Dem')
             self.assertEqual(top_candidates[1].party, 'GOP')
@@ -203,7 +203,7 @@ class RaceTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
 
-            race = Race.get(Race.race_id == 'MI-24549')
+            race = Race.get(Race.race_id == '27456-MO')
             top_choices = race.top_choices()
             self.assertEqual(top_choices[0].last_name, 'Yes')
             self.assertEqual(top_choices[1].last_name, 'No')
@@ -218,7 +218,7 @@ class CandidateTestCase(unittest.TestCase):
             data.load_races('data/tests/init_races.json')
             data.load_candidates('data/tests/init_candidates.json')
 
-            race = Race.get(Race.race_id == 'OR-38529')
+            race = Race.get(Race.race_id == '38529-OR')
 
             candidate = race.candidates.get() 
             candidate.ap_winner = True

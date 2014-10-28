@@ -10,12 +10,13 @@ import json
 import random
 
 import copytext
-from fabric.api import env, local, require, run, settings, task
+from fabric.api import env, local, execute, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
 
 import app_config
 import admin_app
+import daemons
 import servers
 import csv
 
@@ -38,22 +39,14 @@ def query(q):
 
     run(SERVER_POSTGRES_CMD % ('psql -q elections14 -c "%s"' % q))
 
+@task
 def server_reset_db():
     """
     Reset the database on a server.
     """
     with settings(warn_only=True):
-        services = ['uwsgi', 'stack', 'liveblog', 'instagram']
-        for service in services:
-            service_name = servers._get_installed_service_name(service)
-            local('sudo service %s stop' % service_name)
-
         local(SERVER_POSTGRES_CMD % ('dropdb %s' % app_config.PROJECT_SLUG))
         local(SERVER_POSTGRES_CMD % ('createdb %s' % app_config.PROJECT_SLUG))
-
-        for service in services:
-            service_name = servers._get_installed_service_name(service)
-            local('sudo service %s start' % service_name)
 
 def local_reset_db():
     """
@@ -89,6 +82,18 @@ def create_tables():
     admin_user.set_password(secrets.get('ADMIN_PASSWORD'))
     admin_user.save()
 
+
+@task
+def reset_server():
+    require('settings', provided_by=['production', 'staging'])
+
+    daemons.safe_execute('servers.stop_service', 'deploy')
+    daemons.safe_execute('servers.stop_service', 'uwsgi')
+    daemons.safe_execute('servers.fabcast', 'data.bootstrap deploy_bop deploy_big_boards deploy_slides')
+    daemons.safe_execute('servers.start_service', 'uwsgi')
+    daemons.safe_execute('servers.start_service', 'deploy')
+
+
 @task
 def bootstrap():
     """
@@ -103,12 +108,12 @@ def bootstrap():
 
     load_races('data/init_races.json')
     load_candidates('data/init_candidates.json')
-    load_incumbents('data/incumbents.json')
     load_closing_times('data/closing-times.csv')
     load_house_extra('data/house-extra.csv')
     load_senate_extra('data/senate-extra.csv')
     load_governor_extra('data/governor-extra.csv')
     load_ballot_measures_extra('data/ballot-measures-extra.csv')
+    create_slides()
 
 def load_races(path):
     """
@@ -131,7 +136,6 @@ def load_races(path):
                 seat_number = race['seat_number'],
                 race_id = race['race_id'],
                 race_type = race['race_type'],
-                last_updated = race['last_updated'],
             )
 
     print 'Loaded %i races' % len(races)
@@ -155,6 +159,7 @@ def load_candidates(path):
                 party = candidate['party'],
                 race = models.Race.get(models.Race.race_id == candidate['race_id']),
                 candidate_id = candidate['candidate_id'],
+                incumbent = candidate['incumbent'],
             )
 
     print 'Loaded %i candidates' % len(candidates)
@@ -176,18 +181,8 @@ def load_updates(path):
 
     for race in races:
         race_model = models.Race.get(models.Race.race_id == race['race_id'])
-
-        # If race has not been updated, skip
-        last_updated = datetime.strptime(race['last_updated'], '%Y-%m-%dT%H:%M:%SZ')
-
-        if race_model.last_updated == last_updated:
-            continue
-
-        race_model.is_test = race['is_test']
         race_model.precincts_reporting = race['precincts_reporting']
         race_model.precincts_total = race['precincts_total']
-        race_model.last_updated = last_updated
-
         race_model.save()
 
         races_updated += 1
@@ -196,7 +191,8 @@ def load_updates(path):
             # Select candidate by candidate_id AND race_id, since they can appear in multiple races
             candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
-            candidate_model.vote_count = candidate['vote_count']
+            if candidate.get('vote_count'):
+                candidate_model.vote_count = candidate['vote_count']
 
             candidate_model.save()
 
@@ -252,32 +248,6 @@ def load_calls(path):
     print 'Updated %i candidates' % candidates_updated
     print 'Found %i winners' % num_winners
     print 'Found %i runoff winners' % num_runoff_winners
-
-@task
-def load_incumbents(path):
-    """
-    Update canidate incumbent status from the AP intermediary files.
-    """
-    import models
-
-    candidates_updated = 0
-    candidates_skipped = 0
-
-    print 'Loading incumbent data from AP update data on disk'
-
-    with open(path) as f:
-        candidates = json.load(f)
-
-    for candidate in candidates:
-        try:
-            candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'])
-            candidate_model.incumbent = candidate['incumbent']
-            candidate_model.save()
-            candidates_updated += 1
-        except models.Candidate.DoesNotExist:
-            candidates_skipped +=1
-
-    print 'Updated incumbent status for %i candidates (%i skipped)' % (candidates_updated, candidates_skipped)
 
 @task
 def update_featured_social():
@@ -512,7 +482,7 @@ def _save_senate_row(row, quiet):
         state_postal = row['state']
         seat_number = row['seat_number']
         if seat_number == '':
-            seat_number = None
+            seat_number = 0
         else:
             seat_number = int(seat_number)
 
@@ -596,7 +566,7 @@ def _save_ballot_measure_row(row, quiet):
             print 'Ballot measure %s (%s) does not exist in AP data' % (row['race_id'], row['description'])
 
 @task
-def mock_slides():
+def create_slides():
     """
     Load mockup slides from assets directory.
     """
@@ -606,31 +576,24 @@ def mock_slides():
     models.Slide.delete().execute()
 
     it = count()
-    _mock_empty_slide('Senate Big Board', 'senate_big_board', 20, it.next())
-    _mock_empty_slide('House Big Board One', 'house_big_board_one', 20, it.next())
-    _mock_empty_slide('House Big Board Two', 'house_big_board_two', 20, it.next())
-    _mock_empty_slide('Governor Big Board', 'governor_big_board', 20, it.next())
-    _mock_empty_slide('Ballot Measures Big Board', 'ballot_measures_big_board', 20, it.next())
-    _mock_empty_slide('Balance of Power', 'balance_of_power', 10, it.next())
-    _mock_empty_slide('State Senate', '_state_senate_slide', 20, it.next())
-    _mock_empty_slide('State House', '_state_house_slide', 20, it.next())
-    _mock_empty_slide('Romney Dems', 'romney_dems', 10, it.next())
-    _mock_empty_slide('Obama Reps', 'obama_reps', 10, it.next())
-    _mock_empty_slide('Incumbents Lost', 'incumbents_lost', 10, it.next())
-    _mock_empty_slide('Blue Dogs', 'blue_dogs', 10, it.next())
-    _mock_empty_slide('House Freshmen', 'house_freshmen', 10, it.next())
-    _mock_empty_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
-    _mock_empty_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
-    _mock_empty_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
+    _create_slide('Senate Big Board', 'senate_big_board', 20, it.next())
+    _create_slide('House Big Board One', 'house_big_board_one', 20, it.next())
+    _create_slide('House Big Board Two', 'house_big_board_two', 20, it.next())
+    _create_slide('Governor Big Board', 'governor_big_board', 20, it.next())
+    _create_slide('Ballot Measures Big Board', 'ballot_measures_big_board', 20, it.next())
+    _create_slide('Balance of Power Graphic', 'balance_of_power', 10, it.next())
+    _create_slide('State Senate Results', '_state_senate_slide', 20, it.next())
+    _create_slide('State House Results', '_state_house_slide', 20, it.next())
+    _create_slide('Democrats in Romney-Won Districts', 'romney_dems', 10, it.next())
+    _create_slide('Republicans in Obama-Won Districts', 'obama_reps', 10, it.next())
+    _create_slide('Incumbent Losers', 'incumbents_lost', 10, it.next())
+    #_create_slide('Blue Dog Democrat Results', 'blue_dogs', 10, it.next())
+    _create_slide('House Freshmen Results', 'house_freshmen', 10, it.next())
+    _create_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
+    _create_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
+    _create_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
 
-def _mock_slide_from_image(filename, i):
-    import models
-
-    body = '<img src="%s/assets/slide-mockups/%s"/>' % (app_config.S3_BASE_URL, filename)
-    slide = models.Slide.create(body=body, name=filename)
-    models.SlideSequence.create(order=i, slide=slide)
-
-def _mock_empty_slide(slug, view, time_on_screen, i):
+def _create_slide(slug, view, time_on_screen, i):
     import models
 
     body = ''
@@ -756,6 +719,11 @@ def play_fake_results(update_interval=60):
                     _fake_results(race)
                     race.save()
 
+            execute('liveblog.update')
+            execute('deploy_bop')
+            execute('deploy_big_boards')
+            execute('deploy_slides')
+
             sleep(float(update_interval))
 
         print "All done, resetting results"
@@ -789,3 +757,15 @@ def reset_results():
             candidate.save()
 
         race.save()
+
+"""
+Dangerous commands
+"""
+
+@task
+def tlaloc_god_of_thunder():
+    """
+    Kick all database connections
+    """
+    with settings(warn_only=True):
+        query("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'elections14';")

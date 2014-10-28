@@ -12,6 +12,9 @@ var STACK = (function () {
     var _stackRequest = null;
     var _rotateRequest = null;
 
+    var _mouseMoving = false;
+    var _hover = false;
+
     /*
      * Setup the stack display.
      */
@@ -62,35 +65,80 @@ var STACK = (function () {
      * Show the header.
      */
     var onMoveMouse = function() {
-        if (!($('body').data('mouse-moving'))) {
-            $header.fadeOut(200, function() {
-                $('body').data('mouse-moving', true);
-                $headerControls.fadeIn(200);
-            });
-
+        if (_hover) {
+            return;
         }
+
+        if (_mouseMoving) {
+            clearTimeout(_mouseMoveTimer);
+            _mouseMoveTimer = setTimeout(onEndMouse, 1500);
+
+            return;
+        }
+
+        _mouseMoving = true;
+
+        $header.fadeOut(200, function() {
+            $headerControls.fadeIn(200);
+        });
 
         if (_mouseMoveTimer) {
             clearTimeout(_mouseMoveTimer);
         }
 
-        _mouseMoveTimer = setTimeout(onEndMouse, 400);
+        _mouseMoveTimer = setTimeout(onEndMouse, 1500);
     }
 
     /*
      * Hide the header.
      */
     var onEndMouse = function() {
-
-        if (!($headerControls.data('hover'))) {
-            $headerControls.fadeOut(200, function() {
-                $header.fadeIn(200, function() {
-                    $('body').data('mouse-moving', false);
-                });
-            });
+        if (!_mouseMoving) {
+            return;
         }
+
+        _mouseMoving = false;
+
+        if (_hover) {
+            return;
+        }
+
+        $headerControls.fadeOut(200, function() {
+            $header.fadeIn(200, function() {
+            });
+        });
     }
 
+    /*
+     * Enable header hover.
+     */
+    var onControlsHover = function() {
+        if (_hover) {
+            return;
+        }
+
+        _hover = true;
+
+        $header.fadeOut(200, function() {
+            $headerControls.fadeIn(200);
+        });
+    }
+
+    /*
+     * Disable header hover.
+     */
+    var offControlsHover = function() {
+        if (!_hover) {
+            return;
+        }
+
+
+        $headerControls.fadeOut(200, function() {
+            $header.fadeIn(200, function() {
+                _hover = false;
+            });
+        });
+    }
 
     /*
      * Rotate to the next slide in the stack.
@@ -108,9 +156,8 @@ var STACK = (function () {
         }
 
         var slug = _stack[_currentSlide]['slug'];
-        var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
 
-        if (slug === 'state-senate') {
+        if (slug === 'state-senate-results') {
             // If no state selected, skip to next
             if (!state) {
                 rotateSlide();
@@ -123,9 +170,9 @@ var STACK = (function () {
                 return;
             }
 
-            slide_path = 'slides/state-senate-' + state + '.html';
+            slide_path = 'slides/state-senate-results-' + state + '.html';
         }
-        else if (slug === 'state-house-1') {
+        else if (slug === 'state-house-results-1') {
             // If no state selected, skip to next
             if (!state) {
                 rotateSlide();
@@ -138,9 +185,9 @@ var STACK = (function () {
                 return;
             }
 
-            slide_path = 'slides/state-house-' + state + '-' + '1.html';
+            slide_path = 'slides/state-house-results-' + state + '-' + '1.html';
         }
-        else if (slug === 'state-house-2') {
+        else if (slug === 'state-house-results-2') {
             // If no state selected, skip to next
             if (!state) {
                 rotateSlide();
@@ -159,7 +206,7 @@ var STACK = (function () {
                 return;
             }
 
-            slide_path = 'slides/state-house-' + state + '-' + '2.html';
+            slide_path = 'slides/state-house-results-' + state + '-' + '2.html';
         }
         else {
             slide_path = 'slides/' + slug + '.html';
@@ -168,61 +215,81 @@ var STACK = (function () {
         console.log('Rotating to next slide:', slide_path);
 
         _rotateRequest = $.ajax({
-            url: slide_path,
-            success: function(data) {
-                var $oldSlide = $stack.find('.slide');
-                var $newSlide = $(data);
-
-                if ($oldSlide.length > 0) {
-                    $oldSlide.fadeOut(800, function() {
-                        $(this).remove();
-                        $stack.append($newSlide);
-                        resizeSlide($newSlide)
-
-                        if ($newSlide.find('.leaderboard').length > 0) {
-                            $header.find('.leaderboard').fadeOut();
-                        }
-                        else {
-                            $header.find('.leaderboard').fadeIn();
-                        }
-
-                        $newSlide.fadeIn(800, function(){
-                            _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
-                        });
-                    });
-                } else {
-                    $stack.append($newSlide);
-                    resizeSlide($newSlide);
-
-                    if ($newSlide.find('.results-header').length > 0) {
-                        $header.find('.leaderboard').fadeOut();
-                    }
-                    else {
-                        $header.find('.leaderboard').fadeIn();
-                    }
-
-                    $newSlide.fadeIn(800, function(){
-                        _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
-                    });
-                }
-            }
+            'url': slide_path,
+            'cache': false,
+            'success': _onSlideSuccess,
+            'error': _onSlideError
         });
+    }
+
+    /*
+     * Slide successfully downloaded.
+     */
+    var _onSlideSuccess = function(data) {
+        var $oldSlide = $stack.find('.slide');
+        var $newSlide = $(data);
+        
+        var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
+
+        if ($oldSlide.length > 0) {
+            $oldSlide.fadeOut(800, function() {
+                $(this).remove();
+                $stack.append($newSlide);
+                resizeSlide($newSlide)
+
+                if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
+                    $header.find('.leaderboard').fadeOut();
+                }
+                else {
+                    $header.find('.leaderboard').fadeIn();
+                }
+
+                $newSlide.fadeIn(800, function(){
+                    _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
+                });
+            });
+        } else {
+            $stack.append($newSlide);
+            resizeSlide($newSlide);
+
+            if (($newSlide.find('.results-header').length > 0) || ($newSlide.find('.balance-of-power').length > 0)) {
+                $header.find('.leaderboard').fadeOut();
+            }
+            else {
+                $header.find('.leaderboard').fadeIn();
+            }
+
+            $newSlide.fadeIn(800, function(){
+                _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
+            });
+        }
+    }
+
+    /*
+     * If a slide fails to load, rotate again.
+     */
+    var _onSlideError = function() {
+        rotateSlide();
     }
 
     /*
      * Update the slide stack.
      */
-    function updateStack() {
+    var updateStack = function() {
         _stackRequest = $.ajax({
-            url: 'live-data/stack.json',
-            dataType: 'json',
-            success: function(data) {
+            'url': 'live-data/stack.json',
+            'dataType': 'json',
+            'cache': false,
+            'success': function(data) {
                 _nextStack = data;
 
                 if (!_rotateTimer) {
                     rotateSlide();
                 }
 
+                _stackTimer = setTimeout(updateStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
+            },
+            'error': function() {
                 _stackTimer = setTimeout(updateStack, APP_CONFIG.STACK_UPDATE_INTERVAL * 1000);
             }
         });

@@ -270,11 +270,33 @@ def incumbents_lost():
 
     from models import Race
 
-    senate_races = Race.select().where(Race.office_name == 'U.S. Senate')
-    house_races = Race.select().where(Race.office_name == 'U.S. House')
+    called_senate_races = Race.select().where(
+        (Race.office_name == 'U.S. Senate') &
+        (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
+        (Race.npr_called == True))
+    )
+    called_house_races = Race.select().where(
+        (Race.office_name == 'U.S. House') &
+        (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
+        (Race.npr_called == True))
+    )
 
-    context['called_senate_races'] = [race for race in senate_races if race.is_called()]
-    context['called_house_races'] = [race for race in house_races if race.is_called()]
+    senate_incumbents_lost = []
+    house_incumbents_lost = []
+
+    for race in called_senate_races:
+        for candidate in race.candidates:
+            if candidate.incumbent and not candidate.is_winner():
+                senate_incumbents_lost.append(race)
+
+    for race in called_house_races:
+        if not race.is_runoff():
+            for candidate in race.candidates:
+                if candidate.incumbent and not candidate.is_winner():
+                    house_incumbents_lost.append(race)
+
+    context['senate_incumbents_lost'] = senate_incumbents_lost
+    context['house_incumbents_lost'] = house_incumbents_lost
 
     return render_template('slides/incumbents-lost.html', **context)
 

@@ -3,6 +3,10 @@
 {% block outer_content %}
 <div id="landscape-wrapper">
     <div class="slide welcome">
+    	<div class="cast-header">
+			<span class="cast-disabled"><a href="http://www.google.com/chrome/devices/chromecast/" target="_blank"><img src="assets/chromecast_ready.svg" alt="Google Cast Ready" /></a></span>
+			<span class="cast-enabled"><a href="#" class="cast-start"><img src="assets/chromecast_off.svg" alt="Google Cast Ready" /></a></span>
+    	</div>
         <div class="slide-inner">
             <div class="slide-content">
                 <div class="centered">
@@ -125,7 +129,8 @@
 </div>
 
 <div class="rotate-phone-wrapper">
-    <p class="rotate">Please rotate your phone</p>
+	<img src="assets/rotate_phone.svg" alt="Rotate to landscape mode" />
+    <p class="rotate">{{ COPY.content.rotate_prompt }}</p>
 </div>
 
 
@@ -147,6 +152,7 @@
 {{ JS.push('js/stack.js') }}
 {{ JS.push('js/app.js') }}
 {{ JS.push('js/stack.js') }}
+{{ JS.push('js/analytics.js') }}
 {{ JS.render('js/index-footer.min.js') }}
 {% endblock extra_foot_js %}
 

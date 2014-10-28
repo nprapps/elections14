@@ -132,7 +132,6 @@ DEPLOY_PROMO = True
 CHROMECAST_APP_ID = '8408F716'
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
-SLIDE_ROTATE_INTERVAL = 5
 STACK_UPDATE_INTERVAL = 60
 
 TUMBLR_NAME = '' # See below
@@ -140,6 +139,7 @@ TUMBLR_NOT_BEFORE = None # See below
 TUMBLR_AUTO_REFRESH = None # See below
 
 DEPLOY_INTERVAL = 60
+RELOAD_CHECK_INTERVAL = 300
 
 STATES = {
     'AK': 'Alaska',
@@ -216,6 +216,8 @@ def get_secrets():
     secrets = [
         'ADMIN_PASSWORD',
         'AP_API_KEY',
+        'AP_FTP_USER',
+        'AP_FTP_PASSWORD',
         'POSTGRES_USER',
         'POSTGRES_PASSWORD',
         'POSTGRES_HOST',
