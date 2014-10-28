@@ -82,7 +82,8 @@ SERVER_SERVICES = [
     ('app', SERVER_REPOSITORY_PATH, 'ini'),
     ('uwsgi', '/etc/init', 'conf'),
     ('nginx', '/etc/nginx/locations-enabled', 'conf'),
-    ('deploy', '/etc/init', 'conf'),
+    ('deploy_results', '/etc/init', 'conf'),
+    ('deploy_liveblog', '/etc/init', 'conf'),
 ]
 
 # These variables will be set at runtime. See configure_targets() below
@@ -138,7 +139,8 @@ TUMBLR_NAME = '' # See below
 TUMBLR_NOT_BEFORE = None # See below
 TUMBLR_AUTO_REFRESH = None # See below
 
-DEPLOY_INTERVAL = 60
+LIVEBLOG_DEPLOY_INTERVAL = 15
+RESULTS_DEPLOY_INTERVAL = 60
 RELOAD_CHECK_INTERVAL = 300
 
 STATES = {
