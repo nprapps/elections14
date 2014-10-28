@@ -18,11 +18,18 @@
 {% block extra_foot_js %}
 <script type="text/javascript">
     setInterval(function() {
-        $('.results-wrapper').load(window.location + ' .results-inner', function(response, status, xhr) {
-            if (status == "success") {
-                $('.results').columnize(colOpts);
+        $.ajax({
+            url: window.location,
+            cache: false,
+            dataType: 'html',
+            success: function(response, status) {
+                console.log(status);
+                if (status == "success") {
+                    $('.results-wrapper').html($(response).find('.results-inner'));
+                    $('.results').columnize(colOpts);
+                }
             }
-        });
+        })
     }, 10000);
 </script>
 {% endblock %}
