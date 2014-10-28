@@ -26,14 +26,6 @@ var initDragAndDrop = function() {
     });
 }
 
-var onItemsHover = function() {
-    $(this).find('.controls').css('display', 'block');
-}
-
-var offItemsHover = function() {
-    $(this).find('.controls').css('display', 'none');
-}
-
 var onAddClick = function() {
     var $item = $(this).parents('.item');
     var slide = $item.data('slide');
@@ -44,7 +36,7 @@ var onAddClick = function() {
     var newItem = $('<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '" data-name="' + name + '"><span class="dragger fa fa-align-justify"></span><a href="' + APP_CONFIG.S3_BASE_URL + '/preview/' + slide + '/index.html" target="_blank"> ' + name + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></div></li>'
     )
 
-    $timeline.append(newItem);
+    $timeline.prepend(newItem);
 
     $stackTime.text(currentStackTime + slideTime);
 
@@ -83,10 +75,22 @@ $(document).ready(function() {
     $saveForm = $('.send-stack');
     $stackTime = $('.stack-time');
 
-    $items.hover(onItemsHover, offItemsHover);
     $add.on('click', onAddClick);
     $remove.on('click', onRemoveClick);
     $saveForm.submit(onSaveFormSubmit)
 
     initDragAndDrop();
+
+    setInterval(function() {
+        $.ajax({
+            url: window.location,
+            cache: false,
+            dataType: 'html',
+            success: function(response, status) {
+                if (status == "success") {
+                    $('.news-items-wrapper').html($(response).find('.news-items'));
+                }
+            }
+        })
+    }, 15000);
 });

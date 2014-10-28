@@ -158,6 +158,14 @@ def _stack_json():
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
+@app.route('/live-data/timestamp.json')
+@app_utils.cors
+def _timestamp():
+    """
+    Return a dummy timestamp file.
+    """
+    return '"2014-10-27T17:52:16.901632"', 200, { 'Content-Type': 'application/javascript' }
+
 @app.route('/preview/state-house-results/index.html')
 @app.route('/preview/state-senate-results/index.html')
 def _state_picker_preview():

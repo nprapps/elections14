@@ -88,13 +88,13 @@ def create_tables():
 def reset_server():
     require('settings', provided_by=['production', 'staging'])
 
-    daemons.safe_execute('servers.stop_service', 'deploy_liveblog_slides')
-    daemons.safe_execute('servers.stop_service', 'deploy_results_slides')
+    daemons.safe_execute('servers.stop_service', 'deploy_liveblog')
+    daemons.safe_execute('servers.stop_service', 'deploy_results')
     daemons.safe_execute('servers.stop_service', 'uwsgi')
     daemons.safe_execute('servers.fabcast', 'data.bootstrap deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
     daemons.safe_execute('servers.start_service', 'uwsgi')
-    daemons.safe_execute('servers.start_service', 'deploy_liveblog_slides')
-    daemons.safe_execute('servers.start_service', 'deploy_results_slides')
+    daemons.safe_execute('servers.start_service', 'deploy_liveblog')
+    daemons.safe_execute('servers.start_service', 'deploy_results')
 
 @task
 def bootstrap():

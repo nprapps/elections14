@@ -73,7 +73,7 @@ def _stack():
         'sequence': sequence_dicts,
         'slides': Slide.select().dicts(),
         'graphics': Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) != 'tumblr').order_by(Slide.slug).dicts(),
-        'news':  Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) == 'tumblr').order_by(Slide.slug).dicts(),
+        'news':  Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) == 'tumblr').order_by(Slide.slug.desc()).dicts(),
         'time': time,
     })
 
