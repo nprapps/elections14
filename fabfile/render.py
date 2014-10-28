@@ -125,9 +125,9 @@ def render_all():
             f.write(content.encode('utf-8'))
 
 @task
-def render_slides():
+def render_liveblog_slides():
     """
-    Render slides to HTML files.
+    Render liveblog slides to HTML files.
 
     NB: slides do not have embedded assets, so we don't pass
     the compile flag to the assets rig.
@@ -137,12 +137,56 @@ def render_slides():
 
     slides = models.Slide.select()
 
-    output_path = '.slides_html'
+    output_path = '.liveblog_slides_html'
 
     for slide in slides:
         slug = slide.slug
 
-        if slug in ['state-senate-results', 'state-house-results']:
+        if not slug.startswith('tumblr'):
+            continue
+
+        for view_name in ['_slide', '_slide_preview']:
+            with app.app.test_request_context():
+                path = url_for(view_name, slug=slug)
+
+            with app.app.test_request_context(path=path):
+                print 'Rendering %s' % path
+
+                view = app.__dict__[view_name]
+                content = view(slug)
+
+            path = '%s%s' % (output_path, path)
+
+            # Ensure path exists
+            head = os.path.split(path)[0]
+
+            try:
+                os.makedirs(head)
+            except OSError:
+                pass
+
+            with open(path, 'w') as f:
+                f.write(content.data)
+
+@task
+def render_results_slides():
+    """
+    Render results slides to HTML files.
+
+    NB: slides do not have embedded assets, so we don't pass
+    the compile flag to the assets rig.
+    """
+    from flask import url_for
+    import models
+
+    slides = models.Slide.select()
+
+    output_path = '.results_slides_html'
+
+    for slide in slides:
+        slug = slide.slug
+
+        if slug in ['state-senate-results', 'state-house-results'] or slug.startswith('tumblr'):
             continue
 
         for view_name in ['_slide', '_slide_preview']:
