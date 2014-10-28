@@ -131,17 +131,28 @@
             line-height: 4.25vw;
             border: none;
             padding: 0;
+            display: block;
 
             span {
-                background-color: @blueDarker;
                 padding: 0.7vw;
                 box-decoration-break: clone;
+            }
+
+            p {
+            	font-size: inherit;
+            	line-height: inherit;
+            }
+
+            .highlight {
+                background-color: @blueDarker;
             }
 
             footer {
                 margin-top: 3%;
                 border: none;
                 padding-left: 0;
+                display: block;
+                text-indent: 0;
 
                 cite {
                     font-size: 2.5vw;
