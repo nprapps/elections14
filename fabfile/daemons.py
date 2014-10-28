@@ -29,9 +29,9 @@ def deploy():
         safe_execute('ap.update')
         safe_execute('data.load_updates', 'data/update.json')
         safe_execute('liveblog.update')
-        safe_execute('deploy_slides')
-        safe_execute('deploy_big_boards')
         safe_execute('deploy_bop')
+        safe_execute('deploy_big_boards')
+        safe_execute('deploy_slides')
 
         duration = int(time() - start)
         wait = app_config.DEPLOY_INTERVAL - duration

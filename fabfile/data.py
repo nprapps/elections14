@@ -707,9 +707,9 @@ def play_fake_results(update_interval=60):
                     race.save()
 
             execute('liveblog.update')
-            execute('deploy_slides')
-            execute('deploy_big_boards')
             execute('deploy_bop')
+            execute('deploy_big_boards')
+            execute('deploy_slides')
 
             sleep(float(update_interval))
 
