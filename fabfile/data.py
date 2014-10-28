@@ -87,11 +87,13 @@ def create_tables():
 def reset_server():
     require('settings', provided_by=['production', 'staging'])
 
-    daemons.safe_execute('servers.stop_service', 'deploy')
+    daemons.safe_execute('servers.stop_service', 'deploy_liveblog_slides')
+    daemons.safe_execute('servers.stop_service', 'deploy_results_slides')
     daemons.safe_execute('servers.stop_service', 'uwsgi')
-    daemons.safe_execute('servers.fabcast', 'data.bootstrap deploy_bop deploy_big_boards deploy_slides')
+    daemons.safe_execute('servers.fabcast', 'data.bootstrap deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
     daemons.safe_execute('servers.start_service', 'uwsgi')
-    daemons.safe_execute('servers.start_service', 'deploy')
+    daemons.safe_execute('servers.start_service', 'deploy_liveblog_slides')
+    daemons.safe_execute('servers.start_service', 'deploy_results_slides')
 
 
 @task
@@ -722,7 +724,7 @@ def play_fake_results(update_interval=60):
             execute('liveblog.update')
             execute('deploy_bop')
             execute('deploy_big_boards')
-            execute('deploy_slides')
+            execute('deploy_results_slides')
 
             sleep(float(update_interval))
 
