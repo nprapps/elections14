@@ -11,6 +11,7 @@ var $stateWrapper = null;
 var $stateface = null;
 var $stateName = null;
 var $typeahead = null;
+var $statePickerHed = null;
 
 var $chromecastScreen = null;
 var $chromecastMute = null;
@@ -66,6 +67,7 @@ var onDocumentReady = function(e) {
     $stateWrapper = $('.state');
     $stateface = $('.stateface');
     $stateName = $('.state-name');
+    $statePickerHed = $('.state-picker-hed');
 
     $chromecastScreen = $('.cast-controls');
     $chromecastMute = $chromecastScreen.find('.mute');
@@ -162,6 +164,7 @@ var setupUI = function() {
 
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
         $('.typeahead').attr('placeholder', 'Select a state');
+        $statePickerHed.text('We are having trouble determining your state.')
     }
 
     setUpAudio(true);
@@ -444,6 +447,7 @@ var switchState = function() {
     $stateface.css('opacity', 1);
     $stateName.css('opacity', 1);
     $typeahead.css('top', '0');
+    $statePickerHed.text('You have selected');
 
     $('.typeahead').typeahead('val', '')
     $('.typeahead').typeahead('close');
