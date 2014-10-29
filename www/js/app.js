@@ -462,7 +462,7 @@ var hideStateFace = function() {
 var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
-    $statePickerLink.text(APP_CONFIG.STATES[state]);
+    $statePickerLink.html('<span class="stateface stateface-' + state.toLowerCase() + '"></span>' + APP_CONFIG.STATES[state]);
     $statePickerScreen.hide();
 
     if (is_casting) {

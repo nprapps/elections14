@@ -21,8 +21,8 @@ var STACK = (function () {
     obj.start = function() {
         $stack.show();
 
-        $('body').on('mousemove', onMoveMouse);
-        $headerControls.hover(onControlsHover, offControlsHover);
+        // $('body').on('mousemove', onMoveMouse);
+        // $headerControls.hover(onControlsHover, offControlsHover);
 
         updateStack();
     }
@@ -51,10 +51,10 @@ var STACK = (function () {
             _rotateRequest = null;
         }
 
-        if (_mouseMoveTimer) {
-            clearTimeout(_mouseMoveTimer);
-            _mouseMoveTimer = null;
-        }
+        // if (_mouseMoveTimer) {
+        //     clearTimeout(_mouseMoveTimer);
+        //     _mouseMoveTimer = null;
+        // }
 
         $audioPlayer.jPlayer('pause');
 
