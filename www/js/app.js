@@ -26,9 +26,7 @@ var $chromecastButton = null;
 var $audioPlayer = null;
 var $bop = null;
 var $stack = null;
-
-var $shareModal = null;
-var $commentCount = null;
+var $audioButtons = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
@@ -36,7 +34,6 @@ var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 var reloadTimestamp = null;
 
 var state = null;
-var firstShareLoad = true;
 var is_casting = false;
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
@@ -82,8 +79,7 @@ var onDocumentReady = function(e) {
     $stack = $('#stack');
     $header = $('.index');
     $headerControls = $('.header-controls');
-    $shareModal = $('#share-modal');
-    $commentCount = $('.comment-count');
+    $audioButtons = $('.jp-controls .nav-btn');
 
     reloadTimestamp = moment();
 
@@ -99,8 +95,7 @@ var onDocumentReady = function(e) {
 
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
-    $shareModal.on('shown.bs.modal', onShareModalShown);
-    $shareModal.on('hidden.bs.modal', onShareModalHidden);
+    $audioButtons.on('click', onAudioButtonsClick);
     $(window).on('resize', onWindowResize);
 
     if (IS_CAST_RECEIVER) {
@@ -140,15 +135,6 @@ var onDocumentReady = function(e) {
 
 var setupUI = function() {
     rotatePhone();
-
-    // Configure share panel
-    ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
-    var clippy = new ZeroClipboard($(".clippy"));
-
-    clippy.on('ready', function(readyEvent) {
-        clippy.on('aftercopy', onClippyCopy);
-    });
-
     checkTimestamp();
 
     // Geolocate
@@ -268,6 +254,7 @@ var onCastStateChange = function(message) {
  * Send the mute message to the receiver.
  */
 var onCastMute = function() {
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-muted']);
     CHROMECAST_SENDER.sendMessage('mute', 'toggle');
 }
 
@@ -334,6 +321,8 @@ var rotatePhone = function() {
 var onCastStartClick = function(e) {
     e.preventDefault();
 
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-initiated']);
+
     CHROMECAST_SENDER.startCasting();
 }
 
@@ -383,11 +372,10 @@ var substringMatcher = function(strs) {
  * Fullscreen the app.
  */
 var onFullScreenButtonClick = function() {
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'fullscreen']);
     var elem = document.getElementById("stack");
 
     var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
-
-    console.log(fullscreenElement);
 
     if (fullscreenElement) {
         if (document.exitFullscreen) {
@@ -465,6 +453,8 @@ var hideStateFace = function() {
 var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
+
     $statePickerLink.html('<span class="stateface stateface-' + state.toLowerCase() + '"></span>' + state);
     $statePickerScreen.hide();
 
@@ -481,6 +471,7 @@ var onStatePickerSubmit = function(e) {
  * Reopen state selector.
  */
 var onStatePickerLink = function() {
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'switch-state-from-nav']);
     $stack.hide();
     $chromecastScreen.hide();
     $statePickerScreen.show();
@@ -523,51 +514,6 @@ var checkTimestamp = function() {
 }
 
 /*
- * Display the comment count.
- */
-var showCommentCount = function(count) {
-    $commentCount.text(count);
-
-    if (count > 0) {
-        $commentCount.addClass('has-comments');
-    }
-
-    if (count > 1) {
-        $commentCount.next('.comment-label').text('Comments');
-    }
-}
-
-/*
- * Share modal opened.
- */
-var onShareModalShown = function(e) {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'open-share-discuss']);
-
-    if (firstShareLoad) {
-        loadComments();
-
-        firstShareLoad = false;
-    }
-}
-
-/*
- * Share modal closed.
- */
-var onShareModalHidden = function(e) {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'close-share-discuss']);
-}
-
-/*
- * Text copied to clipboard.
- */
-var onClippyCopy = function(e) {
-    alert('Copied to your clipboard!');
-
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'summary-copied']);
-}
-
-
-/*
  * Setup audio playback.
  */
 var setUpAudio = function(startPaused) {
@@ -587,6 +533,10 @@ var setUpAudio = function(startPaused) {
         supplied: 'mp3',
         loop: false,
     });
+}
+
+var onAudioButtonsClick = function() {
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
 }
 
 $(onDocumentReady);

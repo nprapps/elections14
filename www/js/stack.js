@@ -171,6 +171,8 @@ var STACK = (function () {
 
                 $newSlide.fadeIn(800, function(){
                     _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
+
+                    $newSlide.find('a').on('click', onSlideAnchorClick);
                 });
             });
         } else {
@@ -186,6 +188,7 @@ var STACK = (function () {
 
             $newSlide.fadeIn(800, function(){
                 _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
+                $newSlide.find('a').on('click', onSlideAnchorClick);
             });
         }
     }
@@ -195,6 +198,10 @@ var STACK = (function () {
      */
     var _onSlideError = function() {
         rotateSlide();
+    }
+
+    var onSlideAnchorClick = function() {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'slide-link-click']);
     }
 
     /*
