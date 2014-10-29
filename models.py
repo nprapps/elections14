@@ -18,12 +18,12 @@ db = PostgresqlDatabase(
 )
 
 # Indepdendent candidate overrides, (AP race_id, candidate_id) two-tuple mapping
-DEMOCRAT_INDIES = {
+DEMOCRAT_OVERRIDES = {
     '17585-KS': '6081-KS',   # KS senate, Greg Orman (I)
     '20157-LA': '23579-LA',  # LA Senate, Mary Landrieu (D)
     '2010-AK':  '6399-AK',   # AK gov, Bill Walker (I)
 }
-REPUBLICAN_INDIES = {
+REPUBLICAN_OVERRIDES = {
     '5707-CA':  '19804-CA',  # CA House District 17, Ro Khanna (D)
     '20157-LA': '23859-LA',  # LA Senate, Bill Cassidy (R)
 }
@@ -295,8 +295,8 @@ class Race(SlugModel):
         Return (dem, gop) pair
         """
         try:
-            if self.race_id in DEMOCRAT_INDIES.keys():
-                candidate_id = DEMOCRAT_INDIES[self.race_id]
+            if self.race_id in DEMOCRAT_OVERRIDES.keys():
+                candidate_id = DEMOCRAT_OVERRIDES[self.race_id]
                 dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
                 dem = self.candidates.where(self.candidates.model_class.party == "Dem").get()
@@ -304,8 +304,8 @@ class Race(SlugModel):
             dem = None
 
         try:
-            if self.race_id in REPUBLICAN_INDIES.keys():
-                candidate_id = REPUBLICAN_INDIES[self.race_id]
+            if self.race_id in REPUBLICAN_OVERRIDES.keys():
+                candidate_id = REPUBLICAN_OVERRIDES[self.race_id]
                 gop = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
                 gop = self.candidates.where(self.candidates.model_class.party == "GOP").get()
