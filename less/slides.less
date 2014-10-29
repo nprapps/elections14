@@ -645,29 +645,36 @@
 	}
 
 	ul {
-		float: left;
-		width: 23vw;
 		margin-bottom: 0;
-		position: relative;
 		min-height: 1px;
-		padding-left: 1vw;
-		padding-right: 1vw;
 		box-sizing: border-box;
 		line-height: 1.1;
-
-		&.list-3 li,
-		&.list-4 li {
-			padding-left: 3.5vw;
-		}
 	}
 
 	li {
 		position: relative;
 		margin-bottom: 0.5vw;
+		width: 23vw;
+		padding-left: 3.5vw;
+		padding-right: 1vw;
+		float: left;
 
 		sup {
 			top: -0.3em;
 		}
+	}
+
+	.incumbent,
+	.reporting,
+	.seat-held,
+	.pickup,
+	.key-color {
+		width: 2.5vw;
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		text-align: right;
 	}
 
 	.key-color {
@@ -675,6 +682,7 @@
 		display: inline-block;
 		border-radius: 1vw;
 		margin-right: .5vw;
+		left: 1.25vw;
 
 		&.dem { background: @blue; }
 		&.gop { background: @red; }
@@ -717,17 +725,8 @@
 		color: @blue;
 	}
 
-	.incumbent,
-	.reporting,
-	.seat-held,
-	.pickup {
-		width: 2.5vw;
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		text-align: right;
-	}
+
+
 }
 
 
