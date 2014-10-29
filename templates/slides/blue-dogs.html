@@ -120,5 +120,20 @@
 					</li>
 				</ul>
 			</div>
-	</div>
+
+        <div class="ap-credit">
+            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function() {
+	var $timestamp = $('.ap-credit').find('.timestamp');
+	var timestamp = {{ TIMESTAMP }} * 1000;
+
+	// set timestamp, make relative
+	var ts = moment(timestamp).fromNow();
+	$timestamp.empty().append(ts);
+})();
+</script>
