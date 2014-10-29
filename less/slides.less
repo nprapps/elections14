@@ -459,20 +459,12 @@
 	.state-header,
 	.state-results {
 		display: table-cell;
-		padding: 0 2vw;
-	}
-
-	.state-header {
-		width: 25%;
-		vertical-align: middle;
-		border-right: 2px solid #999;
-	}
-
-	.state-results {
-    	width: 75%;
+		padding: 1vw 2vw;
 	}
 
     .state-header {
+		width: 25%;
+		border-right: 2px solid #999;
     	text-align: center;
     	color: #fff;
 
@@ -483,7 +475,9 @@
 
     	h2 {
 	    	text-transform: uppercase;
-	    	font-size: 2vw;
+	    	font-size: 2.5vw;
+	    	font-weight: bold;
+	    	margin: 0;
 	    }
 
 	    .stateface {
@@ -500,6 +494,9 @@
     }
 
     .state-results {
+    	width: 75%;
+    	vertical-align: top;
+
     	h3,
     	h4 {
     		text-transform: uppercase;
@@ -507,9 +504,7 @@
     		margin: 0 0 1vw;
     	}
 
-        h3 {
-        	font-size: 2vw;
-        }
+        h3 { font-size: 2vw; }
 
         h4 {
         	font-size: 1.3vw;
@@ -517,11 +512,7 @@
         	color: @grayMedium;
         }
 
-        div + h3 {
-        	margin-top: 2vw;
-        }
-
-
+        div + h3 { margin-top: 2vw; }
 
         .bar-wrapper {
         	display: inline-block;
@@ -529,9 +520,7 @@
         	height: 3vw;
         }
 
-        .bar {
-        	height: 3vw;
-        }
+        .bar { height: 3vw; }
 
         .bar-label {
         	position: absolute;
@@ -645,29 +634,36 @@
 	}
 
 	ul {
-		float: left;
-		width: 23vw;
 		margin-bottom: 0;
-		position: relative;
 		min-height: 1px;
-		padding-left: 1vw;
-		padding-right: 1vw;
 		box-sizing: border-box;
 		line-height: 1.1;
-
-		&.list-3 li,
-		&.list-4 li {
-			padding-left: 3.5vw;
-		}
 	}
 
 	li {
 		position: relative;
 		margin-bottom: 0.5vw;
+		width: 23vw;
+		padding-left: 3.5vw;
+		padding-right: 1vw;
+		float: left;
 
 		sup {
 			top: -0.3em;
 		}
+	}
+
+	.incumbent,
+	.reporting,
+	.seat-held,
+	.pickup,
+	.key-color {
+		width: 2.5vw;
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		text-align: right;
 	}
 
 	.key-color {
@@ -675,6 +671,7 @@
 		display: inline-block;
 		border-radius: 1vw;
 		margin-right: .5vw;
+		left: 1.25vw;
 
 		&.dem { background: @blue; }
 		&.gop { background: @red; }
@@ -717,17 +714,8 @@
 		color: @blue;
 	}
 
-	.incumbent,
-	.reporting,
-	.seat-held,
-	.pickup {
-		width: 2.5vw;
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		text-align: right;
-	}
+
+
 }
 
 

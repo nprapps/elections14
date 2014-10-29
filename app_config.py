@@ -199,7 +199,7 @@ STATES = {
 }
 
 
-NO_GOVERNOR_OR_SENATE_RACES = ['DC', 'IN', 'MO', 'ND', 'UT', 'WV']
+NO_GOVERNOR_OR_SENATE_RACES = ['DC', 'IN', 'MO', 'ND', 'UT', 'WA']
 
 NO_FEATURED_HOUSE_RACES = ['AK', 'AL', 'DC', 'DE', 'ID', 'KS', 'KY', 'LA', 'MD', 'MO', 'MS', 'ND', 'OK', 'RI', 'SC', 'SD', 'TN', 'VT', 'WI', 'WY']
 

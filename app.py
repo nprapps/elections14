@@ -91,13 +91,6 @@ def promo():
     """
     return render_template('promo.html', **make_context())
 
-@app.route('/comments/')
-def comments():
-    """
-    Full-page comments view.
-    """
-    return render_template('comments.html', **make_context())
-
 @app.route('/board/<slug>/')
 def _big_board(slug):
     """
@@ -108,9 +101,11 @@ def _big_board(slug):
     context['body'] = _slide(slug).data
 
     if slug == 'senate-big-board':
-        title = 'Senate'
-    elif slug == 'house-big-board-one' or slug == 'house-big-board-two':
-        title = 'House of Reps'
+        title = 'U.S. Senate'
+    elif slug == 'house-big-board-one':
+        title = 'U.S. House 1'
+    elif slug == 'house-big-board-two':
+        title = 'U.S. House 2'
     elif slug == 'governor-big-board':
         title = 'Governors'
     elif slug == 'ballot-measures-big-board':
