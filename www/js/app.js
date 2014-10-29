@@ -28,16 +28,12 @@ var $bop = null;
 var $stack = null;
 var $audioButtons = null;
 
-var $shareModal = null;
-var $commentCount = null;
-
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 var reloadTimestamp = null;
 
 var state = null;
-var firstShareLoad = true;
 var is_casting = false;
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
@@ -84,8 +80,6 @@ var onDocumentReady = function(e) {
     $stack = $('#stack');
     $header = $('.index');
     $headerControls = $('.header-controls');
-    $shareModal = $('#share-modal');
-    $commentCount = $('.comment-count');
     $audioButtons = $('.jp-controls .nav-btn');
 
     reloadTimestamp = moment();
@@ -103,8 +97,6 @@ var onDocumentReady = function(e) {
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
     $audioButtons.on('click', onAudioButtonsClick);
-    $shareModal.on('shown.bs.modal', onShareModalShown);
-    $shareModal.on('hidden.bs.modal', onShareModalHidden);
     $(window).on('resize', onWindowResize);
 
     if (IS_CAST_RECEIVER) {
@@ -144,15 +136,6 @@ var onDocumentReady = function(e) {
 
 var setupUI = function() {
     rotatePhone();
-
-    // Configure share panel
-    ZeroClipboard.config({ swfPath: 'js/lib/ZeroClipboard.swf' });
-    var clippy = new ZeroClipboard($(".clippy"));
-
-    clippy.on('ready', function(readyEvent) {
-        clippy.on('aftercopy', onClippyCopy);
-    });
-
     checkTimestamp();
 
     // Geolocate
@@ -489,7 +472,7 @@ var onStatePickerSubmit = function(e) {
  * Reopen state selector.
  */
 var onStatePickerLink = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-nav-switch']);
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'switch-state-from-nav']);
     $stack.hide();
     $chromecastScreen.hide();
     $statePickerScreen.show();
@@ -530,51 +513,6 @@ var checkTimestamp = function() {
         })
     }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
-
-/*
- * Display the comment count.
- */
-var showCommentCount = function(count) {
-    $commentCount.text(count);
-
-    if (count > 0) {
-        $commentCount.addClass('has-comments');
-    }
-
-    if (count > 1) {
-        $commentCount.next('.comment-label').text('Comments');
-    }
-}
-
-/*
- * Share modal opened.
- */
-var onShareModalShown = function(e) {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'open-share-discuss']);
-
-    if (firstShareLoad) {
-        loadComments();
-
-        firstShareLoad = false;
-    }
-}
-
-/*
- * Share modal closed.
- */
-var onShareModalHidden = function(e) {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'close-share-discuss']);
-}
-
-/*
- * Text copied to clipboard.
- */
-var onClippyCopy = function(e) {
-    alert('Copied to your clipboard!');
-
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'summary-copied']);
-}
-
 
 /*
  * Setup audio playback.
