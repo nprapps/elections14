@@ -188,17 +188,6 @@ def recent_senate_calls():
 
     return render_template('slides/recent-calls.html', **context)
 
-def recent_house_calls():
-    """
-    Get the most recent called Senate races
-    """
-    context = make_context()
-
-    context['races'] = _get_recently_called('U.S. House')
-    context['label'] = 'House'
-
-    return render_template('slides/recent-calls.html', **context)
-
 def recent_governor_calls():
     """
     Get the most recent called Senate races
@@ -230,14 +219,6 @@ def balance_of_power():
     context['senate_not_called'] = app_utils.calculate_seats_left(senate_races)
 
     return render_template('slides/balance-of-power.html', **context)
-
-def blue_dogs():
-    """
-    Ongoing list of how blue dog democrats are faring
-    """
-    context = make_context()
-
-    return render_template('slides/blue-dogs.html', **context)
 
 def house_freshmen():
     """
