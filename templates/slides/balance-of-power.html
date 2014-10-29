@@ -114,8 +114,9 @@
 		value_limit = Math.floor(container_width * .04); // 4vw
 		
 		// draw charts
-		draw_chart('house', graphic_width, graphic_height);
 		draw_chart('senate', graphic_width, graphic_height);
+		draw_chart('house', graphic_width, graphic_height);
+		
 		
 		// set timestamp, make relative
 		var ts = moment(timestamp).fromNow();
