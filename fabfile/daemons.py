@@ -47,7 +47,7 @@ def deploy_results():
     while True:
         start = time()
         safe_execute('ap.update')
-        safe_execute('data.load_updates', 'data/update.json')
+        safe_execute('data.update')
         safe_execute('deploy_bop')
         safe_execute('deploy_big_boards')
         safe_execute('deploy_results_slides')
