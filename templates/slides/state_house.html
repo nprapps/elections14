@@ -2,9 +2,9 @@
     <div class="wrapper">
         <div class="state-results-wrapper">
             <div class="state-header">
-                <h1><span class="stateface stateface-{{ state_postal|lower }}"></span></h1>
                 <h2>{{ state_name }}</h2>
-                <h3 class="page">{% if page %}{{ page }} of 2{% endif %}</h3>
+                <h1><span class="stateface stateface-{{ state_postal|lower }}"></span></h1>
+                {% if page %}<h3 class="page">{{ page }} of 2</h3>{% endif %}
             </div>
 
             <div class="state-results">
