@@ -13,7 +13,7 @@ from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin, ModelAdmin
-from models import Slide, SlideSequence, Race, Candidate, DEMOCRAT_INDIES, REPUBLICAN_INDIES
+from models import Slide, SlideSequence, Race, Candidate, DEMOCRAT_OVERRIDES, REPUBLICAN_OVERRIDES
 from peewee import fn
 
 import app_config
@@ -102,7 +102,7 @@ def chamber(chamber):
     """
     Read/update list of chamber candidates.
     """
-    indies = DEMOCRAT_INDIES.keys() + REPUBLICAN_INDIES.keys()
+    indies = DEMOCRAT_OVERRIDES.keys() + REPUBLICAN_OVERRIDES.keys()
     chamber_slug = 'H'
 
     if chamber == 'senate':
