@@ -152,23 +152,38 @@ def tumblr_quote(data):
 
     return render_template('slides/tumblr_quote.html', **context)
 
+def _get_recently_called(office_name):
+    """
+    Get recently called races for a given office.
+    """
+    from models import Race
+
+    now = datetime.datetime.now()
+    then = now - datetime.timedelta(minutes=15)
+
+    recently_called = []
+
+    for race in Race.select():
+        if race.office_name != office_name:
+            continue
+
+        if not race.is_called():
+            continue
+
+        if not race.get_called_time() >= then:
+            continue
+
+        recently_called.append(race)
+
+    return recently_called
+
 def recent_senate_calls():
     """
     Get the most recent called Senate races
     """
-    from models import Race
-
     context = make_context()
 
-    context['races'] = Race.select().where(
-        (Race.office_name == 'U.S. Senate') &
-        (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
-        (Race.npr_called == True))
-    ).order_by(
-        Race.ap_called_time.desc(),
-        Race.npr_called_time.desc()
-    ).limit(3)
-
+    context['races'] = _get_recently_called('U.S. Senate')
     context['label'] = 'Senate'
 
     return render_template('slides/recent-calls.html', **context)
@@ -177,19 +192,9 @@ def recent_house_calls():
     """
     Get the most recent called Senate races
     """
-    from models import Race
-
     context = make_context()
 
-    context['races'] = Race.select().where(
-        (Race.office_name == 'U.S. House') &
-        (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
-        (Race.npr_called == True))
-    ).order_by(
-        Race.ap_called_time.desc(),
-        Race.npr_called_time.desc()
-    ).limit(3)
-
+    context['races'] = _get_recently_called('U.S. House')
     context['label'] = 'House'
 
     return render_template('slides/recent-calls.html', **context)
@@ -198,19 +203,9 @@ def recent_governor_calls():
     """
     Get the most recent called Senate races
     """
-    from models import Race
-
     context = make_context()
 
-    context['races'] = Race.select().where(
-        (Race.office_name == 'Governor') &
-        (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
-        (Race.npr_called == True))
-    ).order_by(
-        Race.ap_called_time.desc(),
-        Race.npr_called_time.desc()
-    ).limit(3)
-
+    context['races'] = _get_recently_called('Governor')
     context['label'] = 'Governor'
 
     return render_template('slides/recent-calls.html', **context)

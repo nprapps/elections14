@@ -63,7 +63,6 @@
         <div class="header-container">
             <div class="results-header">
                 {% include '_logo.svg' %}
-                <span class="hashtag">#nprparty</span>
             </div>
         </div>
 
@@ -90,21 +89,16 @@
             <div class="results-header index">
                 {% include '_logo.svg' %}
 
-                <span class="hashtag">#nprparty</span>
                 {% if bop %}
                     {% include 'bop.html' %}
                 {% endif %}
-            </div>
-
-            <div class="results-header header-controls">
-                {# <a href="#" data-toggle="modal" data-backdrop="static" data-target="#share-modal">Share <span class="fa fa-share"></span></a> #}
 
                 <div class="right-controls">
                     <div class="state results-header-group">
                         <a class="state-picker-link" href="#"><p>Virginia</p></a>
                     </div>
                     <div class="chromecast">
-                        <p><a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /></a></p>
+                        <a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /></a>
                     </div>
                     <div class="volume results-header-group">
                         <div id="audio-ambient">
@@ -124,8 +118,19 @@
                     <div class="fullscreen results-header-group">
                         <a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"></a>
                     </div>
+
+                    <div class="slide-nav results-header-group">
+                        <nav>
+                            <button type="button" class="nav-btn nav-btn-left"><i class="fa fa-angle-left"></i></button>
+                            <button type="button" class="nav-btn nav-btn-right"><i class="fa fa-angle-right"></i></button>
+                        </nav>
+                    </div>
                 </div>
             </div>
+
+            {# <div class="results-header ">
+                <a href="#" data-toggle="modal" data-backdrop="static" data-target="#share-modal">Share <span class="fa fa-share"></span></a>
+            </div> #}
         </div>
     </div>
 </div>

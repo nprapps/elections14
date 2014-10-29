@@ -55,7 +55,6 @@ def signed(num):
     """
     return '{0:+d}'.format(num)
 
-# Example application views
 @app.route('/')
 def index():
     """
