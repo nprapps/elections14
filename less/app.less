@@ -388,6 +388,12 @@ svg {
 
         .state-picker-link {
             color: @grayMedium;
+            vertical-align: middle;
+
+            .stateface {
+                font-size: 3vw;
+                vertical-align: middle;
+            }
         }
 
         .chromecast {
@@ -534,10 +540,12 @@ svg {
 
         .dem { color: fadeout(@blue, 25%); }
         .gop { color: fadeout(@red, 25%); }
+        .other { color: fadeout(@green, 25%); }
         .not-called { color: fadeout(@yellow, 25%); }
 
         .dem .percentage   {  background: fadeout(@blue, 25%); }
         .gop .percentage   {  background: fadeout(@red, 25%); }
+        .other .percentage   {  background: fadeout(@green, 25%); }
         .not-called .count {  border: 2px solid fadeout(@yellow, 25%); color: fadeout(@yellow, 25%); }
 
         .percentage,
