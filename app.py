@@ -91,13 +91,6 @@ def promo():
     """
     return render_template('promo.html', **make_context())
 
-@app.route('/comments/')
-def comments():
-    """
-    Full-page comments view.
-    """
-    return render_template('comments.html', **make_context())
-
 @app.route('/board/<slug>/')
 def _big_board(slug):
     """
