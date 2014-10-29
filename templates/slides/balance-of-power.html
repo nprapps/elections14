@@ -29,13 +29,13 @@
 		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ house_bop.dem.has }}, 'net': {{ house_bop.dem.picked_up }} },
 		{ 'party': 'Republican', 'party_abbr': 'GOP', 'seats': {{ house_bop.gop.has }}, 'net': {{ house_bop.gop.picked_up }} },
 		{ 'party': 'Independent', 'party_abbr': 'Ind.', 'seats': {{ house_bop.other.has }}, 'net': {{ house_bop.other.picked_up }} },
-		{ 'party': 'Not yet called', 'party_abbr': 'TBD', 'seats': {{ house_not_called }}, 'net': 0 }
+		{ 'party': 'Not called', 'party_abbr': 'Not called', 'seats': {{ house_not_called }}, 'net': 0 }
 	];
 	var data_senate = [
 		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ senate_bop.dem.has }}, 'net': {{ senate_bop.dem.picked_up }} },
 		{ 'party': 'Republican', 'party_abbr': 'GOP', 'seats': {{ senate_bop.gop.has }}, 'net': {{ senate_bop.gop.picked_up }} },
 		{ 'party': 'Independent', 'party_abbr': 'Ind.', 'seats': {{ senate_bop.other.has }}, 'net': {{ senate_bop.other.picked_up }} },
-		{ 'party': 'Not yet called', 'party_abbr': 'TBD', 'seats': {{ senate_not_called }}, 'net': 0 }
+		{ 'party': 'Not called', 'party_abbr': 'Not called', 'seats': {{ senate_not_called }}, 'net': 0 }
 	];
 
 	var header_house = '{{ COPY.graphic_slides.subhed_bop_house }}';
@@ -86,12 +86,12 @@
 			  + (container_width * .015) + (container_width * .005) // footer height
 			);
 
-		gutter_width = Math.floor(container_width * .03); // 3vw
+		gutter_width = Math.floor(container_width * .03) + 20; // 3vw, and offset the width of a possible scrollbar
 		
-		var scrollbar_width = 20; // offset the width of a scrollbar
 		var graphic_height = container_height - content_height - container_padding_top;
-		var graphic_width = Math.floor((container_width - container_padding_sides - gutter_width - scrollbar_width) / 2);
+		var graphic_width = Math.floor((container_width - container_padding_sides - gutter_width) / 2);
 		
+		/*
 		console.log('------------------------------');
 		console.log('container dimensions: ' + container_width + ' x ' + container_height);
 		console.log('container padding: ' + container_padding_top + ', ' + container_padding_sides);
@@ -100,12 +100,13 @@
 		console.log('graphic dimensions: ' + graphic_width + ' x ' + graphic_height);
 		console.log('total_width: ' + (container_padding_sides + graphic_width + gutter_width + graphic_width));
 		console.log('total height: ' + (container_padding_top + content_height + graphic_height));
+		*/
 		
-		label_width = Math.floor(container_width * .05); // 6vw
+		label_width = Math.floor(container_width * .09); // 6vw
 		margin = { 
 			top: 0, 
 			right: (Math.ceil(container_width * .01) + 6), 
-			bottom: (Math.ceil(container_width * .01) + 6), 
+			bottom: (Math.ceil(container_width * .01) + 10), 
 			left: (label_width + 6)
 		};
 		value_height = Math.floor(container_width * .02); // 2vw
@@ -267,7 +268,7 @@
 					return classify(d['party']);
 				})
 				.text(function(d) { 
-					return d['party_abbr'];
+					return d['party'];
 				});
 	}
 
