@@ -51,7 +51,6 @@ var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
  * Run on page load.
  */
 var onDocumentReady = function(e) {
-
     // Cache jQuery references
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
