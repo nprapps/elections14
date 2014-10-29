@@ -1,53 +1,58 @@
 [
     {
-        "party": "Dem",
-        "first_name": "Aelea",
-        "last_name": "Christofferson",
-        "candidate_id": "4848",
-        "race_id": "38529-OR"
-    },
+        "first_name": "Aelea", 
+        "last_name": "Christofferson", 
+        "incumbent": false, 
+        "candidate_id": "4848-OR", 
+        "race_id": "38529-OR", 
+        "party": "Dem"
+    }, 
     {
-        "party": "GOP",
-        "first_name": "Greg",
-        "last_name": "Walden",
-        "candidate_id": "4642",
-        "race_id": "38529-OR"
-    },
+        "first_name": "Greg", 
+        "last_name": "Walden", 
+        "incumbent": false, 
+        "candidate_id": "4642-OR", 
+        "race_id": "38529-OR", 
+        "party": "GOP"
+    }, 
     {
-        "party": "Lib",
-        "first_name": "Sharon",
-        "last_name": "Durbin",
-        "candidate_id": "4979",
-        "race_id": "38529-OR"
-    },
+        "first_name": "Sharon", 
+        "last_name": "Durbin", 
+        "incumbent": false, 
+        "candidate_id": "4979-OR", 
+        "race_id": "38529-OR", 
+        "party": "Lib"
+    }, 
     {
-        "party": "Dem",
-        "first_name": "Connie",
-        "last_name": "Johnson",
-        "candidate_id": "44646",
-        "race_id": "38145-OK"
-    },
+        "first_name": "Connie", 
+        "last_name": "Johnson", 
+        "incumbent": false, 
+        "candidate_id": "44646-OK", 
+        "race_id": "38145-OK", 
+        "party": "Dem"
+    }, 
     {
-        "party": "GOP",
-        "first_name": "James",
-        "last_name": "Lankford",
-        "candidate_id": "44647",
-        "race_id": "38145-OK"
-    },
+        "first_name": "James", 
+        "last_name": "Lankford", 
+        "incumbent": false, 
+        "candidate_id": "44647-OK", 
+        "race_id": "38145-OK", 
+        "party": "GOP"
+    }, 
     {
-        "first_name": "",
-        "last_name": "No",
-        "incumbent": false,
-        "candidate_id": "3",
-        "race_id": "27456-MO",
+        "first_name": "", 
+        "last_name": "No", 
+        "incumbent": false, 
+        "candidate_id": "8598-MO", 
+        "race_id": "27456-MO", 
         "party": "No"
-    },
+    }, 
     {
-        "first_name": "",
-        "last_name": "Yes",
-        "incumbent": false,
-        "candidate_id": "2",
-        "race_id": "27456-MO",
+        "first_name": "", 
+        "last_name": "Yes", 
+        "incumbent": false, 
+        "candidate_id": "8597-MO", 
+        "race_id": "27456-MO", 
         "party": "Yes"
     }
  ]

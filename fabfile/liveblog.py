@@ -45,6 +45,10 @@ def update():
                 print 'Skipping old post'
                 continue
 
+            elif datetime.fromtimestamp(post['timestamp']) > app_config.TUMBLR_NOT_AFTER:
+                print 'Skipping newer post'
+                continue
+
             _create_slide(post)
 
         offset += LIMIT
@@ -59,7 +63,7 @@ def _create_slide(post):
         slide = models.Slide.get(slug=slug)
         print 'Updating post %s' % slug
         slide.name = post_title
-        slide.data = data 
+        slide.data = data
         slide.save()
     except models.Slide.DoesNotExist:
         print 'Creating post %s' % slug
