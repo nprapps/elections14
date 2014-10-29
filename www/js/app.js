@@ -333,6 +333,8 @@ var onCastStartClick = function(e) {
 var onCastStopClick = function(e) {
     e.preventDefault();
 
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-stopped']);
+
     CHROMECAST_SENDER.stopCasting();
 }
 
