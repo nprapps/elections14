@@ -591,10 +591,8 @@ def create_slides():
     _create_slide('Democrats in Romney-Won Districts', 'romney_dems', 10, it.next())
     _create_slide('Republicans in Obama-Won Districts', 'obama_reps', 10, it.next())
     _create_slide('Incumbent Losers', 'incumbents_lost', 10, it.next())
-    #_create_slide('Blue Dog Democrat Results', 'blue_dogs', 10, it.next())
     _create_slide('House Freshmen Results', 'house_freshmen', 10, it.next())
     _create_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
-    _create_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
     _create_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
 
 def _create_slide(slug, view, time_on_screen, i):
