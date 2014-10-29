@@ -10,7 +10,7 @@
     {
         "first_name": "Greg", 
         "last_name": "Walden", 
-        "incumbent": true, 
+        "incumbent": false, 
         "candidate_id": "4642-OR", 
         "race_id": "38529-OR", 
         "party": "GOP"
