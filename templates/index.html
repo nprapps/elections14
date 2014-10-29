@@ -37,7 +37,7 @@
         <div class="slide-inner">
             <div class="slide-content">
                 <div class="centered">
-                    <h2>Get up to the minute results for your state</h2>
+                    <h2>{{ COPY.content.state_picker_hed }}</h2>
 
                     <form role="form" class="state-picker-form">
                         <div class="form-group">
@@ -48,9 +48,11 @@
 
                             <input class="typeahead" type="text" placeholder="Select a different state">
                         </div>
-
+                        
                         <button type="submit" class="btn btn-lg state-picker-submit">Go</button>
                     </form>
+                    
+                    <p>{{ COPY.content.state_picker_footer }}</p>
                 </div>
             </div>
         </div>

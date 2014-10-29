@@ -7,11 +7,11 @@ import unittest
 from app_config import STATES
 from fabfile import ap
 
-NUM_RACES = 540
+NUM_RACES = 541
 NUM_SENATE_RACES = 36
 NUM_HOUSE_RACES = 435
 NUM_GOV_RACES = 36
-NUM_CANDIDATES = 1529
+NUM_CANDIDATES = 1530
 
 class APTestCase(unittest.TestCase):
     """

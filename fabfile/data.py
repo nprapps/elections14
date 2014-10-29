@@ -93,7 +93,7 @@ def reset_server():
         servers.stop_service('deploy_liveblog')
         servers.stop_service('deploy_results')
         servers.stop_service('uwsgi')
-    servers.fabcast('data.bootstrap liveblog.update deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
+    servers.fabcast('ap.init data.bootstrap liveblog.update deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
     servers.start_service('uwsgi')
     servers.start_service('deploy_liveblog')
     servers.start_service('deploy_results')
@@ -725,9 +725,11 @@ def play_fake_results(update_interval=60):
                     race.save()
 
             execute('liveblog.update')
-            execute('deploy_bop')
-            execute('deploy_big_boards')
-            execute('deploy_results_slides')
+
+            if app_config.DEPLOYMENT_TARGET:
+                execute('deploy_bop')
+                execute('deploy_big_boards')
+                execute('deploy_results_slides')
 
             sleep(float(update_interval))
 

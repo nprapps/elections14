@@ -265,9 +265,9 @@ class CandidateTestCase(unittest.TestCase):
             data.load_candidates('data/tests/init_candidates.json')
             data.load_updates('data/tests/update.json')
 
-            candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
-            candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
-            candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
+            candidate_4848 = Candidate.get(Candidate.candidate_id == '4848-OR')
+            candidate_4642 = Candidate.get(Candidate.candidate_id == '4642-OR')
+            candidate_4979 = Candidate.get(Candidate.candidate_id == '4979-OR')
 
             self.assertEqual(candidate_4848.vote_percent(), Decimal('25.0')) 
             self.assertAlmostEqual(candidate_4642.vote_percent(), Decimal('33.333'), 3) 

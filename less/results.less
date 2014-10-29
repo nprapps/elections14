@@ -29,7 +29,7 @@
 .house, .senate, .governor, .ballot-measures {
     padding: 2vh 3% 0 4vw;
     height: 100%;
-
+    
     table {
         font-family: 'Cooper Hewitt';
         font-weight: 400;
@@ -38,7 +38,8 @@
         font-size: 1.1vw;
     }
 
-    .results,.results-header {
+    .results,
+    .results-header {
         h1,
         h2,
         h3,
@@ -55,10 +56,13 @@
         font-size: 1.1vw;
         overflow: hidden;
         margin-bottom: 1%;
+        
+        .results-title {
+            float: left;
+        }
 
         h1 {
             font-size: 3vw;
-            float: left;
             margin: 0;
             font-family: 'Gotham SSm', Helvetica, Arial, sans-serif;
             text-transform: uppercase;
@@ -74,8 +78,15 @@
             }
         }
 
-        h2 {
-            font-size: 1.1vw;
+        h2 { font-size: 1.1vw; }
+        
+        h4 {
+        	text-transform: uppercase;
+        	font-weight: normal;
+        	color: @grayMedium;
+        	font-size: 1.3vw;
+        	font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        	margin-bottom: .5vw;
         }
 
         .leaderboard {

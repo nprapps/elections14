@@ -10,21 +10,35 @@
             {% include '_ballot_measures_results_table.html' %}
             {% endfor %}
         </div>
+
+        <div class="ap-credit">
+            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
+        </div>
     </div>
 </div>
 
-<script>
-var colOpts = {
-  precise: true,
-  columns: {{ column_number }},
-}
+<script type="text/javascript">
+(function() {
+	var $timestamp = $('.ap-credit').find('.timestamp');
+	var timestamp = {{ TIMESTAMP }} * 1000;
 
-// Columnizer needs a short pause or else it acts strangely on subsequent calls
-setTimeout(function() {
-  $('.results').columnize(colOpts);
-  $('.results-wrapper').animate({ 'opacity': 1 }, 500, function() {
-    $(this).removeClass('hide-results');
-  });
-}, 100);
+	// set timestamp, make relative
+	var ts = moment(timestamp).fromNow();
+	$timestamp.empty().append(ts);
+	
 
+	// columnizer
+	var colOpts = {
+	  precise: true,
+	  columns: {{ column_number }},
+	}
+
+	// Columnizer needs a short pause or else it acts strangely on subsequent calls
+	setTimeout(function() {
+	  $('.results').columnize(colOpts);
+	  $('.results-wrapper').animate({ 'opacity': 1 }, 500, function() {
+		$(this).removeClass('hide-results');
+	  });
+	}, 100);
+})();
 </script>
