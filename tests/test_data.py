@@ -82,9 +82,9 @@ class DataTestCase(unittest.TestCase):
             data.load_calls('data/tests/calls.json')
 
             race = Race.get(Race.race_id == '38529-OR')
-            candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
-            candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
-            candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
+            candidate_4848 = Candidate.get(Candidate.candidate_id == '4848-OR')
+            candidate_4642 = Candidate.get(Candidate.candidate_id == '4642-OR')
+            candidate_4979 = Candidate.get(Candidate.candidate_id == '4979-OR')
 
             self.assertTrue(race.is_called())
             self.assertTrue(race.ap_called)
