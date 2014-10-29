@@ -198,15 +198,16 @@ STATES = {
     'WY': 'Wyoming',
 }
 
+
+NO_GOVERNOR_OR_SENATE_RACES = ['DC', 'IN', 'MO', 'ND', 'UT', 'WV']
+
+NO_FEATURED_HOUSE_RACES = ['AK', 'AL', 'DC', 'DE', 'ID', 'KS', 'KY', 'LA', 'MD', 'MO', 'MS', 'ND', 'OK', 'RI', 'SC', 'SD', 'TN', 'VT', 'WI', 'WY']
+
 # States with many results that need to be paginated
 PAGINATED_STATES = [
     'CA',
     'IL',
     'NY'
-]
-
-NO_RACES = [
-    'DC'
 ]
 
 """

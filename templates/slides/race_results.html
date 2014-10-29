@@ -48,13 +48,10 @@
 	// set timestamp, make relative
 	var ts = moment(timestamp).fromNow();
 	$timestamp.empty().append(ts);
-	
+
 
 	// columnizer
-	var colOpts = {
-	  precise: true,
-	  columns: {{ column_number }},
-	}
+
 
 	// Columnizer needs a short pause or else it acts strangely on subsequent calls
 	setTimeout(function() {
@@ -64,4 +61,9 @@
 	  });
 	}, 100);
 })();
+
+var colOpts = {
+  precise: true,
+  columns: {{ column_number }},
+}
 </script>

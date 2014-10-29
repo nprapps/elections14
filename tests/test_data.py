@@ -44,7 +44,7 @@ class DataTestCase(unittest.TestCase):
             self.assertEqual(candidate.last_name, 'Christofferson')
             self.assertEqual(candidate.party, 'Dem')
             self.assertIsNotNone(candidate.race)
-            self.assertEqual(candidate.candidate_id, '4848')
+            self.assertEqual(candidate.candidate_id, '4848-OR')
 
     def test_update_results(self):
         with test_database(test_db, [Race, Candidate]):
@@ -53,9 +53,9 @@ class DataTestCase(unittest.TestCase):
             data.load_updates('data/tests/update.json')
             race = Race.get(Race.race_id == '38529-OR')
 
-            candidate_4848 = Candidate.get(Candidate.candidate_id == '4848')
-            candidate_4642 = Candidate.get(Candidate.candidate_id == '4642')
-            candidate_4979 = Candidate.get(Candidate.candidate_id == '4979')
+            candidate_4848 = Candidate.get(Candidate.candidate_id == '4848-OR')
+            candidate_4642 = Candidate.get(Candidate.candidate_id == '4642-OR')
+            candidate_4979 = Candidate.get(Candidate.candidate_id == '4979-OR')
 
             self.assertEqual(race.precincts_reporting, 1970)
             self.assertEqual(race.precincts_total, 2288)

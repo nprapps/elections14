@@ -34,7 +34,16 @@ var onAddClick = function() {
     var name = $item.data('name');
     var currentStackTime = parseInt($stackTime.text());
 
-    var newItem = $('<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '" data-name="' + name + '"><span class="dragger fa fa-align-justify"></span><a href="' + APP_CONFIG.S3_BASE_URL + '/preview/' + slide + '/index.html" target="_blank"> ' + name + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></div></li>'
+    var newItem = $(
+        '<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '" data-name="' + name + '">' + 
+            '<p class="slug">' +
+                '<span class="dragger fa fa-align-justify"></span>' +
+                '<a href="' + APP_CONFIG.S3_BASE_URL + '/preview/' + slide + '/index.html" target="_blank"> ' + name + '</a> <span class="time pull">' + slideTime + 's</span>' +
+            '</p>' +
+            '<div class="controls">' + 
+                '<a class="remove" href="#"><span class="fa fa-times"></span>' + 
+            '</div>' + 
+        '</li>'
     )
 
     $timeline.prepend(newItem);
@@ -67,8 +76,11 @@ var onSaveFormSubmit = function() {
         type:"POST",
         url: "/elections14/admin/stack/save",
         data: JSON.stringify(postData),
-        dataType: "json",
         contentType: "application/json",
+        success: function() {
+            $saveButton.removeClass('btn-primary');
+            $saveButton.addClass('btn-default');
+        }
     });
 }
 
