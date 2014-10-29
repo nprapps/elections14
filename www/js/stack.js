@@ -21,8 +21,8 @@ var STACK = (function () {
     obj.start = function() {
         $stack.show();
 
-        $('body').on('mousemove', onMoveMouse);
-        $headerControls.hover(onControlsHover, offControlsHover);
+        // $('body').on('mousemove', onMoveMouse);
+        // $headerControls.hover(onControlsHover, offControlsHover);
 
         updateStack();
     }
@@ -51,10 +51,10 @@ var STACK = (function () {
             _rotateRequest = null;
         }
 
-        if (_mouseMoveTimer) {
-            clearTimeout(_mouseMoveTimer);
-            _mouseMoveTimer = null;
-        }
+        // if (_mouseMoveTimer) {
+        //     clearTimeout(_mouseMoveTimer);
+        //     _mouseMoveTimer = null;
+        // }
 
         $audioPlayer.jPlayer('pause');
 
@@ -165,7 +165,7 @@ var STACK = (function () {
             }
 
             // If we're tracking any races in this state
-            if (APP_CONFIG.NO_RACES.indexOf(state) >= 0) {
+            if (APP_CONFIG.NO_GOVERNOR_OR_SENATE_RACES.indexOf(state) >= 0) {
                 rotateSlide();
                 return;
             }
@@ -180,7 +180,7 @@ var STACK = (function () {
             }
 
             // If we're tracking any races in this state
-            if (APP_CONFIG.NO_RACES.indexOf(state) >= 0) {
+            if (APP_CONFIG.NO_FEATURED_HOUSE_RACES.indexOf(state) >= 0) {
                 rotateSlide();
                 return;
             }
@@ -195,7 +195,7 @@ var STACK = (function () {
             }
 
             // If we're tracking any races in this state
-            if (APP_CONFIG.NO_RACES.indexOf(state) >= 0) {
+            if (APP_CONFIG.NO_FEATURED_HOUSE_RACES.indexOf(state) >= 0) {
                 rotateSlide();
                 return;
             }
@@ -228,7 +228,7 @@ var STACK = (function () {
     var _onSlideSuccess = function(data) {
         var $oldSlide = $stack.find('.slide');
         var $newSlide = $(data);
-        
+
         var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
 
         if ($oldSlide.length > 0) {

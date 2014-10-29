@@ -1,19 +1,37 @@
 <div class="state-slide">
-    <div class="state-results-wrapper">
-        <div class="state-header">
-            {% include '_election_party_vertical.svg' %}
-        </div>
-        <div class="state-results">
-            {% if races.count() %}
-            <h3>Recently Called {{ label }} Results</h3>
-            <div class="house">
-               <div class="results">
-                   {% include '_race_results_table.html' %}
-               </div>
+    <div class="wrapper">
+        <div class="state-results-wrapper">
+            <div class="state-header">
+                {% include '_election_party_vertical.svg' %}
             </div>
-            {% endif %}
-        </div>
-    </div>
+            <div class="state-results">
+                {% if races %}
+                <h3>Recently Called {{ label }} Results</h3>
+                <div class="house">
+                   <div class="results">
+                       {% include '_race_results_table.html' %}
+                   </div>
+                </div>
+                {% endif %}
 
-    {% include '_legend.html' %}
+				<div class="ap-credit">
+					Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
+				</div>
+
+            </div>
+        </div>
+
+        {% include '_legend.html' %}
+    </div>
 </div>
+
+<script type="text/javascript">
+(function() {
+	var $timestamp = $('.ap-credit').find('.timestamp');
+	var timestamp = {{ TIMESTAMP }} * 1000;
+
+	// set timestamp, make relative
+	var ts = moment(timestamp).fromNow();
+	$timestamp.empty().append(ts);
+})();
+</script>

@@ -8,6 +8,7 @@ import subprocess
 
 import boto
 from boto.s3.key import Key
+from fabfile import stack
 from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
@@ -15,7 +16,6 @@ from flask_peewee.admin import Admin, ModelAdmin
 from models import Slide, SlideSequence, Race, Candidate, DEMOCRAT_INDIES, REPUBLICAN_INDIES
 from peewee import fn
 
-import app as main_app
 import app_config
 from render_utils import make_context, urlencode_filter, smarty_filter
 import static_app
@@ -46,7 +46,7 @@ admin.register(SlideSequence)
 admin.setup()
 
 @app.route('/%s/admin/stack/' % app_config.PROJECT_SLUG, methods=['GET'])
-def stack():
+def _stack():
     """
     Administer a stack of slides.
     """
@@ -73,7 +73,7 @@ def stack():
         'sequence': sequence_dicts,
         'slides': Slide.select().dicts(),
         'graphics': Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) != 'tumblr').order_by(Slide.slug).dicts(),
-        'news':  Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) == 'tumblr').order_by(Slide.slug).dicts(),
+        'news':  Slide.select().where(fn.Lower(fn.Substr(Slide.slug, 1, 6)) == 'tumblr').order_by(Slide.slug.desc()).dicts(),
         'time': time,
     })
 
@@ -84,7 +84,7 @@ def save_stack():
     """
     Save new stack sequence.
     """
-    from flask import request, url_for
+    from flask import request
 
     data = request.json
     SlideSequence.delete().execute()
@@ -93,27 +93,7 @@ def save_stack():
     for i, row in enumerate(data[0]):
         SlideSequence.create(order=i, slide=row['slide'])
 
-    with main_app.app.test_request_context():
-        path = url_for('_stack_json')
-
-    with main_app.app.test_request_context(path=path):
-
-        view = main_app.__dict__['_stack_json']
-        content = view()
-
-    with open('www/live-data/stack.json', 'w') as f:
-        f.write(content.data)
-
-    if app_config.DEPLOYMENT_TARGET:
-        for bucket in app_config.S3_BUCKETS:
-            c = boto.connect_s3()
-            b = c.get_bucket(bucket['bucket_name'])
-            k = Key(b)
-            k.key = 'live-data/stack.json'
-            k.set_contents_from_filename('www/live-data/stack.json', headers={
-                'cache-control': 'max-age=5 no-cache no-store must-revalidate'
-            })
-            k.make_public()
+    stack.deploy()
 
     return "Saved sequence"
 

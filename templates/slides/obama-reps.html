@@ -52,18 +52,15 @@
 			</ul>
 		</div>
 
-        <div class="footer">
-            {% if COPY.graphic_slides.source_bop %}
-            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="graphic-timestamp"></span>.</p>
-            {% endif %}
+        <div class="ap-credit">
+            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
         </div>
-
-	</div>
+    </div>
 </div>
 
 <script type="text/javascript">
 (function() {
-	var $timestamp = $('.graphic-timestamp');
+	var $timestamp = $('.ap-credit').find('.timestamp');
 	var timestamp = {{ TIMESTAMP }} * 1000;
 
 	// set timestamp, make relative

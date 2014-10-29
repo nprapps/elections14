@@ -153,13 +153,18 @@ def write_calls(ticket, path):
                     'ap_called_time': datetime.strftime(mod_time, '%Y-%m-%dT%H:%M:%SZ'),
                 })
 
-        else:
-            print "Skipped %s, already called" % race.ap_race_number
-
     calls = previous_calls + new_calls
 
     with open(path, 'w') as f:
         json.dump(calls, f, indent=4)
+
+@task
+def clear_calls(path='data/calls.json'):
+    """
+    Clear calls json.
+    """
+    with open(path, 'w') as f:
+        json.dump([], f)
 
 @task
 def record():

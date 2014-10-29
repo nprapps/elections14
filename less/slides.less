@@ -2,10 +2,13 @@
 @import "less/lib/bootstrap/variables.less";
 @import "less/lib/bootstrap/mixins.less";
 
+/* TUMBLR */
+
 .tumblr-photo,
 .tumblr-quote,
 .tumblr-text {
     height: 100%;
+
 
     .slide-inner:after {
         content : "";
@@ -37,6 +40,7 @@
 
 .tumblr-text .slide-inner:after {
     background-image: url('../assets/tumblr-text-background.jpg');
+    opacity: 1;
 }
 
 .tumblr-photo .slide-inner:after {
@@ -131,17 +135,28 @@
             line-height: 4.25vw;
             border: none;
             padding: 0;
+            display: block;
 
             span {
-                background-color: @blueDarker;
                 padding: 0.7vw;
                 box-decoration-break: clone;
+            }
+
+            p {
+            	font-size: inherit;
+            	line-height: inherit;
+            }
+
+            .highlight {
+                background-color: @blueDarker;
             }
 
             footer {
                 margin-top: 3%;
                 border: none;
                 padding-left: 0;
+                display: block;
+                text-indent: 0;
 
                 cite {
                     font-size: 2.5vw;
@@ -152,6 +167,7 @@
         }
     }
 }
+
 
 /* GRAPHICS */
 
@@ -195,19 +211,8 @@
 			padding-left: 1vw;
 		}
 	}
-
-	.footnotes {
-		margin-bottom: 0;
-		color: @grayMedium;
-	}
-	.footnotes p,
-	.footer p {
-		margin: .5vw 0 0 0;
-		font-size: 1.25vw;
-		line-height: 1.3;
-		color: @grayMedium;
-		text-align: center;
-	}
+	
+	.ap-footnote { text-align: center; }
 
 	.r { color: @red; }
 	.d { color: @blue; }
@@ -423,14 +428,27 @@
 
 .state-slide {
 	color: #fff;
-    background-image: url('../assets/elections-background-1.jpg');
-    background-size: cover;
     height: 100%;
     margin-bottom: @line-height-computed;
-    padding-top: 4vw;
+    padding-top: 1vh;
+    padding-bottom: 4vw;
 
     .wrapper{
     	.vertical-center;
+    }
+
+    &:after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: cover;
+		background-image: url('../assets/elections-background-1.jpg');
+        width: 100%;
+        height: 100%;
+        opacity : 0.5;
+        z-index: -1;
     }
 
 	.state-results-wrapper {
@@ -611,50 +629,60 @@
 	font-family: 'Cooper Hewitt';
 	font-weight: 300;
 
-	> h3 {
-		padding-left: 2vw;
+	h3 {
+		padding-left: 1vw;
 		text-transform: uppercase;
 		font-size: 1.3vw;
-		margin-bottom: 0;
+		margin: 0 0 1vw 0;
 	}
 
 	.container-fluid {
 		margin: 1vw 2vw;
-		background: fadeout(@blueDark, 30%);
-		padding: 2vw;
-		font-size: 2vw;
+		background: fadeout(@blueDark, 50%);
+		padding: 1vw 2vw .5vw 2vw;
+		font-size: 1.5vw;
+		color: #999;
 	}
 
 	ul {
-		float: left;
-		width: 31vw;
 		margin-bottom: 0;
-		position: relative;
 		min-height: 1px;
-		padding-left: 1vw;
-		padding-right: 1vw;
 		box-sizing: border-box;
 		line-height: 1.1;
-
-		+ ul li {
-			padding-left: 5vw;
-		}
 	}
 
 	li {
 		position: relative;
 		margin-bottom: 0.5vw;
+		width: 23vw;
+		padding-left: 3.5vw;
+		padding-right: 1vw;
+		float: left;
 
 		sup {
 			top: -0.3em;
 		}
 	}
 
+	.incumbent,
+	.reporting,
+	.seat-held,
+	.pickup,
 	.key-color {
-		.square(2vw);
+		width: 2.5vw;
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		text-align: right;
+	}
+
+	.key-color {
+		.square(1.25vw);
 		display: inline-block;
 		border-radius: 1vw;
-		margin-right: 1vw;
+		margin-right: .5vw;
+		left: 1.25vw;
 
 		&.dem { background: @blue; }
 		&.gop { background: @red; }
@@ -663,9 +691,14 @@
 
 	.winner {
 		display: inline-block;
-		background: @blue;
 		border-radius: 0.5vw;
 		padding: 0 0.5vw;
+		color: #fff;
+		opacity: .8;
+
+		&.dem { background: @blue; }
+		&.gop { background: @red; }
+		&.other { background: @green; }
 	}
 
 	.incumbent {
@@ -692,16 +725,25 @@
 		color: @blue;
 	}
 
-	.incumbent,
-	.reporting,
-	.seat-held,
-	.pickup {
-		width: 3vw;
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		text-align: right;
-	}
+
+
 }
 
+
+/* CREDIT */
+
+.ap-credit {
+	margin: .75vw 0 0 0;
+	font-size: 1vw;
+	line-height: 1.3;
+	color: @grayMedium;
+	text-align: left;
+	
+	.state-slide & {
+		margin-top: 1.5vw;
+	}
+
+	.graphic & {
+		text-align: center;
+	}
+}

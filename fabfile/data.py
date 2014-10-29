@@ -16,8 +16,8 @@ from twitter import Twitter, OAuth
 
 import app_config
 import admin_app
-import daemons
 import servers
+import stack
 import csv
 
 SERVER_POSTGRES_CMD = 'export PGPASSWORD=$elections14_POSTGRES_PASSWORD && %s --username=$elections14_POSTGRES_USER --host=$elections14_POSTGRES_HOST --port=$elections14_POSTGRES_PORT'
@@ -86,13 +86,16 @@ def create_tables():
 @task
 def reset_server():
     require('settings', provided_by=['production', 'staging'])
+    require('branch', provided_by=['master', 'stable'])
 
-    daemons.safe_execute('servers.stop_service', 'deploy')
-    daemons.safe_execute('servers.stop_service', 'uwsgi')
-    daemons.safe_execute('servers.fabcast', 'data.bootstrap deploy_bop deploy_big_boards deploy_slides')
-    daemons.safe_execute('servers.start_service', 'uwsgi')
-    daemons.safe_execute('servers.start_service', 'deploy')
-
+    with settings(warn_only=True):
+        servers.stop_service('deploy_liveblog')
+        servers.stop_service('deploy_results')
+        servers.stop_service('uwsgi')
+    servers.fabcast('ap.init ap.clear_calls data.bootstrap liveblog.update deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
+    servers.start_service('uwsgi')
+    servers.start_service('deploy_liveblog')
+    servers.start_service('deploy_results')
 
 @task
 def bootstrap():
@@ -114,6 +117,7 @@ def bootstrap():
     load_governor_extra('data/governor-extra.csv')
     load_ballot_measures_extra('data/ballot-measures-extra.csv')
     create_slides()
+    stack.deploy()
 
 def load_races(path):
     """
@@ -587,10 +591,8 @@ def create_slides():
     _create_slide('Democrats in Romney-Won Districts', 'romney_dems', 10, it.next())
     _create_slide('Republicans in Obama-Won Districts', 'obama_reps', 10, it.next())
     _create_slide('Incumbent Losers', 'incumbents_lost', 10, it.next())
-    #_create_slide('Blue Dog Democrat Results', 'blue_dogs', 10, it.next())
     _create_slide('House Freshmen Results', 'house_freshmen', 10, it.next())
     _create_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
-    _create_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
     _create_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
 
 def _create_slide(slug, view, time_on_screen, i):
@@ -715,14 +717,17 @@ def play_fake_results(update_interval=60):
                 for race in races:
                     race.ap_called = True
                     race.accept_ap_call = True
+                    race.ap_called_time = datetime.now()
                     race.precincts_reporting = random.randint(race.precincts_total - 500, race.precincts_total)
                     _fake_results(race)
                     race.save()
 
             execute('liveblog.update')
-            execute('deploy_bop')
-            execute('deploy_big_boards')
-            execute('deploy_slides')
+
+            if app_config.DEPLOYMENT_TARGET:
+                execute('deploy_bop')
+                execute('deploy_big_boards')
+                execute('deploy_results_slides')
 
             sleep(float(update_interval))
 

@@ -1,11 +1,19 @@
 <div class="results-wrapper hide-results {{ page_class }}">
     <div class="results-inner results-container">
         <div class="results-header">
-            <h1>{{ page_title }}{% if current_page %} <span class="page">{{ current_page }} of 2</span>{% endif %}</h1>
+        	<div class="results-title">
+				<h1>{{ page_title }}
+					{% if current_page %}<span class="page">{{ current_page }} of 2</span>{% endif %}
+				</h1>
+				{% if page_title == 'House' %}
+				<h4>{{ COPY.content.house_board_subhed }}</h4>
+				{% endif %}
+			</div>
+
             {% if bop %}
             <div class="leaderboard">
                 <div class="results-header-group dem">
-                    <h2 class="party">Dem</h2>
+                    <h2 class="party">Dem.</h2>
                     <p class="total"><span class="percentage">{{ bop.dem.has }}</span> <span class="change">{{ bop.dem.picked_up|signed }}</span></p>
                     <p class="seats-needed">Needs <span class="count">{{ bop.dem.needs }}</span></p>
                 </div>
@@ -15,7 +23,7 @@
                     <p class="seats-needed">Needs <span class="count">{{ bop.gop.needs }}</span></p>
                 </div>
                 <div class="results-header-group other">
-                    <h2 class="party">Other</h2>
+                    <h2 class="party">Ind.</h2>
                     <p class="total"><span class="percentage">{{ bop.other.has }}</span> <span class="change">{{ bop.other.picked_up|signed }}</span></p>
                 </div>
                 <div class="results-header-group not-called">
@@ -32,21 +40,38 @@
             {% include '_race_results_table.html' %}
             {% endfor %}
         </div>
+
+        <div class="ap-credit">
+            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
+        </div>
+
     </div>
 </div>
 
 <script>
+(function() {
+	var $timestamp = $('.ap-credit').find('.timestamp');
+	var timestamp = {{ TIMESTAMP }} * 1000;
+
+	// set timestamp, make relative
+	var ts = moment(timestamp).fromNow();
+	$timestamp.empty().append(ts);
+
+
+	// columnizer
+
+
+	// Columnizer needs a short pause or else it acts strangely on subsequent calls
+	setTimeout(function() {
+	  $('.results').columnize(colOpts);
+	  $('.results-wrapper').animate({ 'opacity': 1 }, 500, function() {
+		$(this).removeClass('hide-results');
+	  });
+	}, 100);
+})();
+
 var colOpts = {
   precise: true,
   columns: {{ column_number }},
 }
-
-// Columnizer needs a short pause or else it acts strangely on subsequent calls
-setTimeout(function() {
-  $('.results').columnize(colOpts);
-  $('.results-wrapper').animate({ 'opacity': 1 }, 500, function() {
-    $(this).removeClass('hide-results');
-  });
-}, 100);
-
 </script>

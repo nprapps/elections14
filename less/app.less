@@ -1,7 +1,6 @@
 @import "less/lib/bootstrap/bootstrap";
 @import "less/lib/font-awesome/font-awesome";
 @import "less/lib/prefixer";
-@import "less/share-modal.less";
 @import "less/stateface.less";
 @import "less/variables.less";
 @import "less/results.less";
@@ -9,6 +8,7 @@
 
 body, #stack {
     background-color: black;
+    z-index: 0;
 }
 
 h1,h2,h3,h4,h5,h6, p, form, label, button {
@@ -130,7 +130,7 @@ svg {
             color: @musicLight;
         }
     }
-
+    
     .tv-prompt {
         margin: 2% auto 0 auto;
         max-width: 35%;
@@ -179,30 +179,30 @@ svg {
     h2 {
         font-size: 3vw;
         font-weight: bold;
+        padding: 0;
         padding-bottom: 2vw;
         margin: 0;
     }
 
     ul.menu {
         list-style-type: none;
-        text-align: left;
-		width: 45vw;
-		padding: 0 .75vw;
-		margin: 0 auto;
-		border: 1px solid @grayMedium;
+        margin: 0;
+        padding: 0;
 
         li {
-            padding: 1.5vw .75vw;
-            font-size: 1.5vw;
+            font-size: 3vw;
             font-weight: bold;
-            border-top: 2px solid @grayMedium;
-
-            &:first-child { border-top: none; }
+            margin-bottom: 1.5vw;
 
             a { display: block; }
+            img {
+            	height: 3vw;
+            	width: auto;
+            	vertical-align: middle;
+            }
         }
     }
-
+    
     .legend {
     	position: absolute;
     	bottom: 0;
@@ -229,25 +229,28 @@ svg {
         z-index: -1;
     }
 
-    .slide-content {
-        .vertical-center;
+    .slide-inner {
+        max-height: 100% !important
     }
 
     h2 {
         font-size: 2vw;
+        margin-top: 0;
+    }
+    
+    p {
+    	font-size: 1vw;
+    	margin-top: 2vw;
+    	color: @grayMedium;
     }
 
-    .form-group {
-        margin: 0;
-    }
+    .form-group { margin: 0; }
 
     .state {
         width: 100%;
         min-height: 20vw;
 
-        .stateface {
-            font-size: 10vw;
-        }
+        .stateface { font-size: 10vw; }
 
         .stateface, .state-name {
             -webkit-transition: all 0.2s;
@@ -282,6 +285,23 @@ svg {
         border: 2px solid #bbb;
         border-radius: 4px;
         outline: none;
+    }
+
+    ::-webkit-input-placeholder::before {
+        font-family: FontAwesome;
+        content:'\f002  ';
+    }
+    ::-moz-placeholder::before  {
+        font-family: FontAwesome;
+        content:'\f002  ';
+     }
+    :-ms-input-placeholder::before  {
+        font-family: FontAwesome;
+        content:'\f002  ';
+    }
+    input:-moz-placeholder::before  {
+        font-family: FontAwesome;
+        content:'\f002  ';
     }
 
     .tt-dropdown-menu {
@@ -321,9 +341,7 @@ svg {
         line-height: 2vw;
         border-bottom: 1px solid #999;
 
-        &:last-child {
-            border: none;
-        }
+        &:last-child { border: none; }
     }
 
     .tt-suggestion.tt-cursor {
@@ -350,14 +368,101 @@ svg {
 */
 
 .header-container {
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 0;
+    bottom: 1vh;
     width: 100%;
     z-index: 1;
 
     box-shadow: inset 0 5vw 5vw -5vw black;
     background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+
+    .right-controls {
+        float: right;
+
+        div {
+            white-space: nowrap;
+            float: left;
+        }
+
+        .state-picker-link {
+            color: @grayMedium;
+            vertical-align: middle;
+
+            .stateface {
+                font-size: 3vw;
+                vertical-align: middle;
+            }
+        }
+
+        .chromecast {
+            display: none;
+
+            img {
+                width: 2vw;
+                height: 2vw;
+                opacity: 0.7;
+            }
+        }
+
+        .volume-icon{
+            width: 2vw;
+            height: 2vw;
+        }
+
+        .expand {
+            width: 1.5vw;
+            height: 1.5vw;
+        }
+
+        .chromecast,
+        .state,
+        .volume,
+        .fullscreen {
+            padding: 0 0.5vw;
+
+            a:hover {
+                color: darken(@grayMedium, 20%);
+                text-decoration: none;
+
+                img {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        .slide-nav {
+            line-height: 3.5vw;
+            height: 3.5vw;
+
+            nav {
+                overflow: hidden;
+                display: inline-block;
+                font-size: 0;
+            }
+
+           .nav-btn {
+                font-size: 1.5vw;
+                border: 2px solid @grayMedium;
+                padding: 0.5vw 1vw;
+                color: @grayMedium;
+                background: transparent;
+                line-height: 1.5vw;
+                margin: 0 0 -2px 0;
+                display: inline-block;
+                vertical-align: middle;
+
+                &.nav-btn-left {
+                    border-radius: 0.5vw 0 0 0.5vw;
+                }
+
+                &.nav-btn-right {
+                    margin-left: -2px;
+                    border-radius: 0 0.5vw 0.5vw 0;
+                }
+           }
+        }
+    }
 
     .results-header {
         color: @grayMedium;
@@ -376,7 +481,7 @@ svg {
         }
 
         .leaderboard {
-            float: right;
+            float: left;
             display: table;
         }
 
@@ -405,7 +510,6 @@ svg {
             .seats-needed {
                 display: inline;
                 font-family: 'Cooper Hewitt';
-                text-transform: uppercase;
             }
 
             h2, p {
@@ -435,11 +539,13 @@ svg {
 
         .dem { color: fadeout(@blue, 25%); }
         .gop { color: fadeout(@red, 25%); }
-        .not-called { color: fadeout(#666, 25%); }
+        .other { color: fadeout(@green, 25%); }
+        .not-called { color: fadeout(@yellow, 25%); }
 
         .dem .percentage   {  background: fadeout(@blue, 25%); }
         .gop .percentage   {  background: fadeout(@red, 25%); }
-        .not-called .count {  background: fadeout(@gray, 25%); }
+        .other .percentage   {  background: fadeout(@green, 25%); }
+        .not-called .count {  border: 2px solid fadeout(@yellow, 25%); color: fadeout(@yellow, 25%); }
 
         .percentage,
         .count {
@@ -466,44 +572,17 @@ svg {
         a:hover{
             color: darken(@grayMedium, 20%);
         }
-        .right-controls {
-            float: right;
-
-            div {
-                white-space: nowrap;
-                float: left;
-            }
-
-            .chromecast {
-                display: none;
-
-                img {
-                    width: 20px;
-                    height: 20px;
-                }
-            }
-
-            .volume-icon{
-                width: 2vw;
-                height: 2vw;
-            }
-
-            .expand {
-                width: 1.5vw;
-                height: 1.5vw;
-            }
-
-            .volume-icon,
-            .expand {
-                &:hover {
-                    opacity: 0.6;
-                }
-            }
-        }
+        
     }
 }
 
 .share-footer { display: none; }
+
+.next-btn {
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+}
 
 
 /*

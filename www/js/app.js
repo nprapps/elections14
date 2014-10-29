@@ -11,6 +11,7 @@ var $stateWrapper = null;
 var $stateface = null;
 var $stateName = null;
 var $typeahead = null;
+var $statePickerHed = null;
 
 var $chromecastScreen = null;
 var $chromecastMute = null;
@@ -66,6 +67,7 @@ var onDocumentReady = function(e) {
     $stateWrapper = $('.state');
     $stateface = $('.stateface');
     $stateName = $('.state-name');
+    $statePickerHed = $('.state-picker-hed');
 
     $chromecastScreen = $('.cast-controls');
     $chromecastMute = $chromecastScreen.find('.mute');
@@ -155,8 +157,14 @@ var setupUI = function() {
         state = $.cookie('state');
         loadState();
     }
+
     if (typeof geoip2 == 'object' && !($.cookie('state'))) {
         geoip2.city(onLocateIP);
+    }
+
+    if (typeof geoip2 != 'object' && !($.cookie('state'))) {
+        $('.typeahead').attr('placeholder', 'Select a state');
+        $statePickerHed.text('We are having trouble determining your state.')
     }
 
     setUpAudio(true);
@@ -280,7 +288,7 @@ var onWindowResize = function() {
     if (padding < 0) {
         padding = 0;
     }
-    
+
     $('#landscape-wrapper').css({
         'height': new_height + 'px',
         'position': 'absolute',
@@ -439,6 +447,7 @@ var switchState = function() {
     $stateface.css('opacity', 1);
     $stateName.css('opacity', 1);
     $typeahead.css('top', '0');
+    $statePickerHed.text('You have selected');
 
     $('.typeahead').typeahead('val', '')
     $('.typeahead').typeahead('close');
@@ -457,7 +466,7 @@ var hideStateFace = function() {
 var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
-    $statePickerLink.text(APP_CONFIG.STATES[state]);
+    $statePickerLink.html('<span class="stateface stateface-' + state.toLowerCase() + '"></span>' + state);
     $statePickerScreen.hide();
 
     if (is_casting) {
@@ -494,7 +503,7 @@ var onLocateIP = function(response) {
 var checkBop = function() {
     setInterval(function() {
         $bop.load('/bop.html');
-    }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
+    }, APP_CONFIG.CLIENT_BOP_INTERVAL * 1000);
 }
 
 var checkTimestamp = function() {
@@ -511,7 +520,7 @@ var checkTimestamp = function() {
                 }
             }
         })
-    }, APP_CONFIG.DEPLOY_INTERVAL * 1000);
+    }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
 
 /*

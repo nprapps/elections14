@@ -109,7 +109,7 @@ fab data.bootstrap
 If testing, you will probably also want to run these commands:
 
 ```
-fab data.mock_slides
+fab data.create_slides
 fab data.mock_results
 ```
 

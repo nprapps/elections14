@@ -24,21 +24,6 @@
                         </p>
 
                         <div class="controls">
-                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html#share" target="_blank"><span class="fa fa-search"></span></a>
-                            <a class="add"><span class="fa fa-plus"></span></a>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="out news">
-                <h2>News Items</h2>
-                <ul class="list-unstyled">
-                    {% for slide in news %}
-                    <li class="item" data-slide="{{ slide.slug }}" data-time ="{{ slide.time_on_screen }}" data-name="{{ slide.name }}">
-                        <p class="slug"><a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html" target="_blank">{{ slide.name }}</a></p>
-                        <p class="time">{{ slide.time_on_screen }} seconds on screen</p>
-                        <div class="controls">
                             <a class="add"><span class="fa fa-plus"></span></a>
                             <a class="preview" href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html#share" target="_blank"><span class="fa fa-share"></span></a>
                         </div>
@@ -46,15 +31,34 @@
                     {% endfor %}
                 </ul>
             </div>
+            <div class="out news">
+                <h2>News Items</h2>
+                <div class="news-items-wrapper">
+                    <ul class="list-unstyled news-items">
+                        {% for slide in news %}
+                        <li class="item" data-slide="{{ slide.slug }}" data-time ="{{ slide.time_on_screen }}" data-name="{{ slide.name }}">
+                            <p class="slug">
+                                <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html" target="_blank">{{ slide.name }}</a> <span class="time pull">{{ slide.time_on_screen }}s</span>
+                            </p>
+                            <div class="controls">
+                                <a class="add"><span class="fa fa-plus"></span></a>
+                                <a class="preview" href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html#share" target="_blank"><span class="fa fa-share"></span></a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
             <div class="timeline">
-                <h2>Live stack</h2>
+                <h2>Live stack (<span class="stack-time">{{ time }}</span> seconds)</h2>
 
-                <p>Stack length: <span class="stack-time">{{ time }}</span> seconds</p>
                 <ol class="sortable list-unstyled js-droppable-and-draggable">
                     {% for slide in sequence %}
                     <li class="item" data-slide="{{ slide.slide }}" data-time="{{ slide.time_on_screen }}" data-name="{{ slide.name }}">
-                        <span class="dragger fa fa-align-justify"></span>
-                        <a href="{{ S3_BASE_URL }}/preview/{{ slide.slide }}/index.html" target="_blank">{{ slide.name }}</a>
+                        <p class="slug">
+                            <span class="dragger fa fa-align-justify"></span>
+                            <a href="{{ S3_BASE_URL }}/preview/{{ slide.slug }}/index.html" target="_blank">{{ slide.name }}</a> <span class="time pull">{{ slide.time_on_screen }}s</span>
+                        </p>
                         {% if slide.news_item %}
                         <div class="tumblr_post">
                             {{ slide.body|smarty }}
@@ -66,7 +70,7 @@
                 </ol>
                 <div class="row">
                     <form role="form" class="send-stack">
-                        <button type="submit" class="save-btn btn btn-primary btn-lg">Save</button>
+                        <button type="submit" class="save-btn btn btn-default btn-lg">Save</button>
                     </form>
                 </div>
             </div>

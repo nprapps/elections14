@@ -8,6 +8,7 @@ var $remove = null;
 var $timeline = null;
 var $saveForm = null;
 var $stackTime = null;
+var $saveButton = null;
 
 var initDragAndDrop = function() {
     group = $(".js-droppable-and-draggable").sortable({
@@ -26,14 +27,6 @@ var initDragAndDrop = function() {
     });
 }
 
-var onItemsHover = function() {
-    $(this).find('.controls').css('display', 'block');
-}
-
-var offItemsHover = function() {
-    $(this).find('.controls').css('display', 'none');
-}
-
 var onAddClick = function() {
     var $item = $(this).parents('.item');
     var slide = $item.data('slide');
@@ -41,16 +34,28 @@ var onAddClick = function() {
     var name = $item.data('name');
     var currentStackTime = parseInt($stackTime.text());
 
-    var newItem = $('<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '" data-name="' + name + '"><span class="dragger fa fa-align-justify"></span><a href="' + APP_CONFIG.S3_BASE_URL + '/preview/' + slide + '/index.html" target="_blank"> ' + name + ' <div class="controls"><a class="remove" href="#"><span class="fa fa-times"></span></div></li>'
+    var newItem = $(
+        '<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '" data-name="' + name + '">' + 
+            '<p class="slug">' +
+                '<span class="dragger fa fa-align-justify"></span>' +
+                '<a href="' + APP_CONFIG.S3_BASE_URL + '/preview/' + slide + '/index.html" target="_blank"> ' + name + '</a> <span class="time pull">' + slideTime + 's</span>' +
+            '</p>' +
+            '<div class="controls">' + 
+                '<a class="remove" href="#"><span class="fa fa-times"></span>' + 
+            '</div>' + 
+        '</li>'
     )
 
-    $timeline.append(newItem);
+    $timeline.prepend(newItem);
 
     $stackTime.text(currentStackTime + slideTime);
 
     // reset event handlers to account for new button
     $remove = $(newItem).find('.remove');
     $remove.on('click', onRemoveClick);
+
+    $saveButton.removeClass('btn-default');
+    $saveButton.addClass('btn-primary');
 }
 
 var onRemoveClick = function() {
@@ -61,6 +66,8 @@ var onRemoveClick = function() {
     $item.remove();
 
     $stackTime.text(currentStackTime - slideTime);
+    $saveButton.removeClass('btn-default');
+    $saveButton.addClass('btn-primary');
 }
 
 var onSaveFormSubmit = function() {
@@ -69,8 +76,11 @@ var onSaveFormSubmit = function() {
         type:"POST",
         url: "/elections14/admin/stack/save",
         data: JSON.stringify(postData),
-        dataType: "json",
         contentType: "application/json",
+        success: function() {
+            $saveButton.removeClass('btn-primary');
+            $saveButton.addClass('btn-default');
+        }
     });
 }
 
@@ -82,11 +92,26 @@ $(document).ready(function() {
     $remove = $('.remove');
     $saveForm = $('.send-stack');
     $stackTime = $('.stack-time');
+    $saveButton = $('.save-btn');
 
-    $items.hover(onItemsHover, offItemsHover);
     $add.on('click', onAddClick);
     $remove.on('click', onRemoveClick);
     $saveForm.submit(onSaveFormSubmit)
 
     initDragAndDrop();
+
+    setInterval(function() {
+        $.ajax({
+            url: window.location,
+            cache: false,
+            dataType: 'html',
+            success: function(response, status) {
+                if (status == "success") {
+                    $('.news-items-wrapper').html($(response).find('.news-items'));
+                    $('.news-items-wrapper .add').on('click', onAddClick);
+                    $('.news-items-wrapper .remove').on('click', onRemoveClick);
+                }
+            }
+        })
+    }, 15000);
 });

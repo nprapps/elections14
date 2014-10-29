@@ -1,21 +1,18 @@
-
 <div class="legend">
-	<h3>Legend</h3>
 	<div class="container-fluid">
 		<div class="row">
-			<ul class="list-unstyled">
-				<li><span class="key-color dem"></span> Democrat</li>
-				<li><span class="key-color gop"></span> Republican</li>
-				<li><span class="key-color other"></span> Independent</li>
-			</ul>
-			<ul class="list-unstyled">
-				<li><span class="winner">Winner</span></li>
-				<li><span class="incumbent"><img src="/assets/incumbent.svg"></span> Incumbent</li>
-				<li><span class="reporting">76<sup>%</sup></span> Precincts reporting</li>
-			</ul>
-			<ul class="list-unstyled">
-				<li><span class="seat-held">VA</span> Seat held by party color</li>
-				<li><span class="pickup">+1</span> Seat gained by party color</li>
+			<h3>{{ COPY.legend.hed_legend }}</h3>
+			<ul class="list-unstyled list-1">
+				<li><span class="key-color dem"></span> {{ COPY.legend.p_dem }}</li>
+				<li><span class="key-color gop"></span> {{ COPY.legend.p_gop }}</li>
+				<li><span class="key-color other"></span> {{ COPY.legend.p_other }}</li>
+				<li><span class="winner dem">{{ COPY.legend.winner }}</span>
+					<span class="winner gop">{{ COPY.legend.winner }}</span>
+					<span class="winner other">{{ COPY.legend.winner }}</span></li>
+				<li><span class="pickup">+1</span> {{ COPY.legend.pickup }}</li>
+				<li><span class="seat-held">VA</span> {{ COPY.legend.seat }}</li>
+				<li><span class="incumbent"><img src="/assets/incumbent.svg" alt="Incumbent" /></span> {{ COPY.legend.incumbent }}</li>
+				<li><span class="reporting">76<sup>%</sup></span> {{ COPY.legend.reporting }}</li>
 			</ul>
 		</div>
 	</div>

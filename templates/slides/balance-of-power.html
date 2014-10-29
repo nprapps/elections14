@@ -12,10 +12,8 @@
         </div>
         {% endif %}
 
-        <div class="footer">
-            {% if COPY.graphic_slides.source_bop %}
-            <p>Source: {{ COPY.graphic_slides.source_bop }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="graphic-timestamp"></span>.</p>
-            {% endif %}
+        <div class="ap-credit">
+            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
         </div>
     </div>
 </div>
@@ -62,6 +60,7 @@
 	var side_margin;
 	var timestamp = {{ TIMESTAMP }} * 1000;
 	var value_height;
+	var value_limit;
 
 	var fmt_comma = d3.format(',');
 	var fmt_year_abbrev = d3.time.format('%y');
@@ -111,10 +110,12 @@
 			left: (label_width + 6)
 		};
 		value_height = Math.floor(container_width * .02); // 2vw
+		value_limit = Math.floor(container_width * .04); // 4vw
 		
 		// draw charts
-		draw_chart('house', graphic_width, graphic_height);
 		draw_chart('senate', graphic_width, graphic_height);
+		draw_chart('house', graphic_width, graphic_height);
+		
 		
 		// set timestamp, make relative
 		var ts = moment(timestamp).fromNow();
@@ -227,7 +228,7 @@
 					return i * (bar_height + bar_gap);
 				})
 				.attr('dx', function(d) {
-					if (x(d['seats']) > 20) {
+					if (x(d['seats']) > value_limit) {
 						return -(Math.ceil(container_width * .01));
 					} else {
 						return Math.ceil(container_width * .01);
@@ -235,14 +236,14 @@
 				})
 				.attr('dy', Math.ceil((bar_height / 2) + (value_height / 3)))
 				.attr('text-anchor', function(d) {
-					if (x(d['seats']) > 20) {
+					if (x(d['seats']) > value_limit) {
 						return 'end';
 					} else {
 						return 'begin';
 					}
 				})
 				.attr('fill', function(d) {
-					if (x(d['seats']) > 20) {
+					if (x(d['seats']) > value_limit) {
 						return '#fff';
 					} else {
 						return '#999';
@@ -281,7 +282,7 @@
 
 	if (Modernizr.svg) {
 		$graphic = $('#graphic-bop');
-		$timestamp = $('.graphic-timestamp');
+		$timestamp = $('.ap-credit').find('.timestamp');
 		$container = $('#landscape-wrapper');
 		$content = $('#balance-of-power');
 		render();

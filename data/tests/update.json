@@ -7,15 +7,15 @@
         "candidates": [
             {
                 "vote_count": 150000, 
-                "candidate_id": "4848"
+                "candidate_id": "4848-OR"
             }, 
             {
                 "vote_count": 200000, 
-                "candidate_id": "4642"
+                "candidate_id": "4642-OR"
             }, 
             {
                 "vote_count": 250000, 
-                "candidate_id": "4979"
+                "candidate_id": "4979-OR"
             }
         ], 
         "race_id": "38529-OR"

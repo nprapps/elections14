@@ -82,7 +82,8 @@ SERVER_SERVICES = [
     ('app', SERVER_REPOSITORY_PATH, 'ini'),
     ('uwsgi', '/etc/init', 'conf'),
     ('nginx', '/etc/nginx/locations-enabled', 'conf'),
-    ('deploy', '/etc/init', 'conf'),
+    ('deploy_results', '/etc/init', 'conf'),
+    ('deploy_liveblog', '/etc/init', 'conf'),
 ]
 
 # These variables will be set at runtime. See configure_targets() below
@@ -138,7 +139,9 @@ TUMBLR_NAME = '' # See below
 TUMBLR_NOT_BEFORE = None # See below
 TUMBLR_AUTO_REFRESH = None # See below
 
-DEPLOY_INTERVAL = 60
+CLIENT_BOP_INTERVAL = 15
+LIVEBLOG_DEPLOY_INTERVAL = 15
+RESULTS_DEPLOY_INTERVAL = 60
 RELOAD_CHECK_INTERVAL = 300
 
 STATES = {
@@ -195,15 +198,16 @@ STATES = {
     'WY': 'Wyoming',
 }
 
+
+NO_GOVERNOR_OR_SENATE_RACES = ['DC', 'IN', 'MO', 'ND', 'UT', 'WV']
+
+NO_FEATURED_HOUSE_RACES = ['AK', 'AL', 'DC', 'DE', 'ID', 'KS', 'KY', 'LA', 'MD', 'MO', 'MS', 'ND', 'OK', 'RI', 'SC', 'SD', 'TN', 'VT', 'WI', 'WY']
+
 # States with many results that need to be paginated
 PAGINATED_STATES = [
     'CA',
     'IL',
     'NY'
-]
-
-NO_RACES = [
-    'DC'
 ]
 
 """
@@ -249,6 +253,7 @@ def configure_targets(deployment_target):
     global TUMBLR_NAME
     global TUMBLR_AUTO_REFRESH
     global TUMBLR_NOT_BEFORE
+    global TUMBLR_NOT_AFTER
 
     if deployment_target == 'production':
         S3_BUCKETS = PRODUCTION_S3_BUCKETS
@@ -263,6 +268,8 @@ def configure_targets(deployment_target):
         TUMBLR_NAME = 'nprpolitics'
         TUMBLR_AUTO_REFRESH = False
         TUMBLR_NOT_BEFORE = datetime(2014, 11, 4, 23, 0, 0) # +5 hours for UTC
+        TUMBLR_NOT_AFTER = datetime(2014, 11, 5, 9, 0, 0) # +5 hours for UTC
+
     elif deployment_target == 'staging':
         S3_BUCKETS = STAGING_S3_BUCKETS
         S3_BASE_URL = '//d3dhid83frmf6i.cloudfront.net'
@@ -276,6 +283,8 @@ def configure_targets(deployment_target):
         TUMBLR_NAME = 'stage-nprelections'
         TUMBLR_AUTO_REFRESH = True
         TUMBLR_NOT_BEFORE = datetime(2014, 10, 7, 11, 0, 0)
+        TUMBLR_NOT_AFTER = datetime(2014, 11, 5, 9, 0, 0)
+
     else:
         S3_BUCKETS = []
         S3_BASE_URL = 'http://127.0.0.1:8000'
@@ -289,6 +298,7 @@ def configure_targets(deployment_target):
         TUMBLR_NAME = 'stage-nprelections'
         TUMBLR_AUTO_REFRESH = True
         TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
+        TUMBLR_NOT_AFTER = datetime(2014, 11, 5, 9, 0, 0)
 
     DEPLOYMENT_TARGET = deployment_target
 

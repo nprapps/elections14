@@ -8,6 +8,7 @@
 
 {% block outer_content %}
 <script src="/js/lib/jquery.js"></script>
+<script src="/js/lib/moment.js"></script>
 <script src="/js/lib/d3.v3.min.js"></script>
 <script src="/js/lib/jquery.columnizer.js"></script>
 
@@ -23,7 +24,6 @@
             cache: false,
             dataType: 'html',
             success: function(response, status) {
-                console.log(status);
                 if (status == "success") {
                     $('.results-wrapper').html($(response).find('.results-inner'));
                     $('.results').columnize(colOpts);

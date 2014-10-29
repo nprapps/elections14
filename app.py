@@ -37,13 +37,24 @@ def format_percent(num):
     return int(round(num))
 
 @app.template_filter()
+def format_precincts_percent(num):
+    """
+    Format a percentage for precincts reporting
+    """
+    if num > 0 and num < 1:
+        return '<1'
+    if num > 99 and num < 100:
+        return '>99'
+    else:
+        return int(round(num))
+
+@app.template_filter()
 def signed(num):
     """
     Add sign to number (e.g. +1, -1)
     """
     return '{0:+d}'.format(num)
 
-# Example application views
 @app.route('/')
 def index():
     """
@@ -80,13 +91,6 @@ def promo():
     """
     return render_template('promo.html', **make_context())
 
-@app.route('/comments/')
-def comments():
-    """
-    Full-page comments view.
-    """
-    return render_template('comments.html', **make_context())
-
 @app.route('/board/<slug>/')
 def _big_board(slug):
     """
@@ -97,9 +101,11 @@ def _big_board(slug):
     context['body'] = _slide(slug).data
 
     if slug == 'senate-big-board':
-        title = 'Senate'
-    elif slug == 'house-big-board-one' or slug == 'house-big-board-two':
-        title = 'House of Reps'
+        title = 'U.S. Senate'
+    elif slug == 'house-big-board-one':
+        title = 'U.S. House 1'
+    elif slug == 'house-big-board-two':
+        title = 'U.S. House 2'
     elif slug == 'governor-big-board':
         title = 'Governors'
     elif slug == 'ballot-measures-big-board':
@@ -158,6 +164,14 @@ def _stack_json():
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
+@app.route('/live-data/timestamp.json')
+@app_utils.cors
+def _timestamp():
+    """
+    Return a dummy timestamp file.
+    """
+    return '"2014-10-27T17:52:16.901632"', 200, { 'Content-Type': 'application/javascript' }
+
 @app.route('/preview/state-house-results/index.html')
 @app.route('/preview/state-senate-results/index.html')
 def _state_picker_preview():
@@ -198,7 +212,27 @@ def _slide_preview(slug):
     """
     Preview a slide outside of the stack.
     """
+    from models import SlideSequence
+
     context = make_context()
+
+    sequence = SlideSequence.select()
+
+    for slide in sequence:
+        if slide.slide.slug == slug:
+            context['in_sequence'] = True
+            previous_slide_order = slide.order - 1
+            next_slide_order = slide.order + 1
+            break
+    try:
+        context['previous_slide'] = SlideSequence.get(SlideSequence.order == previous_slide_order).slide.slug
+    except:
+        pass
+
+    try:
+        context['next_slide'] = SlideSequence.get(SlideSequence.order == next_slide_order).slide.slug
+    except:
+        pass
 
     context['body'] = _slide(slug).data.decode('utf-8')
     context['slug'] = slug
