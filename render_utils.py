@@ -124,7 +124,7 @@ class JavascriptIncluder(Includer):
 
             with open(('%s/www/%s' % (self.static_path, src)).lstrip('/')) as f:
                 print '- compressing %s' % src
-                output.append(minify(f.read().encode('utf-8')))
+                output.append(minify(f.read().decode('utf-8')))
 
         context = make_context()
         context['paths'] = src_paths
@@ -159,7 +159,7 @@ class CSSIncluder(Includer):
 
             with open(('%s/www/%s' % (self.static_path, src)).lstrip('/')) as f:
                 print '- compressing %s' % src
-                output.append(cssmin(f.read().encode('utf-8')))
+                output.append(cssmin(f.read().decode('utf-8')))
 
         context = make_context()
         context['paths'] = src_paths

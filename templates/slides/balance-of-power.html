@@ -26,8 +26,7 @@
 	var $timestamp;
 
 	var data_house = [
-//		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ house_bop.dem.has }}, 'net': {{ house_bop.dem.picked_up }} },
-		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': 23, 'net': {{ house_bop.dem.picked_up }} },
+		{ 'party': 'Democratic', 'party_abbr': 'Dem.', 'seats': {{ house_bop.dem.has }}, 'net': {{ house_bop.dem.picked_up }} },
 		{ 'party': 'Republican', 'party_abbr': 'GOP', 'seats': {{ house_bop.gop.has }}, 'net': {{ house_bop.gop.picked_up }} },
 		{ 'party': 'Independent', 'party_abbr': 'Ind.', 'seats': {{ house_bop.other.has }}, 'net': {{ house_bop.other.picked_up }} },
 		{ 'party': 'Not yet called', 'party_abbr': 'TBD', 'seats': {{ house_not_called }}, 'net': 0 }
@@ -66,7 +65,6 @@
 	var fmt_comma = d3.format(',');
 	var fmt_year_abbrev = d3.time.format('%y');
 	var fmt_year_full = d3.time.format('%Y');
-
 
 	/*
 	 * Render the graphic
@@ -114,8 +112,9 @@
 		value_limit = Math.floor(container_width * .04); // 4vw
 		
 		// draw charts
-		draw_chart('house', graphic_width, graphic_height);
 		draw_chart('senate', graphic_width, graphic_height);
+		draw_chart('house', graphic_width, graphic_height);
+		
 		
 		// set timestamp, make relative
 		var ts = moment(timestamp).fromNow();
@@ -286,7 +285,12 @@
 		$container = $('#landscape-wrapper');
 		$content = $('#balance-of-power');
 		render();
+
 		$(window).on('resize', render);
+
+        STACK.setSlideExitCallback(function() {
+            $(window).off('resize', render);
+        });
 	}
 })();
 </script>

@@ -26,13 +26,6 @@
 	var ts = moment(timestamp).fromNow();
 	$timestamp.empty().append(ts);
 	
-
-	// columnizer
-	var colOpts = {
-	  precise: true,
-	  columns: {{ column_number }},
-	}
-
 	// Columnizer needs a short pause or else it acts strangely on subsequent calls
 	setTimeout(function() {
 	  $('.results').columnize(colOpts);
@@ -41,4 +34,10 @@
 	  });
 	}, 100);
 })();
+
+// columnizer
+var colOpts = {
+  precise: true,
+  columns: {{ column_number }},
+}
 </script>

@@ -16,7 +16,6 @@ from twitter import Twitter, OAuth
 
 import app_config
 import admin_app
-import daemons
 import servers
 import stack
 import csv
@@ -93,7 +92,7 @@ def reset_server():
         servers.stop_service('deploy_liveblog')
         servers.stop_service('deploy_results')
         servers.stop_service('uwsgi')
-    servers.fabcast('ap.init data.bootstrap liveblog.update deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
+    servers.fabcast('ap.init ap.clear_calls data.bootstrap liveblog.update deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
     servers.start_service('uwsgi')
     servers.start_service('deploy_liveblog')
     servers.start_service('deploy_results')
@@ -592,10 +591,8 @@ def create_slides():
     _create_slide('Democrats in Romney-Won Districts', 'romney_dems', 10, it.next())
     _create_slide('Republicans in Obama-Won Districts', 'obama_reps', 10, it.next())
     _create_slide('Incumbent Losers', 'incumbents_lost', 10, it.next())
-    #_create_slide('Blue Dog Democrat Results', 'blue_dogs', 10, it.next())
     _create_slide('House Freshmen Results', 'house_freshmen', 10, it.next())
     _create_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
-    _create_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
     _create_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
 
 def _create_slide(slug, view, time_on_screen, i):
@@ -720,6 +717,7 @@ def play_fake_results(update_interval=60):
                 for race in races:
                     race.ap_called = True
                     race.accept_ap_call = True
+                    race.ap_called_time = datetime.now()
                     race.precincts_reporting = random.randint(race.precincts_total - 500, race.precincts_total)
                     _fake_results(race)
                     race.save()
