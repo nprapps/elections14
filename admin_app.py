@@ -126,13 +126,14 @@ def chamber(chamber):
         Candidate.party.asc()
     )
 
-    race_count = Race.select().where(Race.office_id == chamber_slug)
+    races = Race.select().where(Race.office_id == chamber_slug).order_by(Race.state_postal)
 
     context = make_context(asset_depth=1)
 
     context.update({
         'candidates': candidates,
-        'count': race_count.count(),
+        'races': races,
+        'count': races.count(),
         'chamber': chamber,
     })
 
