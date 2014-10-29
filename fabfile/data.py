@@ -92,7 +92,7 @@ def reset_server():
         servers.stop_service('deploy_liveblog')
         servers.stop_service('deploy_results')
         servers.stop_service('uwsgi')
-    servers.fabcast('ap.init data.bootstrap liveblog.update deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
+    servers.fabcast('ap.init ap.clear_calls data.bootstrap liveblog.update deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
     servers.start_service('uwsgi')
     servers.start_service('deploy_liveblog')
     servers.start_service('deploy_results')
