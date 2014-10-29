@@ -739,7 +739,7 @@ def play_fake_results(update_interval=60):
 
     except KeyboardInterrupt:
         print "ctrl-c pressed, resetting results"
-        #reset_results()
+        reset_results()
 
 
 @task
