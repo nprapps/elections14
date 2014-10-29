@@ -50,12 +50,12 @@
                     <td><strong>Accept AP calls?</strong></td>
                 </tr>
                 {% endif %}
-                <tr data-state-slug="{{ grouper }}" class="{{ grouper }}">
+                <tr data-state-slug="{{ race.slug }}" class="{{ race.slug }}">
                     <td>
                       <strong>{{ race.state_postal }}</strong>
                     </td>
                     <td>
-                      {{ race.office_name }} {{ race.seat_name }}
+                      {{ race.office_name }} {% if chamber == "house" %}{{ race.seat_name }}{% endif %}
                     </td>
 
                     {% for candidate in race.top_candidates() %}
