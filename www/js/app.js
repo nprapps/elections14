@@ -26,6 +26,7 @@ var $chromecastButton = null;
 var $audioPlayer = null;
 var $bop = null;
 var $stack = null;
+var $audioButtons = null;
 
 var $shareModal = null;
 var $commentCount = null;
@@ -85,6 +86,7 @@ var onDocumentReady = function(e) {
     $headerControls = $('.header-controls');
     $shareModal = $('#share-modal');
     $commentCount = $('.comment-count');
+    $audioButtons = $('.jp-controls .nav-btn');
 
     reloadTimestamp = moment();
 
@@ -100,6 +102,7 @@ var onDocumentReady = function(e) {
 
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
+    $audioButtons.on('click', onAudioButtonsClick);
     $shareModal.on('shown.bs.modal', onShareModalShown);
     $shareModal.on('hidden.bs.modal', onShareModalHidden);
     $(window).on('resize', onWindowResize);
@@ -269,6 +272,7 @@ var onCastStateChange = function(message) {
  * Send the mute message to the receiver.
  */
 var onCastMute = function() {
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-muted']);
     CHROMECAST_SENDER.sendMessage('mute', 'toggle');
 }
 
@@ -335,6 +339,8 @@ var rotatePhone = function() {
 var onCastStartClick = function(e) {
     e.preventDefault();
 
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-initiated']);
+
     CHROMECAST_SENDER.startCasting();
 }
 
@@ -384,11 +390,10 @@ var substringMatcher = function(strs) {
  * Fullscreen the app.
  */
 var onFullScreenButtonClick = function() {
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'fullscreen']);
     var elem = document.getElementById("stack");
 
     var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
-
-    console.log(fullscreenElement);
 
     if (fullscreenElement) {
         if (document.exitFullscreen) {
@@ -466,6 +471,8 @@ var hideStateFace = function() {
 var onStatePickerSubmit = function(e) {
     e.preventDefault();
 
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
+
     $statePickerLink.html('<span class="stateface stateface-' + state.toLowerCase() + '"></span>' + state);
     $statePickerScreen.hide();
 
@@ -482,6 +489,7 @@ var onStatePickerSubmit = function(e) {
  * Reopen state selector.
  */
 var onStatePickerLink = function() {
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-nav-switch']);
     $stack.hide();
     $chromecastScreen.hide();
     $statePickerScreen.show();
@@ -588,6 +596,10 @@ var setUpAudio = function(startPaused) {
         supplied: 'mp3',
         loop: false,
     });
+}
+
+var onAudioButtonsClick = function() {
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
 }
 
 $(onDocumentReady);
