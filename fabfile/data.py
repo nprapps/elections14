@@ -16,7 +16,6 @@ from twitter import Twitter, OAuth
 
 import app_config
 import admin_app
-import daemons
 import servers
 import stack
 import csv
@@ -720,6 +719,7 @@ def play_fake_results(update_interval=60):
                 for race in races:
                     race.ap_called = True
                     race.accept_ap_call = True
+                    race.ap_called_time = datetime.now()
                     race.precincts_reporting = random.randint(race.precincts_total - 500, race.precincts_total)
                     _fake_results(race)
                     race.save()
@@ -739,7 +739,7 @@ def play_fake_results(update_interval=60):
 
     except KeyboardInterrupt:
         print "ctrl-c pressed, resetting results"
-        reset_results()
+        #reset_results()
 
 
 @task
