@@ -535,10 +535,17 @@ var setUpAudio = function(startPaused) {
         supplied: 'mp3',
         loop: false,
     });
+
+    $audioPlayer.bind($.jPlayer.event.stalled, onAudioFail);
+    $audioPlayer.bind($.jPlayer.event.waiting, onAudioFail);
 }
 
 var onAudioButtonsClick = function() {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+}
+
+var onAudioFail = function() {
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-fail']);
 }
 
 $(onDocumentReady);
