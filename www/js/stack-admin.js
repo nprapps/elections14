@@ -103,7 +103,6 @@ var checkStack = function() {
 
         for (var j=0; j < $graphicItems.length; j++) {
             var graphicItem = $graphicItems.eq(j);
-            console.log(graphicItem.data('slide'));
             if (timelineItem.data('slide') === graphicItem.data('slide')) {
                 graphicItem.css('background-color', 'papayawhip');
             }
