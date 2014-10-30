@@ -65,6 +65,7 @@ var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
  */
 var onDocumentReady = function(e) {
     // Cache jQuery references
+    $body = $('body');
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
     $rotate = $('.rotate-phone-wrapper');
@@ -95,8 +96,8 @@ var onDocumentReady = function(e) {
     $header = $('.index');
     $headerControls = $('.header-controls');
     $audioButtons = $('.jp-controls .nav-btn');
+    $slideControls = $('.slide-nav .nav-btn');
     $slide_countdown = $stack.find('.slide-countdown');
-
     reloadTimestamp = moment();
 
     // Bind events
@@ -112,6 +113,8 @@ var onDocumentReady = function(e) {
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
     $audioButtons.on('click', onAudioButtonsClick);
+    $slideControls.on('click', onSlideControlClick);
+    $body.on('keydown', onKeyboard);
     $(window).on('resize', onWindowResize);
 
     if (IS_CAST_RECEIVER) {
@@ -654,6 +657,31 @@ function start_slide_countdown() {
 
 function stop_slide_countdown() {
 	clearInterval(slide_countdown_interval);
+}
+
+/**
+ * Click left or right paddle
+ */
+var onSlideControlClick = function() {
+  var direction = $(this).data('slide');
+  if (direction == "next") {
+    STACK.next();
+  }
+  else if (direction == "previous") {
+    STACK.previous();
+  }
+}
+
+/**
+ * Catch keyboard events
+ */
+var onKeyboard = function(e) {
+  if (e.which == 39) {
+    STACK.next()
+  }
+  if (e.which == 37) {
+    STACK.previous()
+  }
 }
 
 $(onDocumentReady);
