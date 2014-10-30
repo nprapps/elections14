@@ -71,7 +71,7 @@ var onDocumentReady = function(e) {
     // Cache jQuery references
     $body = $('body');
     $welcomeScreen = $('.welcome');
-    $welcomeButton = $('.welcome-button')
+    $welcomeButton = $('.js-go')
     $rotate = $('.rotate-phone-wrapper');
 
     $countdownScreen = $('.countdown');

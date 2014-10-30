@@ -2,10 +2,6 @@
 
 {% block outer_content %}
 <div class="welcome">
-    <div class="cast-header">
-        <span class="cast-disabled"><a href="http://www.google.com/chrome/devices/chromecast/" target="_blank"><img src="assets/chromecast_ready.svg" alt="Google Cast Ready" /></a></span>
-        <span class="cast-enabled"><a href="#" class="cast-start"><img src="assets/chromecast_off.svg" alt="Google Cast Ready" /></a></span>
-    </div>
     <div class="logo-wrapper">
     {% include '_logo2.svg' %}
     </div>
@@ -22,7 +18,17 @@
             <input class="typeahead" type="text" placeholder="Select a different state">
         </div>
 
-        <button type="submit" class="btn btn-lg welcome-button">Come on in</button>
+        <div class="cast-header">
+            <div class="cast-disabled">
+                <p><button type="submit" class="btn btn-lg welcome-button js-go">Come on in</button></p>
+                <p><a href="http://www.google.com/chrome/devices/chromecast/" target="_blank"><img src="assets/chromecast_ready.svg" alt="Google Cast Ready" /></a></p>
+            </div>
+            <div class="cast-enabled">
+                <p><a href="#" class="cast-start btn btn-lg welcome-button"><img src="assets/chromecast_off.svg" alt="Google Cast Ready" /> Start Casting</a></p>
+                <p class="cast-footer"><a href="#" class="js-go">Or play here</a></p>
+            </div>
+
+        </div>
     </form>
 </div>
 
