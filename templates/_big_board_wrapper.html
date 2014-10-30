@@ -1,15 +1,21 @@
 {% extends '_base_results.html' %}
 
 {% block extra_css %}
-{{ CSS.push('less/app.less') }}
-{{ CSS.push('less/studio-big-board.less') }}
-{{ CSS.render('css/big_board.min.css') }}
+
+{% if DEPLOYMENT_TARGET %}
+    <link rel="stylesheet" href="/css/app.less.css">
+    <link rel="stylesheet" href="/css/studio-big-board.less.css">
+{% else %}
+    {{ CSS.push('less/app.less') }}
+    {{ CSS.push('less/studio-big-board.less') }}
+    {{ CSS.render('css/big_board.min.css') }}
+{% endif %}
+
 {% endblock extra_css %}
 
 {% block outer_content %}
 <script src="/js/lib/jquery.js"></script>
 <script src="/js/lib/moment.js"></script>
-<script src="/js/lib/d3.v3.min.js"></script>
 <script src="/js/lib/jquery.columnizer.js"></script>
 
 {{ body|smarty }}

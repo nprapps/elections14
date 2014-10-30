@@ -31,11 +31,7 @@
 
 <script type="text/javascript">
 (function() {
-	var $timestamp = $('.ap-credit').find('.timestamp');
-	var timestamp = {{ TIMESTAMP }} * 1000;
-
-	// set timestamp, make relative
-	var ts = moment(timestamp).fromNow();
-	$timestamp.empty().append(ts);
+    var $timestamp = $('.ap-credit').find('.timestamp');
+    $timestamp.empty().append("{{ TIMESTAMP }}");
 })();
 </script>

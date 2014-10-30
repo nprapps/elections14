@@ -12,7 +12,7 @@
 
                 <div class="results-wrapper">
                     <div class="current-results">
-                        <h4>Current</h4>
+                        <h4>Current Congress (2013-14)</h4>
                         <p>
                             <span class="bar-wrapper">
                                 <span class="bar gop" style="width: {{ current_gop_percent }}%"></span>
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="projected-results">
-                        <h4>Projected</h4>
+                        <h4>Next Congress (2015-16)</h4>
                         <p>
                             <span class="bar-wrapper">
                                 <span class="bar gop" style="width: {{ called_gop_percent }}%;"></span>
@@ -87,11 +87,7 @@
 
 <script type="text/javascript">
 (function() {
-	var $timestamp = $('.ap-credit').find('.timestamp');
-	var timestamp = {{ TIMESTAMP }} * 1000;
-
-	// set timestamp, make relative
-	var ts = moment(timestamp).fromNow();
-	$timestamp.empty().append(ts);
+    var $timestamp = $('.ap-credit').find('.timestamp');
+    $timestamp.empty().append("{{ TIMESTAMP }}");
 })();
 </script>

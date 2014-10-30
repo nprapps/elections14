@@ -210,6 +210,8 @@ PAGINATED_STATES = [
     'NY'
 ]
 
+MAX_AGE_CACHE_CONTROL_HEADER = 20
+
 """
 Utilities
 """

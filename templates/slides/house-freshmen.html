@@ -63,10 +63,6 @@
 <script type="text/javascript">
 (function() {
 	var $timestamp = $('.ap-credit').find('.timestamp');
-	var timestamp = {{ TIMESTAMP }} * 1000;
-
-	// set timestamp, make relative
-	var ts = moment(timestamp).fromNow();
-	$timestamp.empty().append(ts);
+    $timestamp.empty().append("{{ TIMESTAMP }}");
 })();
 </script>
