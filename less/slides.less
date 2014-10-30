@@ -426,7 +426,7 @@
 ** STATE SLIDES
 */
 
-.state-slide {
+.results-sliced {
 	color: #fff;
     height: 100%;
     margin-bottom: @line-height-computed;
@@ -451,28 +451,28 @@
         z-index: -1;
     }
 
-	.state-results-wrapper {
+	.results-sliced-wrapper {
 		display: table;
 		width: 100%;
 	}
 
-	.state-header,
-	.state-results {
+	.results-header,
+	.results-table {
 		display: table-cell;
 		padding: 0 2vw;
 	}
 
-	.state-header {
+	.results-header {
 		width: 25%;
 		vertical-align: middle;
 		border-right: 2px solid #999;
 	}
 
-	.state-results {
+	.results-table {
     	width: 75%;
 	}
 
-    .state-header {
+    .results-header {
     	text-align: center;
     	color: #fff;
 
@@ -499,7 +499,7 @@
 	    }
     }
 
-    .state-results {
+    .results-table {
     	h3,
     	h4 {
     		text-transform: uppercase;
@@ -580,6 +580,10 @@
 
     	.races {
 	        font-size: 2vw;
+
+	        .recent-calls& {
+	        	font-size: 1.2vw;
+	        }
 
 	        .results-status.called {
 	        	color: #999;
