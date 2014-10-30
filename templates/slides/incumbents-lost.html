@@ -6,7 +6,7 @@
 		<div class="candidate-list">
 			<h3>U.S. Senate ({{ senate_incumbents_lost|length }})</h3>
 			<ul>
-				{% for race in senate_incumbents_lost %}
+				{% for race in senate_incumbents_lost|sort(attribute='state_postal') %}
 				{% for candidate in race.candidates %}
 				{% if candidate.incumbent and not candidate.is_winner() %}
 				<li>
@@ -22,7 +22,7 @@
 		<div class="candidate-list">
 			<h3>U.S. House ({{ house_incumbents_lost|length }})</h3>
 			<ul>
-				{% for race in house_incumbents_lost %}
+				{% for race in house_incumbents_lost|sort(attribute='seat_number')|sort(attribute='state_postal') %}
 				{% for candidate in race.candidates %}
 				{% if candidate.incumbent and not candidate.is_winner() %}
 				<li>
