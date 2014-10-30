@@ -72,13 +72,13 @@
 	function render() {
 		// clear out existing graphics
 		$graphic.empty();
-		
+
 		// compute dimensions
 		container_width = Math.floor($container.width());
 		container_height = Math.floor((container_width * 9) / 16);
 		container_padding_sides = Math.ceil(parseFloat($content.css('paddingLeft'))) + Math.ceil(parseFloat($content.css('paddingRight')));
 		container_padding_top = container_padding_sides * 4.5;
-		
+
 		content_height =
 			Math.floor(
 				(container_width * .03) + (container_width * .03) // h1 height
@@ -87,10 +87,10 @@
 			);
 
 		gutter_width = Math.floor(container_width * .03) + 20; // 3vw, and offset the width of a possible scrollbar
-		
+
 		var graphic_height = container_height - content_height - container_padding_top;
 		var graphic_width = Math.floor((container_width - container_padding_sides - gutter_width) / 2);
-		
+
 		/*
 		console.log('------------------------------');
 		console.log('container dimensions: ' + container_width + ' x ' + container_height);
@@ -101,24 +101,25 @@
 		console.log('total_width: ' + (container_padding_sides + graphic_width + gutter_width + graphic_width));
 		console.log('total height: ' + (container_padding_top + content_height + graphic_height));
 		*/
-		
+
 		label_width = Math.floor(container_width * .09); // 6vw
-		margin = { 
-			top: 0, 
-			right: (Math.ceil(container_width * .01) + 6), 
-			bottom: (Math.ceil(container_width * .01) + 10), 
+		margin = {
+			top: 0,
+			right: (Math.ceil(container_width * .01) + 6),
+			bottom: (Math.ceil(container_width * .01) + 10),
 			left: (label_width + 6)
 		};
 		value_height = Math.floor(container_width * .02); // 2vw
 		value_limit = Math.floor(container_width * .04); // 4vw
-		
+
 		// draw charts
 		draw_chart('senate', graphic_width, graphic_height);
 		draw_chart('house', graphic_width, graphic_height);
-		
+
 		// set timestamp, make relative
-		var ts = moment(timestamp).fromNow();
-		$timestamp.empty().append(ts);
+		var date = moment(timestamp).format('MMM. DD, YYYY');
+		var time = moment(timestamp).format('h:mm A')
+		$timestamp.empty().append(date + ' at ' + time);
 	}
 
 	function draw_chart(id, graphic_width, graphic_height) {
@@ -130,7 +131,7 @@
 		var height = graphic_height - margin['top'] - margin['bottom'];
 		var bar_gap = Math.ceil(height * .01);
 		var bar_height = Math.floor(((height - (bar_gap * num_bars)) / num_bars));
-		
+
 		var graph = d3.select('#graphic-bop')
 			.append('div')
 				.attr('class', 'chart chart-' + classify(id))
@@ -142,20 +143,20 @@
 		var header = graph.append('h3')
 			.attr('style', 'margin-left: ' + margin['left'] + 'px;')
 			.html(eval('header_' + id) + '<span>Majority: ' + majority + '</span>');
-	
+
 		var x = d3.scale.linear()
 			.domain([0,
-				d3.max(graphic_data, function(d) { 
+				d3.max(graphic_data, function(d) {
 					return Math.ceil(d['seats'] / round_increment) * round_increment;
 				})
 			]);
-	
+
 		if (x.domain()[1] < majority_rounded) {
 			x.domain()[1] = majority_rounded;
 		}
-	
+
 		x.range([0, width]);
-	
+
 		var y = d3.scale.linear()
 			.range([height, 0]);
 
@@ -163,8 +164,8 @@
 			.scale(x)
 			.orient('bottom')
 			.ticks(num_x_ticks);
-		
-		var x_axis_grid = function() { 
+
+		var x_axis_grid = function() {
 			return xAxis;
 		}
 
@@ -186,26 +187,26 @@
 				.tickSize(-height, 0, 0)
 				.tickFormat('')
 			);
-	
+
 		svg.append('g')
 			.attr('class', 'bars')
 			.selectAll('rect')
 				.data(graphic_data)
 			.enter().append('rect')
-				.attr('y', function(d, i) { 
+				.attr('y', function(d, i) {
 					return i * (bar_height + bar_gap);
 				})
 				.attr('width', function(d) {
 					return x(d['seats']);
-				})	
+				})
 				.attr('height', bar_height)
-				.attr('class', function(d, i) { 
+				.attr('class', function(d, i) {
 					return 'bar-' + i + ' ' + classify(d['party']);
 				});
-	
+
 		var majority_marker = svg.append('g')
 			.attr('class', 'majority');
-	
+
 		majority_marker.append('line')
 			.attr('x1', x(majority))
 			.attr('y1', 0)
@@ -217,10 +218,10 @@
 			.selectAll('text')
 				.data(graphic_data)
 			.enter().append('text')
-				.attr('x', function(d) { 
+				.attr('x', function(d) {
 					return x(d['seats']);
 				})
-				.attr('y', function(d, i) { 
+				.attr('y', function(d, i) {
 					return i * (bar_height + bar_gap);
 				})
 				.attr('dx', function(d) {
@@ -245,13 +246,13 @@
 						return '#999';
 					}
 				})
-				.attr('class', function(d) { 
+				.attr('class', function(d) {
 					return classify(d['party']);
 				})
-				.text(function(d) { 
+				.text(function(d) {
 					return d['seats'].toFixed(0);
 				});
-		
+
 		svg.append('g')
 			.attr('class', 'labels')
 			.selectAll('text')
@@ -267,7 +268,7 @@
 				.attr('class', function(d) {
 					return classify(d['party']);
 				})
-				.text(function(d) { 
+				.text(function(d) {
 					return d['party'];
 				});
 	}
