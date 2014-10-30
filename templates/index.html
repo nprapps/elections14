@@ -15,22 +15,15 @@
         </div>
     </div>
 
-    <h2 class="state-picker-hed">{{ COPY.content.state_picker_hed }}</h2>
+    <h2 class="state-picker-hed-wrapper"><span class="state-picker-hed">{{ COPY.content.state_picker_hed }}</span> <span class="state-name"></span> <span class="stateface"></span></h2>
 
     <form role="form" class="state-picker-form">
         <div class="form-group">
-            <div class="state">
-                <span class="stateface"></span>
-                <h3 class="state-name"></h3>
-            </div>
-
             <input class="typeahead" type="text" placeholder="Select a different state">
         </div>
 
         <button type="submit" class="btn btn-lg welcome-button">Come on in</button>
     </form>
-
-    <p>{{ COPY.content.state_picker_footer }}</p>
 </div>
 
 <div class="countdown">
@@ -56,8 +49,6 @@
 
         <button type="submit" class="btn btn-lg state-picker-submit">Go</button>
     </form>
-
-    <p>{{ COPY.content.state_picker_footer }}</p>
 </div>
 
 <div class="slide cast-controls">
@@ -81,25 +72,23 @@
 <div id="stack">
     <div class="header-container">
         <div class="right-controls">
-            <div class="chromecast">
-                <a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /></a>
-            </div>
-            <div class="fullscreen results-header-group">
-                <a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"></a>
-            </div>
+
         </div>
     </div>
 
     <div class="footer-container">
         <div class="results-header index">
+            {% include '_logo.svg' %}
 
             {% if bop %}
                 {% include 'bop.html' %}
             {% endif %}
-            {% include '_logo.svg' %}
             <div class="right-controls">
-                <div class="state results-header-group">
-                    <a class="state-picker-link" href="#"><span class="stateface"></span><span class="state-name"></span></p></a>
+                <div class="chromecast">
+                    <a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /></a>
+                </div>
+                <div class="fullscreen results-header-group">
+                    <a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"></a>
                 </div>
                 <div class="volume results-header-group">
                     <div id="audio-ambient">
@@ -115,6 +104,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="state results-header-group">
+                    <a class="state-picker-link" href="#"><span class="stateface"></span><span class="state-name"></span></p></a>
                 </div>
                 <div class="slide-nav results-header-group">
                     <nav>

@@ -14,6 +14,7 @@ var $stateface = null;
 var $stateName = null;
 var $typeahead = null;
 var $statePickerHed = null;
+var $statePickerLink = null;
 
 var $chromecastScreen = null;
 var $chromecastMute = null;
@@ -37,7 +38,7 @@ var reloadTimestamp = null;
 
 var state = null;
 var is_casting = false;
-var countdown = 5 + 1;
+var countdown = 3 + 1;
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
@@ -467,10 +468,12 @@ var showState = function() {
     console.log(state);
     console.log($stateName);
     $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
-    $stateName.text(APP_CONFIG.STATES[state])
+    $stateName.text(APP_CONFIG.STATES[state]);
+    $statePickerLink.find('.state-name').text(state);
 }
 
 var switchState = function() {
+    console.log('switchState')
     var $this = $(this);
 
     getState($this);
@@ -479,7 +482,7 @@ var switchState = function() {
     $stateface.css('opacity', 1);
     $stateName.css('opacity', 1);
     $typeahead.css('top', '0');
-    $statePickerHed.text('You have selected');
+    $statePickerHed.text('You have selected').css('opacity', 1);;
 
     $this.typeahead('val', '')
     $this.typeahead('close');
@@ -487,8 +490,10 @@ var switchState = function() {
 }
 
 var hideStateFace = function() {
+    console.log('hideStateFace')
     $stateface.css('opacity', 0);
     $stateName.css('opacity', 0);
+    $statePickerHed.css('opacity', 0);
 
     if ($stateWrapper.height() > 0 && $stateWrapper.width() > 0) {
         $typeahead.css('top', '-20vw');
