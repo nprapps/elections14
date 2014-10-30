@@ -20,27 +20,32 @@ def safe_execute(*args, **kwargs):
         del tb
 
 @task
-def deploy_liveblog():
+def deploy_liveblog(once=False):
     """
     Get and update liveblog slides
     """
     while True:
         start = time()
         safe_execute('liveblog.update')
-        safe_execute('deploy_liveblog_slides')
+        safe_execute('deploy_liveblog')
         duration = int(time() - start)
         wait = app_config.LIVEBLOG_DEPLOY_INTERVAL - duration
 
         if wait < 0:
-            print "== WARN: Deploying slides took %d seconds longer than %d ==" % (abs(wait), app_config.LIVEBLOG_DEPLOY_INTERVAL)
+            print '== WARN: Deploying slides took %ds longer than %ds ==' % (abs(wait), app_config.LIVEBLOG_DEPLOY_INTERVAL)
             wait = 0
         else:
-            print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
+            print '== Deploying slides ran in %ds, waiting %ds ==' % (duration, wait)
 
-        sleep(wait)
+        if once:
+            print 'Run once specified, exiting.'
+            sys.exit()
+        else:
+            print 'Waiting %ds...' % wait
+            sleep(wait)
 
 @task
-def deploy_results():
+def deploy_results(once=False):
     """
     Harvest data and deploy slides indefinitely
     """
@@ -48,19 +53,23 @@ def deploy_results():
     while True:
         start = time()
         safe_execute('ap.update')
-        safe_execute('render.less')
         safe_execute('deploy_bop')
-        safe_execute('deploy_results_slides')
+        safe_execute('deploy_results')
         safe_execute('deploy_big_boards')
-        safe_execute('deploy_state_slides')
+        safe_execute('deploy_states')
 
         duration = int(time() - start)
         wait = app_config.RESULTS_DEPLOY_INTERVAL - duration
 
         if wait < 0:
-            print "WARN: Deploying slides took %ds longer than %ds" % (abs(wait), app_config.RESULTS_DEPLOY_INTERVAL)
+            print 'WARN: Deploying slides took %ds longer than %ds' % (abs(wait), app_config.RESULTS_DEPLOY_INTERVAL)
             wait = 0
         else:
-            print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
+            print '== Deploying slides ran in %ds, waiting %ds ==' % (duration, wait)
 
-        sleep(wait)
+        if once:
+            print 'Run once specified, exiting.'
+            sys.exit()
+        else:
+            print 'Waiting %ds...' % wait
+            sleep(wait)

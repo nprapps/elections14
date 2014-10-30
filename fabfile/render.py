@@ -127,7 +127,7 @@ def render_all():
             f.write(content.encode('utf-8'))
 
 @task
-def render_liveblog_slides():
+def render_liveblog():
     """
     Render liveblog slides to HTML files.
     """
@@ -171,7 +171,7 @@ def _render_liveblog_slide(view_name, slug, output_path):
         f.write(content.data)
 
 @task
-def render_results_slides():
+def render_results():
     """
     Render results slides to HTML files.
 
@@ -209,12 +209,16 @@ def _render_results_slide(view_name, slug, output_path):
     # Ensure path exists
     head = os.path.split(path)[0]
 
+    try:
+        os.makedirs(head)
+    except OSError:
+        pass
 
     with open(path, 'w') as f:
-            f.write(content.data)
+        f.write(content.data)
 
 @task
-def render_state_slides(compiled_includes={}):
+def render_states(compiled_includes={}):
     """
     Render state slides to HTML files
     """
@@ -281,9 +285,9 @@ def render_big_boards(compiled_includes={}):
         'ballot-measures-big-board',
     ]
 
-    Parallel(n_jobs=NUM_CORES)(delayed(_render_slide)('_big_board', board, output_path) for board in boards)
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_bigboard_slide)('_big_board', board, output_path) for board in boards)
 
-def _render_slide(view_name, slug, output_path):
+def _render_bigboard_slide(view_name, slug, output_path):
     """
     Render a slide
     """
