@@ -45,7 +45,7 @@ def house_big_board(page):
     context['column_number'] = 2
 
     all_races = Race.select().where(Race.office_name == 'U.S. House')
-    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
+    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal, Race.seat_number)
 
     if page == 2:
         featured_races = all_featured_races[app_utils.HOUSE_PAGE_LIMIT:]
