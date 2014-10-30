@@ -46,33 +46,15 @@ def deploy_results():
     """
     while True:
         start = time()
-        next = start
         safe_execute('ap.update')
-        print "AP update took %d seconds" % (time() - next)
-
-        next = time()
-        safe_execute('data.update')
-        print "Data update took %d seconds" % (time() - next)
-
-        next = time()
+        safe_execute('render.less')
         safe_execute('deploy_bop')
-        print "Deploying BOP took %d seconds" % (time() - next)
-
-        next = time()
         safe_execute('deploy_results_slides')
-        print "Deploying results took %d seconds" % (time() - next)
- 
-        next = time()
         safe_execute('deploy_big_boards')
-        print "Deploying big boards took %d seconds" % (time() - next)
-
-        next = time()
         safe_execute('deploy_state_slides')
-        print "Deploying state slides took %d seconds" % (time() - next)
 
         duration = int(time() - start)
         wait = app_config.RESULTS_DEPLOY_INTERVAL - duration
-
 
         if wait < 0:
             print "WARN: Deploying slides took %ds longer than %ds" % (abs(wait), app_config.RESULTS_DEPLOY_INTERVAL)

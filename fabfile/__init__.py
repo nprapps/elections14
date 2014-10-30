@@ -171,7 +171,6 @@ def deploy_results_slides():
     Deploy latest results slides to S3.
     """
     local('rm -rf .results_slides_html .results_slides_gzip')
-    render.less()
     render.render_results_slides()
     utils._gzip('.results_slides_html', '.results_slides_gzip')
     utils._deploy_to_s3('.results_slides_gzip')
@@ -195,7 +194,6 @@ def deploy_big_boards():
     render.render_big_boards()
     utils._gzip('www', '.gzip')
     utils._gzip('.big_boards_html', '.big_boards_gzip')
-    utils._deploy_to_s3()
     utils._deploy_to_s3('.big_boards_gzip')
 
 @task

@@ -130,46 +130,43 @@ def render_all():
 def render_liveblog_slides():
     """
     Render liveblog slides to HTML files.
-
-    NB: slides do not have embedded assets, so we don't pass
-    the compile flag to the assets rig.
     """
     from flask import url_for
     import models
 
     slides = models.Slide.select()
-
     output_path = '.liveblog_slides_html'
-    os.makedirs(output_path)
 
-    for slide in slides:
-        slug = slide.slug
+    slugs = [slide.slug for slide in slides if slide.slug.startswith('tumblr')]
+    views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
 
-        if not slug.startswith('tumblr'):
-            continue
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_liveblog_slide)(view_name, slug, output_path) for slug, view_name in views)
 
-        for view_name in ['_slide', '_slide_preview']:
-            with app.app.test_request_context():
-                path = url_for(view_name, slug=slug)
+def _render_liveblog_slide(view_name, slug, output_path):
+    """
+    Render a liveblog slide
+    """
+    with app.app.test_request_context():
+        path = url_for(view_name, slug=slug)
 
-            with app.app.test_request_context(path=path):
-                print 'Rendering %s' % path
+    with app.app.test_request_context(path=path):
+        print 'Rendering %s' % path
 
-                view = app.__dict__[view_name]
-                content = view(slug)
+        view = app.__dict__[view_name]
+        content = view(slug)
 
-            path = '%s%s' % (output_path, path)
+    path = '%s%s' % (output_path, path)
 
-            # Ensure path exists
-            head = os.path.split(path)[0]
+    # Ensure path exists
+    head = os.path.split(path)[0]
 
-            try:
-                os.makedirs(head)
-            except OSError:
-                pass
+    try:
+        os.makedirs(head)
+    except OSError:
+        pass
 
-            with open(path, 'w') as f:
-                f.write(content.data)
+    with open(path, 'w') as f:
+        f.write(content.data)
 
 @task
 def render_results_slides():
@@ -191,10 +188,10 @@ def render_results_slides():
     slugs = [slide.slug for slide in slides if slide.slug not in ['state-senate-results', 'state-house-results'] or slide.slug.startswith('tumblr')]
     slides.database.close()
 
-    views = zip(slugs, ['_slide', '_slide_preview'] * len(slugs))
-    Parallel(n_jobs=NUM_CORES)(delayed(_render_results_slide)(slug, view_name, output_path) for slug, view_name in views)
+    views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_results_slide)(view_name, slug, output_path) for view_name, slug in views)
 
-def _render_results_slide(slug, view_name, output_path):
+def _render_results_slide(view_name, slug, output_path):
     from flask import url_for
     with app.app.test_request_context():
         path = url_for(view_name, slug=slug)
