@@ -396,12 +396,12 @@ var nextCountdown = function() {
 			setTimeout(nextCountdown, 1000);
     		break;
     	case 2:
-    		$countdownScreen.find('h2').show();
+    		$countdownScreen.find('h2').removeClass('masked');
 			$counter.text(countdown);
 			setTimeout(nextCountdown, 1000);
     		break;
     	case 1:
-    		$countdownScreen.find('h3').show();
+    		$countdownScreen.find('h3').removeClass('masked');
 			$counter.text(countdown);
 			setTimeout(nextCountdown, 1000);
     		break;
