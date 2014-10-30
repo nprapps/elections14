@@ -40,7 +40,6 @@ var state = null;
 var is_casting = false;
 var countdown = 5 + 1;
 
-var slide_countdown_status = 0;
 var slide_countdown_duration = 0;
 var slide_countdown_interval = null;
 var slide_countdown_arc = null;
@@ -632,32 +631,32 @@ function start_countdown() {
 }
 
 function start_slide_countdown() {
-	slide_countdown_interval = setInterval(function() {
-		slide_countdown_foreground_arc.transition()
-			.duration(750)
-			.call(arcTween);
-	}, 1000);
+	var arc_start = 0;
+	var arc_end = τ;
 
-	function arcTween(transition) {
-		slide_countdown_status += 1;
-		if (slide_countdown_status > slide_countdown_duration) {
-			slide_countdown_status = slide_countdown_duration;
-		}
-		var newAngle = (slide_countdown_status / slide_countdown_duration) * τ;
-		
-		transition.attrTween('d', function(d) {
-			var interpolate = d3.interpolate(d['endAngle'], newAngle);
-			return function(t) {
-				d['endAngle'] = interpolate(t);
-				return slide_countdown_arc(d);
-			};
-		});
-	}
+	slide_countdown_foreground_arc
+		.transition()
+			.duration(1000)
+				.ease('linear')
+				.call(tween_slide_arc, arc_start);
+	slide_countdown_foreground_arc
+		.transition()
+			.duration(slide_countdown_duration * 1000)
+			.delay(1000)
+				.ease('linear')
+				.call(tween_slide_arc, arc_end);
 }
 
-function stop_slide_countdown() {
-	clearInterval(slide_countdown_interval);
+function tween_slide_arc(transition, end) {
+	transition.attrTween('d', function(d) {
+		var interpolate = d3.interpolate(d['endAngle'], end);
+		return function(t) {
+			d['endAngle'] = interpolate(t);
+			return slide_countdown_arc(d);
+		};
+	});
 }
+
 
 /**
  * Click left or right paddle
