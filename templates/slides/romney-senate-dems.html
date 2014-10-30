@@ -1,17 +1,17 @@
-<div id="obama-reps" class="graphic">
+<div id="romney-dems" class="graphic">
 	<div class="wrapper">
 
-		{% if COPY.graphic_slides.headline_obama_reps %}<h1>{{ COPY.graphic_slides.headline_obama_reps }}</h1>{% endif %}
-		{% if COPY.graphic_slides.subhed_obama_reps %}<h2>{{ COPY.graphic_slides.subhed_obama_reps }}</h2>{% endif %}
+		{% if COPY.graphic_slides.headline_romney_senate_dems %}<h1>{{ COPY.graphic_slides.headline_romney_senate_dems }}</h1>{% endif %}
+		{% if COPY.graphic_slides.subhed_romney_senate_dems %}<h2>{{ COPY.graphic_slides.subhed_romney_senate_dems }}</h2>{% endif %}
 
 		<div class="candidate-list">
 			<h3>{{ COPY.graphic_slides.subhed_won }} <span>({{ races_won|length }} of {{ races_count }})</span></h3>
 			<ul>
 				{% for race in races_won|sort(attribute='seat_number')|sort(attribute='state_postal') %}
 				<li>
-					<span class="district r">{{ race.state_postal }}-{{ race.seat_number }}</span>
+					<span class="district d">{{ race.state_postal }}-{{ race.seat_number }}</span>
 					{% for candidate in race.candidates %}
-					{% if candidate.get_party() == 'gop' %}
+					{% if candidate.get_party() == 'dem' %}
 					<span class="name">{{ candidate.last_name }}</span>
 					{% endif %}
 					{% endfor %}
@@ -25,9 +25,9 @@
 			<ul>
 				{% for race in races_lost|sort(attribute='seat_number')|sort(attribute='state_postal') %}
 				<li>
-					<span class="district r">{{ race.state_postal }}-{{ race.seat_number }}</span>
+					<span class="district d">{{ race.state_postal }}-{{ race.seat_number }}</span>
 					{% for candidate in race.candidates %}
-					{% if candidate.get_party() == 'gop' %}
+					{% if candidate.get_party() == 'dem' %}
 					<span class="name">{{ candidate.last_name }}</span>
 					{% endif %}
 					{% endfor %}
@@ -41,9 +41,9 @@
 			<ul>
 				{% for race in races_not_called|sort(attribute='seat_number')|sort(attribute='state_postal') %}
 				<li>
-					<span class="district r">{{ race.state_postal }}-{{ race.seat_number }}</span>
+					<span class="district d">{{ race.state_postal }}-{{ race.seat_number }}</span>
 					{% for candidate in race.candidates %}
-					{% if candidate.get_party() == 'gop' %}
+					{% if candidate.get_party() == 'dem' %}
 					<span class="name">{{ candidate.last_name }}</span>
 					{% endif %}
 					{% endfor %}
