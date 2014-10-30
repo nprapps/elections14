@@ -182,6 +182,10 @@ def render_results_slides():
     import models
 
     output_path = '.results_slides_html'
+    try:
+        os.makedirs(output_path)
+    except OSError:
+        pass
 
     slides = models.Slide.select()
     slugs = [slide.slug for slide in slides if slide.slug not in ['state-senate-results', 'state-house-results'] or slide.slug.startswith('tumblr')]
@@ -206,10 +210,6 @@ def _render_results_slide(slug, view_name, output_path):
     # Ensure path exists
     head = os.path.split(path)[0]
 
-    try:
-        os.makedirs(head)
-    except OSError:
-        pass
 
     with open(path, 'w') as f:
             f.write(content.data)
@@ -290,7 +290,7 @@ def _render_slide(view_name, slug, output_path):
     """
     from flask import url_for
 
-    # Silly fix because url_for require a context
+    # Silly fix because url_for requires a context
     with app.app.test_request_context():
         path = url_for(view_name, slug=slug)
 
