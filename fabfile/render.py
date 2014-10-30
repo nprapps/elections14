@@ -222,7 +222,7 @@ def render_states(compiled_includes={}):
     """
     from flask import url_for
 
-    output_path = '.slides_html'
+    output_path = '.results_slides_html'
 
     for postal, state in app_config.STATES.items():
         to_render = [
