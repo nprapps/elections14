@@ -64,7 +64,8 @@
 	var timestamp = {{ TIMESTAMP }} * 1000;
 
 	// set timestamp, make relative
-	var ts = moment(timestamp).fromNow();
-	$timestamp.empty().append(ts);
+	var date = moment(timestamp).format('MMM. DD, YYYY');
+	var time = moment(timestamp).format('h:mm A')
+	$timestamp.empty().append(date + ' at ' + time);
 })();
 </script>
