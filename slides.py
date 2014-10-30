@@ -356,4 +356,21 @@ def romney_dems():
 
     return render_template('slides/romney-dems.html', **context)
 
+def romney_senate_dems():
+    """
+    Ongoing list of Democratically-held seats in states Mitt Romney Won In 2012
+    """
+    from models import Race
+
+    context = make_context()
+
+    races = Race.select().where(Race.romney_dem == True)
+
+    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    context['races_not_called'] = [race for race in races if not race.is_called()]
+
+    context['races_count'] = races.count()
+
+    return render_template('slides/romney-senate-dems.html', **context)
 
