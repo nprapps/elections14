@@ -18,14 +18,19 @@ db = PostgresqlDatabase(
 )
 
 # Indepdendent candidate overrides, (AP race_id, candidate_id) two-tuple mapping
-DEMOCRAT_INDIES = {
+DEMOCRAT_OVERRIDES = {
     '17585-KS': '6081-KS',   # KS senate, Greg Orman (I)
     '20157-LA': '23579-LA',  # LA Senate, Mary Landrieu (D)
     '2010-AK':  '6399-AK',   # AK gov, Bill Walker (I)
 }
-REPUBLICAN_INDIES = {
+REPUBLICAN_OVERRIDES = {
     '5707-CA':  '19804-CA',  # CA House District 17, Ro Khanna (D)
     '20157-LA': '23859-LA',  # LA Senate, Bill Cassidy (R)
+}
+
+USE_LEADING_CANDIDATES = {
+    # SD Senate: Rounds, Weiland, Pressler
+    '42003-SD': ['47394-SD', '47392-SD', '47534-SD'] 
 }
 
 def slugify(bits):
@@ -292,11 +297,48 @@ class Race(SlugModel):
 
     def top_candidates(self):
         """
-        Return (dem, gop) pair
+        Return (dem, gop) pair of top candidates
+        """
+
+        if self.race_id in USE_LEADING_CANDIDATES.keys():
+            candidates = USE_LEADING_CANDIDATES[self.race_id]
+            return self._leading_top_candidates(candidates)
+        else:
+            return self._static_top_candidates()
+
+    def _leading_top_candidates(self, candidates):
+        """
+        Get top candidates using total votes
+        """
+        candidates_query = self.candidates\
+            .where(self.candidates.model_class.candidate_id << candidates)\
+            .order_by(self.candidates.model_class.vote_count.desc())
+
+        candidates = []
+        for candidate in candidates_query:
+            if candidate.get_party() == 'dem':
+                dem = candidate
+            if candidate.get_party() == 'gop':
+                gop = candidate
+            if candidate.get_party() == 'other':
+                other = candidate
+
+            candidates.append(candidate)
+
+        if candidates[-1].get_party() == 'other':
+            return (dem, gop)
+        if candidates[-1].get_party() == 'gop':
+            return (dem, other)
+        if candidates[-1].get_party() == 'dem':
+            return (other, gop)
+
+    def _static_top_candidates(self):
+        """
+        Get top candidates using dem, gop pattern (with possibility for overrides)
         """
         try:
-            if self.race_id in DEMOCRAT_INDIES.keys():
-                candidate_id = DEMOCRAT_INDIES[self.race_id]
+            if self.race_id in DEMOCRAT_OVERRIDES.keys():
+                candidate_id = DEMOCRAT_OVERRIDES[self.race_id]
                 dem = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
                 dem = self.candidates.where(self.candidates.model_class.party == "Dem").get()
@@ -304,8 +346,8 @@ class Race(SlugModel):
             dem = None
 
         try:
-            if self.race_id in REPUBLICAN_INDIES.keys():
-                candidate_id = REPUBLICAN_INDIES[self.race_id]
+            if self.race_id in REPUBLICAN_OVERRIDES.keys():
+                candidate_id = REPUBLICAN_OVERRIDES[self.race_id]
                 gop = self.candidates.where(self.candidates.model_class.candidate_id == candidate_id).get()
             else:
                 gop = self.candidates.where(self.candidates.model_class.party == "GOP").get()
