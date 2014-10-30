@@ -4,6 +4,9 @@ var $welcomeButton = null;
 var $cast = null;
 var $rotate = null;
 
+var $countdownScreen = null;
+var $counter = null;
+
 var $statePickerScreen = null;
 var $statePickerForm = null;
 var $stateWrapper = null;
@@ -35,6 +38,7 @@ var reloadTimestamp = null;
 
 var state = null;
 var is_casting = false;
+var countdown = 5 + 1;
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
@@ -55,6 +59,9 @@ var onDocumentReady = function(e) {
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
     $rotate = $('.rotate-phone-wrapper');
+
+    $countdownScreen = $('.countdown');
+    $counter = $('.counter');
 
     $statePickerScreen = $('.state-picker');
     $statePickerForm  = $('form.state-picker-form');
@@ -352,6 +359,32 @@ var onWelcomeButtonClick = function() {
     } else {
         STACK.start();
     }*/
+
+   showCountdown();
+}
+
+var showCountdown = function() {
+    $countdownScreen.show();
+
+    nextCountdown();
+}
+
+var nextCountdown = function() {
+    countdown -= 1;
+
+    if (countdown == 0) {
+        $counter.text('Go!');
+        setTimeout(hideCountdown, 1000);
+    } else {
+        $counter.text(countdown);
+        setTimeout(nextCountdown, 1000);
+    }
+}
+
+var hideCountdown = function() {
+    $countdownScreen.hide();
+    
+    STACK.start();
 }
 
 /*
@@ -473,8 +506,6 @@ var onStatePickerSubmit = function(e) {
     if (is_casting) {
         $chromecastScreen.show();
         CHROMECAST_SENDER.sendMessage('state', state);
-    } else {
-        STACK.start();
     }
 }
 
