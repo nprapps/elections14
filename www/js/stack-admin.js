@@ -35,14 +35,14 @@ var onAddClick = function() {
     var currentStackTime = parseInt($stackTime.text());
 
     var newItem = $(
-        '<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '" data-name="' + name + '">' + 
+        '<li class="item" data-slide="' + slide + '" data-time="' + slideTime + '" data-name="' + name + '">' +
             '<p class="slug">' +
                 '<span class="dragger fa fa-align-justify"></span>' +
                 '<a href="' + APP_CONFIG.S3_BASE_URL + '/preview/' + slide + '/index.html" target="_blank"> ' + name + '</a> <span class="time pull">' + slideTime + 's</span>' +
             '</p>' +
-            '<div class="controls">' + 
-                '<a class="remove" href="#"><span class="fa fa-times"></span>' + 
-            '</div>' + 
+            '<div class="controls">' +
+                '<a class="remove" href="#"><span class="fa fa-times"></span>' +
+            '</div>' +
         '</li>'
     )
 
@@ -56,6 +56,8 @@ var onAddClick = function() {
 
     $saveButton.removeClass('btn-default');
     $saveButton.addClass('btn-primary');
+
+    checkStack();
 }
 
 var onRemoveClick = function() {
@@ -68,6 +70,8 @@ var onRemoveClick = function() {
     $stackTime.text(currentStackTime - slideTime);
     $saveButton.removeClass('btn-default');
     $saveButton.addClass('btn-primary');
+
+    checkStack();
 }
 
 var onSaveFormSubmit = function(e) {
@@ -86,6 +90,33 @@ var onSaveFormSubmit = function(e) {
     });
 }
 
+var checkStack = function() {
+    var $timelineItems = $('.timeline ol li');
+    var $graphicItems = $('.graphics ul li');
+    var $newsItems = $('.news ul li')
+
+    $graphicItems.css('background-color', '#eee');
+    $newsItems.css('background-color', '#eee');
+
+    for (var i = 0; i < $timelineItems.length; i++) {
+        var timelineItem = $timelineItems.eq(i);
+
+        for (var j=0; j < $graphicItems.length; j++) {
+            var graphicItem = $graphicItems.eq(j);
+            if (timelineItem.data('slide') === graphicItem.data('slide')) {
+                graphicItem.css('background-color', 'papayawhip');
+            }
+        }
+
+        for (var k=0; k < $newsItems.length; k++) {
+            var newsItem = $newsItems.eq(k);
+            if (timelineItem.data('slide') === newsItem.data('slide')) {
+                newsItem.css('background-color', 'papayawhip');
+            }
+        }
+    }
+}
+
 $(document).ready(function() {
     $timeline = $('.timeline ol')
     $items = $('.out .item');
@@ -101,6 +132,7 @@ $(document).ready(function() {
     $saveForm.submit(onSaveFormSubmit)
 
     initDragAndDrop();
+    checkStack();
 
     setInterval(function() {
         $.ajax({
