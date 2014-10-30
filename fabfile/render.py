@@ -269,6 +269,10 @@ def _render_state(postal, state, output_path):
 def render_big_boards(compiled_includes={}):
 
     output_path = '.big_boards_html'
+    try:
+        os.makedirs(output_path)
+    except OSError:
+        pass
 
     boards = [
         'senate-big-board',
@@ -278,31 +282,24 @@ def render_big_boards(compiled_includes={}):
         'ballot-measures-big-board',
     ]
 
-    Parallel(n_jobs=NUM_CORES)(delayed(_render_big_board)(board, output_path) for board in boards)
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_slide)('_big_board', board, output_path) for board in boards)
 
-def _render_big_board(board, output_path):
+def _render_slide(view_name, slug, output_path):
+    """
+    Render a slide
+    """
     from flask import url_for
-
-    view_name = '_big_board'
 
     # Silly fix because url_for require a context
     with app.app.test_request_context():
-        path = url_for(view_name, slug=board)
+        path = url_for(view_name, slug=slug)
 
     with app.app.test_request_context(path=path):
         print 'Rendering %s' % path
         view = app.__dict__[view_name]
-        content = view(board)
+        content = view(slug)
 
     path = '%s%s' % (output_path, path)
-
-    # Ensure path exists
-    head = os.path.split(path)[0]
-
-    try:
-        os.makedirs(head)
-    except OSError:
-        pass
 
     with open('%sindex.html' % path, 'w') as f:
         f.write(content)
