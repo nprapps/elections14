@@ -22,6 +22,7 @@ var STACK = (function () {
      */
     obj.start = function() {
         $stack.show();
+        start_slide_countdown();
 
         updateStack();
     }
@@ -149,6 +150,10 @@ var STACK = (function () {
         var $newSlide = $(data);
 
         var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
+
+		// update countdown spinner
+		slide_countdown_status = -1;
+		slide_countdown_duration = timeOnScreen;
 
         if ($oldSlide.length > 0) {
             if (_slideExitCallback) {

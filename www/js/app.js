@@ -29,7 +29,7 @@ var $audioPlayer = null;
 var $bop = null;
 var $stack = null;
 var $audioButtons = null;
-var $countdown = null;
+var $slide_countdown = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
@@ -39,6 +39,15 @@ var reloadTimestamp = null;
 var state = null;
 var is_casting = false;
 var countdown = 5 + 1;
+
+var slide_countdown_status = 0;
+var slide_countdown_duration = 0;
+var slide_countdown_interval = null;
+var slide_countdown_arc = null;
+var slide_countdown_svg = null;
+var slide_countdown_background_arc = null;
+var slide_countdown_foreground_arc = null;
+var τ = 2 * Math.PI; // http://bl.ocks.org/mbostock/5100636
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
@@ -86,7 +95,7 @@ var onDocumentReady = function(e) {
     $header = $('.index');
     $headerControls = $('.header-controls');
     $audioButtons = $('.jp-controls .nav-btn');
-    $countdown = $('#countdown');
+    $slide_countdown = $stack.find('.slide-countdown');
 
     reloadTimestamp = moment();
 
@@ -592,61 +601,59 @@ var onAudioFail = function() {
  */
 function start_countdown() {
 	var page_width = $(window).width();
-	var countdown_width = Math.floor(page_width * .03); // 3vw
+	var countdown_width = Math.floor(page_width * .025); // 2.5vw
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .6);
-	var countdown_status = 0;
-	var countdown_limit = 20;
-	var τ = 2 * Math.PI; // http://bl.ocks.org/mbostock/5100636
 	
-	console.log(countdown_width, countdown_outer_radius, countdown_inner_radius);
-	
-	$countdown.empty();
-	
-	var arc = d3.svg.arc()
+	slide_countdown_arc = d3.svg.arc()
 		.innerRadius(countdown_inner_radius)
 		.outerRadius(countdown_outer_radius)
 		.startAngle(0);
 	
-	var svg = d3.select('#countdown')
+	slide_countdown_svg = d3.select('#stack .slide-countdown')
 		.append('svg')
 			.attr('width', countdown_width)
 			.attr('height', countdown_width)
 		.append('g')
 			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
 	
-	var background_arc = svg.append('path')
+	slide_countdown_background_arc = slide_countdown_svg.append('path')
 		.datum({endAngle: τ})
 		.attr('class', 'countdown-background')
-		.attr('d', arc);
+		.attr('d', slide_countdown_arc);
 	
-	var foreground_arc = svg.append('path')
-		.datum( { endAngle: (countdown_status / countdown_limit) * τ } )
+	slide_countdown_foreground_arc = slide_countdown_svg.append('path')
+		.datum( { endAngle: 0 } )
 		.attr('class', 'countdown-active')
-		.attr('d', arc);
-		
-	var countdown_interval = setInterval(function() {
-		foreground_arc.transition()
+		.attr('d', slide_countdown_arc);
+}
+
+function start_slide_countdown() {
+	slide_countdown_interval = setInterval(function() {
+		slide_countdown_foreground_arc.transition()
 			.duration(750)
 			.call(arcTween);
 	}, 1000);
 
 	function arcTween(transition) {
-		var v = countdown_status + 1;
-		if (v > countdown_limit) {
-			v = 0;
+		slide_countdown_status += 1;
+		if (slide_countdown_status > slide_countdown_duration) {
+			slide_countdown_status = slide_countdown_duration;
 		}
-		countdown_status = v;
-		var newAngle = (countdown_status / countdown_limit) * τ;
+		var newAngle = (slide_countdown_status / slide_countdown_duration) * τ;
 		
 		transition.attrTween('d', function(d) {
-			var interpolate = d3.interpolate(d.endAngle, newAngle);
+			var interpolate = d3.interpolate(d['endAngle'], newAngle);
 			return function(t) {
-				d.endAngle = interpolate(t);
-				return arc(d);
+				d['endAngle'] = interpolate(t);
+				return slide_countdown_arc(d);
 			};
 		});
 	}
+}
+
+function stop_slide_countdown() {
+	clearInterval(slide_countdown_interval);
 }
 
 $(onDocumentReady);
