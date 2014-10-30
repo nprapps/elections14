@@ -5,7 +5,6 @@ var $cast = null;
 var $rotate = null;
 
 var $statePickerScreen = null;
-var $statePickerSubmitButton = null;
 var $statePickerForm = null;
 var $stateWrapper = null;
 var $stateface = null;
@@ -54,11 +53,10 @@ var onDocumentReady = function(e) {
     // Cache jQuery references
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.welcome-button')
-    $welcomeSubmitButton = $('.state-picker-submit');
     $rotate = $('.rotate-phone-wrapper');
 
-    $statePickerForm  = $('form.state-picker-form');
     $statePickerScreen = $('.state-picker');
+    $statePickerForm  = $('form.state-picker-form');
     $statePickerLink = $ ('.state-picker-link');
     $stateWrapper = $('.state');
     $stateface = $('.stateface');
@@ -140,7 +138,7 @@ var setupUI = function() {
     // Geolocate
     if ($.cookie('state')) {
         state = $.cookie('state');
-        loadState();
+        showState();
     }
 
     if (typeof geoip2 == 'object' && !($.cookie('state'))) {
@@ -211,11 +209,9 @@ var onCastStarted = function() {
 
     if (!state) {
         $statePickerScreen.show();
-        resizeSlide($statePickerScreen);
     } else {
         $statePickerScreen.hide();
         $chromecastScreen.show();
-        resizeSlide($chromecastScreen);
     }
 
     is_casting = true;
@@ -275,14 +271,13 @@ var onWindowResize = function() {
         padding = 0;
     }
 
-    $('#landscape-wrapper').css({
+    $stack.css({
         'height': new_height + 'px',
         'position': 'absolute',
         'top': padding + 'px'
     });
 
     var thisSlide = $('.slide');
-    resizeSlide(thisSlide);
     rotatePhone();
 }
 
@@ -290,8 +285,8 @@ var onWindowResize = function() {
  * Resize a slide to fit the viewport.
  */
 var resizeSlide = function(slide) {
-    var $w = $('#landscape-wrapper').width();
-    var $h = $('#landscape-wrapper').height();
+    var $w = $stack.width();
+    var $h = $stack.height();
     var headerHeight = 0;
 
     slide.width($w);
@@ -305,7 +300,7 @@ var rotatePhone = function() {
     if (Modernizr.touch && Modernizr.mq('(orientation: portrait)')) {
         $rotate.show();
         $('html').addClass('device-portrait');
-		$('#landscape-wrapper').css({
+		$stack.css({
 			'top': '3vw'
 		});
     }
@@ -342,9 +337,19 @@ var onCastStopClick = function(e) {
  */
 var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
-    $statePickerScreen.show();
-    resizeSlide($statePickerScreen);
 
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
+
+    // TODO
+    /*if (is_casting) {
+        $chromecastScreen.show();
+        resizeSlide($chromecastScreen);
+        CHROMECAST_SENDER.sendMessage('state', state);
+    } else {
+        STACK.start();
+    }*/
+
+   STACK.start();
 }
 
 /*
@@ -413,8 +418,9 @@ var onFullScreenButtonClick = function() {
  * Select the state.
  */
 
-var getState = function() {
-    var input = $('.typeahead').typeahead('val');
+var getState = function($typeahead) {
+    var input = $typeahead.typeahead('val');
+
     if (input) {
         var inverted = _.invert(APP_CONFIG.STATES);
         state = inverted[input]
@@ -423,24 +429,27 @@ var getState = function() {
     $.cookie('state', state, { expires: 30 });
 }
 
-var loadState = function() {
-    $stateface.removeClass();
-    $stateface.addClass('stateface stateface-' + state.toLowerCase());
+var showState = function() {
+    console.log(state);
+    console.log($stateName);
+    $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
     $stateName.text(APP_CONFIG.STATES[state])
 }
 
 var switchState = function() {
-    getState();
-    loadState();
+    var $this = $(this);
+
+    getState($this);
+    showState();
 
     $stateface.css('opacity', 1);
     $stateName.css('opacity', 1);
     $typeahead.css('top', '0');
     $statePickerHed.text('You have selected');
 
-    $('.typeahead').typeahead('val', '')
-    $('.typeahead').typeahead('close');
-    $('.typeahead').blur();
+    $this.typeahead('val', '')
+    $this.typeahead('close');
+    $this.blur();
 }
 
 var hideStateFace = function() {
@@ -457,12 +466,10 @@ var onStatePickerSubmit = function(e) {
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
 
-    $statePickerLink.html('<span class="stateface stateface-' + state.toLowerCase() + '"></span>' + state);
     $statePickerScreen.hide();
 
     if (is_casting) {
         $chromecastScreen.show();
-        resizeSlide($chromecastScreen);
         CHROMECAST_SENDER.sendMessage('state', state);
     } else {
         STACK.start();
@@ -477,7 +484,6 @@ var onStatePickerLink = function() {
     $stack.hide();
     $chromecastScreen.hide();
     $statePickerScreen.show();
-    resizeSlide($statePickerScreen);
 }
 
 /*
@@ -489,7 +495,7 @@ var onLocateIP = function(response) {
     state = place;
     $.cookie('state', state, { expires: 30 });
 
-    loadState();
+    showState();
 }
 
 var checkBop = function() {
