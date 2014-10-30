@@ -179,7 +179,7 @@
     height: 100%;
 
     .wrapper {
-        .vertical-center;
+        // .vertical-center;
     }
 
 	h1 {
@@ -425,7 +425,7 @@
 ** STATE SLIDES
 */
 
-.state-slide {
+.results-sliced {
 	color: #fff;
     height: 100%;
     margin-bottom: @line-height-computed;
@@ -433,7 +433,7 @@
     padding-bottom: 4vw;
 
     .wrapper{
-    	.vertical-center;
+    	// .vertical-center;
     }
 
     &:after {
@@ -450,20 +450,27 @@
         z-index: -1;
     }
 
-	.state-results-wrapper {
+	.results-sliced-wrapper {
 		display: table;
 		width: 100%;
 	}
 
-	.state-header,
-	.state-results {
+	.results-header,
+	.results-table {
 		display: table-cell;
 		padding: 1vw 2vw;
 	}
 
-    .state-header {
+	.results-header {
 		width: 25%;
 		border-right: 2px solid #999;
+	}
+
+	.results-table {
+    	width: 75%;
+	}
+
+    .results-header {
     	text-align: center;
     	color: #fff;
 
@@ -492,7 +499,7 @@
 	    }
     }
 
-    .state-results {
+    .results-table {
     	width: 75%;
     	vertical-align: top;
 
@@ -568,6 +575,10 @@
 
     	.races {
 	        font-size: 2vw;
+
+	        .recent-calls& {
+	        	font-size: 1.8vw;
+	        }
 
 	        .results-status.called {
 	        	color: #999;
@@ -724,14 +735,10 @@
 	margin: .75vw 0 0 0;
 	font-size: 1vw;
 	line-height: 1.3;
-	color: @grayMedium;
+	color: @gray;
 	text-align: left;
-	
+
 	.state-slide & {
 		margin-top: 1.5vw;
-	}
-
-	.graphic & {
-		text-align: center;
 	}
 }

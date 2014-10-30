@@ -70,7 +70,9 @@ var onRemoveClick = function() {
     $saveButton.addClass('btn-primary');
 }
 
-var onSaveFormSubmit = function() {
+var onSaveFormSubmit = function(e) {
+    e.preventDefault();
+
     postData = group.sortable("serialize").get();
     $.ajax({
         type:"POST",

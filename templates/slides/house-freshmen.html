@@ -7,7 +7,7 @@
 			<h3>{{ COPY.graphic_slides.subhed_won }}
 				<span>({{ races_won|length }} of {{ races_count }})</span></h3>
 			<ul>
-				{% for race in races_won %}
+				{% for race in races_won|sort(attribute='seat_number')|sort(attribute='state_postal') %}
 					{% for candidate in race.candidates %}
 					{% if candidate.incumbent %}
 					<li>
@@ -21,10 +21,10 @@
 		</div>
 
 		<div class="candidate-list">
-			<h3>{{ COPY.graphic_slides.subhed_lost }} 
+			<h3>{{ COPY.graphic_slides.subhed_lost }}
 				<span>({{ races_lost|length }} of {{ races_count }})</span></h3>
 			<ul>
-				{% for race in races_lost %}
+				{% for race in races_lost|sort(attribute='seat_number')|sort(attribute='state_postal') %}
 					{% for candidate in race.candidates %}
 					{% if candidate.incumbent %}
 					<li>
@@ -41,7 +41,7 @@
 			<h3>{{ COPY.graphic_slides.subhed_tbd }}
 				<span>({{ races_not_called|length }} of {{ races_count }})</span></h3>
 			<ul>
-				{% for race in races_not_called|sort(attribute='state_postal') %}
+				{% for race in races_not_called|sort(attribute='seat_number')|sort(attribute='state_postal') %}
 					{% for candidate in race.candidates %}
 					{% if candidate.incumbent %}
 					<li>

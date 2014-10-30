@@ -1,6 +1,6 @@
   <table class="races">
       {% for race in races %}
-      <tr class="race dontsplit">
+      <tr class="race dontsplit {% if race.office_id == 'I' and race.state_postal == 'AR' %}columnbreak{% endif %}">
           <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
               {% if race.is_called() or race.is_reporting() %}
                   {{ race.precincts_reporting_percent()|format_precincts_percent }}

@@ -92,14 +92,15 @@
         .leaderboard {
             float: right;
             display: table;
+            margin-right: 5.5vw;
         }
 
         .results-header-group {
             display: table-cell;
             // border-left: 2px solid @gray;
             box-sizing: border-box;
-            padding-left: 1vw;
-            padding-right: 1vw;
+            padding-left: 0.5vw;
+            padding-right: 0.5vw;
             white-space: nowrap;
             overflow: hidden;
 
@@ -164,7 +165,7 @@
         .gop .percentage   { background: @red; }
         .gop .count   { background: @redDim; }
         .other .percentage { background: @green; }
-        .not-called .count { background: @yellow; color: #000; text-shadow: none; }
+        .not-called .count { border: 2px solid @yellow; color: @yellow; text-shadow: none; }
 
         .percentage,
         .count {

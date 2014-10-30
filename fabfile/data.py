@@ -500,6 +500,9 @@ def _save_senate_row(row, quiet):
         if row['female_candidate'] == '1':
             existing.female_candidate = True
 
+        if row['romney_dem'] == '1':
+            existing.romney_dem = True
+
         existing.save()
 
     except models.Race.DoesNotExist:
@@ -589,7 +592,8 @@ def create_slides():
     _create_slide('Governor Big Board', 'governor_big_board', 20, it.next())
     _create_slide('Ballot Measures Big Board', 'ballot_measures_big_board', 20, it.next())
     _create_slide('Balance of Power Graphic', 'balance_of_power', 10, it.next())
-    _create_slide('Democrats in Romney-Won Districts', 'romney_dems', 10, it.next())
+    _create_slide('House Democrats in Romney-Won Districts', 'romney_dems', 10, it.next())
+    _create_slide('Senate Democrats in Romney-Won States', 'romney_senate_dems', 10, it.next())
     _create_slide('Republicans in Obama-Won Districts', 'obama_reps', 10, it.next())
     _create_slide('Incumbent Losers', 'incumbents_lost', 10, it.next())
     _create_slide('House Freshmen Results', 'house_freshmen', 10, it.next())
@@ -740,6 +744,19 @@ def play_fake_results(update_interval=60):
         print "ctrl-c pressed, resetting results"
         reset_results()
 
+@task
+def clear_calls():
+    """
+    Reset calls in the DB
+    """
+    import models
+    races = models.Race.select()
+    for race in races:
+        race.ap_called = False
+        race.ap_called_time = None
+        race.npr_called = False
+        race.npr_called_time = None
+        race.save()
 
 @task
 def reset_results():
