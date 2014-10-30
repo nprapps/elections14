@@ -12,7 +12,7 @@ from fabric.api import local, task
 from glob import glob
 from joblib import Parallel, delayed
 
-NUM_CORES = multiprocessing.cpu_count()
+NUM_CORES = multiprocessing.cpu_count() * 4
 
 @task
 def less():
