@@ -1,12 +1,11 @@
-import json
+#!/usr/bin/env python
 
 import boto
 from boto.s3.key import Key
-from fabric.api import env, require, run, settings, task
+from fabric.api import task
 
 import app_config
 import app
-from models import SlideSequence
 
 @task
 def deploy():
@@ -29,6 +28,6 @@ def deploy():
             k = Key(b)
             k.key = 'live-data/stack.json'
             k.set_contents_from_filename('www/live-data/stack.json', headers={
-                'cache-control': 'max-age=5 no-cache no-store must-revalidate'
+                'cache-control': 'max-age=%i no-cache no-store must-revalidate' % app_config.MAX_AGE_CACHE_CONTROL_HEADER
             })
             k.make_public()
