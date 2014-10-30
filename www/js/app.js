@@ -60,6 +60,10 @@ var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
 ];
 
+var hasTrackedNextSlide = null;
+var hasTrackedPrevSlide = null;
+var hasTrackedKeyboardNav = null;
+
 /*
  * Run on page load.
  */
@@ -150,7 +154,7 @@ var onDocumentReady = function(e) {
     setupStateTypeahead();
     checkBop();
     checkTimestamp();
-    
+
     start_countdown();
 }
 
@@ -395,7 +399,7 @@ var nextCountdown = function() {
 
 var hideCountdown = function() {
     $countdownScreen.hide();
-    
+
     STACK.start();
 }
 
@@ -607,24 +611,24 @@ function start_countdown() {
 	var countdown_width = Math.floor(page_width * .025); // 2.5vw
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .6);
-	
+
 	slide_countdown_arc = d3.svg.arc()
 		.innerRadius(countdown_inner_radius)
 		.outerRadius(countdown_outer_radius)
 		.startAngle(0);
-	
+
 	slide_countdown_svg = d3.select('#stack .slide-countdown')
 		.append('svg')
 			.attr('width', countdown_width)
 			.attr('height', countdown_width)
 		.append('g')
 			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
-	
+
 	slide_countdown_background_arc = slide_countdown_svg.append('path')
 		.datum({endAngle: τ})
 		.attr('class', 'countdown-background')
 		.attr('d', slide_countdown_arc);
-	
+
 	slide_countdown_foreground_arc = slide_countdown_svg.append('path')
 		.datum( { endAngle: 0 } )
 		.attr('class', 'countdown-active')
@@ -644,7 +648,7 @@ function start_slide_countdown() {
 			slide_countdown_status = slide_countdown_duration;
 		}
 		var newAngle = (slide_countdown_status / slide_countdown_duration) * τ;
-		
+
 		transition.attrTween('d', function(d) {
 			var interpolate = d3.interpolate(d['endAngle'], newAngle);
 			return function(t) {
@@ -663,25 +667,37 @@ function stop_slide_countdown() {
  * Click left or right paddle
  */
 var onSlideControlClick = function() {
-  var direction = $(this).data('slide');
-  if (direction == "next") {
-    STACK.next();
-  }
-  else if (direction == "previous") {
-    STACK.previous();
-  }
+    var direction = $(this).data('slide');
+    if (direction == "next") {
+        STACK.next();
+        if (!(hasTrackedNextSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'next-slide-click']);
+            hasTrackedNextSlide = true;
+        }
+    }
+    else if (direction == "previous") {
+        STACK.previous();
+        if (!(hasTrackedPrevSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'prev-slide-click']);
+            hasTrackedPrevSlide = true;
+        }
+    }
 }
 
 /**
  * Catch keyboard events
  */
 var onKeyboard = function(e) {
-  if (e.which == 39) {
-    STACK.next()
-  }
-  if (e.which == 37) {
-    STACK.previous()
-  }
+    if (!(hasTrackedKeyboardNav)) {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'keyboard-nav']);
+        hasTrackedKeyboardNav = true;
+    }
+    if (e.which == 39) {
+        STACK.next()
+    }
+    if (e.which == 37) {
+        STACK.previous()
+    }
 }
 
 $(onDocumentReady);
