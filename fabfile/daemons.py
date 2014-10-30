@@ -44,6 +44,7 @@ def deploy_results():
     """
     Harvest data and deploy slides indefinitely
     """
+    sleep(5)
     while True:
         start = time()
         safe_execute('ap.update')
@@ -62,6 +63,4 @@ def deploy_results():
         else:
             print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
 
-        import sys
-        sys.exit()
         sleep(wait)
