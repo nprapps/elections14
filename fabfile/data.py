@@ -743,6 +743,19 @@ def play_fake_results(update_interval=60):
         print "ctrl-c pressed, resetting results"
         reset_results()
 
+@task
+def clear_calls():
+    """
+    Reset calls in the DB
+    """
+    import models
+    races = models.Race.select()
+    for race in races:
+        race.ap_called = False
+        race.ap_called_time = None
+        race.npr_called = False
+        race.npr_called_time = None
+        race.save()
 
 @task
 def reset_results():
