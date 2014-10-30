@@ -177,14 +177,6 @@ svg {
         z-index: -1;
     }
 
-    .counter {
-    	font-size: 12vw;
-    	line-height: 18vw;
-    	height: 18vw;
-    	font-weight: bold;
-    	text-transform: uppercase;
-    }
-    
     h2,
     h3 {
     	font-size: 3.5vw;
@@ -193,13 +185,37 @@ svg {
     	text-transform: uppercase;
     }
     
-    .masked { opacity: 0; }
-
     .wrapper {
         .vertical-center;
         width: 100%;
         position: absolute;
     }
+    
+    .countdown-arc-wrapper {
+    	width: 22vw;
+    	height: 22vw;
+    	margin: 2.5vw auto;
+    	position: relative;
+    	
+    	.countdown-arc,
+    	.counter {
+    		width: 100%;
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    	}
+    	
+		.counter {
+			font-size: 4vw;
+			font-weight: bold;
+			text-transform: uppercase;
+			line-height: 22vw;
+		}
+    }
+    
+	.countdown-background { fill: @musicDark; }
+	.countdown-active { fill: @grayMedium; }
+
 }
 
 .cast-controls {

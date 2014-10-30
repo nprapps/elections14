@@ -40,14 +40,15 @@ var reloadTimestamp = null;
 var state = null;
 var is_casting = false;
 var countdown = 3 + 1;
-var countdown_interval = null;
 
-var slide_countdown_duration = 0;
-var slide_countdown_interval = null;
 var slide_countdown_arc = null;
 var slide_countdown_svg = null;
 var slide_countdown_background_arc = null;
 var slide_countdown_foreground_arc = null;
+var welcome_countdown_arc = null;
+var welcome_countdown_svg = null;
+var welcome_countdown_background_arc = null;
+var welcome_countdown_foreground_arc = null;
 var τ = 2 * Math.PI; // http://bl.ocks.org/mbostock/5100636
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
@@ -382,33 +383,19 @@ var onWelcomeButtonClick = function() {
 
 var showCountdown = function() {
     $countdownScreen.show();
-
+    create_welcome_countdown();
     nextCountdown();
-//    countdown_interval = setTimeout(nextCountdown, 1000);
 }
 
 var nextCountdown = function() {
     countdown -= 1;
     
-    switch(countdown) {
-    	case 3:
-			$counter.text(countdown);
-			setTimeout(nextCountdown, 1000);
-    		break;
-    	case 2:
-    		$countdownScreen.find('h2').removeClass('masked');
-			$counter.text(countdown);
-			setTimeout(nextCountdown, 1000);
-    		break;
-    	case 1:
-    		$countdownScreen.find('h3').removeClass('masked');
-			$counter.text(countdown);
-			setTimeout(nextCountdown, 1000);
-    		break;
-    	case 0:
-			$counter.text('Go!');
-			setTimeout(hideCountdown, 1000);
-    		break;
+    if (countdown > 0) {
+		$counter.text(countdown);
+		setTimeout(nextCountdown, 1000);
+    } else {
+		$counter.text('Go!');
+		setTimeout(hideCountdown, 1000);
     }
 }
 
@@ -625,12 +612,43 @@ var onAudioFail = function() {
 /*
  * COUNTDOWN
  */
+function create_welcome_countdown() {
+	var page_width = $(window).width();
+	var countdown_width = Math.floor(page_width * .22); // 22vw
+	var countdown_outer_radius = Math.floor(countdown_width / 2);
+	var countdown_inner_radius = Math.floor(countdown_outer_radius * .7);
+	
+	welcome_countdown_arc = d3.svg.arc()
+		.innerRadius(countdown_inner_radius)
+		.outerRadius(countdown_outer_radius)
+		.startAngle(0);
+
+	welcome_countdown_svg = d3.select('.countdown-arc')
+		.append('svg')
+			.attr('width', countdown_width)
+			.attr('height', countdown_width)
+		.append('g')
+			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
+
+	welcome_countdown_background_arc = welcome_countdown_svg.append('path')
+		.datum({endAngle: τ})
+		.attr('class', 'countdown-background')
+		.attr('d', welcome_countdown_arc);
+
+	welcome_countdown_foreground_arc = welcome_countdown_svg.append('path')
+		.datum( { endAngle: 0 } )
+		.attr('class', 'countdown-active')
+		.attr('d', welcome_countdown_arc);
+	
+	start_arc_countdown('welcome_countdown', (countdown - 2));
+}
+
 function create_slide_countdown() {
 	var page_width = $(window).width();
 	var countdown_width = Math.floor(page_width * .025); // 2.5vw
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .6);
-
+	
 	slide_countdown_arc = d3.svg.arc()
 		.innerRadius(countdown_inner_radius)
 		.outerRadius(countdown_outer_radius)
@@ -654,29 +672,29 @@ function create_slide_countdown() {
 		.attr('d', slide_countdown_arc);
 }
 
-function start_slide_countdown() {
+function start_arc_countdown(arc, duration) {
 	var arc_start = 0;
 	var arc_end = τ;
-
-	slide_countdown_foreground_arc
-		.transition()
+	var arc_foreground = eval(arc + '_foreground_arc');
+	var arc_main = eval(arc + '_arc');
+	
+	arc_foreground.transition()
 			.duration(1000)
 				.ease('linear')
-				.call(tween_slide_arc, arc_start);
-	slide_countdown_foreground_arc
-		.transition()
-			.duration(slide_countdown_duration * 1000)
+				.call(tween_slide_arc, arc_main, arc_start);
+	arc_foreground.transition()
+			.duration(duration * 1000)
 			.delay(1000)
 				.ease('linear')
-				.call(tween_slide_arc, arc_end);
+				.call(tween_slide_arc, arc_main, arc_end);
 }
 
-function tween_slide_arc(transition, end) {
+function tween_slide_arc(transition, arc_main, end) {
 	transition.attrTween('d', function(d) {
 		var interpolate = d3.interpolate(d['endAngle'], end);
 		return function(t) {
 			d['endAngle'] = interpolate(t);
-			return slide_countdown_arc(d);
+			return arc_main(d);
 		};
 	});
 }
