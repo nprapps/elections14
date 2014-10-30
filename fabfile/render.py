@@ -179,52 +179,48 @@ def render_results_slides():
     NB: slides do not have embedded assets, so we don't pass
     the compile flag to the assets rig.
     """
-    from flask import url_for
     import models
-
-    slides = models.Slide.select()
 
     output_path = '.results_slides_html'
 
-    for slide in slides:
-        slug = slide.slug
+    slides = models.Slide.select()
+    slugs = [slide.slug for slide in slides if slide.slug not in ['state-senate-results', 'state-house-results'] or slide.slug.startswith('tumblr')]
+    slides.database.close()
 
-        if slug in ['state-senate-results', 'state-house-results'] or slug.startswith('tumblr'):
-            continue
+    views = zip(slugs, ['_slide', '_slide_preview'] * len(slugs))
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_results_slide)(slug, view_name, output_path) for slug, view_name in views)
 
-        for view_name in ['_slide', '_slide_preview']:
-            with app.app.test_request_context():
-                path = url_for(view_name, slug=slug)
+def _render_results_slide(slug, view_name, output_path):
+    from flask import url_for
+    with app.app.test_request_context():
+        path = url_for(view_name, slug=slug)
 
-            with app.app.test_request_context(path=path):
-                print 'Rendering %s' % path
+    with app.app.test_request_context(path=path):
+        print 'Rendering %s' % path
 
-                view = app.__dict__[view_name]
-                content = view(slug)
+        view = app.__dict__[view_name]
+        content = view(slug)
 
-            path = '%s%s' % (output_path, path)
+    path = '%s%s' % (output_path, path)
 
-            # Ensure path exists
-            head = os.path.split(path)[0]
+    # Ensure path exists
+    head = os.path.split(path)[0]
 
-            try:
-                os.makedirs(head)
-            except OSError:
-                pass
+    try:
+        os.makedirs(head)
+    except OSError:
+        pass
 
-            with open(path, 'w') as f:
-                f.write(content.data)
-
-    render_states()
+    with open(path, 'w') as f:
+            f.write(content.data)
 
 @task
-def render_states(compiled_includes={}):
+def render_state_slides(compiled_includes={}):
     """
     Render state slides to HTML files
     """
 
-    output_path = '.slides_html'
-
+    output_path = '.state_slides_html'
     Parallel(n_jobs=NUM_CORES)(delayed(_render_state)(postal, state, output_path) for postal, state in app_config.STATES.items())
 
 def _render_state(postal, state, output_path):
@@ -271,45 +267,45 @@ def _render_state(postal, state, output_path):
 
 @task
 def render_big_boards(compiled_includes={}):
-    from flask import g, url_for
 
-    view_name = '_big_board'
     output_path = '.big_boards_html'
 
-    for board in [
+    boards = [
         'senate-big-board',
         'house-big-board-one',
         'house-big-board-two',
         'governor-big-board',
         'ballot-measures-big-board',
-    ]:
-        # Silly fix because url_for require a context
-        with app.app.test_request_context():
-            path = url_for(view_name, slug=board)
+    ]
 
-        with app.app.test_request_context(path=path):
-            print 'Rendering %s' % path
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_big_board)(board, output_path) for board in boards)
 
-            g.compile_includes = True
-            g.compiled_includes = compiled_includes
+def _render_big_board(board, output_path):
+    from flask import url_for
 
-            view = app.__dict__[view_name]
-            content = view(board)
+    view_name = '_big_board'
 
-            compiled_includes = g.compiled_includes
+    # Silly fix because url_for require a context
+    with app.app.test_request_context():
+        path = url_for(view_name, slug=board)
 
-        path = '%s%s' % (output_path, path)
+    with app.app.test_request_context(path=path):
+        print 'Rendering %s' % path
+        view = app.__dict__[view_name]
+        content = view(board)
 
-        # Ensure path exists
-        head = os.path.split(path)[0]
+    path = '%s%s' % (output_path, path)
 
-        try:
-            os.makedirs(head)
-        except OSError:
-            pass
+    # Ensure path exists
+    head = os.path.split(path)[0]
 
-        with open('%sindex.html' % path, 'w') as f:
-            f.write(content)
+    try:
+        os.makedirs(head)
+    except OSError:
+        pass
+
+    with open('%sindex.html' % path, 'w') as f:
+        f.write(content)
 
 @task
 def render_bop():

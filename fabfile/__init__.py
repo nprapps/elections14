@@ -176,6 +176,16 @@ def deploy_results_slides():
     utils._deploy_to_s3('.results_slides_gzip')
 
 @task
+def deploy_state_slides():
+    """
+    Deploy latest state slides to S3.
+    """
+    local('rm -rf .state_slides_html .state_slides_gzip')
+    render.render_state_slides()
+    utils._gzip('.state_slides_html', '.state_slides_gzip')
+    utils._deploy_to_s3('.state_slides_gzip')
+
+@task
 def deploy_big_boards():
     """
     Deploy big boards to S3.

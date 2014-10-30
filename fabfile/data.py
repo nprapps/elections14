@@ -202,6 +202,7 @@ def load_updates(path):
 
             candidates_updated += 1
 
+
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated
 
