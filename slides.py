@@ -45,7 +45,7 @@ def house_big_board(page):
     context['column_number'] = 2
 
     all_races = Race.select().where(Race.office_name == 'U.S. House')
-    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
+    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal, Race.seat_number)
 
     if page == 2:
         featured_races = all_featured_races[app_utils.HOUSE_PAGE_LIMIT:]
@@ -188,17 +188,6 @@ def recent_senate_calls():
 
     return render_template('slides/recent-calls.html', **context)
 
-def recent_house_calls():
-    """
-    Get the most recent called Senate races
-    """
-    context = make_context()
-
-    context['races'] = _get_recently_called('U.S. House')
-    context['label'] = 'House'
-
-    return render_template('slides/recent-calls.html', **context)
-
 def recent_governor_calls():
     """
     Get the most recent called Senate races
@@ -231,14 +220,6 @@ def balance_of_power():
 
     return render_template('slides/balance-of-power.html', **context)
 
-def blue_dogs():
-    """
-    Ongoing list of how blue dog democrats are faring
-    """
-    context = make_context()
-
-    return render_template('slides/blue-dogs.html', **context)
-
 def house_freshmen():
     """
     Ongoing list of how representatives elected in 2012 are faring
@@ -251,7 +232,7 @@ def house_freshmen():
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called()]
+    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
 
     context['races_count'] = races.count()
 
@@ -307,7 +288,7 @@ def obama_reps():
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called()]
+    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
 
     context['races_count'] = races.count()
 
@@ -365,14 +346,37 @@ def romney_dems():
 
     context = make_context()
 
-    races = Race.select().where(Race.romney_dem == True)
+    races = Race.select().where(
+        (Race.romney_dem == True) &
+        (Race.office_name == 'U.S. House')
+    )
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called()]
+    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
 
     context['races_count'] = races.count()
 
     return render_template('slides/romney-dems.html', **context)
 
+def romney_senate_dems():
+    """
+    Ongoing list of Democratically-held seats in states Mitt Romney Won In 2012
+    """
+    from models import Race
+
+    context = make_context()
+
+    races = Race.select().where(
+        (Race.romney_dem == True) &
+        (Race.office_name == 'U.S. Senate')
+    )
+
+    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
+
+    context['races_count'] = races.count()
+
+    return render_template('slides/romney-senate-dems.html', **context)
 

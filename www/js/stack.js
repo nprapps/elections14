@@ -15,14 +15,13 @@ var STACK = (function () {
     var _mouseMoving = false;
     var _hover = false;
 
+    var _slideExitCallback = null;
+
     /*
      * Setup the stack display.
      */
     obj.start = function() {
         $stack.show();
-
-        // $('body').on('mousemove', onMoveMouse);
-        // $headerControls.hover(onControlsHover, offControlsHover);
 
         updateStack();
     }
@@ -51,93 +50,13 @@ var STACK = (function () {
             _rotateRequest = null;
         }
 
-        // if (_mouseMoveTimer) {
-        //     clearTimeout(_mouseMoveTimer);
-        //     _mouseMoveTimer = null;
-        // }
-
         $audioPlayer.jPlayer('pause');
 
         $stack.hide();
     }
 
-    /*
-     * Show the header.
-     */
-    var onMoveMouse = function() {
-        if (_hover) {
-            return;
-        }
-
-        if (_mouseMoving) {
-            clearTimeout(_mouseMoveTimer);
-            _mouseMoveTimer = setTimeout(onEndMouse, 1500);
-
-            return;
-        }
-
-        _mouseMoving = true;
-
-        $header.fadeOut(200, function() {
-            $headerControls.fadeIn(200);
-        });
-
-        if (_mouseMoveTimer) {
-            clearTimeout(_mouseMoveTimer);
-        }
-
-        _mouseMoveTimer = setTimeout(onEndMouse, 1500);
-    }
-
-    /*
-     * Hide the header.
-     */
-    var onEndMouse = function() {
-        if (!_mouseMoving) {
-            return;
-        }
-
-        _mouseMoving = false;
-
-        if (_hover) {
-            return;
-        }
-
-        $headerControls.fadeOut(200, function() {
-            $header.fadeIn(200, function() {
-            });
-        });
-    }
-
-    /*
-     * Enable header hover.
-     */
-    var onControlsHover = function() {
-        if (_hover) {
-            return;
-        }
-
-        _hover = true;
-
-        $header.fadeOut(200, function() {
-            $headerControls.fadeIn(200);
-        });
-    }
-
-    /*
-     * Disable header hover.
-     */
-    var offControlsHover = function() {
-        if (!_hover) {
-            return;
-        }
-
-
-        $headerControls.fadeOut(200, function() {
-            $header.fadeIn(200, function() {
-                _hover = false;
-            });
-        });
+    obj.setSlideExitCallback = function(cb) {
+        _slideExitCallback = cb;
     }
 
     /*
@@ -232,6 +151,12 @@ var STACK = (function () {
         var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
 
         if ($oldSlide.length > 0) {
+            if (_slideExitCallback) {
+                _slideExitCallback();
+
+                _slideExitCallback = null;
+            }
+
             $oldSlide.fadeOut(800, function() {
                 $(this).remove();
                 $stack.append($newSlide);
@@ -246,6 +171,8 @@ var STACK = (function () {
 
                 $newSlide.fadeIn(800, function(){
                     _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
+
+                    $newSlide.find('a').on('click', onSlideAnchorClick);
                 });
             });
         } else {
@@ -261,6 +188,7 @@ var STACK = (function () {
 
             $newSlide.fadeIn(800, function(){
                 _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
+                $newSlide.find('a').on('click', onSlideAnchorClick);
             });
         }
     }
@@ -270,6 +198,10 @@ var STACK = (function () {
      */
     var _onSlideError = function() {
         rotateSlide();
+    }
+
+    var onSlideAnchorClick = function() {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'slide-link-click']);
     }
 
     /*

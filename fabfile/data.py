@@ -499,6 +499,9 @@ def _save_senate_row(row, quiet):
         if row['female_candidate'] == '1':
             existing.female_candidate = True
 
+        if row['romney_dem'] == '1':
+            existing.romney_dem = True
+
         existing.save()
 
     except models.Race.DoesNotExist:
@@ -580,21 +583,20 @@ def create_slides():
     models.Slide.delete().execute()
 
     it = count()
+    _create_slide('State Senate Results', '_state_senate_slide', 20, it.next())
+    _create_slide('State House Results', '_state_house_slide', 20, it.next())
     _create_slide('Senate Big Board', 'senate_big_board', 20, it.next())
     _create_slide('House Big Board One', 'house_big_board_one', 20, it.next())
     _create_slide('House Big Board Two', 'house_big_board_two', 20, it.next())
     _create_slide('Governor Big Board', 'governor_big_board', 20, it.next())
     _create_slide('Ballot Measures Big Board', 'ballot_measures_big_board', 20, it.next())
     _create_slide('Balance of Power Graphic', 'balance_of_power', 10, it.next())
-    _create_slide('State Senate Results', '_state_senate_slide', 20, it.next())
-    _create_slide('State House Results', '_state_house_slide', 20, it.next())
-    _create_slide('Democrats in Romney-Won Districts', 'romney_dems', 10, it.next())
+    _create_slide('House Democrats in Romney-Won Districts', 'romney_dems', 10, it.next())
+    _create_slide('Senate Democrats in Romney-Won States', 'romney_senate_dems', 10, it.next())
     _create_slide('Republicans in Obama-Won Districts', 'obama_reps', 10, it.next())
     _create_slide('Incumbent Losers', 'incumbents_lost', 10, it.next())
-    #_create_slide('Blue Dog Democrat Results', 'blue_dogs', 10, it.next())
     _create_slide('House Freshmen Results', 'house_freshmen', 10, it.next())
     _create_slide('Recent Senate Calls', 'recent_senate_calls', 10, it.next())
-    _create_slide('Recent House Calls', 'recent_house_calls', 10, it.next())
     _create_slide('Recent Governor Calls', 'recent_governor_calls', 10, it.next())
 
 def _create_slide(slug, view, time_on_screen, i):

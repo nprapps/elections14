@@ -413,13 +413,13 @@ The Google Analytics events tracked in this application are:
 
 |Category|Action|Label|Value|Custom 1|Custom 2|
 |--------|------|-----|-----|--------|--------|
-|elections14|tweet|`location`||||
-|elections14|facebook|`location`||||
-|elections14|email|`location`||||
-|elections14|new-comment||||
-|elections14|open-share-discuss||||
-|elections14|close-share-discuss||||
-|elections14|summary-copied||||
-|elections14|featured-tweet-action|`action`||``tweet_url``|
-|elections14|featured-facebook-action|`action`||``post_url``|
+|elections14|chromecast-muted|||||
+|elections14|chromecast-initiated||||
+|elections14|chromecast-stopped||||
+|elections14|fullscreen||||
+|elections14|state-selected|`state`|||
+|elections14|switch-state-from-nav||||
+|elections14|audio-toggle||||
+|elections14|audio-fail||||
+|elections14|slide-link-click||||
 
