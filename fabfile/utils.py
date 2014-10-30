@@ -43,13 +43,13 @@ def _deploy_to_s3(path='.gzip'):
 
     exclude_flags += '--exclude "www/assets" '
 
-    sync = 'aws s3 sync %s/ %s --acl "public-read" ' + exclude_flags + ' --cache-control "max-age=5 no-cache no-store must-revalidate" --region "%s"'
-    sync_gzip = 'aws s3 sync %s/ %s --acl "public-read" --content-encoding "gzip" --exclude "*" ' + include_flags + ' --cache-control "max-age=5 no-cache no-store must-revalidate" --region "%s"'
+    sync = 'aws s3 sync %s/ %s --acl "public-read" ' + exclude_flags + ' --cache-control "max-age=%i no-cache no-store must-revalidate" --region "%s"'
+    sync_gzip = 'aws s3 sync %s/ %s --acl "public-read" --content-encoding "gzip" --exclude "*" ' + include_flags + ' --cache-control "max-age=%i no-cache no-store must-revalidate" --region "%s"'
     sync_assets = 'aws s3 sync %s/ %s --acl "public-read" --cache-control "max-age=86400" --region "%s"'
 
     for bucket in app_config.S3_BUCKETS:
-        local(sync % (path, 's3://%s/' % bucket['bucket_name'], bucket['region']))
-        local(sync_gzip % (path, 's3://%s/' % bucket['bucket_name'], bucket['region']))
+        local(sync % (path, 's3://%s/' % bucket['bucket_name'], app_config.MAX_AGE_CACHE_CONTROL_HEADER, bucket['region']))
+        local(sync_gzip % (path, 's3://%s/' % bucket['bucket_name'], app_config.MAX_AGE_CACHE_CONTROL_HEADER, bucket['region']))
         local(sync_assets % ('www/assets/', 's3://%s/assets/' % (bucket['bucket_name']), bucket['region']))
 
 def deploy_json(src, dst):
