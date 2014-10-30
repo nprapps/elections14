@@ -33,7 +33,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>The U.S. {{ chamber.title() }} ({{ count }})</h1>
+                <h1>The U.S. {{ chamber.title() }} ({{ races.count() }})</h1>
             </div>
         </div>
 
@@ -75,42 +75,6 @@
                     </td>
 
                     {% endfor %}
-                    {#
-                    <td>
-                        {% for race in list %}
-                        {% if loop.first %}
-
-                        <span class="candidate
-                            {% if race.incumbent == True %}incumbent{% endif %}
-                            {{ race.party.lower() }}
-                            {% if race.race.accept_ap_call == True %}{% if race.race.ap_call == True %}called{% endif %}{% endif %}
-                        "
-                        data-first-name="{{ race.first_name }}"
-                        data-last-name="{{ race.last_name }}">
-                            {% include 'admin/_chamber_winner_buttons.html' %}
-                            {{ race.first_name }} {{ race.last_name}}
-                        </span>
-                        {% endif %}
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for race in list %}
-                        {% if loop.index == 2 %}
-
-                        <span class="candidate
-                            {% if race.incumbent == True %}incumbent{% endif %}
-                            {{ race.party.lower() }}
-                            {% if race.race.accept_ap_call == True%}{% if race.ap_call == True %}called{% endif %}{% endif %}
-                        "
-                        data-first-name="{{ race.first_name }}"
-                        data-last-name="{{ race.last_name }}">
-                            {% include 'admin/_chamber_winner_buttons.html' %}
-                            {{ race.first_name }} {{ race.last_name}}
-                        </span>
-                        {% endif %}
-                        {% endfor %}
-                    </td>
-                    #}
                     <td class="ap-call">
                         <button
                             id="{{ race.slug }}"

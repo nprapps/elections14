@@ -13,7 +13,7 @@ from flask import Flask, render_template
 from flask_peewee.auth import Auth
 from flask_peewee.db import Database
 from flask_peewee.admin import Admin, ModelAdmin
-from models import Slide, SlideSequence, Race, Candidate, DEMOCRAT_INDIES, REPUBLICAN_INDIES
+from models import Slide, SlideSequence, Race, Candidate
 from peewee import fn
 
 import app_config
@@ -102,7 +102,6 @@ def chamber(chamber):
     """
     Read/update list of chamber candidates.
     """
-    indies = DEMOCRAT_INDIES.keys() + REPUBLICAN_INDIES.keys()
     chamber_slug = 'H'
 
     if chamber == 'senate':
@@ -111,29 +110,12 @@ def chamber(chamber):
     elif chamber == 'governor':
         chamber_slug = 'G'
 
-    # TODO: special cases for independents who might win
-    candidates = Candidate\
-        .select()\
-        .join(Race)\
-        .where(
-            Race.office_id == chamber_slug,
-            (Candidate.party == 'Dem') | (Candidate.party == 'GOP') | (Race.race_id << indies)
-        )
-
-    candidates = candidates.order_by(
-        Race.state_postal.desc(),
-        Race.seat_number.asc(),
-        Candidate.party.asc()
-    )
-
     races = Race.select().where(Race.office_id == chamber_slug).order_by(Race.state_postal)
 
     context = make_context(asset_depth=1)
 
     context.update({
-        'candidates': candidates,
         'races': races,
-        'count': races.count(),
         'chamber': chamber,
     })
 
