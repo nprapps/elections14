@@ -2,6 +2,10 @@
 
 {% block extra_css %}
 <style>
+    .state-picker {
+        display: block;
+    }
+
     .template-picker {
         position: relative;
         margin-top: 10%;
@@ -25,7 +29,7 @@
 {% block outer_content %}
 <div class="state-picker">
     <div class="picker">
-        <input class="typeahead" type="text" placeholder="&#xf002;&nbsp;&nbsp; Select a state">
+        <input class="typeahead" type="text" placeholder="Select a state">
     </div>
 
     <div class="house-pagination">
