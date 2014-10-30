@@ -30,6 +30,7 @@ var $audioPlayer = null;
 var $bop = null;
 var $stack = null;
 var $audioButtons = null;
+var $slide_countdown = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
@@ -39,6 +40,14 @@ var reloadTimestamp = null;
 var state = null;
 var is_casting = false;
 var countdown = 3 + 1;
+
+var slide_countdown_duration = 0;
+var slide_countdown_interval = null;
+var slide_countdown_arc = null;
+var slide_countdown_svg = null;
+var slide_countdown_background_arc = null;
+var slide_countdown_foreground_arc = null;
+var τ = 2 * Math.PI; // http://bl.ocks.org/mbostock/5100636
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
@@ -50,6 +59,10 @@ var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
 ];
+
+var hasTrackedNextSlide = null;
+var hasTrackedPrevSlide = null;
+var hasTrackedKeyboardNav = null;
 
 /*
  * Run on page load.
@@ -88,6 +101,7 @@ var onDocumentReady = function(e) {
     $headerControls = $('.header-controls');
     $audioButtons = $('.jp-controls .nav-btn');
     $slideControls = $('.slide-nav .nav-btn');
+    $slide_countdown = $stack.find('.slide-countdown');
     reloadTimestamp = moment();
 
     // Bind events
@@ -140,6 +154,8 @@ var onDocumentReady = function(e) {
     setupStateTypeahead();
     checkBop();
     checkTimestamp();
+
+    create_slide_countdown();
 }
 
 var setupUI = function() {
@@ -383,7 +399,7 @@ var nextCountdown = function() {
 
 var hideCountdown = function() {
     $countdownScreen.hide();
-    
+
     STACK.start();
 }
 
@@ -591,29 +607,101 @@ var onAudioFail = function() {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-fail']);
 }
 
+/*
+ * COUNTDOWN
+ */
+function create_slide_countdown() {
+	var page_width = $(window).width();
+	var countdown_width = Math.floor(page_width * .025); // 2.5vw
+	var countdown_outer_radius = Math.floor(countdown_width / 2);
+	var countdown_inner_radius = Math.floor(countdown_outer_radius * .6);
+
+	slide_countdown_arc = d3.svg.arc()
+		.innerRadius(countdown_inner_radius)
+		.outerRadius(countdown_outer_radius)
+		.startAngle(0);
+
+	slide_countdown_svg = d3.select('#stack .slide-countdown')
+		.append('svg')
+			.attr('width', countdown_width)
+			.attr('height', countdown_width)
+		.append('g')
+			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
+
+	slide_countdown_background_arc = slide_countdown_svg.append('path')
+		.datum({endAngle: τ})
+		.attr('class', 'countdown-background')
+		.attr('d', slide_countdown_arc);
+
+	slide_countdown_foreground_arc = slide_countdown_svg.append('path')
+		.datum( { endAngle: 0 } )
+		.attr('class', 'countdown-active')
+		.attr('d', slide_countdown_arc);
+}
+
+function start_slide_countdown() {
+	var arc_start = 0;
+	var arc_end = τ;
+
+	slide_countdown_foreground_arc
+		.transition()
+			.duration(1000)
+				.ease('linear')
+				.call(tween_slide_arc, arc_start);
+	slide_countdown_foreground_arc
+		.transition()
+			.duration(slide_countdown_duration * 1000)
+			.delay(1000)
+				.ease('linear')
+				.call(tween_slide_arc, arc_end);
+}
+
+function tween_slide_arc(transition, end) {
+	transition.attrTween('d', function(d) {
+		var interpolate = d3.interpolate(d['endAngle'], end);
+		return function(t) {
+			d['endAngle'] = interpolate(t);
+			return slide_countdown_arc(d);
+		};
+	});
+}
+
+
 /**
  * Click left or right paddle
  */
 var onSlideControlClick = function() {
-  var direction = $(this).data('slide');
-  if (direction == "next") {
-    STACK.next();
-  }
-  else if (direction == "previous") {
-    STACK.previous();
-  }
+    var direction = $(this).data('slide');
+    if (direction == "next") {
+        STACK.next();
+        if (!(hasTrackedNextSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'next-slide-click']);
+            hasTrackedNextSlide = true;
+        }
+    }
+    else if (direction == "previous") {
+        STACK.previous();
+        if (!(hasTrackedPrevSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'prev-slide-click']);
+            hasTrackedPrevSlide = true;
+        }
+    }
 }
 
 /**
  * Catch keyboard events
  */
 var onKeyboard = function(e) {
-  if (e.which == 39) {
-    STACK.next()
-  }
-  if (e.which == 37) {
-    STACK.previous()
-  }
+    if (!(hasTrackedKeyboardNav)) {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'keyboard-nav']);
+        hasTrackedKeyboardNav = true;
+    }
+    if (e.which == 39) {
+        STACK.next()
+    }
+    if (e.which == 37) {
+        STACK.previous()
+    }
 }
 
 $(onDocumentReady);

@@ -401,4 +401,7 @@ The Google Analytics events tracked in this application are:
 |elections14|audio-toggle||||
 |elections14|audio-fail||||
 |elections14|slide-link-click||||
+|elections14|next-slide-clicked||||
+|elections14|prev-slide-clicked||||
+|elections14|keyboard-nav||||
 

@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="results-sliced-wrapper">
             <div class="results-header">
-                {% include '_election_party_vertical.svg' %}
+                <span id="us">z</span>
             </div>
             <div class="results-table">
                 {% if races %}
@@ -31,7 +31,8 @@
 	var timestamp = {{ TIMESTAMP }} * 1000;
 
 	// set timestamp, make relative
-	var ts = moment(timestamp).fromNow();
-	$timestamp.empty().append(ts);
+	var date = moment(timestamp).format('MMM. DD, YYYY');
+    var time = moment(timestamp).format('h:mm A')
+    $timestamp.empty().append(date + ' at ' + time);
 })();
 </script>
