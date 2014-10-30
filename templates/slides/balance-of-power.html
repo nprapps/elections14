@@ -58,7 +58,6 @@
 	var round_increment = 10;
 	var page_padding_vw;
 	var side_margin;
-	var timestamp = {{ TIMESTAMP }} * 1000;
 	var value_height;
 	var value_limit;
 
@@ -117,9 +116,8 @@
 		draw_chart('house', graphic_width, graphic_height);
 
 		// set timestamp, make relative
-		var date = moment(timestamp).format('MMM. DD, YYYY');
-		var time = moment(timestamp).format('h:mm A')
-		$timestamp.empty().append(date + ' at ' + time);
+		var $timestamp = $('.ap-credit').find('.timestamp');
+	    $timestamp.empty().append("{{ TIMESTAMP }}");
 	}
 
 	function draw_chart(id, graphic_width, graphic_height) {
