@@ -348,8 +348,6 @@ var onWelcomeButtonClick = function() {
     } else {
         STACK.start();
     }*/
-
-   STACK.start();
 }
 
 /*
