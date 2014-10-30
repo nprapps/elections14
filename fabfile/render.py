@@ -3,14 +3,16 @@
 """
 Commands for rendering various parts of the app stack.
 """
-
-from glob import glob
+import app
+import app_config
+import multiprocessing
 import os
 
 from fabric.api import local, task
+from glob import glob
+from joblib import Parallel, delayed
 
-import app
-import app_config
+NUM_CORES = multiprocessing.cpu_count()
 
 @task
 def less():
@@ -220,47 +222,52 @@ def render_states(compiled_includes={}):
     """
     Render state slides to HTML files
     """
-    from flask import url_for
 
     output_path = '.slides_html'
 
-    for postal, state in app_config.STATES.items():
-        to_render = [
-            ('_state_senate_slide', { 'slug': postal }),
-            ('_state_senate_slide_preview', { 'slug': postal }),
-            ('_state_house_slide', { 'slug': postal, 'page': 1 }),
-            ('_state_house_slide_preview', { 'slug': postal, 'page': 1 })
-        ]
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_state)(postal, state, output_path) for postal, state in app_config.STATES.items())
 
-        if postal in app_config.PAGINATED_STATES:
-            to_render.extend([
-                ('_state_house_slide', { 'slug': postal, 'page': 2 }),
-                ('_state_house_slide_preview', { 'slug': postal, 'page': 2 })
-            ])
+def _render_state(postal, state, output_path):
+    """
+    Render a state.
+    """
+    from flask import url_for
+    to_render = [
+        ('_state_senate_slide', { 'slug': postal }),
+        ('_state_senate_slide_preview', { 'slug': postal }),
+        ('_state_house_slide', { 'slug': postal, 'page': 1 }),
+        ('_state_house_slide_preview', { 'slug': postal, 'page': 1 })
+    ]
 
-        for view_name, view_kwargs in to_render:
-            # Silly fix because url_for require a context
-            with app.app.test_request_context():
-                path = url_for(view_name, **view_kwargs)
+    if postal in app_config.PAGINATED_STATES:
+        to_render.extend([
+            ('_state_house_slide', { 'slug': postal, 'page': 2 }),
+            ('_state_house_slide_preview', { 'slug': postal, 'page': 2 })
+        ])
 
-            with app.app.test_request_context(path=path):
-                print 'Rendering %s' % path
+    for view_name, view_kwargs in to_render:
+        # Silly fix because url_for require a context
+        with app.app.test_request_context():
+            path = url_for(view_name, **view_kwargs)
 
-                view = app.__dict__[view_name]
-                content = view(**view_kwargs)
+        with app.app.test_request_context(path=path):
+            print 'Rendering %s' % path
 
-            path = '%s%s' % (output_path, path)
+            view = app.__dict__[view_name]
+            content = view(**view_kwargs)
 
-            # Ensure path exists
-            head = os.path.split(path)[0]
+        path = '%s%s' % (output_path, path)
 
-            try:
-                os.makedirs(head)
-            except OSError:
-                pass
+        # Ensure path exists
+        head = os.path.split(path)[0]
 
-            with open(path, 'w') as f:
-                f.write(content.data)
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
+
+        with open(path, 'w') as f:
+            f.write(content.data)
 
 @task
 def render_big_boards(compiled_includes={}):
