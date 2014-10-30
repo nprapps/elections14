@@ -134,10 +134,12 @@ def render_liveblog_slides():
     from flask import url_for
     import models
 
-    slides = models.Slide.select()
     output_path = '.liveblog_slides_html'
 
+    slides = models.Slide.select()
     slugs = [slide.slug for slide in slides if slide.slug.startswith('tumblr')]
+    slides.database.close()
+
     views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
 
     Parallel(n_jobs=NUM_CORES)(delayed(_render_liveblog_slide)(view_name, slug, output_path) for slug, view_name in views)
