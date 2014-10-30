@@ -21,7 +21,7 @@ class BetterJSONEncoder(json.JSONEncoder):
     """
     def default(self, obj):
         if isinstance(obj, datetime):
-            encoded_object = obj.isoformat() 
+            encoded_object = obj.isoformat()
         else:
             encoded_object = json.JSONEncoder.default(self, obj)
 
@@ -198,7 +198,7 @@ def make_context(asset_depth=0, static_path='', absolute=False):
     context['COPY'] = copytext.Copy(app_config.COPY_PATH)
     context['JS'] = JavascriptIncluder(asset_depth=asset_depth, static_path=static_path, absolute=absolute)
     context['CSS'] = CSSIncluder(asset_depth=asset_depth, static_path=static_path, absolute=absolute)
-    context['TIMESTAMP'] = time.time()
+    context['TIMESTAMP'] = time.strftime('%b. %d, %Y at %I:%M EST')
 
     return context
 
