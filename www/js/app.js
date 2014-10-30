@@ -38,7 +38,7 @@ var reloadTimestamp = null;
 
 var state = null;
 var is_casting = false;
-var countdown = 5 + 1;
+var countdown = 3 + 1;
 
 var slide_countdown_duration = 0;
 var slide_countdown_interval = null;
