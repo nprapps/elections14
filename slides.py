@@ -232,7 +232,7 @@ def house_freshmen():
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called()]
+    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
 
     context['races_count'] = races.count()
 
@@ -288,7 +288,7 @@ def obama_reps():
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called()]
+    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
 
     context['races_count'] = races.count()
 
@@ -346,11 +346,14 @@ def romney_dems():
 
     context = make_context()
 
-    races = Race.select().where(Race.romney_dem == True)
+    races = Race.select().where(
+        (Race.romney_dem == True) &
+        (Race.office_name == 'U.S. House')
+    )
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called()]
+    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
 
     context['races_count'] = races.count()
 
@@ -364,11 +367,14 @@ def romney_senate_dems():
 
     context = make_context()
 
-    races = Race.select().where(Race.romney_dem == True)
+    races = Race.select().where(
+        (Race.romney_dem == True) &
+        (Race.office_name == 'U.S. Senate')
+    )
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called()]
+    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
 
     context['races_count'] = races.count()
 

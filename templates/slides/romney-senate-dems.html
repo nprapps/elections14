@@ -7,14 +7,18 @@
 		<div class="candidate-list">
 			<h3>{{ COPY.graphic_slides.subhed_won }} <span>({{ races_won|length }} of {{ races_count }})</span></h3>
 			<ul>
-				{% for race in races_won|sort(attribute='seat_number')|sort(attribute='state_postal') %}
+				{% for race in races_won|sort(attribute='state_postal') %}
 				<li>
-					<span class="district d">{{ race.state_postal }}-{{ race.seat_number }}</span>
-					{% for candidate in race.candidates %}
-					{% if candidate.get_party() == 'dem' %}
-					<span class="name">{{ candidate.last_name }}</span>
+					<span class="district d">{{ race.state_postal }}</span>
+					{% if race.state_postal == 'LA' %}
+						<span class="name">Landrieu</span>
+					{% else %}
+						{% for candidate in race.candidates %}
+						{% if candidate.get_party() == 'dem' %}
+						<span class="name">{{ candidate.last_name }}</span>
+						{% endif %}
+						{% endfor %}
 					{% endif %}
-					{% endfor %}
 				</li>
 				{% endfor %}
 			</ul>
@@ -23,14 +27,19 @@
 		<div class="candidate-list">
 			<h3>{{ COPY.graphic_slides.subhed_lost }} <span>({{ races_lost|length }} of {{ races_count }})</span></h3>
 			<ul>
-				{% for race in races_lost|sort(attribute='seat_number')|sort(attribute='state_postal') %}
+				{% for race in races_lost|sort(attribute='state_postal') %}
 				<li>
-					<span class="district d">{{ race.state_postal }}-{{ race.seat_number }}</span>
-					{% for candidate in race.candidates %}
-					{% if candidate.get_party() == 'dem' %}
-					<span class="name">{{ candidate.last_name }}</span>
+					<span class="district d">{{ race.state_postal }}</span>
+
+					{% if race.state_postal == 'LA' %}
+						<span class="name">Landrieu</span>
+					{% else %}
+						{% for candidate in race.candidates %}
+						{% if candidate.get_party() == 'dem' %}
+						<span class="name">{{ candidate.last_name }}</span>
+						{% endif %}
+						{% endfor %}
 					{% endif %}
-					{% endfor %}
 				</li>
 				{% endfor %}
 			</ul>
@@ -39,14 +48,18 @@
 		<div class="candidate-list undecided">
 			<h3>{{ COPY.graphic_slides.subhed_tbd }} <span>({{ races_not_called|length }} of {{ races_count }})</span></h3>
 			<ul>
-				{% for race in races_not_called|sort(attribute='seat_number')|sort(attribute='state_postal') %}
+				{% for race in races_not_called|sort(attribute='state_postal') %}
 				<li>
-					<span class="district d">{{ race.state_postal }}-{{ race.seat_number }}</span>
-					{% for candidate in race.candidates %}
-					{% if candidate.get_party() == 'dem' %}
-					<span class="name">{{ candidate.last_name }}</span>
+					<span class="district d">{{ race.state_postal }}</span>
+					{% if race.state_postal == 'LA' %}
+						<span class="name">Landrieu</span>
+					{% else %}
+						{% for candidate in race.candidates %}
+						{% if candidate.get_party() == 'dem' %}
+						<span class="name">{{ candidate.last_name }}</span>
+						{% endif %}
+						{% endfor %}
 					{% endif %}
-					{% endfor %}
 				</li>
 				{% endfor %}
 			</ul>

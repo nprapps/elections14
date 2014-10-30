@@ -499,6 +499,9 @@ def _save_senate_row(row, quiet):
         if row['female_candidate'] == '1':
             existing.female_candidate = True
 
+        if row['romney_dem'] == '1':
+            existing.romney_dem = True
+
         existing.save()
 
     except models.Race.DoesNotExist:
