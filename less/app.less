@@ -159,6 +159,31 @@ svg {
 
 .countdown {
     display: none;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    &:after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url('../assets/promo/background.jpg') no-repeat center black;
+        width: 100%;
+        height: 100%;
+        opacity : 0.8;
+        z-index: -1;
+    }
+
+    .wrapper {
+        .vertical-center;
+        width: 100%;
+        position: absolute;
+    }
 }
 
 .cast-controls {
@@ -326,7 +351,7 @@ svg {
             border: 2px solid @grayMedium;
             vertical-align: middle;
             line-height: 1.5vw;
-            padding: 0.5vw 1vw;
+            padding: 0.5vw;
             border-radius: 0.5vw;
             font-size: 1vw;
 
