@@ -10,8 +10,10 @@
 }
 
 .slide-content {
+    position: relative;
+    top: 30px;
     width: @viewport-width;
-    height: @viewport-height - 60px;
+    height: @viewport-height;
 }
 
 .post-footer {
@@ -23,32 +25,40 @@
     display: block;
     height: @footer-height;
     width: @viewport-width;
-    padding: 0 50px;
-    background-color: @blueDark;
+    padding: 0 40px;
     position: absolute;
-    bottom: 0;
+    top: 0;
+    background-color: #333;
 
     .share-title, .share-url {
         position: relative;
-        top: 50%;
-        transform: translateY(-50%);
     }
 
     .share-title {
+        top: 50%;
         float: left;
+        transform: translateY(-50%);
         width: 50%;
         svg {
-            width: 60%;
+            width: 62%;
             margin-top: 5px;
         }
     }
 
     .share-url {
+        top: 50%;
+        transform: translateY(-57%);
+        width: 50%;
         h2 {
-            font-family: Georgia, serif;
+            font-family: "Gotham SSm","Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 20px;
+            text-align: right;
         }
         float: right;
-        font-size: 36px;
-    }
 
+    }
+}
+
+.next-btn {
+    display: none;
 }
