@@ -78,20 +78,6 @@ brew install node
 curl https://npmjs.org/install.sh | sh
 ```
 
-You will also need a customized version of phantomjs:
-
-```
-brew install phantomjs
-```
-
-Download [this customized version](https://drive.google.com/a/tylerjfisher.com/folderview?id=0B4Wl57IYdOIPZVl3VFU4TFdVVTg&usp=sharing#list) of phantomjs and save it to your Downloads folder. Unzip the file, then run the following command:
-
-```
-mv ~/Downloads/phantomjs /usr/local/bin/phantomjs
-```
-
-If your prompt asks you to overwrite the file, do so.
-
 Before bootstrapping, you will also need to add a new set of credentials to your environment variables. Ask somebody on the team.
 
 Then bootstrap the project:
@@ -101,16 +87,9 @@ cd elections14
 mkvirtualenv --no-site-packages elections14
 pip install -r requirements.txt
 npm install
-fab update
-fab ap.bootstrap
+fab text
+fab ap.init
 fab data.bootstrap
-```
-
-If testing, you will probably also want to run these commands:
-
-```
-fab data.create_slides
-fab data.mock_results
 ```
 
 **Problems installing requirements?** You may need to run the pip command as ``ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install -r requirements.txt`` to work around an issue with OSX.

@@ -59,19 +59,39 @@ var STACK = (function () {
         _slideExitCallback = cb;
     }
 
+    obj.next = function() {
+        if (_rotateTimer) {
+            clearTimeout(_rotateTimer);
+            _rotateTimer = null;
+        }
+        rotateSlide();
+    }
+
+    obj.previous = function() {
+        if (_rotateTimer) {
+            clearTimeout(_rotateTimer);
+            _rotateTimer = null;
+        }
+        rotateSlide('previous');
+    }
+
     /*
      * Rotate to the next slide in the stack.
      */
-    var rotateSlide = function() {
-        _currentSlide += 1;
+    var rotateSlide = function(direction) {
+        var increment = (direction == 'previous') ? -1 : 1;
+
+        _currentSlide += increment;
 
         if (_currentSlide >= _stack.length) {
             if (_nextStack.length > 0) {
                 _stack = _nextStack;
                 _nextStack = [];
             }
-
             _currentSlide = 0;
+        }
+        else if (_currentSlide < 0) {
+            _currentSlide = _stack.length - 1;
         }
 
         var slug = _stack[_currentSlide]['slug'];
@@ -79,13 +99,13 @@ var STACK = (function () {
         if (slug === 'state-senate-results') {
             // If no state selected, skip to next
             if (!state) {
-                rotateSlide();
+                rotateSlide(direction);
                 return;
             }
 
             // If we're tracking any races in this state
             if (APP_CONFIG.NO_GOVERNOR_OR_SENATE_RACES.indexOf(state) >= 0) {
-                rotateSlide();
+                rotateSlide(direction);
                 return;
             }
 
@@ -94,13 +114,13 @@ var STACK = (function () {
         else if (slug === 'state-house-results-1') {
             // If no state selected, skip to next
             if (!state) {
-                rotateSlide();
+                rotateSlide(direction);
                 return;
             }
 
             // If we're tracking any races in this state
             if (APP_CONFIG.NO_FEATURED_HOUSE_RACES.indexOf(state) >= 0) {
-                rotateSlide();
+                rotateSlide(direction);
                 return;
             }
 
@@ -109,19 +129,19 @@ var STACK = (function () {
         else if (slug === 'state-house-results-2') {
             // If no state selected, skip to next
             if (!state) {
-                rotateSlide();
+                rotateSlide(direction);
                 return;
             }
 
             // If we're tracking any races in this state
             if (APP_CONFIG.NO_FEATURED_HOUSE_RACES.indexOf(state) >= 0) {
-                rotateSlide();
+                rotateSlide(direction);
                 return;
             }
 
             // Not a paginated state, skip page two
             if (APP_CONFIG.PAGINATED_STATES.indexOf(state) < 0) {
-                rotateSlide();
+                rotateSlide(direction);
                 return;
             }
 
