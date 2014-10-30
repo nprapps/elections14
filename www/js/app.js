@@ -40,6 +40,7 @@ var reloadTimestamp = null;
 var state = null;
 var is_casting = false;
 var countdown = 3 + 1;
+var countdown_interval = null;
 
 var slide_countdown_duration = 0;
 var slide_countdown_interval = null;
@@ -383,17 +384,31 @@ var showCountdown = function() {
     $countdownScreen.show();
 
     nextCountdown();
+//    countdown_interval = setTimeout(nextCountdown, 1000);
 }
 
 var nextCountdown = function() {
     countdown -= 1;
-
-    if (countdown == 0) {
-        $counter.text('Go!');
-        setTimeout(hideCountdown, 1000);
-    } else {
-        $counter.text(countdown);
-        setTimeout(nextCountdown, 1000);
+    
+    switch(countdown) {
+    	case 3:
+			$counter.text(countdown);
+			setTimeout(nextCountdown, 1000);
+    		break;
+    	case 2:
+    		$countdownScreen.find('h2').show();
+			$counter.text(countdown);
+			setTimeout(nextCountdown, 1000);
+    		break;
+    	case 1:
+    		$countdownScreen.find('h3').show();
+			$counter.text(countdown);
+			setTimeout(nextCountdown, 1000);
+    		break;
+    	case 0:
+			$counter.text('Go!');
+			setTimeout(hideCountdown, 1000);
+    		break;
     }
 }
 
