@@ -1,5 +1,6 @@
 @import "less/lib/bootstrap/bootstrap";
 @import "less/lib/font-awesome/font-awesome";
+@import "less/lib/ionicons/ionicons";
 @import "less/lib/prefixer";
 @import "less/stateface.less";
 @import "less/variables.less";
@@ -395,7 +396,7 @@ svg {
     display: none;
     font-size: 2vw;
     border-radius: 1vw;
-    padding: 0.5vw;
+    padding: 2vw 0.5vw;
     margin: 0 1vw;
     overflow: hidden;
 
@@ -403,8 +404,9 @@ svg {
     .controls,
     .feedback {
         float: left;
-        width: 30vw;
-        padding: 1.66vw;
+        width: 33.33333%;
+        padding: 0 1%;
+        display: border-box;
     }
 
     .legend {
@@ -419,6 +421,12 @@ svg {
             margin-bottom: 0.5vw;
         }
 
+        li i {
+            display: inline-block;
+            width: 1vw;
+            text-align: center;
+        }
+
         .cast-start {
             display: none;
         }
@@ -429,7 +437,16 @@ svg {
     }
 
     .feedback {
-        font-size: 1.5vw;
+        li i {
+            display: inline-block;
+            width: 1vw;
+            margin-right: 1vw;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.5vw;
+        }
     }
 }
 
@@ -583,7 +600,7 @@ svg {
             }
 
             .nav-btn {
-                font-size: 3vw;
+                font-size: 2vw;
 
                 + .nav-btn {
                     padding-left: 0.5vw;
