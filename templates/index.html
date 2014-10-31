@@ -61,12 +61,7 @@
 </div>
 
 <div class="cast-controls">
-    <div class="logo-wrapper">
-        {% include '_logo.svg' %}
-    </div>
-
     <h2>{{ COPY.chromecast.menu_hed }}</h2>
-
 	<p><a class="cast-prev" href="#">Previous Slide</a></p>
 	<p><a class="cast-next" href="#">Next Slide</a></p>
 
@@ -99,7 +94,7 @@
         {% endif %}
 
         <div class="control-toggle">
-            <a href="#" class="js-toggle-controls">{% include '_icon-remote.svg' %} Controls &amp; Legend</a>
+            <a href="#" class="js-toggle-controls">{% include '_icon-remote.svg' %} {{ COPY.chromecast.menu_hed }}</a>
         </div>
 
         <div class="nav">
