@@ -516,6 +516,7 @@ var onStatePickerSubmit = function(e) {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
 
     $statePickerScreen.hide();
+    $stack.show();
 
     if (is_casting) {
         $chromecastScreen.show();
