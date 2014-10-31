@@ -210,7 +210,7 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
     $chromecastIndexHeader = $('.welcome').find('.cast-header');
 
     // Don't init sender if in receiver mode
-    if (IS_CAST_RECEIVER) {
+    if (IS_CAST_RECEIVER || IS_FAKE_CASTER) {
         return;
     }
 
