@@ -29,7 +29,7 @@
 .house, .senate, .governor, .ballot-measures {
     padding: 2vh 3% 0 4vw;
     height: 100%;
-    
+
     table {
         font-family: 'Cooper Hewitt';
         font-weight: 400;
@@ -56,7 +56,7 @@
         font-size: 1.1vw;
         overflow: hidden;
         margin-bottom: 1%;
-        
+
         .results-title {
             float: left;
         }
@@ -79,7 +79,7 @@
         }
 
         h2 { font-size: 1.1vw; }
-        
+
         h4 {
         	text-transform: uppercase;
         	font-weight: normal;
@@ -136,21 +136,15 @@
             .seats-needed {
                 padding-left: 1vw;
 
-                .count {
-                    display: inline-block;
-                }
+                .count { display: inline-block; }
             }
 
             &.other {
-                .total {
-                    padding: 0;
-                }
+                .total { padding: 0; }
             }
 
             &.not-called {
-                h2 {
-                    display: inline;
-                }
+                h2 { display: inline; }
             }
         }
 
@@ -159,23 +153,44 @@
         .other { color: @green; }
         .not-called { color: @yellow; }
 
-        .dem .percentage   { background: @blue; }
-        .dem .count   { background: @blueDim; }
-        .gop .percentage   { background: @red; }
-        .gop .count   { background: @redDim; }
-        .other .percentage { background: @green; }
-        .not-called .count { border: 2px solid @yellow; color: @yellow; text-shadow: none; }
+        .dem .percentage { 
+        	border-color: fadeout(@blue, 25%);
+        	background: @blue;
+        }
+        .dem .count {
+        	border-color: fadeout(@blueDim, 25%);
+        	background: @blueDim;
+        }
+        .gop .percentage {
+        	border-color: fadeout(@red, 25%);
+        	background: @red;
+        }
+        .gop .count { 
+        	border-color: fadeout(@redDim, 25%);
+        	background: @redDim;
+        }
+        .other .percentage { 
+        	border-color: fadeout(@green, 25%);
+        	background: @green;
+        }
+        .not-called .count { 
+        	border-color: fadeout(@yellow, 25%); 
+        	color: @yellow; 
+        	text-shadow: none;
+        }
 
-        .percentage,
-        .count {
+        .count,
+        .percentage {
+        	border-width: 2px;
+        	border-style: solid;
+            border-radius: 2vw;
             display: inline-block;
             color: @white;
             text-align: center;
             padding: 0 1vw;
             min-width: 3vw;
             height: 3vw;
-            line-height: 3vw;
-            border-radius: 2vw;
+            line-height: 2.7vw;
             box-sizing: border-box;
             text-shadow: rgba(0,0,0, 0.8) 0 0 2px;
         }
@@ -192,7 +207,7 @@
             &.first {
                 padding-left: 0;
             }
-            
+
             &.last {
                 padding-right: 0;
             }
@@ -250,6 +265,10 @@
             .pickup{
                 width: 4%;
                 vertical-align: middle;
+                img {
+                    width: 100%;
+                    height: auto;
+                }
             }
 
             .party-change{
@@ -418,7 +437,7 @@
             color:@yellow;
             display:inline-block;
         }
-        
+
         .percent-called-ex {
             display:inline-block;
             color: @gray;
