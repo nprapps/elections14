@@ -7,6 +7,7 @@ from dateutil.parser import parse
 from flask import render_template
 import pytz
 
+from app_utils import get_last_updated
 from render_utils import make_context
 
 import app_utils
@@ -17,13 +18,15 @@ def senate_big_board():
     """
     from models import Race
 
-    context = make_context()
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
+
+    timestamp = get_last_updated(races)
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Senate'
     context['page_class'] = 'senate'
     context['column_number'] = 2
 
-    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
 
     context['poll_groups'] = app_utils.group_races_by_closing_time(races)
     context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_INITIAL_BOP)
@@ -37,15 +40,17 @@ def house_big_board(page):
     """
     from models import Race
 
-    context = make_context()
+    all_races = Race.select().where(Race.office_name == 'U.S. House')
+    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal, Race.seat_number)
+
+    timestamp = get_last_updated(all_races)
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'House'
     context['current_page'] = page
     context['page_class'] = 'house'
     context['column_number'] = 2
 
-    all_races = Race.select().where(Race.office_name == 'U.S. House')
-    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal, Race.seat_number)
 
     if page == 2:
         featured_races = all_featured_races[app_utils.HOUSE_PAGE_LIMIT:]
@@ -77,13 +82,15 @@ def governor_big_board():
     """
     from models import Race
 
-    context = make_context()
+    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
+    timestamp = get_last_updated(races)
+
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Governors'
     context['page_class'] = 'governor'
     context['column_number'] = 2
 
-    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
 
     context['poll_groups'] = app_utils.group_races_by_closing_time(races)
 
@@ -95,13 +102,14 @@ def ballot_measures_big_board():
     """
     from models import Race
 
-    context = make_context()
+    races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
+    timestamp = get_last_updated(races)
+
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Ballot Measures'
     context['page_class'] = 'ballot-measures'
     context['column_number'] = 2
-
-    races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
 
     context['poll_groups'] = app_utils.group_races_by_closing_time(races)
 

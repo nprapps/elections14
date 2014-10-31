@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="results-sliced-wrapper">
             <div class="results-header">
-                {% include '_election_party_vertical.svg' %}
+                <span id="us">z</span>
             </div>
             <div class="results-table">
                 {% if races %}
@@ -27,11 +27,7 @@
 
 <script type="text/javascript">
 (function() {
-	var $timestamp = $('.ap-credit').find('.timestamp');
-	var timestamp = {{ TIMESTAMP }} * 1000;
-
-	// set timestamp, make relative
-	var ts = moment(timestamp).fromNow();
-	$timestamp.empty().append(ts);
+    var $timestamp = $('.ap-credit').find('.timestamp');
+    $timestamp.empty().append("{{ TIMESTAMP }}");
 })();
 </script>

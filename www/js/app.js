@@ -14,6 +14,7 @@ var $stateface = null;
 var $stateName = null;
 var $typeahead = null;
 var $statePickerHed = null;
+var $statePickerLink = null;
 
 var $chromecastScreen = null;
 var $chromecastMute = null;
@@ -38,15 +39,16 @@ var reloadTimestamp = null;
 
 var state = null;
 var is_casting = false;
-var countdown = 5 + 1;
+var countdown = 3 + 1;
 
-var slide_countdown_status = 0;
-var slide_countdown_duration = 0;
-var slide_countdown_interval = null;
 var slide_countdown_arc = null;
 var slide_countdown_svg = null;
 var slide_countdown_background_arc = null;
 var slide_countdown_foreground_arc = null;
+var welcome_countdown_arc = null;
+var welcome_countdown_svg = null;
+var welcome_countdown_background_arc = null;
+var welcome_countdown_foreground_arc = null;
 var τ = 2 * Math.PI; // http://bl.ocks.org/mbostock/5100636
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
@@ -60,6 +62,10 @@ var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
 ];
 
+var hasTrackedNextSlide = null;
+var hasTrackedPrevSlide = null;
+var hasTrackedKeyboardNav = null;
+
 /*
  * Run on page load.
  */
@@ -67,7 +73,7 @@ var onDocumentReady = function(e) {
     // Cache jQuery references
     $body = $('body');
     $welcomeScreen = $('.welcome');
-    $welcomeButton = $('.welcome-button')
+    $welcomeButton = $('.js-go')
     $rotate = $('.rotate-phone-wrapper');
 
     $countdownScreen = $('.countdown');
@@ -150,8 +156,8 @@ var onDocumentReady = function(e) {
     setupStateTypeahead();
     checkBop();
     checkTimestamp();
-    
-    start_countdown();
+
+    create_slide_countdown();
 }
 
 var setupUI = function() {
@@ -377,25 +383,25 @@ var onWelcomeButtonClick = function() {
 
 var showCountdown = function() {
     $countdownScreen.show();
-
+    create_welcome_countdown();
     nextCountdown();
 }
 
 var nextCountdown = function() {
     countdown -= 1;
-
-    if (countdown == 0) {
-        $counter.text('Go!');
-        setTimeout(hideCountdown, 1000);
+    
+    if (countdown > 0) {
+		$counter.text(countdown);
+		setTimeout(nextCountdown, 1000);
     } else {
-        $counter.text(countdown);
-        setTimeout(nextCountdown, 1000);
+		$counter.text('Go!');
+		setTimeout(hideCountdown, 1000);
     }
 }
 
 var hideCountdown = function() {
     $countdownScreen.hide();
-    
+
     STACK.start();
 }
 
@@ -480,10 +486,12 @@ var showState = function() {
     console.log(state);
     console.log($stateName);
     $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
-    $stateName.text(APP_CONFIG.STATES[state])
+    $stateName.text(APP_CONFIG.STATES[state]);
+    $statePickerLink.find('.state-name').text(state);
 }
 
 var switchState = function() {
+    console.log('switchState')
     var $this = $(this);
 
     getState($this);
@@ -492,7 +500,7 @@ var switchState = function() {
     $stateface.css('opacity', 1);
     $stateName.css('opacity', 1);
     $typeahead.css('top', '0');
-    $statePickerHed.text('You have selected');
+    $statePickerHed.text('You have selected').css('opacity', 1);;
 
     $this.typeahead('val', '')
     $this.typeahead('close');
@@ -500,8 +508,10 @@ var switchState = function() {
 }
 
 var hideStateFace = function() {
+    console.log('hideStateFace')
     $stateface.css('opacity', 0);
     $stateName.css('opacity', 0);
+    $statePickerHed.css('opacity', 0);
 
     if ($stateWrapper.height() > 0 && $stateWrapper.width() > 0) {
         $typeahead.css('top', '-20vw');
@@ -602,7 +612,38 @@ var onAudioFail = function() {
 /*
  * COUNTDOWN
  */
-function start_countdown() {
+function create_welcome_countdown() {
+	var page_width = $(window).width();
+	var countdown_width = Math.floor(page_width * .22); // 22vw
+	var countdown_outer_radius = Math.floor(countdown_width / 2);
+	var countdown_inner_radius = Math.floor(countdown_outer_radius * .7);
+	
+	welcome_countdown_arc = d3.svg.arc()
+		.innerRadius(countdown_inner_radius)
+		.outerRadius(countdown_outer_radius)
+		.startAngle(0);
+
+	welcome_countdown_svg = d3.select('.countdown-arc')
+		.append('svg')
+			.attr('width', countdown_width)
+			.attr('height', countdown_width)
+		.append('g')
+			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
+
+	welcome_countdown_background_arc = welcome_countdown_svg.append('path')
+		.datum({endAngle: τ})
+		.attr('class', 'countdown-background')
+		.attr('d', welcome_countdown_arc);
+
+	welcome_countdown_foreground_arc = welcome_countdown_svg.append('path')
+		.datum( { endAngle: 0 } )
+		.attr('class', 'countdown-active')
+		.attr('d', welcome_countdown_arc);
+	
+	start_arc_countdown('welcome_countdown', (countdown - 2));
+}
+
+function create_slide_countdown() {
 	var page_width = $(window).width();
 	var countdown_width = Math.floor(page_width * .025); // 2.5vw
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
@@ -612,76 +653,88 @@ function start_countdown() {
 		.innerRadius(countdown_inner_radius)
 		.outerRadius(countdown_outer_radius)
 		.startAngle(0);
-	
+
 	slide_countdown_svg = d3.select('#stack .slide-countdown')
 		.append('svg')
 			.attr('width', countdown_width)
 			.attr('height', countdown_width)
 		.append('g')
 			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
-	
+
 	slide_countdown_background_arc = slide_countdown_svg.append('path')
 		.datum({endAngle: τ})
 		.attr('class', 'countdown-background')
 		.attr('d', slide_countdown_arc);
-	
+
 	slide_countdown_foreground_arc = slide_countdown_svg.append('path')
 		.datum( { endAngle: 0 } )
 		.attr('class', 'countdown-active')
 		.attr('d', slide_countdown_arc);
 }
 
-function start_slide_countdown() {
-	slide_countdown_interval = setInterval(function() {
-		slide_countdown_foreground_arc.transition()
-			.duration(750)
-			.call(arcTween);
-	}, 1000);
-
-	function arcTween(transition) {
-		slide_countdown_status += 1;
-		if (slide_countdown_status > slide_countdown_duration) {
-			slide_countdown_status = slide_countdown_duration;
-		}
-		var newAngle = (slide_countdown_status / slide_countdown_duration) * τ;
-		
-		transition.attrTween('d', function(d) {
-			var interpolate = d3.interpolate(d['endAngle'], newAngle);
-			return function(t) {
-				d['endAngle'] = interpolate(t);
-				return slide_countdown_arc(d);
-			};
-		});
-	}
+function start_arc_countdown(arc, duration) {
+	var arc_start = 0;
+	var arc_end = τ;
+	var arc_foreground = eval(arc + '_foreground_arc');
+	var arc_main = eval(arc + '_arc');
+	
+	arc_foreground.transition()
+			.duration(1000)
+				.ease('linear')
+				.call(tween_slide_arc, arc_main, arc_start);
+	arc_foreground.transition()
+			.duration(duration * 1000)
+			.delay(1000)
+				.ease('linear')
+				.call(tween_slide_arc, arc_main, arc_end);
 }
 
-function stop_slide_countdown() {
-	clearInterval(slide_countdown_interval);
+function tween_slide_arc(transition, arc_main, end) {
+	transition.attrTween('d', function(d) {
+		var interpolate = d3.interpolate(d['endAngle'], end);
+		return function(t) {
+			d['endAngle'] = interpolate(t);
+			return arc_main(d);
+		};
+	});
 }
+
 
 /**
  * Click left or right paddle
  */
 var onSlideControlClick = function() {
-  var direction = $(this).data('slide');
-  if (direction == "next") {
-    STACK.next();
-  }
-  else if (direction == "previous") {
-    STACK.previous();
-  }
+    var direction = $(this).data('slide');
+    if (direction == "next") {
+        STACK.next();
+        if (!(hasTrackedNextSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'next-slide-click']);
+            hasTrackedNextSlide = true;
+        }
+    }
+    else if (direction == "previous") {
+        STACK.previous();
+        if (!(hasTrackedPrevSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'prev-slide-click']);
+            hasTrackedPrevSlide = true;
+        }
+    }
 }
 
 /**
  * Catch keyboard events
  */
 var onKeyboard = function(e) {
-  if (e.which == 39) {
-    STACK.next()
-  }
-  if (e.which == 37) {
-    STACK.previous()
-  }
+    if (!(hasTrackedKeyboardNav)) {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'keyboard-nav']);
+        hasTrackedKeyboardNav = true;
+    }
+    if (e.which == 39) {
+        STACK.next()
+    }
+    if (e.which == 37) {
+        STACK.previous()
+    }
 }
 
 $(onDocumentReady);

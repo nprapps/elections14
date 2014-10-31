@@ -192,7 +192,6 @@ def deploy_big_boards():
     """
     local('rm -rf .big_boards_html .big_boards_gzip')
     render.render_big_boards()
-    utils._gzip('www', '.gzip')
     utils._gzip('.big_boards_html', '.big_boards_gzip')
     utils._deploy_to_s3('.big_boards_gzip')
 

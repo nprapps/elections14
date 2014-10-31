@@ -2,10 +2,6 @@
 
 {% block outer_content %}
 <div class="welcome">
-    <div class="cast-header">
-        <span class="cast-disabled"><a href="http://www.google.com/chrome/devices/chromecast/" target="_blank"><img src="assets/chromecast_ready.svg" alt="Google Cast Ready" /></a></span>
-        <span class="cast-enabled"><a href="#" class="cast-start"><img src="assets/chromecast_off.svg" alt="Google Cast Ready" /></a></span>
-    </div>
     <div class="logo-wrapper">
     {% include '_logo2.svg' %}
     </div>
@@ -15,30 +11,36 @@
         </div>
     </div>
 
-    <h2 class="state-picker-hed">{{ COPY.content.state_picker_hed }}</h2>
+    <h2 class="state-picker-hed-wrapper"><span class="state-picker-hed">{{ COPY.content.state_picker_hed }}</span> <span class="state-name"></span> <span class="stateface"></span></h2>
 
     <form role="form" class="state-picker-form">
         <div class="form-group">
-            <div class="state">
-                <span class="stateface"></span>
-                <h3 class="state-name"></h3>
-            </div>
-
             <input class="typeahead" type="text" placeholder="Select a different state">
         </div>
 
-        <button type="submit" class="btn btn-lg welcome-button">Come on in</button>
-    </form>
+        <div class="cast-header">
+            <div class="cast-disabled">
+                <p><button type="submit" class="btn btn-lg welcome-button js-go">Come on in</button></p>
+                <p><a href="http://www.google.com/chrome/devices/chromecast/" target="_blank"><img src="assets/chromecast_ready.svg" alt="Google Cast Ready" /></a></p>
+            </div>
+            <div class="cast-enabled">
+                <p><a href="#" class="cast-start btn btn-lg welcome-button"><img src="assets/chromecast_off.svg" alt="Google Cast Ready" /> Start Casting</a></p>
+                <p class="cast-footer"><a href="#" class="js-go">Or play here</a></p>
+            </div>
 
-    <p>{{ COPY.content.state_picker_footer }}</p>
+        </div>
+    </form>
 </div>
 
 <div class="countdown">
-    <h2>Turn up your volume</h2>
-
-    <div class="counter"></div>
-
-    <h2>Get yourself a beer</h2>
+    <div class="wrapper">
+		<h2>{{ COPY.content.countdown_prompt_1 }}</h2>
+		<div class="countdown-arc-wrapper">
+			<div class="countdown-arc"></div>
+			<div class="counter"></div>
+		</div>
+		<h3>{{ COPY.content.countdown_prompt_2 }}</h3>
+    </div>
 </div>
 
 <div class="state-picker">
@@ -56,8 +58,6 @@
 
         <button type="submit" class="btn btn-lg state-picker-submit">Go</button>
     </form>
-
-    <p>{{ COPY.content.state_picker_footer }}</p>
 </div>
 
 <div class="slide cast-controls">
@@ -81,25 +81,23 @@
 <div id="stack">
     <div class="header-container">
         <div class="right-controls">
-            <div class="chromecast">
-                <a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /></a>
-            </div>
-            <div class="fullscreen results-header-group">
-                <a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"></a>
-            </div>
+
         </div>
     </div>
 
     <div class="footer-container">
         <div class="results-header index">
+            {% include '_logo.svg' %}
 
             {% if bop %}
                 {% include 'bop.html' %}
             {% endif %}
-            {% include '_logo.svg' %}
             <div class="right-controls">
-                <div class="state results-header-group">
-                    <a class="state-picker-link" href="#"><span class="stateface"></span><span class="state-name"></span></p></a>
+                <div class="chromecast">
+                    <a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /></a>
+                </div>
+                <div class="fullscreen results-header-group">
+                    <a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"></a>
                 </div>
                 <div class="volume results-header-group">
                     <div id="audio-ambient">
@@ -115,6 +113,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="state results-header-group">
+                    <a class="state-picker-link" href="#"><span class="stateface"></span><span class="state-name"></span></p></a>
                 </div>
                 <div class="slide-nav results-header-group">
                     <nav>

@@ -627,7 +627,10 @@
 .legend {
 	font-family: 'Cooper Hewitt';
 	font-weight: 300;
-
+	position: absolute;
+	bottom: 5.8vh;
+	left: 0;
+	
 	h3 {
 		padding-left: 1vw;
 		text-transform: uppercase;
@@ -638,7 +641,7 @@
 	.container-fluid {
 		margin: 1vw 2vw;
 		background: fadeout(@blueDark, 50%);
-		padding: 1vw 2vw .5vw 2vw;
+		padding: 1vw 2vw .8vw 2vw;
 		font-size: 1.5vw;
 		color: #999;
 	}
@@ -667,6 +670,7 @@
 	.reporting,
 	.seat-held,
 	.pickup,
+	.polls,
 	.key-color {
 		width: 2.5vw;
 		display: block;
@@ -707,6 +711,15 @@
 		}
 	}
 
+	.polls {
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		font-size: 1.2vw;
+		padding-top: .2vw;
+		color: @gray-light;
+		white-space: nowrap;
+	}
+
 	.reporting {
 		color: @yellow;
 		font-weight: 500;
@@ -723,9 +736,6 @@
 		font-size: 1.5vw;
 		color: @blue;
 	}
-
-
-
 }
 
 

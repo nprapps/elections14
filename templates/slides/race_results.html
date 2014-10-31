@@ -42,7 +42,7 @@
         </div>
 
         <div class="ap-credit">
-            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
+            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp">{{ TIMESTAMP }}</span>.
         </div>
 
     </div>
@@ -51,14 +51,6 @@
 <script>
 
 (function() {
-	var $timestamp = $('.ap-credit').find('.timestamp');
-	var timestamp = {{ TIMESTAMP }} * 1000;
-
-	// set timestamp, make relative
-	var ts = moment(timestamp).fromNow();
-	$timestamp.empty().append(ts);
-
-
 	// Columnizer needs a short pause or else it acts strangely on subsequent calls
 	setTimeout(function() {
 	  $('.results').columnize(colOpts);

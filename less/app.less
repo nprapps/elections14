@@ -21,14 +21,18 @@ svg {
 }
 
 .btn-lg{
-    padding: 1.5vw 1.5vw;
-    font-size: 2vw;
+    padding: 15px;
+    font-size: 24px;
     letter-spacing: .03em;
     border-radius: 0.5vw;
     text-transform: uppercase;
 
     &:hover {
         background-color: darken(@red, 20%);
+    }
+
+    @media screen and (max-width: @screen-xs-max){
+        font-size: 16px;
     }
 }
 
@@ -83,28 +87,26 @@ svg {
     }
 
     .logo-wrapper {
-        width: 10%;
-        margin: 0 auto 2%;
+        width: 100%;
+        margin: 15px auto 30px;
         fill: @grayMedium;
     }
 
     .election-logo-wrapper {
-        width: 50%;
-        margin: 0 auto 3%;
+        width: 100%;
+        max-width: 600px;
+        padding: 0 30px;
+        margin: 0 auto;
     }
 
     .cast-header {
-    	position: absolute;
-    	top: 1vw;
-    	right: 1vw;
-    	text-align: right;
+        margin-top: 2vw;
 
     	.cast-enabled,
     	.cast-disabled {
 			img {
 				width: auto;
-				height: 3vw;
-				min-height: 25px;
+				height: 40px;
 			}
     	}
 
@@ -127,8 +129,8 @@ svg {
         min-height: 20vw;
 
         .stateface { font-size: 10vw; }
-
-        .stateface, .state-name {
+        .stateface,
+        .state-name {
             -webkit-transition: all 0.2s;
             transition: all 0.2s;
         }
@@ -144,11 +146,76 @@ svg {
         background-color: @red;
         border: @red;
         color: @musicLight;
+        margin-top: 30px;
+
+        @media screen and (max-width: @screen-xs-max){
+            margin-top: 15px;
+        }
     }
 }
 
 .countdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: none;
+    text-align: center;
+	text-transform: uppercase;
+
+    &:after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url('../assets/promo/background.jpg') no-repeat center black;
+        width: 100%;
+        height: 100%;
+        opacity : 0.8;
+        z-index: -1;
+    }
+
+    h2,
+    h3 {
+    	font-size: 3.5vw;
+    	margin: 0;
+    	color: @grayMedium;
+    	text-transform: uppercase;
+    }
+    
+    .wrapper {
+        .vertical-center;
+        width: 100%;
+        position: absolute;
+    }
+    
+    .countdown-arc-wrapper {
+    	width: 22vw;
+    	height: 22vw;
+    	margin: 2.5vw auto;
+    	position: relative;
+    	
+    	.countdown-arc,
+    	.counter {
+    		width: 100%;
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    	}
+    	
+		.counter {
+			font-size: 4vw;
+			font-weight: bold;
+			text-transform: uppercase;
+			line-height: 22vw;
+		}
+    }
+    
+	.countdown-background { fill: @musicDark; }
+	.countdown-active { fill: @grayMedium; }
+
 }
 
 .cast-controls {
@@ -226,8 +293,12 @@ svg {
     }
 
     h2 {
-        font-size: 2vw;
-        margin-top: 0;
+        font-size: 36px;
+        margin-top: 30px;
+
+        @media screen and (max-width: @screen-xs-max){
+            font-size: 16px;
+        }
     }
     
     p {
@@ -250,9 +321,13 @@ svg {
         }
 
         .state-name {
-            font-size: 4vw;
+            font-size: 36px;
             position: relative;
             top: -3vmin;
+
+            @media screen and (max-width: @screen-xs-max){
+                font-size: 16px;
+            }
         }
     }
 
@@ -262,120 +337,27 @@ svg {
         border: @red;
         color: @musicLight;
     }
+}
 
+.state-picker-hed-wrapper {
+    font-size: 24px;
+    margin: 30px 0;
+
+    @media screen and (max-width: @screen-xs-max){
+        font-size: 16px;
+        margin: 15px 0;
+    }
+}
+
+#us{
+    font-family: "StateFaceRegular";
+    font-size: 15vw;
 }
 
 
 /*
 ** HEADER
 */
-
-.right-controls {
-    float: right;
-
-    div {
-        white-space: nowrap;
-        float: left;
-    }
-
-    .state-picker-link {
-        color: @grayMedium;
-        vertical-align: middle;
-
-        .stateface {
-            font-size: 3vw;
-            vertical-align: middle;
-        }
-    }
-
-    .chromecast {
-        display: none;
-
-        img {
-            width: 2vw;
-            height: 2vw;
-            opacity: 0.7;
-        }
-    }
-
-	.slide-countdown {
-		padding-top: .2vw;
-	
-		.countdown-background { fill: @musicDark; }
-		.countdown-active { fill: @grayMedium; }
-	}
-
-    .volume-icon{
-        width: 2vw;
-        height: 2vw;
-    }
-
-    .expand {
-        width: 1.5vw;
-        height: 1.5vw;
-    }
-
-    .chromecast,
-    .state,
-    .volume,
-    .fullscreen {
-        padding: 0 0.5vw;
-
-        a:hover {
-            color: darken(@grayMedium, 20%);
-            text-decoration: none;
-
-            img {
-                opacity: 0.5;
-            }
-        }
-    }
-
-    .slide-nav {
-        line-height: 3.5vw;
-        height: 3.5vw;
-
-        nav {
-            overflow: hidden;
-            // display: inline-block;
-            font-size: 0;
-        }
-
-       .nav-btn {
-            font-size: 1.5vw;
-            border: 2px solid @grayMedium;
-            padding: 0.5vw 1vw;
-            color: @grayMedium;
-            background: transparent;
-            line-height: 1.5vw;
-            margin: 0 0 -2px 0;
-            display: inline-block;
-            vertical-align: middle;
-
-            &.nav-btn-left {
-                border-radius: 0.5vw 0 0 0.5vw;
-            }
-
-            &.nav-btn-right {
-                margin-left: -2px;
-                border-radius: 0 0.5vw 0.5vw 0;
-            }
-       }
-    }
-}
-
-.header-container {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 1vh;
-
-    .right-controls {
-        padding: 0.2vw 3vw;
-        height: 4vw;
-        line-height: 3.5vw;
-    }
-}
 
 .footer-container {
     position: absolute;
@@ -386,6 +368,116 @@ svg {
 
     box-shadow: inset 0 5vw 5vw -5vw black;
     background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+
+    .right-controls {
+        float: right;
+
+        div {
+            white-space: nowrap;
+            float: left;
+        }
+
+        a.state-picker-link {
+            display: inline-block;
+            color: @grayMedium;
+            border: 2px solid @grayMedium;
+            vertical-align: middle;
+            line-height: 1.5vw;
+            padding: 0.5vw;
+            border-radius: 0.5vw;
+            font-size: 1vw;
+
+            .state-name {
+                font-size: 1vw;
+                line-height: 1;
+            }
+
+            .stateface {
+                display: none;
+                font-size: 3vw;
+                vertical-align: middle;
+            }
+        }
+
+        .slide-countdown {
+            padding-top: .2vw;
+            .countdown-background { fill: @musicDark; }
+            .countdown-active { fill: @grayMedium; }
+        }
+
+        .volume-icon{
+            width: 2vw;
+            height: 2vw;
+        }
+
+        .chromecast {
+            display: none;
+
+            img {
+                width: 2vw;
+                height: 2vw;
+                opacity: 0.7;
+            }
+        }
+
+        .volume-icon{
+            width: 2vw;
+            height: 2vw;
+        }
+
+        .expand {
+            width: 1.5vw;
+            height: 1.5vw;
+        }
+
+        .chromecast,
+        .state,
+        .volume,
+        .fullscreen {
+            padding: 0 0.5vw;
+
+            a:hover {
+                color: darken(@grayMedium, 20%);
+                text-decoration: none;
+
+                img {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        .slide-nav {
+            line-height: 3.5vw;
+            height: 3.5vw;
+
+            nav {
+                overflow: hidden;
+                // display: inline-block;
+                font-size: 0;
+            }
+
+           .nav-btn {
+                font-size: 1.5vw;
+                border: 2px solid @grayMedium;
+                padding: 0.5vw 1vw;
+                color: @grayMedium;
+                background: transparent;
+                line-height: 1.5vw;
+                margin: 0 0 -2px 0;
+                display: inline-block;
+                vertical-align: middle;
+
+                &.nav-btn-left {
+                    border-radius: 0.5vw 0 0 0.5vw;
+                }
+
+                &.nav-btn-right {
+                    margin-left: -2px;
+                    border-radius: 0 0.5vw 0.5vw 0;
+                }
+           }
+        }
+    }
 
     .results-header {
         color: @grayMedium;
@@ -398,8 +490,8 @@ svg {
         .logo {
             height:100%;
             width:7vw;
-            margin: 0 .5% 0 2vw;
-            float:right;
+            margin: 0 .5% 0 0;
+            float: left;
             fill: @grayMedium;
         }
 
@@ -516,6 +608,10 @@ svg {
     top: 0;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
+
+    @media screen and (max-width: @screen-xs-max){
+        width: 80vw;
+    }
 }
 
 .typeahead,
@@ -525,12 +621,17 @@ svg {
     font-family: FontAwesome, 'Gotham Ssm';
     width: 50vw;
     height: 100%;
-    padding: 2vw 1vw;
-    font-size: 2vw;
-    line-height: 2vw;
+    padding: 15px;
+    font-size: 24px;
+    line-height: 36px;
     border: 2px solid #bbb;
     border-radius: 4px;
     outline: none;
+
+    @media screen and (max-width: @screen-xs-max){
+        width: 80vw;
+        font-size: 16px;
+    }
 }
 
 ::-webkit-input-placeholder::before {
@@ -579,13 +680,22 @@ input:-moz-placeholder::before  {
     margin-top: 1vw;
     border: 1px solid #999;
     border-radius: 2px;
+
+    @media screen and (max-width: @screen-xs-max){
+        width: 80vw;
+    }
 }
 
 .tt-suggestion {
-    padding: 3% 1%;
-    font-size: 2vw;
-    line-height: 2vw;
+    padding: 15px;
+    font-size: 24px;
+    line-height: 1;
+    background: rgba(0,0,0,0.5);
     border-bottom: 1px solid #999;
+
+    @media screen and (max-width: @screen-xs-max){
+        font-size: 16px;
+    }
 
     &:last-child { border: none; }
 }
