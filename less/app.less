@@ -393,15 +393,175 @@ svg {
 	.touch & { display: block; }
 }
 
+.controls-wrapper {
+    position: absolute;
+    left: 0;
+    bottom: 6vw;
+    width: 98%;
+    z-index: 100;
+    background: fadeout(@blueDarker,2%);
+    display: none;
+    font-size: 2vw;
+    border-radius: 1vw;
+    padding: 0.5vw;
+    margin: 0 1vw;
+    overflow: hidden;
+
+    .legend,
+    .controls,
+    .feedback {
+        float: left;
+        width: 30vw;
+        padding: 1.66vw;
+    }
+
+    .legend {
+        li {
+            font-size: 1.5vw;
+            margin-bottom: 0.5vw;
+        }
+    }
+
+    .controls {
+        li {
+            margin-bottom: 0.5vw;
+        }
+
+        li img {
+            height: 2vw;
+        }
+    }
+
+    .feedback {
+        font-size: 1.5vw;
+    }
+}
+
 .footer-container {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     z-index: 1;
-
-    box-shadow: inset 0 5vw 5vw -5vw black;
     background: black;
+    display: table;
+
+    .leaderboard,
+    .control-toggle,
+    .nav {
+        display: table-cell;
+        max-height: 4vw;
+        overflow: hidden;
+        width: 30vw;
+        padding: 0 1.66vw;
+    }
+
+    .leaderboard {
+        .results-header-group {
+            white-space: nowrap;
+            padding: 0 0.25vw;
+            display: inline-block;
+            overflow: hidden;
+            font-size: 1.5vw;
+
+            &:last-child{
+                margin-right: 0;
+                padding-right: 0;
+            }
+
+            .party,
+            .total,
+            .seats-needed {
+                display: inline;
+                font-family: 'Cooper Hewitt';
+            }
+
+            h2, p {
+                margin: 0;
+            }
+
+            .senate-header {
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 1.7vw;
+            }
+
+            .total {
+                white-space: nowrap;
+                display: inline-block;
+            }
+
+            &.not-called {
+                h2 {
+                    display: inline;
+                }
+
+                white-space: nowrap;
+            }
+        }
+
+        .dem { color: fadeout(@blue, 25%); }
+        .gop { color: fadeout(@red, 25%); }
+        .other { color: fadeout(@green, 25%); }
+        .not-called { color: fadeout(@yellow, 25%); }
+
+        .dem .percentage   {  border: 2px solid transparent; background: fadeout(@blue, 25%); }
+        .gop .percentage   {  border: 2px solid transparent; background: fadeout(@red, 25%); }
+        .other .percentage   {  border: 2px solid transparent; background: fadeout(@green, 25%); }
+        .not-called .count {  border: 2px solid fadeout(@yellow, 25%); color: fadeout(@yellow, 25%); }
+
+        .percentage,
+        .count {
+            margin-top: 0;
+            color: #fff;
+            font-family: 'Cooper Hewitt';
+            display: inline-block;
+            text-align: center;
+            box-sizing:border-box;
+            min-width:3vw;
+            height:3vw;
+            line-height: 2.8vw;
+            border-radius: 2vw;
+            padding: 0 0.5vw;
+        }
+    }
+
+    .control-toggle {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.5vw;
+        line-height: 3.5vw;
+
+        svg {
+            fill: @brand-primary;
+            height: 3vw;
+            vertical-align: middle;
+        }
+    }
+
+    .nav {
+        text-align: right;
+
+        .page,
+        .nav-btn,
+        .slide-countdown,
+        .logo {
+            display: inline-block;
+        }
+
+        .slide-countdown {
+            padding: .6vw 0 0 .5vw;
+            width: 2.75vw;
+
+            .countdown-background { fill: @musicDark; }
+            .countdown-active { fill: @grayMedium; }
+        }
+
+        .logo {
+            width: 4vw;
+            fill: @grayMedium;
+        }
+    }
 
     .right-controls {
         float: right;
@@ -599,13 +759,29 @@ svg {
         .other { color: fadeout(@green, 25%); }
         .not-called { color: fadeout(@yellow, 25%); }
 
-        .dem .percentage   {  background: fadeout(@blue, 25%); }
-        .gop .percentage   {  background: fadeout(@red, 25%); }
-        .other .percentage   {  background: fadeout(@green, 25%); }
-        .not-called .count {  border: 2px solid fadeout(@yellow, 25%); color: fadeout(@yellow, 25%); }
+        .dem .percentage { 
+        	border-color: fadeout(@blue, 25%);
+        	background: @blue;
+        }
+        .gop .percentage {
+        	border-color: fadeout(@red, 25%);
+        	background: @red;
+        }
+        .other .percentage { 
+        	border-color: fadeout(@green, 25%);
+        	background: @green;
+        }
+        .not-called .count { 
+        	border-color: fadeout(@yellow, 25%); 
+        	color: @yellow; 
+        	text-shadow: none;
+        }
 
         .percentage,
         .count {
+        	border-width: 2px;
+        	border-style: solid;
+            border-radius: 2vw;
             margin-top: 0;
             color: #fff;
             font-family: 'Cooper Hewitt';
@@ -614,8 +790,7 @@ svg {
             box-sizing:border-box;
             min-width:3vw;
             height:3vw;
-            line-height: 3vw;
-            border-radius: 2vw;
+            line-height: 2.6vw;
             padding: 0 1vw;
         }
     }
