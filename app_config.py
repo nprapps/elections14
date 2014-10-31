@@ -133,16 +133,24 @@ DEPLOY_PROMO = False
 CHROMECAST_APP_ID = '8408F716'
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
-STACK_UPDATE_INTERVAL = 60
-
 TUMBLR_NAME = '' # See below
 TUMBLR_NOT_BEFORE = None # See below
 TUMBLR_AUTO_REFRESH = None # See below
 
-CLIENT_BOP_INTERVAL = 15
-LIVEBLOG_DEPLOY_INTERVAL = 15
+# How often the client checks for a new stack 
+STACK_UPDATE_INTERVAL = 60
+
+# How often the client checks for a new BOP
+CLIENT_BOP_INTERVAL = 30 
+
+# How often the server polls Tumblr for new live blogs
+LIVEBLOG_DEPLOY_INTERVAL = 30 
+
+# How often the servers polls for new AP results
 RESULTS_DEPLOY_INTERVAL = 60
-RELOAD_CHECK_INTERVAL = 300
+
+# How often the client polls to see if it should be reloaded
+RELOAD_CHECK_INTERVAL = 180
 
 STATES = {
     'AK': 'Alaska',
