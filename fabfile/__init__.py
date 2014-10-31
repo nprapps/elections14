@@ -156,32 +156,32 @@ def deploy_client(remote='origin'):
     utils._deploy_to_s3()
 
 @task
-def deploy_liveblog_slides():
+def deploy_liveblog():
     """
     Deploy latest liveblog slides to S3.
     """
     local('rm -rf .liveblog_slides_html .liveblog_slides_gzip')
-    render.render_liveblog_slides()
+    render.render_liveblog()
     utils._gzip('.liveblog_slides_html', '.liveblog_slides_gzip')
     utils._deploy_to_s3('.liveblog_slides_gzip')
 
 @task
-def deploy_results_slides():
+def deploy_results():
     """
     Deploy latest results slides to S3.
     """
     local('rm -rf .results_slides_html .results_slides_gzip')
-    render.render_results_slides()
+    render.render_results()
     utils._gzip('.results_slides_html', '.results_slides_gzip')
     utils._deploy_to_s3('.results_slides_gzip')
 
 @task
-def deploy_state_slides():
+def deploy_states():
     """
     Deploy latest state slides to S3.
     """
     local('rm -rf .state_slides_html .state_slides_gzip')
-    render.render_state_slides()
+    render.render_states()
     utils._gzip('.state_slides_html', '.state_slides_gzip')
     utils._deploy_to_s3('.state_slides_gzip')
 

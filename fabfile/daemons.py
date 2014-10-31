@@ -49,7 +49,6 @@ def deploy_results(once=False):
     """
     Harvest data and deploy slides indefinitely
     """
-    sleep(5)
     while True:
         start = time()
         safe_execute('ap.update')
