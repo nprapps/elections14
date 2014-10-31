@@ -201,8 +201,8 @@ var STACK = (function () {
 
         _timeOnScreen = _stack[_currentSlide]['time_on_screen'];
 
-		// update countdown spinner
-		start_arc_countdown('slide_countdown', _timeOnScreen);
+        // update countdown spinner
+        start_arc_countdown('slide_countdown', _timeOnScreen);
 
         if ($oldSlide.length > 0) {
             if (_slideExitCallback) {
