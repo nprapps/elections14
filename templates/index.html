@@ -90,40 +90,8 @@
 
     <div class="controls-wrapper">
         {% include '_legend.html' %}
-
-        <div class="controls">
-            <ul class="list-unstyled">
-                <li class="fullscreen"><a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"> <span>Fullscreen</span></a></li>
-                <li>
-                    <div id="audio-ambient">
-                        <div id="pop-audio" class="jp-jplayer"></div>
-                        <div id="jp_container_1" class="jp-audio">
-                            <div class="jp-type-single">
-                                <div class="jp-gui jp-interface">
-                                    <div class="jp-controls">
-                                        <a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="stop"><img class="volume-icon" src="assets/icon-mute.svg" alt="Mute"> Mute</a>
-                                        <a href="javascript:;" class="jp-pause nav-btn" tabindex="1" title="play"><img class="volume-icon" src="assets/icon-volume.svg" alt="Play"> Play</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li><a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /> Cast This</a></li>
-                <li>
-                    <label><span class="stateface stateface-ca"></span><input value="California" type="text"></label>
-                </li>
-            </ul>
-        </div>
-
-        <div class="feedback">
-            <ul class="list-unstyled social">
-                <li><a href="#"><i class="fa fa-fw fa-twitter"></i> Share on Twitter</a></li>
-                <li><a href="#"><i class="fa fa-fw fa-facebook"></i> Share on Facebook</a></li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. </p>
-        </div>
+        {% include '_controls.html' %}
+        {% include '_feedback.html' %}
     </div>
 
     <div class="footer-container">
