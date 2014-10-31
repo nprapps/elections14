@@ -427,6 +427,10 @@ svg {
             margin-bottom: 0.5vw;
         }
 
+        .cast-start {
+            display: none;
+        }
+
         li img {
             height: 2vw;
         }
@@ -541,6 +545,14 @@ svg {
         font-size: 1.5vw;
         line-height: 3.5vw;
 
+        a {
+            text-decoration: none;
+
+            &:hover svg {
+                fill: #fff;
+            }
+        }
+
         svg {
             fill: @grayMedium;
             height: 3vw;
@@ -551,6 +563,7 @@ svg {
     .nav {
         text-align: right;
         font-size: 1.5vw;
+        line-height: 3.5vw;
 
         .page,
         .slide-nav,
@@ -559,12 +572,15 @@ svg {
             display: inline-block;
         }
 
+        .page {
+            color: @grayMedium;
+            font-size: 1.2vw;
+        }
 
         .slide-nav {
             margin-left: 1vw;
 
             p {
-                line-height: 3vw;
                 vertical-align: middle;
                 padding: 0 1vw;
             }
@@ -595,8 +611,10 @@ svg {
 
         .logo {
             margin-left: 1vw;
-            width: 6vw;
+            width: 8vw;
             fill: @grayMedium;
+            position: relative;
+            bottom: -0.35vw;
         }
     }
 
@@ -796,7 +814,7 @@ svg {
         .other { color: fadeout(@green, 25%); }
         .not-called { color: fadeout(@yellow, 25%); }
 
-        .dem .percentage { 
+        .dem .percentage {
         	border-color: fadeout(@blue, 25%);
         	background: @blue;
         }
@@ -804,13 +822,13 @@ svg {
         	border-color: fadeout(@red, 25%);
         	background: @red;
         }
-        .other .percentage { 
+        .other .percentage {
         	border-color: fadeout(@green, 25%);
         	background: @green;
         }
-        .not-called .count { 
-        	border-color: fadeout(@yellow, 25%); 
-        	color: @yellow; 
+        .not-called .count {
+        	border-color: fadeout(@yellow, 25%);
+        	color: @yellow;
         	text-shadow: none;
         }
 
