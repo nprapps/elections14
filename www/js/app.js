@@ -23,6 +23,7 @@ var $chromecastIndexHeader = null;
 
 var $header = null;
 var $headerControls = null;
+var $rightControls = null;
 var $fullScreenButton = null;
 var $statePickerLink = null;
 var $chromecastButton = null;
@@ -101,6 +102,7 @@ var onDocumentReady = function(e) {
     $stack = $('#stack');
     $header = $('.index');
     $headerControls = $('.header-controls');
+    $rightControls = $('.right-controls');
     $audioButtons = $('.jp-controls .nav-btn');
     $slideControls = $('.slide-nav .nav-btn');
     $slide_countdown = $stack.find('.slide-countdown');
@@ -131,6 +133,8 @@ var onDocumentReady = function(e) {
         CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
 
         STACK.start();
+        $rightControls.hide();
+
     } else if (IS_FAKE_CASTER) {
         is_casting = true;
         state = 'TX';
@@ -161,6 +165,10 @@ var onDocumentReady = function(e) {
 var setupUI = function() {
     rotatePhone();
     checkTimestamp();
+
+    if (Modernizr.touch) {
+        $rightControls.hide();
+    }
 
     // Geolocate
     if ($.cookie('state')) {
@@ -297,12 +305,14 @@ var onWindowResize = function() {
     }
 
     $stack.css({
+        'width': width + 'px',
         'height': new_height + 'px',
         'position': 'absolute',
         'top': padding + 'px'
     });
 
     var thisSlide = $('.slide');
+    resizeSlide(thisSlide);
     rotatePhone();
 }
 
@@ -385,7 +395,7 @@ var showCountdown = function() {
 
 var nextCountdown = function() {
     countdown -= 1;
-    
+
     if (countdown > 0) {
 		$counter.text(countdown);
 		setTimeout(nextCountdown, 1000);
@@ -581,7 +591,7 @@ function create_welcome_countdown() {
 	var countdown_width = Math.floor(page_width * .22); // 22vw
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .7);
-	
+
 	welcome_countdown_arc = d3.svg.arc()
 		.innerRadius(countdown_inner_radius)
 		.outerRadius(countdown_outer_radius)
@@ -603,7 +613,7 @@ function create_welcome_countdown() {
 		.datum( { endAngle: 0 } )
 		.attr('class', 'countdown-active')
 		.attr('d', welcome_countdown_arc);
-	
+
 	start_arc_countdown('welcome_countdown', (countdown - 2));
 }
 
@@ -612,7 +622,7 @@ function create_slide_countdown() {
 	var countdown_width = Math.floor(page_width * .025); // 2.5vw
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .6);
-	
+
 	slide_countdown_arc = d3.svg.arc()
 		.innerRadius(countdown_inner_radius)
 		.outerRadius(countdown_outer_radius)
@@ -641,7 +651,7 @@ function start_arc_countdown(arc, duration) {
 	var arc_end = τ;
 	var arc_foreground = eval(arc + '_foreground_arc');
 	var arc_main = eval(arc + '_arc');
-	
+
 	arc_foreground.transition()
 			.duration(1000)
 				.ease('linear')
