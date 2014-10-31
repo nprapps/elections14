@@ -69,6 +69,11 @@ var STACK = (function () {
             _rotateTimer = null;
         }
         rotateSlide();
+
+        if (!(hasTrackedNextSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'next-slide-click']);
+            hasTrackedNextSlide = true;
+        }
     }
 
     obj.previous = function() {
@@ -77,6 +82,11 @@ var STACK = (function () {
             _rotateTimer = null;
         }
         rotateSlide('previous');
+
+        if (!(hasTrackedPrevSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'prev-slide-click']);
+            hasTrackedPrevSlide = true;
+        }
     }
 
     var startPrerollAudio = function() {
@@ -93,7 +103,6 @@ var STACK = (function () {
         });
 
         $audioPlayer.bind($.jPlayer.event.stalled, onAudioFail);
-        $audioPlayer.bind($.jPlayer.event.waiting, onAudioFail);
     }
 
     var startLivestream = function() {

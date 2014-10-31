@@ -716,17 +716,9 @@ var onSlideControlClick = function() {
     var direction = $(this).data('slide');
     if (direction == "next") {
         STACK.next();
-        if (!(hasTrackedNextSlide)) {
-            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'next-slide-click']);
-            hasTrackedNextSlide = true;
-        }
     }
     else if (direction == "previous") {
         STACK.previous();
-        if (!(hasTrackedPrevSlide)) {
-            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'prev-slide-click']);
-            hasTrackedPrevSlide = true;
-        }
     }
 }
 
