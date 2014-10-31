@@ -183,7 +183,7 @@ def deploy_states():
     local('rm -rf .state_slides_html .state_slides_gzip')
     render.render_states()
     utils._gzip('.state_slides_html', '.state_slides_gzip')
-    utils._deploy_to_s3('.state_slides_gzip')
+    utils._deploy_to_s3('.state_slides_gzip', sync_assets=False)
 
 @task
 def deploy_big_boards():
