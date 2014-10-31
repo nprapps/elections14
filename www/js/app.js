@@ -20,6 +20,10 @@ var $chromecastScreen = null;
 var $chromecastMute = null;
 var $chromecastChangeState = null;
 var $chromecastIndexHeader = null;
+var $castStart = null;
+var $castStop = null;
+var $castPrev = null;
+var $castNext = null;
 
 var $header = null;
 var $headerControls = null;
@@ -94,6 +98,8 @@ var onDocumentReady = function(e) {
     $chromecastIndexHeader = $welcomeScreen.find('.cast-header');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
+    $castPrev = $('.cast-prev');
+    $castNext = $('.cast-next');
 
     $audioPlayer = $('#pop-audio');
     $fullScreenButton = $('.fullscreen a');
@@ -117,6 +123,8 @@ var onDocumentReady = function(e) {
     $chromecastChangeState.on('click', onStatePickerLink);
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
+    $castPrev.on('click', onCastSlideControlClick);
+    $castNext.on('click', onCastSlideControlClick);
 
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
@@ -131,6 +139,7 @@ var onDocumentReady = function(e) {
         CHROMECAST_RECEIVER.setup();
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
         CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
+        CHROMECAST_RECEIVER.onMessage('slide-change', onCastReceiverSlideChange);
 
         STACK.start();
         $rightControls.hide();
@@ -272,6 +281,16 @@ var onCastReceiverMute = function(message) {
     }
 }
 
+var onCastReceiverSlideChange = function(message) {
+    if (message == 'prev') {
+        STACK.previous();
+    }
+
+    if (message == 'next') {
+        STACK.next();
+    }
+}
+
 /*
  * Change the state on the receiver.
  */
@@ -285,6 +304,17 @@ var onCastStateChange = function(message) {
 var onCastMute = function() {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-muted']);
     CHROMECAST_SENDER.sendMessage('mute', 'toggle');
+}
+
+var onCastSlideControlClick = function(e) {
+    e.preventDefault();
+
+    if ($(this).hasClass('cast-prev')) {
+        CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
+    }
+    else if ($(this).hasClass('cast-next')) {
+        CHROMECAST_SENDER.sendMessage('slide-change', 'next');
+    }
 }
 
 /*
