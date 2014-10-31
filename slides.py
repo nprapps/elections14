@@ -25,7 +25,7 @@ def senate_big_board():
 
     races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
+    context['poll_groups'] = app_utils.columnize_races(races, 19)
     context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(races)
 
@@ -42,7 +42,6 @@ def house_big_board(page):
     context['page_title'] = 'House'
     context['current_page'] = page
     context['page_class'] = 'house'
-    context['column_number'] = 2
 
     all_races = Race.select().where(Race.office_name == 'U.S. House')
     all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal, Race.seat_number)
@@ -52,7 +51,7 @@ def house_big_board(page):
     else:
         featured_races = all_featured_races[:app_utils.HOUSE_PAGE_LIMIT]
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(featured_races)
+    context['poll_groups'] = app_utils.columnize_races(featured_races)
     context['bop'] = app_utils.calculate_bop(all_races, app_utils.HOUSE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(all_races)
     context['seat_number'] = ".seat_number"
@@ -81,11 +80,10 @@ def governor_big_board():
 
     context['page_title'] = 'Governors'
     context['page_class'] = 'governor'
-    context['column_number'] = 2
 
     races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
+    context['poll_groups'] = app_utils.columnize_races(races, 17)
 
     return render_template('slides/race_results.html', **context)
 
@@ -99,11 +97,10 @@ def ballot_measures_big_board():
 
     context['page_title'] = 'Ballot Measures'
     context['page_class'] = 'ballot-measures'
-    context['column_number'] = 2
 
     races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
+    context['poll_groups'] = app_utils.columnize_races(races, 9)
 
     return render_template('slides/ballot_measure_results.html', **context)
 

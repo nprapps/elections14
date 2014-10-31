@@ -57,7 +57,7 @@ def cors(f):
 
 def group_races_by_closing_time(races):
     """
-    Process race results for use in templates.
+    Group races into buckets based on closing time
     """
     results = {}
 
@@ -68,6 +68,34 @@ def group_races_by_closing_time(races):
         results[race.poll_closing_time].append(race)
 
     return sorted(results.items())
+
+def columnize_races(races, split_at=18):
+    """
+    Process race results for use in templates.
+    """
+    left_dict = {}
+    right_dict = {}
+
+    for i, race in enumerate(races):
+        poll_closing_time = race.poll_closing_time
+
+        if i < split_at:
+            column = left_dict
+        else:
+            column = right_dict
+
+        if not column.get(poll_closing_time):
+            column[poll_closing_time] = []
+
+        column[poll_closing_time].append(race)
+
+    left = sorted(left_dict.items())
+    right = sorted(right_dict.items())
+
+    if left[-1][0] == right[0][0]:
+        right[0] = (None, right[0][1])
+
+    return (left, right)
 
 def calculate_bop(races, initial_bop):
     """

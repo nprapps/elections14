@@ -4,10 +4,16 @@
             <h1>{{ page_title }}</h1>
         </div>
 
-        <div class="results">
-            {% for closing_time, races in poll_groups %}
-            <h2 class="poll-closing-group"><span class="time">{{ closing_time|format_board_time }}</span></h2>
-            {% include '_ballot_measures_results_table.html' %}
+        <div class="results clearfix">
+            {% for column in poll_groups %}
+            <div class="column{% if loop.first %} first{% elif loop.last %} last{% endif %}">
+                {% for closing_time, races in column %}
+                {% if closing_time %}
+                <h2 class="poll-closing-group"><span class="time">{{ closing_time|format_board_time }}</span></h2>
+                {% endif %}
+                {% include '_ballot_measures_results_table.html' %}
+                {% endfor %}
+            </div>
             {% endfor %}
         </div>
 
@@ -21,19 +27,5 @@
 (function() {
 	var $timestamp = $('.ap-credit').find('.timestamp');
     $timestamp.empty().append("{{ TIMESTAMP }}");
-
-	// Columnizer needs a short pause or else it acts strangely on subsequent calls
-	setTimeout(function() {
-	  $('.results').columnize(colOpts);
-	  $('.results-wrapper').animate({ 'opacity': 1 }, 500, function() {
-		$(this).removeClass('hide-results');
-	  });
-	}, 100);
 })();
-
-// columnizer
-var colOpts = {
-  precise: true,
-  columns: {{ column_number }},
-}
 </script>
