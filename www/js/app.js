@@ -282,11 +282,11 @@ var onCastReceiverMute = function(message) {
 }
 
 var onCastReceiverSlideChange = function(message) {
-    if (message === 'prev') {
+    if (message == 'prev') {
         STACK.previous();
     }
 
-    else if (message === 'next') {
+    if (message == 'next') {
         STACK.next();
     }
 }
@@ -310,10 +310,10 @@ var onCastSlideControlClick = function(e) {
     e.preventDefault();
 
     if ($(this).hasClass('cast-prev')) {
-        CHROMECAST_SENDER.sendMessage('slide', 'prev');
+        CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
     }
     else if ($(this).hasClass('cast-next')) {
-        CHROMECAST_SENDER.sendMessage('slide', 'next');
+        CHROMECAST_SENDER.sendMessage('slide-change', 'next');
     }
 }
 
