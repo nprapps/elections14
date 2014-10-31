@@ -492,6 +492,7 @@ var onFullScreenButtonClick = function() {
             document.webkitExitFullscreen();
         }
         $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-expand.svg');
+        $fullScreenButton.find('span').text('Fullscreen');
     }
     else {
         if (elem.requestFullscreen) {
@@ -508,6 +509,7 @@ var onFullScreenButtonClick = function() {
         }
 
         $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-shrink.svg');
+        $fullScreenButton.find('span').text('Exit Fullscreen');
     }
 }
 
