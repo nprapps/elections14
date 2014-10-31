@@ -60,9 +60,17 @@
     </form>
 </div>
 
+<<<<<<< Updated upstream
 <div class="cast-controls">
     <div class="logo-wrapper">
         {% include '_logo.svg' %}
+=======
+<div class="slide cast-controls">
+    <div class="footer-container">
+        <div class="results-header">
+            {% include '_logo.svg' %}
+        </div>
+>>>>>>> Stashed changes
     </div>
 
     <h2>{{ COPY.chromecast.menu_hed }}</h2>
@@ -71,6 +79,8 @@
         <li><a class="mute" href="#">{{ COPY.chromecast.btn_mute }} <img class="volume-icon" src="assets/icon-mute_blue.svg" alt="" /></a></li>
         <li><a class="change-state" href="#">{{ COPY.chromecast.btn_state }}</a></li>
         <li><a class="cast-stop" href="#">{{ COPY.chromecast.btn_stop }} <img src="assets/chromecast_on_blue.svg" alt="" /></a></li>
+        <li><a class="cast-prev" href="#">Previous Slide</li>
+        <li><a class="cast-next" href="#">Next Slide</li>
     </ul>
 
     {% include '_legend.html' %}
