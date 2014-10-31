@@ -235,7 +235,11 @@ svg {
         z-index: -1;
     }
 
-    .header-container .results-header span { float: left; }
+    .logo-wrapper {
+        width: 120px;
+        margin: 15px auto 60px;
+        fill: @grayMedium;
+    }
 
     h2 {
         font-size: 3vw;
@@ -256,6 +260,7 @@ svg {
             margin-bottom: 1.5vw;
 
             a { display: block; }
+
             img {
             	height: 3vw;
             	width: auto;
@@ -265,8 +270,8 @@ svg {
     }
 
     .legend {
-    	position: absolute;
-    	bottom: 6vw;
+    	position: fixed;
+    	bottom: 0;
     	left: 0;
     	width: 100%;
     	text-align: left;
