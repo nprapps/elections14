@@ -130,8 +130,6 @@ var onDocumentReady = function(e) {
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
         CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
 
-        setUpAudio(false);
-
         STACK.start();
     } else if (IS_FAKE_CASTER) {
         is_casting = true;
@@ -178,8 +176,6 @@ var setupUI = function() {
         $('.typeahead').attr('placeholder', 'Select a state');
         $statePickerHed.text('We are having trouble determining your state.')
     }
-
-    setUpAudio(true);
 }
 
 /*
@@ -483,15 +479,12 @@ var getState = function($typeahead) {
 }
 
 var showState = function() {
-    console.log(state);
-    console.log($stateName);
     $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
     $stateName.text(APP_CONFIG.STATES[state]);
     $statePickerLink.find('.state-name').text(state);
 }
 
 var switchState = function() {
-    console.log('switchState')
     var $this = $(this);
 
     getState($this);
@@ -508,7 +501,6 @@ var switchState = function() {
 }
 
 var hideStateFace = function() {
-    console.log('hideStateFace')
     $stateface.css('opacity', 0);
     $stateName.css('opacity', 0);
     $statePickerHed.css('opacity', 0);
@@ -576,37 +568,8 @@ var checkTimestamp = function() {
     }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
 
-/*
- * Setup audio playback.
- */
-var setUpAudio = function(startPaused) {
-    $audioPlayer.jPlayer({
-        ready: function () {
-            $(this).jPlayer('setMedia', {
-                mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
-            })
-
-            if (startPaused) {
-                $(this).jPlayer('pause');
-            } else {
-                $(this).jPlayer('play');
-            }
-        },
-        swfPath: 'js/lib',
-        supplied: 'mp3',
-        loop: false,
-    });
-
-    $audioPlayer.bind($.jPlayer.event.stalled, onAudioFail);
-    $audioPlayer.bind($.jPlayer.event.waiting, onAudioFail);
-}
-
 var onAudioButtonsClick = function() {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
-}
-
-var onAudioFail = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-fail']);
 }
 
 /*

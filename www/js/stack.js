@@ -21,6 +21,8 @@ var STACK = (function () {
      * Setup the stack display.
      */
     obj.start = function() {
+        startPrerollAudio();
+
         $stack.show();
 
         updateStack();
@@ -73,6 +75,33 @@ var STACK = (function () {
             _rotateTimer = null;
         }
         rotateSlide('previous');
+    }
+
+    var startPrerollAudio = function() {
+        $audioPlayer.jPlayer({
+            ready: function () {
+                $(this).jPlayer('setMedia', {
+                    mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
+                }).jPlayer('play');
+            },
+            ended: startLivestream,
+            swfPath: 'js/lib',
+            supplied: 'mp3',
+            loop: false,
+        });
+
+        $audioPlayer.bind($.jPlayer.event.stalled, onAudioFail);
+        $audioPlayer.bind($.jPlayer.event.waiting, onAudioFail);
+    }
+
+    var startLivestream = function() {
+        $audioPlayer.jPlayer('setMedia', {
+            mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
+        }).jPlayer('play');
+    }
+
+    var onAudioFail = function() {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-fail']);
     }
 
     /*
