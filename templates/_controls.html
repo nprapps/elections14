@@ -2,8 +2,8 @@
 	<ul class="list-unstyled">
 		<!-- DESKTOP ONLY; NOT CASTING -->
 		<li class="fullscreen">
-			<a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"> <span>{{ COPY.chromecast.btn_fullscreen }}</span></a>
-			<a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"> <span>{{ COPY.chromecast.btn_shrink }}</span></a>
+			<a href="#"><i class="icon ion-arrow-expand"></i> <span>{{ COPY.chromecast.btn_fullscreen }}</span></a>
+			<a href="#"><i class="icon ion-arrow-shrink"></i> <span>{{ COPY.chromecast.btn_shrink }}</span></a>
 		</li>
 		<li>
 			<div id="audio-ambient">
@@ -12,14 +12,14 @@
 					<div class="jp-type-single">
 						<div class="jp-gui jp-interface">
 							<div class="jp-controls">
-								<a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="stop"><img class="volume-icon" src="assets/icon-mute.svg" alt="Mute"> Mute</a>
-								<a href="javascript:;" class="jp-pause nav-btn" tabindex="1" title="play"><img class="volume-icon" src="assets/icon-volume.svg" alt="Play"> Play</a>
+								<a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="stop"><i class="icon ion-ios7-volume-low"></i> Mute</a>
+								<a href="javascript:;" class="jp-pause nav-btn" tabindex="1" title="play"><i class="icon ion-ios7-volume-high"></i> Play</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<a class="mute" href="#"><img class="volume-icon" src="assets/icon-mute_blue.svg" alt="" />{{ COPY.chromecast.btn_mute }}</a>
+			<a class="mute" href="#"><i class="icon ion-ios7-volume-low"></i> {{ COPY.chromecast.btn_mute }}</a>
 		</li>
 		<!-- IF CASTING IS SUPPORTED -->
 		<li>

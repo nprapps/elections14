@@ -79,8 +79,8 @@
 	<div class="mobile-controls">
 		<div class="slide-nav">
 			<nav>
-				<button type="button" data-slide="previous" class="nav-btn nav-btn-left"><i class="fa fa-angle-left"></i></button>
-				<button type="button" data-slide="next" class="nav-btn nav-btn-right"><i class="fa fa-angle-right"></i></button>
+				<button type="button" data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></button>
+				<button type="button" data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></button>
 			</nav>
 		</div>
 	</div>
@@ -105,57 +105,13 @@
         <div class="nav">
             <div class="slide-countdown"></div>
             <nav class="slide-nav">
-                <a href="#" data-slide="previous" class="nav-btn nav-btn-left"><i class="fa fa-angle-left"></i></a>
+                <a href="#" data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></a>
                 <p class="page">1 of 15</p>
-                <a href="#" data-slide="next" class="nav-btn nav-btn-right"><i class="fa fa-angle-right"></i></a>
+                <a href="#" data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></a>
             </nav>
             {% include '_logo.svg' %}
         </div>
     </div>
-
-    {# <div class="footer-container">
-        <div class="results-header index">
-            {% include '_logo.svg' %}
-
-            {% if bop %}
-                {% include 'bop.html' %}
-            {% endif %}
-            <div class="right-controls">
-                <div class="chromecast">
-                    <a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /></a>
-                </div>
-                <div class="fullscreen results-header-group">
-                    <a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"></a>
-                </div>
-                <div class="volume results-header-group">
-                    <div id="audio-ambient">
-                        <div id="pop-audio" class="jp-jplayer"></div>
-                        <div id="jp_container_1" class="jp-audio">
-                            <div class="jp-type-single">
-                                <div class="jp-gui jp-interface">
-                                    <div class="jp-controls">
-                                        <a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="stop"><img class="volume-icon" src="assets/icon-mute.svg" alt="Mute"></a>
-                                        <a href="javascript:;" class="jp-pause nav-btn" tabindex="1" title="play"><img class="volume-icon" src="assets/icon-volume.svg" alt="Play"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="state results-header-group">
-                    <a class="state-picker-link" href="#"><span class="stateface"></span><span class="state-name"></span></p></a>
-                </div>
-                <div class="slide-nav results-header-group">
-                    <nav>
-                        <button type="button" data-slide="previous" class="nav-btn nav-btn-left"><i class="fa fa-angle-left"></i></button>
-                        <button type="button" data-slide="next" class="nav-btn nav-btn-right"><i class="fa fa-angle-right"></i></button>
-                    </nav>
-                </div>
-
-				<div class="slide-countdown"></div>
-            </div>
-        </div>
-    </div> #}
 </div>
 
 <div class="rotate-phone-wrapper">
