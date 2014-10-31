@@ -588,7 +588,8 @@ var onAudioButtonsClick = function() {
  */
 function create_welcome_countdown() {
 	var page_width = $(window).width();
-	var countdown_width = Math.floor(page_width * .22); // 22vw
+//	var countdown_width = Math.floor(page_width * .22); // 22vw
+	var countdown_width = 100;
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .7);
 
@@ -599,8 +600,10 @@ function create_welcome_countdown() {
 
 	welcome_countdown_svg = d3.select('.countdown-arc')
 		.append('svg')
-			.attr('width', countdown_width)
-			.attr('height', countdown_width)
+			.attr('width', '100%')
+			.attr('viewBox', '0 0 ' + countdown_width + ' ' + countdown_width)
+//			.attr('width', countdown_width)
+//			.attr('height', countdown_width)
 		.append('g')
 			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
 
@@ -619,7 +622,8 @@ function create_welcome_countdown() {
 
 function create_slide_countdown() {
 	var page_width = $(window).width();
-	var countdown_width = Math.floor(page_width * .025); // 2.5vw
+//	var countdown_width = Math.floor(page_width * .025); // 2.5vw
+	var countdown_width = 100;
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .6);
 
@@ -630,8 +634,9 @@ function create_slide_countdown() {
 
 	slide_countdown_svg = d3.select('#stack .slide-countdown')
 		.append('svg')
-			.attr('width', countdown_width)
-			.attr('height', countdown_width)
+			.attr('viewBox', '0 0 ' + countdown_width + ' ' + countdown_width)
+//			.attr('width', countdown_width)
+//			.attr('height', countdown_width)
 		.append('g')
 			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
 
