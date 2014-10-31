@@ -4,6 +4,8 @@ var STACK = (function () {
     var _stack = [];
     var _nextStack = null;
     var _currentSlide = 0;
+    var _timeOnScreen = null;
+    var $newSlide = null;
 
     var _stackTimer = null;
     var _rotateTimer = null;
@@ -195,12 +197,12 @@ var STACK = (function () {
      */
     var _onSlideSuccess = function(data) {
         var $oldSlide = $stack.find('.slide');
-        var $newSlide = $(data);
+        $newSlide = $(data);
 
-        var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
+        _timeOnScreen = _stack[_currentSlide]['time_on_screen'];
 
 		// update countdown spinner
-		start_arc_countdown('slide_countdown', timeOnScreen);
+		start_arc_countdown('slide_countdown', _timeOnScreen);
 
         if ($oldSlide.length > 0) {
             if (_slideExitCallback) {
@@ -208,25 +210,14 @@ var STACK = (function () {
 
                 _slideExitCallback = null;
             }
+            if (IS_CAST_RECEIVER) {
+                $oldSlide.hide();
+                addNewSlide();
+            }
+            else {
+                $oldSlide.fadeOut(800, addNewSlide);
+            }
 
-            $oldSlide.fadeOut(800, function() {
-                $(this).remove();
-                $stack.append($newSlide);
-                resizeSlide($newSlide)
-
-                if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
-                    $header.find('.leaderboard').fadeOut();
-                }
-                else {
-                    $header.find('.leaderboard').fadeIn();
-                }
-
-                $newSlide.fadeIn(800, function(){
-                    _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
-
-                    $newSlide.find('a').on('click', onSlideAnchorClick);
-                });
-            });
         } else {
             $stack.append($newSlide);
             resizeSlide($newSlide);
@@ -238,11 +229,40 @@ var STACK = (function () {
                 $header.find('.leaderboard').fadeIn();
             }
 
-            $newSlide.fadeIn(800, function(){
-                _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
-                $newSlide.find('a').on('click', onSlideAnchorClick);
-            });
+            if (IS_CAST_RECEIVER) {
+                $newSlide.show();
+                setTimer();
+            }
+            else {
+                $newSlide.fadeIn(800, setTimer);
+            }
         }
+    }
+
+    var addNewSlide = function() {
+        $(this).remove();
+        $stack.append($newSlide);
+        resizeSlide($newSlide)
+
+        if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
+            $header.find('.leaderboard').fadeOut();
+        }
+        else {
+            $header.find('.leaderboard').fadeIn();
+        }
+
+        if (IS_CAST_RECEIVER) {
+            $newSlide.show();
+            setTimer();
+        }
+        else {
+            $newSlide.fadeIn(800, setTimer);
+        }
+    }
+
+    var setTimer = function() {
+        _rotateTimer = setTimeout(rotateSlide, _timeOnScreen * 1000);
+        $(this).find('a').on('click', onSlideAnchorClick);
     }
 
     /*
