@@ -232,11 +232,11 @@ def house_freshmen():
     """
     Ongoing list of how representatives elected in 2012 are faring
     """
-    context = make_context()
-
     from models import Race
 
     races = Race.select().where(Race.freshmen == True)
+    timestamp = get_last_updated(races)
+    context = make_context(timestamp=timestamp)
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
@@ -288,11 +288,12 @@ def obama_reps():
     """
     Ongoing list of Incumbent Republicans In Districts Barack Obama Won In 2012
     """
-    context = make_context()
-
     from models import Race
 
     races = Race.select().where(Race.obama_gop == True)
+    timestamp = get_last_updated(races)
+
+    context = make_context(timestamp=timestamp)
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
@@ -308,14 +309,16 @@ def poll_closing():
     """
     from models import Race
 
-    context = make_context()
-
     # get featured house/ballot measures + all senate and governors
     featured_races = Race.select().where(
         (Race.featured_race == True) |
         (Race.office_name == 'U.S. Senate') |
         (Race.office_name == 'Governor')
     ).order_by(Race.poll_closing_time, Race.state_postal)
+
+    timestamp = get_last_updated(featured_races)
+
+    context = make_context(timestamp=timestamp)
 
     poll_groups = app_utils.group_races_by_closing_time(featured_races)
 
@@ -352,12 +355,14 @@ def romney_dems():
     """
     from models import Race
 
-    context = make_context()
-
     races = Race.select().where(
         (Race.romney_dem == True) &
         (Race.office_name == 'U.S. House')
     )
+
+    timestamp = get_last_updated(races)
+
+    context = make_context(timestamp=timestamp)
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
@@ -373,12 +378,14 @@ def romney_senate_dems():
     """
     from models import Race
 
-    context = make_context()
-
     races = Race.select().where(
         (Race.romney_dem == True) &
         (Race.office_name == 'U.S. Senate')
     )
+
+    timestamp = get_last_updated(races)
+
+    context = make_context(timestamp=timestamp)
 
     context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
     context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]

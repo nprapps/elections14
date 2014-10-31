@@ -163,7 +163,7 @@ def deploy_liveblog():
     local('rm -rf .liveblog_slides_html .liveblog_slides_gzip')
     render.render_liveblog()
     utils._gzip('.liveblog_slides_html', '.liveblog_slides_gzip')
-    utils._deploy_to_s3('.liveblog_slides_gzip')
+    utils._deploy_to_s3('.liveblog_slides_gzip', sync_assets=False)
 
 @task
 def deploy_results():
@@ -173,7 +173,7 @@ def deploy_results():
     local('rm -rf .results_slides_html .results_slides_gzip')
     render.render_results()
     utils._gzip('.results_slides_html', '.results_slides_gzip')
-    utils._deploy_to_s3('.results_slides_gzip')
+    utils._deploy_to_s3('.results_slides_gzip', sync_assets=False)
 
 @task
 def deploy_states():
@@ -193,7 +193,7 @@ def deploy_big_boards():
     local('rm -rf .big_boards_html .big_boards_gzip')
     render.render_big_boards()
     utils._gzip('.big_boards_html', '.big_boards_gzip')
-    utils._deploy_to_s3('.big_boards_gzip')
+    utils._deploy_to_s3('.big_boards_gzip', sync_assets=False)
 
 @task
 def deploy_bop():
@@ -203,7 +203,7 @@ def deploy_bop():
     local('rm -rf .bop_html .bop_gzip')
     render.render_bop()
     utils._gzip('.bop_html', '.bop_gzip')
-    utils._deploy_to_s3('.bop_gzip')
+    utils._deploy_to_s3('.bop_gzip', sync_assets=False)
 
 @task
 def deploy():

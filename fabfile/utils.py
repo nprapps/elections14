@@ -43,9 +43,9 @@ def _deploy_to_s3(path='.gzip', sync_assets=True):
 
     exclude_flags += '--exclude "www/assets" '
 
-    sync = 's3cmd sync %s/ %s --acl-public ' + exclude_flags + ' --add-header="cache-control:max-age=%i,no-cache,no-store,must-revalidate"'
-    sync_gzip = 's3cmd sync %s/ %s --acl-public --add-header="content-encoding:gzip" --exclude "*" ' + include_flags + ' --add-header="cache-control:max-age=%i,no-cache,no-store,must-revalidate"'
-    sync_assets = 's3cmd sync %s/ %s --acl-public --add-header="cache-control:max-age=86400"'
+    sync = 's3cmd sync %s/ %s --no-progress --acl-public ' + exclude_flags + ' --add-header="cache-control:max-age=%i,no-cache,no-store,must-revalidate"'
+    sync_gzip = 's3cmd sync %s/ %s --no-progress --acl-public --add-header="content-encoding:gzip" --exclude "*" ' + include_flags + ' --add-header="cache-control:max-age=%i,no-cache,no-store,must-revalidate"'
+    sync_assets = 's3cmd sync %s/ %s --no-progress --acl-public --add-header="cache-control:max-age=86400"'
 
     for bucket in app_config.S3_BUCKETS:
         local(sync % (path, 's3://%s/' % bucket['bucket_name'], app_config.MAX_AGE_CACHE_CONTROL_HEADER))
