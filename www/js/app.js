@@ -658,7 +658,7 @@ function create_welcome_countdown() {
 		.attr('class', 'countdown-active')
 		.attr('d', welcome_countdown_arc);
 
-	start_arc_countdown('welcome_countdown', (countdown - 2));
+	start_arc_countdown('welcome_countdown', (countdown - 1));
 }
 
 function create_slide_countdown() {
@@ -704,9 +704,22 @@ function start_arc_countdown(arc, duration) {
 				.call(tween_slide_arc, arc_main, arc_start);
 	arc_foreground.transition()
 			.duration(duration * 1000)
-			.delay(1000)
 				.ease('linear')
 				.call(tween_slide_arc, arc_main, arc_end);
+}
+
+function cancel_arc_countdown(arc) {
+    var arc_start = 0;
+    var arc_end = τ;
+    var arc_foreground = eval(arc + '_foreground_arc');
+    var arc_main = eval(arc + '_arc');
+
+    arc_foreground.transition()
+            .duration(0)
+                .call(tween_slide_arc, arc_main, arc_end);
+    arc_foreground.transition()
+            .duration(0)
+                .call(tween_slide_arc, arc_main, arc_start);
 }
 
 function tween_slide_arc(transition, arc_main, end) {
@@ -726,10 +739,10 @@ function tween_slide_arc(transition, arc_main, end) {
 var onSlideControlClick = function() {
     var direction = $(this).data('slide');
     if (direction == "next") {
-        STACK.next();
+        STACK.next($(this));
     }
     else if (direction == "previous") {
-        STACK.previous();
+        STACK.previous($(this));
     }
 }
 
@@ -753,7 +766,7 @@ var onKeyboard = function(e) {
             CHROMECAST_SENDER.sendMessage('slide-change', 'next');
         }
         else {
-            STACK.next()
+            STACK.next($('.slide-nav .nav-btn-right'))
         }
     }
     if (e.which == 37) {
@@ -761,7 +774,7 @@ var onKeyboard = function(e) {
             CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
         }
         else {
-            STACK.previous()
+            STACK.previous($('.slide-nav .nav-btn-left'))
         }
     }
 }
