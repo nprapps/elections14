@@ -5,6 +5,7 @@
 			<a href="#"><i class="icon ion-arrow-expand"></i> <span>{{ COPY.chromecast.btn_fullscreen }}</span></a>
 			<a href="#"><i class="icon ion-arrow-shrink"></i> <span>{{ COPY.chromecast.btn_shrink }}</span></a>
 		</li>
+		<!-- FOR DESKTOP WHEN NOT CASTING -->
 		<li>
 			<div id="audio-ambient">
 				<div id="pop-audio" class="jp-jplayer"></div>
@@ -19,8 +20,13 @@
 					</div>
 				</div>
 			</div>
+		</li>
+		
+		<!-- PLAY/PAUSE JS TOGGLES FOR WHEN CASTING OR ON MOBILE -->
+		<li>
 			<a class="mute" href="#"><i class="icon ion-ios7-volume-low"></i> {{ COPY.chromecast.btn_mute }}</a>
 		</li>
+
 		<!-- IF CASTING IS SUPPORTED -->
 		<li>
 			<a class="cast-start" href="#"><img src="assets/chromecast_off.svg" alt="" /> {{ COPY.chromecast.btn_start }}</a>
