@@ -124,7 +124,7 @@ var onDocumentReady = function(e) {
 
     $statePickerForm.submit(onStatePickerSubmit);
 
-    $chromecastMute.on('click', onCastMute);
+    $chromecastMute.on('click', onMuteButtonClick);
     $chromecastChangeState.on('click', onStatePickerLink);
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
@@ -133,7 +133,7 @@ var onDocumentReady = function(e) {
 
     $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
-    $audioButtons.on('click', onAudioButtonsClick);
+    $audioButtons.on('click', onMuteButtonClick);
     $slideControls.on('click', onSlideControlClick);
     $controlsToggle.on('click', onControlsToggleClick);
     $body.on('keydown', onKeyboard);
@@ -311,8 +311,7 @@ var onCastStateChange = function(message) {
  * Send the mute message to the receiver.
  */
 var onCastMute = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-muted']);
-    CHROMECAST_SENDER.sendMessage('mute', 'toggle');
+
 }
 
 var onCastSlideControlClick = function(e) {
@@ -621,8 +620,15 @@ var checkTimestamp = function() {
     }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
 
-var onAudioButtonsClick = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+var onMuteButtonClick = function() {
+    if (is_casting) {
+       _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-muted']);
+       CHROMECAST_SENDER.sendMessage('mute', 'toggle');
+    }
+    else {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+    }
+
 }
 
 /*
