@@ -735,10 +735,20 @@ var onKeyboard = function(e) {
         hasTrackedKeyboardNav = true;
     }
     if (e.which == 39) {
-        STACK.next()
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'next');
+        }
+        else {
+            STACK.next()
+        }
     }
     if (e.which == 37) {
-        STACK.previous()
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
+        }
+        else {
+            STACK.previous()
+        }
     }
 }
 
