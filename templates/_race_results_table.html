@@ -1,6 +1,6 @@
  <table class="races">
       {% for race in races %}
-      <tr class="race dontsplit {% if race.office_name == 'Governor' and race.state_postal == 'AR' %}columnbreak{% endif %} {% if race.office_name == 'U.S. Senate' and race.state_postal == 'TN' %}columnbreak{% endif %} {% if race.office_name == 'U.S. House' and race.state_postal == 'IL' and race.seat_number == 10 %}columnbreak{% endif %} {% if race.office_name == 'U.S. House' and race.state_postal == 'IA' and race.seat_number == 3 %}columnbreak{% endif %}">
+      <tr class="race dontsplit {% if race.office_name == 'Governor' and race.state_postal == 'AR' %}columnbreak{% endif %} {% if race.office_name == 'U.S. Senate' and race.state_postal == 'TN' %}columnbreak{% endif %} {% if race.office_name == 'U.S. House' and race.state_postal == 'IL' and race.seat_number == 13 %}columnbreak{% endif %} {% if race.office_name == 'U.S. House' and race.state_postal == 'IA' and race.seat_number == 3 %}columnbreak{% endif %}">
           <td class="pickup {% if race.is_called() and race.party_changed() %} party-change{% endif %}{% if race.is_called() %} {{ race.get_winning_party() }}{% endif %}">
               {% if race.is_runoff() %}<img class="img-responsive" src="/assets/runoff.svg"/>{% endif %}
           </td>
