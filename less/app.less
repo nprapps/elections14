@@ -440,20 +440,28 @@ svg {
 .footer-container {
     position: absolute;
     left: 0;
+    right: 0;
     bottom: 0;
-    width: 100%;
     z-index: 1;
     background: black;
-    display: table;
+    padding: 0 2%;
+
+    a {
+        color: @grayMedium;
+
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
 
     .leaderboard,
     .control-toggle,
     .nav {
-        display: table-cell;
-        max-height: 4vw;
-        overflow: hidden;
-        width: 30vw;
-        padding: 0 1.66vw;
+        float: left;
+        width: 33.33333%;
+        padding: 0 1%;
+        display: border-box;
     }
 
     .leaderboard {
@@ -461,7 +469,6 @@ svg {
             white-space: nowrap;
             padding: 0 0.25vw;
             display: inline-block;
-            overflow: hidden;
             font-size: 1.5vw;
 
             &:last-child{
@@ -484,6 +491,8 @@ svg {
                 text-transform: uppercase;
                 font-weight: bold;
                 font-size: 1.7vw;
+                line-height: 3vw;
+                vertical-align: middle;
             }
 
             .total {
@@ -533,7 +542,7 @@ svg {
         line-height: 3.5vw;
 
         svg {
-            fill: @brand-primary;
+            fill: @grayMedium;
             height: 3vw;
             vertical-align: middle;
         }
@@ -541,16 +550,43 @@ svg {
 
     .nav {
         text-align: right;
+        font-size: 1.5vw;
 
         .page,
-        .nav-btn,
+        .slide-nav,
         .slide-countdown,
         .logo {
             display: inline-block;
         }
 
+
+        .slide-nav {
+            margin-left: 1vw;
+
+            p {
+                line-height: 3vw;
+                vertical-align: middle;
+                padding: 0 1vw;
+            }
+
+            p,
+            .nav-btn {
+                display: inline-block;
+            }
+
+            .nav-btn {
+                font-size: 3vw;
+
+                + .nav-btn {
+                    padding-left: 0.5vw;
+                }
+            }
+        }
+
         .slide-countdown {
-            padding: .6vw 0 0 .5vw;
+            position: relative;
+            bottom: -0.2vw;
+            padding: 0 0 0 .5vw;
             width: 2.75vw;
 
             .countdown-background { fill: @musicDark; }
@@ -558,7 +594,8 @@ svg {
         }
 
         .logo {
-            width: 4vw;
+            margin-left: 1vw;
+            width: 6vw;
             fill: @grayMedium;
         }
     }

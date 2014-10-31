@@ -138,10 +138,12 @@
         </div>
 
         <div class="nav">
-            <p class="page">1/15</p>
             <div class="slide-countdown"></div>
-            <button type="button" data-slide="previous" class="nav-btn nav-btn-left"><i class="fa fa-angle-left"></i></button>
-            <button type="button" data-slide="next" class="nav-btn nav-btn-right"><i class="fa fa-angle-right"></i></button>
+            <nav class="slide-nav">
+                <a href="#" data-slide="previous" class="nav-btn nav-btn-left"><i class="fa fa-angle-left"></i></a>
+                <p class="page">1 of 15</p>
+                <a href="#" data-slide="next" class="nav-btn nav-btn-right"><i class="fa fa-angle-right"></i></a>
+            </nav>
             {% include '_logo.svg' %}
         </div>
     </div>
