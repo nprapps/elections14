@@ -12,16 +12,13 @@
         </div>
 
         <div class="ap-credit">
-            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
+            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp">{{ TIMESTAMP }}</span>.
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
 (function() {
-	var $timestamp = $('.ap-credit').find('.timestamp');
-    $timestamp.empty().append("{{ TIMESTAMP }}");
-
 	// Columnizer needs a short pause or else it acts strangely on subsequent calls
 	setTimeout(function() {
 	  $('.results').columnize(colOpts);

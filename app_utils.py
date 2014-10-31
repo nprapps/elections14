@@ -155,3 +155,11 @@ def calculate_state_bop(races):
         'called_other_percent': called_other_percent,
     }
 
+def get_last_updated(races):
+    """
+    Get latest update time from races
+    """
+    from models import Race
+    races = races.clone()
+    last = races.order_by(Race.last_updated.desc()).limit(1).get()
+    return last.last_updated

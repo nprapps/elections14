@@ -9,6 +9,7 @@ from flask import Flask, render_template
 
 import app_config
 import app_utils
+from app_utils import get_last_updated
 from render_utils import make_context, smarty_filter, urlencode_filter
 import slides
 import static_app
@@ -251,14 +252,16 @@ def _state_house_slide(slug, page):
 
     slug = slug.upper()
 
-    context = make_context()
-    context['state_postal'] = slug
-    context['state_name'] = app_config.STATES.get(slug)
-
     races = Race.select().where(
         (Race.office_name == 'U.S. House') &
         (Race.state_postal == slug)
     ).order_by(Race.seat_number)
+
+    timestamp = get_last_updated(races)
+    context = make_context(timestamp=timestamp)
+
+    context['state_postal'] = slug
+    context['state_name'] = app_config.STATES.get(slug)
 
     # Calculate BOP using all races
     context.update(app_utils.calculate_state_bop(races))
@@ -294,22 +297,31 @@ def _state_senate_slide(slug):
     slide = Slide.get(Slide.slug == 'state-senate-results')
     slug = slug.upper()
 
-    context = make_context()
-    context['state_postal'] = slug
-    context['state_name'] = app_config.STATES.get(slug)
-
-    context['senate'] = Race.select().where(
+    senate_races = Race.select().where(
         (Race.office_name == 'U.S. Senate') &
         (Race.state_postal == slug)
     ).order_by(Race.seat_number)
 
-    context['governor'] = Race.select().where(
+    governor_races = Race.select().where(
         (Race.office_name == 'Governor') &
         (Race.state_postal == slug)
     )
 
-    context['time_on_screen'] = slide.time_on_screen
+    senate_updated = get_last_updated(senate_races)
+    governor_updated = get_last_updated(governor_races)
 
+    if senate_updated > governor_updated:
+        timestamp = senate_updated
+    else:
+        timestamp = governor_updated
+
+    context = make_context(timestamp=timestamp)
+    context['state_postal'] = slug
+    context['state_name'] = app_config.STATES.get(slug)
+
+    context['senate'] = senate_races
+    context['governor'] = governor_races
+    context['time_on_screen'] = slide.time_on_screen
     context['body'] = render_template('slides/state_senate.html', **context)
 
     return render_template('_slide.html', **context)
