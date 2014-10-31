@@ -203,9 +203,12 @@ def _state_senate_slide_preview(slug):
     """
     context = make_context()
 
-    context['body'] = _state_senate_slide(slug).data
-
-    return render_template('slide_preview.html', **context)
+    resp = _state_senate_slide(slug)
+    if resp.status_code == 200:
+        context['body'] = resp.data
+        return render_template('slide_preview.html', **context)
+    else:
+        return "404", 404
 
 @app.route('/preview/<slug>/index.html')
 @app_utils.cors
@@ -306,6 +309,9 @@ def _state_senate_slide(slug):
         (Race.office_name == 'Governor') &
         (Race.state_postal == slug)
     )
+
+    if senate_races.count() == 0 and governor_races.count() == 0:
+        return "404", 404
 
     senate_updated = get_last_updated(senate_races)
     governor_updated = get_last_updated(governor_races)

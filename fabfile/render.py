@@ -250,23 +250,24 @@ def _render_state(postal, state, output_path):
             path = url_for(view_name, **view_kwargs)
 
         with app.app.test_request_context(path=path):
-            print 'Rendering %s' % path
-
             view = app.__dict__[view_name]
             content = view(**view_kwargs)
 
-        path = '%s%s' % (output_path, path)
+        if content.status_code == 200:
+            print 'Rendering %s (%s)' % (path, content.status_code)
 
-        # Ensure path exists
-        head = os.path.split(path)[0]
+            path = '%s%s' % (output_path, path)
 
-        try:
-            os.makedirs(head)
-        except OSError:
-            pass
+            # Ensure path exists
+            head = os.path.split(path)[0]
 
-        with open(path, 'w') as f:
-            f.write(content.data)
+            try:
+                os.makedirs(head)
+            except OSError:
+                pass
+
+            with open(path, 'w') as f:
+                f.write(content.data)
 
 @task
 def render_big_boards():
