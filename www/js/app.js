@@ -218,6 +218,7 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
         CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
     	$chromecastIndexHeader.find('.cast-enabled').show();
     	$chromecastIndexHeader.find('.cast-disabled').hide();
+        $castStart.show();
     }
 }
 
