@@ -362,10 +362,36 @@ svg {
 ** HEADER
 */
 
+.mobile-controls {
+	display: none;
+
+	.nav-btn {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 6vw;
+		font-size: 3vw;
+		background: transparent;
+		border: none;
+		
+		i { color: @grayMedium; }
+	}
+	.nav-btn-left { 
+		left: 0;
+		text-align: left;
+	}
+	.nav-btn-right { 
+		right: 0;
+		text-align: right;
+	}
+	
+	.touch & { display: block; }
+}
+
 .footer-container {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 1vh;
     width: 100%;
     z-index: 1;
 
@@ -451,6 +477,8 @@ svg {
                 overflow: hidden;
                 // display: inline-block;
                 font-size: 0;
+
+			   .touch & { display: none; }
             }
 
            .nav-btn {
