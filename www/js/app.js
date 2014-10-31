@@ -40,6 +40,7 @@ var $slide_countdown = null;
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
+var SKIP_COUNTDOWN = (window.location.search.indexOf('skipcountdown') >= 0);
 var reloadTimestamp = null;
 
 var state = null;
@@ -153,6 +154,8 @@ var onDocumentReady = function(e) {
         $.removeCookie('reload');
         $welcomeScreen.hide();
         setupUI();
+        STACK.start();
+    } else if (SKIP_COUNTDOWN) {
         STACK.start();
     }
     else {
