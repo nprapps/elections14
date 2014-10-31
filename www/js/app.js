@@ -36,6 +36,8 @@ var $bop = null;
 var $stack = null;
 var $audioButtons = null;
 var $slide_countdown = null;
+var $controlsWrapper = null;
+var $controlsToggle = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
@@ -112,6 +114,8 @@ var onDocumentReady = function(e) {
     $rightControls = $('.right-controls');
     $audioButtons = $('.jp-controls .nav-btn');
     $slideControls = $('.slide-nav .nav-btn');
+    $controlsWrapper = $('.controls-wrapper');
+    $controlsToggle = $('.js-toggle-controls');
     $slide_countdown = $stack.find('.slide-countdown');
     reloadTimestamp = moment();
 
@@ -131,6 +135,7 @@ var onDocumentReady = function(e) {
     $statePickerLink.on('click', onStatePickerLink);
     $audioButtons.on('click', onAudioButtonsClick);
     $slideControls.on('click', onSlideControlClick);
+    $controlsToggle.on('click', onControlsToggleClick);
     $body.on('keydown', onKeyboard);
     $(window).on('resize', onWindowResize);
 
@@ -724,6 +729,13 @@ var onSlideControlClick = function() {
     else if (direction == "previous") {
         STACK.previous();
     }
+}
+
+/**
+ * Click control/legend toggle
+ */
+var onControlsToggleClick = function() {
+    $controlsWrapper.fadeToggle();
 }
 
 /**

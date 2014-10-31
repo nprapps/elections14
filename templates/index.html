@@ -88,7 +88,65 @@
 		</div>
 	</div>
 
+    <div class="controls-wrapper">
+        {% include '_legend.html' %}
+
+        <div class="controls">
+            <ul class="list-unstyled">
+                <li><a href="#"><img class="expand" src="{{ S3_BASE_URL }}/assets/icon-expand.svg"> Fullscreen</a></li>
+                <li>
+                    <div id="audio-ambient">
+                        <div id="pop-audio" class="jp-jplayer"></div>
+                        <div id="jp_container_1" class="jp-audio">
+                            <div class="jp-type-single">
+                                <div class="jp-gui jp-interface">
+                                    <div class="jp-controls">
+                                        <a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="stop"><img class="volume-icon" src="assets/icon-mute.svg" alt="Mute"> Mute</a>
+                                        <a href="javascript:;" class="jp-pause nav-btn" tabindex="1" title="play"><img class="volume-icon" src="assets/icon-volume.svg" alt="Play"> Play</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a class="cast-start" href="#"><img src="assets/chromecast_off.svg" /> Cast This</a></li>
+                <li>
+                    <label><span class="stateface stateface-ca"></span><input value="California" type="text"></label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="feedback">
+            <ul class="list-unstyled social">
+                <li><a href="#"><i class="fa fa-fw fa-twitter"></i> Share on Twitter</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-facebook"></i> Share on Facebook</a></li>
+            </ul>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. </p>
+        </div>
+    </div>
+
     <div class="footer-container">
+        {% if bop %}
+        <div class="leaderboard">
+            {% include 'bop.html' %}
+        </div>
+        {% endif %}
+
+        <div class="control-toggle">
+            <a href="#" class="js-toggle-controls">{% include '_icon-remote.svg' %} Controls &amp; Legend</a>
+        </div>
+
+        <div class="nav">
+            <p class="page">1/15</p>
+            <div class="slide-countdown"></div>
+            <button type="button" data-slide="previous" class="nav-btn nav-btn-left"><i class="fa fa-angle-left"></i></button>
+            <button type="button" data-slide="next" class="nav-btn nav-btn-right"><i class="fa fa-angle-right"></i></button>
+            {% include '_logo.svg' %}
+        </div>
+    </div>
+
+    {# <div class="footer-container">
         <div class="results-header index">
             {% include '_logo.svg' %}
 
@@ -130,7 +188,7 @@
 				<div class="slide-countdown"></div>
             </div>
         </div>
-    </div>
+    </div> #}
 </div>
 
 <div class="rotate-phone-wrapper">
