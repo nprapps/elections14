@@ -115,11 +115,12 @@ var onDocumentReady = function(e) {
     $header = $('.index');
     $headerControls = $('.header-controls');
     $rightControls = $('.right-controls');
-    $audioButtons = $('.jp-controls .nav-btn');
     $slideControls = $('.slide-nav .nav-btn');
     $controlsWrapper = $('.controls-wrapper');
     $controlsToggle = $('.js-toggle-controls');
     $slide_countdown = $stack.find('.slide-countdown');
+    $audioPlay = $('.controls .play');
+    $audioPause = $('.controls .pause');
     reloadTimestamp = moment();
 
     // Bind events
@@ -137,7 +138,8 @@ var onDocumentReady = function(e) {
     $fullscreenStop.on('click', onFullscreenButtonClick);
 
     $statePickerLink.on('click', onStatePickerLink);
-    $audioButtons.on('click', onAudioButtonsClick);
+    $audioPlay.on('click', onAudioPlayClick);
+    $audioPause.on('click', onAudioPauseClick);
     $slideControls.on('click', onSlideControlClick);
     $controlsToggle.on('click', onControlsToggleClick);
     $body.on('keydown', onKeyboard);
@@ -665,7 +667,25 @@ var checkTimestamp = function() {
     }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
 
-var onAudioButtonsClick = function() {
+var onAudioPlayClick = function(e) {
+    e.preventDefault();
+
+    $audioPlayer.jPlayer('mute', false);
+
+    $audioPlay.hide();
+    $audioPause.show();
+
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+}
+
+var onAudioPauseClick = function(e) {
+    e.preventDefault();
+
+    $audioPlayer.jPlayer('mute', true);
+
+    $audioPause.hide();
+    $audioPlay.show();
+
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
 }
 
