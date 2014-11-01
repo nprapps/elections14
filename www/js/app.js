@@ -17,7 +17,6 @@ var $statePickerHed = null;
 var $statePickerLink = null;
 
 var $chromecastScreen = null;
-var $chromecastMute = null;
 var $chromecastChangeState = null;
 var $chromecastIndexHeader = null;
 var $castStart = null;
@@ -98,7 +97,6 @@ var onDocumentReady = function(e) {
     $statePickerHed = $('.state-picker-hed');
 
     $chromecastScreen = $('.cast-controls');
-    $chromecastMute = $chromecastScreen.find('.mute');
     $chromecastChangeState = $chromecastScreen.find('.change-state');
     $chromecastIndexHeader = $welcomeScreen.find('.cast-header');
     $castStart = $('.cast-start');
@@ -128,7 +126,6 @@ var onDocumentReady = function(e) {
 
     $statePickerForm.submit(onStatePickerSubmit);
 
-    $chromecastMute.on('click', onCastMute);
     $chromecastChangeState.on('click', onStatePickerLink);
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
@@ -297,10 +294,10 @@ var onCastStopped = function() {
  * Mute or unmute the receiver.
  */
 var onCastReceiverMute = function(message) {
-    if ($audioPlayer.data().jPlayer.status.paused) {
-        $audioPlayer.jPlayer('play');
+    if (message == 'true') {
+        $audioPlayer.jPlayer('mute', true);
     } else {
-        $audioPlayer.jPlayer('pause');
+        $audioPlayer.jPlayer('mute', false);
     }
 }
 
@@ -319,14 +316,6 @@ var onCastReceiverSlideChange = function(message) {
  */
 var onCastStateChange = function(message) {
     state = message;
-}
-
-/*
- * Send the mute message to the receiver.
- */
-var onCastMute = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-muted']);
-    CHROMECAST_SENDER.sendMessage('mute', 'toggle');
 }
 
 var onCastSlideControlClick = function(e) {
@@ -670,7 +659,11 @@ var checkTimestamp = function() {
 var onAudioPlayClick = function(e) {
     e.preventDefault();
 
-    $audioPlayer.jPlayer('mute', false);
+    if (is_casting) {
+        CHROMECAST_SENDER.sendMessage('mute', 'false');
+    } else {
+        $audioPlayer.jPlayer('mute', false);
+    }
 
     $audioPlay.hide();
     $audioPause.show();
@@ -681,7 +674,11 @@ var onAudioPlayClick = function(e) {
 var onAudioPauseClick = function(e) {
     e.preventDefault();
 
-    $audioPlayer.jPlayer('mute', true);
+    if (is_casting) {
+        CHROMECAST_SENDER.sendMessage('mute', 'true');
+    } else {
+        $audioPlayer.jPlayer('mute', true);
+    }
 
     $audioPause.hide();
     $audioPlay.show();
