@@ -24,7 +24,9 @@ var STACK = (function () {
      * Setup the stack display.
      */
     obj.start = function() {
-        startPrerollAudio();
+        if (!NO_AUDIO) {
+            startPrerollAudio();
+        }
 
         $stack.show();
 

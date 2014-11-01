@@ -41,6 +41,7 @@ var $controlsToggle = null;
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 var SKIP_COUNTDOWN = (window.location.search.indexOf('skipcountdown') >= 0);
+var NO_AUDIO = (window.location.search.indexOf('noaudio') >= 0);
 var IS_TOUCH = Modernizr.touch;
 var reloadTimestamp = null;
 
@@ -267,6 +268,8 @@ var onCastReady = function() {
 var onCastStarted = function() {
     $welcomeScreen.hide();
     $stack.hide();
+    $fullscreenStart.hide();
+    $fullscreenStop.hide();
     STACK.stop();
 
     if (!state) {
@@ -286,6 +289,11 @@ var onCastStopped = function() {
     $chromecastScreen.hide();
 
     STACK.start();
+    
+    if (!IS_TOUCH) {
+        $fullscreenStart.show();
+        $fullscreenStop.show();
+    }
 
     is_casting = false;
 }
