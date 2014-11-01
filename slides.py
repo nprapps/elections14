@@ -28,7 +28,7 @@ def senate_big_board():
     context['column_number'] = 2
 
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
+    context['poll_groups'] = app_utils.columnize_races(races, 19)
     context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(races)
 
@@ -49,7 +49,6 @@ def house_big_board(page):
     context['page_title'] = 'House'
     context['current_page'] = page
     context['page_class'] = 'house'
-    context['column_number'] = 2
 
 
     if page == 2:
@@ -57,7 +56,7 @@ def house_big_board(page):
     else:
         featured_races = all_featured_races[:app_utils.HOUSE_PAGE_LIMIT]
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(featured_races)
+    context['poll_groups'] = app_utils.columnize_races(featured_races)
     context['bop'] = app_utils.calculate_bop(all_races, app_utils.HOUSE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(all_races)
     context['seat_number'] = ".seat_number"
@@ -89,10 +88,9 @@ def governor_big_board():
 
     context['page_title'] = 'Governors'
     context['page_class'] = 'governor'
-    context['column_number'] = 2
 
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
+    context['poll_groups'] = app_utils.columnize_races(races, 17)
 
     return render_template('slides/race_results.html', **context)
 
@@ -102,16 +100,15 @@ def ballot_measures_big_board():
     """
     from models import Race
 
-    races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
+    races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True))\
+        .order_by(Race.poll_closing_time, Race.state_postal)
     timestamp = get_last_updated(races)
-
     context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Ballot Measures'
     context['page_class'] = 'ballot-measures'
-    context['column_number'] = 2
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
+    context['poll_groups'] = app_utils.columnize_races(races, 9)
 
     return render_template('slides/ballot_measure_results.html', **context)
 
@@ -234,13 +231,18 @@ def house_freshmen():
     """
     from models import Race
 
-    races = Race.select().where(Race.freshmen == True)
+    races = Race.select().where(Race.freshmen == True)\
+            .order_by(Race.state_postal, Race.seat_number)
     timestamp = get_last_updated(races)
     context = make_context(timestamp=timestamp)
 
-    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
-    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
+    won = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    lost = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    not_called = [race for race in races if not race.is_called() or race.is_runoff()]
+
+    context['races_won'] = app_utils.columnize_card(won, 6)
+    context['races_lost'] = app_utils.columnize_card(lost, 6)
+    context['races_not_called'] = app_utils.columnize_card(not_called, 6)
 
     context['races_count'] = races.count()
 

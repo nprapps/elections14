@@ -20,10 +20,14 @@ var $chromecastScreen = null;
 var $chromecastMute = null;
 var $chromecastChangeState = null;
 var $chromecastIndexHeader = null;
+var $castStart = null;
+var $castStop = null;
+var $castPrev = null;
+var $castNext = null;
 
 var $header = null;
 var $headerControls = null;
-var $fullScreenButton = null;
+var $rightControls = null;
 var $statePickerLink = null;
 var $chromecastButton = null;
 var $audioPlayer = null;
@@ -31,15 +35,19 @@ var $bop = null;
 var $stack = null;
 var $audioButtons = null;
 var $slide_countdown = null;
+var $controlsWrapper = null;
+var $controlsToggle = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
+var SKIP_COUNTDOWN = (window.location.search.indexOf('skipcountdown') >= 0);
+var IS_TOUCH = Modernizr.touch;
 var reloadTimestamp = null;
 
 var state = null;
 var is_casting = false;
-var countdown = 3 + 1;
+var countdown = 5 + 1;
 
 var slide_countdown_arc = null;
 var slide_countdown_svg = null;
@@ -93,16 +101,22 @@ var onDocumentReady = function(e) {
     $chromecastIndexHeader = $welcomeScreen.find('.cast-header');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
+    $castPrev = $('.cast-prev');
+    $castNext = $('.cast-next');
 
     $audioPlayer = $('#pop-audio');
-    $fullScreenButton = $('.fullscreen a');
+    $fullscreenStart = $('.fullscreen .start');
+    $fullscreenStop = $('.fullscreen .stop');
     $chromecastButton = $('.chromecast');
     $bop = $('.leaderboard');
     $stack = $('#stack');
     $header = $('.index');
     $headerControls = $('.header-controls');
+    $rightControls = $('.right-controls');
     $audioButtons = $('.jp-controls .nav-btn');
     $slideControls = $('.slide-nav .nav-btn');
+    $controlsWrapper = $('.controls-wrapper');
+    $controlsToggle = $('.js-toggle-controls');
     $slide_countdown = $stack.find('.slide-countdown');
     reloadTimestamp = moment();
 
@@ -115,11 +129,15 @@ var onDocumentReady = function(e) {
     $chromecastChangeState.on('click', onStatePickerLink);
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
+    $castPrev.on('click', onCastSlideControlClick);
+    $castNext.on('click', onCastSlideControlClick);
+    $fullscreenStart.on('click', onFullscreenButtonClick);
+    $fullscreenStop.on('click', onFullscreenButtonClick);
 
-    $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
     $audioButtons.on('click', onAudioButtonsClick);
     $slideControls.on('click', onSlideControlClick);
+    $controlsToggle.on('click', onControlsToggleClick);
     $body.on('keydown', onKeyboard);
     $(window).on('resize', onWindowResize);
 
@@ -129,10 +147,11 @@ var onDocumentReady = function(e) {
         CHROMECAST_RECEIVER.setup();
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
         CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
-
-        setUpAudio(false);
+        CHROMECAST_RECEIVER.onMessage('slide-change', onCastReceiverSlideChange);
 
         STACK.start();
+        $rightControls.hide();
+
     } else if (IS_FAKE_CASTER) {
         is_casting = true;
         state = 'TX';
@@ -143,10 +162,12 @@ var onDocumentReady = function(e) {
         $welcomeScreen.hide();
         setupUI();
         STACK.start();
+    } else if (SKIP_COUNTDOWN) {
+        STACK.start();
     }
     else {
         // Prepare welcome screen
-        $welcomeScreen.css('opacity', 1);
+        $welcomeScreen.velocity('fadeIn');
         $chromecastIndexHeader.css('opacity', 1);
 
         setupUI();
@@ -164,6 +185,11 @@ var setupUI = function() {
     rotatePhone();
     checkTimestamp();
 
+    if (IS_TOUCH) {
+        $rightControls.hide();
+        $fullscreenStart.hide();
+    }
+
     // Geolocate
     if ($.cookie('state')) {
         state = $.cookie('state');
@@ -178,8 +204,6 @@ var setupUI = function() {
         $('.typeahead').attr('placeholder', 'Select a state');
         $statePickerHed.text('We are having trouble determining your state.')
     }
-
-    setUpAudio(true);
 }
 
 /*
@@ -189,7 +213,7 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
     $chromecastIndexHeader = $('.welcome').find('.cast-header');
 
     // Don't init sender if in receiver mode
-    if (IS_CAST_RECEIVER) {
+    if (IS_CAST_RECEIVER || IS_FAKE_CASTER) {
         return;
     }
 
@@ -197,6 +221,10 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
         CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
     	$chromecastIndexHeader.find('.cast-enabled').show();
     	$chromecastIndexHeader.find('.cast-disabled').hide();
+        $castStart.show();
+    } else {
+        $chromecastIndexHeader.find('.cast-try-chrome').hide();
+        $chromecastIndexHeader.find('.cast-get-extension').show();
     }
 }
 
@@ -268,6 +296,16 @@ var onCastReceiverMute = function(message) {
     }
 }
 
+var onCastReceiverSlideChange = function(message) {
+    if (message == 'prev') {
+        STACK.previous();
+    }
+
+    if (message == 'next') {
+        STACK.next();
+    }
+}
+
 /*
  * Change the state on the receiver.
  */
@@ -281,6 +319,17 @@ var onCastStateChange = function(message) {
 var onCastMute = function() {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-muted']);
     CHROMECAST_SENDER.sendMessage('mute', 'toggle');
+}
+
+var onCastSlideControlClick = function(e) {
+    e.preventDefault();
+
+    if ($(this).hasClass('cast-prev')) {
+        CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
+    }
+    else if ($(this).hasClass('cast-next')) {
+        CHROMECAST_SENDER.sendMessage('slide-change', 'next');
+    }
 }
 
 /*
@@ -301,12 +350,14 @@ var onWindowResize = function() {
     }
 
     $stack.css({
+        'width': width + 'px',
         'height': new_height + 'px',
         'position': 'absolute',
         'top': padding + 'px'
     });
 
     var thisSlide = $('.slide');
+    resizeSlide(thisSlide);
     rotatePhone();
 }
 
@@ -326,7 +377,7 @@ var resizeSlide = function(slide) {
 }
 
 var rotatePhone = function() {
-    if (Modernizr.touch && Modernizr.mq('(orientation: portrait)')) {
+    if (IS_TOUCH && Modernizr.mq('(orientation: portrait)')) {
         $rotate.show();
         $('html').addClass('device-portrait');
 		$stack.css({
@@ -346,8 +397,11 @@ var onCastStartClick = function(e) {
     e.preventDefault();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-initiated']);
-
+    
     CHROMECAST_SENDER.startCasting();
+
+    $castStart.hide();
+    $castStop.show();
 }
 
 /*
@@ -359,6 +413,9 @@ var onCastStopClick = function(e) {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-stopped']);
 
     CHROMECAST_SENDER.stopCasting();
+
+    $castStop.hide();
+    $castStart.show();
 }
 
 /*
@@ -389,20 +446,43 @@ var showCountdown = function() {
 
 var nextCountdown = function() {
     countdown -= 1;
-    
+
     if (countdown > 0) {
 		$counter.text(countdown);
 		setTimeout(nextCountdown, 1000);
     } else {
-		$counter.text('Go!');
-		setTimeout(hideCountdown, 1000);
+		$counter.text('');
+		setTimeout(hideCountdown, 200);
     }
 }
 
 var hideCountdown = function() {
-    $countdownScreen.hide();
 
     STACK.start();
+
+    //hell yeah fade out
+    var big = $countdownScreen.find('.countdown-arc svg');
+    var little = $slide_countdown.find('svg');
+    big_width = big.width()
+    little_width = little.width()
+    big_top = big.offset().top
+    little_top = little.offset().top
+    big_left = big.offset().left
+    little_left = little.offset().left
+    little_height = little.height()
+    big.velocity({
+        height: little_height,
+        translateX: little_left - big_left - big_width/2 + little_width/2,
+        translateY: little_top - big_top
+        },
+        {
+            duration: 1000,
+            display:'none',
+            complete: function(){
+                $countdownScreen.hide();
+            }
+        });
+    $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
 }
 
 /*
@@ -431,7 +511,7 @@ var substringMatcher = function(strs) {
 /*
  * Fullscreen the app.
  */
-var onFullScreenButtonClick = function() {
+var onFullscreenButtonClick = function() {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'fullscreen']);
     var elem = document.getElementById("stack");
 
@@ -447,7 +527,9 @@ var onFullScreenButtonClick = function() {
         else if (document.webkitExitFullscreen) {
             document.webkitExitFullscreen();
         }
-        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-expand.svg');
+
+        $fullscreenStart.show();
+        $fullscreenStop.hide();
     }
     else {
         if (elem.requestFullscreen) {
@@ -463,7 +545,8 @@ var onFullScreenButtonClick = function() {
           elem.webkitRequestFullscreen();
         }
 
-        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-shrink.svg');
+        $fullscreenStart.hide();
+        $fullscreenStop.show();
     }
 }
 
@@ -483,15 +566,12 @@ var getState = function($typeahead) {
 }
 
 var showState = function() {
-    console.log(state);
-    console.log($stateName);
     $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
     $stateName.text(APP_CONFIG.STATES[state]);
     $statePickerLink.find('.state-name').text(state);
 }
 
 var switchState = function() {
-    console.log('switchState')
     var $this = $(this);
 
     getState($this);
@@ -508,7 +588,6 @@ var switchState = function() {
 }
 
 var hideStateFace = function() {
-    console.log('hideStateFace')
     $stateface.css('opacity', 0);
     $stateName.css('opacity', 0);
     $statePickerHed.css('opacity', 0);
@@ -528,6 +607,8 @@ var onStatePickerSubmit = function(e) {
     if (is_casting) {
         $chromecastScreen.show();
         CHROMECAST_SENDER.sendMessage('state', state);
+    } else {
+        $stack.show();
     }
 }
 
@@ -576,37 +657,8 @@ var checkTimestamp = function() {
     }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
 
-/*
- * Setup audio playback.
- */
-var setUpAudio = function(startPaused) {
-    $audioPlayer.jPlayer({
-        ready: function () {
-            $(this).jPlayer('setMedia', {
-                mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
-            })
-
-            if (startPaused) {
-                $(this).jPlayer('pause');
-            } else {
-                $(this).jPlayer('play');
-            }
-        },
-        swfPath: 'js/lib',
-        supplied: 'mp3',
-        loop: false,
-    });
-
-    $audioPlayer.bind($.jPlayer.event.stalled, onAudioFail);
-    $audioPlayer.bind($.jPlayer.event.waiting, onAudioFail);
-}
-
 var onAudioButtonsClick = function() {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
-}
-
-var onAudioFail = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-fail']);
 }
 
 /*
@@ -614,10 +666,11 @@ var onAudioFail = function() {
  */
 function create_welcome_countdown() {
 	var page_width = $(window).width();
-	var countdown_width = Math.floor(page_width * .22); // 22vw
+//	var countdown_width = Math.floor(page_width * .22); // 22vw
+	var countdown_width = 100;
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .7);
-	
+
 	welcome_countdown_arc = d3.svg.arc()
 		.innerRadius(countdown_inner_radius)
 		.outerRadius(countdown_outer_radius)
@@ -625,8 +678,10 @@ function create_welcome_countdown() {
 
 	welcome_countdown_svg = d3.select('.countdown-arc')
 		.append('svg')
-			.attr('width', countdown_width)
-			.attr('height', countdown_width)
+			.attr('width', '100%')
+			.attr('viewBox', '0 0 ' + countdown_width + ' ' + countdown_width)
+//			.attr('width', countdown_width)
+//			.attr('height', countdown_width)
 		.append('g')
 			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
 
@@ -639,16 +694,17 @@ function create_welcome_countdown() {
 		.datum( { endAngle: 0 } )
 		.attr('class', 'countdown-active')
 		.attr('d', welcome_countdown_arc);
-	
-	start_arc_countdown('welcome_countdown', (countdown - 2));
+
+	start_arc_countdown('welcome_countdown', (countdown - 1));
 }
 
 function create_slide_countdown() {
 	var page_width = $(window).width();
-	var countdown_width = Math.floor(page_width * .025); // 2.5vw
+//	var countdown_width = Math.floor(page_width * .025); // 2.5vw
+	var countdown_width = 100;
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .6);
-	
+
 	slide_countdown_arc = d3.svg.arc()
 		.innerRadius(countdown_inner_radius)
 		.outerRadius(countdown_outer_radius)
@@ -656,8 +712,9 @@ function create_slide_countdown() {
 
 	slide_countdown_svg = d3.select('#stack .slide-countdown')
 		.append('svg')
-			.attr('width', countdown_width)
-			.attr('height', countdown_width)
+			.attr('viewBox', '0 0 ' + countdown_width + ' ' + countdown_width)
+//			.attr('width', countdown_width)
+//			.attr('height', countdown_width)
 		.append('g')
 			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
 
@@ -677,16 +734,29 @@ function start_arc_countdown(arc, duration) {
 	var arc_end = τ;
 	var arc_foreground = eval(arc + '_foreground_arc');
 	var arc_main = eval(arc + '_arc');
-	
+
 	arc_foreground.transition()
 			.duration(1000)
 				.ease('linear')
 				.call(tween_slide_arc, arc_main, arc_start);
 	arc_foreground.transition()
 			.duration(duration * 1000)
-			.delay(1000)
 				.ease('linear')
 				.call(tween_slide_arc, arc_main, arc_end);
+}
+
+function cancel_arc_countdown(arc) {
+    var arc_start = 0;
+    var arc_end = τ;
+    var arc_foreground = eval(arc + '_foreground_arc');
+    var arc_main = eval(arc + '_arc');
+
+    arc_foreground.transition()
+            .duration(0)
+                .call(tween_slide_arc, arc_main, arc_end);
+    arc_foreground.transition()
+            .duration(0)
+                .call(tween_slide_arc, arc_main, arc_start);
 }
 
 function tween_slide_arc(transition, arc_main, end) {
@@ -706,19 +776,18 @@ function tween_slide_arc(transition, arc_main, end) {
 var onSlideControlClick = function() {
     var direction = $(this).data('slide');
     if (direction == "next") {
-        STACK.next();
-        if (!(hasTrackedNextSlide)) {
-            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'next-slide-click']);
-            hasTrackedNextSlide = true;
-        }
+        STACK.next($(this));
     }
     else if (direction == "previous") {
-        STACK.previous();
-        if (!(hasTrackedPrevSlide)) {
-            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'prev-slide-click']);
-            hasTrackedPrevSlide = true;
-        }
+        STACK.previous($(this));
     }
+}
+
+/**
+ * Click control/legend toggle
+ */
+var onControlsToggleClick = function() {
+    $controlsWrapper.fadeToggle();
 }
 
 /**
@@ -730,10 +799,20 @@ var onKeyboard = function(e) {
         hasTrackedKeyboardNav = true;
     }
     if (e.which == 39) {
-        STACK.next()
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'next');
+        }
+        else {
+            STACK.next($('.slide-nav .nav-btn-right'))
+        }
     }
     if (e.which == 37) {
-        STACK.previous()
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
+        }
+        else {
+            STACK.previous($('.slide-nav .nav-btn-left'))
+        }
     }
 }
 

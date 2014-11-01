@@ -1,5 +1,6 @@
 @import "less/lib/bootstrap/bootstrap";
 @import "less/lib/font-awesome/font-awesome";
+@import "less/lib/ionicons/ionicons";
 @import "less/lib/prefixer";
 @import "less/stateface.less";
 @import "less/variables.less";
@@ -26,10 +27,6 @@ svg {
     letter-spacing: .03em;
     border-radius: 0.5vw;
     text-transform: uppercase;
-
-    &:hover {
-        background-color: darken(@red, 20%);
-    }
 
     @media screen and (max-width: @screen-xs-max){
         font-size: 16px;
@@ -61,6 +58,10 @@ svg {
     .vertical-center;
 }
 
+.cast-start { display: none; }
+.cast-stop { display: none; }
+
+
 /*
 ** WELCOME SLIDES
 */
@@ -82,14 +83,14 @@ svg {
         // background-size: cover;
         width: 100%;
         height: 100%;
-        opacity : 0.8;
+        opacity : 0.6;
         z-index: -1;
     }
 
     .logo-wrapper {
         width: 100%;
-        margin: 15px auto 30px;
-        fill: @grayMedium;
+        margin: 100px auto 30px;
+        fill: white;
     }
 
     .election-logo-wrapper {
@@ -99,8 +100,18 @@ svg {
         margin: 0 auto;
     }
 
-    .cast-header {
+    h1 {
+        font-size:70px;
+        font-weight: bold;
+    }
+
+    h2 {
+        font-size: 22px;
         margin-top: 2vw;
+    }
+
+    .cast-header {
+        margin: 4vw 0;
 
     	.cast-enabled,
     	.cast-disabled {
@@ -110,15 +121,27 @@ svg {
 			}
     	}
 
+        .cast-get-extension,
     	.cast-enabled { display: none; }
-    }
 
-    .intro-text {
+        .cast-disabled p {
+            margin-top: 3vw;
+                a {
+                color: @red;
+                font-weight: bold;
+            }
+        }
 
-        p {
-            font-size:  2.5vw;
-            line-height: 2.5vw;
-            margin-bottom: 5%;
+        .cast-enabled-but-whatev {
+            margin-top:2vw;
+            a {
+                color: white;
+                font-weight: bold;
+                &:hover {
+                    color:@red;
+                    text-decoration: none;
+                }
+            }
         }
     }
 
@@ -143,14 +166,34 @@ svg {
     }
 
     .welcome-button {
-        background-color: @red;
-        border: @red;
-        color: @musicLight;
+
+        background-color: white;
+        color: black;
+        fill: black;
+
+        svg {
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        &:hover {
+            background-color: @red;
+            color: white;
+            fill: white;
+        }
+
+        font-weight: bold;
+
         margin-top: 30px;
 
         @media screen and (max-width: @screen-xs-max){
             margin-top: 15px;
         }
+    }
+
+    .byline {
+        font-size:11px;
+        color: @grayMedium;
     }
 }
 
@@ -162,7 +205,8 @@ svg {
     left: 0;
     display: none;
     text-align: center;
-	text-transform: uppercase;
+	// text-transform: uppercase;
+    z-index: 1000;
 
     &:after {
         content : "";
@@ -170,33 +214,32 @@ svg {
         position: absolute;
         top: 0;
         left: 0;
-        background: url('../assets/promo/background.jpg') no-repeat center black;
+        // background: url('../assets/promo/background.jpg') no-repeat center black;
         width: 100%;
         height: 100%;
-        opacity : 0.8;
+        opacity : 0.3;
         z-index: -1;
     }
 
     h2,
     h3 {
-    	font-size: 3.5vw;
+    	font-size: 2vw;
     	margin: 0;
-    	color: @grayMedium;
-    	text-transform: uppercase;
+    	color: white;
     }
-    
+
     .wrapper {
         .vertical-center;
         width: 100%;
         position: absolute;
     }
-    
+
     .countdown-arc-wrapper {
     	width: 22vw;
     	height: 22vw;
-    	margin: 2.5vw auto;
+    	margin: 7vw auto;
     	position: relative;
-    	
+
     	.countdown-arc,
     	.counter {
     		width: 100%;
@@ -204,7 +247,7 @@ svg {
     		top: 0;
     		left: 0;
     	}
-    	
+
 		.counter {
 			font-size: 4vw;
 			font-weight: bold;
@@ -212,14 +255,14 @@ svg {
 			line-height: 22vw;
 		}
     }
-    
+
 	.countdown-background { fill: @musicDark; }
 	.countdown-active { fill: @grayMedium; }
 
 }
 
 .cast-controls {
-    text-align: center;
+	padding: 3vw;
     display: none;
 
     &:after {
@@ -236,7 +279,11 @@ svg {
         z-index: -1;
     }
 
-    .header-container .results-header span { float: left; }
+    .logo-wrapper {
+        width: 120px;
+        margin: 15px auto 60px;
+        fill: @grayMedium;
+    }
 
     h2 {
         font-size: 3vw;
@@ -244,19 +291,19 @@ svg {
         padding: 0;
         padding-bottom: 2vw;
         margin: 0;
+        text-transform: uppercase;
     }
-
-    ul.menu {
+    
+    .controls ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
 
         li {
-            font-size: 3vw;
+            font-size: 2vw;
             font-weight: bold;
             margin-bottom: 1.5vw;
 
-            a { display: block; }
             img {
             	height: 3vw;
             	width: auto;
@@ -265,12 +312,17 @@ svg {
         }
     }
     
+    .controls {
+    	width: 50%;
+    	float: left;
+    }
     .legend {
-    	position: absolute;
-    	bottom: 6vw;
-    	left: 0;
-    	width: 100%;
-    	text-align: left;
+    	width: 50%:
+    	float: right;
+    }
+    .feedback { 
+    	clear: both;
+    	margin-top: 2vw;
     }
 }
 
@@ -300,7 +352,7 @@ svg {
             font-size: 16px;
         }
     }
-    
+
     p {
     	font-size: 1vw;
     	margin-top: 2vw;
@@ -359,161 +411,136 @@ svg {
 ** HEADER
 */
 
-.footer-container {
+.mobile-controls {
+	display: none;
+
+	.nav-btn {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 6vw;
+		font-size: 3vw;
+		background: transparent;
+		border: none;
+
+		i { color: @grayMedium; }
+	}
+	.nav-btn-left {
+		left: 0;
+		text-align: left;
+	}
+	.nav-btn-right {
+		right: 0;
+		text-align: right;
+	}
+
+	.touch & { display: block; }
+}
+
+.fullscreen .stop {
+    display: none;
+}
+
+.controls-wrapper {
     position: absolute;
     left: 0;
-    bottom: 1vh;
-    width: 100%;
-    z-index: 1;
+    bottom: 6vw;
+    width: 98%;
+    z-index: 100;
+    background: fadeout(@blueDarker,2%);
+    display: none;
+    font-size: 1.75vw;
+    border-radius: 1vw;
+    padding: 2vw 0.5vw;
+    margin: 0 1vw;
+    overflow: hidden;
 
-    box-shadow: inset 0 5vw 5vw -5vw black;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
-
-    .right-controls {
-        float: right;
-
-        div {
-            white-space: nowrap;
-            float: left;
-        }
-
-        a.state-picker-link {
-            display: inline-block;
-            color: @grayMedium;
-            border: 2px solid @grayMedium;
-            vertical-align: middle;
-            line-height: 1.5vw;
-            padding: 0.5vw;
-            border-radius: 0.5vw;
-            font-size: 1vw;
-
-            .state-name {
-                font-size: 1vw;
-                line-height: 1;
-            }
-
-            .stateface {
-                display: none;
-                font-size: 3vw;
-                vertical-align: middle;
-            }
-        }
-
-        .slide-countdown {
-            padding-top: .2vw;
-            .countdown-background { fill: @musicDark; }
-            .countdown-active { fill: @grayMedium; }
-        }
-
-        .volume-icon{
-            width: 2vw;
-            height: 2vw;
-        }
-
-        .chromecast {
-            display: none;
-
-            img {
-                width: 2vw;
-                height: 2vw;
-                opacity: 0.7;
-            }
-        }
-
-        .volume-icon{
-            width: 2vw;
-            height: 2vw;
-        }
-
-        .expand {
-            width: 1.5vw;
-            height: 1.5vw;
-        }
-
-        .chromecast,
-        .state,
-        .volume,
-        .fullscreen {
-            padding: 0 0.5vw;
-
-            a:hover {
-                color: darken(@grayMedium, 20%);
-                text-decoration: none;
-
-                img {
-                    opacity: 0.5;
-                }
-            }
-        }
-
-        .slide-nav {
-            line-height: 3.5vw;
-            height: 3.5vw;
-
-            nav {
-                overflow: hidden;
-                // display: inline-block;
-                font-size: 0;
-            }
-
-           .nav-btn {
-                font-size: 1.5vw;
-                border: 2px solid @grayMedium;
-                padding: 0.5vw 1vw;
-                color: @grayMedium;
-                background: transparent;
-                line-height: 1.5vw;
-                margin: 0 0 -2px 0;
-                display: inline-block;
-                vertical-align: middle;
-
-                &.nav-btn-left {
-                    border-radius: 0.5vw 0 0 0.5vw;
-                }
-
-                &.nav-btn-right {
-                    margin-left: -2px;
-                    border-radius: 0 0.5vw 0.5vw 0;
-                }
-           }
+    a {
+        &:hover {
+            text-decoration: none;
         }
     }
 
-    .results-header {
-        color: @grayMedium;
-        height: 4vw;
-        display: block;
-        overflow: hidden;
-        line-height: 3.5vw;
-        padding: .2vw 3vw;
+    .legend,
+    .controls,
+    .feedback {
+        float: left;
+        width: 33.33333%;
+        padding: 0 1%;
+        display: border-box;
+    }
 
-        .logo {
-            height:100%;
-            width:7vw;
-            margin: 0 .5% 0 0;
-            float: left;
-            fill: @grayMedium;
-        }
-
-        .leaderboard {
-            float: left;
-            display: table;
-        }
-
-        h2, p, a, span {
+    .legend {
+        li {
             font-size: 1.5vw;
-            line-height: 3.5vw;
+            margin-bottom: 0.5vw;
+        }
+    }
+
+    .controls {
+        li {
+            margin-bottom: 0.5vw;
         }
 
-        span{
+        li i {
+            display: inline-block;
+            width: 1vw;
+            margin-right: 0.5vw;
             text-align: center;
         }
 
+        li img {
+            height: 2vw;
+        }
+    }
+
+    .feedback {
+        li i {
+            display: inline-block;
+            width: 1vw;
+            margin-right: 0.5vw;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.5vw;
+        }
+    }
+}
+
+.footer-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background: black;
+    padding: 0 2%;
+
+    a {
+        color: @grayMedium;
+
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    .leaderboard,
+    .control-toggle,
+    .nav {
+        float: left;
+        width: 33.33333%;
+        padding: 0 1%;
+        display: border-box;
+    }
+
+    .leaderboard {
         .results-header-group {
             white-space: nowrap;
-            padding: 0 1vw;
-            display: table-cell;
-            overflow: hidden;
+            padding: 0 0.25vw;
+            display: inline-block;
+            font-size: 1.5vw;
 
             &:last-child{
                 margin-right: 0;
@@ -534,8 +561,9 @@ svg {
             .senate-header {
                 text-transform: uppercase;
                 font-weight: bold;
-                line-height: 1;
                 font-size: 1.7vw;
+                line-height: 3vw;
+                vertical-align: middle;
             }
 
             .total {
@@ -557,9 +585,9 @@ svg {
         .other { color: fadeout(@green, 25%); }
         .not-called { color: fadeout(@yellow, 25%); }
 
-        .dem .percentage   {  background: fadeout(@blue, 25%); }
-        .gop .percentage   {  background: fadeout(@red, 25%); }
-        .other .percentage   {  background: fadeout(@green, 25%); }
+        .dem .percentage   {  border: 2px solid transparent; background: fadeout(@blue, 25%); }
+        .gop .percentage   {  border: 2px solid transparent; background: fadeout(@red, 25%); }
+        .other .percentage   {  border: 2px solid transparent; background: fadeout(@green, 25%); }
         .not-called .count {  border: 2px solid fadeout(@yellow, 25%); color: fadeout(@yellow, 25%); }
 
         .percentage,
@@ -572,22 +600,89 @@ svg {
             box-sizing:border-box;
             min-width:3vw;
             height:3vw;
-            line-height: 3vw;
+            line-height: 2.8vw;
             border-radius: 2vw;
-            padding: 0 1vw;
+            padding: 0 0.5vw;
         }
     }
 
-    .results-header.header-controls {
-        display: none;
+    .control-toggle {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.5vw;
+        line-height: 3.5vw;
 
         a {
+            text-decoration: none;
+
+            &:hover svg {
+                fill: #fff;
+            }
+        }
+
+        svg {
+            fill: @grayMedium;
+            height: 3vw;
+            vertical-align: middle;
+        }
+    }
+
+    .nav {
+        text-align: right;
+        font-size: 1.5vw;
+        line-height: 3.5vw;
+
+        .page,
+        .slide-nav,
+        .slide-countdown,
+        .logo {
+            display: inline-block;
+        }
+
+        .page {
             color: @grayMedium;
+            font-size: 1.2vw;
         }
-        a:hover{
-            color: darken(@grayMedium, 20%);
+
+        .slide-nav {
+            margin-left: 1vw;
+
+            p {
+                vertical-align: middle;
+                padding: 0 1vw;
+            }
+
+            p,
+            .nav-btn {
+                display: inline-block;
+            }
+
+            .nav-btn {
+                font-size: 2vw;
+
+                + .nav-btn {
+                    padding-left: 0.5vw;
+                }
+            }
         }
-        
+
+        .slide-countdown {
+            position: relative;
+            bottom: -0.2vw;
+            padding: 0 0 0 .5vw;
+            width: 2.75vw;
+
+            .countdown-background { fill: @musicDark; }
+            .countdown-active { fill: @grayMedium; }
+        }
+
+        .logo {
+            margin-left: 1vw;
+            width: 8vw;
+            fill: @grayMedium;
+            position: relative;
+            bottom: -0.35vw;
+        }
     }
 }
 

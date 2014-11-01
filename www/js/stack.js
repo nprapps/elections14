@@ -4,6 +4,9 @@ var STACK = (function () {
     var _stack = [];
     var _nextStack = null;
     var _currentSlide = 0;
+    var _timeOnScreen = null;
+    var $newSlide = null;
+    var inTransition = null;
 
     var _stackTimer = null;
     var _rotateTimer = null;
@@ -21,6 +24,8 @@ var STACK = (function () {
      * Setup the stack display.
      */
     obj.start = function() {
+        //startPrerollAudio();
+
         $stack.show();
 
         updateStack();
@@ -59,26 +64,73 @@ var STACK = (function () {
         _slideExitCallback = cb;
     }
 
-    obj.next = function() {
-        if (_rotateTimer) {
-            clearTimeout(_rotateTimer);
-            _rotateTimer = null;
+    obj.next = function($element) {
+        if (!(inTransition)) {
+            $element.addClass('in-transition');
         }
+
         rotateSlide();
+
+        if (!(hasTrackedNextSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'next-slide-click']);
+            hasTrackedNextSlide = true;
+        }
     }
 
-    obj.previous = function() {
-        if (_rotateTimer) {
-            clearTimeout(_rotateTimer);
-            _rotateTimer = null;
+    obj.previous = function($element) {
+        if (!(inTransition)) {
+            $element.addClass('in-transition');
         }
+
         rotateSlide('previous');
+
+        if (!(hasTrackedPrevSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'prev-slide-click']);
+            hasTrackedPrevSlide = true;
+        }
+    }
+
+    var startPrerollAudio = function() {
+        $audioPlayer.jPlayer({
+            ready: function () {
+                $(this).jPlayer('setMedia', {
+                    mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
+                }).jPlayer('play');
+            },
+            ended: startLivestream,
+            swfPath: 'js/lib',
+            supplied: 'mp3',
+            loop: false,
+        });
+
+        $audioPlayer.bind($.jPlayer.event.stalled, onAudioFail);
+    }
+
+    var startLivestream = function() {
+        $audioPlayer.jPlayer('setMedia', {
+            mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
+        }).jPlayer('play');
+    }
+
+    var onAudioFail = function() {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-fail']);
     }
 
     /*
      * Rotate to the next slide in the stack.
      */
     var rotateSlide = function(direction) {
+        if (_rotateTimer) {
+            clearTimeout(_rotateTimer);
+            _rotateTimer = null;
+        }
+
+        if (inTransition) {
+            return false;
+        }
+
+        inTransition = true;
+        cancel_arc_countdown('slide_countdown');
         var increment = (direction == 'previous') ? -1 : 1;
 
         _currentSlide += increment;
@@ -166,12 +218,11 @@ var STACK = (function () {
      */
     var _onSlideSuccess = function(data) {
         var $oldSlide = $stack.find('.slide');
-        var $newSlide = $(data);
+        $newSlide = $(data);
 
-        var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
+        _timeOnScreen = _stack[_currentSlide]['time_on_screen'];
 
-		// update countdown spinner
-		start_arc_countdown('slide_countdown', timeOnScreen);
+        // update countdown spinner
 
         if ($oldSlide.length > 0) {
             if (_slideExitCallback) {
@@ -179,25 +230,14 @@ var STACK = (function () {
 
                 _slideExitCallback = null;
             }
+            if (IS_CAST_RECEIVER) {
+                $oldSlide.hide();
+                addNewSlide();
+            }
+            else {
+                $oldSlide.fadeOut(800, addNewSlide);
+            }
 
-            $oldSlide.fadeOut(800, function() {
-                $(this).remove();
-                $stack.append($newSlide);
-                resizeSlide($newSlide)
-
-                if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
-                    $header.find('.leaderboard').fadeOut();
-                }
-                else {
-                    $header.find('.leaderboard').fadeIn();
-                }
-
-                $newSlide.fadeIn(800, function(){
-                    _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
-
-                    $newSlide.find('a').on('click', onSlideAnchorClick);
-                });
-            });
         } else {
             $stack.append($newSlide);
             resizeSlide($newSlide);
@@ -209,11 +249,43 @@ var STACK = (function () {
                 $header.find('.leaderboard').fadeIn();
             }
 
-            $newSlide.fadeIn(800, function(){
-                _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
-                $newSlide.find('a').on('click', onSlideAnchorClick);
-            });
+            if (IS_CAST_RECEIVER) {
+                $newSlide.show();
+                setTimer();
+            }
+            else {
+                $newSlide.fadeIn(800, setTimer);
+            }
         }
+    }
+
+    var addNewSlide = function() {
+        $(this).remove();
+        $stack.append($newSlide);
+        resizeSlide($newSlide)
+
+        if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
+            $header.find('.leaderboard').fadeOut();
+        }
+        else {
+            $header.find('.leaderboard').fadeIn();
+        }
+
+        if (IS_CAST_RECEIVER) {
+            $newSlide.show();
+            setTimer();
+        }
+        else {
+            $newSlide.fadeIn(800, setTimer);
+        }
+    }
+
+    var setTimer = function() {
+        _rotateTimer = setTimeout(rotateSlide, _timeOnScreen * 1000);
+        start_arc_countdown('slide_countdown', _timeOnScreen);
+        $(this).find('a').on('click', onSlideAnchorClick);
+        $slideControls.removeClass('in-transition');
+        inTransition = false;
     }
 
     /*

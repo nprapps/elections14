@@ -1,0 +1,42 @@
+<div class="controls">
+	<ul class="list-unstyled">
+		<!-- DESKTOP ONLY; NOT CASTING -->
+		<li class="fullscreen">
+			<a class="start" href="#"><i class="icon ion-arrow-expand"></i> <span>{{ COPY.chromecast.btn_fullscreen }}</span></a>
+			<a class="stop" href="#"><i class="icon ion-arrow-shrink"></i> <span>{{ COPY.chromecast.btn_shrink }}</span></a>
+		</li>
+		<!-- FOR DESKTOP WHEN NOT CASTING -->
+		<li>
+			<div id="audio-ambient">
+				<div id="pop-audio" class="jp-jplayer"></div>
+				<div id="jp_container_1" class="jp-audio">
+					<div class="jp-type-single">
+						<div class="jp-gui jp-interface">
+							<div class="jp-controls">
+								<a href="javascript:;" class="jp-play nav-btn" tabindex="1" title="stop"><i class="icon ion-ios7-volume-low"></i> Mute</a>
+								<a href="javascript:;" class="jp-pause nav-btn" tabindex="1" title="play"><i class="icon ion-ios7-volume-high"></i> Play</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		
+		<!-- PLAY/PAUSE JS TOGGLES FOR WHEN CASTING OR ON MOBILE -->
+		<li>
+			<a class="mute" href="#"><i class="icon ion-ios7-volume-low"></i> {{ COPY.chromecast.btn_mute }}</a>
+		</li>
+
+		<!-- IF CASTING IS SUPPORTED -->
+		<li>
+			<a class="cast-start" href="#"><img src="assets/chromecast_off.svg" alt="" /> {{ COPY.chromecast.btn_start }}</a>
+			<a class="cast-stop" href="#"><img src="assets/chromecast_on_blue.svg" alt="" /> {{ COPY.chromecast.btn_stop }}</a>
+		</li>
+		<li>
+			<label><span class="stateface stateface-ca"></span><input value="California" type="text"></label>
+			<a class="change-state" href="#">{{ COPY.chromecast.btn_state }}</a>
+		</li>
+	</ul>
+</div>
+
+

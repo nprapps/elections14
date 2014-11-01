@@ -323,7 +323,7 @@
 			margin: 0;
 			padding: 0;
 			list-style-type: none;
-			.clearfix();
+			float: left;
 
 			li {
 				margin: 0 0 .2vw 0;
@@ -333,7 +333,6 @@
 				font-size: 1.25vw;
 				display: table;
 				width: 15vw;
-				float: left;
 
 				.house-freshmen & {
 					font-size: 1.2vw;
@@ -627,9 +626,6 @@
 .legend {
 	font-family: 'Cooper Hewitt';
 	font-weight: 300;
-	position: absolute;
-	bottom: 5.8vh;
-	left: 0;
 	
 	h3 {
 		padding-left: 1vw;
@@ -639,6 +635,7 @@
 	}
 
 	.container-fluid {
+		.clearfix();
 		margin: 1vw 2vw;
 		background: fadeout(@blueDark, 50%);
 		padding: 1vw 2vw .8vw 2vw;
@@ -647,6 +644,7 @@
 	}
 
 	ul {
+		.clearfix();
 		margin-bottom: 0;
 		min-height: 1px;
 		box-sizing: border-box;
