@@ -5,31 +5,32 @@
     <div class="logo-wrapper">
     {% include '_logo2.svg' %}
     </div>
-    <div class="intro-text">
-        <div class="election-logo-wrapper">
-            {% include '_election_party.svg' %}
+
+    <h1>ELECTION PARTY!</h1>
+
+    <h2>Live news and data DJ'ed by Amita Parashar &mdash; hosted by Melissa Block and Robert Siegel.</h2>
+    <p class="byline">{{ COPY.content.byline }}</p>
+<!-- 
+    <h2 class="state-picker-hed-wrapper"><span class="state-picker-hed">{{ COPY.content.state_picker_hed }}</span> <span class="state-name"></span> <span class="stateface"></span> (<a href="">See results for a different state.</a>)</h2> -->
+
+    <form role="form" class="state-picker-form">
+        <!-- <div class="form-group">
+            <input class="typeahead" type="text" placeholder="Select a different state">
+        </div>
+ -->
+    </form>
+    <div class="cast-header">
+        <div class="cast-disabled">
+            <p><button class="btn btn-lg welcome-button js-go">Let's go!</button></p>
+            <p>(Got a Chromecast? Try this in Chrome on your laptop or phone.)</p>
+            <!-- <p>(Already in Chrome? Get the <a href="https://chrome.google.com/webstore/detail/google-cast/boadgeojelhgndaghljhdicfkmllpafd?hl=en">Cast extension</a>.)</p> -->
+        </div>
+        <div class="cast-enabled">
+            <p><button class="cast-start btn btn-lg welcome-button">{% include '_chromecast-off.svg' %} Start Casting!</button></p>
+            <p class="cast-footer"><a href="#" class="js-go">Or play here</a></p>
         </div>
     </div>
 
-    <h2 class="state-picker-hed-wrapper"><span class="state-picker-hed">{{ COPY.content.state_picker_hed }}</span> <span class="state-name"></span> <span class="stateface"></span></h2>
-
-    <form role="form" class="state-picker-form">
-        <div class="form-group">
-            <input class="typeahead" type="text" placeholder="Select a different state">
-        </div>
-
-        <div class="cast-header">
-            <div class="cast-disabled">
-                <p><button type="submit" class="btn btn-lg welcome-button js-go">Come on in</button></p>
-                <p><a href="http://www.google.com/chrome/devices/chromecast/" target="_blank"><img src="assets/chromecast_ready.svg" alt="Google Cast Ready" /></a></p>
-            </div>
-            <div class="cast-enabled">
-                <p><a href="#" class="cast-start btn btn-lg welcome-button"><img src="assets/chromecast_off.svg" alt="Google Cast Ready" /> Start Casting</a></p>
-                <p class="cast-footer"><a href="#" class="js-go">Or play here</a></p>
-            </div>
-        </div>
-        <p>Google Cast Ready and the Google Cast Ready Badge are trademarks of Google Inc.</p>
-    </form>
 </div>
 
 <div class="countdown">
