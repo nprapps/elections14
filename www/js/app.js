@@ -36,6 +36,7 @@ var $audioButtons = null;
 var $slide_countdown = null;
 var $controlsWrapper = null;
 var $controlsToggle = null;
+var $page = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
@@ -120,6 +121,8 @@ var onDocumentReady = function(e) {
     $slide_countdown = $stack.find('.slide-countdown');
     $audioPlay = $('.controls .play');
     $audioPause = $('.controls .pause');
+    $page = $('.page');
+
     reloadTimestamp = moment();
 
     // Bind events
@@ -803,11 +806,14 @@ function tween_slide_arc(transition, arc_main, end) {
 }
 
 
-/**
+/*
  * Click left or right paddle
  */
-var onSlideControlClick = function() {
+var onSlideControlClick = function(e) {
+    e.preventDefault();
+
     var direction = $(this).data('slide');
+
     if (direction == "next") {
         STACK.next($(this));
     }
@@ -816,7 +822,7 @@ var onSlideControlClick = function() {
     }
 }
 
-/**
+/*
  * Click control/legend toggle
  */
 var onControlsToggleClick = function(e) {
