@@ -25,7 +25,7 @@ svg {
     padding: 15px;
     font-size: 24px;
     letter-spacing: .03em;
-    border-radius: 0.5vw;
+    border-radius: 5px;
     text-transform: uppercase;
 
     @media screen and (max-width: @screen-xs-max){
@@ -99,6 +99,7 @@ svg {
     }
 
     h1 {
+        text-transform: uppercase;
         font-size:70px;
         font-weight: bold;
         @media screen and (max-width: @screen-xs-max){
@@ -155,6 +156,11 @@ svg {
         background-color: white;
         color: black;
         fill: black;
+
+        width: 470px;
+        height: 63px;
+
+        span { display:none; }
 
         svg {
             height: 30px;

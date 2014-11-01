@@ -48,6 +48,8 @@ var reloadTimestamp = null;
 var state = null;
 var is_casting = false;
 var countdown = 5 + 1;
+var welcome_greeting_counter = 0;
+var welcome_greeting_timer = null;
 
 var slide_countdown_arc = null;
 var slide_countdown_svg = null;
@@ -182,6 +184,7 @@ var onDocumentReady = function(e) {
 }
 
 var setupUI = function() {
+
     rotatePhone();
     checkTimestamp();
 
@@ -204,6 +207,8 @@ var setupUI = function() {
         $('.typeahead').attr('placeholder', 'Select a state');
         $statePickerHed.text('We are having trouble determining your state.')
     }
+
+    welcomeOurGuests();
 }
 
 /*
@@ -222,6 +227,7 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
     	$chromecastIndexHeader.find('.cast-enabled').show();
     	$chromecastIndexHeader.find('.cast-disabled').hide();
         $castStart.show();
+        window.clearTimeout(welcome_greeting_timer);
     } else {
         $chromecastIndexHeader.find('.cast-try-chrome').hide();
         $chromecastIndexHeader.find('.cast-get-extension').show();
@@ -423,6 +429,8 @@ var onCastStopClick = function(e) {
  */
 var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
+
+    window.clearTimeout(welcome_greeting_timer);
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
 
@@ -814,6 +822,17 @@ var onKeyboard = function(e) {
             STACK.previous($('.slide-nav .nav-btn-left'))
         }
     }
+}
+
+var welcomeOurGuests = function(){
+    greetings = $welcomeButton.find('span')
+    var count = greetings.length;
+    greetings.velocity({ opacity: 0 }, { display: "none" });
+    $welcomeButton.find('span[data-greeting-index="' + welcome_greeting_counter % count + '"]').velocity({opacity:1}, { display: "inline" })
+    welcome_greeting_counter++;
+    welcome_greeting_timer = window.setTimeout(welcomeOurGuests, 5000);
+
+    console.log("fun fun");
 }
 
 $(onDocumentReady);

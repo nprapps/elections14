@@ -6,14 +6,20 @@
     {% include '_logo2.svg' %}
     </div>
 
-    <h1>ELECTION PARTY!</h1>
+    <h1>{{ COPY.content.welcome_header }}</h1>
 
-    <h2>Live news and data DJ'ed by Amita Parashar &mdash; hosted by Melissa Block and Robert Siegel.</h2>
+    <h2>{{ COPY.content.welcome_subhead }}</h2>
     <p class="byline">{{ COPY.content.byline }}</p>
 
     <div class="cast-header">
         <div class="cast-disabled">
-            <button class="btn btn-lg welcome-button js-go">Let's go!</button>
+            <button class="btn btn-lg welcome-button js-go">
+                {% for greeting in COPY.welcome_button %}
+                    <span data-greeting-index="{{ loop.index0 }}">
+                        {{ greeting }}
+                    </span>
+                {% endfor %}
+            </button>
             <p class="cast-try-chrome">(Got a Chromecast? Try this in Chrome on your laptop or phone.)</p>
             <p class="cast-get-extension">(Got a Chromecast? Get <a href="https://chrome.google.com/webstore/detail/google-cast/boadgeojelhgndaghljhdicfkmllpafd?hl=en" target="_blank">Google Cast</a> to put the party on your TV.)</p>
         </div>
