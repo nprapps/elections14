@@ -78,12 +78,9 @@ def columnize_card(races, columns):
         columns = float(columns)
         rows = ceil(len(races)/columns)
         rows = int(rows)
-        try:
-            for i in xrange(0, len(races), rows):
-                results.append(races[i:i+rows])
-        except:
-            import ipdb; ipdb.set_trace();
-            print ""
+        for i in range(0, len(races), rows):
+            results.append(races[i:i+rows])
+
     return results
 
 def columnize_races(races, split_at=18):
