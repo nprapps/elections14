@@ -557,13 +557,11 @@ var onChangeStateClick = function(e) {
 
 var getState = function($typeahead) {
     var input = $typeahead.typeahead('val');
-    console.log(input);
 
     if (input) {
         var inverted = _.invert(APP_CONFIG.STATES);
         state = inverted[input]
     }
-    console.log(state);
 
     $.cookie('state', state, { expires: 30 });
 }

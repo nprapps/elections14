@@ -42,27 +42,17 @@
     </div>
 </div>
 
-<div class="state-picker">
-    <h2 class="state-picker-hed">{{ COPY.content.state_picker_hed }}</h2>
-
-    <form role="form" class="state-picker-form">
-        <div class="form-group">
-            <div class="state">
-                <span class="stateface"></span>
-                <h3 class="state-name"></h3>
-            </div>
-
-            <input class="typeahead" type="text" placeholder="Select a different state">
-        </div>
-
-        <button type="submit" class="btn btn-lg state-picker-submit">Go</button>
-    </form>
-</div>
-
 <div class="cast-controls">
     <h2>{{ COPY.chromecast.menu_hed }}</h2>
-	<p><a class="cast-prev" href="#">Previous Slide</a></p>
-	<p><a class="cast-next" href="#">Next Slide</a></p>
+
+    <div class="nav">
+        <div class="slide-countdown"></div>
+        <nav class="slide-nav">
+            <a href="#" data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></a>
+            <p class="page">1 of 15</p>
+            <a href="#" data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></a>
+        </nav>
+    </div>
 
 	{% include '_controls.html' %}
     {% include '_legend.html' %}
