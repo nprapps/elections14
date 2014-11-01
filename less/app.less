@@ -71,6 +71,7 @@ svg {
     opacity: 0;
     .transition(opacity 3s ease);
     text-align: center;
+    padding:10px;
 
     &:after {
         content : "";
@@ -91,27 +92,31 @@ svg {
         width: 100%;
         margin: 100px auto 30px;
         fill: white;
-    }
-
-    .election-logo-wrapper {
-        width: 100%;
-        max-width: 600px;
-        padding: 0 30px;
-        margin: 0 auto;
+        @media screen and (max-width: @screen-xs-max){
+            margin-top:30px;
+            height:20px;
+        }
     }
 
     h1 {
         font-size:70px;
         font-weight: bold;
+        @media screen and (max-width: @screen-xs-max){
+            font-size:40px;
+        }
     }
 
     h2 {
+        line-height: 1.4em;
         font-size: 22px;
-        margin-top: 2vw;
+        margin-top: 22px;
+        @media screen and (max-width: @screen-xs-max){
+            font-size:14px;
+        }
     }
 
     .cast-header {
-        margin: 4vw 0;
+        margin: 33px 0;
 
     	.cast-enabled,
     	.cast-disabled {
@@ -125,7 +130,7 @@ svg {
     	.cast-enabled { display: none; }
 
         .cast-disabled p {
-            margin-top: 3vw;
+            margin-top: 33px;
                 a {
                 color: @red;
                 font-weight: bold;
@@ -133,7 +138,7 @@ svg {
         }
 
         .cast-enabled-but-whatev {
-            margin-top:2vw;
+            margin-top: 33px;
             a {
                 color: white;
                 font-weight: bold;
@@ -142,26 +147,6 @@ svg {
                     text-decoration: none;
                 }
             }
-        }
-    }
-
-    .form-group { margin: 0; }
-
-    .state {
-        width: 100%;
-        min-height: 20vw;
-
-        .stateface { font-size: 10vw; }
-        .stateface,
-        .state-name {
-            -webkit-transition: all 0.2s;
-            transition: all 0.2s;
-        }
-
-        .state-name {
-            font-size: 4vw;
-            position: relative;
-            top: -3vmin;
         }
     }
 
@@ -194,6 +179,9 @@ svg {
     .byline {
         font-size:11px;
         color: @grayMedium;
+        @media screen and (max-width: @screen-xs-max){
+            font-size:8px;
+        }
     }
 }
 
