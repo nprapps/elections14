@@ -47,7 +47,7 @@ var reloadTimestamp = null;
 
 var state = null;
 var is_casting = false;
-var countdown = 3 + 1;
+var countdown = 5 + 1;
 
 var slide_countdown_arc = null;
 var slide_countdown_svg = null;
@@ -165,7 +165,7 @@ var onDocumentReady = function(e) {
     }
     else {
         // Prepare welcome screen
-        $welcomeScreen.css('opacity', 1);
+        $welcomeScreen.velocity('fadeIn');
         $chromecastIndexHeader.css('opacity', 1);
 
         setupUI();
@@ -448,15 +448,38 @@ var nextCountdown = function() {
 		$counter.text(countdown);
 		setTimeout(nextCountdown, 1000);
     } else {
-		$counter.text('Go!');
-		setTimeout(hideCountdown, 1000);
+		$counter.text('');
+		setTimeout(hideCountdown, 200);
     }
 }
 
 var hideCountdown = function() {
-    $countdownScreen.hide();
 
     STACK.start();
+
+    //hell yeah fade out
+    var big = $countdownScreen.find('.countdown-arc svg');
+    var little = $slide_countdown.find('svg');
+    big_width = big.width()
+    little_width = little.width()
+    big_top = big.offset().top
+    little_top = little.offset().top
+    big_left = big.offset().left
+    little_left = little.offset().left
+    little_height = little.height()
+    big.velocity({
+        height: little_height,
+        translateX: little_left - big_left - big_width/2 + little_width/2,
+        translateY: little_top - big_top
+        },
+        {
+            duration: 1000,
+            display:'none',
+            complete: function(){
+                $countdownScreen.hide();
+            }
+        });
+    $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
 }
 
 /*

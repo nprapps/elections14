@@ -205,7 +205,8 @@ svg {
     left: 0;
     display: none;
     text-align: center;
-	text-transform: uppercase;
+	// text-transform: uppercase;
+    z-index: 1000;
 
     &:after {
         content : "";
@@ -213,19 +214,18 @@ svg {
         position: absolute;
         top: 0;
         left: 0;
-        background: url('../assets/promo/background.jpg') no-repeat center black;
+        // background: url('../assets/promo/background.jpg') no-repeat center black;
         width: 100%;
         height: 100%;
-        opacity : 0.8;
+        opacity : 0.3;
         z-index: -1;
     }
 
     h2,
     h3 {
-    	font-size: 3.5vw;
+    	font-size: 2vw;
     	margin: 0;
-    	color: @grayMedium;
-    	text-transform: uppercase;
+    	color: white;
     }
 
     .wrapper {
@@ -237,7 +237,7 @@ svg {
     .countdown-arc-wrapper {
     	width: 22vw;
     	height: 22vw;
-    	margin: 2.5vw auto;
+    	margin: 7vw auto;
     	position: relative;
 
     	.countdown-arc,
