@@ -28,7 +28,6 @@ var $castNext = null;
 var $header = null;
 var $headerControls = null;
 var $rightControls = null;
-var $fullScreenButton = null;
 var $statePickerLink = null;
 var $chromecastButton = null;
 var $audioPlayer = null;
@@ -43,6 +42,7 @@ var $controlsToggle = null;
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 var SKIP_COUNTDOWN = (window.location.search.indexOf('skipcountdown') >= 0);
+var IS_TOUCH = Modernizr.touch;
 var reloadTimestamp = null;
 
 var state = null;
@@ -105,7 +105,8 @@ var onDocumentReady = function(e) {
     $castNext = $('.cast-next');
 
     $audioPlayer = $('#pop-audio');
-    $fullScreenButton = $('.fullscreen a');
+    $fullscreenStart = $('.fullscreen .start');
+    $fullscreenStop = $('.fullscreen .stop');
     $chromecastButton = $('.chromecast');
     $bop = $('.leaderboard');
     $stack = $('#stack');
@@ -130,8 +131,9 @@ var onDocumentReady = function(e) {
     $castStop.on('click', onCastStopClick);
     $castPrev.on('click', onCastSlideControlClick);
     $castNext.on('click', onCastSlideControlClick);
+    $fullscreenStart.on('click', onFullscreenButtonClick);
+    $fullscreenStop.on('click', onFullscreenButtonClick);
 
-    $fullScreenButton.on('click', onFullScreenButtonClick);
     $statePickerLink.on('click', onStatePickerLink);
     $audioButtons.on('click', onAudioButtonsClick);
     $slideControls.on('click', onSlideControlClick);
@@ -183,8 +185,9 @@ var setupUI = function() {
     rotatePhone();
     checkTimestamp();
 
-    if (Modernizr.touch) {
+    if (IS_TOUCH) {
         $rightControls.hide();
+        $fullscreenStart.hide();
     }
 
     // Geolocate
@@ -374,7 +377,7 @@ var resizeSlide = function(slide) {
 }
 
 var rotatePhone = function() {
-    if (Modernizr.touch && Modernizr.mq('(orientation: portrait)')) {
+    if (IS_TOUCH && Modernizr.mq('(orientation: portrait)')) {
         $rotate.show();
         $('html').addClass('device-portrait');
 		$stack.css({
@@ -508,7 +511,7 @@ var substringMatcher = function(strs) {
 /*
  * Fullscreen the app.
  */
-var onFullScreenButtonClick = function() {
+var onFullscreenButtonClick = function() {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'fullscreen']);
     var elem = document.getElementById("stack");
 
@@ -524,8 +527,9 @@ var onFullScreenButtonClick = function() {
         else if (document.webkitExitFullscreen) {
             document.webkitExitFullscreen();
         }
-        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-expand.svg');
-        $fullScreenButton.find('span').text('Fullscreen');
+
+        $fullscreenStart.show();
+        $fullscreenStop.hide();
     }
     else {
         if (elem.requestFullscreen) {
@@ -541,8 +545,8 @@ var onFullScreenButtonClick = function() {
           elem.webkitRequestFullscreen();
         }
 
-        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-shrink.svg');
-        $fullScreenButton.find('span').text('Exit Fullscreen');
+        $fullscreenStart.hide();
+        $fullscreenStop.show();
     }
 }
 
