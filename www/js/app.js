@@ -219,6 +219,9 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
     	$chromecastIndexHeader.find('.cast-enabled').show();
     	$chromecastIndexHeader.find('.cast-disabled').hide();
         $castStart.show();
+    } else {
+        $chromecastIndexHeader.find('.cast-try-chrome').hide();
+        $chromecastIndexHeader.find('.cast-get-extension').show();
     }
 }
 

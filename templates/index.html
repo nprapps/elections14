@@ -10,24 +10,16 @@
 
     <h2>Live news and data DJ'ed by Amita Parashar &mdash; hosted by Melissa Block and Robert Siegel.</h2>
     <p class="byline">{{ COPY.content.byline }}</p>
-<!-- 
-    <h2 class="state-picker-hed-wrapper"><span class="state-picker-hed">{{ COPY.content.state_picker_hed }}</span> <span class="state-name"></span> <span class="stateface"></span> (<a href="">See results for a different state.</a>)</h2> -->
 
-    <form role="form" class="state-picker-form">
-        <!-- <div class="form-group">
-            <input class="typeahead" type="text" placeholder="Select a different state">
-        </div>
- -->
-    </form>
     <div class="cast-header">
         <div class="cast-disabled">
             <p><button class="btn btn-lg welcome-button js-go">Let's go!</button></p>
-            <p>(Got a Chromecast? Try this in Chrome on your laptop or phone.)</p>
-            <!-- <p>(Already in Chrome? Get the <a href="https://chrome.google.com/webstore/detail/google-cast/boadgeojelhgndaghljhdicfkmllpafd?hl=en">Cast extension</a>.)</p> -->
+            <p class="cast-try-chrome">(Got a Chromecast? Try this in Chrome on your laptop or phone.)</p>
+            <p class="cast-get-extension">(Got a Chromecast? Get <a href="https://chrome.google.com/webstore/detail/google-cast/boadgeojelhgndaghljhdicfkmllpafd?hl=en">Google Cast</a> to put the party on your TV.)</p>
         </div>
         <div class="cast-enabled">
-            <p><button class="cast-start btn btn-lg welcome-button">{% include '_chromecast-off.svg' %} Start Casting!</button></p>
-            <p class="cast-footer"><a href="#" class="js-go">Or play here</a></p>
+            <p><button class="cast-start btn btn-lg welcome-button">{% include '_chromecast-off.svg' %} Party on Chromecast</button></p>
+            <p class="cast-enabled-but-whatev"><a href="#" class="js-go">Or, party right here.</a></p>
         </div>
     </div>
 

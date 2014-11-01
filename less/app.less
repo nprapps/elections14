@@ -120,9 +120,24 @@ svg {
 				height: 40px;
 			}
     	}
+
+        .cast-get-extension,
     	.cast-enabled { display: none; }
+
         .cast-disabled p {
             margin-top: 3vw;
+        }
+
+        .cast-enabled-but-whatev {
+            margin-top:2vw;
+            a {
+                color: white;
+                font-weight: bold;
+                &:hover {
+                    color:@red;
+                    text-decoration: none;
+                }
+            }
         }
     }
 
@@ -147,9 +162,6 @@ svg {
     }
 
     .welcome-button {
-        // background-color: @red;
-        // border: @red;
-        // color: @musicLight;
 
         background-color: white;
         color: black;
