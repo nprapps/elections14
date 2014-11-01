@@ -143,6 +143,7 @@ def render_liveblog():
     views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
 
     Parallel(n_jobs=NUM_CORES)(delayed(_render_liveblog_slide)(view_name, slug, output_path) for slug, view_name in views)
+    print "Rendered liveblog"
 
 def _render_liveblog_slide(view_name, slug, output_path):
     """
@@ -152,7 +153,7 @@ def _render_liveblog_slide(view_name, slug, output_path):
         path = url_for(view_name, slug=slug)
 
     with app.app.test_request_context(path=path):
-        print 'Rendering %s' % path
+        #print 'Rendering %s' % path
 
         view = app.__dict__[view_name]
         content = view(slug)
@@ -192,6 +193,7 @@ def render_results():
 
     views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
     Parallel(n_jobs=NUM_CORES)(delayed(_render_results_slide)(view_name, slug, output_path) for view_name, slug in views)
+    print "Rendered results"
 
 def _render_results_slide(view_name, slug, output_path):
     from flask import url_for
@@ -199,7 +201,7 @@ def _render_results_slide(view_name, slug, output_path):
         path = url_for(view_name, slug=slug)
 
     with app.app.test_request_context(path=path):
-        print 'Rendering %s' % path
+        #print 'Rendering %s' % path
 
         view = app.__dict__[view_name]
         content = view(slug)
@@ -225,6 +227,7 @@ def render_states(compiled_includes={}):
 
     output_path = '.state_slides_html'
     Parallel(n_jobs=NUM_CORES)(delayed(_render_state)(postal, state, output_path) for postal, state in app_config.STATES.items())
+    print "Rendered states"
 
 def _render_state(postal, state, output_path):
     """
@@ -254,7 +257,7 @@ def _render_state(postal, state, output_path):
             content = view(**view_kwargs)
 
         if content.status_code == 200:
-            print 'Rendering %s (%s)' % (path, content.status_code)
+            #print 'Rendering %s (%s)' % (path, content.status_code)
 
             path = '%s%s' % (output_path, path)
 
@@ -284,6 +287,7 @@ def render_big_boards():
         'ballot-measures-big-board',
     ]
     Parallel(n_jobs=NUM_CORES)(delayed(_render_bigboard_slide)('_big_board', board, output_path) for board in boards)
+    print "Rendered big boards"
 
 def _render_bigboard_slide(view_name, slug, output_path):
     """
@@ -296,7 +300,7 @@ def _render_bigboard_slide(view_name, slug, output_path):
         path = url_for(view_name, slug=slug)
 
     with app.app.test_request_context(path=path):
-        print 'Rendering %s' % path
+        #print 'Rendering %s' % path
         view = app.__dict__[view_name]
         content = view(slug)
 
