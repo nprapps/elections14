@@ -26,8 +26,15 @@
 			<a class="cast-stop" href="#"><img src="assets/chromecast_on_blue.svg" alt="" /> {{ COPY.chromecast.btn_stop }}</a>
 		</li>
 		<li>
-			<label><span class="stateface stateface-ca"></span><input value="California" type="text"></label>
-			<a class="change-state" href="#">{{ COPY.chromecast.btn_state }}</a>
+
+			<label>
+                <span class="stateface stateface-ca"></span>
+                <span class="state-name">California</span> (<a href="#" class="change-state">{{ COPY.chromecast.btn_state }}</a>)
+            </label>
+            <form class="select-state">
+                <input class="typeahead" type="text" placeholder="Select a different state">
+                <input type="submit" />
+            </form>
 		</li>
 	</ul>
 </div>

@@ -7,17 +7,12 @@ var $rotate = null;
 var $countdownScreen = null;
 var $counter = null;
 
-var $statePickerScreen = null;
-var $statePickerForm = null;
 var $stateWrapper = null;
 var $stateface = null;
 var $stateName = null;
 var $typeahead = null;
-var $statePickerHed = null;
-var $statePickerLink = null;
 
 var $chromecastScreen = null;
-var $chromecastChangeState = null;
 var $chromecastIndexHeader = null;
 var $castStart = null;
 var $castStop = null;
@@ -27,7 +22,6 @@ var $castNext = null;
 var $header = null;
 var $headerControls = null;
 var $rightControls = null;
-var $statePickerLink = null;
 var $chromecastButton = null;
 var $audioPlayer = null;
 var $bop = null;
@@ -37,6 +31,8 @@ var $slide_countdown = null;
 var $controlsWrapper = null;
 var $controlsToggle = null;
 var $page = null;
+var $changeState = null;
+var $selectStateForm = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
@@ -90,16 +86,11 @@ var onDocumentReady = function(e) {
     $countdownScreen = $('.countdown');
     $counter = $('.counter');
 
-    $statePickerScreen = $('.state-picker');
-    $statePickerForm  = $('form.state-picker-form');
-    $statePickerLink = $ ('.state-picker-link');
     $stateWrapper = $('.state');
     $stateface = $('.stateface');
     $stateName = $('.state-name');
-    $statePickerHed = $('.state-picker-hed');
 
     $chromecastScreen = $('.cast-controls');
-    $chromecastChangeState = $chromecastScreen.find('.change-state');
     $chromecastIndexHeader = $welcomeScreen.find('.cast-header');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
@@ -122,15 +113,14 @@ var onDocumentReady = function(e) {
     $audioPlay = $('.controls .play');
     $audioPause = $('.controls .pause');
     $page = $('.page');
+    $changeState = $('.controls .change-state');
+    $selectStateForm = $('.controls form.select-state');
 
     reloadTimestamp = moment();
 
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
 
-    $statePickerForm.submit(onStatePickerSubmit);
-
-    $chromecastChangeState.on('click', onStatePickerLink);
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
     $castPrev.on('click', onCastSlideControlClick);
@@ -138,11 +128,13 @@ var onDocumentReady = function(e) {
     $fullscreenStart.on('click', onFullscreenButtonClick);
     $fullscreenStop.on('click', onFullscreenButtonClick);
 
-    $statePickerLink.on('click', onStatePickerLink);
     $audioPlay.on('click', onAudioPlayClick);
     $audioPause.on('click', onAudioPauseClick);
     $slideControls.on('click', onSlideControlClick);
     $controlsToggle.on('click', onControlsToggleClick);
+    $changeState.on('click', onChangeStateClick);
+    $selectStateForm.on('submit', onSelectStateFormSubmit);
+
     $body.on('keydown', onKeyboard);
     $(window).on('resize', onWindowResize);
 
@@ -207,8 +199,9 @@ var setupUI = function() {
     }
 
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
-        $('.typeahead').attr('placeholder', 'Select a state');
-        $statePickerHed.text('We are having trouble determining your state.')
+        // TODO
+        //$('.typeahead').attr('placeholder', 'Select a state');
+        //$statePickerHed.text('We are having trouble determining your state.')
     }
 
     welcomeOurGuests();
@@ -253,9 +246,6 @@ var setupStateTypeahead = function() {
     });
 
     $typeahead = $('.twitter-typeahead');
-
-    $('.typeahead').on('typeahead:selected', switchState)
-    $('.typeahead').on('typeahead:opened', hideStateFace)
 }
 
 /*
@@ -275,12 +265,7 @@ var onCastStarted = function() {
     $fullscreenStop.hide();
     STACK.stop();
 
-    if (!state) {
-        $statePickerScreen.show();
-    } else {
-        $statePickerScreen.hide();
-        $chromecastScreen.show();
-    }
+    $chromecastScreen.show();
 
     is_casting = true;
 }
@@ -560,17 +545,25 @@ var onFullscreenButtonClick = function() {
     }
 }
 
+var onChangeStateClick = function(e) {
+    e.preventDefault();
+
+    $selectStateForm.show();
+}
+    
 /*
  * Select the state.
  */
 
 var getState = function($typeahead) {
     var input = $typeahead.typeahead('val');
+    console.log(input);
 
     if (input) {
         var inverted = _.invert(APP_CONFIG.STATES);
         state = inverted[input]
     }
+    console.log(state);
 
     $.cookie('state', state, { expires: 30 });
 }
@@ -578,58 +571,25 @@ var getState = function($typeahead) {
 var showState = function() {
     $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
     $stateName.text(APP_CONFIG.STATES[state]);
-    $statePickerLink.find('.state-name').text(state);
 }
 
-var switchState = function() {
-    var $this = $(this);
+var onSelectStateFormSubmit = function(e) {
+    e.preventDefault();
 
-    getState($this);
+    var $input = $(this).find('.typeahead');
+
+    getState($input);
     showState();
 
     $stateface.css('opacity', 1);
     $stateName.css('opacity', 1);
     $typeahead.css('top', '0');
-    $statePickerHed.text('You have selected').css('opacity', 1);;
 
-    $this.typeahead('val', '')
-    $this.typeahead('close');
-    $this.blur();
-}
+    $input.typeahead('val', '')
+    $input.typeahead('close');
+    $input.blur();
 
-var hideStateFace = function() {
-    $stateface.css('opacity', 0);
-    $stateName.css('opacity', 0);
-    $statePickerHed.css('opacity', 0);
-
-    if ($stateWrapper.height() > 0 && $stateWrapper.width() > 0) {
-        $typeahead.css('top', '-20vw');
-    }
-}
-
-var onStatePickerSubmit = function(e) {
-    e.preventDefault();
-
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
-
-    $statePickerScreen.hide();
-
-    if (is_casting) {
-        $chromecastScreen.show();
-        CHROMECAST_SENDER.sendMessage('state', state);
-    } else {
-        $stack.show();
-    }
-}
-
-/*
- * Reopen state selector.
- */
-var onStatePickerLink = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'switch-state-from-nav']);
-    $stack.hide();
-    $chromecastScreen.hide();
-    $statePickerScreen.show();
+    $selectStateForm.hide();
 }
 
 /*
