@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 from copy import deepcopy
-
 from decimal import Decimal, InvalidOperation
 from functools import wraps
 from flask import make_response
+from math import ceil
 
 SENATE_INITIAL_BOP = {
     'dem': {
@@ -68,6 +68,23 @@ def group_races_by_closing_time(races):
         results[race.poll_closing_time].append(race)
 
     return sorted(results.items())
+
+def columnize_card(races, columns):
+    """
+    "Vertical" columns for score cards
+    """
+    results = []
+    if len(races):
+        columns = float(columns)
+        rows = ceil(len(races)/columns)
+        rows = int(rows)
+        try:
+            for i in xrange(0, len(races), rows):
+                results.append(races[i:i+rows])
+        except:
+            import ipdb; ipdb.set_trace();
+            print ""
+    return results
 
 def columnize_races(races, split_at=18):
     """

@@ -225,11 +225,16 @@ def house_freshmen():
 
     from models import Race
 
-    races = Race.select().where(Race.freshmen == True)
+    races = Race.select().where(Race.freshmen == True)\
+            .order_by(Race.state_postal, Race.seat_number)
 
-    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
-    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
+    won = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    lost = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    not_called = [race for race in races if not race.is_called() or race.is_runoff()]
+
+    context['races_won'] = app_utils.columnize_card(won, 6)
+    context['races_lost'] = app_utils.columnize_card(lost, 6)
+    context['races_not_called'] = app_utils.columnize_card(not_called, 6)
 
     context['races_count'] = races.count()
 
