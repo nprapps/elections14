@@ -794,7 +794,9 @@ var onSlideControlClick = function() {
 /**
  * Click control/legend toggle
  */
-var onControlsToggleClick = function() {
+var onControlsToggleClick = function(e) {
+    e.preventDefault();
+
     $controlsWrapper.fadeToggle();
 }
 
