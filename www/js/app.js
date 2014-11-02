@@ -27,6 +27,8 @@ var $audioButtons = null;
 var $slide_countdown = null;
 var $controlsWrapper = null;
 var $controlsToggle = null;
+var $castControls = null;
+var $closeControlsLink = null;
 var $changeState = null;
 
 // Global state
@@ -68,6 +70,7 @@ var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
 var hasTrackedNextSlide = null;
 var hasTrackedPrevSlide = null;
 var hasTrackedKeyboardNav = null;
+var hasTrackedMobileControls = null;
 
 /*
  * Run on page load.
@@ -103,6 +106,8 @@ var onDocumentReady = function(e) {
     $slideControls = $('.slide-nav .nav-btn');
     $controlsWrapper = $('.controls-wrapper');
     $controlsToggle = $('.js-toggle-controls');
+    $castControls = $('.cast-controls');
+    $closeControlsLink = $('.close-link');
     $slide_countdown = $stack.find('.slide-countdown');
     $audioPlay = $('.controls .play');
     $audioPause = $('.controls .pause');
@@ -121,7 +126,13 @@ var onDocumentReady = function(e) {
     $audioPlay.on('click', onAudioPlayClick);
     $audioPause.on('click', onAudioPauseClick);
     $slideControls.on('click', onSlideControlClick);
-    $controlsToggle.on('click', onControlsToggleClick);
+    if (!IS_TOUCH) {    
+        $controlsToggle.on('click', onControlsToggleClick);
+    }
+    else {
+        $stack.on('click', onStackTap);
+        $closeControlsLink.on('click', onCloseControlsLink);
+    }
     $changeState.on('click', onChangeStateClick);
     $statePicker.on('change', onStatePickerChange);
 
@@ -755,6 +766,22 @@ var onControlsToggleClick = function(e) {
     $controlsWrapper.fadeToggle();
 }
 
+var onStackTap = function() {
+    $castControls.show();
+    $closeControlsLink.show();
+    $stack.hide();
+
+
+    if (!hasTrackedMobileControls) {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'mobile-controls']);
+        hasTrackedMobileControls = true;
+    }
+}
+
+var onCloseControlsLink = function() {
+    $castControls.hide();
+    $stack.show();
+}
 /**
  * Catch keyboard events
  */
