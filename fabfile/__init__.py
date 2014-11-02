@@ -156,24 +156,34 @@ def deploy_client(remote='origin'):
     utils._deploy_to_s3()
 
 @task
-def deploy_liveblog_slides():
+def deploy_liveblog():
     """
     Deploy latest liveblog slides to S3.
     """
     local('rm -rf .liveblog_slides_html .liveblog_slides_gzip')
-    render.render_liveblog_slides()
+    render.render_liveblog()
     utils._gzip('.liveblog_slides_html', '.liveblog_slides_gzip')
-    utils._deploy_to_s3('.liveblog_slides_gzip')
+    utils._deploy_to_s3('.liveblog_slides_gzip', copy_assets=False)
 
 @task
-def deploy_results_slides():
+def deploy_results():
     """
     Deploy latest results slides to S3.
     """
     local('rm -rf .results_slides_html .results_slides_gzip')
-    render.render_results_slides()
+    render.render_results()
     utils._gzip('.results_slides_html', '.results_slides_gzip')
-    utils._deploy_to_s3('.results_slides_gzip')
+    utils._deploy_to_s3('.results_slides_gzip', copy_assets=False)
+
+@task
+def deploy_states():
+    """
+    Deploy latest state slides to S3.
+    """
+    local('rm -rf .state_slides_html .state_slides_gzip')
+    render.render_states()
+    utils._gzip('.state_slides_html', '.state_slides_gzip')
+    utils._deploy_to_s3('.state_slides_gzip', copy_assets=False)
 
 @task
 def deploy_big_boards():
@@ -183,7 +193,7 @@ def deploy_big_boards():
     local('rm -rf .big_boards_html .big_boards_gzip')
     render.render_big_boards()
     utils._gzip('.big_boards_html', '.big_boards_gzip')
-    utils._deploy_to_s3('.big_boards_gzip')
+    utils._deploy_to_s3('.big_boards_gzip', copy_assets=False)
 
 @task
 def deploy_bop():
@@ -193,7 +203,7 @@ def deploy_bop():
     local('rm -rf .bop_html .bop_gzip')
     render.render_bop()
     utils._gzip('.bop_html', '.bop_gzip')
-    utils._deploy_to_s3('.bop_gzip')
+    utils._deploy_to_s3('.bop_gzip', copy_assets=False)
 
 @task
 def deploy():

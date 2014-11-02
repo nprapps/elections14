@@ -20,14 +20,14 @@ def safe_execute(*args, **kwargs):
         del tb
 
 @task
-def deploy_liveblog():
+def deploy_liveblog(run_once=False):
     """
     Get and update liveblog slides
     """
     while True:
         start = time()
         safe_execute('liveblog.update')
-        safe_execute('deploy_liveblog_slides')
+        safe_execute('deploy_liveblog')
         duration = int(time() - start)
         wait = app_config.LIVEBLOG_DEPLOY_INTERVAL - duration
 
@@ -54,8 +54,9 @@ def deploy_results(run_once=False):
         safe_execute('ap.update')
         safe_execute('data.update')
         safe_execute('deploy_bop')
+        safe_execute('deploy_results')
         safe_execute('deploy_big_boards')
-        safe_execute('deploy_results_slides')
+        safe_execute('deploy_states')
 
         duration = int(time() - start)
         wait = app_config.RESULTS_DEPLOY_INTERVAL - duration
