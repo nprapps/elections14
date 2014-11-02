@@ -157,12 +157,14 @@ var STACK = (function () {
         if (slug === 'state-senate-results') {
             // If no state selected, skip to next
             if (!state) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
 
             // If we're tracking any races in this state
             if (APP_CONFIG.NO_GOVERNOR_OR_SENATE_RACES.indexOf(state) >= 0) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
@@ -172,12 +174,14 @@ var STACK = (function () {
         else if (slug === 'state-house-results-1') {
             // If no state selected, skip to next
             if (!state) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
 
             // If we're tracking any races in this state
             if (APP_CONFIG.NO_FEATURED_HOUSE_RACES.indexOf(state) >= 0) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
@@ -187,18 +191,21 @@ var STACK = (function () {
         else if (slug === 'state-house-results-2') {
             // If no state selected, skip to next
             if (!state) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
 
             // If we're tracking any races in this state
             if (APP_CONFIG.NO_FEATURED_HOUSE_RACES.indexOf(state) >= 0) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
 
             // Not a paginated state, skip page two
             if (APP_CONFIG.PAGINATED_STATES.indexOf(state) < 0) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
