@@ -137,7 +137,7 @@ var onDocumentReady = function(e) {
     $audioPlay.on('click', onAudioPlayClick);
     $audioPause.on('click', onAudioPauseClick);
     $slideControls.on('click', onSlideControlClick);
-    if (!IS_TOUCH) {    
+    if (!IS_TOUCH) {
         $controlsToggle.on('click', onControlsToggleClick);
     }
     else {
@@ -744,7 +744,7 @@ var onSlideControlClick = function(e) {
         if (is_casting) {
             setTimeout(function() {
                 $slideControls.removeClass('in-transition');
-            }, 1000);
+            }, 1500);
         }
     }
 
