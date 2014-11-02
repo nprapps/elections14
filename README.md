@@ -405,4 +405,5 @@ The Google Analytics events tracked in this application are:
 |elections14|keyboard-nav||||
 |elections14|facebook|share-discuss|||
 |elections14|tweet|share-discuss|||
+|elections14|mobile-controls||||
 
