@@ -27,21 +27,9 @@
     padding: 0 40px;
     position: absolute;
     bottom: 0;
-    background-color: #333;
 
-    .share-title, .share-url {
+    .share-url {
         position: relative;
-    }
-
-    .share-title {
-        top: 50%;
-        float: left;
-        transform: translateY(-50%);
-        width: 50%;
-        svg {
-            width: 62%;
-            margin-top: 5px;
-        }
     }
 
     .share-url {
@@ -50,14 +38,25 @@
         width: 50%;
         h2 {
             font-family: "Gotham SSm","Helvetica Neue",Helvetica,Arial,sans-serif;
-            font-size: 20px;
-            text-align: right;
+            font-size: 28px;
+            text-align: left;
+            margin:0;
         }
-        float: right;
-
+        i {
+            font-size: 11px;
+        }
+        float: left;
     }
 }
 
 .next-btn {
     display: none;
+}
+
+.ap-credit {
+    text-align: right;
+    position: absolute;
+    right: 22px;
+    bottom: 10px;
+    font-size: 11px;
 }
