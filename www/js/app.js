@@ -289,9 +289,9 @@ var onCastStopped = function() {
  */
 var onCastReceiverMute = function(message) {
     if (message == 'true') {
-        $audioPlayer.jPlayer('mute', true);
+        $audioPlayer.jPlayer('pause');
     } else {
-        $audioPlayer.jPlayer('mute', false);
+        $audioPlayer.jPlayer('play');
     }
 }
 
@@ -590,7 +590,7 @@ var onAudioPlayClick = function(e) {
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'false');
     } else {
-        $audioPlayer.jPlayer('mute', false);
+        $audioPlayer.jPlayer('play');
     }
 
     $audioPlay.hide();
@@ -604,11 +604,11 @@ var onAudioPlayClick = function(e) {
  */
 var onAudioPauseClick = function(e) {
     e.preventDefault();
-
+    
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'true');
     } else {
-        $audioPlayer.jPlayer('mute', true);
+        $audioPlayer.jPlayer('pause');
     }
 
     $audioPause.hide();
