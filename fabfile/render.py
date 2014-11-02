@@ -131,7 +131,6 @@ def render_liveblog():
     """
     Render liveblog slides to HTML files.
     """
-    from flask import url_for
     import models
 
     output_path = '.liveblog_slides_html'
@@ -147,13 +146,15 @@ def render_liveblog():
 
     views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
 
-    Parallel(n_jobs=NUM_CORES)(delayed(_render_liveblog_slide)(view_name, slug, output_path) for slug, view_name in views)
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_liveblog_slide)(view_name, slug, output_path) for view_name, slug in views)
     print "Rendered liveblog"
 
 def _render_liveblog_slide(view_name, slug, output_path):
     """
     Render a liveblog slide
     """
+    from flask import url_for
+
     with app.app.test_request_context():
         path = url_for(view_name, slug=slug)
 
