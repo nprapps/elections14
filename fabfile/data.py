@@ -4,6 +4,7 @@
 Commands that update or process the application data.
 """
 from datetime import datetime, timedelta
+from pytz import timezone
 from time import sleep
 from itertools import count
 import json
@@ -130,7 +131,7 @@ def load_races(path):
     with open(path) as f:
         races = json.load(f)
 
-    now = datetime.now()
+    now = datetime.now(timezone('US/Eastern'))
 
     with models.db.transaction():
         for race in races:
