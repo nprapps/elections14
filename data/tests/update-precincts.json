@@ -1,0 +1,24 @@
+[
+    {
+        "precincts_reporting": 1970, 
+        "last_updated": "2014-09-30T14:09:43Z", 
+        "precincts_total": 2288, 
+        "is_test": true, 
+        "candidates": [
+            {
+                "vote_count": 150000, 
+                "candidate_id": "4848-OR"
+            }, 
+            {
+                "vote_count": 200000, 
+                "candidate_id": "4642-OR"
+            }, 
+            {
+                "vote_count": 250000, 
+                "candidate_id": "4979-OR"
+            }
+        ], 
+        "race_id": "38529-OR"
+    }
+]
+
