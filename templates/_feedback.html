@@ -3,9 +3,5 @@
         <li><a href="http://twitter.com/share?text={{ COPY.share.twitter_text|urlencode }}&amp;url={{ COPY.share.share_url|urlencode }}" target="_blank" onclick="_gaq.push(['_trackEvent', '{{ PROJECT_SLUG }}', 'tweet', 'share-discuss']);"><i class="icon ion-social-twitter"></i> Share on Twitter</a></li>
         <li><a href="https://www.facebook.com/dialog/feed?app_id={{ COPY.share.facebook_app_id }}&amp;link={{ COPY.share.share_url|urlencode }}&amp;name={{ COPY.share.facebook_title|urlencode }}&amp;picture={{ COPY.share.facebook_image_url|urlencode }}&amp;redirect_uri={{ SHARE_URL|urlencode }}" target="_blank" onclick="_gaq.push(['_trackEvent', '{{ PROJECT_SLUG }}', 'facebook', 'share-discuss']);"><i class="icon ion-social-facebook"></i> Share on Facebook</a></li>
 	</ul>
-	<p>
-	<h4>How's the party?</h4>
-	<p>We've never built a website like this. Is anything broken? What do you like? Did you throw a party?</p>
-	<p>We'd love to hear from you.</p>
-	<p>NPR Visuals <a href="mailto:nprapps@npr.org">nprapps@npr.org</a></p>
+    {{ COPY.content.feedback }}
 </div>
