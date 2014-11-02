@@ -73,6 +73,16 @@ var hasTrackedPrevSlide = null;
 var hasTrackedKeyboardNav = null;
 var hasTrackedMobileControls = null;
 
+var has = function(obj, key) {
+    return hasOwnProperty.call(obj, key);
+};
+
+var invert = function(obj) {
+    var result = {};
+    for (var key in obj) if (has(obj, key)) result[obj[key]] = key;
+    return result;
+};
+
 /*
  * Run on page load.
  */
