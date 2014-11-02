@@ -21,7 +21,7 @@ svg {
     max-height: 100%; // Fix webkit svg height bug http://stackoverflow.com/questions/7570917/svg-height-incorrectly-calculated-in-webkit-browsers
 }
 
-.btn-lg{
+.btn-lg {
     font-size: 20px;
     letter-spacing: .03em;
     border-radius: 5px;
@@ -257,9 +257,15 @@ svg {
 
 }
 
+
+/*
+ * CHROMECAST AND MOBILE MENU
+ */
+
 .cast-controls {
 	padding: 3vw;
     display: none;
+	color: @grayMedium;
 
     &:after {
         content : "";
@@ -288,6 +294,7 @@ svg {
         padding-bottom: 2vw;
         margin: 0;
         text-transform: uppercase;
+        color: @white;
     }
     
     h3 {
@@ -317,17 +324,41 @@ svg {
         }
     }
     
-    .controls {
-    	width: 50%;
-    	float: left;
-    }
-    .legend {
-    	width: 50%;
-    	float: right;
-    }
-    .feedback { 
-    	clear: both;
-    	margin-top: 2vw;
+	.feedback { 
+		clear: both;
+		padding-top: 3vw;
+	
+		h3 { padding-top: 3vw; }
+	}
+
+    @media screen and (min-width: @screen-sm){
+		.controls {
+			width: 50%;
+			float: left;
+		}
+		.legend {
+			width: 50%;
+			float: right;
+		}
+		.feedback { 
+			clear: both;
+			padding-top: 3vw;
+		
+			h3 { padding-top: 3vw; }
+
+			ul.social { 
+				display: table;
+				width: 100%;
+		
+				a { display: block; }
+		
+				li {
+					display: table-cell;
+					width: 50%;
+					margin-bottom: 0;
+				}
+			}
+		}
     }
 }
 
@@ -517,14 +548,19 @@ svg {
 
     .nav {
         text-align: right;
-        float: right;
         font-size: 1.5vw;
         line-height: 3.5vw;
 
+        .page,
         .slide-nav,
         .slide-countdown,
         .logo {
             display: inline-block;
+        }
+
+        .page {
+            color: @grayMedium;
+            font-size: 1.2vw;
         }
 
         .slide-nav {
@@ -602,6 +638,38 @@ svg {
     }
 }
 
+/*
+ * FEEDBACK
+ */
+
+.feedback {
+	ul.social { 
+		display: table;
+		width: 100%;
+		
+		a { display: block; }
+		
+		i.icon {
+			width: 5vw;
+			height: 5vw;
+			line-height: 5vw;
+			text-align: center;
+			display: inline-block;
+			background-color: #222;
+			margin-right: 1vw;
+		}
+
+		li {
+			line-height: 5vw;
+			vertical-align: middle;
+			background-color: #333;
+			margin-bottom: 1px;
+			font-size: 1.75vw;
+		}
+		
+	}
+}
+
 
 /*
  * LEGEND
@@ -629,10 +697,11 @@ svg {
 
     li {
         position: relative;
-        margin-bottom: 1.5vw;
+        margin-bottom: 1vw;
         padding-left: 4vw;
         padding-right: 1vw;
-        line-height: 1.5vw;
+        line-height: 1.75vw;
+        font-size: 1.75vw;
 
         sup {
             top: -0.3em;
