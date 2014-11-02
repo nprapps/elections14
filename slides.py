@@ -7,7 +7,7 @@ from dateutil.parser import parse
 from flask import render_template
 import pytz
 
-from app_utils import get_last_updated, group_races_by_closing_time, columnize_races, columnize_card
+from app_utils import *
 from render_utils import make_context
 
 def senate_big_board():
