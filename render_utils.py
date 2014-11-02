@@ -11,6 +11,7 @@ from cssmin import cssmin
 from flask import Markup, g, render_template, request
 from slimit import minify
 from smartypants import smartypants
+from pytz import timezone
 
 import app_config
 import copytext
@@ -202,7 +203,7 @@ def make_context(asset_depth=0, static_path='', absolute=False, timestamp=None):
     if timestamp:
         context['TIMESTAMP'] = timestamp.strftime('%b. %d, %Y at %I:%M EST')
     else:
-        context['TIMESTAMP'] = time.strftime('%b. %d, %Y at %I:%M EST')
+        context['TIMESTAMP'] = datetime.now(timezone('US/Eastern')).strftime('%b. %d, %Y at %I:%M EST')
 
     return context
 

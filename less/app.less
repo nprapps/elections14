@@ -259,17 +259,165 @@ svg {
 
 
 /*
+ * FEEDBACK
+ */
+
+.feedback {
+	ul.social { 
+		display: table;
+		width: 100%;
+		
+		a { 
+			display: block;
+			font-weight: 700;
+		}
+		
+		i.icon {
+			width: 5vw;
+			height: 5vw;
+			line-height: 5vw;
+			text-align: center;
+			display: inline-block;
+			background-color: #222;
+			margin-right: 1vw;
+		}
+
+		li {
+			line-height: 5vw;
+			vertical-align: middle;
+			background-color: #333;
+			margin-bottom: 1px;
+			font-size: 1.75vw;
+		}
+		
+	}
+}
+
+
+/*
+ * LEGEND
+ */
+
+.legend {
+    font-weight: 300;
+    
+    .container-fluid {
+        .clearfix();
+        margin: 1vw 2vw;
+        background: fadeout(@blueDark, 50%);
+        padding: 1vw 2vw .8vw 2vw;
+        font-size: 1.3vw;
+        color: #999;
+    }
+
+    ul {
+        .clearfix();
+        margin-bottom: 0;
+        min-height: 1px;
+        box-sizing: border-box;
+        line-height: 1.1;
+    }
+
+    li {
+        position: relative;
+        margin-bottom: 1vw;
+        padding-left: 4vw;
+        padding-right: 1vw;
+        line-height: 1.75vw;
+        font-size: 1.75vw;
+
+        sup {
+            top: -0.3em;
+        }
+    }
+
+    .incumbent,
+    .reporting,
+    .seat-held,
+    .pickup,
+    .polls,
+    .key-color {
+        width: 2.5vw;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: right;
+		font-family: 'Cooper Hewitt';
+		text-align: right;
+    }
+
+    .key-color {
+        .square(1.25vw);
+        display: inline-block;
+        border-radius: 1vw;
+        margin-right: .5vw;
+        left: 1.25vw;
+		font-family: 'Cooper Hewitt';
+
+        &.dem   { background: @blue; }
+        &.gop   { background: @red; }
+        &.other { background: @green; }
+    }
+
+    .winner {
+        display: inline-block;
+        border-radius: 0.5vw;
+        padding: 0 0.5vw;
+        color: #fff;
+        opacity: .8;
+		font-family: 'Cooper Hewitt';
+
+        &.dem   { background: @blue; }
+        &.gop   { background: @red; }
+        &.other { background: @green; }
+    }
+
+    .incumbent {
+        img {
+            width: 0.8vw;
+            display: inline-block;
+        }
+    }
+
+    .polls {
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        font-size: 1.2vw;
+        padding-top: .2vw;
+        color: @gray-light;
+        white-space: nowrap;
+    }
+
+    .reporting {
+        color: @yellow;
+        font-weight: 500;
+        font-size: 1.5vw;
+    }
+
+    .seat-held {
+        color: @red;
+        font-weight: 500;
+    }
+
+    .pickup {
+        font-weight: 500;
+        font-style: italic;
+        font-size: 1.5vw;
+        color: @blue;
+    }
+}
+
+
+/*
  * CHROMECAST AND MOBILE MENU
+ * (responsive, so all values in px rather than vw)
  */
 
 .cast-controls {
-	padding: 3vw;
-    display: none;
+	padding: 33px;
 	color: @grayMedium;
-
-    .close-link {
-        display: none;
-    }
+    display: none;
 
     &:after {
         content : "";
@@ -285,28 +433,33 @@ svg {
         z-index: -1;
     }
 
-    .logo-wrapper {
-        width: 120px;
-        margin: 15px auto 60px;
-        fill: @grayMedium;
+    .close-link {
+        display: none;
     }
 
     h2 {
-        font-size: 3vw;
+        font-size: 36px;
         font-weight: bold;
-        padding: 0;
-        padding-bottom: 2vw;
+        padding-bottom: 22px;
         margin: 0;
         text-transform: uppercase;
         color: @white;
+
+		@media screen and (max-width: @screen-sm){
+			font-size: 18px;
+			padding-bottom: 11px;
+		}
     }
     
     h3 {
         text-transform: uppercase;
-        font-size: 1.5vw;
-        line-height: 1.5vw;
-        margin: 0 0 1.5vw 0;
+        font-size: 14px;
+        margin: 0 0 11px 0;
         padding: 0;
+
+		@media screen and (max-width: @screen-sm){
+			font-size: 12px;
+		}
     }
     
     .controls ul {
@@ -315,13 +468,19 @@ svg {
         padding: 0;
 
         li {
-            font-size: 2vw;
-            font-weight: bold;
-            margin-bottom: 1.5vw;
             .unselectable;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 11px;
 
+			@media screen and (max-width: @screen-sm){
+				font-size: 18px;
+				line-height: 44px;
+				margin-bottom: 2px;
+			}
+			
             img {
-            	height: 3vw;
+            	height: 18px;
             	width: auto;
             	vertical-align: middle;
             }
@@ -330,9 +489,73 @@ svg {
     
 	.feedback { 
 		clear: both;
-		padding-top: 3vw;
+		padding-top: 33px;
 	
-		h3 { padding-top: 3vw; }
+		h3 { padding-top: 33px; }
+		p { 
+			max-width: 600px;
+			font-size: 14px;
+		}
+		
+		ul.social {
+			i.icon {
+				width: 44px;
+				height: 44px;
+				line-height: 44px;
+				margin-right: 10px;
+			}
+			
+			li {
+				line-height: 44px;
+				font-size: 14px;
+			}
+		}
+	}
+
+	.legend {
+		.container-fluid {
+			margin: 0;
+			background: none;
+			padding: 0;
+			font-size: 14px;
+		}
+
+		li {
+			margin-bottom: 11px;
+			padding-left: 40px;
+			padding-right: 0;
+			line-height: 16px;
+			font-size: 14px;
+		}
+
+		.incumbent,
+		.reporting,
+		.seat-held,
+		.pickup,
+		.polls,
+		.key-color {
+			width: 30px;
+		}
+
+		.incumbent img { width: 6px; }
+
+		.key-color {
+			.square(14px);
+			border-radius: 14px;
+			left: 16px;
+		}
+
+		.pickup,
+		.polls,
+		.reporting,
+		.seat-held {
+			font-size: 12px;
+		}
+
+		.winner {
+			border-radius: 6px;
+			padding: 0 6px;
+		}
 	}
 
     @media screen and (min-width: @screen-sm){
@@ -639,152 +862,5 @@ svg {
     	margin: 0 auto 1.5vw auto;
     	height: 10vw;
     	width: auto;
-    }
-}
-
-/*
- * FEEDBACK
- */
-
-.feedback {
-	ul.social { 
-		display: table;
-		width: 100%;
-		
-		a { display: block; }
-		
-		i.icon {
-			width: 5vw;
-			height: 5vw;
-			line-height: 5vw;
-			text-align: center;
-			display: inline-block;
-			background-color: #222;
-			margin-right: 1vw;
-		}
-
-		li {
-			line-height: 5vw;
-			vertical-align: middle;
-			background-color: #333;
-			margin-bottom: 1px;
-			font-size: 1.75vw;
-		}
-		
-	}
-}
-
-
-/*
- * LEGEND
- */
-
-.legend {
-    font-weight: 300;
-    
-    .container-fluid {
-        .clearfix();
-        margin: 1vw 2vw;
-        background: fadeout(@blueDark, 50%);
-        padding: 1vw 2vw .8vw 2vw;
-        font-size: 1.3vw;
-        color: #999;
-    }
-
-    ul {
-        .clearfix();
-        margin-bottom: 0;
-        min-height: 1px;
-        box-sizing: border-box;
-        line-height: 1.1;
-    }
-
-    li {
-        position: relative;
-        margin-bottom: 1vw;
-        padding-left: 4vw;
-        padding-right: 1vw;
-        line-height: 1.75vw;
-        font-size: 1.75vw;
-
-        sup {
-            top: -0.3em;
-        }
-    }
-
-    .incumbent,
-    .reporting,
-    .seat-held,
-    .pickup,
-    .polls,
-    .key-color {
-        width: 2.5vw;
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        text-align: right;
-		font-family: 'Cooper Hewitt';
-		text-align: right;
-    }
-
-    .key-color {
-        .square(1.25vw);
-        display: inline-block;
-        border-radius: 1vw;
-        margin-right: .5vw;
-        left: 1.25vw;
-		font-family: 'Cooper Hewitt';
-
-        &.dem   { background: @blue; }
-        &.gop   { background: @red; }
-        &.other { background: @green; }
-    }
-
-    .winner {
-        display: inline-block;
-        border-radius: 0.5vw;
-        padding: 0 0.5vw;
-        color: #fff;
-        opacity: .8;
-		font-family: 'Cooper Hewitt';
-
-        &.dem   { background: @blue; }
-        &.gop   { background: @red; }
-        &.other { background: @green; }
-    }
-
-    .incumbent {
-        img {
-            width: 0.8vw;
-            display: inline-block;
-        }
-    }
-
-    .polls {
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        font-size: 1.2vw;
-        padding-top: .2vw;
-        color: @gray-light;
-        white-space: nowrap;
-    }
-
-    .reporting {
-        color: @yellow;
-        font-weight: 500;
-        font-size: 1.5vw;
-    }
-
-    .seat-held {
-        color: @red;
-        font-weight: 500;
-    }
-
-    .pickup {
-        font-weight: 500;
-        font-style: italic;
-        font-size: 1.5vw;
-        color: @blue;
     }
 }
