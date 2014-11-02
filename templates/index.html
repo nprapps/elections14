@@ -44,12 +44,15 @@
 
 <div class="cast-controls">
     <a class="close-link" href="#">Back to the party</a>
-
-    <h2>{{ COPY.chromecast.menu_hed }}</h2>
     
-	{% include '_controls.html' %}
-    {% include '_legend.html' %}
-    {% include '_feedback.html' %}
+    <div class="wrapper">
+		{% include '_legend.html' %}
+	
+		<div class="controls-feedback-wrapper">
+			{% include '_controls.html' %}
+			{% include '_feedback.html' %}
+		</div>
+	</div>
 
     <div class="close-link">
         <a href="#">Back to the party</a>
