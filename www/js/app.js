@@ -170,8 +170,6 @@ var onDocumentReady = function(e) {
 }
 
 var setupUI = function() {
-
-    rotatePhone();
     checkTimestamp();
 
     if (IS_TOUCH) {
@@ -239,6 +237,8 @@ var onCastStarted = function() {
     $chromecastScreen.show();
 
     is_casting = true;
+
+    CHROMECAST_SENDER.sendMessage('state', state);
 }
 
 /*
@@ -310,8 +310,10 @@ var onWindowResize = function() {
     });
 
     var thisSlide = $('.slide');
-    resizeSlide(thisSlide);
-    rotatePhone();
+    if (thisSlide.length > 0) {
+        resizeSlide(thisSlide);
+        rotatePhone();
+    }
 }
 
 /*
@@ -387,6 +389,7 @@ var onWelcomeButtonClick = function() {
     }
 
    showCountdown();
+   rotatePhone();
 }
 
 var showCountdown = function() {
@@ -531,6 +534,10 @@ var onStatePickerChange = function() {
     $stateName.css('opacity', 1);
 
     $statePicker.hide();
+
+    if (is_casting) {
+        CHROMECAST_SENDER.sendMessage('state', state);
+    }
 }
 
 /*
