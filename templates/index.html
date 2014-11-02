@@ -6,20 +6,26 @@
     {% include '_logo2.svg' %}
     </div>
 
-    <h1>ELECTION PARTY!</h1>
+    <h1>{{ COPY.content.welcome_header }}</h1>
 
-    <h2>Live news and data DJ'ed by Amita Parashar &mdash; hosted by Melissa Block and Robert Siegel.</h2>
+    <h2>{{ COPY.content.welcome_subhead }}</h2>
     <p class="byline">{{ COPY.content.byline }}</p>
 
     <div class="cast-header">
         <div class="cast-disabled">
-            <p><button class="btn btn-lg welcome-button js-go">Let's go!</button></p>
-            <p class="cast-try-chrome">(Got a Chromecast? Try this in Chrome on your laptop or phone.)</p>
-            <p class="cast-get-extension">(Got a Chromecast? Get <a href="https://chrome.google.com/webstore/detail/google-cast/boadgeojelhgndaghljhdicfkmllpafd?hl=en" target="_blank">Google Cast</a> to put the party on your TV.)</p>
+            <button class="btn btn-lg welcome-button js-go">
+                {% for greeting in COPY.welcome_button %}
+                    <span data-greeting-index="{{ loop.index0 }}">
+                        {{ greeting }}
+                    </span>
+                {% endfor %}
+            </button>
+            <p class="cast-try-chrome">{{ COPY.content.get_chrome }}</p>
+            <p class="cast-get-extension">{{ COPY.content.get_chromecast }}</p>
         </div>
         <div class="cast-enabled">
-            <p><button class="cast-start btn btn-lg welcome-button">{% include '_chromecast-off.svg' %} Party on Chromecast</button></p>
-            <p class="cast-enabled-but-whatev"><a href="#" class="js-go">Or, party right here.</a></p>
+            <button class="cast-start btn btn-lg welcome-button">{% include '_chromecast-off.svg' %} {{ COPY.content.chromecast_button }}</button>
+            <p class="cast-enabled-but-whatev"><a href="#" class="js-go">{{ COPY.content.chromecast_alt_button }}</a></p>
         </div>
     </div>
 
@@ -36,27 +42,17 @@
     </div>
 </div>
 
-<div class="state-picker">
-    <h2 class="state-picker-hed">{{ COPY.content.state_picker_hed }}</h2>
-
-    <form role="form" class="state-picker-form">
-        <div class="form-group">
-            <div class="state">
-                <span class="stateface"></span>
-                <h3 class="state-name"></h3>
-            </div>
-
-            <input class="typeahead" type="text" placeholder="Select a different state">
-        </div>
-
-        <button type="submit" class="btn btn-lg state-picker-submit">Go</button>
-    </form>
-</div>
-
 <div class="cast-controls">
     <h2>{{ COPY.chromecast.menu_hed }}</h2>
-	<p><a class="cast-prev" href="#">Previous Slide</a></p>
-	<p><a class="cast-next" href="#">Next Slide</a></p>
+
+    <div class="nav">
+        <div class="slide-countdown"></div>
+        <nav class="slide-nav">
+            <a href="#" data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></a>
+            <p class="page">1 of 15</p>
+            <a href="#" data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></a>
+        </nav>
+    </div>
 
 	{% include '_controls.html' %}
     {% include '_legend.html' %}
