@@ -69,7 +69,7 @@ def group_races_by_closing_time(races):
 
     return sorted(results.items())
 
-def columnize_card(races, columns):
+def columnize_card(races, columns=6):
     """
     "Vertical" columns for score cards
     """
