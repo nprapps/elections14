@@ -131,7 +131,7 @@ def load_races(path):
     with open(path) as f:
         races = json.load(f)
 
-    now = datetime.now(timezone('US/Eastern'))
+    now = datetime.now()
 
     with models.db.transaction():
         for race in races:
