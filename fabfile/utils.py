@@ -23,7 +23,7 @@ def _gzip(in_path='www', out_path='.gzip'):
     """
     local('python gzip_assets.py %s %s' % (in_path, out_path))
 
-def _deploy_to_s3(path='.gzip', sync_assets=True):
+def _deploy_to_s3(path='.gzip', copy_assets=True):
     """
     Deploy the gzipped stuff to S3.
     """
@@ -50,7 +50,8 @@ def _deploy_to_s3(path='.gzip', sync_assets=True):
     for bucket in app_config.S3_BUCKETS:
         local(sync % (path, 's3://%s/' % bucket['bucket_name'], app_config.MAX_AGE_CACHE_CONTROL_HEADER, bucket['region']))
         local(sync_gzip % (path, 's3://%s/' % bucket['bucket_name'], app_config.MAX_AGE_CACHE_CONTROL_HEADER, bucket['region']))
-        local(sync_assets % ('www/assets/', 's3://%s/assets/' % (bucket['bucket_name']), bucket['region']))
+        if copy_assets:
+            local(sync_assets % ('www/assets/', 's3://%s/assets/' % (bucket['bucket_name']), bucket['region']))
 
 def deploy_json(src, dst):
     """
