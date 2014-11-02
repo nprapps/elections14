@@ -258,6 +258,7 @@ var onCastStarted = function() {
     $fullscreenStart.hide();
     $fullscreenStop.hide();
     $castStart.hide();
+    $castStop.show();
     STACK.stop();
 
     $chromecastScreen.show();
@@ -380,9 +381,6 @@ var onCastStartClick = function(e) {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-initiated']);
     
     CHROMECAST_SENDER.startCasting();
-
-    $castStart.hide();
-    $castStop.show();
 }
 
 /*
