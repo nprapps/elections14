@@ -153,5 +153,5 @@ class DataTestCase(unittest.TestCase):
             data.load_ballot_measures_extra('data/ballot-measures-extra.csv', quiet=True)
 
             race = Race.get(Race.race_id == '27456-MO')
-            self.assertEqual(race.ballot_measure_description, 'Teacher Performance Evaluation (Amendment 3)')
+            self.assertEqual(race.ballot_measure_description, 'Teacher performance evaluation (Amendment 3)')
 
