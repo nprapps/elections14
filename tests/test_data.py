@@ -75,6 +75,30 @@ class DataTestCase(unittest.TestCase):
             self.assertFalse(candidate_4642.ap_winner)
             self.assertFalse(candidate_4979.ap_winner)
 
+    def test_update_times(self):
+        with test_database(test_db, [Race, Candidate]):
+            data.load_races('data/tests/init_races.json')
+            data.load_candidates('data/tests/init_candidates.json')
+            data.load_updates('data/tests/update.json')
+
+            race = Race.get(Race.race_id == '38529-OR')
+            first_last_updated = race.last_updated
+
+            data.load_updates('data/tests/update.json')
+            race = Race.get(Race.race_id == '38529-OR')
+            last_updated = race.last_updated
+            self.assertEqual(first_last_updated, last_updated)
+
+            data.load_updates('data/tests/update-votes.json')
+            race = Race.get(Race.race_id == '38529-OR')
+            last_updated = race.last_updated
+            self.assertEqual(first_last_updated, last_updated)
+
+            data.load_updates('data/tests/update-precincts.json')
+            race = Race.get(Race.race_id == '38529-OR')
+            last_updated = race.last_updated
+            self.assertEqual(first_last_updated, last_updated)
+
     def test_update_calls(self):
         with test_database(test_db, [Race, Candidate]):
             data.load_races('data/tests/init_races.json')
