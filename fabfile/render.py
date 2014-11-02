@@ -136,6 +136,11 @@ def render_liveblog():
 
     output_path = '.liveblog_slides_html'
 
+    try:
+        os.makedirs(output_path)
+    except OSError:
+        pass
+
     slides = models.Slide.select()
     slugs = [slide.slug for slide in slides if slide.slug.startswith('tumblr')]
     slides.database.close()
