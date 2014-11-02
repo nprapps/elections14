@@ -89,7 +89,8 @@ var STACK = (function () {
                 $(this).jPlayer('setMedia', {
                     mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
                 });
-                if (IS_CAST_RECEIVER) {
+
+                if (IS_CAST_RECEIVER || SKIP_COUNTDOWN) {
                     $(this).jPlayer('play');
                 }
             },
@@ -240,7 +241,7 @@ var STACK = (function () {
                 addNewSlide();
             }
             else {
-                $oldSlide.fadeOut(800, addNewSlide);
+                $oldSlide.velocity('fadeOut', 800, addNewSlide);
             }
 
         } else {
@@ -248,10 +249,10 @@ var STACK = (function () {
             resizeSlide($newSlide);
 
             if (($newSlide.find('.results-header').length > 0) || ($newSlide.find('.balance-of-power').length > 0)) {
-                $header.find('.leaderboard').fadeOut();
+                $header.find('.leaderboard').velocity('fadeOut');
             }
             else {
-                $header.find('.leaderboard').fadeIn();
+                $header.find('.leaderboard').velocity('fadeIn');
             }
 
             if (IS_CAST_RECEIVER) {
@@ -259,7 +260,7 @@ var STACK = (function () {
                 setTimer();
             }
             else {
-                $newSlide.fadeIn(800, setTimer);
+                $newSlide.velocity('fadeIn', 800, setTimer);
             }
         }
     }
@@ -270,10 +271,10 @@ var STACK = (function () {
         resizeSlide($newSlide)
 
         if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
-            $header.find('.leaderboard').fadeOut();
+            $header.find('.leaderboard').velocity('fadeOut');
         }
         else {
-            $header.find('.leaderboard').fadeIn();
+            $header.find('.leaderboard').velocity('fadeIn');
         }
 
         if (IS_CAST_RECEIVER) {
@@ -281,7 +282,7 @@ var STACK = (function () {
             setTimer();
         }
         else {
-            $newSlide.fadeIn(800, setTimer);
+            $newSlide.velocity('fadeIn', 800, setTimer);
         }
     }
 

@@ -101,7 +101,7 @@ var substringMatcher = function(strs) {
 var checkState = function() {
     var input = $('.typeahead').typeahead('val');
     if (input) {
-        var inverted = _.invert(APP_CONFIG.STATES);
+        var inverted = invert(APP_CONFIG.STATES);
         var state = inverted[input]
     }
 
@@ -113,7 +113,7 @@ var checkState = function() {
 var onStatePickerSubmitClick = function() {
     var input = $('.typeahead').typeahead('val');
     if (input) {
-        var inverted = _.invert(APP_CONFIG.STATES);
+        var inverted = invert(APP_CONFIG.STATES);
         var state = inverted[input]
     }
 

@@ -319,7 +319,7 @@
         }
     }
 
-    .key{
+    .key {
         font-family: 'Cooper Hewitt';
         font-size: 9px;
         font-weight: 400;
@@ -423,7 +423,12 @@
 
 	.count,
 	.percentage {
-		border: 2px solid transparent;
+		border: 1px solid transparent;
+
+		@media screen and (min-width: @screen-sm){
+			border-width: 2px;
+		}
+
 		display: inline-block;
 		box-sizing: border-box;
 		min-width: 3vw;
