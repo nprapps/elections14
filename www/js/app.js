@@ -770,8 +770,7 @@ var onStackTap = function() {
     $castControls.show();
     $closeControlsLink.show();
     $stack.hide();
-
-
+    
     if (!hasTrackedMobileControls) {
         _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'mobile-controls']);
         hasTrackedMobileControls = true;
