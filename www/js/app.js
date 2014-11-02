@@ -177,8 +177,6 @@ var onDocumentReady = function(e) {
 }
 
 var setupUI = function() {
-
-    rotatePhone();
     checkTimestamp();
 
     if (IS_TOUCH) {
@@ -325,8 +323,10 @@ var onWindowResize = function() {
     });
 
     var thisSlide = $('.slide');
-    resizeSlide(thisSlide);
-    rotatePhone();
+    if (thisSlide.length > 0) {
+        resizeSlide(thisSlide);
+        rotatePhone();
+    }
 }
 
 /*
@@ -402,6 +402,7 @@ var onWelcomeButtonClick = function() {
     }
 
    showCountdown();
+   rotatePhone();
 }
 
 var showCountdown = function() {
