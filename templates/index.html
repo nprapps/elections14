@@ -20,12 +20,12 @@
                     </span>
                 {% endfor %}
             </button>
-            <p class="cast-try-chrome">(Got a Chromecast? Try this in Chrome on your laptop or phone.)</p>
-            <p class="cast-get-extension">(Got a Chromecast? Get <a href="https://chrome.google.com/webstore/detail/google-cast/boadgeojelhgndaghljhdicfkmllpafd?hl=en" target="_blank">Google Cast</a> to put the party on your TV.)</p>
+            <p class="cast-try-chrome">{{ COPY.content.get_chrome }}</p>
+            <p class="cast-get-extension">{{ COPY.content.get_chromecast }}</p>
         </div>
         <div class="cast-enabled">
-            <button class="cast-start btn btn-lg welcome-button">{% include '_chromecast-off.svg' %} Party on Chromecast</button>
-            <p class="cast-enabled-but-whatev"><a href="#" class="js-go">Or, party right here.</a></p>
+            <button class="cast-start btn btn-lg welcome-button">{% include '_chromecast-off.svg' %} {{ COPY.content.chromecast_button }}</button>
+            <p class="cast-enabled-but-whatev"><a href="#" class="js-go">{{ COPY.content.chromecast_alt_button }}</a></p>
         </div>
     </div>
 
