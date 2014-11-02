@@ -73,6 +73,16 @@ var hasTrackedPrevSlide = null;
 var hasTrackedKeyboardNav = null;
 var hasTrackedMobileControls = null;
 
+var has = function(obj, key) {
+    return hasOwnProperty.call(obj, key);
+};
+
+var invert = function(obj) {
+    var result = {};
+    for (var key in obj) if (has(obj, key)) result[obj[key]] = key;
+    return result;
+};
+
 /*
  * Run on page load.
  */
@@ -114,7 +124,7 @@ var onDocumentReady = function(e) {
     $audioPause = $('.controls .pause');
     $changeState = $('.controls .change-state');
 
-    reloadTimestamp = moment();
+    reloadTimestamp = Date.now();
 
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
@@ -561,9 +571,8 @@ var checkTimestamp = function() {
             'url': '/live-data/timestamp.json',
             'cache': false,
             'success': function(data) {
-                var newTime = moment(data);
-
-                if (reloadTimestamp.isBefore(newTime)) {
+                var newTime = data;
+                if (reloadTimestamp < newTime) {
                     $.cookie('reload', true);
                     window.location.reload(true);
                 }

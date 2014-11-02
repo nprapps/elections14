@@ -276,9 +276,9 @@ svg {
 		}
 		
 		i.icon {
-			width: 5vw;
-			height: 5vw;
-			line-height: 5vw;
+			width: 4vw;
+			height: 4vw;
+			line-height: 4vw;
 			text-align: center;
 			display: inline-block;
 			background-color: #222;
@@ -286,11 +286,11 @@ svg {
 		}
 
 		li {
-			line-height: 5vw;
+			line-height: 4vw;
 			vertical-align: middle;
 			background-color: #333;
 			margin-bottom: 1px;
-			font-size: 1.75vw;
+			font-size: 1.5vw;
 		}
 		
 	}
@@ -315,15 +315,13 @@ svg {
 
     li {
         position: relative;
-        margin-bottom: 1vw;
         padding-left: 4vw;
         padding-right: 1vw;
-        line-height: 1.75vw;
-        font-size: 1.75vw;
+        margin-bottom: 1vw;
+        font-size: 1.5vw;
+        line-height: 1.5vw;
 
-        sup {
-            top: -0.3em;
-        }
+        sup { top: -0.3em; }
     }
 
     .incumbent,
@@ -648,34 +646,35 @@ svg {
     width: 98%;
     z-index: 100;
     background: fadeout(@blueDarker,2%);
-    display: none;
     font-size: 1.75vw;
     border-radius: 1vw;
     padding: 2vw 0.5vw;
     margin: 0 1vw;
     overflow: hidden;
     color: @grayMedium;
+    display: none;
 
     a {
         &:hover {
             text-decoration: none;
         }
     }
+    
+    h3 {
+    	margin: 0 0 1vw;
+    	font-size: 1.5vw;
+    	text-transform: uppercase;
+    	color: @white;
+    	font-weight: 700;
+    }
 
     .legend,
     .controls,
     .feedback {
         float: left;
-        width: 33.33333%;
+        width: 33%;
         padding: 0 1%;
-        display: border-box;
-    }
-
-    .legend {
-        li {
-            font-size: 1.5vw;
-            margin-bottom: 0.5vw;
-        }
+        box-sizing: border-box;
     }
 
     .controls {
@@ -691,23 +690,18 @@ svg {
 			
 			img { height: 2vw; }
         }
+		nav { display: none; }
+		.slide-countdown { display: none; }
     }
 
     .feedback {
-        li {
-        	a { .unselectable; }
-
-        	i {
-				display: inline-block;
-				width: 1vw;
-				margin-right: 0.5vw;
-				text-align: center;
-			}
-		}
+    	.social {
+    		margin-bottom: 2vw;
+    	}
 
         p {
-            font-size: 1.2vw;
-            line-height: 1.4vw;
+            font-size: 1.4vw;
+            line-height: 1.4;
         }
 
         h4 {
@@ -726,7 +720,7 @@ svg {
     bottom: 0;
     z-index: 1;
     background: black;
-    padding: 0 2%;
+    padding: .3vw 2% 0 2%;
 
     a {
         color: @grayMedium;
@@ -737,17 +731,12 @@ svg {
         }
     }
 
-    .leaderboard,
-    .control-toggle,
-    .nav {
-        float: left;
-        width: 33.33333%;
-        padding: 0 1%;
-        display: border-box;
-        .unselectable;
-    }
-    
     .leaderboard {
+    	float: left;
+    	width: 40%;
+    	white-space: nowrap;
+    	.clearfix;
+
 		.senate-header {
 			text-transform: uppercase;
 			font-weight: bold;
@@ -759,6 +748,8 @@ svg {
     }
 
     .control-toggle {
+    	float: left;
+    	width: 33%;
         text-align: center;
         text-transform: uppercase;
         font-size: 1.5vw;
@@ -778,6 +769,7 @@ svg {
     }
 
     .nav {
+    	float: right;
         text-align: right;
         font-size: 1.5vw;
         line-height: 3.5vw;
