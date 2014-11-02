@@ -598,128 +598,15 @@
                 }
             }
 
-            .candidate-total {
-                width: 9%;
-            }
+            .candidate-total { width: 9%; }
         }
     }
 }
 
-.legend {
-    font-family: 'Cooper Hewitt';
-    font-weight: 300;
-    
-    h3 {
-        padding-left: 1vw;
-        text-transform: uppercase;
-        font-size: 1.3vw;
-        margin: 0 0 1vw 0;
-    }
 
-    .container-fluid {
-        .clearfix();
-        margin: 1vw 2vw;
-        background: fadeout(@blueDark, 50%);
-        padding: 1vw 2vw .8vw 2vw;
-        font-size: 1.5vw;
-        color: #999;
-    }
-
-    ul {
-        .clearfix();
-        margin-bottom: 0;
-        min-height: 1px;
-        box-sizing: border-box;
-        line-height: 1.1;
-    }
-
-    li {
-        position: relative;
-        margin-bottom: 0.5vw;
-        width: 23vw;
-        padding-left: 3.5vw;
-        padding-right: 1vw;
-        float: left;
-
-        sup {
-            top: -0.3em;
-        }
-    }
-
-    .incumbent,
-    .reporting,
-    .seat-held,
-    .pickup,
-    .polls,
-    .key-color {
-        width: 2.5vw;
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        text-align: right;
-    }
-
-    .key-color {
-        .square(1.25vw);
-        display: inline-block;
-        border-radius: 1vw;
-        margin-right: .5vw;
-        left: 1.25vw;
-
-        &.dem { background: @blue; }
-        &.gop { background: @red; }
-        &.other { background: @green; }
-    }
-
-    .winner {
-        display: inline-block;
-        border-radius: 0.5vw;
-        padding: 0 0.5vw;
-        color: #fff;
-        opacity: .8;
-
-        &.dem { background: @blue; }
-        &.gop { background: @red; }
-        &.other { background: @green; }
-    }
-
-    .incumbent {
-        img {
-            width: 0.8vw;
-            display: inline-block;
-        }
-    }
-
-    .polls {
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        font-size: 1.2vw;
-        padding-top: .2vw;
-        color: @gray-light;
-        white-space: nowrap;
-    }
-
-    .reporting {
-        color: @yellow;
-        font-weight: 500;
-    }
-
-    .seat-held {
-        color: @red;
-        font-weight: 500;
-    }
-
-    .pickup {
-        font-weight: 500;
-        font-style: italic;
-        font-size: 1.5vw;
-        color: @blue;
-    }
-}
-
-
-/* CREDIT */
+/* 
+ * CREDIT 
+ */
 
 .ap-credit {
     margin: .75vw 0 0 0;
