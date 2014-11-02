@@ -119,7 +119,7 @@ var onDocumentReady = function(e) {
     $controlsToggle = $('.js-toggle-controls');
     $castControls = $('.cast-controls');
     $closeControlsLink = $('.close-link');
-    $slide_countdown = $stack.find('.slide-countdown');
+    $slide_countdown = $('.footer-container .slide-countdown');
     $audioPlay = $('.controls .play');
     $audioPause = $('.controls .pause');
     $changeState = $('.controls .change-state');
@@ -670,7 +670,7 @@ function create_welcome_countdown() {
 
 function create_slide_countdown() {
 	var page_width = $(window).width();
-//	var countdown_width = Math.floor(page_width * .025); // 2.5vw
+	// var countdown_width = Math.floor(page_width * .025); // 2.5vw
 	var countdown_width = 100;
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .6);
@@ -680,11 +680,11 @@ function create_slide_countdown() {
 		.outerRadius(countdown_outer_radius)
 		.startAngle(0);
 
-	slide_countdown_svg = d3.select('#stack .slide-countdown')
+	slide_countdown_svg = d3.select('.footer-container .slide-countdown')
 		.append('svg')
 			.attr('viewBox', '0 0 ' + countdown_width + ' ' + countdown_width)
-//			.attr('width', countdown_width)
-//			.attr('height', countdown_width)
+			// .attr('width', countdown_width)
+			// .attr('height', countdown_width)
 		.append('g')
 			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
 
