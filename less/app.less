@@ -405,7 +405,6 @@ svg {
  */
 
 .cast-controls {
-	padding: 22px 11px;
 	color: @grayMedium;
     display: none;
 
@@ -428,11 +427,19 @@ svg {
     }
 
     .close-link {
-        display: none;
+    	display: block;
+    	padding: 0 11px;
+    	line-height: 44px;
+    	font-weight: bold;
+    	font-size: 12px;
+    	background: #333;
+    
+//        display: none;
     }
 
 	.wrapper {
 		.clearfix;
+		padding: 22px 11px;
 	}
 
     h2 {
