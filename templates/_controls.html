@@ -31,10 +31,11 @@
                 <span class="stateface stateface-ca"></span>
                 <span class="state-name">California</span> (<a href="#" class="change-state">{{ COPY.chromecast.btn_state }}</a>)
             </label>
-            <form class="select-state">
-                <input class="typeahead" type="text" placeholder="Select a different state">
-                <input type="submit" />
-            </form>
+            <select class="state-picker">
+                {% for postal_code, state in STATES.items() %}
+                <option value="{{ postal_code }}">{{ state }}</option>
+                {% endfor %}
+            </select>
 		</li>
 	</ul>
 </div>

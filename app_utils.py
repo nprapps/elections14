@@ -69,7 +69,7 @@ def group_races_by_closing_time(races):
 
     return sorted(results.items())
 
-def columnize_card(races, columns):
+def columnize_card(races, columns=6):
     """
     "Vertical" columns for score cards
     """
@@ -197,3 +197,15 @@ def calculate_state_bop(races):
         'called_other_percent': called_other_percent,
     }
 
+def get_last_updated(races):
+    """
+    Get latest update time from races
+    """
+    from models import Race
+    races = races.clone()
+    try:
+        last = races.order_by(Race.last_updated.desc()).limit(1).get()
+    except Race.DoesNotExist:
+        last = Race.select().order_by(Race.last_updated).limit(1).get()
+
+    return last.last_updated

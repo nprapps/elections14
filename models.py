@@ -100,7 +100,7 @@ class Race(SlugModel):
     seat_name = CharField(null=True)
     seat_number = IntegerField(null=True)
     race_type = CharField()
-    last_updated = DateTimeField(null=True) # @TODO eliminate/rethink?
+    last_updated = DateTimeField(null=True)
 
     # data from update
     precincts_total = IntegerField(null=True)

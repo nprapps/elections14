@@ -7,10 +7,9 @@ var $rotate = null;
 var $countdownScreen = null;
 var $counter = null;
 
-var $stateWrapper = null;
 var $stateface = null;
 var $stateName = null;
-var $typeahead = null;
+var $statePicker = null;
 
 var $chromecastScreen = null;
 var $chromecastIndexHeader = null;
@@ -32,7 +31,6 @@ var $controlsWrapper = null;
 var $controlsToggle = null;
 var $page = null;
 var $changeState = null;
-var $selectStateForm = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
@@ -86,9 +84,9 @@ var onDocumentReady = function(e) {
     $countdownScreen = $('.countdown');
     $counter = $('.counter');
 
-    $stateWrapper = $('.state');
     $stateface = $('.stateface');
     $stateName = $('.state-name');
+    $statePicker = $('.state-picker');
 
     $chromecastScreen = $('.cast-controls');
     $chromecastIndexHeader = $welcomeScreen.find('.cast-header');
@@ -114,7 +112,6 @@ var onDocumentReady = function(e) {
     $audioPause = $('.controls .pause');
     $page = $('.page');
     $changeState = $('.controls .change-state');
-    $selectStateForm = $('.controls form.select-state');
 
     reloadTimestamp = moment();
 
@@ -133,7 +130,7 @@ var onDocumentReady = function(e) {
     $slideControls.on('click', onSlideControlClick);
     $controlsToggle.on('click', onControlsToggleClick);
     $changeState.on('click', onChangeStateClick);
-    $selectStateForm.on('submit', onSelectStateFormSubmit);
+    $statePicker.on('change', onStatePickerChange);
 
     $body.on('keydown', onKeyboard);
     $(window).on('resize', onWindowResize);
@@ -173,7 +170,6 @@ var onDocumentReady = function(e) {
     }
 
     onWindowResize();
-    setupStateTypeahead();
     checkBop();
     checkTimestamp();
 
@@ -201,9 +197,7 @@ var setupUI = function() {
     }
 
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
-        // TODO
-        //$('.typeahead').attr('placeholder', 'Select a state');
-        //$statePickerHed.text('We are having trouble determining your state.')
+        // TODO: handle geoip load failure (e.g. adblocker)
     }
 
     welcomeOurGuests();
@@ -230,24 +224,6 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
         $chromecastIndexHeader.find('.cast-try-chrome').hide();
         $chromecastIndexHeader.find('.cast-get-extension').show();
     }
-}
-
-/*
- * Prepare typeahead for state picker.
- */
-var setupStateTypeahead = function() {
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    },
-    {
-        name: 'states',
-        displayKey: 'value',
-        source: substringMatcher(STATES)
-    });
-
-    $typeahead = $('.twitter-typeahead');
 }
 
 /*
@@ -543,46 +519,33 @@ var onFullscreenButtonClick = function() {
 var onChangeStateClick = function(e) {
     e.preventDefault();
 
-    $selectStateForm.show();
+    $statePicker.show();
 }
     
 /*
- * Select the state.
+ * Update the current state everywhere it is displayed.
  */
-
-var getState = function($typeahead) {
-    var input = $typeahead.typeahead('val');
-
-    if (input) {
-        var inverted = _.invert(APP_CONFIG.STATES);
-        state = inverted[input]
-    }
-
-    $.cookie('state', state, { expires: 30 });
-}
-
 var showState = function() {
     $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
     $stateName.text(APP_CONFIG.STATES[state]);
+    
+    // Explicitly set state pickers because there could be more than one on the page
+    $statePicker.val(state);
 }
 
-var onSelectStateFormSubmit = function(e) {
-    e.preventDefault();
+/*
+ * Respond to selections from a state picker dropdown.
+ */
+var onStatePickerChange = function() {
+    state = $(this).find('option:selected').val();
 
-    var $input = $(this).find('.typeahead');
-
-    getState($input);
     showState();
+    $.cookie('state', state, { expires: 30 });
 
     $stateface.css('opacity', 1);
     $stateName.css('opacity', 1);
-    $typeahead.css('top', '0');
 
-    $input.typeahead('val', '')
-    $input.typeahead('close');
-    $input.blur();
-
-    $selectStateForm.hide();
+    $statePicker.hide();
 }
 
 /*
@@ -597,12 +560,18 @@ var onLocateIP = function(response) {
     showState();
 }
 
+/*
+ * Fetch and display the latest balance of power.
+ */
 var checkBop = function() {
     setInterval(function() {
         $bop.load('/bop.html');
     }, APP_CONFIG.CLIENT_BOP_INTERVAL * 1000);
 }
 
+/*
+ * Fetch the latest timestamp file and reload the if necessary.
+ */
 var checkTimestamp = function() {
     setInterval(function() {
         $.ajax({
@@ -620,6 +589,9 @@ var checkTimestamp = function() {
     }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
 
+/*
+ * Unmute the audio.
+ */
 var onAudioPlayClick = function(e) {
     e.preventDefault();
 
@@ -635,6 +607,9 @@ var onAudioPlayClick = function(e) {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
 }
 
+/*
+ * Mute the audio.
+ */
 var onAudioPauseClick = function(e) {
     e.preventDefault();
 

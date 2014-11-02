@@ -198,16 +198,16 @@ svg {
     left: 0;
     display: none;
     text-align: center;
-	// text-transform: uppercase;
     z-index: 1000;
-
+    
     &:after {
         content : "";
         display: block;
         position: absolute;
         top: 0;
         left: 0;
-        // background: url('../assets/promo/background.jpg') no-repeat center black;
+        background: #000;
+//        background: url('../assets/promo/background.jpg') no-repeat center black;
         width: 100%;
         height: 100%;
         opacity : 0.3;
@@ -216,8 +216,8 @@ svg {
 
     h2,
     h3 {
-    	font-size: 2vw;
-    	margin: 0;
+    	font-size: 22px;
+    	margin: 0 22px;
     	color: white;
     }
 
@@ -228,9 +228,9 @@ svg {
     }
 
     .countdown-arc-wrapper {
-    	width: 22vw;
-    	height: 22vw;
-    	margin: 7vw auto;
+    	width: 150px;
+    	height: 150px;
+    	margin: 33px auto;
     	position: relative;
 
     	.countdown-arc,
@@ -242,10 +242,10 @@ svg {
     	}
 
 		.counter {
-			font-size: 4vw;
+			font-size: 40px;
 			font-weight: bold;
 			text-transform: uppercase;
-			line-height: 22vw;
+			line-height: 150px;
 		}
     }
 
@@ -296,6 +296,7 @@ svg {
             font-size: 2vw;
             font-weight: bold;
             margin-bottom: 1.5vw;
+            .unselectable;
 
             img {
             	height: 3vw;
@@ -333,6 +334,7 @@ svg {
 	display: none;
 
 	.nav-btn {
+		.unselectable;
 		position: absolute;
 		top: 0;
 		bottom: 0;
@@ -363,7 +365,7 @@ svg {
     display: none;
 }
 
-.controls .select-state {
+.controls .state-picker {
     display: none;
 }
 
@@ -404,34 +406,37 @@ svg {
     }
 
     .controls {
-        li {
-            margin-bottom: 0.5vw;
-        }
+        li { 
+        	margin-bottom: 0.5vw;
 
-        li i {
-            display: inline-block;
-            width: 1vw;
-            margin-right: 0.5vw;
-            text-align: center;
-        }
-
-        li img {
-            height: 2vw;
+			i {
+				display: inline-block;
+				width: 1vw;
+				margin-right: 0.5vw;
+				text-align: center;
+			}
+			
+			img { height: 2vw; }
         }
     }
 
     .feedback {
-        li i {
-            display: inline-block;
-            width: 1vw;
-            margin-right: 0.5vw;
-            text-align: center;
-        }
+        li {
+        	a { .unselectable; }
+
+        	i {
+				display: inline-block;
+				width: 1vw;
+				margin-right: 0.5vw;
+				text-align: center;
+			}
+		}
 
         p {
             font-size: 1.2vw;
             line-height: 1.4vw;
         }
+
         h4 {
             font-weight: bold;
             font-size: 1.2vw;
@@ -466,6 +471,7 @@ svg {
         width: 33.33333%;
         padding: 0 1%;
         display: border-box;
+        .unselectable;
     }
 
     .leaderboard {
@@ -625,116 +631,6 @@ svg {
     position: absolute;
     bottom: 50px;
     right: 10px;
-}
-
-/*
- * Typeahead
- */
-.twitter-typeahead {
-    position: relative;
-    width: 50vw; //fixes safari alignment
-    top: 0;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-
-    @media screen and (max-width: @screen-xs-max){
-        width: 80vw;
-    }
-}
-
-.typeahead,
-.tt-query,
-.tt-hint {
-    color: @musicLight;
-    font-family: FontAwesome, 'Gotham Ssm';
-    width: 50vw;
-    height: 100%;
-    padding: 15px;
-    font-size: 24px;
-    line-height: 36px;
-    border: 2px solid #bbb;
-    border-radius: 4px;
-    outline: none;
-
-    @media screen and (max-width: @screen-xs-max){
-        width: 80vw;
-        font-size: 16px;
-    }
-}
-
-::-webkit-input-placeholder::before {
-    font-family: FontAwesome;
-    content:'\f002  ';
-}
-::-moz-placeholder::before  {
-    font-family: FontAwesome;
-    content:'\f002  ';
- }
-:-ms-input-placeholder::before  {
-    font-family: FontAwesome;
-    content:'\f002  ';
-}
-input:-moz-placeholder::before  {
-    font-family: FontAwesome;
-    content:'\f002  ';
-}
-
-.tt-dropdown-menu {
-    text-align: left;
-    max-height: 18vw;
-    overflow-y: auto;
-}
-
-.typeahead {
-    background-color: rgba(0,0,0,0);
-}
-
-.typeahead:focus {
-    border: 2px solid @blue;
-}
-
-.tt-query {
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}
-
-.tt-hint {
-    color: #999
-}
-
-.tt-dropdown-menu {
-    background-color: rgba(0,0,0,0);
-    color: @blue;
-    width: 50vw;
-    margin-top: 1vw;
-    border: 1px solid #999;
-    border-radius: 2px;
-
-    @media screen and (max-width: @screen-xs-max){
-        width: 80vw;
-    }
-}
-
-.tt-suggestion {
-    padding: 15px;
-    font-size: 24px;
-    line-height: 1;
-    background: rgba(0,0,0,0.5);
-    border-bottom: 1px solid #999;
-
-    @media screen and (max-width: @screen-xs-max){
-        font-size: 16px;
-    }
-
-    &:last-child { border: none; }
-}
-
-.tt-suggestion.tt-cursor {
-    color: #fff;
-    background-color: @blue;
-}
-
-.tt-suggestion p {
-    margin: 0;
 }
 
 /*

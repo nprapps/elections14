@@ -184,7 +184,7 @@ def flatten_app_config():
 
     return config
 
-def make_context(asset_depth=0, static_path='', absolute=False):
+def make_context(asset_depth=0, static_path='', absolute=False, timestamp=None):
     """
     Create a base-context for rendering views.
     Includes app_config and JS/CSS includers.
@@ -198,7 +198,11 @@ def make_context(asset_depth=0, static_path='', absolute=False):
     context['COPY'] = copytext.Copy(app_config.COPY_PATH)
     context['JS'] = JavascriptIncluder(asset_depth=asset_depth, static_path=static_path, absolute=absolute)
     context['CSS'] = CSSIncluder(asset_depth=asset_depth, static_path=static_path, absolute=absolute)
-    context['TIMESTAMP'] = time.strftime('%b. %d, %Y at %I:%M EST')
+
+    if timestamp:
+        context['TIMESTAMP'] = timestamp.strftime('%b. %d, %Y at %I:%M EST')
+    else:
+        context['TIMESTAMP'] = time.strftime('%b. %d, %Y at %I:%M EST')
 
     return context
 

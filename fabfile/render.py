@@ -3,14 +3,16 @@
 """
 Commands for rendering various parts of the app stack.
 """
-
-from glob import glob
+import app
+import app_config
+import multiprocessing
 import os
 
 from fabric.api import local, task
+from glob import glob
+from joblib import Parallel, delayed
 
-import app
-import app_config
+NUM_CORES = multiprocessing.cpu_count() * 4
 
 @task
 def less():
@@ -125,129 +127,143 @@ def render_all():
             f.write(content.encode('utf-8'))
 
 @task
-def render_liveblog_slides():
+def render_liveblog():
     """
     Render liveblog slides to HTML files.
-
-    NB: slides do not have embedded assets, so we don't pass
-    the compile flag to the assets rig.
     """
-    from flask import url_for
     import models
 
-    slides = models.Slide.select()
-
     output_path = '.liveblog_slides_html'
-    os.makedirs(output_path)
 
-    for slide in slides:
-        slug = slide.slug
+    try:
+        os.makedirs(output_path)
+    except OSError:
+        pass
 
-        if not slug.startswith('tumblr'):
-            continue
+    slides = models.Slide.select()
+    slugs = [slide.slug for slide in slides if slide.slug.startswith('tumblr')]
+    slides.database.close()
 
-        for view_name in ['_slide', '_slide_preview']:
-            with app.app.test_request_context():
-                path = url_for(view_name, slug=slug)
+    views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
 
-            with app.app.test_request_context(path=path):
-                print 'Rendering %s' % path
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_liveblog_slide)(view_name, slug, output_path) for view_name, slug in views)
+    print "Rendered liveblog"
 
-                view = app.__dict__[view_name]
-                content = view(slug)
+def _render_liveblog_slide(view_name, slug, output_path):
+    """
+    Render a liveblog slide
+    """
+    from flask import url_for
 
-            path = '%s%s' % (output_path, path)
+    with app.app.test_request_context():
+        path = url_for(view_name, slug=slug)
 
-            # Ensure path exists
-            head = os.path.split(path)[0]
+    with app.app.test_request_context(path=path):
+        #print 'Rendering %s' % path
 
-            try:
-                os.makedirs(head)
-            except OSError:
-                pass
+        view = app.__dict__[view_name]
+        content = view(slug)
 
-            with open(path, 'w') as f:
-                f.write(content.data)
+    path = '%s%s' % (output_path, path)
+
+    # Ensure path exists
+    head = os.path.split(path)[0]
+
+    try:
+        os.makedirs(head)
+    except OSError:
+        pass
+
+    with open(path, 'w') as f:
+        f.write(content.data)
 
 @task
-def render_results_slides():
+def render_results():
     """
     Render results slides to HTML files.
 
     NB: slides do not have embedded assets, so we don't pass
     the compile flag to the assets rig.
     """
-    from flask import url_for
     import models
 
-    slides = models.Slide.select()
-
     output_path = '.results_slides_html'
+    try:
+        os.makedirs(output_path)
+    except OSError:
+        pass
 
-    for slide in slides:
-        slug = slide.slug
+    slides = models.Slide.select()
+    slugs = [slide.slug for slide in slides if slide.slug not in ['state-senate-results', 'state-house-results'] or slide.slug.startswith('tumblr')]
+    slides.database.close()
 
-        if slug in ['state-senate-results', 'state-house-results'] or slug.startswith('tumblr'):
-            continue
+    views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_results_slide)(view_name, slug, output_path) for view_name, slug in views)
+    print "Rendered results"
 
-        for view_name in ['_slide', '_slide_preview']:
-            with app.app.test_request_context():
-                path = url_for(view_name, slug=slug)
+def _render_results_slide(view_name, slug, output_path):
+    from flask import url_for
+    with app.app.test_request_context():
+        path = url_for(view_name, slug=slug)
 
-            with app.app.test_request_context(path=path):
-                print 'Rendering %s' % path
+    with app.app.test_request_context(path=path):
+        #print 'Rendering %s' % path
 
-                view = app.__dict__[view_name]
-                content = view(slug)
+        view = app.__dict__[view_name]
+        content = view(slug)
 
-            path = '%s%s' % (output_path, path)
+    path = '%s%s' % (output_path, path)
 
-            # Ensure path exists
-            head = os.path.split(path)[0]
+    # Ensure path exists
+    head = os.path.split(path)[0]
 
-            try:
-                os.makedirs(head)
-            except OSError:
-                pass
+    try:
+        os.makedirs(head)
+    except OSError:
+        pass
 
-            with open(path, 'w') as f:
-                f.write(content.data)
-
-    render_states()
+    with open(path, 'w') as f:
+        f.write(content.data)
 
 @task
 def render_states(compiled_includes={}):
     """
     Render state slides to HTML files
     """
+
+    output_path = '.state_slides_html'
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_state)(postal, state, output_path) for postal, state in app_config.STATES.items())
+    print "Rendered states"
+
+def _render_state(postal, state, output_path):
+    """
+    Render a state.
+    """
     from flask import url_for
+    to_render = [
+        ('_state_senate_slide', { 'slug': postal }),
+        ('_state_senate_slide_preview', { 'slug': postal }),
+        ('_state_house_slide', { 'slug': postal, 'page': 1 }),
+        ('_state_house_slide_preview', { 'slug': postal, 'page': 1 })
+    ]
 
-    output_path = '.results_slides_html'
+    if postal in app_config.PAGINATED_STATES:
+        to_render.extend([
+            ('_state_house_slide', { 'slug': postal, 'page': 2 }),
+            ('_state_house_slide_preview', { 'slug': postal, 'page': 2 })
+        ])
 
-    for postal, state in app_config.STATES.items():
-        to_render = [
-            ('_state_senate_slide', { 'slug': postal }),
-            ('_state_senate_slide_preview', { 'slug': postal }),
-            ('_state_house_slide', { 'slug': postal, 'page': 1 }),
-            ('_state_house_slide_preview', { 'slug': postal, 'page': 1 })
-        ]
+    for view_name, view_kwargs in to_render:
+        # Silly fix because url_for require a context
+        with app.app.test_request_context():
+            path = url_for(view_name, **view_kwargs)
 
-        if postal in app_config.PAGINATED_STATES:
-            to_render.extend([
-                ('_state_house_slide', { 'slug': postal, 'page': 2 }),
-                ('_state_house_slide_preview', { 'slug': postal, 'page': 2 })
-            ])
+        with app.app.test_request_context(path=path):
+            view = app.__dict__[view_name]
+            content = view(**view_kwargs)
 
-        for view_name, view_kwargs in to_render:
-            # Silly fix because url_for require a context
-            with app.app.test_request_context():
-                path = url_for(view_name, **view_kwargs)
-
-            with app.app.test_request_context(path=path):
-                print 'Rendering %s' % path
-
-                view = app.__dict__[view_name]
-                content = view(**view_kwargs)
+        if content.status_code == 200:
+            #print 'Rendering %s (%s)' % (path, content.status_code)
 
             path = '%s%s' % (output_path, path)
 
@@ -263,46 +279,49 @@ def render_states(compiled_includes={}):
                 f.write(content.data)
 
 @task
-def render_big_boards(compiled_includes={}):
-    from flask import g, url_for
-
-    view_name = '_big_board'
+def render_big_boards():
+    """
+    Render big boards
+    """
     output_path = '.big_boards_html'
 
-    for board in [
+    boards = [
         'senate-big-board',
         'house-big-board-one',
         'house-big-board-two',
         'governor-big-board',
         'ballot-measures-big-board',
-    ]:
-        # Silly fix because url_for require a context
-        with app.app.test_request_context():
-            path = url_for(view_name, slug=board)
+    ]
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_bigboard_slide)('_big_board', board, output_path) for board in boards)
+    print "Rendered big boards"
 
-        with app.app.test_request_context(path=path):
-            print 'Rendering %s' % path
+def _render_bigboard_slide(view_name, slug, output_path):
+    """
+    Render a slide
+    """
+    from flask import url_for
 
-            g.compile_includes = True
-            g.compiled_includes = compiled_includes
+    # Silly fix because url_for requires a context
+    with app.app.test_request_context():
+        path = url_for(view_name, slug=slug)
 
-            view = app.__dict__[view_name]
-            content = view(board)
+    with app.app.test_request_context(path=path):
+        #print 'Rendering %s' % path
+        view = app.__dict__[view_name]
+        content = view(slug)
 
-            compiled_includes = g.compiled_includes
+    path = '%s%s' % (output_path, path)
 
-        path = '%s%s' % (output_path, path)
+    # Ensure path exists
+    head = os.path.split(path)[0]
 
-        # Ensure path exists
-        head = os.path.split(path)[0]
+    try:
+        os.makedirs(head)
+    except OSError:
+        pass
 
-        try:
-            os.makedirs(head)
-        except OSError:
-            pass
-
-        with open('%sindex.html' % path, 'w') as f:
-            f.write(content)
+    with open('%sindex.html' % path, 'w') as f:
+        f.write(content)
 
 @task
 def render_bop():
