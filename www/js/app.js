@@ -137,7 +137,7 @@ var onDocumentReady = function(e) {
     $audioPlay.on('click', onAudioPlayClick);
     $audioPause.on('click', onAudioPauseClick);
     $slideControls.on('click', onSlideControlClick);
-    if (!IS_TOUCH) {    
+    if (!IS_TOUCH) {
         $controlsToggle.on('click', onControlsToggleClick);
     }
     else {
@@ -152,6 +152,7 @@ var onDocumentReady = function(e) {
 
     STACK.setupAudio();
 
+    // running on the chromecast device, like the TV
     if (IS_CAST_RECEIVER) {
         $controlsToggle.hide();
         $slide_countdown.hide();
@@ -166,23 +167,30 @@ var onDocumentReady = function(e) {
         STACK.start();
         $desktopOnlyLeftRight.hide();
 
+    // debugging with the ?fakecast flag, so it's easier to style the control panel
     } else if (IS_FAKE_CASTER) {
         is_casting = true;
         state = 'TX';
         onCastStarted();
-    }
-    else if ($.cookie('reload')) {
+    
+    // runs if we've triggered a reload, via fab reset_browsers!
+    } else if ($.cookie('reload')) {
         $.removeCookie('reload');
         $welcomeScreen.hide();
         setupUI();
         STACK.start();
+
+    // debugging with the ?skipcountdown flag, to go straight the stack
     } else if (SKIP_COUNTDOWN) {
         STACK.start();
-    }
-    else {
-        // Prepare welcome screen
+    
+    // running the app as usual, on your phone or laptop
+    } else {
         $welcomeScreen.velocity('fadeIn');
         $chromecastIndexHeader.css('opacity', 1);
+
+        //we want to prevent the rotate prompt on the welcome screen
+        disableRotatePrompt();
 
         setupUI();
     }
@@ -201,6 +209,8 @@ var setupUI = function() {
         $desktopOnlyLeftRight.hide();
         $fullscreenStart.hide();
     }
+
+    checkForPortrait();
 
     // Geolocate
     if ($.cookie('state')) {
@@ -289,9 +299,9 @@ var onCastStopped = function() {
  */
 var onCastReceiverMute = function(message) {
     if (message == 'true') {
-        $audioPlayer.jPlayer('mute', true);
+        $audioPlayer.jPlayer('pause');
     } else {
-        $audioPlayer.jPlayer('mute', false);
+        $audioPlayer.jPlayer('play');
     }
 }
 
@@ -336,11 +346,28 @@ var onWindowResize = function() {
         'top': padding + 'px'
     });
 
+    checkForPortrait();
+
     var thisSlide = $('.slide');
     if (thisSlide.length > 0) {
         resizeSlide(thisSlide);
-        rotatePhone();
     }
+}
+
+var checkForPortrait = function(){
+    if (IS_TOUCH && Modernizr.mq('(orientation: portrait)')) {
+        $('html').addClass('touch-portrait');
+    }
+    else {
+        $('html').removeClass('touch-portrait');
+    }
+}
+
+var disableRotatePrompt = function(){
+    $('html').addClass('disable-rotate-prompt');
+}
+var enableRotatePrompt = function(){
+    $('html').removeClass('disable-rotate-prompt');
 }
 
 /*
@@ -356,20 +383,6 @@ var resizeSlide = function(slide) {
 
     slide.find('.slide-inner').width($w);
     slide.find('.slide-inner').height($h - headerHeight);
-}
-
-var rotatePhone = function() {
-    if (IS_TOUCH && Modernizr.mq('(orientation: portrait)')) {
-        $rotate.show();
-        $('html').addClass('device-portrait');
-		$stack.css({
-			'top': '3vw'
-		});
-    }
-    else {
-        $rotate.hide();
-        $('html').removeClass('device-portrait');
-    }
 }
 
 /*
@@ -403,6 +416,8 @@ var onCastStopClick = function(e) {
 var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
 
+    enableRotatePrompt();
+
     window.clearTimeout(welcome_greeting_timer);
 
     // Mobile devices require a click to start audio
@@ -411,7 +426,6 @@ var onWelcomeButtonClick = function() {
     }
 
    showCountdown();
-   rotatePhone();
 }
 
 var showCountdown = function() {
@@ -590,7 +604,7 @@ var onAudioPlayClick = function(e) {
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'false');
     } else {
-        $audioPlayer.jPlayer('mute', false);
+        $audioPlayer.jPlayer('play');
     }
 
     $audioPlay.hide();
@@ -604,11 +618,11 @@ var onAudioPlayClick = function(e) {
  */
 var onAudioPauseClick = function(e) {
     e.preventDefault();
-
+    
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'true');
     } else {
-        $audioPlayer.jPlayer('mute', true);
+        $audioPlayer.jPlayer('pause');
     }
 
     $audioPause.hide();
@@ -744,7 +758,7 @@ var onSlideControlClick = function(e) {
         if (is_casting) {
             setTimeout(function() {
                 $slideControls.removeClass('in-transition');
-            }, 1000);
+            }, 1500);
         }
     }
 
@@ -775,6 +789,8 @@ var onControlsToggleClick = function(e) {
 }
 
 var onStackTap = function() {
+
+    disableRotatePrompt();
     $castControls.show();
     $closeControlsLink.show();
     $stack.hide();
@@ -786,6 +802,7 @@ var onStackTap = function() {
 }
 
 var onCloseControlsLink = function() {
+    enableRotatePrompt();
     $castControls.hide();
     $stack.show();
 }
