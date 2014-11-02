@@ -211,7 +211,6 @@ svg {
         top: 0;
         left: 0;
         background: #000;
-//        background: url('../assets/promo/background.jpg') no-repeat center black;
         width: 100%;
         height: 100%;
         opacity : 0.3;
@@ -464,29 +463,60 @@ svg {
 		}
     }
     
-    .controls ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
+    .controls {
+		font-weight: bold;
 
-        li {
-            .unselectable;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 11px;
+    	.slide-nav {
+    		display: table;
+    		width: 100%;
+    		
+    		a {
+    			display: table-cell;
+    			width: 50%;
+    			font-size: 12px;
+    			line-height: 44px;
+    			background-color: #333;
+    			padding: 0 11px;
+    			
+    			&.nav-btn-left {
+    				border-right: 1px solid #000;
+    				
+    				i { margin-right: 10px; }
+    			}
 
-			@media screen and (max-width: @screen-sm){
-				font-size: 18px;
-				line-height: 44px;
-				margin-bottom: 2px;
-			}
+    			&.nav-btn-right {
+    				text-align: right;
+    				border-left: 1px solid #000;
+    				
+    				i { margin-left: 10px; }
+    			}
+    		}
+    	}
+    
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				.unselectable;
+				font-size: 14px;
+				font-weight: bold;
+				margin-bottom: 11px;
+
+				@media screen and (max-width: @screen-sm){
+					font-size: 18px;
+					line-height: 44px;
+					margin-bottom: 2px;
+				}
 			
-            img {
-            	height: 18px;
-            	width: auto;
-            	vertical-align: middle;
-            }
-        }
+				img {
+					height: 18px;
+					width: auto;
+					vertical-align: middle;
+				}
+			}
+		}
     }
 
 	.controls-feedback-wrapper {
@@ -689,8 +719,6 @@ svg {
 			
 			img { height: 2vw; }
         }
-		nav { display: none; }
-		.slide-countdown { display: none; }
     }
 
     .feedback {
@@ -837,25 +865,42 @@ svg {
 
 /*
  * ROTATE YOUR PHONE PROMPT
+ * Including a little trick to turn it off on some screens. Add disable-rotate-phone-prompt to the body.
  */
 
-.rotate-phone-wrapper {
+ .rotate-phone-wrapper,
+html.touch-portrait.disable-rotate-prompt .rotate-phone-wrapper {
     display: none;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding-bottom: 3vw;
-    font-size: 4vw;
-    line-height: 1.3;
-    font-weight: 700;
+}
 
-    .rotate { text-align: center; }
+html.touch-portrait {
 
-    img {
-    	display: block;
-    	margin: 0 auto 1.5vw auto;
-    	height: 10vw;
-    	width: auto;
+    .rotate-phone-wrapper {
+        display: block;
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 3vw;
+        font-size: 4vw;
+        line-height: 1.3;
+        font-weight: 700;
+
+        .rotate { text-align: center; }
+
+        img {
+        	display: block;
+        	margin: 0 auto 1.5vw auto;
+        	height: 10vw;
+        	width: auto;
+        }
+
+        z-index: 2112;
+    }
+
+    .countdown .wrapper {
+        top:33px;
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
     }
 }

@@ -89,7 +89,8 @@ var STACK = (function () {
                 $(this).jPlayer('setMedia', {
                     mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
                 });
-                if (IS_CAST_RECEIVER) {
+
+                if (IS_CAST_RECEIVER || SKIP_COUNTDOWN) {
                     $(this).jPlayer('play');
                 }
             },
