@@ -43,9 +43,9 @@ def _deploy_to_s3(path='.gzip', sync_assets=True):
 
     exclude_flags += '--exclude "www/assets" '
 
-    sync = 'aws s3 sync %s/ %s --acl "public-read" ' + exclude_flags + ' --cache-control "max-age=%i no-cache no-store must-revalidate" --region "%s"'
-    sync_gzip = 'aws s3 sync %s/ %s --acl "public-read" --content-encoding "gzip" --exclude "*" ' + include_flags + ' --cache-control "max-age=%i no-cache no-store must-revalidate" --region "%s"'
-    sync_assets = 'aws s3 sync %s/ %s --acl "public-read" --cache-control "max-age=86400" --region "%s"'
+    sync = 'aws s3 sync --quiet %s/ %s --acl "public-read" ' + exclude_flags + ' --cache-control "max-age=%i no-cache no-store must-revalidate" --region "%s"'
+    sync_gzip = 'aws s3 sync --quiet %s/ %s --acl "public-read" --content-encoding "gzip" --exclude "*" ' + include_flags + ' --cache-control "max-age=%i no-cache no-store must-revalidate" --region "%s"'
+    sync_assets = 'aws s3 sync --quiet %s/ %s --acl "public-read" --cache-control "max-age=86400" --region "%s"'
 
     for bucket in app_config.S3_BUCKETS:
         local(sync % (path, 's3://%s/' % bucket['bucket_name'], app_config.MAX_AGE_CACHE_CONTROL_HEADER, bucket['region']))
