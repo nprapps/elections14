@@ -4,14 +4,13 @@
 @viewport-height: 465px;
 @footer-height: 60px;
 
-#landscape-wrapper {
+#stack {
     width: @viewport-width;
     height: @viewport-height;
 }
 
 .slide-content {
     position: relative;
-    top: 30px;
     width: @viewport-width;
     height: @viewport-height;
 }
@@ -27,7 +26,7 @@
     width: @viewport-width;
     padding: 0 40px;
     position: absolute;
-    top: 0;
+    bottom: 0;
     background-color: #333;
 
     .share-title, .share-url {
