@@ -1,43 +1,43 @@
 <div id="incumbents-lost" class="graphic">
-	<div class="wrapper">
-		{% if COPY.graphic_slides.headline_incumbents_lost %}<h1>{{ COPY.graphic_slides.headline_incumbents_lost }}</h1>{% endif %}
-		{% if COPY.graphic_slides.subhed_incumbents_lost %}<h2>{{ COPY.graphic_slides.subhed_incumbents_lost }}</h2>{% endif %}
+    <div class="wrapper">
+        {% if COPY.graphic_slides.headline_incumbents_lost %}<h1>{{ COPY.graphic_slides.headline_incumbents_lost }}</h1>{% endif %}
+        {% if COPY.graphic_slides.subhed_incumbents_lost %}<h2>{{ COPY.graphic_slides.subhed_incumbents_lost }}</h2>{% endif %}
 
-		<div class="candidate-list">
-			<h3>U.S. Senate ({{ senate_incumbents_lost|length }})</h3>
+        <div class="candidate-list">
+            <h3>U.S. Senate ({{ senate_incumbents_lost|length }})</h3>
       {% for column in senate_incumbents_lost %}
-			<ul>
-				{% for race in column %}
-				{% for candidate in race.candidates %}
-				{% if candidate.incumbent and not candidate.is_winner() %}
-				<li>
-					<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}</span>
-					<span class="name">{{ candidate.last_name }}</span>
-				</li>
-				{% endif %}
-				{% endfor %}
-				{% endfor %}
-			</ul>
+            <ul>
+                {% for race in column %}
+                {% for candidate in race.candidates %}
+                {% if candidate.incumbent and not candidate.is_winner() %}
+                <li>
+                    <span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}</span>
+                    <span class="name">{{ candidate.last_name }}</span>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </ul>
       {% endfor %}
-		</div>
+        </div>
 
-		<div class="candidate-list">
-			<h3>U.S. House ({{ house_incumbents_lost|length }})</h3>
+        <div class="candidate-list">
+            <h3>U.S. House ({{ house_incumbents_lost|length }})</h3>
       {% for column in house_incumbents_lost %}
-			<ul>
-				{% for race in column %}
-				{% for candidate in race.candidates %}
-				{% if candidate.incumbent and not candidate.is_winner() %}
-				<li>
-					<span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}-{{ race.seat_number }}</span>
-					<span class="name">{{ candidate.last_name }}</span>
-				</li>
-				{% endif %}
-				{% endfor %}
-				{% endfor %}
-			</ul>
+            <ul>
+                {% for race in column %}
+                {% for candidate in race.candidates %}
+                {% if candidate.incumbent and not candidate.is_winner() %}
+                <li>
+                    <span class="district {% if candidate.get_party() == 'dem' %} d {% endif %} {% if candidate.get_party() == 'gop' %} r {% endif %}">{{ race.state_postal }}-{{ race.seat_number }}</span>
+                    <span class="name">{{ candidate.last_name }}</span>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </ul>
       {% endfor %}
-		</div>
+        </div>
 
         <div class="ap-credit">
             Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
@@ -47,7 +47,7 @@
 
 <script type="text/javascript">
 (function() {
-	var $timestamp = $('.ap-credit').find('.timestamp');
+    var $timestamp = $('.ap-credit').find('.timestamp');
     $timestamp.empty().append("{{ TIMESTAMP }}");
 })();
 </script>
