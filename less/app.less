@@ -1,5 +1,4 @@
 @import "less/lib/bootstrap/bootstrap";
-@import "less/lib/font-awesome/font-awesome";
 @import "less/lib/ionicons/ionicons";
 @import "less/lib/prefixer";
 @import "less/stateface.less";
@@ -212,7 +211,6 @@ svg {
         top: 0;
         left: 0;
         background: #000;
-//        background: url('../assets/promo/background.jpg') no-repeat center black;
         width: 100%;
         height: 100%;
         opacity : 0.3;
@@ -873,25 +871,42 @@ svg {
 
 /*
  * ROTATE YOUR PHONE PROMPT
+ * Including a little trick to turn it off on some screens. Add disable-rotate-phone-prompt to the body.
  */
 
-.rotate-phone-wrapper {
+ .rotate-phone-wrapper,
+html.touch-portrait.disable-rotate-prompt .rotate-phone-wrapper {
     display: none;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding-bottom: 3vw;
-    font-size: 4vw;
-    line-height: 1.3;
-    font-weight: 700;
+}
 
-    .rotate { text-align: center; }
+html.touch-portrait {
 
-    img {
-    	display: block;
-    	margin: 0 auto 1.5vw auto;
-    	height: 10vw;
-    	width: auto;
+    .rotate-phone-wrapper {
+        display: block;
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 3vw;
+        font-size: 4vw;
+        line-height: 1.3;
+        font-weight: 700;
+
+        .rotate { text-align: center; }
+
+        img {
+        	display: block;
+        	margin: 0 auto 1.5vw auto;
+        	height: 10vw;
+        	width: auto;
+        }
+
+        z-index: 2112;
+    }
+
+    .countdown .wrapper {
+        top:33px;
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
     }
 }
