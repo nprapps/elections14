@@ -244,6 +244,8 @@ var onCastStarted = function() {
     $chromecastScreen.show();
 
     is_casting = true;
+
+    CHROMECAST_SENDER.sendMessage('state', state);
 }
 
 /*
@@ -547,6 +549,10 @@ var onStatePickerChange = function() {
     $stateName.css('opacity', 1);
 
     $statePicker.hide();
+
+    if (is_casting) {
+        CHROMECAST_SENDER.sendMessage('state', state);
+    }
 }
 
 /*
