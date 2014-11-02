@@ -19,7 +19,7 @@ def senate_big_board():
     races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
 
     timestamp = get_last_updated(races)
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Senate'
     context['page_class'] = 'senate'
@@ -42,7 +42,7 @@ def house_big_board(page):
     all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal, Race.seat_number)
 
     timestamp = get_last_updated(all_races)
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'House'
     context['current_page'] = page
@@ -294,7 +294,7 @@ def obama_reps():
     races = Race.select().where(Race.obama_gop == True).order_by(Race.state_postal, Race.seat_number)
     timestamp = get_last_updated(races)
 
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
     context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
@@ -319,7 +319,7 @@ def poll_closing():
 
     timestamp = get_last_updated(featured_races)
 
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     poll_groups = group_races_by_closing_time(featured_races)
 
@@ -363,7 +363,7 @@ def romney_dems():
 
     timestamp = get_last_updated(races)
 
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
     context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
@@ -386,7 +386,7 @@ def romney_senate_dems():
 
     timestamp = get_last_updated(races)
 
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
     context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])

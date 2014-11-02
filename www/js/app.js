@@ -18,13 +18,14 @@ var $castStop = null;
 
 var $header = null;
 var $headerControls = null;
-var $rightControls = null;
 var $chromecastButton = null;
 var $audioPlayer = null;
 var $bop = null;
 var $stack = null;
 var $audioButtons = null;
 var $slide_countdown = null;
+var $desktopOnlyLeftRight = null;
+var $slideControls = null;
 var $controlsWrapper = null;
 var $controlsToggle = null;
 var $castControls = null;
@@ -102,7 +103,7 @@ var onDocumentReady = function(e) {
     $stack = $('#stack');
     $header = $('.index');
     $headerControls = $('.header-controls');
-    $rightControls = $('.right-controls');
+    $desktopOnlyLeftRight = $('.nav .slide-nav');
     $slideControls = $('.slide-nav .nav-btn');
     $controlsWrapper = $('.controls-wrapper');
     $controlsToggle = $('.js-toggle-controls');
@@ -153,7 +154,7 @@ var onDocumentReady = function(e) {
         CHROMECAST_RECEIVER.onMessage('slide-change', onCastReceiverSlideChange);
 
         STACK.start();
-        $rightControls.hide();
+        $desktopOnlyLeftRight.hide();
 
     } else if (IS_FAKE_CASTER) {
         is_casting = true;
@@ -187,7 +188,7 @@ var setupUI = function() {
     checkTimestamp();
 
     if (IS_TOUCH) {
-        $rightControls.hide();
+        $desktopOnlyLeftRight.hide();
         $fullscreenStart.hide();
     }
 
