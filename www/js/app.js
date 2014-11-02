@@ -797,6 +797,8 @@ var onKeyboard = function(e) {
         _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'keyboard-nav']);
         hasTrackedKeyboardNav = true;
     }
+
+    // Right arrow
     if (e.which == 39) {
         if (is_casting) {
             CHROMECAST_SENDER.sendMessage('slide-change', 'next');
@@ -805,6 +807,8 @@ var onKeyboard = function(e) {
             STACK.next($('.slide-nav .nav-btn-right'))
         }
     }
+
+    // Left arrow
     if (e.which == 37) {
         if (is_casting) {
             CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
@@ -812,6 +816,11 @@ var onKeyboard = function(e) {
         else {
             STACK.previous($('.slide-nav .nav-btn-left'))
         }
+    }
+    
+    // Escape
+    if (e.which == 27 && !IS_TOUCH && !is_casting) {
+        $controlsWrapper.fadeToggle();
     }
 }
 
