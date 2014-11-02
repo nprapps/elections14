@@ -138,6 +138,8 @@ var onDocumentReady = function(e) {
     $body.on('keydown', onKeyboard);
     $(window).on('resize', onWindowResize);
 
+    STACK.setupAudio();
+
     if (IS_CAST_RECEIVER) {
         $welcomeScreen.hide();
 
@@ -418,14 +420,10 @@ var onWelcomeButtonClick = function() {
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
 
-    // TODO
-    /*if (is_casting) {
-        $chromecastScreen.show();
-        resizeSlide($chromecastScreen);
-        CHROMECAST_SENDER.sendMessage('state', state);
-    } else {
-        STACK.start();
-    }*/
+    // Mobile devices require a click to start audio
+    if (IS_TOUCH) {
+        STACK.startPrerollAudio();
+    }
 
    showCountdown();
 }

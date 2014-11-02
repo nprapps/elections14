@@ -24,8 +24,8 @@ var STACK = (function () {
      * Setup the stack display.
      */
     obj.start = function() {
-        if (!NO_AUDIO) {
-            startPrerollAudio();
+        if (!NO_AUDIO && !IS_TOUCH) {
+            obj.startPrerollAudio();
         }
 
         $stack.show();
@@ -92,12 +92,12 @@ var STACK = (function () {
         }
     }
 
-    var startPrerollAudio = function() {
-        $audioPlayer.jPlayer({
+    obj.setupAudio = function() {
+         $audioPlayer.jPlayer({
             ready: function () {
                 $(this).jPlayer('setMedia', {
                     mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
-                }).jPlayer('play');
+                });
             },
             ended: startLivestream,
             swfPath: 'js/lib',
@@ -106,6 +106,10 @@ var STACK = (function () {
         });
 
         $audioPlayer.bind($.jPlayer.event.stalled, onAudioFail);
+    }
+
+    obj.startPrerollAudio = function() {
+        $audioPlayer.jPlayer('play');
     }
 
     var startLivestream = function() {
