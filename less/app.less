@@ -720,7 +720,7 @@ svg {
     bottom: 0;
     z-index: 1;
     background: black;
-    padding: 0 2%;
+    padding: .3vw 2% 0 2%;
 
     a {
         color: @grayMedium;
@@ -731,17 +731,12 @@ svg {
         }
     }
 
-    .leaderboard,
-    .control-toggle,
-    .nav {
-        float: left;
-        width: 33.33333%;
-        padding: 0 1%;
-        display: border-box;
-        .unselectable;
-    }
-    
     .leaderboard {
+    	float: left;
+    	width: 40%;
+    	white-space: nowrap;
+    	.clearfix;
+
 		.senate-header {
 			text-transform: uppercase;
 			font-weight: bold;
@@ -753,6 +748,8 @@ svg {
     }
 
     .control-toggle {
+    	float: left;
+    	width: 33%;
         text-align: center;
         text-transform: uppercase;
         font-size: 1.5vw;
@@ -772,6 +769,7 @@ svg {
     }
 
     .nav {
+    	float: right;
         text-align: right;
         font-size: 1.5vw;
         line-height: 3.5vw;
