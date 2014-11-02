@@ -297,6 +297,7 @@ svg {
             font-size: 2vw;
             font-weight: bold;
             margin-bottom: 1.5vw;
+            .unselectable;
 
             img {
             	height: 3vw;
@@ -334,6 +335,7 @@ svg {
 	display: none;
 
 	.nav-btn {
+		.unselectable;
 		position: absolute;
 		top: 0;
 		bottom: 0;
@@ -405,34 +407,37 @@ svg {
     }
 
     .controls {
-        li {
-            margin-bottom: 0.5vw;
-        }
+        li { 
+        	margin-bottom: 0.5vw;
 
-        li i {
-            display: inline-block;
-            width: 1vw;
-            margin-right: 0.5vw;
-            text-align: center;
-        }
-
-        li img {
-            height: 2vw;
+			i {
+				display: inline-block;
+				width: 1vw;
+				margin-right: 0.5vw;
+				text-align: center;
+			}
+			
+			img { height: 2vw; }
         }
     }
 
     .feedback {
-        li i {
-            display: inline-block;
-            width: 1vw;
-            margin-right: 0.5vw;
-            text-align: center;
-        }
+        li {
+        	a { .unselectable; }
+
+        	i {
+				display: inline-block;
+				width: 1vw;
+				margin-right: 0.5vw;
+				text-align: center;
+			}
+		}
 
         p {
             font-size: 1.2vw;
             line-height: 1.4vw;
         }
+
         h4 {
             font-weight: bold;
             font-size: 1.2vw;
@@ -467,6 +472,7 @@ svg {
         width: 33.33333%;
         padding: 0 1%;
         display: border-box;
+        .unselectable;
     }
 
     .leaderboard {
