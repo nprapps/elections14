@@ -131,7 +131,6 @@ def render_liveblog():
     """
     Render liveblog slides to HTML files.
     """
-    from flask import url_for
     import models
 
     output_path = '.liveblog_slides_html'
@@ -154,6 +153,8 @@ def _render_liveblog_slide(view_name, slug, output_path):
     """
     Render a liveblog slide
     """
+    from flask import url_for
+
     with app.app.test_request_context():
         path = url_for(view_name, slug=slug)
 
