@@ -381,8 +381,6 @@ var onWelcomeButtonClick = function() {
 
     window.clearTimeout(welcome_greeting_timer);
 
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
-
     // Mobile devices require a click to start audio
     if (IS_TOUCH) {
         STACK.startPrerollAudio();
@@ -438,29 +436,6 @@ var hideCountdown = function() {
         });
     $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
 }
-
-/*
- * Matcher for typeahead.
- */
-var substringMatcher = function(strs) {
-    return function findMatches(q, cb) {
-        var matches = [];
-
-        // iterate through the pool of strings and for any string that
-        // contains the substring `q`, add it to the `matches` array
-        $.each(strs, function(i, str) {
-            var queryLength = q.length;
-            var normalizedString = str.toLowerCase();
-            if (normalizedString.substring(0, queryLength) === q.toLowerCase()) {
-                // the typeahead jQuery plugin expects suggestions to a
-                // JavaScript object, refer to typeahead docs for more info
-                matches.push({ value: str });
-            }
-        });
-
-        cb(matches);
-    };
-};
 
 /*
  * Fullscreen the app.
@@ -538,6 +513,8 @@ var onStatePickerChange = function() {
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('state', state);
     }
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
+
 }
 
 /*
