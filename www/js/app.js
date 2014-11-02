@@ -197,9 +197,7 @@ var setupUI = function() {
     }
 
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
-        // TODO
-        //$('.typeahead').attr('placeholder', 'Select a state');
-        //$statePickerHed.text('We are having trouble determining your state.')
+        // TODO: handle geoip load failure (e.g. adblocker)
     }
 
     welcomeOurGuests();
