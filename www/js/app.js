@@ -826,8 +826,6 @@ var welcomeOurGuests = function(){
     $welcomeButton.find('span[data-greeting-index="' + welcome_greeting_counter % count + '"]').velocity({opacity:1}, { display: "inline" })
     welcome_greeting_counter++;
     welcome_greeting_timer = window.setTimeout(welcomeOurGuests, 5000);
-
-    console.log("fun fun");
 }
 
 $(onDocumentReady);
