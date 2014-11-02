@@ -131,6 +131,9 @@ var onDocumentReady = function(e) {
     STACK.setupAudio();
 
     if (IS_CAST_RECEIVER) {
+        $controlsToggle.hide();
+        $slide_countdown.hide();
+        $slideControls.hide();
         $welcomeScreen.hide();
 
         CHROMECAST_RECEIVER.setup();
@@ -232,6 +235,7 @@ var onCastStarted = function() {
     $stack.hide();
     $fullscreenStart.hide();
     $fullscreenStop.hide();
+    $castStart.hide();
     STACK.stop();
 
     $chromecastScreen.show();
