@@ -465,29 +465,60 @@ svg {
 		}
     }
     
-    .controls ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
+    .controls {
+		font-weight: bold;
 
-        li {
-            .unselectable;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 11px;
+    	.slide-nav {
+    		display: table;
+    		width: 100%;
+    		
+    		a {
+    			display: table-cell;
+    			width: 50%;
+    			font-size: 12px;
+    			line-height: 44px;
+    			background-color: #333;
+    			padding: 0 11px;
+    			
+    			&.nav-btn-left {
+    				border-right: 1px solid #000;
+    				
+    				i { margin-right: 10px; }
+    			}
 
-			@media screen and (max-width: @screen-sm){
-				font-size: 18px;
-				line-height: 44px;
-				margin-bottom: 2px;
-			}
+    			&.nav-btn-right {
+    				text-align: right;
+    				border-left: 1px solid #000;
+    				
+    				i { margin-left: 10px; }
+    			}
+    		}
+    	}
+    
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				.unselectable;
+				font-size: 14px;
+				font-weight: bold;
+				margin-bottom: 11px;
+
+				@media screen and (max-width: @screen-sm){
+					font-size: 18px;
+					line-height: 44px;
+					margin-bottom: 2px;
+				}
 			
-            img {
-            	height: 18px;
-            	width: auto;
-            	vertical-align: middle;
-            }
-        }
+				img {
+					height: 18px;
+					width: auto;
+					vertical-align: middle;
+				}
+			}
+		}
     }
 
 	.controls-feedback-wrapper {
@@ -690,8 +721,6 @@ svg {
 			
 			img { height: 2vw; }
         }
-		nav { display: none; }
-		.slide-countdown { display: none; }
     }
 
     .feedback {
