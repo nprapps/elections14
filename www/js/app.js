@@ -332,9 +332,6 @@ var onWindowResize = function() {
     var width = $(window).width();
     var height = $(window).height();
 
-    var target_width = 1280;
-    var target_height = 720;
-
     var new_height = width * 9 / 16;
     var padding = (height - new_height) / 2;
 
