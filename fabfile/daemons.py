@@ -31,16 +31,21 @@ def deploy_liveblog():
         duration = int(time() - start)
         wait = app_config.LIVEBLOG_DEPLOY_INTERVAL - duration
 
-        print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
-
         if wait < 0:
-            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.LIVEBLOG_DEPLOY_INTERVAL)
+            print 'WARN: Deploying slides took %ds longer than %ds ==' % (abs(wait), app_config.LIVEBLOG_DEPLOY_INTERVAL)
             wait = 0
+        else:
+            print 'Deploying slides ran in %ds' % duration
 
-        sleep(wait)
+        if run_once:
+            print 'Run once specified, exiting.'
+            sys.exit()
+        else:
+            print 'Waiting %ds...' % wait
+            sleep(wait)
 
 @task
-def deploy_results():
+def deploy_results(run_once=False):
     """
     Harvest data and deploy slides indefinitely
     """
@@ -55,10 +60,15 @@ def deploy_results():
         duration = int(time() - start)
         wait = app_config.RESULTS_DEPLOY_INTERVAL - duration
 
-        print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
-
         if wait < 0:
-            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.RESULTS_DEPLOY_INTERVAL)
+            print 'WARN: Deploying slides took %ds longer than %ds' % (abs(wait), app_config.RESULTS_DEPLOY_INTERVAL)
             wait = 0
+        else:
+            print 'Deploying slides ran in %ds' % duration
 
-        sleep(wait)
+        if run_once:
+            print 'Run once specified, exiting.'
+            sys.exit()
+        else:
+            print 'Waiting %ds...' % wait
+            sleep(wait)
