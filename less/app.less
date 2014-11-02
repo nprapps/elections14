@@ -476,76 +476,16 @@ svg {
         display: border-box;
         .unselectable;
     }
-
+    
     .leaderboard {
-        .results-header-group {
-            white-space: nowrap;
-            padding: 0 0.25vw;
-            display: inline-block;
-            font-size: 1.5vw;
-
-            &:last-child{
-                margin-right: 0;
-                padding-right: 0;
-            }
-
-            .party,
-            .total,
-            .seats-needed {
-                display: inline;
-                font-family: 'Cooper Hewitt';
-            }
-
-            h2, p {
-                margin: 0;
-            }
-
-            .senate-header {
-                text-transform: uppercase;
-                font-weight: bold;
-                font-size: 1.7vw;
-                line-height: 3vw;
-                vertical-align: middle;
-            }
-
-            .total {
-                white-space: nowrap;
-                display: inline-block;
-            }
-
-            &.not-called {
-                h2 {
-                    display: inline;
-                }
-
-                white-space: nowrap;
-            }
-        }
-
-        .dem { color: fadeout(@blue, 25%); }
-        .gop { color: fadeout(@red, 25%); }
-        .other { color: fadeout(@green, 25%); }
-        .not-called { color: fadeout(@yellow, 25%); }
-
-        .dem .percentage   {  border: 2px solid transparent; background: fadeout(@blue, 25%); }
-        .gop .percentage   {  border: 2px solid transparent; background: fadeout(@red, 25%); }
-        .other .percentage   {  border: 2px solid transparent; background: fadeout(@green, 25%); }
-        .not-called .count {  border: 2px solid fadeout(@yellow, 25%); color: fadeout(@yellow, 25%); }
-
-        .percentage,
-        .count {
-            margin-top: 0;
-            color: #fff;
-            font-family: 'Cooper Hewitt';
-            display: inline-block;
-            text-align: center;
-            box-sizing:border-box;
-            min-width:3vw;
-            height:3vw;
-            line-height: 2.8vw;
-            border-radius: 2vw;
-            padding: 0 0.5vw;
-        }
+		.senate-header {
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 1.7vw;
+			line-height: 3vw;
+			vertical-align: middle;
+			font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
     }
 
     .control-toggle {

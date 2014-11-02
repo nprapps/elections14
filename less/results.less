@@ -14,19 +14,17 @@
         display: block;
         float: left;
         height: 20px;
-        &.gop {
-          background-color: @red;
-        }
-        &.dem {
-          background-color: @blue;
-        }
-        &.other {
-          background-color: @green;
-        }
+
+        &.gop { background-color: @red; }
+        &.dem { background-color: @blue; }
+        &.other { background-color: @green; }
     }
 }
 
-.house, .senate, .governor, .ballot-measures {
+.ballot-measures,
+.governor, 
+.house, 
+.senate {
     padding: 2vh 3% 0 4vw;
     height: 100%;
 
@@ -57,9 +55,7 @@
         overflow: hidden;
         margin-bottom: 1%;
 
-        .results-title {
-            float: left;
-        }
+        .results-title { float: left; }
 
         h1 {
             font-size: 3vw;
@@ -78,7 +74,7 @@
             }
         }
 
-        h2 { font-size: 1.1vw; }
+//        h2 { font-size: 1.1vw; }
 
         h4 {
         	text-transform: uppercase;
@@ -92,107 +88,6 @@
         .leaderboard {
             float: right;
             display: table;
-        }
-
-        .results-header-group {
-            display: table-cell;
-            // border-left: 2px solid @gray;
-            box-sizing: border-box;
-            padding-left: 0.5vw;
-            padding-right: 0.5vw;
-            white-space: nowrap;
-            overflow: hidden;
-
-            &:first-child {
-                border-left: none;
-            }
-
-            &:last-child {
-                padding-right: 0;
-            }
-
-            .party,
-            .total,
-            .seats-needed, {
-                display: inline;
-            }
-
-            h2, p {
-                margin: 0;
-                font-size: 1.5vw;
-            }
-
-            h2 {
-                letter-spacing: 0.05em;
-                font-weight: 500;
-            }
-
-            .total,
-            .seats-needed {
-                white-space: nowrap;
-                text-shadow: none;
-            }
-
-            .seats-needed {
-                padding-left: 1vw;
-
-                .count { display: inline-block; }
-            }
-
-            &.other {
-                .total { padding: 0; }
-            }
-
-            &.not-called {
-                h2 { display: inline; }
-            }
-        }
-
-        .dem  { color: @blue; }
-        .gop   { color: @red; }
-        .other { color: @green; }
-        .not-called { color: @yellow; }
-
-        .dem .percentage { 
-        	border-color: fadeout(@blue, 25%);
-        	background: @blue;
-        }
-        .dem .count {
-        	border-color: fadeout(@blueDim, 25%);
-        	background: @blueDim;
-        }
-        .gop .percentage {
-        	border-color: fadeout(@red, 25%);
-        	background: @red;
-        }
-        .gop .count { 
-        	border-color: fadeout(@redDim, 25%);
-        	background: @redDim;
-        }
-        .other .percentage { 
-        	border-color: fadeout(@green, 25%);
-        	background: @green;
-        }
-        .not-called .count { 
-        	border-color: fadeout(@yellow, 25%); 
-        	color: @yellow; 
-        	text-shadow: none;
-        }
-
-        .count,
-        .percentage {
-        	border-width: 2px;
-        	border-style: solid;
-            border-radius: 2vw;
-            display: inline-block;
-            color: @white;
-            text-align: center;
-            padding: 0 1vw;
-            min-width: 3vw;
-            height: 3vw;
-            line-height: 2.7vw;
-            box-sizing: border-box;
-            text-shadow: rgba(0,0,0, 0.8) 0 0 2px;
         }
     }
 
@@ -488,3 +383,103 @@
     }
 }
 
+
+/*
+ * LEADERBOARD
+ */
+.results-header-group {
+	white-space: nowrap;
+	padding: 0 0.75vw;
+	display: inline-block;
+	overflow: hidden;
+	box-sizing: border-box;
+	
+	.footer-container & { padding: 0 0.25vw; }
+	
+	&:last-child {
+		margin-right: 0;
+		padding-right: 0;
+	}
+
+	.party,
+	.seats-needed,
+	.total {
+		display: inline;
+	}
+
+	h2,
+	p {
+		font-family: 'Cooper Hewitt';
+		margin: 0;
+		font-size: 1.4vw;
+	}
+
+	h2 { font-weight: 500; }
+
+	.change { 
+		font-size: 1.4vw;
+		font-weight: 500;
+	}
+
+	.count,
+	.percentage {
+		border: 2px solid transparent;
+		display: inline-block;
+		box-sizing: border-box;
+		min-width: 3vw;
+		height: 3vw;
+		border-radius: 2vw;
+		margin-top: 0;
+		padding: 0 0.5vw;
+		color: @white;
+		font-size: 1.5vw;
+		text-align: center;
+		line-height: 2.8vw;
+		text-shadow: rgba(0,0,0, 0.8) 0 0 2px;
+	}
+	
+	.seats-needed,
+	.total {
+		white-space: nowrap;
+		text-shadow: none;
+	}
+
+	.seats-needed {
+		padding-left: 1vw;
+
+		.count { display: inline-block; }
+	}
+
+	&.dem {
+		color: fadeout(@blue, 25%);
+
+		.count { background: @blueDim; }
+		.percentage { background: fadeout(@blue, 25%); }
+	}
+
+	&.gop { 
+		color: fadeout(@red, 25%);
+
+		.count { background: fadeout(@redDim, 25%); }
+		.percentage { background: fadeout(@red, 25%); }
+	}
+
+	&.other {
+		color: fadeout(@green, 25%);
+
+		.percentage { background: fadeout(@green, 25%); }
+		.total { padding: 0; }
+	}
+
+	&.not-called {
+		color: fadeout(@yellow, 25%);
+
+		h2 { display: inline; }
+
+		.count { 
+			border-color: fadeout(@yellow, 25%); 
+			color: fadeout(@yellow, 25%);
+			text-shadow: none;
+		}
+	}
+}
