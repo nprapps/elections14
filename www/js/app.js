@@ -15,8 +15,6 @@ var $chromecastScreen = null;
 var $chromecastIndexHeader = null;
 var $castStart = null;
 var $castStop = null;
-var $castPrev = null;
-var $castNext = null;
 
 var $header = null;
 var $headerControls = null;
@@ -29,7 +27,6 @@ var $audioButtons = null;
 var $slide_countdown = null;
 var $controlsWrapper = null;
 var $controlsToggle = null;
-var $page = null;
 var $changeState = null;
 
 // Global state
@@ -45,6 +42,7 @@ var is_casting = false;
 var countdown = 5 + 1;
 var welcome_greeting_counter = 0;
 var welcome_greeting_timer = null;
+var inTransition = null;
 
 var slide_countdown_arc = null;
 var slide_countdown_svg = null;
@@ -92,8 +90,6 @@ var onDocumentReady = function(e) {
     $chromecastIndexHeader = $welcomeScreen.find('.cast-header');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
-    $castPrev = $('.cast-prev');
-    $castNext = $('.cast-next');
 
     $audioPlayer = $('#pop-audio');
     $fullscreenStart = $('.fullscreen .start');
@@ -110,7 +106,6 @@ var onDocumentReady = function(e) {
     $slide_countdown = $stack.find('.slide-countdown');
     $audioPlay = $('.controls .play');
     $audioPause = $('.controls .pause');
-    $page = $('.page');
     $changeState = $('.controls .change-state');
 
     reloadTimestamp = moment();
@@ -120,8 +115,6 @@ var onDocumentReady = function(e) {
 
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
-    $castPrev.on('click', onCastSlideControlClick);
-    $castNext.on('click', onCastSlideControlClick);
     $fullscreenStart.on('click', onFullscreenButtonClick);
     $fullscreenStop.on('click', onFullscreenButtonClick);
 
@@ -275,6 +268,9 @@ var onCastReceiverMute = function(message) {
     }
 }
 
+/*
+ * Back/next slide on the receiver.
+ */
 var onCastReceiverSlideChange = function(message) {
     if (message == 'prev') {
         STACK.previous();
@@ -290,17 +286,6 @@ var onCastReceiverSlideChange = function(message) {
  */
 var onCastStateChange = function(message) {
     state = message;
-}
-
-var onCastSlideControlClick = function(e) {
-    e.preventDefault();
-
-    if ($(this).hasClass('cast-prev')) {
-        CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
-    }
-    else if ($(this).hasClass('cast-next')) {
-        CHROMECAST_SENDER.sendMessage('slide-change', 'next');
-    }
 }
 
 /*
@@ -738,15 +723,38 @@ function tween_slide_arc(transition, arc_main, end) {
  * Click left or right paddle
  */
 var onSlideControlClick = function(e) {
+    var $this = $(this);
+
     e.preventDefault();
 
-    var direction = $(this).data('slide');
+    var direction = $this.data('slide');
+
+    if (!(inTransition)) {
+        $this.addClass('in-transition');
+
+        // If casting we don't know when transition is complete
+        // So just show highlight briefly
+        if (is_casting) {
+            setTimeout(function() {
+                $slideControls.removeClass('in-transition');
+            }, 1000);
+        }
+    }
 
     if (direction == "next") {
-        STACK.next($(this));
+
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'next');
+        } else {
+            STACK.next();
+        }
     }
     else if (direction == "previous") {
-        STACK.previous($(this));
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
+        } else {
+            STACK.previous();
+        }
     }
 }
 
@@ -770,27 +778,17 @@ var onKeyboard = function(e) {
 
     // Right arrow
     if (e.which == 39) {
-        if (is_casting) {
-            CHROMECAST_SENDER.sendMessage('slide-change', 'next');
-        }
-        else {
-            STACK.next($('.slide-nav .nav-btn-right'))
-        }
+        $('.slide-nav .nav-btn-right').eq(0).click();
     }
 
     // Left arrow
     if (e.which == 37) {
-        if (is_casting) {
-            CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
-        }
-        else {
-            STACK.previous($('.slide-nav .nav-btn-left'))
-        }
+        $('.slide-nav .nav-btn-left').eq(0).click();
     }
     
     // Escape
     if (e.which == 27 && !IS_TOUCH && !is_casting) {
-        $controlsWrapper.fadeToggle();
+        $controlsToggle.click();
     }
 }
 

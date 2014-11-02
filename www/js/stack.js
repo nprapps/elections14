@@ -6,7 +6,6 @@ var STACK = (function () {
     var _currentSlide = 0;
     var _timeOnScreen = null;
     var $newSlide = null;
-    var inTransition = null;
 
     var _stackTimer = null;
     var _rotateTimer = null;
@@ -66,11 +65,7 @@ var STACK = (function () {
         _slideExitCallback = cb;
     }
 
-    obj.next = function($element) {
-        if (!(inTransition)) {
-            $element.addClass('in-transition');
-        }
-
+    obj.next = function() {
         rotateSlide();
 
         if (!(hasTrackedNextSlide)) {
@@ -79,11 +74,7 @@ var STACK = (function () {
         }
     }
 
-    obj.previous = function($element) {
-        if (!(inTransition)) {
-            $element.addClass('in-transition');
-        }
-
+    obj.previous = function() {
         rotateSlide('previous');
 
         if (!(hasTrackedPrevSlide)) {
@@ -234,8 +225,6 @@ var STACK = (function () {
         $newSlide = $(data);
 
         _timeOnScreen = _stack[_currentSlide]['time_on_screen'];
-
-        $page.text((_currentSlide + 1) + ' of ' + _stack.length);
 
         if ($oldSlide.length > 0) {
             if (_slideExitCallback) {
