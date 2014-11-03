@@ -186,6 +186,7 @@ var onDocumentReady = function(e) {
 
     // debugging with the ?skipcountdown flag, to go straight the stack
     } else if (SKIP_COUNTDOWN) {
+        $welcomeScreen.hide();
         STACK.start();
     
     // running the app as usual, on your phone or laptop
@@ -368,31 +369,39 @@ var onCastStopClick = function(e) {
  * Resize stack and current slide.
  */
 var onWindowResize = function() {
-    var width = $(window).width();
-    var height = $(window).height();
-    var footerHeight = 0;
+    // var width = $(window).width();
+    // var height = $(window).height();
+    // var footerHeight = 0;
 
-    var new_height = width * 9 / 16;
-    var padding = (height - new_height) / 2;
+    // var new_height = width * 9 / 16;
+    // var padding = (height - new_height) / 2;
 
-    if (padding < 0) {
-        padding = 0;
+    // if (padding < 0) {
+    //     padding = 0;
+    // }
+
+    // $stack.css({
+    //     'width': width + 'px',
+    //     'height': new_height + 'px',
+    //     'position': 'absolute',
+    //     'top': padding + 'px'
+    // });
+
+    var stack = document.getElementById("stack");
+    var aspect = window.innerWidth / window.innerHeight;
+
+    if ( aspect > 16/9) {
+        document.documentElement.style.fontSize = ((16/9) / aspect) + 'vw';
+    } else {
+        document.documentElement.style.fontSize = "1vw";
     }
 
-    $stack.css({
-        'width': width + 'px',
-        'height': new_height + 'px',
-        'position': 'absolute',
-        'top': padding + 'px'
-    });
+    // checkForPortrait();
 
-    checkForPortrait();
+    // var currentSlideInner = $('.slide-inner');
 
-    var currentSlideInner = $('.slide-inner');
-
-    currentSlideInner.width(width);
-    currentSlideInner.height(new_height - footerHeight);
-
+    // currentSlideInner.width(width);
+    // currentSlideInner.height(new_height - footerHeight);
 }
 
 /*
