@@ -73,10 +73,16 @@ var hasTrackedPrevSlide = null;
 var hasTrackedKeyboardNav = null;
 var hasTrackedMobileControls = null;
 
+/*
+ * _.has
+ */
 var has = function(obj, key) {
     return hasOwnProperty.call(obj, key);
 };
 
+/*
+ * _.invert
+ */
 var invert = function(obj) {
     var result = {};
     for (var key in obj) if (has(obj, key)) result[obj[key]] = key;
@@ -87,6 +93,9 @@ var invert = function(obj) {
  * Run on page load.
  */
 var onDocumentReady = function(e) {
+    // Timestamp when page was loaded
+    reloadTimestamp = Date.now();
+    
     // Cache jQuery references
     $body = $('body');
     $welcomeScreen = $('.welcome');
@@ -124,8 +133,6 @@ var onDocumentReady = function(e) {
     $audioPause = $('.controls .pause');
     $changeState = $('.controls .change-state');
 
-    reloadTimestamp = Date.now();
-
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
 
@@ -137,13 +144,14 @@ var onDocumentReady = function(e) {
     $audioPlay.on('click', onAudioPlayClick);
     $audioPause.on('click', onAudioPauseClick);
     $slideControls.on('click', onSlideControlClick);
+
     if (!IS_TOUCH) {
         $controlsToggle.on('click', onControlsToggleClick);
-    }
-    else {
+    } else {
         $stack.on('click', onStackTap);
         $closeControlsLink.on('click', onCloseControlsLink);
     }
+
     $changeState.on('click', onChangeStateClick);
     $statePicker.on('change', onStatePickerChange);
 
@@ -202,6 +210,9 @@ var onDocumentReady = function(e) {
     create_slide_countdown();
 }
 
+/*
+ * Create and configure UI elements.
+ */
 var setupUI = function() {
     checkTimestamp();
 
@@ -222,8 +233,10 @@ var setupUI = function() {
         geoip2.city(onLocateIP);
     }
 
+    // GeoIP failed to load (adblocker)
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
-        // TODO: handle geoip load failure (e.g. adblocker)
+        // Default to CA
+        onLocateIP({ 'most_specific_subdivision': { 'iso_code': 'CA' } });
     }
 
     welcomeOurGuests();
@@ -559,9 +572,11 @@ var onStatePickerChange = function() {
  * Set the geolocated state.
  */
 var onLocateIP = function(response) {
-    var place = response.most_specific_subdivision.iso_code;
-    $('#option-' + place).prop('selected', true);
-    state = place;
+    var postal_code = response.most_specific_subdivision.iso_code;
+    
+    $('#option-' + postal_code).prop('selected', true);
+
+    state = postal_code;
     $.cookie('state', state, { expires: 30 });
 
     showState();
