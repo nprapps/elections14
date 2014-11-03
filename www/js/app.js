@@ -302,7 +302,6 @@ var onCastStopped = function() {
     
     if (!IS_TOUCH) {
         $fullscreenStart.show();
-        $fullscreenStop.show();
     }
 
     is_casting = false;
