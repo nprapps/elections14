@@ -193,7 +193,7 @@ def render_results():
         pass
 
     slides = models.Slide.select()
-    slugs = [slide.slug for slide in slides if slide.slug not in ['state-senate-results', 'state-house-results'] or slide.slug.startswith('tumblr')]
+    slugs = [slide.slug for slide in slides if slide.slug not in ['state-senate-results', 'state-house-results'] and not slide.slug.startswith('tumblr')]
     slides.database.close()
 
     views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
