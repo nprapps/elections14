@@ -249,6 +249,9 @@ def house_freshmen():
     context['races_lost'] = columnize_card(lost, 6)
     context['races_not_called'] = columnize_card(not_called, 6)
 
+    context['races_won_count'] = len(won)
+    context['races_lost_count'] = len(lost)
+    context['races_not_called_count'] = len(not_called)
     context['races_count'] = races.count()
 
     return render_template('slides/house-freshmen.html', **context)
@@ -294,8 +297,10 @@ def incumbents_lost():
                 if candidate.incumbent and not candidate.is_winner():
                     house_incumbents_lost.append(race)
 
-    context['senate_incumbents_lost'] = columnize_card(senate_incumbents_lost, 6)
+    context['senate_incumbents_lost_count'] = len(senate_incumbents_lost)
+    context['house_incumbents_lost_count'] = len(house_incumbents_lost)
 
+    context['senate_incumbents_lost'] = columnize_card(senate_incumbents_lost, 6)
     context['house_incumbents_lost'] = columnize_card(house_incumbents_lost, 6)
 
     return render_template('slides/incumbents-lost.html', **context)
@@ -311,10 +316,17 @@ def obama_reps():
 
     context = make_context(timestamp=timestamp)
 
-    context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
-    context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
-    context['races_not_called'] = columnize_card([race for race in races if not race.is_called() or race.is_runoff()])
+    won = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    lost = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    not_called = [race for race in races if not race.is_called() or race.is_runoff()]
 
+    context['races_won'] = columnize_card(won)
+    context['races_lost'] = columnize_card(lost)
+    context['races_not_called'] = columnize_card(not_called)
+
+    context['races_won_count'] = len(won)
+    context['races_lost_count'] = len(lost)
+    context['races_not_called_count'] = len(not_called)
     context['races_count'] = races.count()
 
     return render_template('slides/obama-reps.html', **context)
@@ -380,11 +392,19 @@ def romney_dems():
 
     context = make_context(timestamp=timestamp)
 
-    context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
-    context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
-    context['races_not_called'] = columnize_card([race for race in races if not race.is_called() or race.is_runoff()])
+    won = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    lost = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    not_called = [race for race in races if not race.is_called() or race.is_runoff()]
 
+    context['races_won'] = columnize_card(won)
+    context['races_lost'] = columnize_card(lost)
+    context['races_not_called'] = columnize_card(not_called)
+
+    context['races_won_count'] = len(won)
+    context['races_lost_count'] = len(lost)
+    context['races_not_called_count'] = len(not_called)
     context['races_count'] = races.count()
+
 
     return render_template('slides/romney-dems.html', **context)
 
@@ -403,10 +423,17 @@ def romney_senate_dems():
 
     context = make_context(timestamp=timestamp)
 
-    context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
-    context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
-    context['races_not_called'] = columnize_card([race for race in races if not race.is_called() or race.is_runoff()])
+    won = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    lost = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    not_called = [race for race in races if not race.is_called() or race.is_runoff()]
 
+    context['races_won'] = columnize_card(won)
+    context['races_lost'] = columnize_card(lost)
+    context['races_not_called'] = columnize_card(not_called)
+
+    context['races_won_count'] = len(won)
+    context['races_lost_count'] = len(lost)
+    context['races_not_called_count'] = len(not_called)
     context['races_count'] = races.count()
 
     return render_template('slides/romney-senate-dems.html', **context)
