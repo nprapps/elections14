@@ -187,7 +187,7 @@ Tumblelog.Infinite = (function() {
     /* Live blog code */
 
     function enableLiveBlog() {
-        setInterval(updateLiveBlog, APP_CONFIG.TUMBLR_REFRESH_INTERVAL * 1000);
+        setInterval(updateLiveBlog, 30000);
     }
 
     function updateLiveBlog() {
@@ -196,6 +196,7 @@ Tumblelog.Infinite = (function() {
         }
 
         _is_loading = true;
+        $liveUpdateIcon.addClass('fa-spin');
 
         // reset the url
         var liveblog_url = document.location.href;
@@ -250,8 +251,12 @@ Tumblelog.Infinite = (function() {
             } else {
                 disable_scroll();
             }
-            
+
             _is_loading = false;
+            _.delay(function(){
+                $liveUpdateIcon.removeClass('fa-spin');
+                $lastUpdated.show().text('Last updated at ' + moment().format("h:mm a"));
+            }, 5000);
         });
     }
 

@@ -1,4 +1,5 @@
 // Core variables and mixins
+@import "theme/less/lib/font-awesome/font-awesome";
 @import "variables.less";
 @import "lib/bootstrap/bootstrap.less";
 
@@ -12,6 +13,14 @@
     }
 }
 
+.liveblog-visible {
+    display: none;
+}
+
+.liveblog-active .liveblog-visible {
+    display: block;
+}
+
 #blog_info {
     text-align: left;
     position: static;
@@ -20,15 +29,35 @@
 
     @media (min-width: @screen-md) {
         text-align: right;
-        position: fixed;
-        width: 100%;
-        padding: 0;
-        max-width: 1400px;
+        // position: fixed;
+        // width: 100%;
+        // padding: 0;
+        // max-width: 1400px;
     }
 
     .npr img {
         width: 69px;
         border: 1px solid #fff;
+        margin: 0;
+    }
+
+    .npr {
+        height: 27px;
+        line-height: 27px;
+
+        a,
+        img {
+            display: inline-block;
+        }
+    }
+
+    h1 {
+        margin-bottom: 15px;
+
+        .liveblog-active & {
+            margin-top: 0;
+            line-height: 25px;
+        }
     }
 
     h1 img {
@@ -47,7 +76,22 @@
 
     h1 a {
         color: white;
+        font-weight: normal;
+        text-transform: lowercase;
         font-size: 150%;
+        line-height: 1;
+
+        .liveblog-active & {
+            font-size: 50%;
+            color: @musicMedium;
+        }
+    }
+
+    h2 {
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 300%;
+        margin-top: 0;
     }
 
     p {
@@ -79,6 +123,12 @@
     padding-top: @line-height-computed;
     position: relative;
     z-index: 20;
+
+    .live-update-hed {
+        color: @musicMedium;
+        font-size: 100%;
+        font-weight: normal;
+    }
 
     .tag-header {
         font-weight: normal;
