@@ -208,13 +208,20 @@ def balance_of_power():
     """
     from models import Race
 
-    context = make_context()
+    house_races = Race.select().where(Race.office_name == 'U.S. House').order_by(Race.state_postal)
+    senate_races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+
+    senate_updated = get_last_updated(senate_races)
+    house_updated = get_last_updated(house_races)
+    if senate_updated > house_updated:
+        last_updated = senate_updated
+    else:
+        last_updated = house_updated
+
+    context = make_context(timestamp=last_updated)
 
     context['page_title'] = 'Balance of Power'
     context['page_class'] = 'balance-of-power'
-
-    house_races = Race.select().where(Race.office_name == 'U.S. House').order_by(Race.state_postal)
-    senate_races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
     context['house_bop'] = calculate_bop(house_races, HOUSE_INITIAL_BOP)
     context['senate_bop'] = calculate_bop(senate_races, SENATE_INITIAL_BOP)
