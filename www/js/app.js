@@ -427,7 +427,7 @@ var onWelcomeButtonClick = function() {
 /*
  * Fullscreen the app.
  */
-var onFullscreenButtonClick = function() {
+var onFullscreenButtonClick = function(event) {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'fullscreen']);
     var elem = document.getElementById("stack");
 
@@ -467,7 +467,7 @@ var onFullscreenButtonClick = function() {
     event.stopPropagation();
 }
 
-var onStatePickerClick = function() {
+var onStatePickerClick = function(event) {
     event.stopPropagation();
 }
 
@@ -491,8 +491,8 @@ var onStatePickerChange = function() {
 /*
  * Unmute the audio.
  */
-var onAudioPlayClick = function(e) {
-    e.preventDefault();
+var onAudioPlayClick = function(event) {
+    event.preventDefault();
 
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'false');
@@ -511,8 +511,8 @@ var onAudioPlayClick = function(e) {
 /*
  * Mute the audio.
  */
-var onAudioPauseClick = function(e) {
-    e.preventDefault();
+var onAudioPauseClick = function(event) {
+    event.preventDefault();
 
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'true');
@@ -531,8 +531,8 @@ var onAudioPauseClick = function(e) {
 /*
  * Click left or right paddle
  */
-var onSlideControlClick = function(e) {
-    e.preventDefault();
+var onSlideControlClick = function(event) {
+    event.preventDefault();
 
     var $this = $(this);
     var direction = $this.data('slide');
@@ -570,8 +570,8 @@ var onSlideControlClick = function(e) {
 /*
  * Click control/legend toggle
  */
-var onControlsToggleClick = function(e) {
-    e.preventDefault();
+var onControlsToggleClick = function(event) {
+    event.preventDefault();
 
     $controlsWrapper.fadeToggle(400, function() {
         // if we already have a handler, we need to remove it.
@@ -593,8 +593,8 @@ var onControlsToggleClick = function(e) {
 /*
  * Open mobile controls.
  */
-var onStackTap = function(e) {
-    e.preventDefault();
+var onStackTap = function(event) {
+    event.preventDefault();
 
     disableRotatePrompt();
     $castControls.show();
@@ -607,8 +607,8 @@ var onStackTap = function(e) {
     }
 }
 
-var onDesktopStackClick = function(e) {
-    e.preventDefault();
+var onDesktopStackClick = function(event) {
+    event.preventDefault();
 
     if ($('.control-toggle').not('active')) {
         $controlsWrapper.fadeToggle();
@@ -622,15 +622,15 @@ var onDesktopStackClick = function(e) {
 /*
 * Just to prevent click events from propagating through.
 */
-var onControlsWrapperClick = function(e) {
+var onControlsWrapperClick = function(event) {
     event.stopPropagation();
 }
 
 /*
  * Close the mobile controls.
  */
-var onCloseControlsLink = function(e) {
-    e.preventDefault();
+var onCloseControlsLink = function(event) {
+    event.preventDefault();
 
     enableRotatePrompt();
     $castControls.hide();
