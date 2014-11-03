@@ -63,6 +63,14 @@
                             </span>
                         </p>
                         {% endif %}
+                        {% if not_called_number > 0 %}
+                        <p>
+                            <span class="bar-wrapper">
+                                <span class="bar not-called" style="width: {{ not_called_percent }}%"></span>
+                                <span class="bar-label" style="left: {{ not_called_percent }}%">{{ not_called_number }}</span>
+                            </span>
+                        </p>
+                        {% endif %}
                     </div>
                 </div>
 

@@ -158,7 +158,13 @@ def calculate_state_bop(races):
     called_gop_number = 0
     called_dem_number = 0
     called_other_number = 0
+    not_called_number = 0
+    total_races = 0
+    bar_max = 0
+
     for race in races:
+        total_races += 1
+
         if race.previous_party == 'gop':
             current_gop_number += 1
         elif race.previous_party == 'dem':
@@ -174,14 +180,23 @@ def calculate_state_bop(races):
             elif race.get_winning_party() == 'other':
                 called_other_number += 1
 
-    current_total = current_gop_number + current_dem_number + current_other_number
-    current_gop_percent = _percent(current_gop_number, current_total)
-    current_dem_percent = _percent(current_dem_number, current_total)
-    current_other_percent = _percent(current_other_number, current_total)
+    not_called_number = calculate_seats_left(races)
+    not_called_percent = _percent(not_called_number, total_races)
 
-    called_gop_percent = _percent(called_gop_number, current_total)
-    called_dem_percent = _percent(called_dem_number, current_total)
-    called_other_percent = _percent(called_other_number, current_total)
+    current_total = current_gop_number + current_dem_number + current_other_number
+
+    if current_total > total_races:
+        bar_max = current_total
+    else:
+        bar_max = total_races
+
+    current_gop_percent = _percent(current_gop_number, bar_max)
+    current_dem_percent = _percent(current_dem_number, bar_max)
+    current_other_percent = _percent(current_other_number, bar_max)
+
+    called_gop_percent = _percent(called_gop_number, bar_max)
+    called_dem_percent = _percent(called_dem_number, bar_max)
+    called_other_percent = _percent(called_other_number, bar_max)
 
     return {
         'current_gop_number': current_gop_number,
@@ -196,6 +211,8 @@ def calculate_state_bop(races):
         'called_gop_percent': called_gop_percent,
         'called_dem_percent': called_dem_percent,
         'called_other_percent': called_other_percent,
+        'not_called_percent': not_called_percent,
+        'not_called_number': not_called_number,
     }
 
 def get_last_updated(races):
