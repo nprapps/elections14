@@ -742,12 +742,12 @@ def play_fake_results(update_interval=60):
                     race.save()
 
 
-            if app_config.DEPLOYMENT_TARGET:
-                execute('liveblog.update')
-                execute('deploy_liveblog')
-                execute('deploy_bop')
-                execute('deploy_big_boards')
-                execute('deploy_results')
+            #if app_config.DEPLOYMENT_TARGET:
+                #execute('liveblog.update')
+                #execute('deploy_liveblog')
+                #execute('deploy_bop')
+                #execute('deploy_big_boards')
+                #execute('deploy_results')
 
             sleep(float(update_interval))
 
