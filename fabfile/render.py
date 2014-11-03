@@ -75,7 +75,6 @@ def render_all():
     from flask import g
 
     less()
-    jst()
     app_config_js()
     copytext_js()
 

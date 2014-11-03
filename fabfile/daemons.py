@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from time import sleep, time
-from fabric.api import execute, task, env
+from fabric.api import execute, task
 
 import app_config
 import sys
