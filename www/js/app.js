@@ -387,11 +387,6 @@ var onWindowResize = function() {
         document.documentElement.style.fontSize = '1vw';
     }
 
-    var new_height = w / new_aspect;
-
-    $currentSlideInner.width(w);
-    $currentSlideInner.height(new_height);
-
     checkForPortrait();
 }
 
