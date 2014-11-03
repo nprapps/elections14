@@ -206,6 +206,8 @@ var onDocumentReady = function(e) {
     create_slide_countdown();
 }
 
+$(onDocumentReady);
+
 /*
  * Create and configure UI elements.
  */
@@ -242,23 +244,26 @@ var setupUI = function() {
  * Setup Chromecast if library is available.
  */
 window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
-    $chromecastIndexHeader = $('.welcome').find('.cast-header');
+    // We need the DOM here, so don't fire until it's ready.
+    $(function() {
+        $chromecastIndexHeader = $('.welcome').find('.cast-header');
 
-    // Don't init sender if in receiver mode
-    if (IS_CAST_RECEIVER || IS_FAKE_CASTER) {
-        return;
-    }
+        // Don't init sender if in receiver mode
+        if (IS_CAST_RECEIVER || IS_FAKE_CASTER) {
+            return;
+        }
 
-    if (loaded) {
-        CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
-    	$chromecastIndexHeader.find('.cast-enabled').show();
-    	$chromecastIndexHeader.find('.cast-disabled').hide();
-        $castStart.show();
-        window.clearTimeout(welcome_greeting_timer);
-    } else {
-        $chromecastIndexHeader.find('.cast-try-chrome').hide();
-        $chromecastIndexHeader.find('.cast-get-extension').show();
-    }
+        if (loaded) {
+            CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
+            $chromecastIndexHeader.find('.cast-enabled').show();
+            $chromecastIndexHeader.find('.cast-disabled').hide();
+            $castStart.show();
+            window.clearTimeout(welcome_greeting_timer);
+        } else {
+            $chromecastIndexHeader.find('.cast-try-chrome').hide();
+            $chromecastIndexHeader.find('.cast-get-extension').show();
+        }
+    });
 }
 
 /*
@@ -886,5 +891,3 @@ var welcomeOurGuests = function(){
     welcome_greeting_counter++;
     welcome_greeting_timer = window.setTimeout(welcomeOurGuests, 5000);
 }
-
-$(onDocumentReady);
