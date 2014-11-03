@@ -42,7 +42,7 @@ svg {
     // box-sizing:border-box;
     // -moz-box-sizing:border-box;
     // -webkit-box-sizing:border-box;
-    // border:4px dashed white;
+    border:.5px dashed white;
     // overflow: hidden;
     //end debug styles
 
@@ -51,7 +51,7 @@ svg {
 
     width: 100rem;
     height: 56.25rem;
-    padding: 2.5% 2.5% 0 2.5%; //0 bottom because we're padding the footer up (and they're absolute)
+    padding: @stack_padding;
 
     position: relative;
 
@@ -762,9 +762,7 @@ svg {
     right: 0;
     bottom: 0;
     z-index: 1;
-    // background: black;
-    // padding: .3rem 2% 0 2%;
-    padding: 0 2.5% 0 2.5%;
+    padding: @stack_padding;
 
     a {
         color: @grayMedium;
@@ -793,13 +791,13 @@ svg {
 
     .control-toggle {
     	float: left;
-    	padding: 0 1.5rem 0 .5rem;
+    	padding: 0 1.5rem 0 1.5rem;
         text-align: center;
         text-transform: uppercase;
         font-size: 1.5rem;
-        line-height: 3.5rem;
+        line-height: 3rem;
         border-radius: 1rem;
-		background: fadeout(@grayMedium,85%);
+		background: fadeout(@grayMedium,75%);
 		.unselectable;
 		
         &.active {
@@ -832,19 +830,12 @@ svg {
     .nav {
     	float: right;
         text-align: right;
-        line-height: 3.5rem;
         white-space: nowrap; // Fixes safari wrapping
 
-        .page,
         .slide-nav,
         .slide-countdown,
         .logo {
             display: inline-block;
-        }
-
-        .page {
-            color: @grayMedium;
-            font-size: 1.2rem;
         }
 
         .slide-nav {
