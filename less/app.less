@@ -261,7 +261,7 @@ svg {
 
 .controls {
 	li {
-		background: #333;
+		background: fadeout(#333,25%);
 		line-height: 3vw;
 		padding: 0 1vw 0 0;
 		margin-bottom: 2px;
@@ -272,7 +272,7 @@ svg {
 		i {
 			display: inline-block;
 			width: 3vw;
-			background-color: #222;
+			background: #222;
 			text-align: center;
 			margin-right: 1vw;
 			font-style: normal;
@@ -311,7 +311,7 @@ svg {
 		li {
 			line-height: 3vw;
 			vertical-align: middle;
-			background-color: #333;
+			background: fadeout(#333,25%);
 			margin-bottom: 1px;
 			font-size: 1.3vw;
 		}
@@ -451,35 +451,6 @@ svg {
         z-index: -1;
     }
 
-    .close-link {
-    	display: block;
-    	padding: 0 11px;
-    	line-height: 44px;
-    	font-weight: bold;
-    	font-size: 12px;
-    	background: #333;
-        display: none;
-    }
-
-	.wrapper {
-		.clearfix;
-		padding: 22px 11px;
-	}
-
-    h2 {
-		font-size: 18px;
-		padding-bottom: 11px;
-        font-weight: bold;
-        margin: 0;
-        text-transform: uppercase;
-        color: @white;
-
-		@media screen and (min-width: @screen-sm){
-			font-size: 36px;
-			padding-bottom: 22px;
-		}
-    }
-    
     h3 {
 		font-size: 12px;
         margin: 0 0 11px 0;
@@ -492,6 +463,27 @@ svg {
 			font-size: 16px;
 		}
     }
+    
+    .close-link {
+    	padding: 0 11px;
+    	line-height: 44px;
+    	font-weight: bold;
+    	font-size: 12px;
+		background: fadeout(#333,25%);
+        display: none;
+    }
+
+	.wrapper {
+		.clearfix;
+		padding: 22px 11px;
+	}
+
+	.controls-feedback-wrapper {
+		@media screen and (min-width: @screen-sm){
+			width: 50%;
+			float: left;
+		}
+	}
     
 	.controls .slide-nav a,
 	.controls ul li,
@@ -560,16 +552,8 @@ svg {
 		}
     }
 
-	.controls-feedback-wrapper {
-		@media screen and (min-width: @screen-sm){
-			width: 50%;
-			float: left;
-		}
-	}
-    
 	.feedback { 
-		clear: both;
-		padding-top: 33px;
+//		padding-top: 5px;
 	
 		h3 { padding-top: 33px; }
 		
@@ -793,6 +777,7 @@ svg {
         line-height: 3.5vw;
         border-radius: 1vw;
 		background: fadeout(@grayMedium,85%);
+		.unselectable;
 		
         &.active {
 		    background: fadeout(@blueDarker,2%);
