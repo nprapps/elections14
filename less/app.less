@@ -140,7 +140,7 @@ svg {
 
         .cast-get-extension,
     	.cast-enabled { display: none; }
-    	
+
         .cast-disabled p {
             margin-top: 33px;
 			a {
@@ -220,7 +220,7 @@ svg {
     display: none;
     text-align: center;
     z-index: 1000;
-    
+
     &:after {
         content : "";
         display: block;
@@ -276,7 +276,7 @@ svg {
 /*
  * CONTROLS AND FEEDBACK
  */
- 
+
  .controls ul li,
  .feedback ul li {
 	background: fadeout(@grayMedium,60%);
@@ -285,7 +285,7 @@ svg {
 	border-radius: 0.5rem;
 	font-size: 1.2rem;
 	text-transform: uppercase;
-	
+
 	i {
 		display: inline-block;
 		width: 3rem;
@@ -293,10 +293,13 @@ svg {
 		text-align: center;
 		font-style: normal;
 		color: @white;
-		
-		.stateface:before { margin-right: 0; }
+
+		.stateface:before {
+            margin-right: 0;
+            text-transform: none;
+        }
 	}
-	
+
 	a {
 		.unselectable;
 	}
@@ -308,7 +311,7 @@ svg {
 }
 
 .feedback {
-	ul { 
+	ul {
 		a { display: block; }
 	}
 }
@@ -321,7 +324,7 @@ svg {
 .legend {
     font-weight: 300;
 	.clearfix;
-    
+
     ul {
         .clearfix();
         margin-bottom: 0;
@@ -452,12 +455,12 @@ svg {
         color: @white;
         font-weight: 700;
         text-transform: uppercase;
-        
+
 		@media screen and (min-width: @screen-sm){
 			font-size: 16px;
 		}
     }
-    
+
     .close-link {
         display: none;
 		margin: 0 0 33px 0;
@@ -471,7 +474,7 @@ svg {
 			display: inline-block;
 			border-radius: 0.5em;
 		}
-		
+
 		i { margin-left: 0.5em; }
     }
 
@@ -481,11 +484,11 @@ svg {
 			float: left;
 		}
 	}
-	
+
 	.wrapper {
 		.clearfix;
 	}
-    
+
 	.controls .slide-nav a,
 	.controls ul li,
 	.feedback p,
@@ -497,11 +500,11 @@ svg {
 			font-size: 14px;
 		}
 	}
-	
+
 	.controls ul,
 	.feedback ul {
 		margin: 0;
-		
+
 		li {
 			line-height: 44px;
 			margin-bottom: 1px;
@@ -516,9 +519,9 @@ svg {
 		}
 	}
 
-	.feedback { 
+	.feedback {
 		margin-bottom: 33px;
-	
+
 		h3 { padding-top: 22px; }
 	}
 
@@ -534,7 +537,7 @@ svg {
 		ul {
 			width: 50%;
 			float: left;
-			
+
 			@media screen and (min-width: @screen-sm){
 				width: auto;
 				float: none;
@@ -672,7 +675,7 @@ svg {
             text-decoration: none;
         }
     }
-    
+
     h3 {
     	margin: 0 0 1rem 0;
     	font-size: 1.2rem;
@@ -691,10 +694,10 @@ svg {
     }
 
     .controls {
-        li { 
+        li {
 			img { height: 2rem; }
         }
-        
+
         nav { display: none; }
     }
 
@@ -743,7 +746,7 @@ svg {
 
     .control-toggle {
     	float: left;
-		
+
         a {
         	display: inline-block;
             text-decoration: none;
