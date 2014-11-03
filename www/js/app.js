@@ -144,11 +144,13 @@ var onDocumentReady = function(e) {
 
     if (!IS_TOUCH) {
         $controlsToggle.on('click', onControlsToggleClick);
+        $controlsWrapper.on('click', onControlsWrapperClick);
     } else {
         $stack.on('click', onStackTap);
         $closeControlsLink.on('click', onCloseControlsLink);
     }
 
+    $statePicker.on('click', onStatePickerClick);
     $statePicker.on('change', onStatePickerChange);
 
     $body.on('keydown', onKeyboard);
@@ -425,7 +427,7 @@ var onWelcomeButtonClick = function() {
 /*
  * Fullscreen the app.
  */
-var onFullscreenButtonClick = function() {
+var onFullscreenButtonClick = function(event) {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'fullscreen']);
     var elem = document.getElementById("stack");
 
@@ -462,6 +464,11 @@ var onFullscreenButtonClick = function() {
         $fullscreenStart.hide();
         $fullscreenStop.show();
     }
+    event.stopPropagation();
+}
+
+var onStatePickerClick = function(event) {
+    event.stopPropagation();
 }
 
 /*
@@ -484,8 +491,8 @@ var onStatePickerChange = function() {
 /*
  * Unmute the audio.
  */
-var onAudioPlayClick = function(e) {
-    e.preventDefault();
+var onAudioPlayClick = function(event) {
+    event.preventDefault();
 
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'false');
@@ -497,13 +504,15 @@ var onAudioPlayClick = function(e) {
     $audioPause.show();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+
+    event.stopPropagation();
 }
 
 /*
  * Mute the audio.
  */
-var onAudioPauseClick = function(e) {
-    e.preventDefault();
+var onAudioPauseClick = function(event) {
+    event.preventDefault();
 
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'true');
@@ -515,13 +524,15 @@ var onAudioPauseClick = function(e) {
     $audioPlay.show();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+
+    event.stopPropagation();
 }
 
 /*
  * Click left or right paddle
  */
-var onSlideControlClick = function(e) {
-    e.preventDefault();
+var onSlideControlClick = function(event) {
+    event.preventDefault();
 
     var $this = $(this);
     var direction = $this.data('slide');
@@ -559,20 +570,31 @@ var onSlideControlClick = function(e) {
 /*
  * Click control/legend toggle
  */
-var onControlsToggleClick = function(e) {
-    e.preventDefault();
+var onControlsToggleClick = function(event) {
+    event.preventDefault();
 
     $controlsWrapper.fadeToggle(400, function() {
-        $stack.on('click', onDesktopStackClick);
+        // if we already have a handler, we need to remove it.
+
+        var htmlStack = document.getElementById('stack');
+        var ev = $._data(htmlStack, 'events');
+        if (ev && ev.click) {
+            $stack.off('click', onDesktopStackClick);
+        }
+        else {
+            $stack.on('click', onDesktopStackClick);
+        }
     });
     $(this).parent('.control-toggle').toggleClass('active');
+
+    event.stopPropagation();
 }
 
 /*
  * Open mobile controls.
  */
-var onStackTap = function(e) {
-    e.preventDefault();
+var onStackTap = function(event) {
+    event.preventDefault();
 
     disableRotatePrompt();
     $castControls.show();
@@ -585,21 +607,30 @@ var onStackTap = function(e) {
     }
 }
 
-var onDesktopStackClick = function(e) {
-    e.preventDefault();
+var onDesktopStackClick = function(event) {
+    event.preventDefault();
 
     if ($('.control-toggle').not('active')) {
         $controlsWrapper.fadeToggle();
-        $controlsWrapper.removeClass('active');
-        $stack.off('click', onDesktopStackClick);
+        $('.control-toggle').removeClass('active');
     }
+
+    $stack.off('click', onDesktopStackClick);
+
+}
+
+/*
+* Just to prevent click events from propagating through.
+*/
+var onControlsWrapperClick = function(event) {
+    event.stopPropagation();
 }
 
 /*
  * Close the mobile controls.
  */
-var onCloseControlsLink = function(e) {
-    e.preventDefault();
+var onCloseControlsLink = function(event) {
+    event.preventDefault();
 
     enableRotatePrompt();
     $castControls.hide();
