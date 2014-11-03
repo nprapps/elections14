@@ -196,33 +196,34 @@ def render_results():
     slugs = [slide.slug for slide in slides if slide.slug not in ['state-senate-results', 'state-house-results'] and not slide.slug.startswith('tumblr')]
     slides.database.close()
 
-    views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
-    Parallel(n_jobs=NUM_CORES)(delayed(_render_results_slide)(view_name, slug, output_path) for view_name, slug in views)
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_results_slide)(slug, output_path) for slug in slugs)
     print "Rendered results"
 
-def _render_results_slide(view_name, slug, output_path):
+def _render_results_slide(slug, output_path):
     from flask import url_for
-    with app.app.test_request_context():
-        path = url_for(view_name, slug=slug)
 
-    with app.app.test_request_context(path=path):
-        #print 'Rendering %s' % path
+    for view_name in ['_slide', '_slide_preview']:
+        with app.app.test_request_context():
+            path = url_for(view_name, slug=slug)
 
-        view = app.__dict__[view_name]
-        content = view(slug)
+        with app.app.test_request_context(path=path):
+            print 'Rendering %s' % path
 
-    path = '%s%s' % (output_path, path)
+            view = app.__dict__[view_name]
+            content = view(slug)
 
-    # Ensure path exists
-    head = os.path.split(path)[0]
+        path = '%s%s' % (output_path, path)
 
-    try:
-        os.makedirs(head)
-    except OSError:
-        pass
+        # Ensure path exists
+        head = os.path.split(path)[0]
 
-    with open(path, 'w') as f:
-        f.write(content.data)
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
+
+        with open(path, 'w') as f:
+            f.write(content.data)
 
 @task
 def render_states(compiled_includes={}):

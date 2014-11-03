@@ -423,11 +423,12 @@ svg {
  */
 
 .cast-controls {
-	color: @grayMedium;
     display: none;
+	color: @grayMedium;
+    padding: 22px 11px;
 
 	@media screen and (min-width: @screen-sm){
-		padding: 33px;
+		padding: 22px 33px;
 	}
 
     &:after {
@@ -458,24 +459,31 @@ svg {
     }
     
     .close-link {
-    	padding: 0 11px;
-    	line-height: 44px;
-    	font-weight: bold;
-    	font-size: 12px;
-		background: fadeout(#333,25%);
         display: none;
-    }
+		margin: 0 0 33px 0;
 
-	.wrapper {
-		.clearfix;
-		padding: 22px 11px;
-	}
+    	a {
+			padding: 0 11px;
+			line-height: 44px;
+			font-size: 12px;
+			text-transform: uppercase;
+			background: fadeout(@grayMedium,60%);
+			display: inline-block;
+			border-radius: 0.5em;
+		}
+		
+		i { margin-left: 0.5em; }
+    }
 
 	.controls-feedback-wrapper {
 		@media screen and (min-width: @screen-sm){
 			width: 50%;
 			float: left;
 		}
+	}
+	
+	.wrapper {
+		.clearfix;
 	}
     
 	.controls .slide-nav a,
@@ -546,9 +554,9 @@ svg {
     }
 
 	.feedback { 
-//		padding-top: 5px;
+		margin-bottom: 33px;
 	
-		h3 { padding-top: 33px; }
+		h3 { padding-top: 22px; }
 		
 		ul.social {
 			i {
@@ -563,7 +571,7 @@ svg {
 	}
 
 	.legend {
-		margin-bottom: 33px;
+		margin: 0 0 22px 0;
 
 		@media screen and (min-width: @screen-sm){
 			width: 45%;
@@ -771,7 +779,7 @@ svg {
 			text-transform: uppercase;
 			font-size: 1.5rem;
 			line-height: 3rem;
-			border-radius: 1rem;
+			border-radius: 0.5rem;
 			background: fadeout(@grayMedium,75%);
 			.unselectable;
 
