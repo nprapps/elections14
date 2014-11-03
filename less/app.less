@@ -798,6 +798,8 @@ svg {
             fill: @grayMedium;
             height: 3vw;
             vertical-align: middle;
+            display: inline-block;
+            max-width: 100%; // Fixes safari width bug
         }
 
         .touch-message { display: none; }
@@ -813,6 +815,7 @@ svg {
         text-align: right;
         font-size: 1.5vw;
         line-height: 3.5vw;
+        white-space: nowrap; // Fixes safari wrapping
 
         .page,
         .slide-nav,
