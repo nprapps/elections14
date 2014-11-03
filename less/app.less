@@ -755,17 +755,15 @@ svg {
 			font-size: 1.5rem;
 			line-height: 3rem;
 			border-radius: 0.5rem;
-			background: fadeout(@grayMedium,75%);
+			color: @grayMedium;
+			background: #333;
 			.unselectable;
-
-            &:hover svg { fill: #fff; }
         }
-
-        &.active {
-		    a {
-		    	color: #fff;
-		    	background: fadeout(@blueDarker,2%);
-		    }
+        
+		a:hover,
+        &.active a {
+			color: @white;
+			background: fadeout(@blueDarker,2%);
         }
 
         svg {
