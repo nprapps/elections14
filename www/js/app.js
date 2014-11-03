@@ -371,40 +371,25 @@ var onCastStopClick = function(e) {
  * Resize stack and current slide.
  */
 var onWindowResize = function() {
-    // var width = $(window).width();
-    // var height = $(window).height();
-    // var footerHeight = 0;
+    var $stack = $('#stack');
+    var $currentSlideInner = $('.slide-inner');
 
-    // var new_height = width * 9 / 16;
-    // var padding = (height - new_height) / 2;
-
-    // if (padding < 0) {
-    //     padding = 0;
-    // }
-
-    // $stack.css({
-    //     'width': width + 'px',
-    //     'height': new_height + 'px',
-    //     'position': 'absolute',
-    //     'top': padding + 'px'
-    // });
-
-    var stack = document.getElementById("stack");
-    var aspect = window.innerWidth / window.innerHeight;
-
-    if ( aspect > 16/9) {
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var aspect = w / h;
+    var new_aspect;
+    
+    if (aspect > 16/9) {
+    	new_aspect = aspect;
         document.documentElement.style.fontSize = ((16/9) / aspect) + 'vw';
     } else {
-        document.documentElement.style.fontSize = "1vw";
+    	new_aspect = 16/9;
+        document.documentElement.style.fontSize = '1vw';
     }
 
     checkForPortrait();
-
-    // var currentSlideInner = $('.slide-inner');
-
-    // currentSlideInner.width(width);
-    // currentSlideInner.height(new_height - footerHeight);
 }
+
 
 /*
  * Advance to state select screen.

@@ -9,7 +9,8 @@
 html { font-size: 1vw; }
 body { font-size: 1rem; }
 
-body, #stack {
+body,
+#stack {
     background-color: black;
     color: @musicLight;
     z-index: 0;
@@ -37,16 +38,14 @@ svg {
 }
 
 #stack {
-
     display: none;
     margin: 0 auto;
 
-    width: 100rem;
-    height: 56.25rem;
+    width: @stack_width;
+    height: @stack_height;
     padding: @stack_padding;
 
     position: relative;
-
 }
 
 .slide {
