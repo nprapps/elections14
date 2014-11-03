@@ -5,6 +5,8 @@ from decimal import Decimal, InvalidOperation
 from functools import wraps
 from flask import make_response
 from math import ceil
+from datetime import datetime
+from pytz import timezone
 
 SENATE_INITIAL_BOP = {
     'dem': {
@@ -209,3 +211,16 @@ def get_last_updated(races):
         last = Race.select().order_by(Race.last_updated).limit(1).get()
 
     return last.last_updated
+
+def eastern_now():
+    """
+    Return converted datetime
+    """
+    now_utc = datetime.utcnow()
+    utc_tz = timezone('UTC')
+    now_aware = utc_tz.localize(now_utc)
+    est_tz = timezone('US/Eastern')
+    now_est = now_aware.astimezone(est_tz)
+    now = now_est.replace(tzinfo=None)
+    return now
+
