@@ -16,7 +16,7 @@
         height: 20px;
 
         &.gop { background-color: @red; }
-        &.drem { background-color: @blue; }
+        &.dem { background-color: @blue; }
         &.other { background-color: @green; }
     }
 }
@@ -176,7 +176,7 @@
                     font-style: italic;
                     font-size: 65%;
                 }
-                &.drem { color: @blue; }
+                &.dem { color: @blue; }
                 &.gop { color: @red; }
                 &.other { color: @green; }
             }
@@ -185,12 +185,12 @@
                 width: 6%;
                 // &.party-change {
                 //     color: #fff;
-                //     &.drem { background-color: @blue; }
+                //     &.dem { background-color: @blue; }
                 //     &.gop { background-color: @red; }
                 //     &.ind { background-color: @green; }
 
                 // }
-                &.drem { color: @blue; }
+                &.dem { color: @blue; }
                 &.gop { color: @red; }
                 &.other { color: @green; }
             }
@@ -208,7 +208,7 @@
 
             .candidate {
                 width: 32%;
-                &.drem { background: @blueDim; }
+                &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
 
@@ -247,7 +247,7 @@
                     right: 0;
                 }
 
-                &.drem .candidate-total-wrapper { background: @blueDim; }
+                &.dem .candidate-total-wrapper { background: @blueDim; }
                 &.gop .candidate-total-wrapper,
                 &.no .candidate-total-wrapper { background: @redDim; }
                 &.other .candidate-total-wrapper,
@@ -274,7 +274,7 @@
             .winner {
                 color: #fff;
 
-                &.drem { background: @blue; }
+                &.dem { background: @blue; }
                 &.gop,
                 &.no { background: @red; }
                 &.other,
@@ -283,7 +283,7 @@
                 &.candidate-total {
                     background: transparent;
 
-                    &.drem .candidate-total-wrapper { background: @blue; }
+                    &.dem .candidate-total-wrapper { background: @blue; }
                     &.gop .candidate-total-wrapper,
                     &.no .candidate-total-wrapper { background: @red; }
                     &.other .candidate-total-wrapper,
@@ -456,7 +456,7 @@
 		.count { display: inline-block; }
 	}
 
-	&.drem {
+	&.dem {
 		color: fadeout(@blue, 25%);
 
 		.count { background: @blueDim; }
