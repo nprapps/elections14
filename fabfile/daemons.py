@@ -51,8 +51,8 @@ def deploy_results(run_once=False):
     """
     while True:
         start = time()
-        #safe_execute('ap.update')
-        #safe_execute('data.update')
+        safe_execute('ap.update')
+        safe_execute('data.update')
         safe_execute('deploy_bop')
         safe_execute('deploy_results')
         safe_execute('deploy_big_boards')

@@ -1,11 +1,21 @@
 var $window = null;
 var $document = null;
 var $videoContainers = null;
+var $body = null;
+var $liveUpdateIcon = null;
+var $lastUpdated = null;
 
 var onDocumentLoad = function() {
 	$window = $(window);
 	$document = $(document);
 	$videoContainers = $('.video-container');
+	$body = $('body');
+	$liveUpdateIcon = $('.live-update-hed > i');
+	$lastUpdated = $('.last-updated');
+
+	if (APP_CONFIG.TUMBLR_AUTO_REFRESH) {
+	    $body.addClass('liveblog-active');
+	}
 
 	$videoContainers.fitVids({ customSelector: "video"});
 

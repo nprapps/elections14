@@ -5,7 +5,7 @@
         {% if COPY.graphic_slides.subhed_romney_dems %}<h2>{{ COPY.graphic_slides.subhed_romney_dems }}</h2>{% endif %}
 
         <div class="candidate-list">
-            <h3>{{ COPY.graphic_slides.subhed_won }} <span>({{ races_won|length }} of {{ races_count }})</span></h3>
+            <h3>{{ COPY.graphic_slides.subhed_won }} <span>({{ races_won_count }} of {{ races_count }})</span></h3>
             {% for column in races_won %}
             <ul>
                 {% for race in column %}
@@ -23,7 +23,7 @@
         </div>
 
         <div class="candidate-list">
-            <h3>{{ COPY.graphic_slides.subhed_lost }} <span>({{ races_lost|length }} of {{ races_count }})</span></h3>
+            <h3>{{ COPY.graphic_slides.subhed_lost }} <span>({{ races_lost_count }} of {{ races_count }})</span></h3>
             {% for column in races_lost %}
             <ul>
                 {% for race in column %}
@@ -41,7 +41,7 @@
         </div>
 
         <div class="candidate-list undecided">
-            <h3>{{ COPY.graphic_slides.subhed_tbd }} <span>({{ races_not_called|length }} of {{ races_count }})</span></h3>
+            <h3>{{ COPY.graphic_slides.subhed_tbd }} <span>({{ races_not_called_count }} of {{ races_count }})</span></h3>
             {% for column in races_not_called %}
             <ul>
                 {% for race in column %}

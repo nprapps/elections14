@@ -179,10 +179,9 @@ def calculate_state_bop(races):
     current_dem_percent = _percent(current_dem_number, current_total)
     current_other_percent = _percent(current_other_number, current_total)
 
-    called_total = called_gop_number + called_dem_number + called_other_number
-    called_gop_percent = _percent(called_gop_number, called_total)
-    called_dem_percent = _percent(called_dem_number, called_total)
-    called_other_percent = _percent(called_other_number, called_total)
+    called_gop_percent = _percent(called_gop_number, current_total)
+    called_dem_percent = _percent(called_dem_number, current_total)
+    called_other_percent = _percent(called_other_number, current_total)
 
     return {
         'current_gop_number': current_gop_number,

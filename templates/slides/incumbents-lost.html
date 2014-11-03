@@ -4,7 +4,7 @@
         {% if COPY.graphic_slides.subhed_incumbents_lost %}<h2>{{ COPY.graphic_slides.subhed_incumbents_lost }}</h2>{% endif %}
 
         <div class="candidate-list">
-            <h3>U.S. Senate ({{ senate_incumbents_lost|length }})</h3>
+            <h3>U.S. Senate ({{ senate_incumbents_lost_count }})</h3>
       {% for column in senate_incumbents_lost %}
             <ul>
                 {% for race in column %}
@@ -22,7 +22,7 @@
         </div>
 
         <div class="candidate-list">
-            <h3>U.S. House ({{ house_incumbents_lost|length }})</h3>
+            <h3>U.S. House ({{ house_incumbents_lost_count }})</h3>
       {% for column in house_incumbents_lost %}
             <ul>
                 {% for race in column %}
