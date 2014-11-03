@@ -10,17 +10,10 @@
     <!-- CHARTBEAT -->
     <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 
-    <!-- FONTS -->
-    {% include '_fonts.html' %}
-
     <!-- CSS -->
     {{ CSS.push('less/app.less') }}
     {{ CSS.render('css/app.min.css') }}
     {% block extra_css %}{% endblock extra_css %}
-
-    <!-- JS -->
-    {{ JS.push('js/lib/modernizr.js') }}
-    {{ JS.render('js/app-header.min.js') }}
 
     {% include '_social_tags.html' %}
 
@@ -32,6 +25,9 @@
     {% block outer_content %}
     {% endblock outer_content %}
 
+    {{ JS.push('js/lib/modernizr.custom.js') }}
+    {{ JS.push('js/lib/webfont.js') }}
+    {{ JS.push('js/fonts.js') }}
     {{ JS.push('js/lib/jquery.js') }}
     {{ JS.push('js/lib/velocity.min.js') }}
     {{ JS.push('js/app_config.js') }}
