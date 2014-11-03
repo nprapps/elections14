@@ -94,7 +94,7 @@ var invert = function(obj) {
 var onDocumentReady = function(e) {
     // Timestamp when page was loaded
     reloadTimestamp = Date.now();
-    
+
     // Cache jQuery references
     $body = $('body');
     $welcomeScreen = $('.welcome');
@@ -176,7 +176,7 @@ var onDocumentReady = function(e) {
         is_casting = true;
         state = 'TX';
         onCastStarted();
-    
+
     // runs if we've triggered a reload, via fab reset_browsers!
     } else if ($.cookie('reload')) {
         $.removeCookie('reload');
@@ -188,7 +188,7 @@ var onDocumentReady = function(e) {
     } else if (SKIP_COUNTDOWN) {
         $welcomeScreen.hide();
         STACK.start();
-    
+
     // running the app as usual, on your phone or laptop
     } else {
         $welcomeScreen.velocity('fadeIn');
@@ -300,7 +300,7 @@ var onCastStopped = function() {
     $chromecastScreen.hide();
 
     STACK.start();
-    
+
     if (!IS_TOUCH) {
         $fullscreenStart.show();
     }
@@ -346,7 +346,7 @@ var onCastStartClick = function(e) {
     e.preventDefault();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-initiated']);
-    
+
     CHROMECAST_SENDER.startCasting();
 }
 
@@ -503,7 +503,7 @@ var onAudioPlayClick = function(e) {
  */
 var onAudioPauseClick = function(e) {
     e.preventDefault();
-    
+
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'true');
     } else {
@@ -561,7 +561,9 @@ var onSlideControlClick = function(e) {
 var onControlsToggleClick = function(e) {
     e.preventDefault();
 
-    $controlsWrapper.fadeToggle();
+    $controlsWrapper.fadeToggle(400, function() {
+        $stack.on('click', onDesktopStackClick);
+    });
     $(this).parent('.control-toggle').toggleClass('active');
 }
 
@@ -575,10 +577,20 @@ var onStackTap = function(e) {
     $castControls.show();
     $closeControlsLink.show();
     $stack.hide();
-    
+
     if (!hasTrackedMobileControls) {
         _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'mobile-controls']);
         hasTrackedMobileControls = true;
+    }
+}
+
+var onDesktopStackClick = function(e) {
+    e.preventDefault();
+
+    if ($('.control-toggle').not('active')) {
+        $controlsWrapper.fadeToggle();
+        $controlsWrapper.removeClass('active');
+        $stack.off('click', onDesktopStackClick);
     }
 }
 
@@ -611,7 +623,7 @@ var onKeyboard = function(e) {
     if (e.which == 37) {
         $('.slide-nav .nav-btn-left').eq(0).click();
     }
-    
+
     // Escape
     if (e.which == 27 && !IS_TOUCH && !is_casting) {
         $controlsToggle.click();
@@ -634,7 +646,7 @@ var onLocateIP = function(response) {
 
     state = postal_code;
     $.cookie('state', state, { expires: 30 });
-    
+
     showState();
 }
 
@@ -732,13 +744,13 @@ var hideCountdown = function() {
         });
     $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
 }
-    
+
 /*
  * Update the current state everywhere it is displayed.
  */
 var showState = function() {
     $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
-    
+
     // Explicitly set state pickers because there could be more than one on the page
     $statePicker.val(state);
 }
