@@ -7,7 +7,7 @@
 
 //set up base font size, so we can shrink it when the aspect radio exceeds 16x9
 html { font-size: 1vw; }
-//body { font-size: 1rem; }
+body { font-size: 1rem; }
 
 body, #stack {
     background-color: black;
@@ -37,14 +37,6 @@ svg {
 }
 
 #stack {
-
-    //debug styles
-    // box-sizing:border-box;
-    // -moz-box-sizing:border-box;
-    // -webkit-box-sizing:border-box;
-    border:.5px dashed white;
-    // overflow: hidden;
-    //end debug styles
 
     display: none;
     margin: 0 auto;
@@ -741,7 +733,7 @@ svg {
     right: 0;
     bottom: 0;
     z-index: 1;
-    padding: @stack_padding;
+    padding: @footer_padding;
 
     a {
         color: @grayMedium;
