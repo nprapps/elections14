@@ -23,8 +23,6 @@ def senate_big_board():
 
     context['page_title'] = 'Senate'
     context['page_class'] = 'senate'
-    context['column_number'] = 2
-
 
     context['poll_groups'] = columnize_races(races, 19)
     context['bop'] = calculate_bop(races, SENATE_INITIAL_BOP)
@@ -82,7 +80,7 @@ def governor_big_board():
     races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
     timestamp = get_last_updated(races)
 
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Governors'
     context['page_class'] = 'governor'
@@ -101,7 +99,7 @@ def ballot_measures_big_board():
     races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True))\
         .order_by(Race.poll_closing_time, Race.state_postal)
     timestamp = get_last_updated(races)
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Ballot Measures'
     context['page_class'] = 'ballot-measures'
