@@ -250,7 +250,6 @@ def incumbents_lost():
     """
     Ongoing list of which incumbents lost their elections
     """
-    context = make_context()
 
     from models import Race
 
@@ -267,6 +266,15 @@ def incumbents_lost():
 
     senate_incumbents_lost = []
     house_incumbents_lost = []
+
+    senate_updated = get_last_updated(called_senate_races)
+    house_updated = get_last_updated(called_house_races)
+    if senate_updated > house_updated:
+        last_updated = senate_updated
+    else:
+        last_updated = house_updated
+
+    context = make_context(timestamp=last_updated)
 
     for race in called_senate_races:
         for candidate in race.candidates:
