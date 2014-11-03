@@ -1,5 +1,5 @@
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-svg-touch-mq-teststyles-prefixes
+ * Build: http://modernizr.com/download/#-svg-touch-mq-cssclasses-teststyles-prefixes
  */
 ;
 
@@ -11,6 +11,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
     Modernizr = {},
 
+    enableClasses = true,
 
     docElement = document.documentElement,
 
@@ -249,7 +250,10 @@ window.Modernizr = (function( window, document, undefined ) {
     Modernizr._prefixes     = prefixes;
 
     Modernizr.mq            = testMediaQuery;
-    Modernizr.testStyles    = injectElementWithStyles;
+    Modernizr.testStyles    = injectElementWithStyles;    docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, '$1$2') +
+
+                                                    (enableClasses ? ' js ' + classes.join(' ') : '');
+
     return Modernizr;
 
 })(this, this.document);
