@@ -146,7 +146,7 @@ def render_liveblog():
     Parallel(n_jobs=NUM_CORES)(delayed(_render_liveblog_slide)(slug, output_path) for slug in slugs)
     print "Rendered liveblog"
 
-def _render_liveblog_slide(view_name, slug, output_path):
+def _render_liveblog_slide(slug, output_path):
     """
     Render a liveblog slide
     """
