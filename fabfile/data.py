@@ -131,7 +131,12 @@ def load_races(path):
     with open(path) as f:
         races = json.load(f)
 
-    now = datetime.now() - timedelta(hours=5)
+    now_utc = datetime.utcnow()
+    utc_tz = timezone('UTC')
+    now_aware = utc_tz.localize(now_utc)
+    est_tz = timezone('US/Eastern')
+    now_est = now_aware.astimezone(est_tz)
+    now = now_est.replace(tzinfo=None)
 
     with models.db.transaction():
         for race in races:
@@ -182,7 +187,12 @@ def load_updates(path):
     races_updated = 0
     candidates_updated = 0
 
-    now = datetime.now() - timedelta(hours=5)
+    now_utc = datetime.utcnow()
+    utc_tz = timezone('UTC')
+    now_aware = utc_tz.localize(now_utc)
+    est_tz = timezone('US/Eastern')
+    now_est = now_aware.astimezone(est_tz)
+    now = now_est.replace(tzinfo=None)
 
     print 'Loading latest results from AP update data on disk'
 
