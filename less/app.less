@@ -498,59 +498,28 @@ svg {
 		}
 	}
 	
-    .controls {
-		ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-
-			li {
-				line-height: 44px;
-				margin-bottom: 1px;
-				
-				&.nav { padding-right: 0; }
-				
-				.slide-nav {
-					display: table;
-					width: 100%;
-	
-					a {
-						display: table-cell;
-						width: 50%;
-
-						&.nav-btn-right {
-							text-align: right;
-							border-left: 1px solid #000;
-						}
+	.controls ul,
+	.feedback ul {
+		margin: 0;
 		
-						&.in-transition {
-							background-color: #444;
-							cursor: default;
-							color: #787878;
-						}
-					}
-				}
-				
-				i { width: 33px; }
-				
-				img {
-					height: 18px;
-					width: auto;
-					vertical-align: middle;
-				}
-			}
+		li {
+			line-height: 44px;
+			margin-bottom: 1px;
 		}
-    }
+
+		i { width: 33px; }
+
+		img {
+			height: 18px;
+			width: auto;
+			vertical-align: middle;
+		}
+	}
 
 	.feedback { 
 		margin-bottom: 33px;
 	
 		h3 { padding-top: 22px; }
-		
-		ul.social {
-			li { line-height: 44px; }
-			i { width: 33px; }
-		}
 	}
 
 	.legend {
@@ -617,6 +586,27 @@ svg {
 		.winner {
 			border-radius: 6px;
 			padding: 0 6px;
+		}
+	}
+
+	.slide-nav {
+		display: table;
+		width: 100%;
+
+		a {
+			display: table-cell;
+			width: 50%;
+
+			&.nav-btn-right {
+				text-align: right;
+				border-left: 1px solid #000;
+			}
+
+			&.in-transition {
+				background-color: #444;
+				cursor: default;
+				color: #787878;
+			}
 		}
 	}
 }
