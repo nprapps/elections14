@@ -186,6 +186,7 @@ var onDocumentReady = function(e) {
 
     // debugging with the ?skipcountdown flag, to go straight the stack
     } else if (SKIP_COUNTDOWN) {
+        state = 'CA';
         $welcomeScreen.hide();
         STACK.start();
 
