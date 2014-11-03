@@ -795,6 +795,13 @@ svg {
             height: 3vw;
             vertical-align: middle;
         }
+
+        .touch-message { display: none; }
+        .touch & {
+            background: none;
+            .touch-message { display: inline; }
+            .desktop-message { display: none; }
+        }
     }
 
     .nav {

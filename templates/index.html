@@ -80,8 +80,19 @@
         </div>
         {% endif %}
 
-        <div class="control-toggle">
+<!--         <div class="control-toggle">
             <a href="#" class="js-toggle-controls">{% include '_icon-remote.svg' %} {{ COPY.chromecast.menu_hed }}</a>
+        </div> -->
+
+        <div class="control-toggle">
+            <a href="#" class="js-toggle-controls">
+                <span class="desktop-message">
+                    {% include '_icon-remote.svg' %} {{ COPY.chromecast.menu_hed }}
+                </span>
+                <span class="touch-message">
+                    {{ COPY.legend.touch_button }}
+                </span>
+            </a>
         </div>
 
         <div class="nav">
