@@ -262,16 +262,16 @@ svg {
 .controls {
 	li {
 		background: #333;
-		line-height: 4vw;
+		line-height: 3vw;
 		padding: 0 1vw 0 0;
 		margin-bottom: 2px;
-		font-size: 1.5vw;
+		font-size: 1.3vw;
 		
 		a { font-weight: bold; }
 
 		i {
 			display: inline-block;
-			width: 4vw;
+			width: 3vw;
 			background-color: #222;
 			text-align: center;
 			margin-right: 1vw;
@@ -299,9 +299,9 @@ svg {
 		}
 		
 		i.icon {
-			width: 4vw;
-			height: 4vw;
-			line-height: 4vw;
+			width: 3vw;
+			height: 3vw;
+			line-height: 3vw;
 			text-align: center;
 			display: inline-block;
 			background-color: #222;
@@ -309,11 +309,11 @@ svg {
 		}
 
 		li {
-			line-height: 4vw;
+			line-height: 3vw;
 			vertical-align: middle;
 			background-color: #333;
 			margin-bottom: 1px;
-			font-size: 1.5vw;
+			font-size: 1.3vw;
 		}
 		
 	}
@@ -493,46 +493,18 @@ svg {
 		}
     }
     
+	.controls .slide-nav a,
+	.controls ul li,
+	.feedback p,
+	.feedback ul.social li {
+		font-size: 12px;
+
+		@media screen and (min-width: @screen-sm){
+			font-size: 14px;
+		}
+	}
+	
     .controls {
-		font-weight: bold;
-
-    	.slide-nav {
-    		display: table;
-    		width: 100%;
-    		
-    		a {
-    			display: table-cell;
-    			width: 50%;
-    			font-size: 12px;
-    			line-height: 44px;
-    			background-color: #333;
-    			padding: 0 11px;
-
-				@media screen and (min-width: @screen-sm){
-					font-size: 14px;
-				}
-    			
-    			&.nav-btn-left {
-    				border-right: 1px solid #000;
-    				
-    				i { margin-right: 10px; }
-    			}
-
-    			&.nav-btn-right {
-    				text-align: right;
-    				border-left: 1px solid #000;
-    				
-    				i { margin-left: 10px; }
-    			}
-    			
-    			&.in-transition {
-    				background-color: #444;
-    				cursor: default;
-    				color: #787878;
-    			}
-    		}
-    	}
-    
 		ul {
 			list-style-type: none;
 			margin: 0;
@@ -540,19 +512,43 @@ svg {
 
 			li {
 				.unselectable;
-				font-size: 12px;
 				font-weight: bold;
 				line-height: 44px;
 				margin-bottom: 2px;
 				padding: 0 11px 0 0;
+				
+				&.nav { padding-right: 0; }
+				
+				.slide-nav {
+					display: table;
+					width: 100%;
+	
+					a {
+						display: table-cell;
+						width: 50%;
 
-				@media screen and (min-width: @screen-sm){
-					font-size: 14px;
+						&.nav-btn-left { border-right: 1px solid #000; }
+						&.nav-btn-right {
+							text-align: right;
+							border-left: 1px solid #000;
+						}
+		
+						&.in-transition {
+							background-color: #444;
+							cursor: default;
+							color: #787878;
+						}
+					}
 				}
 				
 				i {
 					width: 44px;
 					margin-right: 11px;
+					
+					&.ion-chevron-right { 
+						margin-left: 11px;
+						margin-right: 0;
+					}
 				}
 				
 				img {
@@ -576,30 +572,16 @@ svg {
 		padding-top: 33px;
 	
 		h3 { padding-top: 33px; }
-		p { 
-			font-size: 12px;
-
-			@media screen and (min-width: @screen-sm){
-				font-size: 14px;
-			}
-		}
 		
 		ul.social {
-			i.icon {
+			i {
 				width: 44px;
 				height: 44px;
 				line-height: 44px;
 				margin-right: 10px;
 			}
 			
-			li {
-				line-height: 44px;
-				font-size: 12px;
-
-				@media screen and (min-width: @screen-sm){
-					font-size: 14px;
-				}
-			}
+			li { line-height: 44px; }
 		}
 	}
 
@@ -721,7 +703,7 @@ svg {
     background: fadeout(@blueDarker,2%);
     font-size: 1.75vw;
     border-radius: 1vw;
-    padding: 2vw 0.5vw;
+    padding: 2vw 0.5vw 1vw .5vw;
     margin: 0 1vw;
     overflow: hidden;
     color: @grayMedium;
@@ -759,20 +741,11 @@ svg {
     }
 
     .feedback {
-    	.social {
-    		margin-bottom: 2vw;
-    	}
+    	.social { margin-bottom: 2vw; }
 
         p {
-            font-size: 1.4vw;
-            line-height: 1.4;
-        }
-
-        h4 {
-            font-weight: bold;
             font-size: 1.2vw;
-            line-height: 1.4vw;
-            margin-top: 2vw;
+            line-height: 1.4;
         }
     }
 }
@@ -813,11 +786,18 @@ svg {
 
     .control-toggle {
     	float: left;
-    	width: 33%;
+    	padding: 0 1.5vw 0 .5vw;
         text-align: center;
         text-transform: uppercase;
         font-size: 1.5vw;
         line-height: 3.5vw;
+        border-radius: 1vw;
+		background: fadeout(@grayMedium,85%);
+		
+        &.active {
+		    background: fadeout(@blueDarker,2%);
+		    a { color: #fff; }
+        }
 
         a {
             text-decoration: none;

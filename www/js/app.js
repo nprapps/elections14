@@ -526,7 +526,6 @@ var onSlideControlClick = function(e) {
     }
 
     if (direction == "next") {
-
         if (is_casting) {
             CHROMECAST_SENDER.sendMessage('slide-change', 'next');
         } else {
@@ -549,6 +548,7 @@ var onControlsToggleClick = function(e) {
     e.preventDefault();
 
     $controlsWrapper.fadeToggle();
+    $(this).parent('.control-toggle').toggleClass('active');
 }
 
 /*
