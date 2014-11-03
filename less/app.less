@@ -280,7 +280,6 @@ svg {
 	}
 
 	.play { display: none; }
-	.state-picker { }
 }
 
 
@@ -509,6 +508,10 @@ svg {
     			line-height: 44px;
     			background-color: #333;
     			padding: 0 11px;
+
+				@media screen and (min-width: @screen-sm){
+					font-size: 14px;
+				}
     			
     			&.nav-btn-left {
     				border-right: 1px solid #000;
@@ -538,16 +541,21 @@ svg {
 
 			li {
 				.unselectable;
-				font-size: 14px;
+				font-size: 12px;
 				font-weight: bold;
-				margin-bottom: 11px;
+				line-height: 44px;
+				margin-bottom: 2px;
+				padding: 0 11px 0 0;
 
-				@media screen and (max-width: @screen-sm){
-					font-size: 18px;
-					line-height: 44px;
-					margin-bottom: 2px;
+				@media screen and (min-width: @screen-sm){
+					font-size: 14px;
 				}
-			
+				
+				i {
+					width: 44px;
+					margin-right: 11px;
+				}
+				
 				img {
 					height: 18px;
 					width: auto;
@@ -570,8 +578,11 @@ svg {
 	
 		h3 { padding-top: 33px; }
 		p { 
-			max-width: 600px;
-			font-size: 14px;
+			font-size: 12px;
+
+			@media screen and (min-width: @screen-sm){
+				font-size: 14px;
+			}
 		}
 		
 		ul.social {
@@ -584,7 +595,11 @@ svg {
 			
 			li {
 				line-height: 44px;
-				font-size: 14px;
+				font-size: 12px;
+
+				@media screen and (min-width: @screen-sm){
+					font-size: 14px;
+				}
 			}
 		}
 	}
