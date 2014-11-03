@@ -7,7 +7,7 @@
 
 //set up base font size, so we can shrink it when the aspect radio exceeds 16x9
 html { font-size: 1vw; }
-body { font-size: 1rem; }
+//body { font-size: 1rem; }
 
 body, #stack {
     background-color: black;
@@ -91,7 +91,7 @@ svg {
     padding:10px;
 
     &:after {
-        content : "";
+        content: "";
         display: block;
         position: absolute;
         top: 0;
@@ -125,9 +125,10 @@ svg {
     }
 
     h2 {
-        line-height: 1.4rem;
+        line-height: 1.4;
         font-size: 22px;
-        margin-top: 22px;
+        width: 80%;
+        margin: 22px auto 11px auto;
         @media screen and (max-width: @screen-xs-max){
             font-size:14px;
         }
@@ -135,6 +136,7 @@ svg {
 
     .cast-header {
         margin: 33px 0;
+//		font-size: 1.75rem;
 
     	.cast-enabled,
     	.cast-disabled {
@@ -146,10 +148,10 @@ svg {
 
         .cast-get-extension,
     	.cast-enabled { display: none; }
-
+    	
         .cast-disabled p {
             margin-top: 33px;
-                a {
+			a {
                 color: @red;
                 font-weight: bold;
             }
@@ -209,6 +211,8 @@ svg {
     .byline {
         font-size:11px;
         color: @grayMedium;
+        width: 80%;
+        margin: 0 auto;
         @media screen and (max-width: @screen-xs-max){
             font-size:8px;
         }
