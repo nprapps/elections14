@@ -143,9 +143,7 @@ def render_liveblog():
     slugs = [slide.slug for slide in slides if slide.slug.startswith('tumblr')]
     slides.database.close()
 
-    views = zip(['_slide', '_slide_preview'] * len(slugs), slugs)
-
-    Parallel(n_jobs=NUM_CORES)(delayed(_render_liveblog_slide)(view_name, slug, output_path) for view_name, slug in views)
+    Parallel(n_jobs=NUM_CORES)(delayed(_render_liveblog_slide)(slug, output_path) for slug in slugs)
     print "Rendered liveblog"
 
 def _render_liveblog_slide(view_name, slug, output_path):
@@ -154,27 +152,28 @@ def _render_liveblog_slide(view_name, slug, output_path):
     """
     from flask import url_for
 
-    with app.app.test_request_context():
-        path = url_for(view_name, slug=slug)
+    for view_name in ['_slide', '_slide_preview']:
+        with app.app.test_request_context():
+            path = url_for(view_name, slug=slug)
 
-    with app.app.test_request_context(path=path):
-        #print 'Rendering %s' % path
+        with app.app.test_request_context(path=path):
+            #print 'Rendering %s' % path
 
-        view = app.__dict__[view_name]
-        content = view(slug)
+            view = app.__dict__[view_name]
+            content = view(slug)
 
-    path = '%s%s' % (output_path, path)
+        path = '%s%s' % (output_path, path)
 
-    # Ensure path exists
-    head = os.path.split(path)[0]
+        # Ensure path exists
+        head = os.path.split(path)[0]
 
-    try:
-        os.makedirs(head)
-    except OSError:
-        pass
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
 
-    with open(path, 'w') as f:
-        f.write(content.data)
+        with open(path, 'w') as f:
+            f.write(content.data)
 
 @task
 def render_results():
@@ -207,7 +206,7 @@ def _render_results_slide(slug, output_path):
             path = url_for(view_name, slug=slug)
 
         with app.app.test_request_context(path=path):
-            print 'Rendering %s' % path
+            #print 'Rendering %s' % path
 
             view = app.__dict__[view_name]
             content = view(slug)
