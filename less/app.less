@@ -297,10 +297,12 @@ svg {
 	i {
 		display: inline-block;
 		width: 3rem;
-		margin-right: 1rem;
 		border-radius: 0.5rem 0 0 0.5rem;
 		text-align: center;
 		font-style: normal;
+		color: @white;
+		
+		.stateface:before { margin-right: 0; }
 	}
 	
 	a {
@@ -309,8 +311,8 @@ svg {
  }
 
 .controls {
-	li { padding: 0 1rem 0 0; }
 	.play { display: none; }
+	.state-picker { margin: 0; }
 }
 
 .feedback {

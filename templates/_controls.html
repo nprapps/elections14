@@ -20,8 +20,8 @@
 		<!-- FOR DESKTOP WHEN NOT CASTING -->
 		<li>
 			<div class="jp-controls">
-				<a href="#" class="pause nav-btn" tabindex="1" title="mute"><i class="icon ion-ios7-volume-low"></i> Mute</a>
-				<a href="#" class="play nav-btn" tabindex="1" title="unmute"><i class="icon ion-ios7-volume-high"></i> Play</a>
+				<a href="#" class="pause nav-btn" tabindex="1" title="mute"><i class="icon ion-ios7-volume-low"></i>Mute</a>
+				<a href="#" class="play nav-btn" tabindex="1" title="unmute"><i class="icon ion-ios7-volume-high"></i>Play</a>
 			</div>
 		</li>
 		
@@ -33,8 +33,7 @@
 
 		<!-- ALL USERS -->
 		<li>
-			<i><span class="stateface stateface-us"></span></i>
-            <select class="state-picker">
+			<i><span class="stateface stateface-us"></span></i><select class="state-picker">
                 <option value="US" selected>{{ COPY.chromecast.btn_state }}</option>
                 {% for postal_code, state in STATES.items() %}
                 <option value="{{ postal_code }}">{{ state }}</option>
