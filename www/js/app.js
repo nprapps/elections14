@@ -144,11 +144,13 @@ var onDocumentReady = function(e) {
 
     if (!IS_TOUCH) {
         $controlsToggle.on('click', onControlsToggleClick);
+        $controlsWrapper.on('click', onControlsWrapperClick);
     } else {
         $stack.on('click', onStackTap);
         $closeControlsLink.on('click', onCloseControlsLink);
     }
 
+    $statePicker.on('click', onStatePickerClick);
     $statePicker.on('change', onStatePickerChange);
 
     $body.on('keydown', onKeyboard);
@@ -462,6 +464,11 @@ var onFullscreenButtonClick = function() {
         $fullscreenStart.hide();
         $fullscreenStop.show();
     }
+    event.stopPropagation();
+}
+
+var onStatePickerClick = function() {
+    event.stopPropagation();
 }
 
 /*
@@ -497,6 +504,8 @@ var onAudioPlayClick = function(e) {
     $audioPause.show();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+
+    event.stopPropagation();
 }
 
 /*
@@ -515,6 +524,8 @@ var onAudioPauseClick = function(e) {
     $audioPlay.show();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+
+    event.stopPropagation();
 }
 
 /*
@@ -563,9 +574,20 @@ var onControlsToggleClick = function(e) {
     e.preventDefault();
 
     $controlsWrapper.fadeToggle(400, function() {
-        $stack.on('click', onDesktopStackClick);
+        // if we already have a handler, we need to remove it.
+
+        var htmlStack = document.getElementById('stack');
+        var ev = $._data(htmlStack, 'events');
+        if (ev && ev.click) {
+            $stack.off('click', onDesktopStackClick);
+        }
+        else {
+            $stack.on('click', onDesktopStackClick);
+        }
     });
     $(this).parent('.control-toggle').toggleClass('active');
+
+    event.stopPropagation();
 }
 
 /*
@@ -590,9 +612,18 @@ var onDesktopStackClick = function(e) {
 
     if ($('.control-toggle').not('active')) {
         $controlsWrapper.fadeToggle();
-        $controlsWrapper.removeClass('active');
-        $stack.off('click', onDesktopStackClick);
+        $('.control-toggle').removeClass('active');
     }
+
+    $stack.off('click', onDesktopStackClick);
+
+}
+
+/*
+* Just to prevent click events from propagating through.
+*/
+var onControlsWrapperClick = function(e) {
+    event.stopPropagation();
 }
 
 /*
