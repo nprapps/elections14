@@ -491,6 +491,7 @@ svg {
 	.feedback p,
 	.feedback ul.social li {
 		font-size: 12px;
+		.unselectable;
 
 		@media screen and (min-width: @screen-sm){
 			font-size: 14px;
@@ -504,8 +505,6 @@ svg {
 			padding: 0;
 
 			li {
-				.unselectable;
-				font-weight: bold;
 				line-height: 44px;
 				margin-bottom: 2px;
 				padding: 0 11px 0 0;
@@ -534,15 +533,7 @@ svg {
 					}
 				}
 				
-				i {
-					width: 44px;
-					margin-right: 11px;
-					
-					&.ion-chevron-right { 
-						margin-left: 11px;
-						margin-right: 0;
-					}
-				}
+				i { width: 44px; }
 				
 				img {
 					height: 18px;
@@ -559,14 +550,8 @@ svg {
 		h3 { padding-top: 22px; }
 		
 		ul.social {
-			i {
-				width: 44px;
-				height: 44px;
-				line-height: 44px;
-				margin-right: 10px;
-			}
-			
 			li { line-height: 44px; }
+			i { width: 44px; }
 		}
 	}
 
