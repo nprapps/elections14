@@ -227,13 +227,12 @@ var setupUI = function() {
 
     // Geolocate
     if (typeof geoip2 == 'object' && !($.cookie('state'))) {
-        geoip2.city(onLocateIP);
+        geoip2.city(onLocateIP, onLocateFail);
     }
 
     // GeoIP failed to load (adblocker)
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
-        // Default to CA
-        onLocateIP({ 'most_specific_subdivision': { 'iso_code': 'CA' } });
+        _setLocateDefault();
     }
 
     welcomeOurGuests();
@@ -606,21 +605,38 @@ var onKeyboard = function(e) {
     }
 }
 
-
 /*
  * Set the geolocated state.
  */
 var onLocateIP = function(response) {
+    // Handle responses outside the US
+    if (response.country.iso_code != 'US') {
+        _setLocateDefault();
+        return;
+    }
+
     var postal_code = response.most_specific_subdivision.iso_code;
 
-    // TODO: handle geocodes outside US
-    
     $('#option-' + postal_code).prop('selected', true);
 
     state = postal_code;
     $.cookie('state', state, { expires: 30 });
     
     showState();
+}
+
+/*
+ * Default to CA when geoip fails.
+ */
+var _setLocateDefault = function() {
+    // Fake out CA response
+    onLocateIP({ 'most_specific_subdivision': { 'iso_code': 'CA' } });
+}
+
+var onLocateFail = function(error) {
+    // TODO: track error event?
+
+    setLocateDefault();
 }
 
 /*
