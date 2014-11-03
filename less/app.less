@@ -253,7 +253,34 @@ svg {
 
 	.countdown-background { fill: @musicDark; }
 	.countdown-active { fill: @grayMedium; }
+}
 
+/*
+ * CONTROLS
+ */
+
+.controls {
+	li {
+		background: #333;
+		line-height: 4vw;
+		padding: 0 1vw 0 0;
+		margin-bottom: 2px;
+		font-size: 1.5vw;
+		
+		a { font-weight: bold; }
+
+		i {
+			display: inline-block;
+			width: 4vw;
+			background-color: #222;
+			text-align: center;
+			margin-right: 1vw;
+			font-style: normal;
+		}
+	}
+
+	.play { display: none; }
+	.state-picker { }
 }
 
 
@@ -671,14 +698,6 @@ svg {
     display: none;
 }
 
-.controls .play {
-    display: none;
-}
-
-.controls .state-picker {
-    display: none;
-}
-
 .controls-wrapper {
     position: absolute;
     left: 0;
@@ -719,15 +738,6 @@ svg {
 
     .controls {
         li { 
-        	margin-bottom: 0.5vw;
-
-			i {
-				display: inline-block;
-				width: 1vw;
-				margin-right: 0.5vw;
-				text-align: center;
-			}
-			
 			img { height: 2vw; }
         }
         

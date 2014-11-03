@@ -14,8 +14,8 @@
 
 		<!-- DESKTOP ONLY; NOT CASTING -->
 		<li class="fullscreen">
-			<a class="start" href="#"><i class="icon ion-arrow-expand"></i> <span>{{ COPY.chromecast.btn_fullscreen }}</span></a>
-			<a class="stop" href="#"><i class="icon ion-arrow-shrink"></i> <span>{{ COPY.chromecast.btn_shrink }}</span></a>
+			<a class="start" href="#"><i class="icon ion-arrow-expand"></i><span>{{ COPY.chromecast.btn_fullscreen }}</span></a>
+			<a class="stop" href="#"><i class="icon ion-arrow-shrink"></i><span>{{ COPY.chromecast.btn_shrink }}</span></a>
 		</li>
 
 		<!-- FOR DESKTOP WHEN NOT CASTING -->
@@ -28,17 +28,15 @@
 		
 		<!-- IF CASTING IS SUPPORTED -->
 		<li>
-			<a class="cast-start" href="#"><img src="assets/chromecast_off.svg" alt="" /> {{ COPY.chromecast.btn_start }}</a>
-			<a class="cast-stop" href="#"><img src="assets/chromecast_on_blue.svg" alt="" /> {{ COPY.chromecast.btn_stop }}</a>
+			<a class="cast-start" href="#"><i><img src="assets/chromecast_off.svg" alt="" /></i>{{ COPY.chromecast.btn_start }}</a>
+			<a class="cast-stop" href="#"><i><img src="assets/chromecast_on_blue.svg" alt="" /></i>{{ COPY.chromecast.btn_stop }}</a>
 		</li>
 
 		<!-- ALL USERS -->
 		<li>
-			<label>
-                <span class="stateface stateface-ca"></span>
-                <span class="state-name">California</span> (<a href="#" class="change-state">{{ COPY.chromecast.btn_state }}</a>)
-            </label>
+			<i><span class="stateface stateface-us"></span></i>
             <select class="state-picker">
+                <option selected>{{ COPY.chromecast.btn_state }}</option>
                 {% for postal_code, state in STATES.items() %}
                 <option value="{{ postal_code }}">{{ state }}</option>
                 {% endfor %}

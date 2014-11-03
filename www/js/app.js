@@ -30,7 +30,6 @@ var $controlsWrapper = null;
 var $controlsToggle = null;
 var $castControls = null;
 var $closeControlsLink = null;
-var $changeState = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
@@ -106,7 +105,6 @@ var onDocumentReady = function(e) {
     $counter = $('.counter');
 
     $stateface = $('.stateface');
-    $stateName = $('.state-name');
     $statePicker = $('.state-picker');
 
     $chromecastScreen = $('.cast-controls');
@@ -131,7 +129,6 @@ var onDocumentReady = function(e) {
     $slide_countdown = $('.footer-container .slide-countdown');
     $audioPlay = $('.controls .play');
     $audioPause = $('.controls .pause');
-    $changeState = $('.controls .change-state');
 
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
@@ -152,7 +149,6 @@ var onDocumentReady = function(e) {
         $closeControlsLink.on('click', onCloseControlsLink);
     }
 
-    $changeState.on('click', onChangeStateClick);
     $statePicker.on('change', onStatePickerChange);
 
     $body.on('keydown', onKeyboard);
@@ -456,28 +452,17 @@ var onFullscreenButtonClick = function() {
 }
 
 /*
- * State change link clicked.
- */
-var onChangeStateClick = function(e) {
-    e.preventDefault();
-
-    $statePicker.show();
-}
-
-/*
  * Respond to selections from a state picker dropdown.
  */
 var onStatePickerChange = function() {
     state = $(this).find('option:selected').val();
-
+    
     showState();
     $.cookie('state', state, { expires: 30 });
 
-    $stateface.css('opacity', 1);
-    $stateName.css('opacity', 1);
-
-    $statePicker.hide();
-
+//    $stateface.css('opacity', 1);
+//    $stateName.css('opacity', 1);
+    
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('state', state);
     }
@@ -633,7 +618,7 @@ var onLocateIP = function(response) {
 
     state = postal_code;
     $.cookie('state', state, { expires: 30 });
-
+    
     showState();
 }
 
@@ -723,7 +708,6 @@ var hideCountdown = function() {
  */
 var showState = function() {
     $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
-    $stateName.text(APP_CONFIG.STATES[state]);
     
     // Explicitly set state pickers because there could be more than one on the page
     $statePicker.val(state);
