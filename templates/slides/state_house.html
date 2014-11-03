@@ -3,6 +3,8 @@
         <div class="results-sliced-wrapper">
             <div class="results-header">
                 <h2>{{ state_name }}</h2>
+                <h4>Polls close at {{ races[0].poll_closing_time.strftime('%I:%M %p EST') }}</h4>
+
                 <h1><span class="stateface stateface-{{ state_postal|lower }}"></span></h1>
                 {% if page %}<h3 class="page">{{ page }} of 2</h3>{% endif %}
             </div>
