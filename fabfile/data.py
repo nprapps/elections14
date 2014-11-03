@@ -4,7 +4,6 @@
 Commands that update or process the application data.
 """
 from datetime import datetime, timedelta
-from pytz import timezone
 from time import sleep
 from itertools import count
 import json
@@ -14,6 +13,7 @@ import copytext
 from fabric.api import env, local, execute, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
+from app_utils import eastern_now
 
 import app_config
 import admin_app
@@ -131,12 +131,7 @@ def load_races(path):
     with open(path) as f:
         races = json.load(f)
 
-    now_utc = datetime.utcnow()
-    utc_tz = timezone('UTC')
-    now_aware = utc_tz.localize(now_utc)
-    est_tz = timezone('US/Eastern')
-    now_est = now_aware.astimezone(est_tz)
-    now = now_est.replace(tzinfo=None)
+    now = eastern_now()
 
     with models.db.transaction():
         for race in races:
@@ -187,12 +182,7 @@ def load_updates(path):
     races_updated = 0
     candidates_updated = 0
 
-    now_utc = datetime.utcnow()
-    utc_tz = timezone('UTC')
-    now_aware = utc_tz.localize(now_utc)
-    est_tz = timezone('US/Eastern')
-    now_est = now_aware.astimezone(est_tz)
-    now = now_est.replace(tzinfo=None)
+    now = eastern_now()
 
     print 'Loading latest results from AP update data on disk'
 
