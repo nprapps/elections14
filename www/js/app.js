@@ -398,7 +398,7 @@ var onWindowResize = function() {
         document.documentElement.style.fontSize = "1vw";
     }
 
-    // checkForPortrait();
+    checkForPortrait();
 
     // var currentSlideInner = $('.slide-inner');
 
