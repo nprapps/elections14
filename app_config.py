@@ -8,6 +8,7 @@ They will be exposed to users. Use environment variables instead.
 See get_secrets() below for a fast way to access them.
 """
 
+from collections import OrderedDict
 from datetime import datetime
 import os
 
@@ -101,11 +102,6 @@ COPY_GOOGLE_DOC_URL = 'https://docs.google.com/spreadsheet/ccc?key=0AlXMOHKxzQVR
 COPY_PATH = 'data/copy.xlsx'
 
 """
-SHARING
-"""
-SHARE_URL = 'http://%s/%s/' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
-
-"""
 ADS
 """
 
@@ -133,70 +129,78 @@ DEPLOY_PROMO = True
 CHROMECAST_APP_ID = '8408F716'
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
-STACK_UPDATE_INTERVAL = 60
-
 TUMBLR_NAME = '' # See below
 TUMBLR_NOT_BEFORE = None # See below
 TUMBLR_AUTO_REFRESH = None # See below
 
-CLIENT_BOP_INTERVAL = 15
-LIVEBLOG_DEPLOY_INTERVAL = 15
-RESULTS_DEPLOY_INTERVAL = 60
-RELOAD_CHECK_INTERVAL = 300
+# How often the client checks for a new stack 
+STACK_UPDATE_INTERVAL = 60
 
-STATES = {
-    'AK': 'Alaska',
-    'AL': 'Alabama',
-    'AR': 'Arkansas',
-    'AZ': 'Arizona',
-    'CA': 'California',
-    'CO': 'Colorado',
-    'CT': 'Connecticut',
-    'DC': 'District of Columbia',
-    'DE': 'Delaware',
-    'FL': 'Florida',
-    'GA': 'Georgia',
-    'HI': 'Hawaii',
-    'IA': 'Iowa',
-    'ID': 'Idaho',
-    'IL': 'Illinois',
-    'IN': 'Indiana',
-    'KS': 'Kansas',
-    'KY': 'Kentucky',
-    'LA': 'Louisiana',
-    'MA': 'Massachusetts',
-    'MD': 'Maryland',
-    'ME': 'Maine',
-    'MI': 'Michigan',
-    'MN': 'Minnesota',
-    'MO': 'Missouri',
-    'MS': 'Mississippi',
-    'MT': 'Montana',
-    'NC': 'North Carolina',
-    'ND': 'North Dakota',
-    'NE': 'Nebraska',
-    'NH': 'New Hampshire',
-    'NJ': 'New Jersey',
-    'NM': 'New Mexico',
-    'NV': 'Nevada',
-    'NY': 'New York',
-    'OH': 'Ohio',
-    'OK': 'Oklahoma',
-    'OR': 'Oregon',
-    'PA': 'Pennsylvania',
-    'RI': 'Rhode Island',
-    'SC': 'South Carolina',
-    'SD': 'South Dakota',
-    'TN': 'Tennessee',
-    'TX': 'Texas',
-    'UT': 'Utah',
-    'VA': 'Virginia',
-    'VT': 'Vermont',
-    'WA': 'Washington',
-    'WI': 'Wisconsin',
-    'WV': 'West Virginia',
-    'WY': 'Wyoming',
-}
+# How often the client checks for a new BOP
+CLIENT_BOP_INTERVAL = 30 
+
+# How often the server polls Tumblr for new live blogs
+LIVEBLOG_DEPLOY_INTERVAL = 30 
+
+# How often the servers polls for new AP results
+RESULTS_DEPLOY_INTERVAL = 60
+
+# How often the client polls to see if it should be reloaded
+RELOAD_CHECK_INTERVAL = 180
+
+STATES = OrderedDict([
+    ('AK', 'Alaska'),
+    ('AL', 'Alabama'),
+    ('AR', 'Arkansas'),
+    ('AZ', 'Arizona'),
+    ('CA', 'California'),
+    ('CO', 'Colorado'),
+    ('CT', 'Connecticut'),
+    ('DC', 'District of Columbia'),
+    ('DE', 'Delaware'),
+    ('FL', 'Florida'),
+    ('GA', 'Georgia'),
+    ('HI', 'Hawaii'),
+    ('IA', 'Iowa'),
+    ('ID', 'Idaho'),
+    ('IL', 'Illinois'),
+    ('IN', 'Indiana'),
+    ('KS', 'Kansas'),
+    ('KY', 'Kentucky'),
+    ('LA', 'Louisiana'),
+    ('MA', 'Massachusetts'),
+    ('MD', 'Maryland'),
+    ('ME', 'Maine'),
+    ('MI', 'Michigan'),
+    ('MN', 'Minnesota'),
+    ('MO', 'Missouri'),
+    ('MS', 'Mississippi'),
+    ('MT', 'Montana'),
+    ('NC', 'North Carolina'),
+    ('ND', 'North Dakota'),
+    ('NE', 'Nebraska'),
+    ('NH', 'New Hampshire'),
+    ('NJ', 'New Jersey'),
+    ('NM', 'New Mexico'),
+    ('NV', 'Nevada'),
+    ('NY', 'New York'),
+    ('OH', 'Ohio'),
+    ('OK', 'Oklahoma'),
+    ('OR', 'Oregon'),
+    ('PA', 'Pennsylvania'),
+    ('RI', 'Rhode Island'),
+    ('SC', 'South Carolina'),
+    ('SD', 'South Dakota'),
+    ('TN', 'Tennessee'),
+    ('TX', 'Texas'),
+    ('UT', 'Utah'),
+    ('VA', 'Virginia'),
+    ('VT', 'Vermont'),
+    ('WA', 'Washington'),
+    ('WI', 'Wisconsin'),
+    ('WV', 'West Virginia'),
+    ('WY', 'Wyoming')
+])
 
 
 NO_GOVERNOR_OR_SENATE_RACES = ['DC', 'IN', 'MO', 'ND', 'UT', 'WA']

@@ -15,8 +15,6 @@
 
 {% block outer_content %}
 <script src="/js/lib/jquery.js"></script>
-<script src="/js/lib/moment.js"></script>
-<script src="/js/lib/jquery.columnizer.js"></script>
 
 {{ body|smarty }}
 
@@ -32,7 +30,6 @@
             success: function(response, status) {
                 if (status == "success") {
                     $('.results-wrapper').html($(response).find('.results-inner'));
-                    $('.results').columnize(colOpts);
                 }
             }
         })

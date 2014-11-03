@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from time import sleep, time
-from fabric.api import execute, task, env
+from fabric.api import execute, task
 
 import app_config
 import sys
@@ -20,27 +20,32 @@ def safe_execute(*args, **kwargs):
         del tb
 
 @task
-def deploy_liveblog():
+def deploy_liveblog(run_once=False):
     """
     Get and update liveblog slides
     """
     while True:
         start = time()
         safe_execute('liveblog.update')
-        safe_execute('deploy_liveblog_slides')
+        safe_execute('deploy_liveblog')
         duration = int(time() - start)
         wait = app_config.LIVEBLOG_DEPLOY_INTERVAL - duration
 
-        print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
-
         if wait < 0:
-            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.LIVEBLOG_DEPLOY_INTERVAL)
+            print 'WARN: Deploying slides took %ds longer than %ds ==' % (abs(wait), app_config.LIVEBLOG_DEPLOY_INTERVAL)
             wait = 0
+        else:
+            print 'Deploying slides ran in %ds' % duration
 
-        sleep(wait)
+        if run_once:
+            print 'Run once specified, exiting.'
+            sys.exit()
+        else:
+            print 'Waiting %ds...' % wait
+            sleep(wait)
 
 @task
-def deploy_results():
+def deploy_results(run_once=False):
     """
     Harvest data and deploy slides indefinitely
     """
@@ -49,16 +54,22 @@ def deploy_results():
         safe_execute('ap.update')
         safe_execute('data.update')
         safe_execute('deploy_bop')
+        safe_execute('deploy_results')
         safe_execute('deploy_big_boards')
-        safe_execute('deploy_results_slides')
+        safe_execute('deploy_states')
 
         duration = int(time() - start)
         wait = app_config.RESULTS_DEPLOY_INTERVAL - duration
 
-        print "== Deploying slides ran in %ds, waiting %ds ==" % (duration, wait)
-
         if wait < 0:
-            print "WARN: Deploying slides took %d seconds longer than %d" % (abs(wait), app_config.RESULTS_DEPLOY_INTERVAL)
+            print 'WARN: Deploying slides took %ds longer than %ds' % (abs(wait), app_config.RESULTS_DEPLOY_INTERVAL)
             wait = 0
+        else:
+            print 'Deploying slides ran in %ds' % duration
 
-        sleep(wait)
+        if run_once:
+            print 'Run once specified, exiting.'
+            sys.exit()
+        else:
+            print 'Waiting %ds...' % wait
+            sleep(wait)

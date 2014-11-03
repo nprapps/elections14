@@ -1,5 +1,4 @@
-@import "less/lib/bootstrap/bootstrap";
-@import "less/lib/font-awesome/font-awesome";
+@import "less/lib/ionicons/ionicons";
 @import "less/lib/prefixer";
 @import "less/stateface.less";
 @import "less/variables.less";
@@ -16,20 +15,17 @@ h1,h2,h3,h4,h5,h6, p, form, label, button {
     font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+a, a:link, a:visited { text-decoration: none; }
+
 svg {
     max-height: 100%; // Fix webkit svg height bug http://stackoverflow.com/questions/7570917/svg-height-incorrectly-calculated-in-webkit-browsers
 }
 
-.btn-lg{
-    padding: 15px;
-    font-size: 24px;
+.btn-lg {
+    font-size: 20px;
     letter-spacing: .03em;
-    border-radius: 0.5vw;
+    border-radius: 5px;
     text-transform: uppercase;
-
-    &:hover {
-        background-color: darken(@red, 20%);
-    }
 
     @media screen and (max-width: @screen-xs-max){
         font-size: 16px;
@@ -61,6 +57,10 @@ svg {
     .vertical-center;
 }
 
+.cast-start { display: none; }
+.cast-stop { display: none; }
+
+
 /*
 ** WELCOME SLIDES
 */
@@ -70,6 +70,7 @@ svg {
     opacity: 0;
     .transition(opacity 3s ease);
     text-align: center;
+    padding:10px;
 
     &:after {
         content : "";
@@ -77,33 +78,45 @@ svg {
         position: absolute;
         top: 0;
         left: 0;
-        background: url('../assets/promo/background.jpg') no-repeat center black;
-        // background-image: url('../assets/elections-background-1.jpg');
-        // background-size: cover;
+        background-image: url('../assets/promo/background.jpg');
+        background-size: cover;
+        background-position: center center;
         width: 100%;
         height: 100%;
-        opacity : 0.8;
+        opacity : 0.6;
         z-index: -1;
     }
 
     .logo-wrapper {
         width: 100%;
-        margin: 15px auto 30px;
-        fill: @grayMedium;
+        margin: 100px auto 30px;
+        fill: #DBE0E6;
+        @media screen and (max-width: @screen-xs-max){
+            margin-top:30px;
+            height:20px;
+        }
     }
 
-    .election-logo-wrapper {
-        width: 100%;
-        max-width: 600px;
-        padding: 0 30px;
-        margin: 0 auto;
+    h1 {
+        text-transform: uppercase;
+        font-size:70px;
+        font-weight: bold;
+        @media screen and (max-width: @screen-xs-max){
+            font-size:40px;
+        }
+    }
+
+    h2 {
+        line-height: 1.4em;
+        font-size: 22px;
+        margin-top: 22px;
+        @media screen and (max-width: @screen-xs-max){
+            font-size:14px;
+        }
     }
 
     .cast-header {
-    	position: absolute;
-    	top: 1vw;
-    	right: 1vw;
-    	text-align: right;
+        margin: 33px 0;
 
     	.cast-enabled,
     	.cast-disabled {
@@ -113,57 +126,320 @@ svg {
 			}
     	}
 
+        .cast-get-extension,
     	.cast-enabled { display: none; }
-    }
 
-    .intro-text {
-
-        p {
-            font-size:  2.5vw;
-            line-height: 2.5vw;
-            margin-bottom: 5%;
-        }
-    }
-
-    .form-group { margin: 0; }
-
-    .state {
-        width: 100%;
-        min-height: 20vw;
-
-        .stateface { font-size: 10vw; }
-        .stateface,
-        .state-name {
-            -webkit-transition: all 0.2s;
-            transition: all 0.2s;
+        .cast-disabled p {
+            margin-top: 33px;
+                a {
+                color: @red;
+                font-weight: bold;
+            }
         }
 
-        .state-name {
-            font-size: 4vw;
-            position: relative;
-            top: -3vmin;
+        .cast-enabled-but-whatev {
+            margin-top: 33px;
+            a {
+                color: white;
+                font-weight: bold;
+                &:hover {
+                    color:@red;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        @media screen and (max-width: @screen-xs-max){
+            margin: 0;
         }
     }
 
     .welcome-button {
-        background-color: @red;
-        border: @red;
-        color: @musicLight;
+
+        background-color: white;
+        color: black;
+        fill: black;
+
+        width: 390px;
+        height: 50px;
+
+        span { display:none; }
+
+        svg {
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        &:hover {
+            background-color: @red;
+            color: white;
+            fill: white;
+        }
+
+        font-weight: bold;
+
         margin-top: 30px;
 
         @media screen and (max-width: @screen-xs-max){
             margin-top: 15px;
+            width: 260px;
+            height: 50px;
+            font-size: 13px;
+        }
+    }
+
+    .byline {
+        font-size:11px;
+        color: @grayMedium;
+        @media screen and (max-width: @screen-xs-max){
+            font-size:8px;
         }
     }
 }
 
 .countdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: none;
+    text-align: center;
+    z-index: 1000;
+    
+    &:after {
+        content : "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #000;
+        width: 100%;
+        height: 100%;
+        opacity : 0.3;
+        z-index: -1;
+    }
+
+    h2,
+    h3 {
+    	font-size: 22px;
+    	margin: 0 22px;
+    	color: white;
+    }
+
+    .wrapper {
+        .vertical-center;
+        width: 100%;
+        position: absolute;
+    }
+
+    .countdown-arc-wrapper {
+    	width: 150px;
+    	height: 150px;
+    	margin: 33px auto;
+    	position: relative;
+
+    	.countdown-arc,
+    	.counter {
+    		width: 100%;
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    	}
+
+		.counter {
+			font-size: 40px;
+			font-weight: bold;
+			text-transform: uppercase;
+			line-height: 150px;
+		}
+    }
+
+	.countdown-background { fill: @musicDark; }
+	.countdown-active { fill: @grayMedium; }
 }
+
+/*
+ * CONTROLS
+ */
+
+.controls {
+	li {
+		background: fadeout(#333,25%);
+		line-height: 3vw;
+		padding: 0 1vw 0 0;
+		margin-bottom: 2px;
+		font-size: 1.3vw;
+		
+		a { font-weight: bold; }
+
+		i {
+			display: inline-block;
+			width: 3vw;
+			background: #222;
+			text-align: center;
+			margin-right: 1vw;
+			font-style: normal;
+		}
+	}
+
+	.play { display: none; }
+}
+
+
+/*
+ * FEEDBACK
+ */
+
+.feedback {
+	ul.social { 
+		display: table;
+		width: 100%;
+		
+		a { 
+			display: block;
+			font-weight: 700;
+			.unselectable;
+		}
+		
+		i.icon {
+			width: 3vw;
+			height: 3vw;
+			line-height: 3vw;
+			text-align: center;
+			display: inline-block;
+			background-color: #222;
+			margin-right: 1vw;
+		}
+
+		li {
+			line-height: 3vw;
+			vertical-align: middle;
+			background: fadeout(#333,25%);
+			margin-bottom: 1px;
+			font-size: 1.3vw;
+		}
+		
+	}
+}
+
+
+/*
+ * LEGEND
+ */
+
+.legend {
+    font-weight: 300;
+	.clearfix;
+    
+    ul {
+        .clearfix();
+        margin-bottom: 0;
+        min-height: 1px;
+        box-sizing: border-box;
+        line-height: 1.1;
+    }
+
+    li {
+        position: relative;
+        padding-left: 4vw;
+        padding-right: 1vw;
+        margin-bottom: 1vw;
+        font-size: 1.25vw;
+        line-height: 1.25vw;
+
+        sup { top: -0.3em; }
+    }
+
+    .incumbent,
+    .reporting,
+    .seat-held,
+    .pickup,
+    .polls,
+    .key-color {
+        width: 2.5vw;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: right;
+		font-family: 'Cooper Hewitt';
+		text-align: right;
+    }
+
+    .key-color {
+        .square(1.1vw);
+        display: inline-block;
+        border-radius: 1vw;
+        margin-right: .5vw;
+        left: 1.5vw;
+		font-family: 'Cooper Hewitt';
+
+        &.dem   { background: @blue; }
+        &.gop   { background: @red; }
+        &.other { background: @green; }
+    }
+
+    .winner {
+        display: inline-block;
+        border-radius: 0.5vw;
+        padding: 0 0.5vw;
+        color: #fff;
+        opacity: .8;
+		font-family: 'Cooper Hewitt';
+
+        &.dem   { background: @blue; }
+        &.gop   { background: @red; }
+        &.other { background: @green; }
+    }
+
+    .incumbent {
+        img {
+            width: 0.8vw;
+            display: inline-block;
+        }
+    }
+
+    .polls {
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        font-size: 1.2vw;
+        color: @gray-light;
+        white-space: nowrap;
+    }
+
+    .reporting {
+        color: @yellow;
+        font-weight: 500;
+        font-size: 1.3vw;
+    }
+
+    .seat-held {
+        color: @red;
+        font-weight: 500;
+    }
+
+    .pickup {
+        font-weight: 500;
+        font-style: italic;
+        font-size: 1.5vw;
+        color: @blue;
+    }
+}
+
+
+/*
+ * CHROMECAST AND MOBILE MENU
+ * (responsive, so all values in px rather than vw)
+ */
 
 .cast-controls {
-    text-align: center;
+	color: @grayMedium;
     display: none;
+
+	@media screen and (min-width: @screen-sm){
+		padding: 33px;
+	}
 
     &:after {
         content : "";
@@ -179,120 +455,193 @@ svg {
         z-index: -1;
     }
 
-    .header-container .results-header span { float: left; }
-
-    h2 {
-        font-size: 3vw;
-        font-weight: bold;
+    h3 {
+		font-size: 12px;
+        margin: 0 0 11px 0;
         padding: 0;
-        padding-bottom: 2vw;
-        margin: 0;
-    }
-
-    ul.menu {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-
-        li {
-            font-size: 3vw;
-            font-weight: bold;
-            margin-bottom: 1.5vw;
-
-            a { display: block; }
-            img {
-            	height: 3vw;
-            	width: auto;
-            	vertical-align: middle;
-            }
-        }
+        color: @white;
+        font-weight: 700;
+        text-transform: uppercase;
+        
+		@media screen and (min-width: @screen-sm){
+			font-size: 16px;
+		}
     }
     
-    .legend {
-    	position: absolute;
-    	bottom: 6vw;
-    	left: 0;
-    	width: 100%;
-    	text-align: left;
-    }
-}
-
-.state-picker {
-    text-align: center;
-    display: none;
-
-    &:after {
-        content : "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-image: url('../assets/elections-background-1.jpg');
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        opacity : 0.5;
-        z-index: -1;
+    .close-link {
+    	padding: 0 11px;
+    	line-height: 44px;
+    	font-weight: bold;
+    	font-size: 12px;
+		background: fadeout(#333,25%);
+        display: none;
     }
 
-    h2 {
-        font-size: 36px;
-        margin-top: 30px;
+	.wrapper {
+		.clearfix;
+		padding: 22px 11px;
+	}
 
-        @media screen and (max-width: @screen-xs-max){
-            font-size: 16px;
-        }
-    }
+	.controls-feedback-wrapper {
+		@media screen and (min-width: @screen-sm){
+			width: 50%;
+			float: left;
+		}
+	}
     
-    p {
-    	font-size: 1vw;
-    	margin-top: 2vw;
-    	color: @grayMedium;
+	.controls .slide-nav a,
+	.controls ul li,
+	.feedback p,
+	.feedback ul.social li {
+		font-size: 12px;
+
+		@media screen and (min-width: @screen-sm){
+			font-size: 14px;
+		}
+	}
+	
+    .controls {
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				.unselectable;
+				font-weight: bold;
+				line-height: 44px;
+				margin-bottom: 2px;
+				padding: 0 11px 0 0;
+				
+				&.nav { padding-right: 0; }
+				
+				.slide-nav {
+					display: table;
+					width: 100%;
+	
+					a {
+						display: table-cell;
+						width: 50%;
+
+						&.nav-btn-left { border-right: 1px solid #000; }
+						&.nav-btn-right {
+							text-align: right;
+							border-left: 1px solid #000;
+						}
+		
+						&.in-transition {
+							background-color: #444;
+							cursor: default;
+							color: #787878;
+						}
+					}
+				}
+				
+				i {
+					width: 44px;
+					margin-right: 11px;
+					
+					&.ion-chevron-right { 
+						margin-left: 11px;
+						margin-right: 0;
+					}
+				}
+				
+				img {
+					height: 18px;
+					width: auto;
+					vertical-align: middle;
+				}
+			}
+		}
     }
 
-    .form-group { margin: 0; }
+	.feedback { 
+//		padding-top: 5px;
+	
+		h3 { padding-top: 33px; }
+		
+		ul.social {
+			i {
+				width: 44px;
+				height: 44px;
+				line-height: 44px;
+				margin-right: 10px;
+			}
+			
+			li { line-height: 44px; }
+		}
+	}
 
-    .state {
-        width: 100%;
-        min-height: 20vw;
+	.legend {
+		margin-bottom: 33px;
 
-        .stateface { font-size: 10vw; }
+		@media screen and (min-width: @screen-sm){
+			width: 45%;
+			float: right;
+			margin-bottom: 0;
+		}
 
-        .stateface, .state-name {
-            -webkit-transition: all 0.2s;
-            transition: all 0.2s;
-        }
+		ul {
+			width: 50%;
+			float: left;
+			
+			@media screen and (min-width: @screen-sm){
+				width: auto;
+				float: none;
+			}
+		}
 
-        .state-name {
-            font-size: 36px;
-            position: relative;
-            top: -3vmin;
+		li {
+			margin-bottom: 6px;
+			padding-left: 40px;
+			padding-right: 0;
+			line-height: 14px;
+			font-size: 11px;
 
-            @media screen and (max-width: @screen-xs-max){
-                font-size: 16px;
-            }
-        }
-    }
+			@media screen and (min-width: @screen-sm){
+				margin-bottom: 11px;
+				line-height: 16px;
+				font-size: 14px;
+			}
+		}
 
-    .state-picker-submit {
-        margin-top: 2vw;
-        background-color: @red;
-        border: @red;
-        color: @musicLight;
-    }
+		.incumbent,
+		.reporting,
+		.seat-held,
+		.pickup,
+		.polls,
+		.key-color {
+			width: 30px;
+		}
+
+		.incumbent img { width: 6px; }
+
+		.key-color {
+			.square(14px);
+			border-radius: 14px;
+			left: 16px;
+		}
+
+		.pickup,
+		.polls,
+		.reporting,
+		.seat-held {
+			font-size: 10px;
+
+			@media screen and (min-width: @screen-sm){
+				font-size: 12px;
+			}
+		}
+
+		.winner {
+			border-radius: 6px;
+			padding: 0 6px;
+		}
+	}
 }
 
-.state-picker-hed-wrapper {
-    font-size: 24px;
-    margin: 30px 0;
-
-    @media screen and (max-width: @screen-xs-max){
-        font-size: 16px;
-        margin: 15px 0;
-    }
-}
-
-#us{
+#us {
     font-family: "StateFaceRegular";
     font-size: 15vw;
 }
@@ -302,235 +651,220 @@ svg {
 ** HEADER
 */
 
+.mobile-controls {
+	display: none;
+
+	.nav-btn {
+		.unselectable;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 6vw;
+		font-size: 3vw;
+		background: transparent;
+		border: none;
+
+		i { color: @grayMedium; }
+	}
+	.nav-btn-left {
+		left: 0;
+		text-align: left;
+	}
+	.nav-btn-right {
+		right: 0;
+		text-align: right;
+	}
+
+	.touch & { display: block; }
+}
+
+.fullscreen .stop {
+    display: none;
+}
+
+.controls-wrapper {
+    position: absolute;
+    left: 0;
+    bottom: 5vw;
+    width: 98%;
+    z-index: 100;
+    background: fadeout(@blueDarker,2%);
+    font-size: 1.75vw;
+    border-radius: 1vw;
+    padding: 2vw 0.5vw 1vw .5vw;
+    margin: 0 1vw;
+    overflow: hidden;
+    color: @grayMedium;
+    display: none;
+
+    a {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    
+    h3 {
+    	margin: 0 0 1vw;
+    	font-size: 1.5vw;
+    	text-transform: uppercase;
+    	color: @white;
+    	font-weight: 700;
+    }
+
+    .legend,
+    .controls,
+    .feedback {
+        float: left;
+        width: 33%;
+        padding: 0 1%;
+        box-sizing: border-box;
+    }
+
+    .controls {
+        li { 
+			img { height: 2vw; }
+        }
+        
+        nav { display: none; }
+    }
+
+    .feedback {
+    	.social { margin-bottom: 2vw; }
+
+        p {
+            font-size: 1.2vw;
+            line-height: 1.4;
+        }
+    }
+}
+
 .footer-container {
     position: absolute;
     left: 0;
-    bottom: 1vh;
-    width: 100%;
+    right: 0;
+    bottom: 0;
     z-index: 1;
+    background: black;
+    padding: .3vw 2% 0 2%;
 
-    box-shadow: inset 0 5vw 5vw -5vw black;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+    a {
+        color: @grayMedium;
 
-    .right-controls {
-        float: right;
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
 
-        div {
-            white-space: nowrap;
-            float: left;
+    .leaderboard {
+    	float: left;
+    	width: 40%;
+    	white-space: nowrap;
+    	.clearfix;
+
+		.senate-header {
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 1.7vw;
+			line-height: 3vw;
+			vertical-align: middle;
+			font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+    }
+
+    .control-toggle {
+    	float: left;
+    	padding: 0 1.5vw 0 .5vw;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.5vw;
+        line-height: 3.5vw;
+        border-radius: 1vw;
+		background: fadeout(@grayMedium,85%);
+		.unselectable;
+		
+        &.active {
+		    background: fadeout(@blueDarker,2%);
+		    a { color: #fff; }
         }
 
-        a.state-picker-link {
-            display: inline-block;
-            color: @grayMedium;
-            border: 2px solid @grayMedium;
-            vertical-align: middle;
-            line-height: 1.5vw;
-            padding: 0.5vw 1vw;
-            border-radius: 0.5vw;
-            font-size: 1vw;
+        a {
+            text-decoration: none;
 
-            .state-name {
-                font-size: 1vw;
-                line-height: 1;
+            &:hover svg { fill: #fff; }
+        }
+
+        svg {
+            fill: @grayMedium;
+            height: 3vw;
+            vertical-align: middle;
+        }
+
+        .touch-message { display: none; }
+        .touch & {
+            background: none;
+            .touch-message { display: inline; }
+            .desktop-message { display: none; }
+        }
+    }
+
+    .nav {
+    	float: right;
+        text-align: right;
+        font-size: 1.5vw;
+        line-height: 3.5vw;
+
+        .page,
+        .slide-nav,
+        .slide-countdown,
+        .logo {
+            display: inline-block;
+        }
+
+        .page {
+            color: @grayMedium;
+            font-size: 1.2vw;
+        }
+
+        .slide-nav {
+            margin-left: 1vw;
+
+            p {
+                vertical-align: middle;
+                padding: 0 1vw;
             }
 
-            .stateface {
-                display: none;
-                font-size: 3vw;
-                vertical-align: middle;
+            p,
+            .nav-btn {
+                display: inline-block;
+            }
+
+            .nav-btn {
+                font-size: 2vw;
+
+                + .nav-btn {
+                    padding-left: 0.5vw;
+                }
             }
         }
 
         .slide-countdown {
-            padding-top: .2vw;
+            position: relative;
+            bottom: -0.2vw;
+            padding: 0 0 0 .5vw;
+            width: 2.75vw;
+
             .countdown-background { fill: @musicDark; }
             .countdown-active { fill: @grayMedium; }
         }
 
-        .volume-icon{
-            width: 2vw;
-            height: 2vw;
-        }
-
-        .chromecast {
-            display: none;
-
-            img {
-                width: 2vw;
-                height: 2vw;
-                opacity: 0.7;
-            }
-        }
-
-        .volume-icon{
-            width: 2vw;
-            height: 2vw;
-        }
-
-        .expand {
-            width: 1.5vw;
-            height: 1.5vw;
-        }
-
-        .chromecast,
-        .state,
-        .volume,
-        .fullscreen {
-            padding: 0 0.5vw;
-
-            a:hover {
-                color: darken(@grayMedium, 20%);
-                text-decoration: none;
-
-                img {
-                    opacity: 0.5;
-                }
-            }
-        }
-
-        .slide-nav {
-            line-height: 3.5vw;
-            height: 3.5vw;
-
-            nav {
-                overflow: hidden;
-                // display: inline-block;
-                font-size: 0;
-            }
-
-           .nav-btn {
-                font-size: 1.5vw;
-                border: 2px solid @grayMedium;
-                padding: 0.5vw 1vw;
-                color: @grayMedium;
-                background: transparent;
-                line-height: 1.5vw;
-                margin: 0 0 -2px 0;
-                display: inline-block;
-                vertical-align: middle;
-
-                &.nav-btn-left {
-                    border-radius: 0.5vw 0 0 0.5vw;
-                }
-
-                &.nav-btn-right {
-                    margin-left: -2px;
-                    border-radius: 0 0.5vw 0.5vw 0;
-                }
-           }
-        }
-    }
-
-    .results-header {
-        color: @grayMedium;
-        height: 4vw;
-        display: block;
-        overflow: hidden;
-        line-height: 3.5vw;
-        padding: .2vw 3vw;
-
         .logo {
-            height:100%;
-            width:7vw;
-            margin: 0 .5% 0 0;
-            float: left;
+            margin-left: 1vw;
+            width: 8vw;
             fill: @grayMedium;
+            position: relative;
+            bottom: -0.35vw;
         }
-
-        .leaderboard {
-            float: left;
-            display: table;
-        }
-
-        h2, p, a, span {
-            font-size: 1.5vw;
-            line-height: 3.5vw;
-        }
-
-        span{
-            text-align: center;
-        }
-
-        .results-header-group {
-            white-space: nowrap;
-            padding: 0 1vw;
-            display: table-cell;
-            overflow: hidden;
-
-            &:last-child{
-                margin-right: 0;
-                padding-right: 0;
-            }
-
-            .party,
-            .total,
-            .seats-needed {
-                display: inline;
-                font-family: 'Cooper Hewitt';
-            }
-
-            h2, p {
-                margin: 0;
-            }
-
-            .senate-header {
-                text-transform: uppercase;
-                font-weight: bold;
-                line-height: 1;
-                font-size: 1.7vw;
-            }
-
-            .total {
-                white-space: nowrap;
-                display: inline-block;
-            }
-
-            &.not-called {
-                h2 {
-                    display: inline;
-                }
-
-                white-space: nowrap;
-            }
-        }
-
-        .dem { color: fadeout(@blue, 25%); }
-        .gop { color: fadeout(@red, 25%); }
-        .other { color: fadeout(@green, 25%); }
-        .not-called { color: fadeout(@yellow, 25%); }
-
-        .dem .percentage   {  background: fadeout(@blue, 25%); }
-        .gop .percentage   {  background: fadeout(@red, 25%); }
-        .other .percentage   {  background: fadeout(@green, 25%); }
-        .not-called .count {  border: 2px solid fadeout(@yellow, 25%); color: fadeout(@yellow, 25%); }
-
-        .percentage,
-        .count {
-            margin-top: 0;
-            color: #fff;
-            font-family: 'Cooper Hewitt';
-            display: inline-block;
-            text-align: center;
-            box-sizing:border-box;
-            min-width:3vw;
-            height:3vw;
-            line-height: 3vw;
-            border-radius: 2vw;
-            padding: 0 1vw;
-        }
-    }
-
-    .results-header.header-controls {
-        display: none;
-
-        a {
-            color: @grayMedium;
-        }
-        a:hover{
-            color: darken(@grayMedium, 20%);
-        }
-        
     }
 }
 
@@ -543,136 +877,43 @@ svg {
 }
 
 /*
- * Typeahead
- */
-.twitter-typeahead {
-    position: relative;
-    width: 50vw; //fixes safari alignment
-    top: 0;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-
-    @media screen and (max-width: @screen-xs-max){
-        width: 80vw;
-    }
-}
-
-.typeahead,
-.tt-query,
-.tt-hint {
-    color: @musicLight;
-    font-family: FontAwesome, 'Gotham Ssm';
-    width: 50vw;
-    height: 100%;
-    padding: 15px;
-    font-size: 24px;
-    line-height: 36px;
-    border: 2px solid #bbb;
-    border-radius: 4px;
-    outline: none;
-
-    @media screen and (max-width: @screen-xs-max){
-        width: 80vw;
-        font-size: 16px;
-    }
-}
-
-::-webkit-input-placeholder::before {
-    font-family: FontAwesome;
-    content:'\f002  ';
-}
-::-moz-placeholder::before  {
-    font-family: FontAwesome;
-    content:'\f002  ';
- }
-:-ms-input-placeholder::before  {
-    font-family: FontAwesome;
-    content:'\f002  ';
-}
-input:-moz-placeholder::before  {
-    font-family: FontAwesome;
-    content:'\f002  ';
-}
-
-.tt-dropdown-menu {
-    text-align: left;
-    max-height: 18vw;
-    overflow-y: auto;
-}
-
-.typeahead {
-    background-color: rgba(0,0,0,0);
-}
-
-.typeahead:focus {
-    border: 2px solid @blue;
-}
-
-.tt-query {
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}
-
-.tt-hint {
-    color: #999
-}
-
-.tt-dropdown-menu {
-    background-color: rgba(0,0,0,0);
-    color: @blue;
-    width: 50vw;
-    margin-top: 1vw;
-    border: 1px solid #999;
-    border-radius: 2px;
-
-    @media screen and (max-width: @screen-xs-max){
-        width: 80vw;
-    }
-}
-
-.tt-suggestion {
-    padding: 15px;
-    font-size: 24px;
-    line-height: 1;
-    background: rgba(0,0,0,0.5);
-    border-bottom: 1px solid #999;
-
-    @media screen and (max-width: @screen-xs-max){
-        font-size: 16px;
-    }
-
-    &:last-child { border: none; }
-}
-
-.tt-suggestion.tt-cursor {
-    color: #fff;
-    background-color: @blue;
-}
-
-.tt-suggestion p {
-    margin: 0;
-}
-
-/*
  * ROTATE YOUR PHONE PROMPT
+ * Including a little trick to turn it off on some screens. Add disable-rotate-phone-prompt to the body.
  */
 
-.rotate-phone-wrapper {
+ .rotate-phone-wrapper,
+html.touch-portrait.disable-rotate-prompt .rotate-phone-wrapper {
     display: none;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding-bottom: 3vw;
-    font-size: 4vw;
-    line-height: 1.3;
-    font-weight: 700;
+}
 
-    .rotate { text-align: center; }
+html.touch-portrait {
 
-    img {
-    	display: block;
-    	margin: 0 auto 1.5vw auto;
-    	height: 10vw;
-    	width: auto;
+    .rotate-phone-wrapper {
+        display: block;
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 3vw;
+        font-size: 4vw;
+        line-height: 1.3;
+        font-weight: 700;
+
+        .rotate { text-align: center; }
+
+        img {
+        	display: block;
+        	margin: 0 auto 1.5vw auto;
+        	height: 10vw;
+        	width: auto;
+        }
+
+        z-index: 2112;
+    }
+
+    .countdown .wrapper {
+        top:33px;
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
     }
 }

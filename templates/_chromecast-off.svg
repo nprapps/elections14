@@ -1,0 +1,48 @@
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg3441"
+   version="1.1"
+   viewBox="6 18 64 48"
+   >
+  
+  <g
+     id="layer1"
+     transform="translate(0,-972.36215)">
+    <g
+       id="g434"
+       transform="matrix(1.25,0,0,-1.25,10,989.86178)">
+      <path
+         d="m 0,0 0,-16.501 c 1.379,-0.28 2.714,-0.679 4,-1.175 L 4,-4 l 40,0 0,-28 -25.677,0 c 0.497,-1.286 0.896,-2.621 1.176,-4 L 48,-36 48,0 0,0 z"
+         id="path436"
+         />
+    </g>
+    <g
+       id="g438"
+       transform="matrix(1.25,0,0,-1.25,6.25,1031.4394)">
+      <path
+         d="m 0,0 0,-5.738 5.737,0 C 5.014,-2.93 2.808,-0.724 0,0"
+         id="path440"
+         />
+    </g>
+    <g
+       id="g442"
+       transform="matrix(1.25,0,0,-1.25,6.25,1022.5471)">
+      <path
+         d="m 0,0 0,-4.042 c 4.47,-0.822 7.987,-4.34 8.81,-8.81 l 4.042,0 C 11.959,-6.171 6.681,-0.893 0,0"
+         id="path444"
+         />
+    </g>
+    <g
+       id="g446"
+       transform="matrix(1.25,0,0,-1.25,6.25,1013.7302)">
+      <path
+         d="m 0,0 0,-4.022 c 8.342,-0.924 14.96,-7.541 15.883,-15.883 l 4.022,0 C 18.954,-9.352 10.554,-0.952 0,0"
+         id="path448"
+         />
+    </g>
+  </g>
+</svg>

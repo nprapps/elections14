@@ -16,38 +16,34 @@
     <script src="/js/lib/d3.v3.min.js"></script>
     {{ JS.push('js/lib/modernizr.js') }}
     {{ JS.push('js/lib/jquery.js') }}
-    {{ JS.push('js/lib/jquery.columnizer.js') }}
-    {{ JS.push('js/lib/moment.js') }}
     {{ JS.render('js/preview-header.min.js') }}
 </head>
 
 <body>
-    <div id="landscape-wrapper">
-        <div id="stack" class="stack">
-            {{ body|smarty }}
-        </div>
+    <div id="stack" class="stack">
+        {{ body|smarty }}
+    </div>
 
-        {% if in_sequence %}
-        <div class="next-btn">
-            {% if previous_slide %}
-            <a href="/preview/{{ previous_slide }}/index.html" class="btn btn-primary">Previous slide</a>
-            {% endif %}
-
-            {% if next_slide %}
-            <a href="/preview/{{ next_slide }}/index.html" class="btn btn-primary">Next slide</a>
-            {% endif %}
-        </div>
+    {% if in_sequence %}
+    <div class="next-btn">
+        {% if previous_slide %}
+        <a href="/preview/{{ previous_slide }}/index.html" class="btn btn-primary">Previous slide</a>
         {% endif %}
 
-        <div class="share-footer">
-            <div class="share-title">
-                {% include '_election_party.svg' %}
-            </div>
+        {% if next_slide %}
+        <a href="/preview/{{ next_slide }}/index.html" class="btn btn-primary">Next slide</a>
+        {% endif %}
+    </div>
+    {% endif %}
 
-            <div class="share-url">
-                <h2>npr.org/electionparty</h2>
-            </div>
+    <div class="share-footer">
+        <div class="share-url">
+            <h2>npr.org/electionparty</h2>
+            <i>On your TV, laptop and mobile.</i>
         </div>
+<!--         <div class="share-tagline">
+            On your TV, laptop and mobile.
+        </div> -->
     </div>
 
     <script>
@@ -62,7 +58,7 @@
                 padding = 0;
             }
 
-            $('#landscape-wrapper').css({
+            $('#stack').css({
                 'width': width + 'px',
                 'height': new_height + 'px',
                 'position': 'absolute',
@@ -77,8 +73,8 @@
          * Resize a slide to fit the viewport.
          */
         var resizeSlide = function(slide) {
-            var $w = $('#landscape-wrapper').width();
-            var $h = $('#landscape-wrapper').height();
+            var $w = $('#stack').width();
+            var $h = $('#stack').height();
             var headerHeight = 0;
 
             slide.width($w);

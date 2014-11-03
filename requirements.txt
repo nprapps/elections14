@@ -18,6 +18,7 @@ facebook-sdk==0.4.0
 flask-peewee==0.6.6
 google-api-python-client==1.2
 httplib2==0.9
+joblib==0.8.3-r1
 jmespath==0.2.1
 nose==1.2.1
 odict==1.5.1
@@ -27,7 +28,7 @@ ply==3.4
 psycopg2==2.5.4
 pyasn1==0.1.7
 pycrypto==2.6
-python-dateutil==2.2
+python-dateutil==1.5
 python-elections==1.1.0
 pytumblr==0.0.6
 pytz==2014.7

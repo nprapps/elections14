@@ -4,6 +4,8 @@ var STACK = (function () {
     var _stack = [];
     var _nextStack = null;
     var _currentSlide = 0;
+    var _timeOnScreen = null;
+    var $newSlide = null;
 
     var _stackTimer = null;
     var _rotateTimer = null;
@@ -21,6 +23,10 @@ var STACK = (function () {
      * Setup the stack display.
      */
     obj.start = function() {
+        if (!NO_AUDIO && !IS_TOUCH) {
+            obj.startPrerollAudio();
+        }
+
         $stack.show();
 
         updateStack();
@@ -60,25 +66,72 @@ var STACK = (function () {
     }
 
     obj.next = function() {
-        if (_rotateTimer) {
-            clearTimeout(_rotateTimer);
-            _rotateTimer = null;
-        }
         rotateSlide();
+
+        if (!(hasTrackedNextSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'next-slide-click']);
+            hasTrackedNextSlide = true;
+        }
     }
 
     obj.previous = function() {
-        if (_rotateTimer) {
-            clearTimeout(_rotateTimer);
-            _rotateTimer = null;
-        }
         rotateSlide('previous');
+
+        if (!(hasTrackedPrevSlide)) {
+            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'prev-slide-click']);
+            hasTrackedPrevSlide = true;
+        }
+    }
+
+    obj.setupAudio = function() {
+         $audioPlayer.jPlayer({
+            ready: function () {
+                $(this).jPlayer('setMedia', {
+                    mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
+                });
+
+                if (IS_CAST_RECEIVER || (SKIP_COUNTDOWN && !NO_AUDIO)) {
+                    $(this).jPlayer('play');
+                }
+            },
+            ended: startLivestream,
+            swfPath: 'js/lib',
+            supplied: 'mp3',
+            loop: false,
+        });
+
+        $audioPlayer.bind($.jPlayer.event.stalled, onAudioFail);
+    }
+
+    obj.startPrerollAudio = function() {
+        $audioPlayer.jPlayer('play');
+    }
+
+    var startLivestream = function() {
+        $audioPlayer.jPlayer('setMedia', {
+            mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
+        }).jPlayer('play');
+    }
+
+    var onAudioFail = function() {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-fail']);
     }
 
     /*
      * Rotate to the next slide in the stack.
      */
     var rotateSlide = function(direction) {
+        if (_rotateTimer) {
+            clearTimeout(_rotateTimer);
+            _rotateTimer = null;
+        }
+
+        if (inTransition) {
+            return false;
+        }
+
+        inTransition = true;
+        cancel_arc_countdown('slide_countdown');
         var increment = (direction == 'previous') ? -1 : 1;
 
         _currentSlide += increment;
@@ -99,12 +152,14 @@ var STACK = (function () {
         if (slug === 'state-senate-results') {
             // If no state selected, skip to next
             if (!state) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
 
             // If we're tracking any races in this state
             if (APP_CONFIG.NO_GOVERNOR_OR_SENATE_RACES.indexOf(state) >= 0) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
@@ -114,12 +169,14 @@ var STACK = (function () {
         else if (slug === 'state-house-results-1') {
             // If no state selected, skip to next
             if (!state) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
 
             // If we're tracking any races in this state
             if (APP_CONFIG.NO_FEATURED_HOUSE_RACES.indexOf(state) >= 0) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
@@ -129,18 +186,21 @@ var STACK = (function () {
         else if (slug === 'state-house-results-2') {
             // If no state selected, skip to next
             if (!state) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
 
             // If we're tracking any races in this state
             if (APP_CONFIG.NO_FEATURED_HOUSE_RACES.indexOf(state) >= 0) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
 
             // Not a paginated state, skip page two
             if (APP_CONFIG.PAGINATED_STATES.indexOf(state) < 0) {
+                inTransition = false;
                 rotateSlide(direction);
                 return;
             }
@@ -151,7 +211,7 @@ var STACK = (function () {
             slide_path = 'slides/' + slug + '.html';
         }
 
-        console.log('Rotating to next slide:', slide_path);
+        //console.log('Rotating to next slide:', slide_path);
 
         _rotateRequest = $.ajax({
             'url': slide_path,
@@ -166,13 +226,9 @@ var STACK = (function () {
      */
     var _onSlideSuccess = function(data) {
         var $oldSlide = $stack.find('.slide');
-        var $newSlide = $(data);
+        $newSlide = $(data);
 
-        var timeOnScreen = _stack[_currentSlide]['time_on_screen'];
-
-		// update countdown spinner
-		slide_countdown_duration = timeOnScreen;
-		start_slide_countdown();
+        _timeOnScreen = _stack[_currentSlide]['time_on_screen'];
 
         if ($oldSlide.length > 0) {
             if (_slideExitCallback) {
@@ -180,41 +236,62 @@ var STACK = (function () {
 
                 _slideExitCallback = null;
             }
-
-            $oldSlide.fadeOut(800, function() {
-                $(this).remove();
-                $stack.append($newSlide);
-                resizeSlide($newSlide)
-
-                if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
-                    $header.find('.leaderboard').fadeOut();
-                }
-                else {
-                    $header.find('.leaderboard').fadeIn();
-                }
-
-                $newSlide.fadeIn(800, function(){
-                    _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
-
-                    $newSlide.find('a').on('click', onSlideAnchorClick);
-                });
-            });
-        } else {
-            $stack.append($newSlide);
-            resizeSlide($newSlide);
-
-            if (($newSlide.find('.results-header').length > 0) || ($newSlide.find('.balance-of-power').length > 0)) {
-                $header.find('.leaderboard').fadeOut();
+            if (IS_CAST_RECEIVER) {
+                $oldSlide.hide();
+                addNewSlide();
             }
             else {
-                $header.find('.leaderboard').fadeIn();
+                $oldSlide.velocity('fadeOut', 800, addNewSlide);
             }
 
-            $newSlide.fadeIn(800, function(){
-                _rotateTimer = setTimeout(rotateSlide, timeOnScreen * 1000);
-                $newSlide.find('a').on('click', onSlideAnchorClick);
-            });
+        } else {
+            $stack.append($newSlide);
+            onWindowResize();
+
+            if (($newSlide.find('.results-header').length > 0) || ($newSlide.find('.balance-of-power').length > 0)) {
+                $header.find('.leaderboard').velocity('fadeOut');
+            }
+            else {
+                $header.find('.leaderboard').velocity('fadeIn');
+            }
+
+            if (IS_CAST_RECEIVER) {
+                $newSlide.show();
+                setTimer();
+            }
+            else {
+                $newSlide.velocity('fadeIn', 800, setTimer);
+            }
         }
+    }
+
+    var addNewSlide = function() {
+        $(this).remove();
+        $stack.append($newSlide);
+        onWindowResize();
+
+        if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
+            $header.find('.leaderboard').velocity('fadeOut');
+        }
+        else {
+            $header.find('.leaderboard').velocity('fadeIn');
+        }
+
+        if (IS_CAST_RECEIVER) {
+            $newSlide.show();
+            setTimer();
+        }
+        else {
+            $newSlide.velocity('fadeIn', 800, setTimer);
+        }
+    }
+
+    var setTimer = function() {
+        _rotateTimer = setTimeout(rotateSlide, _timeOnScreen * 1000);
+        start_arc_countdown('slide_countdown', _timeOnScreen);
+        $(this).find('a').on('click', onSlideAnchorClick);
+        $slideControls.removeClass('in-transition');
+        inTransition = false;
     }
 
     /*

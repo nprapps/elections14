@@ -7,46 +7,53 @@ var $rotate = null;
 var $countdownScreen = null;
 var $counter = null;
 
-var $statePickerScreen = null;
-var $statePickerForm = null;
-var $stateWrapper = null;
 var $stateface = null;
 var $stateName = null;
-var $typeahead = null;
-var $statePickerHed = null;
-var $statePickerLink = null;
+var $statePicker = null;
 
 var $chromecastScreen = null;
-var $chromecastMute = null;
-var $chromecastChangeState = null;
 var $chromecastIndexHeader = null;
+var $castStart = null;
+var $castStop = null;
 
 var $header = null;
 var $headerControls = null;
-var $fullScreenButton = null;
-var $statePickerLink = null;
 var $chromecastButton = null;
 var $audioPlayer = null;
 var $bop = null;
 var $stack = null;
 var $audioButtons = null;
 var $slide_countdown = null;
+var $desktopOnlyLeftRight = null;
+var $slideControls = null;
+var $controlsWrapper = null;
+var $controlsToggle = null;
+var $castControls = null;
+var $closeControlsLink = null;
 
 // Global state
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
+var SKIP_COUNTDOWN = (window.location.search.indexOf('skipcountdown') >= 0);
+var NO_AUDIO = (window.location.search.indexOf('noaudio') >= 0);
+var IS_TOUCH = Modernizr.touch;
 var reloadTimestamp = null;
 
 var state = null;
 var is_casting = false;
-var countdown = 3 + 1;
+var countdown = 5 + 1;
+var welcome_greeting_counter = 0;
+var welcome_greeting_timer = null;
+var inTransition = null;
 
-var slide_countdown_duration = 0;
-var slide_countdown_interval = null;
 var slide_countdown_arc = null;
 var slide_countdown_svg = null;
 var slide_countdown_background_arc = null;
 var slide_countdown_foreground_arc = null;
+var welcome_countdown_arc = null;
+var welcome_countdown_svg = null;
+var welcome_countdown_background_arc = null;
+var welcome_countdown_foreground_arc = null;
 var τ = 2 * Math.PI; // http://bl.ocks.org/mbostock/5100636
 
 var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
@@ -63,121 +70,173 @@ var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
 var hasTrackedNextSlide = null;
 var hasTrackedPrevSlide = null;
 var hasTrackedKeyboardNav = null;
+var hasTrackedMobileControls = null;
+
+/*
+ * _.has
+ */
+var has = function(obj, key) {
+    return hasOwnProperty.call(obj, key);
+};
+
+/*
+ * _.invert
+ */
+var invert = function(obj) {
+    var result = {};
+    for (var key in obj) if (has(obj, key)) result[obj[key]] = key;
+    return result;
+};
 
 /*
  * Run on page load.
  */
 var onDocumentReady = function(e) {
+    // Timestamp when page was loaded
+    reloadTimestamp = Date.now();
+    
     // Cache jQuery references
     $body = $('body');
     $welcomeScreen = $('.welcome');
-    $welcomeButton = $('.welcome-button')
+    $welcomeButton = $('.js-go')
     $rotate = $('.rotate-phone-wrapper');
 
     $countdownScreen = $('.countdown');
     $counter = $('.counter');
 
-    $statePickerScreen = $('.state-picker');
-    $statePickerForm  = $('form.state-picker-form');
-    $statePickerLink = $ ('.state-picker-link');
-    $stateWrapper = $('.state');
     $stateface = $('.stateface');
-    $stateName = $('.state-name');
-    $statePickerHed = $('.state-picker-hed');
+    $statePicker = $('.state-picker');
 
     $chromecastScreen = $('.cast-controls');
-    $chromecastMute = $chromecastScreen.find('.mute');
-    $chromecastChangeState = $chromecastScreen.find('.change-state');
     $chromecastIndexHeader = $welcomeScreen.find('.cast-header');
     $castStart = $('.cast-start');
     $castStop = $('.cast-stop');
 
     $audioPlayer = $('#pop-audio');
-    $fullScreenButton = $('.fullscreen a');
+    $fullscreenStart = $('.fullscreen .start');
+    $fullscreenStop = $('.fullscreen .stop');
     $chromecastButton = $('.chromecast');
     $bop = $('.leaderboard');
     $stack = $('#stack');
     $header = $('.index');
     $headerControls = $('.header-controls');
-    $audioButtons = $('.jp-controls .nav-btn');
+    $desktopOnlyLeftRight = $('.nav .slide-nav');
     $slideControls = $('.slide-nav .nav-btn');
-    $slide_countdown = $stack.find('.slide-countdown');
-    reloadTimestamp = moment();
+    $controlsWrapper = $('.controls-wrapper');
+    $controlsToggle = $('.js-toggle-controls');
+    $castControls = $('.cast-controls');
+    $closeControlsLink = $('.close-link');
+    $slide_countdown = $('.footer-container .slide-countdown');
+    $audioPlay = $('.controls .play');
+    $audioPause = $('.controls .pause');
 
     // Bind events
     $welcomeButton.on('click', onWelcomeButtonClick);
 
-    $statePickerForm.submit(onStatePickerSubmit);
-
-    $chromecastMute.on('click', onCastMute);
-    $chromecastChangeState.on('click', onStatePickerLink);
     $castStart.on('click', onCastStartClick);
     $castStop.on('click', onCastStopClick);
+    $fullscreenStart.on('click', onFullscreenButtonClick);
+    $fullscreenStop.on('click', onFullscreenButtonClick);
 
-    $fullScreenButton.on('click', onFullScreenButtonClick);
-    $statePickerLink.on('click', onStatePickerLink);
-    $audioButtons.on('click', onAudioButtonsClick);
+    $audioPlay.on('click', onAudioPlayClick);
+    $audioPause.on('click', onAudioPauseClick);
     $slideControls.on('click', onSlideControlClick);
+
+    if (!IS_TOUCH) {
+        $controlsToggle.on('click', onControlsToggleClick);
+    } else {
+        $stack.on('click', onStackTap);
+        $closeControlsLink.on('click', onCloseControlsLink);
+    }
+
+    $statePicker.on('change', onStatePickerChange);
+
     $body.on('keydown', onKeyboard);
     $(window).on('resize', onWindowResize);
 
+    STACK.setupAudio();
+
+    // running on the chromecast device, like the TV
     if (IS_CAST_RECEIVER) {
+        $controlsToggle.hide();
+        $slide_countdown.hide();
+        $slideControls.hide();
         $welcomeScreen.hide();
 
         CHROMECAST_RECEIVER.setup();
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
         CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
-
-        setUpAudio(false);
+        CHROMECAST_RECEIVER.onMessage('slide-change', onCastReceiverSlideChange);
 
         STACK.start();
+        $desktopOnlyLeftRight.hide();
+
+    // debugging with the ?fakecast flag, so it's easier to style the control panel
     } else if (IS_FAKE_CASTER) {
         is_casting = true;
         state = 'TX';
         onCastStarted();
-    }
-    else if ($.cookie('reload')) {
+    
+    // runs if we've triggered a reload, via fab reset_browsers!
+    } else if ($.cookie('reload')) {
         $.removeCookie('reload');
         $welcomeScreen.hide();
         setupUI();
         STACK.start();
-    }
-    else {
-        // Prepare welcome screen
-        $welcomeScreen.css('opacity', 1);
+
+    // debugging with the ?skipcountdown flag, to go straight the stack
+    } else if (SKIP_COUNTDOWN) {
+        STACK.start();
+    
+    // running the app as usual, on your phone or laptop
+    } else {
+        $welcomeScreen.velocity('fadeIn');
         $chromecastIndexHeader.css('opacity', 1);
+
+        //we want to prevent the rotate prompt on the welcome screen
+        disableRotatePrompt();
 
         setupUI();
     }
 
     onWindowResize();
-    setupStateTypeahead();
     checkBop();
     checkTimestamp();
 
     create_slide_countdown();
 }
 
+/*
+ * Create and configure UI elements.
+ */
 var setupUI = function() {
-    rotatePhone();
     checkTimestamp();
 
-    // Geolocate
+    if (IS_TOUCH) {
+        $desktopOnlyLeftRight.hide();
+        $fullscreenStart.hide();
+    }
+
+    checkForPortrait();
+
+    // Load location from cookie
     if ($.cookie('state')) {
         state = $.cookie('state');
         showState();
     }
 
+    // Geolocate
     if (typeof geoip2 == 'object' && !($.cookie('state'))) {
         geoip2.city(onLocateIP);
     }
 
+    // GeoIP failed to load (adblocker)
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
-        $('.typeahead').attr('placeholder', 'Select a state');
-        $statePickerHed.text('We are having trouble determining your state.')
+        // Default to CA
+        onLocateIP({ 'most_specific_subdivision': { 'iso_code': 'CA' } });
     }
 
-    setUpAudio(true);
+    welcomeOurGuests();
 }
 
 /*
@@ -187,7 +246,7 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
     $chromecastIndexHeader = $('.welcome').find('.cast-header');
 
     // Don't init sender if in receiver mode
-    if (IS_CAST_RECEIVER) {
+    if (IS_CAST_RECEIVER || IS_FAKE_CASTER) {
         return;
     }
 
@@ -195,28 +254,12 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
         CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
     	$chromecastIndexHeader.find('.cast-enabled').show();
     	$chromecastIndexHeader.find('.cast-disabled').hide();
+        $castStart.show();
+        window.clearTimeout(welcome_greeting_timer);
+    } else {
+        $chromecastIndexHeader.find('.cast-try-chrome').hide();
+        $chromecastIndexHeader.find('.cast-get-extension').show();
     }
-}
-
-/*
- * Prepare typeahead for state picker.
- */
-var setupStateTypeahead = function() {
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    },
-    {
-        name: 'states',
-        displayKey: 'value',
-        source: substringMatcher(STATES)
-    });
-
-    $typeahead = $('.twitter-typeahead');
-
-    $('.typeahead').on('typeahead:selected', switchState)
-    $('.typeahead').on('typeahead:opened', hideStateFace)
 }
 
 /*
@@ -232,16 +275,17 @@ var onCastReady = function() {
 var onCastStarted = function() {
     $welcomeScreen.hide();
     $stack.hide();
+    $fullscreenStart.hide();
+    $fullscreenStop.hide();
+    $castStart.hide();
+    $castStop.show();
     STACK.stop();
 
-    if (!state) {
-        $statePickerScreen.show();
-    } else {
-        $statePickerScreen.hide();
-        $chromecastScreen.show();
-    }
+    $chromecastScreen.show();
 
     is_casting = true;
+
+    CHROMECAST_SENDER.sendMessage('state', state);
 }
 
 /*
@@ -251,6 +295,11 @@ var onCastStopped = function() {
     $chromecastScreen.hide();
 
     STACK.start();
+    
+    if (!IS_TOUCH) {
+        $fullscreenStart.show();
+        $fullscreenStop.show();
+    }
 
     is_casting = false;
 }
@@ -259,10 +308,23 @@ var onCastStopped = function() {
  * Mute or unmute the receiver.
  */
 var onCastReceiverMute = function(message) {
-    if ($audioPlayer.data().jPlayer.status.paused) {
-        $audioPlayer.jPlayer('play');
-    } else {
+    if (message == 'true') {
         $audioPlayer.jPlayer('pause');
+    } else {
+        $audioPlayer.jPlayer('play');
+    }
+}
+
+/*
+ * Back/next slide on the receiver.
+ */
+var onCastReceiverSlideChange = function(message) {
+    if (message == 'prev') {
+        STACK.previous();
+    }
+
+    if (message == 'next') {
+        STACK.next();
     }
 }
 
@@ -274,77 +336,13 @@ var onCastStateChange = function(message) {
 }
 
 /*
- * Send the mute message to the receiver.
- */
-var onCastMute = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-muted']);
-    CHROMECAST_SENDER.sendMessage('mute', 'toggle');
-}
-
-/*
- * Resize current slide.
- */
-var onWindowResize = function() {
-    var width = $(window).width();
-    var height = $(window).height();
-
-    var target_width = 1280;
-    var target_height = 720;
-
-    var new_height = width * 9 / 16;
-    var padding = (height - new_height) / 2;
-
-    if (padding < 0) {
-        padding = 0;
-    }
-
-    $stack.css({
-        'height': new_height + 'px',
-        'position': 'absolute',
-        'top': padding + 'px'
-    });
-
-    var thisSlide = $('.slide');
-    rotatePhone();
-}
-
-/*
- * Resize a slide to fit the viewport.
- */
-var resizeSlide = function(slide) {
-    var $w = $stack.width();
-    var $h = $stack.height();
-    var headerHeight = 0;
-
-    slide.width($w);
-    slide.height($h - headerHeight);
-
-    slide.find('.slide-inner').width($w);
-    slide.find('.slide-inner').height($h - headerHeight);
-}
-
-var rotatePhone = function() {
-    if (Modernizr.touch && Modernizr.mq('(orientation: portrait)')) {
-        $rotate.show();
-        $('html').addClass('device-portrait');
-		$stack.css({
-			'top': '3vw'
-		});
-    }
-    else {
-        $rotate.hide();
-        $('html').removeClass('device-portrait');
-    }
-}
-
-/*
  * Begin chromecasting.
  */
 var onCastStartClick = function(e) {
     e.preventDefault();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-initiated']);
-
+    
     CHROMECAST_SENDER.startCasting();
 }
 
@@ -357,6 +355,40 @@ var onCastStopClick = function(e) {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-stopped']);
 
     CHROMECAST_SENDER.stopCasting();
+
+    $castStop.hide();
+    $castStart.show();
+}
+
+/*
+ * Resize stack and current slide.
+ */
+var onWindowResize = function() {
+    var width = $(window).width();
+    var height = $(window).height();
+    var footerHeight = 0;
+
+    var new_height = width * 9 / 16;
+    var padding = (height - new_height) / 2;
+
+    if (padding < 0) {
+        padding = 0;
+    }
+
+    $stack.css({
+        'width': width + 'px',
+        'height': new_height + 'px',
+        'position': 'absolute',
+        'top': padding + 'px'
+    });
+
+    checkForPortrait();
+
+    var currentSlideInner = $('.slide-inner');
+
+    currentSlideInner.width(width);
+    currentSlideInner.height(new_height - footerHeight);
+
 }
 
 /*
@@ -365,71 +397,22 @@ var onCastStopClick = function(e) {
 var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
 
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
+    enableRotatePrompt();
 
-    // TODO
-    /*if (is_casting) {
-        $chromecastScreen.show();
-        resizeSlide($chromecastScreen);
-        CHROMECAST_SENDER.sendMessage('state', state);
-    } else {
-        STACK.start();
-    }*/
+    window.clearTimeout(welcome_greeting_timer);
+
+    // Mobile devices require a click to start audio
+    if (IS_TOUCH) {
+        STACK.startPrerollAudio();
+    }
 
    showCountdown();
 }
 
-var showCountdown = function() {
-    $countdownScreen.show();
-
-    nextCountdown();
-}
-
-var nextCountdown = function() {
-    countdown -= 1;
-
-    if (countdown == 0) {
-        $counter.text('Go!');
-        setTimeout(hideCountdown, 1000);
-    } else {
-        $counter.text(countdown);
-        setTimeout(nextCountdown, 1000);
-    }
-}
-
-var hideCountdown = function() {
-    $countdownScreen.hide();
-
-    STACK.start();
-}
-
-/*
- * Matcher for typeahead.
- */
-var substringMatcher = function(strs) {
-    return function findMatches(q, cb) {
-        var matches = [];
-
-        // iterate through the pool of strings and for any string that
-        // contains the substring `q`, add it to the `matches` array
-        $.each(strs, function(i, str) {
-            var queryLength = q.length;
-            var normalizedString = str.toLowerCase();
-            if (normalizedString.substring(0, queryLength) === q.toLowerCase()) {
-                // the typeahead jQuery plugin expects suggestions to a
-                // JavaScript object, refer to typeahead docs for more info
-                matches.push({ value: str });
-            }
-        });
-
-        cb(matches);
-    };
-};
-
 /*
  * Fullscreen the app.
  */
-var onFullScreenButtonClick = function() {
+var onFullscreenButtonClick = function() {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'fullscreen']);
     var elem = document.getElementById("stack");
 
@@ -445,7 +428,9 @@ var onFullScreenButtonClick = function() {
         else if (document.webkitExitFullscreen) {
             document.webkitExitFullscreen();
         }
-        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-expand.svg');
+
+        $fullscreenStart.show();
+        $fullscreenStop.hide();
     }
     else {
         if (elem.requestFullscreen) {
@@ -461,111 +446,294 @@ var onFullScreenButtonClick = function() {
           elem.webkitRequestFullscreen();
         }
 
-        $fullScreenButton.find('img').attr('src', APP_CONFIG.S3_BASE_URL + '/assets/icon-shrink.svg');
+        $fullscreenStart.hide();
+        $fullscreenStop.show();
     }
 }
 
 /*
- * Select the state.
+ * Respond to selections from a state picker dropdown.
  */
+var onStatePickerChange = function() {
+	if (state != 'us') {
+		state = $(this).find('option:selected').val();
+		showState();
+		$.cookie('state', state, { expires: 30 });
 
-var getState = function($typeahead) {
-    var input = $typeahead.typeahead('val');
-
-    if (input) {
-        var inverted = _.invert(APP_CONFIG.STATES);
-        state = inverted[input]
-    }
-
-    $.cookie('state', state, { expires: 30 });
-}
-
-var showState = function() {
-    console.log(state);
-    console.log($stateName);
-    $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
-    $stateName.text(APP_CONFIG.STATES[state]);
-    $statePickerLink.find('.state-name').text(state);
-}
-
-var switchState = function() {
-    console.log('switchState')
-    var $this = $(this);
-
-    getState($this);
-    showState();
-
-    $stateface.css('opacity', 1);
-    $stateName.css('opacity', 1);
-    $typeahead.css('top', '0');
-    $statePickerHed.text('You have selected').css('opacity', 1);;
-
-    $this.typeahead('val', '')
-    $this.typeahead('close');
-    $this.blur();
-}
-
-var hideStateFace = function() {
-    console.log('hideStateFace')
-    $stateface.css('opacity', 0);
-    $stateName.css('opacity', 0);
-    $statePickerHed.css('opacity', 0);
-
-    if ($stateWrapper.height() > 0 && $stateWrapper.width() > 0) {
-        $typeahead.css('top', '-20vw');
-    }
-}
-
-var onStatePickerSubmit = function(e) {
-    e.preventDefault();
+		if (is_casting) {
+			CHROMECAST_SENDER.sendMessage('state', state);
+		}
+	}
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
+}
 
-    $statePickerScreen.hide();
+/*
+ * Unmute the audio.
+ */
+var onAudioPlayClick = function(e) {
+    e.preventDefault();
 
     if (is_casting) {
-        $chromecastScreen.show();
-        CHROMECAST_SENDER.sendMessage('state', state);
+        CHROMECAST_SENDER.sendMessage('mute', 'false');
+    } else {
+        $audioPlayer.jPlayer('play');
+    }
+
+    $audioPlay.hide();
+    $audioPause.show();
+
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+}
+
+/*
+ * Mute the audio.
+ */
+var onAudioPauseClick = function(e) {
+    e.preventDefault();
+    
+    if (is_casting) {
+        CHROMECAST_SENDER.sendMessage('mute', 'true');
+    } else {
+        $audioPlayer.jPlayer('pause');
+    }
+
+    $audioPause.hide();
+    $audioPlay.show();
+
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+}
+
+/*
+ * Click left or right paddle
+ */
+var onSlideControlClick = function(e) {
+    e.preventDefault();
+
+    var $this = $(this);
+    var direction = $this.data('slide');
+
+    if (!(inTransition)) {
+        $this.addClass('in-transition');
+
+        // If casting we don't know when transition is complete
+        // So just show highlight briefly
+        if (is_casting) {
+            setTimeout(function() {
+                $slideControls.removeClass('in-transition');
+            }, 1500);
+        }
+    }
+
+    if (direction == "next") {
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'next');
+        } else {
+            STACK.next();
+            event.stopPropagation()
+        }
+    }
+    else if (direction == "previous") {
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
+        } else {
+            STACK.previous();
+            event.stopPropagation()
+        }
     }
 }
 
 /*
- * Reopen state selector.
+ * Click control/legend toggle
  */
-var onStatePickerLink = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'switch-state-from-nav']);
-    $stack.hide();
-    $chromecastScreen.hide();
-    $statePickerScreen.show();
+var onControlsToggleClick = function(e) {
+    e.preventDefault();
+
+    $controlsWrapper.fadeToggle();
+    $(this).parent('.control-toggle').toggleClass('active');
 }
+
+/*
+ * Open mobile controls.
+ */
+var onStackTap = function(e) {
+    e.preventDefault();
+
+    disableRotatePrompt();
+    $castControls.show();
+    $closeControlsLink.show();
+    $stack.hide();
+    
+    if (!hasTrackedMobileControls) {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'mobile-controls']);
+        hasTrackedMobileControls = true;
+    }
+}
+
+/*
+ * Close the mobile controls.
+ */
+var onCloseControlsLink = function(e) {
+    e.preventDefault();
+
+    enableRotatePrompt();
+    $castControls.hide();
+    $stack.show();
+}
+
+/*
+ * Catch keyboard events
+ */
+var onKeyboard = function(e) {
+    if (!(hasTrackedKeyboardNav)) {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'keyboard-nav']);
+        hasTrackedKeyboardNav = true;
+    }
+
+    // Right arrow
+    if (e.which == 39) {
+        $('.slide-nav .nav-btn-right').eq(0).click();
+    }
+
+    // Left arrow
+    if (e.which == 37) {
+        $('.slide-nav .nav-btn-left').eq(0).click();
+    }
+    
+    // Escape
+    if (e.which == 27 && !IS_TOUCH && !is_casting) {
+        $controlsToggle.click();
+    }
+}
+
 
 /*
  * Set the geolocated state.
  */
 var onLocateIP = function(response) {
-    var place = response.most_specific_subdivision.iso_code;
-    $('#option-' + place).prop('selected', true);
-    state = place;
-    $.cookie('state', state, { expires: 30 });
+    var postal_code = response.most_specific_subdivision.iso_code;
 
+    // TODO: handle geocodes outside US
+    
+    $('#option-' + postal_code).prop('selected', true);
+
+    state = postal_code;
+    $.cookie('state', state, { expires: 30 });
+    
     showState();
 }
 
+/*
+ * Check if in portrait phone and add an appropriate class.
+ */
+var checkForPortrait = function(){
+    if (IS_TOUCH && Modernizr.mq('(orientation: portrait)')) {
+        $('html').addClass('touch-portrait');
+    }
+    else {
+        $('html').removeClass('touch-portrait');
+    }
+}
+
+/*
+ * Disable the "rotate your phone" prompt.
+ */
+var disableRotatePrompt = function(){
+    $('html').addClass('disable-rotate-prompt');
+}
+
+/*
+ * Enable the "rotate your phone" prompt.
+ */
+var enableRotatePrompt = function(){
+    $('html').removeClass('disable-rotate-prompt');
+}
+
+/*
+ * Show the countdown screen.
+ */
+var showCountdown = function() {
+    $countdownScreen.show();
+    create_welcome_countdown();
+    nextCountdown();
+}
+
+/*
+ * Count it down.
+ */
+var nextCountdown = function() {
+    countdown -= 1;
+
+    if (countdown > 0) {
+		$counter.text(countdown);
+		setTimeout(nextCountdown, 1000);
+    } else {
+		$counter.text('');
+		setTimeout(hideCountdown, 200);
+    }
+}
+
+/*
+ * Hide the countdown screen and show the stack.
+ */
+var hideCountdown = function() {
+    STACK.start();
+
+    //hell yeah fade out
+    var big = $countdownScreen.find('.countdown-arc svg');
+    var little = $slide_countdown.find('svg');
+    big_width = big.width()
+    little_width = little.width()
+    big_top = big.offset().top
+    little_top = little.offset().top
+    big_left = big.offset().left
+    little_left = little.offset().left
+    little_height = little.height()
+    big.velocity({
+        height: little_height,
+        translateX: little_left - big_left - big_width/2 + little_width/2,
+        translateY: little_top - big_top
+        },
+        {
+            duration: 1000,
+            display:'none',
+            complete: function(){
+                $countdownScreen.hide();
+            }
+        });
+    $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
+}
+    
+/*
+ * Update the current state everywhere it is displayed.
+ */
+var showState = function() {
+    $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
+    
+    // Explicitly set state pickers because there could be more than one on the page
+    $statePicker.val(state);
+}
+
+/*
+ * Fetch and display the latest balance of power.
+ */
 var checkBop = function() {
     setInterval(function() {
         $bop.load('/bop.html');
     }, APP_CONFIG.CLIENT_BOP_INTERVAL * 1000);
 }
 
+/*
+ * Fetch the latest timestamp file and reload the if necessary.
+ */
 var checkTimestamp = function() {
     setInterval(function() {
         $.ajax({
             'url': '/live-data/timestamp.json',
             'cache': false,
             'success': function(data) {
-                var newTime = moment(data);
-
-                if (reloadTimestamp.isBefore(newTime)) {
+                var newTime = data;
+                if (reloadTimestamp < newTime) {
                     $.cookie('reload', true);
                     window.location.reload(true);
                 }
@@ -575,44 +743,46 @@ var checkTimestamp = function() {
 }
 
 /*
- * Setup audio playback.
- */
-var setUpAudio = function(startPaused) {
-    $audioPlayer.jPlayer({
-        ready: function () {
-            $(this).jPlayer('setMedia', {
-                mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
-            })
-
-            if (startPaused) {
-                $(this).jPlayer('pause');
-            } else {
-                $(this).jPlayer('play');
-            }
-        },
-        swfPath: 'js/lib',
-        supplied: 'mp3',
-        loop: false,
-    });
-
-    $audioPlayer.bind($.jPlayer.event.stalled, onAudioFail);
-    $audioPlayer.bind($.jPlayer.event.waiting, onAudioFail);
-}
-
-var onAudioButtonsClick = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
-}
-
-var onAudioFail = function() {
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-fail']);
-}
-
-/*
  * COUNTDOWN
  */
+function create_welcome_countdown() {
+	var page_width = $(window).width();
+//	var countdown_width = Math.floor(page_width * .22); // 22vw
+	var countdown_width = 100;
+	var countdown_outer_radius = Math.floor(countdown_width / 2);
+	var countdown_inner_radius = Math.floor(countdown_outer_radius * .7);
+
+	welcome_countdown_arc = d3.svg.arc()
+		.innerRadius(countdown_inner_radius)
+		.outerRadius(countdown_outer_radius)
+		.startAngle(0);
+
+	welcome_countdown_svg = d3.select('.countdown-arc')
+		.append('svg')
+			.attr('width', '100%')
+			.attr('viewBox', '0 0 ' + countdown_width + ' ' + countdown_width)
+//			.attr('width', countdown_width)
+//			.attr('height', countdown_width)
+		.append('g')
+			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
+
+	welcome_countdown_background_arc = welcome_countdown_svg.append('path')
+		.datum({endAngle: τ})
+		.attr('class', 'countdown-background')
+		.attr('d', welcome_countdown_arc);
+
+	welcome_countdown_foreground_arc = welcome_countdown_svg.append('path')
+		.datum( { endAngle: 0 } )
+		.attr('class', 'countdown-active')
+		.attr('d', welcome_countdown_arc);
+
+	start_arc_countdown('welcome_countdown', (countdown - 1));
+}
+
 function create_slide_countdown() {
 	var page_width = $(window).width();
-	var countdown_width = Math.floor(page_width * .025); // 2.5vw
+	// var countdown_width = Math.floor(page_width * .025); // 2.5vw
+	var countdown_width = 100;
 	var countdown_outer_radius = Math.floor(countdown_width / 2);
 	var countdown_inner_radius = Math.floor(countdown_outer_radius * .6);
 
@@ -621,10 +791,11 @@ function create_slide_countdown() {
 		.outerRadius(countdown_outer_radius)
 		.startAngle(0);
 
-	slide_countdown_svg = d3.select('#stack .slide-countdown')
+	slide_countdown_svg = d3.select('.footer-container .slide-countdown')
 		.append('svg')
-			.attr('width', countdown_width)
-			.attr('height', countdown_width)
+			.attr('viewBox', '0 0 ' + countdown_width + ' ' + countdown_width)
+			// .attr('width', countdown_width)
+			// .attr('height', countdown_width)
 		.append('g')
 			.attr('transform', 'translate(' + countdown_width / 2 + ',' + countdown_width / 2 + ')');
 
@@ -639,69 +810,65 @@ function create_slide_countdown() {
 		.attr('d', slide_countdown_arc);
 }
 
-function start_slide_countdown() {
+/*
+ * Begin countdown transition.
+ */
+function start_arc_countdown(arc, duration) {
 	var arc_start = 0;
 	var arc_end = τ;
+	var arc_foreground = eval(arc + '_foreground_arc');
+	var arc_main = eval(arc + '_arc');
 
-	slide_countdown_foreground_arc
-		.transition()
+	arc_foreground.transition()
 			.duration(1000)
 				.ease('linear')
-				.call(tween_slide_arc, arc_start);
-	slide_countdown_foreground_arc
-		.transition()
-			.duration(slide_countdown_duration * 1000)
-			.delay(1000)
+				.call(tween_slide_arc, arc_main, arc_start);
+	arc_foreground.transition()
+			.duration(duration * 1000)
 				.ease('linear')
-				.call(tween_slide_arc, arc_end);
+				.call(tween_slide_arc, arc_main, arc_end);
 }
 
-function tween_slide_arc(transition, end) {
+/*
+ * Cancel countdown transition.
+ */
+function cancel_arc_countdown(arc) {
+    var arc_start = 0;
+    var arc_end = τ;
+    var arc_foreground = eval(arc + '_foreground_arc');
+    var arc_main = eval(arc + '_arc');
+
+    arc_foreground.transition()
+            .duration(0)
+                .call(tween_slide_arc, arc_main, arc_end);
+    arc_foreground.transition()
+            .duration(0)
+                .call(tween_slide_arc, arc_main, arc_start);
+}
+
+/*
+ * Calculate countdown arc position.
+ */
+function tween_slide_arc(transition, arc_main, end) {
 	transition.attrTween('d', function(d) {
 		var interpolate = d3.interpolate(d['endAngle'], end);
 		return function(t) {
 			d['endAngle'] = interpolate(t);
-			return slide_countdown_arc(d);
+			return arc_main(d);
 		};
 	});
 }
 
-
-/**
- * Click left or right paddle
+/*
+ * Rotate welcome button greetings.
  */
-var onSlideControlClick = function() {
-    var direction = $(this).data('slide');
-    if (direction == "next") {
-        STACK.next();
-        if (!(hasTrackedNextSlide)) {
-            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'next-slide-click']);
-            hasTrackedNextSlide = true;
-        }
-    }
-    else if (direction == "previous") {
-        STACK.previous();
-        if (!(hasTrackedPrevSlide)) {
-            _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'prev-slide-click']);
-            hasTrackedPrevSlide = true;
-        }
-    }
-}
-
-/**
- * Catch keyboard events
- */
-var onKeyboard = function(e) {
-    if (!(hasTrackedKeyboardNav)) {
-        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'keyboard-nav']);
-        hasTrackedKeyboardNav = true;
-    }
-    if (e.which == 39) {
-        STACK.next()
-    }
-    if (e.which == 37) {
-        STACK.previous()
-    }
+var welcomeOurGuests = function(){
+    greetings = $welcomeButton.find('span')
+    var count = greetings.length;
+    greetings.velocity({ opacity: 0 }, { display: "none" });
+    $welcomeButton.find('span[data-greeting-index="' + welcome_greeting_counter % count + '"]').velocity({opacity:1}, { display: "inline" })
+    welcome_greeting_counter++;
+    welcome_greeting_timer = window.setTimeout(welcomeOurGuests, 5000);
 }
 
 $(onDocumentReady);

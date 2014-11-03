@@ -4,6 +4,7 @@
 Commands that update or process the application data.
 """
 from datetime import datetime, timedelta
+from pytz import timezone
 from time import sleep
 from itertools import count
 import json
@@ -92,7 +93,7 @@ def reset_server():
         servers.stop_service('deploy_liveblog')
         servers.stop_service('deploy_results')
         servers.stop_service('uwsgi')
-    servers.fabcast('ap.init ap.clear_calls data.bootstrap liveblog.update deploy_bop deploy_big_boards deploy_liveblog_slides deploy_results_slides')
+    servers.fabcast('ap.init ap.clear_calls data.bootstrap liveblog.update')
     servers.start_service('uwsgi')
     servers.start_service('deploy_liveblog')
     servers.start_service('deploy_results')
@@ -130,6 +131,8 @@ def load_races(path):
     with open(path) as f:
         races = json.load(f)
 
+    now = datetime.now() - timedelta(hours=5)
+
     with models.db.transaction():
         for race in races:
             models.Race.create(
@@ -140,6 +143,7 @@ def load_races(path):
                 seat_number = race['seat_number'],
                 race_id = race['race_id'],
                 race_type = race['race_type'],
+                last_updated = now,
             )
 
     print 'Loaded %i races' % len(races)
@@ -178,29 +182,37 @@ def load_updates(path):
     races_updated = 0
     candidates_updated = 0
 
+    now = datetime.now() - timedelta(hours=5)
+
     print 'Loading latest results from AP update data on disk'
 
     with open(path) as f:
         races = json.load(f)
 
     for race in races:
+        changed = False
         race_model = models.Race.get(models.Race.race_id == race['race_id'])
-        race_model.precincts_reporting = race['precincts_reporting']
-        race_model.precincts_total = race['precincts_total']
-        race_model.save()
-
-        races_updated += 1
 
         for candidate in race['candidates']:
             # Select candidate by candidate_id AND race_id, since they can appear in multiple races
             candidate_model = models.Candidate.get(models.Candidate.candidate_id == candidate['candidate_id'], models.Candidate.race == race_model)
 
             if candidate.get('vote_count'):
-                candidate_model.vote_count = candidate['vote_count']
+                if candidate_model.vote_count != candidate['vote_count']:
+                    changed = True
+                    candidate_model.vote_count = candidate['vote_count']
+                    candidate_model.save()
+                    candidates_updated += 1
 
-            candidate_model.save()
+        if race_model.precincts_reporting != race['precincts_reporting']:
+            changed = True
 
-            candidates_updated += 1
+        if changed:
+            race_model.last_updated = now
+            race_model.precincts_reporting = race['precincts_reporting']
+            race_model.precincts_total = race['precincts_total']
+            race_model.save()
+            races_updated += 1
 
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated

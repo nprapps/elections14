@@ -7,9 +7,8 @@ from dateutil.parser import parse
 from flask import render_template
 import pytz
 
+from app_utils import *
 from render_utils import make_context
-
-import app_utils
 
 def senate_big_board():
     """
@@ -17,17 +16,19 @@ def senate_big_board():
     """
     from models import Race
 
-    context = make_context()
+    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
+
+    timestamp = get_last_updated(races)
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Senate'
     context['page_class'] = 'senate'
     context['column_number'] = 2
 
-    races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.poll_closing_time, Race.state_postal)
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
-    context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_INITIAL_BOP)
-    context['not_called'] = app_utils.calculate_seats_left(races)
+    context['poll_groups'] = columnize_races(races, 19)
+    context['bop'] = calculate_bop(races, SENATE_INITIAL_BOP)
+    context['not_called'] = calculate_seats_left(races)
 
     return render_template('slides/race_results.html', **context)
 
@@ -37,24 +38,25 @@ def house_big_board(page):
     """
     from models import Race
 
-    context = make_context()
+    all_races = Race.select().where(Race.office_name == 'U.S. House')
+    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal, Race.seat_number)
+
+    timestamp = get_last_updated(all_races)
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'House'
     context['current_page'] = page
     context['page_class'] = 'house'
-    context['column_number'] = 2
 
-    all_races = Race.select().where(Race.office_name == 'U.S. House')
-    all_featured_races = Race.select().where((Race.office_name == 'U.S. House') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal, Race.seat_number)
 
     if page == 2:
-        featured_races = all_featured_races[app_utils.HOUSE_PAGE_LIMIT:]
+        featured_races = all_featured_races[HOUSE_PAGE_LIMIT:]
     else:
-        featured_races = all_featured_races[:app_utils.HOUSE_PAGE_LIMIT]
+        featured_races = all_featured_races[:HOUSE_PAGE_LIMIT]
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(featured_races)
-    context['bop'] = app_utils.calculate_bop(all_races, app_utils.HOUSE_INITIAL_BOP)
-    context['not_called'] = app_utils.calculate_seats_left(all_races)
+    context['poll_groups'] = columnize_races(featured_races)
+    context['bop'] = calculate_bop(all_races, HOUSE_INITIAL_BOP)
+    context['not_called'] = calculate_seats_left(all_races)
     context['seat_number'] = ".seat_number"
 
     return render_template('slides/race_results.html', **context)
@@ -77,15 +79,16 @@ def governor_big_board():
     """
     from models import Race
 
+    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
+    timestamp = get_last_updated(races)
+
     context = make_context()
 
     context['page_title'] = 'Governors'
     context['page_class'] = 'governor'
-    context['column_number'] = 2
 
-    races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
 
-    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
+    context['poll_groups'] = columnize_races(races, 17)
 
     return render_template('slides/race_results.html', **context)
 
@@ -95,15 +98,15 @@ def ballot_measures_big_board():
     """
     from models import Race
 
+    races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True))\
+        .order_by(Race.poll_closing_time, Race.state_postal)
+    timestamp = get_last_updated(races)
     context = make_context()
 
     context['page_title'] = 'Ballot Measures'
     context['page_class'] = 'ballot-measures'
-    context['column_number'] = 2
 
-    races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True)).order_by(Race.poll_closing_time, Race.state_postal)
-
-    context['poll_groups'] = app_utils.group_races_by_closing_time(races)
+    context['poll_groups'] = columnize_races(races, 9)
 
     return render_template('slides/ballot_measure_results.html', **context)
 
@@ -213,10 +216,10 @@ def balance_of_power():
     house_races = Race.select().where(Race.office_name == 'U.S. House').order_by(Race.state_postal)
     senate_races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
-    context['house_bop'] = app_utils.calculate_bop(house_races, app_utils.HOUSE_INITIAL_BOP)
-    context['senate_bop'] = app_utils.calculate_bop(senate_races, app_utils.SENATE_INITIAL_BOP)
-    context['house_not_called'] = app_utils.calculate_seats_left(house_races)
-    context['senate_not_called'] = app_utils.calculate_seats_left(senate_races)
+    context['house_bop'] = calculate_bop(house_races, HOUSE_INITIAL_BOP)
+    context['senate_bop'] = calculate_bop(senate_races, SENATE_INITIAL_BOP)
+    context['house_not_called'] = calculate_seats_left(house_races)
+    context['senate_not_called'] = calculate_seats_left(senate_races)
 
     return render_template('slides/balance-of-power.html', **context)
 
@@ -224,15 +227,20 @@ def house_freshmen():
     """
     Ongoing list of how representatives elected in 2012 are faring
     """
-    context = make_context()
-
     from models import Race
 
-    races = Race.select().where(Race.freshmen == True)
+    races = Race.select().where(Race.freshmen == True)\
+            .order_by(Race.state_postal, Race.seat_number)
+    timestamp = get_last_updated(races)
+    context = make_context()
 
-    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
-    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
+    won = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    lost = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    not_called = [race for race in races if not race.is_called() or race.is_runoff()]
+
+    context['races_won'] = columnize_card(won, 6)
+    context['races_lost'] = columnize_card(lost, 6)
+    context['races_not_called'] = columnize_card(not_called, 6)
 
     context['races_count'] = races.count()
 
@@ -250,12 +258,12 @@ def incumbents_lost():
         (Race.office_name == 'U.S. Senate') &
         (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
         (Race.npr_called == True))
-    )
+    ).order_by(Race.state_postal, Race.seat_number)
     called_house_races = Race.select().where(
         (Race.office_name == 'U.S. House') &
         (((Race.ap_called == True) & (Race.accept_ap_call == True)) |
         (Race.npr_called == True))
-    )
+    ).order_by(Race.state_postal, Race.seat_number)
 
     senate_incumbents_lost = []
     house_incumbents_lost = []
@@ -271,8 +279,9 @@ def incumbents_lost():
                 if candidate.incumbent and not candidate.is_winner():
                     house_incumbents_lost.append(race)
 
-    context['senate_incumbents_lost'] = senate_incumbents_lost
-    context['house_incumbents_lost'] = house_incumbents_lost
+    context['senate_incumbents_lost'] = columnize_card(senate_incumbents_lost, 6)
+
+    context['house_incumbents_lost'] = columnize_card(house_incumbents_lost, 6)
 
     return render_template('slides/incumbents-lost.html', **context)
 
@@ -280,15 +289,16 @@ def obama_reps():
     """
     Ongoing list of Incumbent Republicans In Districts Barack Obama Won In 2012
     """
-    context = make_context()
-
     from models import Race
 
-    races = Race.select().where(Race.obama_gop == True)
+    races = Race.select().where(Race.obama_gop == True).order_by(Race.state_postal, Race.seat_number)
+    timestamp = get_last_updated(races)
 
-    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
-    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
+    context = make_context(timestamp=timestamp)
+
+    context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
+    context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
+    context['races_not_called'] = columnize_card([race for race in races if not race.is_called() or race.is_runoff()])
 
     context['races_count'] = races.count()
 
@@ -300,8 +310,6 @@ def poll_closing():
     """
     from models import Race
 
-    context = make_context()
-
     # get featured house/ballot measures + all senate and governors
     featured_races = Race.select().where(
         (Race.featured_race == True) |
@@ -309,7 +317,11 @@ def poll_closing():
         (Race.office_name == 'Governor')
     ).order_by(Race.poll_closing_time, Race.state_postal)
 
-    poll_groups = app_utils.group_races_by_closing_time(featured_races)
+    timestamp = get_last_updated(featured_races)
+
+    context = make_context(timestamp=timestamp)
+
+    poll_groups = group_races_by_closing_time(featured_races)
 
     now = datetime.datetime.now()
     for closing_time, races in poll_groups:
@@ -344,16 +356,18 @@ def romney_dems():
     """
     from models import Race
 
-    context = make_context()
-
     races = Race.select().where(
         (Race.romney_dem == True) &
         (Race.office_name == 'U.S. House')
-    )
+    ).order_by(Race.state_postal, Race.seat_number)
 
-    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
-    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
+    timestamp = get_last_updated(races)
+
+    context = make_context(timestamp=timestamp)
+
+    context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
+    context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
+    context['races_not_called'] = columnize_card([race for race in races if not race.is_called() or race.is_runoff()])
 
     context['races_count'] = races.count()
 
@@ -365,16 +379,18 @@ def romney_senate_dems():
     """
     from models import Race
 
-    context = make_context()
-
     races = Race.select().where(
         (Race.romney_dem == True) &
         (Race.office_name == 'U.S. Senate')
-    )
+    ).order_by(Race.state_postal, Race.seat_number)
 
-    context['races_won'] = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
-    context['races_lost'] = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
-    context['races_not_called'] = [race for race in races if not race.is_called() or race.is_runoff()]
+    timestamp = get_last_updated(races)
+
+    context = make_context(timestamp=timestamp)
+
+    context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
+    context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
+    context['races_not_called'] = columnize_card([race for race in races if not race.is_called() or race.is_runoff()])
 
     context['races_count'] = races.count()
 

@@ -1,0 +1,47 @@
+<div class="controls">
+	<h3>{{ COPY.legend.hed_controls }}</h3>
+
+	<ul class="list-unstyled">
+
+		<!-- ONLY IF CASTING -->
+		<li class="nav">
+			<nav class="slide-nav">
+				<a href="#" data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i>Previous Slide</a>
+				<a href="#" data-slide="next" class="nav-btn nav-btn-right">Next Slide<i class="icon ion-chevron-right"></i></a>
+			</nav>
+		</li>
+
+		<!-- DESKTOP ONLY; NOT CASTING -->
+		<li class="fullscreen">
+			<a class="start" href="#"><i class="icon ion-arrow-expand"></i><span>{{ COPY.chromecast.btn_fullscreen }}</span></a>
+			<a class="stop" href="#"><i class="icon ion-arrow-shrink"></i><span>{{ COPY.chromecast.btn_shrink }}</span></a>
+		</li>
+
+		<!-- FOR DESKTOP WHEN NOT CASTING -->
+		<li>
+			<div class="jp-controls">
+				<a href="#" class="pause nav-btn" tabindex="1" title="mute"><i class="icon ion-ios7-volume-low"></i> Mute</a>
+				<a href="#" class="play nav-btn" tabindex="1" title="unmute"><i class="icon ion-ios7-volume-high"></i> Play</a>
+			</div>
+		</li>
+		
+		<!-- IF CASTING IS SUPPORTED -->
+		<li>
+			<a class="cast-start" href="#"><i><img src="assets/chromecast_off.svg" alt="" /></i>{{ COPY.chromecast.btn_start }}</a>
+			<a class="cast-stop" href="#"><i><img src="assets/chromecast_on_blue.svg" alt="" /></i>{{ COPY.chromecast.btn_stop }}</a>
+		</li>
+
+		<!-- ALL USERS -->
+		<li>
+			<i><span class="stateface stateface-us"></span></i>
+            <select class="state-picker">
+                <option value="US" selected>{{ COPY.chromecast.btn_state }}</option>
+                {% for postal_code, state in STATES.items() %}
+                <option value="{{ postal_code }}">{{ state }}</option>
+                {% endfor %}
+            </select>
+		</li>
+	</ul>
+</div>
+
+
