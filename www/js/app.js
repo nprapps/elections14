@@ -622,20 +622,16 @@ var onKeyboard = function(e) {
  * Set the geolocated state.
  */
 var onLocateIP = function(response) {
-    // Handle responses outside the US
-    if (response.country.iso_code != 'US') {
+    var postal_code = response.most_specific_subdivision.iso_code;
+    if (has(window.APP_CONFIG.STATES, postal_code)) {
+        $('#option-' + postal_code).prop('selected', true);
+        state = postal_code;
+        $.cookie('state', state, { expires: 30 });
+        showState();
+    } else {
         _setLocateDefault();
         return;
     }
-
-    var postal_code = response.most_specific_subdivision.iso_code;
-
-    $('#option-' + postal_code).prop('selected', true);
-
-    state = postal_code;
-    $.cookie('state', state, { expires: 30 });
-    
-    showState();
 }
 
 /*
