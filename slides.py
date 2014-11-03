@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import datetime
+from datetime import datetime, timedelta
 import json
 
 from dateutil.parser import parse
@@ -161,8 +161,8 @@ def _get_recently_called(office_name):
     """
     from models import Race
 
-    now = datetime.datetime.now()
-    then = now - datetime.timedelta(minutes=15)
+    now = datetime.now()
+    then = now - timedelta(minutes=15)
 
     recently_called = []
 
@@ -323,7 +323,7 @@ def poll_closing():
 
     poll_groups = group_races_by_closing_time(featured_races)
 
-    now = datetime.datetime.now()
+    now = datetime.now()
     for closing_time, races in poll_groups:
         if now < closing_time:
             nearest_closing_time = closing_time
