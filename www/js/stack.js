@@ -246,7 +246,7 @@ var STACK = (function () {
 
         } else {
             $stack.append($newSlide);
-            resizeSlide($newSlide);
+            onWindowResize();
 
             if (($newSlide.find('.results-header').length > 0) || ($newSlide.find('.balance-of-power').length > 0)) {
                 $header.find('.leaderboard').velocity('fadeOut');
@@ -268,7 +268,7 @@ var STACK = (function () {
     var addNewSlide = function() {
         $(this).remove();
         $stack.append($newSlide);
-        resizeSlide($newSlide)
+        onWindowResize();
 
         if (($newSlide.find('.leaderboard').length > 0)  || ($newSlide.find('.balance-of-power').length > 0)) {
             $header.find('.leaderboard').velocity('fadeOut');

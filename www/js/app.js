@@ -340,12 +340,12 @@ var onCastStateChange = function(message) {
 }
 
 /*
- * Resize current slide.
+ * Resize stack and current slide.
  */
 var onWindowResize = function() {
     var width = $(window).width();
     var height = $(window).height();
-    var footerHeight = 60;
+    var footerHeight = 0;
 
     var new_height = width * 9 / 16;
     var padding = (height - new_height) / 2;
@@ -363,13 +363,10 @@ var onWindowResize = function() {
 
     checkForPortrait();
 
-    var currentSlide = $('.slide');
+    var currentSlideInner = $('.slide-inner');
 
-    currentSlide.width(width);
-    currentSlide.height(height - footerHeight);
-
-    currentSlide.find('.slide-inner').width(width);
-    currentSlide.find('.slide-inner').height(new_height - footerHeight);
+    currentSlideInner.width(width);
+    currentSlideInner.height(new_height - footerHeight);
 
 }
 
