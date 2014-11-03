@@ -340,6 +340,31 @@ var onCastStateChange = function(message) {
 }
 
 /*
+ * Begin chromecasting.
+ */
+var onCastStartClick = function(e) {
+    e.preventDefault();
+
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-initiated']);
+    
+    CHROMECAST_SENDER.startCasting();
+}
+
+/*
+ * Stop chromecasting.
+ */
+var onCastStopClick = function(e) {
+    e.preventDefault();
+
+    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-stopped']);
+
+    CHROMECAST_SENDER.stopCasting();
+
+    $castStop.hide();
+    $castStart.show();
+}
+
+/*
  * Resize stack and current slide.
  */
 var onWindowResize = function() {
@@ -370,47 +395,6 @@ var onWindowResize = function() {
 
 }
 
-var checkForPortrait = function(){
-    if (IS_TOUCH && Modernizr.mq('(orientation: portrait)')) {
-        $('html').addClass('touch-portrait');
-    }
-    else {
-        $('html').removeClass('touch-portrait');
-    }
-}
-
-var disableRotatePrompt = function(){
-    $('html').addClass('disable-rotate-prompt');
-}
-var enableRotatePrompt = function(){
-    $('html').removeClass('disable-rotate-prompt');
-}
-
-/*
- * Begin chromecasting.
- */
-var onCastStartClick = function(e) {
-    e.preventDefault();
-
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-initiated']);
-    
-    CHROMECAST_SENDER.startCasting();
-}
-
-/*
- * Stop chromecasting.
- */
-var onCastStopClick = function(e) {
-    e.preventDefault();
-
-    _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-stopped']);
-
-    CHROMECAST_SENDER.stopCasting();
-
-    $castStop.hide();
-    $castStart.show();
-}
-
 /*
  * Advance to state select screen.
  */
@@ -427,53 +411,6 @@ var onWelcomeButtonClick = function() {
     }
 
    showCountdown();
-}
-
-var showCountdown = function() {
-    $countdownScreen.show();
-    create_welcome_countdown();
-    nextCountdown();
-}
-
-var nextCountdown = function() {
-    countdown -= 1;
-
-    if (countdown > 0) {
-		$counter.text(countdown);
-		setTimeout(nextCountdown, 1000);
-    } else {
-		$counter.text('');
-		setTimeout(hideCountdown, 200);
-    }
-}
-
-var hideCountdown = function() {
-
-    STACK.start();
-
-    //hell yeah fade out
-    var big = $countdownScreen.find('.countdown-arc svg');
-    var little = $slide_countdown.find('svg');
-    big_width = big.width()
-    little_width = little.width()
-    big_top = big.offset().top
-    little_top = little.offset().top
-    big_left = big.offset().left
-    little_left = little.offset().left
-    little_height = little.height()
-    big.velocity({
-        height: little_height,
-        translateX: little_left - big_left - big_width/2 + little_width/2,
-        translateY: little_top - big_top
-        },
-        {
-            duration: 1000,
-            display:'none',
-            complete: function(){
-                $countdownScreen.hide();
-            }
-        });
-    $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
 }
 
 /*
@@ -518,21 +455,13 @@ var onFullscreenButtonClick = function() {
     }
 }
 
+/*
+ * State change link clicked.
+ */
 var onChangeStateClick = function(e) {
     e.preventDefault();
 
     $statePicker.show();
-}
-    
-/*
- * Update the current state everywhere it is displayed.
- */
-var showState = function() {
-    $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
-    $stateName.text(APP_CONFIG.STATES[state]);
-    
-    // Explicitly set state pickers because there could be more than one on the page
-    $statePicker.val(state);
 }
 
 /*
@@ -553,51 +482,6 @@ var onStatePickerChange = function() {
         CHROMECAST_SENDER.sendMessage('state', state);
     }
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
-
-}
-
-/*
- * Set the geolocated state.
- */
-var onLocateIP = function(response) {
-    var postal_code = response.most_specific_subdivision.iso_code;
-
-    // TODO: handle geocodes outside US
-    
-    $('#option-' + postal_code).prop('selected', true);
-
-    state = postal_code;
-    $.cookie('state', state, { expires: 30 });
-
-    showState();
-}
-
-/*
- * Fetch and display the latest balance of power.
- */
-var checkBop = function() {
-    setInterval(function() {
-        $bop.load('/bop.html');
-    }, APP_CONFIG.CLIENT_BOP_INTERVAL * 1000);
-}
-
-/*
- * Fetch the latest timestamp file and reload the if necessary.
- */
-var checkTimestamp = function() {
-    setInterval(function() {
-        $.ajax({
-            'url': '/live-data/timestamp.json',
-            'cache': false,
-            'success': function(data) {
-                var newTime = data;
-                if (reloadTimestamp < newTime) {
-                    $.cookie('reload', true);
-                    window.location.reload(true);
-                }
-            }
-        })
-    }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
 
 /*
@@ -634,6 +518,243 @@ var onAudioPauseClick = function(e) {
     $audioPlay.show();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+}
+
+/*
+ * Click left or right paddle
+ */
+var onSlideControlClick = function(e) {
+    e.preventDefault();
+
+    var $this = $(this);
+    var direction = $this.data('slide');
+
+    if (!(inTransition)) {
+        $this.addClass('in-transition');
+
+        // If casting we don't know when transition is complete
+        // So just show highlight briefly
+        if (is_casting) {
+            setTimeout(function() {
+                $slideControls.removeClass('in-transition');
+            }, 1500);
+        }
+    }
+
+    if (direction == "next") {
+
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'next');
+        } else {
+            STACK.next();
+        }
+    }
+    else if (direction == "previous") {
+        if (is_casting) {
+            CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
+        } else {
+            STACK.previous();
+        }
+    }
+}
+
+/*
+ * Click control/legend toggle
+ */
+var onControlsToggleClick = function(e) {
+    e.preventDefault();
+
+    $controlsWrapper.fadeToggle();
+}
+
+/*
+ * Open mobile controls.
+ */
+var onStackTap = function(e) {
+    e.preventDefault();
+
+    disableRotatePrompt();
+    $castControls.show();
+    $closeControlsLink.show();
+    $stack.hide();
+    
+    if (!hasTrackedMobileControls) {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'mobile-controls']);
+        hasTrackedMobileControls = true;
+    }
+}
+
+/*
+ * Close the mobile controls.
+ */
+var onCloseControlsLink = function(e) {
+    e.preventDefault();
+
+    enableRotatePrompt();
+    $castControls.hide();
+    $stack.show();
+}
+
+/*
+ * Catch keyboard events
+ */
+var onKeyboard = function(e) {
+    if (!(hasTrackedKeyboardNav)) {
+        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'keyboard-nav']);
+        hasTrackedKeyboardNav = true;
+    }
+
+    // Right arrow
+    if (e.which == 39) {
+        $('.slide-nav .nav-btn-right').eq(0).click();
+    }
+
+    // Left arrow
+    if (e.which == 37) {
+        $('.slide-nav .nav-btn-left').eq(0).click();
+    }
+    
+    // Escape
+    if (e.which == 27 && !IS_TOUCH && !is_casting) {
+        $controlsToggle.click();
+    }
+}
+
+
+/*
+ * Set the geolocated state.
+ */
+var onLocateIP = function(response) {
+    var postal_code = response.most_specific_subdivision.iso_code;
+
+    // TODO: handle geocodes outside US
+    
+    $('#option-' + postal_code).prop('selected', true);
+
+    state = postal_code;
+    $.cookie('state', state, { expires: 30 });
+
+    showState();
+}
+
+/*
+ * Check if in portrait phone and add an appropriate class.
+ */
+var checkForPortrait = function(){
+    if (IS_TOUCH && Modernizr.mq('(orientation: portrait)')) {
+        $('html').addClass('touch-portrait');
+    }
+    else {
+        $('html').removeClass('touch-portrait');
+    }
+}
+
+/*
+ * Disable the "rotate your phone" prompt.
+ */
+var disableRotatePrompt = function(){
+    $('html').addClass('disable-rotate-prompt');
+}
+
+/*
+ * Enable the "rotate your phone" prompt.
+ */
+var enableRotatePrompt = function(){
+    $('html').removeClass('disable-rotate-prompt');
+}
+
+/*
+ * Show the countdown screen.
+ */
+var showCountdown = function() {
+    $countdownScreen.show();
+    create_welcome_countdown();
+    nextCountdown();
+}
+
+/*
+ * Count it down.
+ */
+var nextCountdown = function() {
+    countdown -= 1;
+
+    if (countdown > 0) {
+		$counter.text(countdown);
+		setTimeout(nextCountdown, 1000);
+    } else {
+		$counter.text('');
+		setTimeout(hideCountdown, 200);
+    }
+}
+
+/*
+ * Hide the countdown screen and show the stack.
+ */
+var hideCountdown = function() {
+    STACK.start();
+
+    //hell yeah fade out
+    var big = $countdownScreen.find('.countdown-arc svg');
+    var little = $slide_countdown.find('svg');
+    big_width = big.width()
+    little_width = little.width()
+    big_top = big.offset().top
+    little_top = little.offset().top
+    big_left = big.offset().left
+    little_left = little.offset().left
+    little_height = little.height()
+    big.velocity({
+        height: little_height,
+        translateX: little_left - big_left - big_width/2 + little_width/2,
+        translateY: little_top - big_top
+        },
+        {
+            duration: 1000,
+            display:'none',
+            complete: function(){
+                $countdownScreen.hide();
+            }
+        });
+    $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
+}
+    
+/*
+ * Update the current state everywhere it is displayed.
+ */
+var showState = function() {
+    $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
+    $stateName.text(APP_CONFIG.STATES[state]);
+    
+    // Explicitly set state pickers because there could be more than one on the page
+    $statePicker.val(state);
+}
+
+/*
+ * Fetch and display the latest balance of power.
+ */
+var checkBop = function() {
+    setInterval(function() {
+        $bop.load('/bop.html');
+    }, APP_CONFIG.CLIENT_BOP_INTERVAL * 1000);
+}
+
+/*
+ * Fetch the latest timestamp file and reload the if necessary.
+ */
+var checkTimestamp = function() {
+    setInterval(function() {
+        $.ajax({
+            'url': '/live-data/timestamp.json',
+            'cache': false,
+            'success': function(data) {
+                var newTime = data;
+                if (reloadTimestamp < newTime) {
+                    $.cookie('reload', true);
+                    window.location.reload(true);
+                }
+            }
+        })
+    }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
 }
 
 /*
@@ -704,6 +825,9 @@ function create_slide_countdown() {
 		.attr('d', slide_countdown_arc);
 }
 
+/*
+ * Begin countdown transition.
+ */
 function start_arc_countdown(arc, duration) {
 	var arc_start = 0;
 	var arc_end = τ;
@@ -720,6 +844,9 @@ function start_arc_countdown(arc, duration) {
 				.call(tween_slide_arc, arc_main, arc_end);
 }
 
+/*
+ * Cancel countdown transition.
+ */
 function cancel_arc_countdown(arc) {
     var arc_start = 0;
     var arc_end = τ;
@@ -734,6 +861,9 @@ function cancel_arc_countdown(arc) {
                 .call(tween_slide_arc, arc_main, arc_start);
 }
 
+/*
+ * Calculate countdown arc position.
+ */
 function tween_slide_arc(transition, arc_main, end) {
 	transition.attrTween('d', function(d) {
 		var interpolate = d3.interpolate(d['endAngle'], end);
@@ -744,98 +874,9 @@ function tween_slide_arc(transition, arc_main, end) {
 	});
 }
 
-
 /*
- * Click left or right paddle
+ * Rotate welcome button greetings.
  */
-var onSlideControlClick = function(e) {
-    var $this = $(this);
-
-    e.preventDefault();
-
-    var direction = $this.data('slide');
-
-    if (!(inTransition)) {
-        $this.addClass('in-transition');
-
-        // If casting we don't know when transition is complete
-        // So just show highlight briefly
-        if (is_casting) {
-            setTimeout(function() {
-                $slideControls.removeClass('in-transition');
-            }, 1500);
-        }
-    }
-
-    if (direction == "next") {
-
-        if (is_casting) {
-            CHROMECAST_SENDER.sendMessage('slide-change', 'next');
-        } else {
-            STACK.next();
-        }
-    }
-    else if (direction == "previous") {
-        if (is_casting) {
-            CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
-        } else {
-            STACK.previous();
-        }
-    }
-}
-
-/*
- * Click control/legend toggle
- */
-var onControlsToggleClick = function(e) {
-    e.preventDefault();
-
-    $controlsWrapper.fadeToggle();
-}
-
-var onStackTap = function() {
-
-    disableRotatePrompt();
-    $castControls.show();
-    $closeControlsLink.show();
-    $stack.hide();
-    
-    if (!hasTrackedMobileControls) {
-        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'mobile-controls']);
-        hasTrackedMobileControls = true;
-    }
-}
-
-var onCloseControlsLink = function() {
-    enableRotatePrompt();
-    $castControls.hide();
-    $stack.show();
-}
-/**
- * Catch keyboard events
- */
-var onKeyboard = function(e) {
-    if (!(hasTrackedKeyboardNav)) {
-        _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'keyboard-nav']);
-        hasTrackedKeyboardNav = true;
-    }
-
-    // Right arrow
-    if (e.which == 39) {
-        $('.slide-nav .nav-btn-right').eq(0).click();
-    }
-
-    // Left arrow
-    if (e.which == 37) {
-        $('.slide-nav .nav-btn-left').eq(0).click();
-    }
-    
-    // Escape
-    if (e.which == 27 && !IS_TOUCH && !is_casting) {
-        $controlsToggle.click();
-    }
-}
-
 var welcomeOurGuests = function(){
     greetings = $welcomeButton.find('span')
     var count = greetings.length;

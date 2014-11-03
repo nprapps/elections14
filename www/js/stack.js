@@ -211,7 +211,7 @@ var STACK = (function () {
             slide_path = 'slides/' + slug + '.html';
         }
 
-        console.log('Rotating to next slide:', slide_path);
+        //console.log('Rotating to next slide:', slide_path);
 
         _rotateRequest = $.ajax({
             'url': slide_path,
