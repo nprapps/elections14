@@ -530,6 +530,7 @@ var onSlideControlClick = function(e) {
             CHROMECAST_SENDER.sendMessage('slide-change', 'next');
         } else {
             STACK.next();
+            event.stopPropagation()
         }
     }
     else if (direction == "previous") {
@@ -537,6 +538,7 @@ var onSlideControlClick = function(e) {
             CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
         } else {
             STACK.previous();
+            event.stopPropagation()
         }
     }
 }
