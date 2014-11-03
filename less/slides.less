@@ -4,10 +4,16 @@
 
 /* TUMBLR */
 
-.tumblr-photo,
-.tumblr-quote,
-.tumblr-text {
-    height: 100%;
+.slide.tumblr-photo,
+.slide.tumblr-quote,
+.slide.tumblr-text {
+	width: 102%;
+    height: 102%;
+    margin: -1%;
+    
+    .slide-inner {
+    	height: @stack_height;
+    }
 
     .slide-inner:after {
         content : "";
