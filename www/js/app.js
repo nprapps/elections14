@@ -223,12 +223,13 @@ var setupUI = function() {
 
     checkForPortrait();
 
-    // Geolocate
+    // Load location from cookie
     if ($.cookie('state')) {
         state = $.cookie('state');
         showState();
     }
 
+    // Geolocate
     if (typeof geoip2 == 'object' && !($.cookie('state'))) {
         geoip2.city(onLocateIP);
     }
@@ -344,6 +345,7 @@ var onCastStateChange = function(message) {
 var onWindowResize = function() {
     var width = $(window).width();
     var height = $(window).height();
+    var footerHeight = 60;
 
     var new_height = width * 9 / 16;
     var padding = (height - new_height) / 2;
@@ -361,10 +363,14 @@ var onWindowResize = function() {
 
     checkForPortrait();
 
-    var thisSlide = $('.slide');
-    if (thisSlide.length > 0) {
-        resizeSlide(thisSlide);
-    }
+    var currentSlide = $('.slide');
+
+    currentSlide.width(width);
+    currentSlide.height(height - footerHeight);
+
+    currentSlide.find('.slide-inner').width(width);
+    currentSlide.find('.slide-inner').height(new_height - footerHeight);
+
 }
 
 var checkForPortrait = function(){
@@ -381,21 +387,6 @@ var disableRotatePrompt = function(){
 }
 var enableRotatePrompt = function(){
     $('html').removeClass('disable-rotate-prompt');
-}
-
-/*
- * Resize a slide to fit the viewport.
- */
-var resizeSlide = function(slide) {
-    var $w = $stack.width();
-    var $h = $stack.height();
-    var headerHeight = 0;
-
-    slide.width($w);
-    slide.height($h - headerHeight);
-
-    slide.find('.slide-inner').width($w);
-    slide.find('.slide-inner').height($h - headerHeight);
 }
 
 /*
@@ -573,6 +564,8 @@ var onStatePickerChange = function() {
  */
 var onLocateIP = function(response) {
     var postal_code = response.most_specific_subdivision.iso_code;
+
+    // TODO: handle geocodes outside US
     
     $('#option-' + postal_code).prop('selected', true);
 

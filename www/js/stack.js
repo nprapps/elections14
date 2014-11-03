@@ -90,7 +90,7 @@ var STACK = (function () {
                     mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
                 });
 
-                if (IS_CAST_RECEIVER || SKIP_COUNTDOWN) {
+                if (IS_CAST_RECEIVER || (SKIP_COUNTDOWN && !NO_AUDIO)) {
                     $(this).jPlayer('play');
                 }
             },
