@@ -43,18 +43,18 @@
 </div>
 
 <div class="cast-controls">
-    <a class="close-link" href="#">Back to the party <i class="icon ion-chevron-right"></i></a>
-    
+    <div class="close-link"><a href="#">Back to the party <i class="icon ion-chevron-right"></i></a></div>
+
     <div class="wrapper">
 		{% include '_legend.html' %}
-	
+
 		<div class="controls-feedback-wrapper">
 			{% include '_controls.html' %}
 			{% include '_feedback.html' %}
 		</div>
 	</div>
 
-    <a class="close-link" href="#">Back to the party <i class="icon ion-chevron-right"></i></a>
+    <div class="close-link"><a href="#">Back to the party <i class="icon ion-chevron-right"></i></a></div>
 </div>
 
 <div id="stack">
@@ -83,7 +83,7 @@
         <div class="control-toggle">
             <a href="#" class="js-toggle-controls">
                 <span class="desktop-message">
-                    {% include '_icon-remote.svg' %} {{ COPY.chromecast.menu_hed }}
+                    {{ COPY.chromecast.menu_hed }}
                 </span>
                 <span class="touch-message">
                     {{ COPY.legend.touch_button }}
@@ -97,7 +97,7 @@
                 <a href="#" data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></a>
                 <a href="#" data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></a>
             </nav>
-            {% include '_logo.svg' %}
+            <a href="http://www.npr.org" target="_blank">{% include '_logo.svg' %}</a>
         </div>
     </div>
 </div>

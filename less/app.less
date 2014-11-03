@@ -38,20 +38,12 @@ svg {
 
 #stack {
 
-    //debug styles
-    // box-sizing:border-box;
-    // -moz-box-sizing:border-box;
-    // -webkit-box-sizing:border-box;
-    // border:4px dashed white;
-    // overflow: hidden;
-    //end debug styles
-
     display: none;
     margin: 0 auto;
 
     width: 100rem;
     height: 56.25rem;
-    padding: 2.5% 2.5% 0 2.5%; //0 bottom because we're padding the footer up (and they're absolute)
+    padding: @stack_padding;
 
     position: relative;
 
@@ -91,7 +83,7 @@ svg {
     padding:10px;
 
     &:after {
-        content : "";
+        content: "";
         display: block;
         position: absolute;
         top: 0;
@@ -125,9 +117,10 @@ svg {
     }
 
     h2 {
-        line-height: 1.4rem;
+        line-height: 1.4;
         font-size: 22px;
-        margin-top: 22px;
+        width: 80%;
+        margin: 22px auto 11px auto;
         @media screen and (max-width: @screen-xs-max){
             font-size:14px;
         }
@@ -135,6 +128,7 @@ svg {
 
     .cast-header {
         margin: 33px 0;
+//		font-size: 1.75rem;
 
     	.cast-enabled,
     	.cast-disabled {
@@ -146,10 +140,10 @@ svg {
 
         .cast-get-extension,
     	.cast-enabled { display: none; }
-
+    	
         .cast-disabled p {
             margin-top: 33px;
-                a {
+			a {
                 color: @red;
                 font-weight: bold;
             }
@@ -209,6 +203,8 @@ svg {
     .byline {
         font-size:11px;
         color: @grayMedium;
+        width: 80%;
+        margin: 0 auto;
         @media screen and (max-width: @screen-xs-max){
             font-size:8px;
         }
@@ -293,10 +289,12 @@ svg {
 	i {
 		display: inline-block;
 		width: 3rem;
-		margin-right: 1rem;
 		border-radius: 0.5rem 0 0 0.5rem;
 		text-align: center;
 		font-style: normal;
+		color: @white;
+		
+		.stateface:before { margin-right: 0; }
 	}
 	
 	a {
@@ -305,8 +303,8 @@ svg {
  }
 
 .controls {
-	li { padding: 0 1rem 0 0; }
 	.play { display: none; }
+	.state-picker { margin: 0; }
 }
 
 .feedback {
@@ -425,11 +423,12 @@ svg {
  */
 
 .cast-controls {
-	color: @grayMedium;
     display: none;
+	color: @grayMedium;
+    padding: 22px 11px;
 
 	@media screen and (min-width: @screen-sm){
-		padding: 33px;
+		padding: 22px 33px;
 	}
 
     &:after {
@@ -460,18 +459,21 @@ svg {
     }
     
     .close-link {
-    	padding: 0 11px;
-    	line-height: 44px;
-    	font-weight: bold;
-    	font-size: 12px;
-		background: fadeout(#333,25%);
         display: none;
-    }
+		margin: 0 0 33px 0;
 
-	.wrapper {
-		.clearfix;
-		padding: 22px 11px;
-	}
+    	a {
+			padding: 0 11px;
+			line-height: 44px;
+			font-size: 12px;
+			text-transform: uppercase;
+			background: fadeout(@grayMedium,60%);
+			display: inline-block;
+			border-radius: 0.5em;
+		}
+		
+		i { margin-left: 0.5em; }
+    }
 
 	.controls-feedback-wrapper {
 		@media screen and (min-width: @screen-sm){
@@ -479,93 +481,49 @@ svg {
 			float: left;
 		}
 	}
+	
+	.wrapper {
+		.clearfix;
+	}
     
 	.controls .slide-nav a,
 	.controls ul li,
 	.feedback p,
 	.feedback ul.social li {
-		font-size: 12px;
+		font-size: 11px;
+		.unselectable;
 
 		@media screen and (min-width: @screen-sm){
 			font-size: 14px;
 		}
 	}
 	
-    .controls {
-		ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-
-			li {
-				.unselectable;
-				font-weight: bold;
-				line-height: 44px;
-				margin-bottom: 2px;
-				padding: 0 11px 0 0;
-				
-				&.nav { padding-right: 0; }
-				
-				.slide-nav {
-					display: table;
-					width: 100%;
-	
-					a {
-						display: table-cell;
-						width: 50%;
-
-						&.nav-btn-left { border-right: 1px solid #000; }
-						&.nav-btn-right {
-							text-align: right;
-							border-left: 1px solid #000;
-						}
+	.controls ul,
+	.feedback ul {
+		margin: 0;
 		
-						&.in-transition {
-							background-color: #444;
-							cursor: default;
-							color: #787878;
-						}
-					}
-				}
-				
-				i {
-					width: 44px;
-					margin-right: 11px;
-					
-					&.ion-chevron-right { 
-						margin-left: 11px;
-						margin-right: 0;
-					}
-				}
-				
-				img {
-					height: 18px;
-					width: auto;
-					vertical-align: middle;
-				}
-			}
+		li {
+			line-height: 44px;
+			margin-bottom: 1px;
 		}
-    }
 
-	.feedback { 
-//		padding-top: 5px;
-	
-		h3 { padding-top: 33px; }
-		
-		ul.social {
-			i {
-				width: 44px;
-				height: 44px;
-				line-height: 44px;
-				margin-right: 10px;
-			}
-			
-			li { line-height: 44px; }
+		i { width: 33px; }
+
+		img {
+			height: 18px;
+			width: auto;
+			vertical-align: middle;
 		}
 	}
 
-	.legend {
+	.feedback { 
 		margin-bottom: 33px;
+	
+		h3 { padding-top: 22px; }
+	}
+
+	.legend {
+		margin: 0 0 22px 0;
 
 		@media screen and (min-width: @screen-sm){
 			width: 45%;
@@ -628,6 +586,27 @@ svg {
 		.winner {
 			border-radius: 6px;
 			padding: 0 6px;
+		}
+	}
+
+	.slide-nav {
+		display: table;
+		width: 100%;
+
+		a {
+			display: table-cell;
+			width: 50%;
+
+			&.nav-btn-right {
+				text-align: right;
+				border-left: 1px solid #000;
+			}
+
+			&.in-transition {
+				background-color: #444;
+				cursor: default;
+				color: #787878;
+			}
 		}
 	}
 }
@@ -735,9 +714,7 @@ svg {
     right: 0;
     bottom: 0;
     z-index: 1;
-    // background: black;
-    // padding: .3rem 2% 0 2%;
-    padding: 0 2.5% 0 2.5%;
+    padding: @footer_padding;
 
     a {
         color: @grayMedium;
@@ -766,24 +743,27 @@ svg {
 
     .control-toggle {
     	float: left;
-    	padding: 0 1.5rem 0 .5rem;
-        text-align: center;
-        text-transform: uppercase;
-        font-size: 1.5rem;
-        line-height: 3.5rem;
-        border-radius: 1rem;
-		background: fadeout(@grayMedium,85%);
-		.unselectable;
 		
-        &.active {
-		    background: fadeout(@blueDarker,2%);
-		    a { color: #fff; }
-        }
-
         a {
+        	display: inline-block;
             text-decoration: none;
+			padding: 0 1.5rem 0 1.5rem;
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 1.5rem;
+			line-height: 3rem;
+			border-radius: 0.5rem;
+			background: fadeout(@grayMedium,75%);
+			.unselectable;
 
             &:hover svg { fill: #fff; }
+        }
+
+        &.active {
+		    a {
+		    	color: #fff;
+		    	background: fadeout(@blueDarker,2%);
+		    }
         }
 
         svg {
@@ -805,19 +785,12 @@ svg {
     .nav {
     	float: right;
         text-align: right;
-        line-height: 3.5rem;
         white-space: nowrap; // Fixes safari wrapping
 
-        .page,
         .slide-nav,
         .slide-countdown,
         .logo {
             display: inline-block;
-        }
-
-        .page {
-            color: @grayMedium;
-            font-size: 1.2rem;
         }
 
         .slide-nav {

@@ -34,7 +34,7 @@
         font-weight: 400;
         color:@white;
         border-collapse: separate;
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .results,
@@ -54,7 +54,7 @@
     .results-header {
         font-size: 1.1rem;
         overflow: hidden;
-        margin-bottom: 1%;
+        margin-bottom: 0.5rem;
 
         .results-title { float: left; }
 
@@ -135,11 +135,10 @@
 
         .races {
             width: 100%;
-            border-spacing: 0 2px;
+            border-spacing: 0 0.2rem;
 
             td {
-                vertical-align: top;
-                padding: 0.2rem 0.4rem;
+                padding: 0.1rem 0.4rem;
             }
 
             .results-status {
@@ -319,58 +318,6 @@
         }
     }
 
-    .key {
-        font-family: 'Cooper Hewitt';
-        font-size: 9px;
-        font-weight: 400;
-        color:@white;
-
-        margin-top:20px;
-        margin-bottom:20px;
-        overflow:hidden;
-        float:left;
-
-        .percent-ex {
-            color:@yellow;
-            display:inline-block;
-        }
-
-        .percent-called-ex {
-            display:inline-block;
-            color: @gray;
-        }
-
-        .name-ex {
-            background-color: @blue;
-            color: @white;
-            padding: 0 2px;
-            border-radius: 5px;
-        }
-
-        .state-ex {
-            background-color:@blue;
-            color:@white;
-            padding: 0 2px;
-        }
-
-        .state2-ex {
-            color:@red;
-        }
-
-        ul {
-            padding-left: 0;
-            float: left;
-            padding-right: 20px;
-            margin-bottom: 0;
-        }
-
-        li {
-            list-style-type: none;
-            text-indent: none;
-            padding-left: 0;
-        }
-    }
-
     .state-slide{
         .header{
             font-size:30px;
@@ -394,7 +341,7 @@
 	overflow: hidden;
 	box-sizing: border-box;
 
-	.footer-container & { padding: 0 0.25rem; }
+	.footer-container & { padding: 0 0.25rem 0.07rem; }
 
 	&:last-child {
 		margin-right: 0;
@@ -423,7 +370,7 @@
 
 	.count,
 	.percentage {
-		border: 1px solid transparent;
+		border: 0.1rem solid transparent;
 
 		@media screen and (min-width: @screen-sm){
 			border-width: 2px;

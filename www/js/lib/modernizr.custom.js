@@ -1,5 +1,5 @@
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-touch-mq-teststyles-prefixes
+ * Build: http://modernizr.com/download/#-svg-touch-mq-teststyles-prefixes
  */
 ;
 
@@ -26,6 +26,7 @@ window.Modernizr = (function( window, document, undefined ) {
     prefixes = ' -webkit- -moz- -o- -ms- '.split(' '),
 
 
+    ns = {'svg': 'http://www.w3.org/2000/svg'},
 
     tests = {},
     inputs = {},
@@ -196,6 +197,9 @@ window.Modernizr = (function( window, document, undefined ) {
         }
 
         return bool;
+    };
+    tests['svg'] = function() {
+        return !!document.createElementNS && !!document.createElementNS(ns.svg, 'svg').createSVGRect;
     };
     for ( var feature in tests ) {
         if ( hasOwnProp(tests, feature) ) {
