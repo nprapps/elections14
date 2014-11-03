@@ -16,14 +16,14 @@
         height: 20px;
 
         &.gop { background-color: @red; }
-        &.drem { background-color: @blue; }
+        &.dem { background-color: @blue; }
         &.other { background-color: @green; }
     }
 }
 
 .ballot-measures,
-.governor, 
-.house, 
+.governor,
+.house,
 .senate {
     // padding: 2vh 2.25% 0 2.25%;
 
@@ -176,7 +176,7 @@
                     font-style: italic;
                     font-size: 65%;
                 }
-                &.drem { color: @blue; }
+                &.dem { color: @blue; }
                 &.gop { color: @red; }
                 &.other { color: @green; }
             }
@@ -185,12 +185,12 @@
                 width: 6%;
                 // &.party-change {
                 //     color: #fff;
-                //     &.drem { background-color: @blue; }
+                //     &.dem { background-color: @blue; }
                 //     &.gop { background-color: @red; }
                 //     &.ind { background-color: @green; }
 
                 // }
-                &.drem { color: @blue; }
+                &.dem { color: @blue; }
                 &.gop { color: @red; }
                 &.other { color: @green; }
             }
@@ -208,7 +208,7 @@
 
             .candidate {
                 width: 32%;
-                &.drem { background: @blueDim; }
+                &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
 
@@ -240,14 +240,13 @@
                     display: block;
                     padding: 0.2rem 0.4rem;
                     margin-right: 1px;
-                    position: absolute;
                     top: 0;
                     bottom: 0;
                     left: 0;
                     right: 0;
                 }
 
-                &.drem .candidate-total-wrapper { background: @blueDim; }
+                &.dem .candidate-total-wrapper { background: @blueDim; }
                 &.gop .candidate-total-wrapper,
                 &.no .candidate-total-wrapper { background: @redDim; }
                 &.other .candidate-total-wrapper,
@@ -274,7 +273,7 @@
             .winner {
                 color: #fff;
 
-                &.drem { background: @blue; }
+                &.dem { background: @blue; }
                 &.gop,
                 &.no { background: @red; }
                 &.other,
@@ -283,7 +282,7 @@
                 &.candidate-total {
                     background: transparent;
 
-                    &.drem .candidate-total-wrapper { background: @blue; }
+                    &.dem .candidate-total-wrapper { background: @blue; }
                     &.gop .candidate-total-wrapper,
                     &.no .candidate-total-wrapper { background: @red; }
                     &.other .candidate-total-wrapper,
@@ -394,9 +393,9 @@
 	display: inline-block;
 	overflow: hidden;
 	box-sizing: border-box;
-	
+
 	.footer-container & { padding: 0 0.25rem; }
-	
+
 	&:last-child {
 		margin-right: 0;
 		padding-right: 0;
@@ -417,7 +416,7 @@
 
 	h2 { font-weight: 500; }
 
-	.change { 
+	.change {
 		font-size: 1.4rem;
 		font-weight: 500;
 	}
@@ -443,7 +442,7 @@
 		line-height: 2.8rem;
 		text-shadow: rgba(0,0,0, 0.8) 0 0 2px;
 	}
-	
+
 	.seats-needed,
 	.total {
 		white-space: nowrap;
@@ -456,14 +455,14 @@
 		.count { display: inline-block; }
 	}
 
-	&.drem {
+	&.dem {
 		color: fadeout(@blue, 25%);
 
 		.count { background: @blueDim; }
 		.percentage { background: fadeout(@blue, 25%); }
 	}
 
-	&.gop { 
+	&.gop {
 		color: fadeout(@red, 25%);
 
 		.count { background: fadeout(@redDim, 25%); }
@@ -482,8 +481,8 @@
 
 		h2 { display: inline; }
 
-		.count { 
-			border-color: fadeout(@yellow, 25%); 
+		.count {
+			border-color: fadeout(@yellow, 25%);
 			color: fadeout(@yellow, 25%);
 			text-shadow: none;
 		}

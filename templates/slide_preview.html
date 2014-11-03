@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {% include '_fonts.html' %}
-
     {# Unfortunante hack because we're deploying this to staging and it can't compile a less file on demand #}
 
     {% if DEPLOYMENT_TARGET %}
@@ -14,8 +12,10 @@
 
     {# ugly includes because slide js is inlined and can't pickup the stuff from the base template #}
     <script src="/js/lib/d3.v3.min.js"></script>
-    {{ JS.push('js/lib/modernizr.js') }}
+    {{ JS.push('js/lib/modernizr.custom.js') }}
     {{ JS.push('js/lib/jquery.js') }}
+    {{ JS.push('js/lib/webfont.js') }}
+    {{ JS.push('js/fonts.js') }}
     {{ JS.render('js/preview-header.min.js') }}
 </head>
 
