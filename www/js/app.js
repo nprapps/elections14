@@ -455,17 +455,16 @@ var onFullscreenButtonClick = function() {
  * Respond to selections from a state picker dropdown.
  */
 var onStatePickerChange = function() {
-    state = $(this).find('option:selected').val();
-    
-    showState();
-    $.cookie('state', state, { expires: 30 });
+	if (state != 'us') {
+		state = $(this).find('option:selected').val();
+		showState();
+		$.cookie('state', state, { expires: 30 });
 
-//    $stateface.css('opacity', 1);
-//    $stateName.css('opacity', 1);
-    
-    if (is_casting) {
-        CHROMECAST_SENDER.sendMessage('state', state);
-    }
+		if (is_casting) {
+			CHROMECAST_SENDER.sendMessage('state', state);
+		}
+	}
+
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'state-selected', state]);
 }
 

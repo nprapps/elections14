@@ -36,7 +36,7 @@
 		<li>
 			<i><span class="stateface stateface-us"></span></i>
             <select class="state-picker">
-                <option selected>{{ COPY.chromecast.btn_state }}</option>
+                <option value="US" selected>{{ COPY.chromecast.btn_state }}</option>
                 {% for postal_code, state in STATES.items() %}
                 <option value="{{ postal_code }}">{{ state }}</option>
                 {% endfor %}
