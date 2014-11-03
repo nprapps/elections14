@@ -770,24 +770,27 @@ svg {
 
     .control-toggle {
     	float: left;
-    	padding: 0 1.5rem 0 1.5rem;
-        text-align: center;
-        text-transform: uppercase;
-        font-size: 1.5rem;
-        line-height: 3rem;
-        border-radius: 1rem;
-		background: fadeout(@grayMedium,75%);
-		.unselectable;
 		
-        &.active {
-		    background: fadeout(@blueDarker,2%);
-		    a { color: #fff; }
-        }
-
         a {
+        	display: inline-block;
             text-decoration: none;
+			padding: 0 1.5rem 0 1.5rem;
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 1.5rem;
+			line-height: 3rem;
+			border-radius: 1rem;
+			background: fadeout(@grayMedium,75%);
+			.unselectable;
 
             &:hover svg { fill: #fff; }
+        }
+
+        &.active {
+		    a {
+		    	color: #fff;
+		    	background: fadeout(@blueDarker,2%);
+		    }
         }
 
         svg {
