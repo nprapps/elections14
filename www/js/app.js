@@ -175,8 +175,9 @@ var onDocumentReady = function(e) {
         CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
         CHROMECAST_RECEIVER.onMessage('slide-change', onCastReceiverSlideChange);
 
-        //STACK.start();
-        showCountdown();
+        STACK.startPrerollAudio();
+        STACK.start();
+
         $desktopOnlyLeftRight.hide();
 
     // debugging with the ?fakecast flag, so it's easier to style the control panel
@@ -412,6 +413,10 @@ var onWelcomeButtonClick = function() {
     stopVideo();
 
     enableRotatePrompt();
+
+    if (!NO_AUDIO) {
+        STACK.startPrerollAudio();
+    }
 
     showCountdown();
 }
@@ -715,10 +720,6 @@ var enableRotatePrompt = function(){
  * Show the countdown screen.
  */
 var showCountdown = function() {
-    if (!NO_AUDIO) {
-        STACK.startPrerollAudio();
-    }
-
     $countdownScreen.show();
     create_welcome_countdown();
     nextCountdown();
