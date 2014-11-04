@@ -819,7 +819,6 @@ var checkTimestamp = function() {
         'success': function(data) {
             var newTime = data['timestamp'];
             var homepage = data['homepage'];
-            console.log(newTime, homepage);
 
             if (reloadTimestamp == null) {
                 reloadTimestamp = newTime;
