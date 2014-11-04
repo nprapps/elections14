@@ -234,7 +234,7 @@ var STACK = (function () {
                 _slideExitCallback = null;
             }
             if (IS_CAST_RECEIVER) {
-                $oldSlide.hide();
+                $oldSlide.remove();
                 addNewSlide();
             }
             else {
