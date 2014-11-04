@@ -42,8 +42,6 @@ var reloadTimestamp = null;
 var state = null;
 var is_casting = false;
 var countdown = 5 + 1;
-var welcome_greeting_counter = 0;
-var welcome_greeting_timer = null;
 var inTransition = null;
 
 var slide_countdown_arc = null;
@@ -240,8 +238,6 @@ var setupUI = function() {
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
         _setLocateDefault();
     }
-
-    welcomeOurGuests();
 }
 
 /*
@@ -262,7 +258,6 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
             $chromecastIndexHeader.find('.cast-enabled').show();
             $chromecastIndexHeader.find('.cast-disabled').hide();
             $castStart.show();
-            window.clearTimeout(welcome_greeting_timer);
         } else {
             $chromecastIndexHeader.find('.cast-try-chrome').hide();
             $chromecastIndexHeader.find('.cast-get-extension').show();
@@ -398,8 +393,6 @@ var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
 
     enableRotatePrompt();
-
-    window.clearTimeout(welcome_greeting_timer);
 
     // Mobile devices require a click to start audio
     if (IS_TOUCH) {
@@ -911,16 +904,4 @@ function tween_slide_arc(transition, arc_main, end) {
 			return arc_main(d);
 		};
 	});
-}
-
-/*
- * Rotate welcome button greetings.
- */
-var welcomeOurGuests = function(){
-    greetings = $welcomeButton.find('span')
-    var count = greetings.length;
-    greetings.velocity({ opacity: 0 }, { display: "none" });
-    $welcomeButton.find('span[data-greeting-index="' + welcome_greeting_counter % count + '"]').velocity({opacity:1}, { display: "inline" })
-    welcome_greeting_counter++;
-    welcome_greeting_timer = window.setTimeout(welcomeOurGuests, 5000);
 }

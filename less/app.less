@@ -27,14 +27,8 @@ svg {
 }
 
 .btn-lg {
-    font-size: 20px;
-    letter-spacing: .03rem;
     border-radius: 5px;
     text-transform: uppercase;
-
-    @media screen and (max-width: @screen-xs-max){
-        font-size: 16px;
-    }
 }
 
 #stack {
@@ -149,17 +143,44 @@ svg {
             }
         }
 
-        .cast-enabled-but-whatev {
-            font-size: 18px;
-            margin-top: 33px;
-            a {
-                color: white;
+        .cast-enabled {
+            .cast-start {
+                display: inline-block;
+                font-size: 16px;
+                padding: 10px 10px 9px;
+                border: 2px solid white;
+                border-radius: 5px;
+                height: 50px;
                 font-weight: bold;
+                text-transform: uppercase;
                 &:hover {
-                    color:@red;
-                    text-decoration: none;
+                    background-color: @red;
+                    color: white;
+                }
+                svg {
+                    height: 30px;
+                    vertical-align: middle;
+                    fill: white;
+                    margin-right:7px;
+                }
+                @media screen and (max-width: @screen-xs-max){
+                    svg { height: 22px; }
+                    padding: 12px 10px 9px;
+                    font-size: 14px;
                 }
             }
+        }
+
+        .chromecast-note-touch, .chromecast-note {
+            margin-top:44px;
+            font-size: 12px;
+        }
+
+        .chromecast-note-touch { display: none; }
+
+        .touch & {
+            .chromecast-note-touch{ display: block; }
+            .chromecast-note{ display: none; }
         }
 
         @media screen and (max-width: @screen-xs-max){
@@ -173,15 +194,9 @@ svg {
         color: black;
         fill: black;
 
-        width: 390px;
         height: 50px;
 
         span { display:none; }
-
-        svg {
-            height: 30px;
-            vertical-align: middle;
-        }
 
         &:hover {
             background-color: @red;
@@ -196,7 +211,6 @@ svg {
         @media screen and (max-width: @screen-xs-max){
             width: 260px;
             height: 50px;
-            font-size: 13px;
         }
     }
 
