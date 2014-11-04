@@ -173,7 +173,6 @@
     }
 }
 
-
 /*
  * GRAPHICS
  */
@@ -432,22 +431,27 @@
 ** STATE SLIDES
 */
 
-.results-sliced {
-    color: #fff;
-    height: 100%;
-    margin-bottom: @line-height-computed;
-    padding-top: 1vh;
-    padding-bottom: 4rem;
+.recent-senate-calls,
+.recent-governor-calls {
+    .recent-calls {
+        color: #fff;
+        height: 100%;
+        margin-bottom: @line-height-computed;
+        padding-top: 1vh;
+        padding-bottom: 4rem;
+    }
 
-
-    &.recent-calls {
-        .wrapper {
-            .vertical-center;
-        }
+    .slide-inner {
+    	height: @stack_height;
     }
 
 
-    &:after {
+    .wrapper {
+        .vertical-center;
+    }
+
+
+    .slide-inner:after {
         content : "";
         display: block;
         position: absolute;
