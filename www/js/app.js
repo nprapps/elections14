@@ -520,8 +520,9 @@ var onAudioPauseClick = function(event) {
 /*
  * Click left or right paddle
  */
-var onSlideControlClick = function(event) {
-    event.preventDefault();
+var onSlideControlClick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
     var $this = $(this);
     var direction = $this.data('slide');
@@ -582,8 +583,8 @@ var onControlsToggleClick = function(event) {
 /*
  * Open mobile controls.
  */
-var onStackTap = function(event) {
-    event.preventDefault();
+var onStackTap = function(e) {
+    e.preventDefault();
 
     disableRotatePrompt();
     $castControls.show();
