@@ -784,7 +784,6 @@ def reset_results():
         race.precincts_reporting = 0
         race.ap_called_time = None
         race.ap_called = False
-        race.accept_ap_call = False
         race.npr_called = False
         race.npr_called_time = None
         for candidate in race.candidates:
