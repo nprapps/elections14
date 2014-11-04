@@ -309,7 +309,7 @@ def configure_targets(deployment_target):
         
         CHROMECAST_APP_ID = '8408F716'
 
-        TUMBLR_NAME = 'stage-nprelections'
+        TUMBLR_NAME = 'nprpolitics'
         TUMBLR_AUTO_REFRESH = True
         TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
         TUMBLR_NOT_AFTER = datetime(2014, 11, 5, 9, 0, 0)
