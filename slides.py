@@ -159,7 +159,7 @@ def _get_recently_called(office_name):
     """
     from models import Race
 
-    now = datetime.now()
+    now = datetime.utcnow()
     then = now - timedelta(minutes=15)
 
     recently_called = []
