@@ -90,7 +90,7 @@ var STACK = (function () {
                     $(this).jPlayer('play');
                 }
             },
-            ended: startLivestream,
+            ended: obj.startLivestream,
             swfPath: 'js/lib',
             supplied: 'mp3',
             loop: false,
@@ -103,7 +103,7 @@ var STACK = (function () {
         $audioPlayer.jPlayer('play');
     }
 
-    var startLivestream = function() {
+    obj.startLivestream = function() {
         $audioPlayer.jPlayer('setMedia', {
             mp3: 'http://nprspecial.ic.llnwd.net/stream/nprspecial_live24'
         }).jPlayer('play');
