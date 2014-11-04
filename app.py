@@ -170,7 +170,9 @@ def _timestamp():
     """
     Return a dummy timestamp file.
     """
-    return '"2014-10-27T17:52:16.901632"', 200, { 'Content-Type': 'application/javascript' }
+
+    with open('www/live-data/timestamp.json', 'r') as f:
+        return json.load(f), 200, { 'Content-Type': 'application/javascript' }
 
 @app.route('/preview/state-house-results/index.html')
 @app.route('/preview/state-senate-results/index.html')
