@@ -175,7 +175,9 @@ var onDocumentReady = function(e) {
         CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
         CHROMECAST_RECEIVER.onMessage('slide-change', onCastReceiverSlideChange);
 
+        STACK.startPrerollAudio();
         STACK.start();
+
         $desktopOnlyLeftRight.hide();
 
     // debugging with the ?fakecast flag, so it's easier to style the control panel
@@ -412,12 +414,11 @@ var onWelcomeButtonClick = function() {
 
     enableRotatePrompt();
 
-    // Mobile devices require a click to start audio
-    if (IS_TOUCH) {
+    if (!NO_AUDIO) {
         STACK.startPrerollAudio();
     }
 
-   showCountdown();
+    showCountdown();
 }
 
 /*
@@ -748,25 +749,32 @@ var hideCountdown = function() {
     //hell yeah fade out
     var big = $countdownScreen.find('.countdown-arc svg');
     var little = $slide_countdown.find('svg');
-    big_width = big.width()
-    little_width = little.width()
-    big_top = big.offset().top
-    little_top = little.offset().top
-    big_left = big.offset().left
-    little_left = little.offset().left
-    little_height = little.height()
+
+    big_width = big.width();
+    little_width = little.width();
+    
+    big_top = big.offset().top;
+    little_top = little.offset().top;
+    console.log(big_top, little_top);
+    
+    big_left = big.offset().left;
+    little_left = little.offset().left;
+    
+    little_height = little.height();
+    
     big.velocity({
         height: little_height,
         translateX: little_left - big_left - big_width/2 + little_width/2,
         translateY: little_top - big_top
-        },
-        {
-            duration: 1000,
-            display:'none',
-            complete: function(){
-                $countdownScreen.hide();
-            }
-        });
+    },
+    {
+        duration: 1000,
+        display:'none',
+        complete: function(){
+            $countdownScreen.hide();
+        }
+    });
+
     $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
 }
 

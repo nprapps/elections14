@@ -71,20 +71,20 @@
 		$graphic.empty();
 
 		// compute dimensions
-		console.log('------------------------------');
+		//console.log('------------------------------');
 		container_width = Math.floor($container.width());
 		container_height = Math.floor((container_width * 9) / 16);
 		
 		if ($graphic_wrapper.css('paddingLeft').slice(-1) == '%') {
-			console.log($graphic_wrapper.css('paddingLeft').slice(-1));
+			//console.log($graphic_wrapper.css('paddingLeft').slice(-1));
 			container_padding_sides = (parseFloat($graphic_wrapper.css('paddingLeft')) + parseFloat($graphic_wrapper.css('paddingRight'))) / 100;
-			console.log(container_padding_sides);
+			//console.log(container_padding_sides);
 			container_padding_sides = Math.ceil(container_padding_sides * container_width);
-			console.log(container_padding_sides);
+			//console.log(container_padding_sides);
 		} else {
-			console.log($graphic_wrapper.css('paddingLeft').slice(-1));
+			//console.log($graphic_wrapper.css('paddingLeft').slice(-1));
 			container_padding_sides = parseFloat($graphic_wrapper.css('paddingLeft')) + parseFloat($graphic_wrapper.css('paddingRight'));
-			console.log(container_padding_sides);
+			//console.log(container_padding_sides);
 		}
 
 		container_padding_top = container_padding_sides * 2;
@@ -101,13 +101,13 @@
 		var graphic_height = container_height - content_height - container_padding_top;
 		var graphic_width = Math.floor((container_width - container_padding_sides - gutter_width) / 2);
 
-		console.log('container dimensions: ' + container_width + ' x ' + container_height);
+		/*console.log('container dimensions: ' + container_width + ' x ' + container_height);
 		console.log('container padding: ' + container_padding_top + ', ' + container_padding_sides);
 		console.log('gutter width: ' + gutter_width);
 		console.log('content_height: ' + content_height);
 		console.log('graphic dimensions: ' + graphic_width + ' x ' + graphic_height);
 		console.log('total_width: ' + (container_padding_sides + graphic_width + gutter_width + graphic_width));
-		console.log('total height: ' + (container_padding_top + content_height + graphic_height));
+		console.log('total height: ' + (container_padding_top + content_height + graphic_height));*/
 
 		label_width = Math.floor(container_width * .09); // 6vw
 		margin = {
@@ -284,13 +284,13 @@
 	}
 
 	if (Modernizr.svg) {
-		console.log('modernizr!');
+		//console.log('modernizr!');
 		$container = $('.slide.balance-of-power');
 		$graphic_wrapper = $container.find('.graphic');
 		$graphic = $('#graphic-bop');
 		$timestamp = $('.ap-credit').find('.timestamp');
 
-        setTimeout(render, 100);
+        setTimeout(render, 200);
 
 		$(window).on('resize', render);
 
