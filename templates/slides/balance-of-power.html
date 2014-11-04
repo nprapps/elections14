@@ -289,7 +289,8 @@
 		$graphic_wrapper = $container.find('.graphic');
 		$graphic = $('#graphic-bop');
 		$timestamp = $('.ap-credit').find('.timestamp');
-		render();
+
+        setTimeout(render, 100);
 
 		$(window).on('resize', render);
 
