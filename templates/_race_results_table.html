@@ -5,8 +5,7 @@
               {% if race.is_runoff() %}<img class="img-responsive" src="/assets/runoff.svg"/>{% endif %}
           </td>
           <td class="state{% if race.is_called() %} {{ race.get_winning_party() }}{% else %} {{ race.previous_party }}{% endif %} ">
-              {{ race.state_postal }}{% if race.seat_number %}<span class="seat_number">-{{ race.seat_number }}</span>
-              {% endif %}
+              {{ race.state_postal }}{% if race.seat_number and race.office_id != 'S' %}<span class="seat_number">-{{ race.seat_number }}</span>{% endif %}
           </td>
           <td class="results-status{% if race.is_called() %} called{% elif race.is_reporting() %} reporting{% endif %}">
               {% if race.is_called() or race.is_reporting() %}
