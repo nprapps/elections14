@@ -2,13 +2,17 @@
 
 {% block extra_css %}
 <style>
-    .state-picker {
-        display: block;
+    body {
+        background-color: #eee;
+        color: #111;
     }
-
-    .template-picker {
+    .state-picker-wrapper {
+        display: block;
+        margin: 0 auto;
         position: relative;
-        margin-top: 10%;
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
     }
 
     .house-pagination {
@@ -17,7 +21,7 @@
         width: 100%;
         color: white;
         text-align: center;
-        font-size: 24px;
+        font-size: 18px;
     }
 
     .radio input[type="radio"] {
@@ -27,10 +31,14 @@
 {% endblock %}
 
 {% block outer_content %}
-<div class="state-picker">
-    <div class="picker">
-        <input class="typeahead" type="text" placeholder="Select a state">
-    </div>
+<div class="state-picker-wrapper">
+    <h2>Pick which state you want to preview</h2>
+    <select class="state-picker">
+        <option value="US" selected>{{ COPY.chromecast.btn_state }}</option>
+        {% for postal_code, state in STATES.items() %}
+        <option value="{{ postal_code }}">{{ state }}</option>
+        {% endfor %}
+    </select>
 
     <div class="house-pagination">
         <p>This state has two pages for its house results. Which page do you want to preview?</p>
@@ -52,8 +60,8 @@
     </div>
 
     <div class="template-picker">
-        <a href="#" class="btn btn-lg state-picker-submit">Preview</a>
-        <a href="#" class="btn btn-lg state-picker-submit">Share</a>
+        <a href="#" class="btn btn-default state-picker-submit">Preview</a>
+        <a href="#" class="btn btn-default state-picker-submit">Share</a>
     </div>
 </div>
 {% endblock %}
@@ -67,42 +75,12 @@
 
 <script type="text/javascript">
 
-var STATES = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-];
-
-var substringMatcher = function(strs) {
-    return function findMatches(q, cb) {
-        var matches = [];
-
-        // iterate through the pool of strings and for any string that
-        // contains the substring `q`, add it to the `matches` array
-        $.each(strs, function(i, str) {
-            var queryLength = q.length;
-            var normalizedString = str.toLowerCase();
-            if (normalizedString.substring(0, queryLength) === q.toLowerCase()) {
-                // the typeahead jQuery plugin expects suggestions to a
-                // JavaScript object, refer to typeahead docs for more info
-                matches.push({ value: str });
-            }
-        });
-
-        cb(matches);
-    };
-};
+var state = null;
+var $statePicker = $('.state-picker');
 
 var checkState = function() {
-    var input = $('.typeahead').typeahead('val');
-    if (input) {
-        var inverted = invert(APP_CONFIG.STATES);
-        var state = inverted[input]
+   if (state != 'us') {
+        state = $(this).find('option:selected').val();
     }
 
     if (APP_CONFIG.PAGINATED_STATES.indexOf(state) >= 0 && window.location.pathname.split('/')[2] == 'state-house-results') {
@@ -111,12 +89,6 @@ var checkState = function() {
 }
 
 var onStatePickerSubmitClick = function() {
-    var input = $('.typeahead').typeahead('val');
-    if (input) {
-        var inverted = invert(APP_CONFIG.STATES);
-        var state = inverted[input]
-    }
-
     var path = window.location.href;
     path = path.substr(0, path.lastIndexOf('/'));
     path += '-' + state;
@@ -144,17 +116,7 @@ var onStatePickerSubmitClick = function() {
 }
 
 $(document).ready(function() {
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    },
-    {
-        name: 'states',
-        displayKey: 'value',
-        source: substringMatcher(STATES)
-    });
-    $('.typeahead').on('typeahead:selected', checkState);
+    $statePicker.on('change', checkState);
 
     $('.state-picker-submit').on('click', onStatePickerSubmitClick);
 });
