@@ -73,7 +73,7 @@ var hasTrackedPrevSlide = null;
 var hasTrackedKeyboardNav = null;
 var hasTrackedMobileControls = null;
 
-var targetGraphicWidth = null;
+var graphicTargetWidth = null;
 
 /*
  * _.has

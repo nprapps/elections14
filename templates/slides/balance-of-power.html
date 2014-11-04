@@ -73,6 +73,7 @@
 		// compute dimensions
 		//console.log('------------------------------');
 		//container_width = Math.floor($container.width());
+        console.log(1);
         container_width = graphicTargetWidth;
         console.log('container_width:', graphicTargetWidth);
 		container_height = Math.floor((container_width * 9) / 16);
@@ -280,7 +281,7 @@
 		$graphic = $('#graphic-bop');
 		$timestamp = $('.ap-credit').find('.timestamp');
 
-        setTimeout(render, 200);
+        render();
 
 		$(window).on('resize', render);
 

@@ -24,6 +24,7 @@ var STACK = (function () {
      */
     obj.start = function() {
         $stack.show();
+        onWindowResize();
 
         updateStack();
     }
