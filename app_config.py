@@ -273,8 +273,8 @@ def configure_targets(deployment_target):
 
         TUMBLR_NAME = 'nprpolitics'
         TUMBLR_AUTO_REFRESH = False
-        TUMBLR_NOT_BEFORE = datetime(2014, 11, 3, 23, 0, 0) # +5 hours for UTC
-        TUMBLR_NOT_AFTER = datetime(2014, 11, 5, 9, 0, 0) # +5 hours for UTC
+        TUMBLR_NOT_BEFORE = datetime(2014, 11, 4, 20, 0, 0)  # 2014-11-4 5pm (+5 hours for UTC)
+        TUMBLR_NOT_AFTER = datetime(2014, 11, 5, 9, 0, 0)    # 2014-11-5 4am (+5 hours for UTC)
 
     elif deployment_target == 'staging':
         S3_BUCKETS = STAGING_S3_BUCKETS
