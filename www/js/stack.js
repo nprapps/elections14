@@ -87,7 +87,7 @@ var STACK = (function () {
          $audioPlayer.jPlayer({
             ready: function () {
                 $(this).jPlayer('setMedia', {
-                    mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
+                    mp3: '/assets/promo_compressed.mp3'
                 });
 
                 if (IS_CAST_RECEIVER || (SKIP_COUNTDOWN && !NO_AUDIO)) {
@@ -287,6 +287,10 @@ var STACK = (function () {
     }
 
     var setTimer = function() {
+        if (PAUSE_STACK){
+            return;
+        }
+
         _rotateTimer = setTimeout(rotateSlide, _timeOnScreen * 1000);
         start_arc_countdown('slide_countdown', _timeOnScreen);
         $(this).find('a').on('click', onSlideAnchorClick);

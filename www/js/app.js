@@ -37,6 +37,7 @@ var $closeControlsLink = null;
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 var SKIP_COUNTDOWN = (window.location.search.indexOf('skipcountdown') >= 0);
+var PAUSE_STACK = (window.location.search.indexOf('pausestack') >= 0);
 var NO_AUDIO = (window.location.search.indexOf('noaudio') >= 0);
 var IS_TOUCH = Modernizr.touch;
 var reloadTimestamp = null;
@@ -44,8 +45,6 @@ var reloadTimestamp = null;
 var state = null;
 var is_casting = false;
 var countdown = 5 + 1;
-var welcome_greeting_counter = 0;
-var welcome_greeting_timer = null;
 var inTransition = null;
 
 var slide_countdown_arc = null;
@@ -245,8 +244,6 @@ var setupUI = function() {
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
         _setLocateDefault();
     }
-
-    welcomeOurGuests();
 }
 
 /*
@@ -262,12 +259,14 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
             return;
         }
 
-        if (loaded) {
+        if (IS_TOUCH) {
+            $chromecastIndexHeader.find('.cast-get-extension').hide();
+            $chromecastIndexHeader.find('.cast-try-chrome').show();
+        } else if (loaded) {
             CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
             $chromecastIndexHeader.find('.cast-enabled').show();
             $chromecastIndexHeader.find('.cast-disabled').hide();
             $castStart.show();
-            window.clearTimeout(welcome_greeting_timer);
         } else {
             $chromecastIndexHeader.find('.cast-try-chrome').hide();
             $chromecastIndexHeader.find('.cast-get-extension').show();
@@ -405,8 +404,6 @@ var onWelcomeButtonClick = function() {
     $welcomeVideo[0].pause();
 
     enableRotatePrompt();
-
-    window.clearTimeout(welcome_greeting_timer);
 
     // Mobile devices require a click to start audio
     if (IS_TOUCH) {
@@ -779,8 +776,10 @@ var showState = function() {
  * Fetch and display the latest balance of power.
  */
 var checkBop = function() {
-    setInterval(function() {
-        $bop.load('/bop.html');
+    $bop.load('/bop.html');
+
+    setTimeout(function() {
+        checkBop();
     }, APP_CONFIG.CLIENT_BOP_INTERVAL * 1000);
 }
 
@@ -918,16 +917,4 @@ function tween_slide_arc(transition, arc_main, end) {
 			return arc_main(d);
 		};
 	});
-}
-
-/*
- * Rotate welcome button greetings.
- */
-var welcomeOurGuests = function(){
-    greetings = $welcomeButton.find('span')
-    var count = greetings.length;
-    greetings.velocity({ opacity: 0 }, { display: "none" });
-    $welcomeButton.find('span[data-greeting-index="' + welcome_greeting_counter % count + '"]').velocity({opacity:1}, { display: "inline" })
-    welcome_greeting_counter++;
-    welcome_greeting_timer = window.setTimeout(welcomeOurGuests, 5000);
 }

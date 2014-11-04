@@ -4,6 +4,7 @@ import re
 
 from peewee import fn, Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField, TextField
 from decimal import Decimal
+from datetime import datetime, timedelta
 
 import app_config
 
@@ -92,6 +93,8 @@ class Race(SlugModel):
     """
     slug_fields = ['state_postal', 'office_name', 'seat_name']
 
+    slug = CharField(max_length=255)
+
     # data from init
     race_id = CharField(primary_key=True)
     state_postal = CharField(max_length=255)
@@ -100,7 +103,7 @@ class Race(SlugModel):
     seat_name = CharField(null=True)
     seat_number = IntegerField(null=True)
     race_type = CharField()
-    last_updated = DateTimeField(null=True)
+    last_updated = DateTimeField(null=True)       # Stored as EST (US/Eastern)
 
     # data from update
     precincts_total = IntegerField(null=True)
@@ -110,16 +113,16 @@ class Race(SlugModel):
     is_test = BooleanField(default=False)
     number_in_runoff = CharField(null=True)
 
-    # NPR data
-    slug = CharField(max_length=255)
-    featured_race = BooleanField(default=False)
+    # call data
     accept_ap_call = BooleanField(default=True)
-    poll_closing_time = DateTimeField(null=True)
     ap_called = BooleanField(default=False)
-    ap_called_time = DateTimeField(null=True)
+    ap_called_time = DateTimeField(null=True)     # Stored as UTC
     npr_called = BooleanField(default=False)
-    npr_called_time = DateTimeField(null=True)
-    ballot_measure_description = CharField(max_length=255, null=True)
+    npr_called_time = DateTimeField(null=True)    # Stored as UTC
+
+    # NPR data
+    poll_closing_time = DateTimeField(null=True)  # Stored as EST (US/Eastern)
+    featured_race = BooleanField(default=False)
     previous_party = CharField(max_length=5, null=True)
     obama_gop = BooleanField(default=False)
     romney_dem = BooleanField(default=False)
@@ -129,6 +132,7 @@ class Race(SlugModel):
     rematch_result = TextField(null=True, default=None)
     rematch_description = TextField(null=True, default=None)
     freshmen = BooleanField(default=False)
+    ballot_measure_description = CharField(max_length=255, null=True)
 
     def __unicode__(self):
         return u'%s: %s-%s' % (
@@ -363,6 +367,20 @@ class Race(SlugModel):
         yes = self.candidates.where((self.candidates.model_class.last_name == 'Yes') | (self.candidates.model_class.last_name == 'For')).get()
         no = self.candidates.where((self.candidates.model_class.last_name == 'No') | (self.candidates.model_class.last_name == 'Against')).get()
         return (yes, no)
+
+    @classmethod
+    def recently_called(self, delta=15):
+        """
+        Get recently called for last <delta> minutes, limited to <limit> results.
+        """
+        now = datetime.utcnow()
+        then = now - timedelta(minutes=delta)
+        recent = self.select().where(
+                ((self.npr_called == True) & (self.npr_called_time > then)) |
+                ((self.accept_ap_call == True) & (self.ap_called == True) & (self.ap_called_time > then))
+            )\
+            .order_by(self.npr_called_time.desc(), self.ap_called_time.desc())
+        return recent
 
 class Candidate(SlugModel):
     """

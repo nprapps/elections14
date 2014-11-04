@@ -1,5 +1,5 @@
 state,race_id,description,subject
-AL,1970-AL,Right to bear arms,Gun Rights
+AL,1970-AL,Right to bear arms (Amendment 3),Gun Rights
 AL,1972-AL,Right to hunt and fish,Gun Rights
 AK,3093-AK,Marijuana legalizaton,Marijuana
 AK,3094-AK,Minimum wage increase,Minimum Wage
@@ -16,13 +16,13 @@ MA,24699-MA,Paid sick days (Question 4),Economic
 MI,24549-MI,Wolf hunting,Gun Rights
 MS,27131-MS,Right to hunt and fish,Gun Rights
 MO,27456-MO,Teacher performance evaluation (Amendment 3),Education
-NE,29334-NE,Minimum wage increase,Minimum Wage
-ND,35683-ND,Life begins at conception,Abortion
+NE,29334-NE,Minimum wage increase (Initiative 425),Minimum Wage
+ND,35683-ND,Life begins at conception (Measure 1),Abortion
 OR,39072-OR,Fund for post-secondary education,Education
-OR,39073-OR,Top two primary,Election Reform
-OR,39067-OR,Legalized marijuana,Marijuana
-OR,39074-OR,Mandatory labeling of GMOs,GMOs
-SD,42551-SD,Minimum wage increase,Minimum Wage
-TN,43705-TN,Legislative powers regarding abortion,Abortion
-WA,49385-WA,Background checks for gun purchases,Gun Rights
-WA,49384-WA,Gun rights,Gun Rights
+OR,39073-OR,Top-two primary (Measure 90),Election Reform
+OR,39067-OR,Legalized marijuana (Measure 91),Marijuana
+OR,39074-OR,Mandatory labeling of GMOs (Measure 92),GMOs
+SD,42551-SD,Minimum wage increase (Initiated Measure 18),Minimum Wage
+TN,43705-TN,Legislative powers regarding abortion (Amendment 1),Abortion
+WA,49385-WA,Background checks for gun purchases (Initiative 594),Gun Rights
+WA,49384-WA,Gun rights (Initiative 591),Gun Rights

@@ -157,8 +157,7 @@ def _render_liveblog_slide(slug, output_path):
             path = url_for(view_name, slug=slug)
 
         with app.app.test_request_context(path=path):
-            #print 'Rendering %s' % path
-
+            print 'Rendering %s' % path
             view = app.__dict__[view_name]
             content = view(slug)
 
@@ -206,11 +205,12 @@ def _render_results_slide(slug, output_path):
             path = url_for(view_name, slug=slug)
 
         with app.app.test_request_context(path=path):
-            #print 'Rendering %s' % path
 
             view = app.__dict__[view_name]
             content = view(slug)
 
+
+        print 'Rendering %s' % path
         path = '%s%s' % (output_path, path)
 
         # Ensure path exists

@@ -187,7 +187,7 @@ Tumblelog.Infinite = (function() {
     /* Live blog code */
 
     function enableLiveBlog() {
-        setInterval(updateLiveBlog, 30000);
+        setInterval(updateLiveBlog, 10000);
     }
 
     function updateLiveBlog() {
@@ -255,7 +255,7 @@ Tumblelog.Infinite = (function() {
             _is_loading = false;
             _.delay(function(){
                 $liveUpdateIcon.removeClass('fa-spin');
-                $lastUpdated.show().text('Last updated at ' + moment().format("h:mm a"));
+                $lastUpdated.show().text('Last checked at ' + moment().format("h:mm a"));
             }, 5000);
         });
     }

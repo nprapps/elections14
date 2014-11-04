@@ -10,7 +10,7 @@
 	width: 102%;
     height: 102%;
     margin: -1%;
-    
+
     .slide-inner {
     	height: @stack_height;
     }
@@ -173,7 +173,6 @@
     }
 }
 
-
 /*
  * GRAPHICS
  */
@@ -206,7 +205,7 @@
     color: @musicLight;
 	padding: 0 5%;
 	.vertical-center;
-    
+
     h1 {
         margin: 0 0 2rem 0;
         font-size: 3rem;
@@ -236,7 +235,7 @@
             padding-left: 1rem;
         }
     }
-    
+
     .ap-footnote { text-align: center; }
 
     .r { color: @red; }
@@ -432,18 +431,27 @@
 ** STATE SLIDES
 */
 
-.results-sliced {
-    color: #fff;
-    height: 100%;
-    margin-bottom: @line-height-computed;
-    padding-top: 1vh;
-    padding-bottom: 4rem;
-
-    .wrapper{
-        // .vertical-center;
+.recent-senate-calls,
+.recent-governor-calls {
+    .recent-calls {
+        color: #fff;
+        height: 100%;
+        margin-bottom: @line-height-computed;
+        padding-top: 1vh;
+        padding-bottom: 4rem;
     }
 
-    &:after {
+    .slide-inner {
+    	height: @stack_height;
+    }
+
+
+    .wrapper {
+        .vertical-center;
+    }
+
+
+    .slide-inner:after {
         content : "";
         display: block;
         position: absolute;
@@ -589,7 +597,11 @@
 
             .recent-calls& {
                 font-size: 1.8rem;
+                .wrapper {
+                    .vertical-center;
+                }
             }
+
 
             .results-status.called {
                 color: #999;
@@ -634,8 +646,8 @@
 }
 
 
-/* 
- * CREDIT 
+/*
+ * CREDIT
  */
 
 .ap-credit {
