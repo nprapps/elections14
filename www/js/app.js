@@ -254,7 +254,10 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
             return;
         }
 
-        if (loaded) {
+        if (IS_TOUCH) {
+            $chromecastIndexHeader.find('.cast-get-extension').hide();
+            $chromecastIndexHeader.find('.cast-try-chrome').show();
+        } else if (loaded) {
             CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
             $chromecastIndexHeader.find('.cast-enabled').show();
             $chromecastIndexHeader.find('.cast-disabled').hide();
