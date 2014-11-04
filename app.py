@@ -262,6 +262,7 @@ def _state_house_slide(slug, page):
     timestamp = get_last_updated(races)
     context = make_context(timestamp=timestamp)
 
+    context['slide_class'] = 'state-house'
     context['state_postal'] = slug
     context['state_name'] = app_config.STATES.get(slug)
 
@@ -327,6 +328,7 @@ def _state_senate_slide(slug):
     context['state_postal'] = slug
     context['state_name'] = app_config.STATES.get(slug)
 
+    context['slide_class'] = 'state-senate'
     context['senate'] = senate_races
     context['governor'] = governor_races
     context['time_on_screen'] = slide.time_on_screen
