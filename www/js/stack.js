@@ -87,7 +87,7 @@ var STACK = (function () {
          $audioPlayer.jPlayer({
             ready: function () {
                 $(this).jPlayer('setMedia', {
-                    mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
+                    mp3: '/assets/promo_compressed.mp3'
                 });
 
                 if (IS_CAST_RECEIVER || (SKIP_COUNTDOWN && !NO_AUDIO)) {
@@ -109,7 +109,7 @@ var STACK = (function () {
 
     var startLivestream = function() {
         $audioPlayer.jPlayer('setMedia', {
-            mp3: 'http://nprdmp.ic.llnwd.net/stream/nprdmp_live01_mp3'
+            mp3: 'http://nprspecial.ic.llnwd.net/stream/nprspecial_live24'
         }).jPlayer('play');
     }
 

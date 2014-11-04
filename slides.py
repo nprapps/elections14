@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import datetime
+from datetime import datetime, timedelta
 import json
 
 from dateutil.parser import parse
@@ -23,8 +23,6 @@ def senate_big_board():
 
     context['page_title'] = 'Senate'
     context['page_class'] = 'senate'
-    context['column_number'] = 2
-
 
     context['poll_groups'] = columnize_races(races, 19)
     context['bop'] = calculate_bop(races, SENATE_INITIAL_BOP)
@@ -82,7 +80,7 @@ def governor_big_board():
     races = Race.select().where(Race.office_name == 'Governor').order_by(Race.poll_closing_time, Race.state_postal)
     timestamp = get_last_updated(races)
 
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Governors'
     context['page_class'] = 'governor'
@@ -101,7 +99,7 @@ def ballot_measures_big_board():
     races = Race.select().where((Race.office_id == 'I') & (Race.featured_race == True))\
         .order_by(Race.poll_closing_time, Race.state_postal)
     timestamp = get_last_updated(races)
-    context = make_context()
+    context = make_context(timestamp=timestamp)
 
     context['page_title'] = 'Ballot Measures'
     context['page_class'] = 'ballot-measures'
@@ -161,8 +159,8 @@ def _get_recently_called(office_name):
     """
     from models import Race
 
-    now = datetime.datetime.now()
-    then = now - datetime.timedelta(minutes=15)
+    now = datetime.utcnow()
+    then = now - timedelta(minutes=15)
 
     recently_called = []
 
@@ -184,20 +182,26 @@ def recent_senate_calls():
     """
     Get the most recent called Senate races
     """
+    from models import Race
     context = make_context()
 
-    context['races'] = _get_recently_called('U.S. Senate')
+    races = Race.recently_called().where(Race.office_name == 'U.S. Senate')
+
+    context['races'] = races
     context['label'] = 'Senate'
 
     return render_template('slides/recent-calls.html', **context)
 
 def recent_governor_calls():
     """
-    Get the most recent called Senate races
+    Get the most recent called Governor races
     """
+    from models import Race
     context = make_context()
 
-    context['races'] = _get_recently_called('Governor')
+    races = Race.recently_called().where(Race.office_name == 'Governor')
+
+    context['races'] = races
     context['label'] = 'Governor'
 
     return render_template('slides/recent-calls.html', **context)
@@ -208,13 +212,20 @@ def balance_of_power():
     """
     from models import Race
 
-    context = make_context()
+    house_races = Race.select().where(Race.office_name == 'U.S. House').order_by(Race.state_postal)
+    senate_races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
+
+    senate_updated = get_last_updated(senate_races)
+    house_updated = get_last_updated(house_races)
+    if senate_updated > house_updated:
+        last_updated = senate_updated
+    else:
+        last_updated = house_updated
+
+    context = make_context(timestamp=last_updated)
 
     context['page_title'] = 'Balance of Power'
     context['page_class'] = 'balance-of-power'
-
-    house_races = Race.select().where(Race.office_name == 'U.S. House').order_by(Race.state_postal)
-    senate_races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
     context['house_bop'] = calculate_bop(house_races, HOUSE_INITIAL_BOP)
     context['senate_bop'] = calculate_bop(senate_races, SENATE_INITIAL_BOP)
@@ -242,6 +253,9 @@ def house_freshmen():
     context['races_lost'] = columnize_card(lost, 6)
     context['races_not_called'] = columnize_card(not_called, 6)
 
+    context['races_won_count'] = len(won)
+    context['races_lost_count'] = len(lost)
+    context['races_not_called_count'] = len(not_called)
     context['races_count'] = races.count()
 
     return render_template('slides/house-freshmen.html', **context)
@@ -250,7 +264,6 @@ def incumbents_lost():
     """
     Ongoing list of which incumbents lost their elections
     """
-    context = make_context()
 
     from models import Race
 
@@ -268,6 +281,15 @@ def incumbents_lost():
     senate_incumbents_lost = []
     house_incumbents_lost = []
 
+    senate_updated = get_last_updated(called_senate_races)
+    house_updated = get_last_updated(called_house_races)
+    if senate_updated > house_updated:
+        last_updated = senate_updated
+    else:
+        last_updated = house_updated
+
+    context = make_context(timestamp=last_updated)
+
     for race in called_senate_races:
         for candidate in race.candidates:
             if candidate.incumbent and not candidate.is_winner():
@@ -279,8 +301,10 @@ def incumbents_lost():
                 if candidate.incumbent and not candidate.is_winner():
                     house_incumbents_lost.append(race)
 
-    context['senate_incumbents_lost'] = columnize_card(senate_incumbents_lost, 6)
+    context['senate_incumbents_lost_count'] = len(senate_incumbents_lost)
+    context['house_incumbents_lost_count'] = len(house_incumbents_lost)
 
+    context['senate_incumbents_lost'] = columnize_card(senate_incumbents_lost, 6)
     context['house_incumbents_lost'] = columnize_card(house_incumbents_lost, 6)
 
     return render_template('slides/incumbents-lost.html', **context)
@@ -296,10 +320,17 @@ def obama_reps():
 
     context = make_context(timestamp=timestamp)
 
-    context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
-    context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
-    context['races_not_called'] = columnize_card([race for race in races if not race.is_called() or race.is_runoff()])
+    won = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    lost = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    not_called = [race for race in races if not race.is_called() or race.is_runoff()]
 
+    context['races_won'] = columnize_card(won)
+    context['races_lost'] = columnize_card(lost)
+    context['races_not_called'] = columnize_card(not_called)
+
+    context['races_won_count'] = len(won)
+    context['races_lost_count'] = len(lost)
+    context['races_not_called_count'] = len(not_called)
     context['races_count'] = races.count()
 
     return render_template('slides/obama-reps.html', **context)
@@ -323,7 +354,7 @@ def poll_closing():
 
     poll_groups = group_races_by_closing_time(featured_races)
 
-    now = datetime.datetime.now()
+    now = datetime.now()
     for closing_time, races in poll_groups:
         if now < closing_time:
             nearest_closing_time = closing_time
@@ -365,11 +396,19 @@ def romney_dems():
 
     context = make_context(timestamp=timestamp)
 
-    context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
-    context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
-    context['races_not_called'] = columnize_card([race for race in races if not race.is_called() or race.is_runoff()])
+    won = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    lost = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    not_called = [race for race in races if not race.is_called() or race.is_runoff()]
 
+    context['races_won'] = columnize_card(won)
+    context['races_lost'] = columnize_card(lost)
+    context['races_not_called'] = columnize_card(not_called)
+
+    context['races_won_count'] = len(won)
+    context['races_lost_count'] = len(lost)
+    context['races_not_called_count'] = len(not_called)
     context['races_count'] = races.count()
+
 
     return render_template('slides/romney-dems.html', **context)
 
@@ -388,10 +427,17 @@ def romney_senate_dems():
 
     context = make_context(timestamp=timestamp)
 
-    context['races_won'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()])
-    context['races_lost'] = columnize_card([race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()])
-    context['races_not_called'] = columnize_card([race for race in races if not race.is_called() or race.is_runoff()])
+    won = [race for race in races if race.is_called() and not race.is_runoff() and not race.party_changed()]
+    lost = [race for race in races if race.is_called() and not race.is_runoff() and race.party_changed()]
+    not_called = [race for race in races if not race.is_called() or race.is_runoff()]
 
+    context['races_won'] = columnize_card(won)
+    context['races_lost'] = columnize_card(lost)
+    context['races_not_called'] = columnize_card(not_called)
+
+    context['races_won_count'] = len(won)
+    context['races_lost_count'] = len(lost)
+    context['races_not_called_count'] = len(not_called)
     context['races_count'] = races.count()
 
     return render_template('slides/romney-senate-dems.html', **context)

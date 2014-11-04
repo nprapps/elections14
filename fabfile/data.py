@@ -4,7 +4,6 @@
 Commands that update or process the application data.
 """
 from datetime import datetime, timedelta
-from pytz import timezone
 from time import sleep
 from itertools import count
 import json
@@ -14,6 +13,7 @@ import copytext
 from fabric.api import env, local, execute, require, run, settings, task
 from facebook import GraphAPI
 from twitter import Twitter, OAuth
+from app_utils import eastern_now
 
 import app_config
 import admin_app
@@ -131,7 +131,7 @@ def load_races(path):
     with open(path) as f:
         races = json.load(f)
 
-    now = datetime.now() - timedelta(hours=5)
+    now = eastern_now()
 
     with models.db.transaction():
         for race in races:
@@ -182,7 +182,7 @@ def load_updates(path):
     races_updated = 0
     candidates_updated = 0
 
-    now = datetime.now() - timedelta(hours=5)
+    now = eastern_now()
 
     print 'Loading latest results from AP update data on disk'
 
@@ -710,6 +710,7 @@ def play_fake_results(update_interval=60):
     """
     import models
     from peewee import fn
+    from app_utils import eastern_now
 
     print "Playing back results, ctrl-c to stop"
 
@@ -727,6 +728,7 @@ def play_fake_results(update_interval=60):
                     race.precincts_total = random.randint(2000, 4000)
                     race.precincts_reporting = random.randint(200, race.precincts_total - 200)
                     _fake_results(race)
+                    race.last_updated = eastern_now()
                     race.save()
             else:
                 print "Races are called!"
@@ -736,14 +738,16 @@ def play_fake_results(update_interval=60):
                     race.ap_called_time = datetime.now()
                     race.precincts_reporting = random.randint(race.precincts_total - 500, race.precincts_total)
                     _fake_results(race)
+                    race.last_updated = eastern_now()
                     race.save()
 
-            execute('liveblog.update')
 
-            if app_config.DEPLOYMENT_TARGET:
-                execute('deploy_bop')
-                execute('deploy_big_boards')
-                execute('deploy_results_slides')
+            #if app_config.DEPLOYMENT_TARGET:
+                #execute('liveblog.update')
+                #execute('deploy_liveblog')
+                #execute('deploy_bop')
+                #execute('deploy_big_boards')
+                #execute('deploy_results')
 
             sleep(float(update_interval))
 

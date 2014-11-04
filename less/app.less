@@ -5,7 +5,12 @@
 @import "less/results.less";
 @import "less/slides.less";
 
-body, #stack {
+//set up base font size, so we can shrink it when the aspect radio exceeds 16x9
+html { font-size: 1vw; }
+body { font-size: 1rem; }
+
+body,
+#stack {
     background-color: black;
     color: @musicLight;
     z-index: 0;
@@ -22,21 +27,19 @@ svg {
 }
 
 .btn-lg {
-    font-size: 20px;
-    letter-spacing: .03em;
     border-radius: 5px;
     text-transform: uppercase;
-
-    @media screen and (max-width: @screen-xs-max){
-        font-size: 16px;
-    }
 }
 
 #stack {
-    width: 100%;
-    position: absolute;
-    top: 0;
     display: none;
+    margin: 0 auto;
+
+    width: @stack_width;
+    height: @stack_height;
+    padding: @stack_padding;
+
+    position: relative;
 }
 
 .slide {
@@ -71,9 +74,10 @@ svg {
     .transition(opacity 3s ease);
     text-align: center;
     padding:10px;
+    font-size: 14px;
 
     &:after {
-        content : "";
+        content: "";
         display: block;
         position: absolute;
         top: 0;
@@ -107,9 +111,10 @@ svg {
     }
 
     h2 {
-        line-height: 1.4em;
+        line-height: 1.4;
         font-size: 22px;
-        margin-top: 22px;
+        width: 95%;
+        margin: 22px auto 11px auto;
         @media screen and (max-width: @screen-xs-max){
             font-size:14px;
         }
@@ -117,6 +122,7 @@ svg {
 
     .cast-header {
         margin: 33px 0;
+//		font-size: 1.75rem;
 
     	.cast-enabled,
     	.cast-disabled {
@@ -131,22 +137,50 @@ svg {
 
         .cast-disabled p {
             margin-top: 33px;
-                a {
+			a {
                 color: @red;
                 font-weight: bold;
             }
         }
 
-        .cast-enabled-but-whatev {
-            margin-top: 33px;
-            a {
-                color: white;
+        .cast-enabled {
+            .cast-start {
+                display: inline-block;
+                font-size: 16px;
+                padding: 10px 10px 9px;
+                border: 2px solid white;
+                border-radius: 5px;
+                height: 50px;
                 font-weight: bold;
+                text-transform: uppercase;
                 &:hover {
-                    color:@red;
-                    text-decoration: none;
+                    background-color: @red;
+                    color: white;
+                }
+                svg {
+                    height: 30px;
+                    vertical-align: middle;
+                    fill: white;
+                    margin-right:7px;
+                }
+                @media screen and (max-width: @screen-xs-max){
+                    svg { height: 22px; }
+                    padding: 12px 10px 9px;
+                    font-size: 12px;
                 }
             }
+        }
+
+        .chromecast-note-touch, .chromecast-note {
+            margin-top:44px;
+            font-size: 12px;
+        }
+
+        .chromecast-note-touch { display: none; }
+
+        .touch & {
+            .chromecast-note-touch{ display: block; }
+            .chromecast-note{ display: none; }
         }
 
         @media screen and (max-width: @screen-xs-max){
@@ -160,15 +194,9 @@ svg {
         color: black;
         fill: black;
 
-        width: 390px;
         height: 50px;
 
         span { display:none; }
-
-        svg {
-            height: 30px;
-            vertical-align: middle;
-        }
 
         &:hover {
             background-color: @red;
@@ -181,16 +209,16 @@ svg {
         margin-top: 30px;
 
         @media screen and (max-width: @screen-xs-max){
-            margin-top: 15px;
             width: 260px;
             height: 50px;
-            font-size: 13px;
         }
     }
 
     .byline {
         font-size:11px;
         color: @grayMedium;
+        width: 80%;
+        margin: 0 auto;
         @media screen and (max-width: @screen-xs-max){
             font-size:8px;
         }
@@ -206,7 +234,7 @@ svg {
     display: none;
     text-align: center;
     z-index: 1000;
-    
+
     &:after {
         content : "";
         display: block;
@@ -260,66 +288,45 @@ svg {
 }
 
 /*
- * CONTROLS
+ * CONTROLS AND FEEDBACK
  */
 
-.controls {
-	li {
-		background: fadeout(#333,25%);
-		line-height: 3vw;
-		padding: 0 1vw 0 0;
-		margin-bottom: 2px;
-		font-size: 1.3vw;
-		
-		a { font-weight: bold; }
+ .controls ul li,
+ .feedback ul li {
+	background: fadeout(@grayMedium,60%);
+	line-height: 3.5rem;
+	margin-bottom: 1px;
+	border-radius: 0.5rem;
+	font-size: 1.2rem;
+	text-transform: uppercase;
 
-		i {
-			display: inline-block;
-			width: 3vw;
-			background: #222;
-			text-align: center;
-			margin-right: 1vw;
-			font-style: normal;
-		}
+	i {
+		display: inline-block;
+		width: 3rem;
+		border-radius: 0.5rem 0 0 0.5rem;
+		text-align: center;
+		font-style: normal;
+		color: @white;
+
+		.stateface:before {
+            margin-right: 0;
+            text-transform: none;
+        }
 	}
 
+	a {
+		.unselectable;
+	}
+ }
+
+.controls {
 	.play { display: none; }
+	.state-picker { margin: 0; }
 }
 
-
-/*
- * FEEDBACK
- */
-
 .feedback {
-	ul.social { 
-		display: table;
-		width: 100%;
-		
-		a { 
-			display: block;
-			font-weight: 700;
-			.unselectable;
-		}
-		
-		i.icon {
-			width: 3vw;
-			height: 3vw;
-			line-height: 3vw;
-			text-align: center;
-			display: inline-block;
-			background-color: #222;
-			margin-right: 1vw;
-		}
-
-		li {
-			line-height: 3vw;
-			vertical-align: middle;
-			background: fadeout(#333,25%);
-			margin-bottom: 1px;
-			font-size: 1.3vw;
-		}
-		
+	ul {
+		a { display: block; }
 	}
 }
 
@@ -331,7 +338,7 @@ svg {
 .legend {
     font-weight: 300;
 	.clearfix;
-    
+
     ul {
         .clearfix();
         margin-bottom: 0;
@@ -342,13 +349,12 @@ svg {
 
     li {
         position: relative;
-        padding-left: 4vw;
-        padding-right: 1vw;
-        margin-bottom: 1vw;
-        font-size: 1.25vw;
-        line-height: 1.25vw;
+        padding-left: 3.5rem;
+        padding-right: 1rem;
+        margin-bottom: .6rem;
+        font-size: 1.1rem;
 
-        sup { top: -0.3em; }
+        sup { top: -0.3rem; }
     }
 
     .incumbent,
@@ -357,7 +363,7 @@ svg {
     .pickup,
     .polls,
     .key-color {
-        width: 2.5vw;
+        width: 2.5rem;
         display: block;
         position: absolute;
         top: 0;
@@ -368,22 +374,23 @@ svg {
     }
 
     .key-color {
-        .square(1.1vw);
+        .square(1rem);
         display: inline-block;
-        border-radius: 1vw;
-        margin-right: .5vw;
-        left: 1.5vw;
+        border-radius: 1rem;
+        margin-right: .5rem;
+        left: 1.5rem;
 		font-family: 'Cooper Hewitt';
 
         &.dem   { background: @blue; }
         &.gop   { background: @red; }
         &.other { background: @green; }
+        &.not-called { background: @yellow; }
     }
 
     .winner {
         display: inline-block;
-        border-radius: 0.5vw;
-        padding: 0 0.5vw;
+        border-radius: 0.5rem;
+        padding: 0 0.5rem;
         color: #fff;
         opacity: .8;
 		font-family: 'Cooper Hewitt';
@@ -395,15 +402,15 @@ svg {
 
     .incumbent {
         img {
-            width: 0.8vw;
+            width: 0.6rem;
             display: inline-block;
         }
     }
 
     .polls {
         font-weight: 700;
-        letter-spacing: 0.05em;
-        font-size: 1.2vw;
+        letter-spacing: 0.05rem;
+        font-size: 1rem;
         color: @gray-light;
         white-space: nowrap;
     }
@@ -411,7 +418,7 @@ svg {
     .reporting {
         color: @yellow;
         font-weight: 500;
-        font-size: 1.3vw;
+        font-size: 1.1rem;
     }
 
     .seat-held {
@@ -422,7 +429,7 @@ svg {
     .pickup {
         font-weight: 500;
         font-style: italic;
-        font-size: 1.5vw;
+        font-size: 1.1rem;
         color: @blue;
     }
 }
@@ -430,15 +437,16 @@ svg {
 
 /*
  * CHROMECAST AND MOBILE MENU
- * (responsive, so all values in px rather than vw)
+ * (responsive, so all values in px rather than rem)
  */
 
 .cast-controls {
-	color: @grayMedium;
     display: none;
+	color: @grayMedium;
+    padding: 22px 11px;
 
 	@media screen and (min-width: @screen-sm){
-		padding: 33px;
+		padding: 22px 33px;
 	}
 
     &:after {
@@ -462,25 +470,28 @@ svg {
         color: @white;
         font-weight: 700;
         text-transform: uppercase;
-        
+
 		@media screen and (min-width: @screen-sm){
 			font-size: 16px;
 		}
     }
-    
-    .close-link {
-    	padding: 0 11px;
-    	line-height: 44px;
-    	font-weight: bold;
-    	font-size: 12px;
-		background: fadeout(#333,25%);
-        display: none;
-    }
 
-	.wrapper {
-		.clearfix;
-		padding: 22px 11px;
-	}
+    .close-link {
+        display: none;
+		margin: 0 0 33px 0;
+
+    	a {
+			padding: 0 11px;
+			line-height: 44px;
+			font-size: 12px;
+			text-transform: uppercase;
+			background: fadeout(@grayMedium,60%);
+			display: inline-block;
+			border-radius: 0.5em;
+		}
+
+		i { margin-left: 0.5em; }
+    }
 
 	.controls-feedback-wrapper {
 		@media screen and (min-width: @screen-sm){
@@ -488,93 +499,49 @@ svg {
 			float: left;
 		}
 	}
-    
+
+	.wrapper {
+		.clearfix;
+	}
+
 	.controls .slide-nav a,
 	.controls ul li,
 	.feedback p,
 	.feedback ul.social li {
-		font-size: 12px;
+		font-size: 11px;
+		.unselectable;
 
 		@media screen and (min-width: @screen-sm){
 			font-size: 14px;
 		}
 	}
-	
-    .controls {
-		ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
 
-			li {
-				.unselectable;
-				font-weight: bold;
-				line-height: 44px;
-				margin-bottom: 2px;
-				padding: 0 11px 0 0;
-				
-				&.nav { padding-right: 0; }
-				
-				.slide-nav {
-					display: table;
-					width: 100%;
-	
-					a {
-						display: table-cell;
-						width: 50%;
+	.controls ul,
+	.feedback ul {
+		margin: 0;
 
-						&.nav-btn-left { border-right: 1px solid #000; }
-						&.nav-btn-right {
-							text-align: right;
-							border-left: 1px solid #000;
-						}
-		
-						&.in-transition {
-							background-color: #444;
-							cursor: default;
-							color: #787878;
-						}
-					}
-				}
-				
-				i {
-					width: 44px;
-					margin-right: 11px;
-					
-					&.ion-chevron-right { 
-						margin-left: 11px;
-						margin-right: 0;
-					}
-				}
-				
-				img {
-					height: 18px;
-					width: auto;
-					vertical-align: middle;
-				}
-			}
+		li {
+			line-height: 44px;
+			margin-bottom: 1px;
 		}
-    }
 
-	.feedback { 
-//		padding-top: 5px;
-	
-		h3 { padding-top: 33px; }
-		
-		ul.social {
-			i {
-				width: 44px;
-				height: 44px;
-				line-height: 44px;
-				margin-right: 10px;
-			}
-			
-			li { line-height: 44px; }
+		i { width: 33px; }
+
+		img {
+			height: 18px;
+			width: auto;
+			vertical-align: middle;
 		}
 	}
 
-	.legend {
+	.feedback {
 		margin-bottom: 33px;
+
+		h3 { padding-top: 22px; }
+	}
+
+	.legend {
+		margin: 0 0 22px 0;
 
 		@media screen and (min-width: @screen-sm){
 			width: 45%;
@@ -585,7 +552,7 @@ svg {
 		ul {
 			width: 50%;
 			float: left;
-			
+
 			@media screen and (min-width: @screen-sm){
 				width: auto;
 				float: none;
@@ -639,11 +606,32 @@ svg {
 			padding: 0 6px;
 		}
 	}
+
+	.slide-nav {
+		display: table;
+		width: 100%;
+
+		a {
+			display: table-cell;
+			width: 50%;
+
+			&.nav-btn-right {
+				text-align: right;
+				border-left: 1px solid #000;
+			}
+
+			&.in-transition {
+				background-color: #444;
+				cursor: default;
+				color: #787878;
+			}
+		}
+	}
 }
 
 #us {
     font-family: "StateFaceRegular";
-    font-size: 15vw;
+    font-size: 15rem;
 }
 
 
@@ -659,8 +647,8 @@ svg {
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		width: 6vw;
-		font-size: 3vw;
+		width: 6rem;
+		font-size: 3rem;
 		background: transparent;
 		border: none;
 
@@ -685,14 +673,14 @@ svg {
 .controls-wrapper {
     position: absolute;
     left: 0;
-    bottom: 5vw;
+    bottom: 5rem;
     width: 98%;
     z-index: 100;
     background: fadeout(@blueDarker,2%);
-    font-size: 1.75vw;
-    border-radius: 1vw;
-    padding: 2vw 0.5vw 1vw .5vw;
-    margin: 0 1vw;
+    font-size: 1.75rem;
+    border-radius: 1rem;
+    padding: 2rem 0.5rem 1rem .5rem;
+    margin: 0 1rem;
     overflow: hidden;
     color: @grayMedium;
     display: none;
@@ -702,10 +690,10 @@ svg {
             text-decoration: none;
         }
     }
-    
+
     h3 {
-    	margin: 0 0 1vw;
-    	font-size: 1.5vw;
+    	margin: 0 0 1rem 0;
+    	font-size: 1.2rem;
     	text-transform: uppercase;
     	color: @white;
     	font-weight: 700;
@@ -721,18 +709,18 @@ svg {
     }
 
     .controls {
-        li { 
-			img { height: 2vw; }
+        li {
+			img { height: 2rem; }
         }
-        
+
         nav { display: none; }
     }
 
     .feedback {
-    	.social { margin-bottom: 2vw; }
+    	.social { margin-bottom: 2rem; }
 
         p {
-            font-size: 1.2vw;
+            font-size: 1.1rem;
             line-height: 1.4;
         }
     }
@@ -744,8 +732,7 @@ svg {
     right: 0;
     bottom: 0;
     z-index: 1;
-    background: black;
-    padding: .3vw 2% 0 2%;
+    padding: @footer_padding;
 
     a {
         color: @grayMedium;
@@ -765,8 +752,8 @@ svg {
 		.senate-header {
 			text-transform: uppercase;
 			font-weight: bold;
-			font-size: 1.7vw;
-			line-height: 3vw;
+			font-size: 1.5rem;
+			line-height: 1.5rem;
 			vertical-align: middle;
 			font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
 		}
@@ -774,30 +761,33 @@ svg {
 
     .control-toggle {
     	float: left;
-    	padding: 0 1.5vw 0 .5vw;
-        text-align: center;
-        text-transform: uppercase;
-        font-size: 1.5vw;
-        line-height: 3.5vw;
-        border-radius: 1vw;
-		background: fadeout(@grayMedium,85%);
-		.unselectable;
-		
-        &.active {
-		    background: fadeout(@blueDarker,2%);
-		    a { color: #fff; }
-        }
 
         a {
+        	display: inline-block;
             text-decoration: none;
-
-            &:hover svg { fill: #fff; }
+			padding: 0 1.5rem 0 1.5rem;
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 1.5rem;
+			line-height: 3rem;
+			border-radius: 0.5rem;
+			color: @grayMedium;
+			background: #333;
+			.unselectable;
+        }
+        
+		a:hover,
+        &.active a {
+			color: @white;
+			background: fadeout(@blueDarker,2%);
         }
 
         svg {
             fill: @grayMedium;
-            height: 3vw;
+            height: 3rem;
             vertical-align: middle;
+            display: inline-block;
+            max-width: 100%; // Fixes safari width bug
         }
 
         .touch-message { display: none; }
@@ -811,27 +801,20 @@ svg {
     .nav {
     	float: right;
         text-align: right;
-        font-size: 1.5vw;
-        line-height: 3.5vw;
+        white-space: nowrap; // Fixes safari wrapping
 
-        .page,
         .slide-nav,
         .slide-countdown,
         .logo {
             display: inline-block;
         }
 
-        .page {
-            color: @grayMedium;
-            font-size: 1.2vw;
-        }
-
         .slide-nav {
-            margin-left: 1vw;
+            margin-left: 1rem;
 
             p {
                 vertical-align: middle;
-                padding: 0 1vw;
+                padding: 0 1rem;
             }
 
             p,
@@ -840,30 +823,30 @@ svg {
             }
 
             .nav-btn {
-                font-size: 2vw;
+                font-size: 2rem;
 
                 + .nav-btn {
-                    padding-left: 0.5vw;
+                    padding-left: 0.5rem;
                 }
             }
         }
 
         .slide-countdown {
             position: relative;
-            bottom: -0.2vw;
-            padding: 0 0 0 .5vw;
-            width: 2.75vw;
+            bottom: -0.2rem;
+            padding: 0 0 0 .5rem;
+            width: 2.75rem;
 
             .countdown-background { fill: @musicDark; }
             .countdown-active { fill: @grayMedium; }
         }
 
         .logo {
-            margin-left: 1vw;
-            width: 8vw;
+            margin-left: 1rem;
+            width: 8rem;
             fill: @grayMedium;
             position: relative;
-            bottom: -0.35vw;
+            bottom: -0.35rem;
         }
     }
 }
@@ -894,17 +877,16 @@ html.touch-portrait {
         position: absolute;
         bottom: 0;
         width: 100%;
-        padding-bottom: 3vw;
-        font-size: 4vw;
+        padding-bottom: 2rem;
+        font-size: 4rem;
         line-height: 1.3;
-        font-weight: 700;
 
         .rotate { text-align: center; }
 
         img {
         	display: block;
-        	margin: 0 auto 1.5vw auto;
-        	height: 10vw;
+        	margin: 0 auto 4rem auto;
+        	height: 10rem;
         	width: auto;
         }
 

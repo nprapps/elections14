@@ -12,23 +12,21 @@
     <p class="byline">{{ COPY.content.byline }}</p>
 
     <div class="cast-header">
+        <button class="btn btn-lg welcome-button js-go">
+                Come on in!
+        </button>
         <div class="cast-disabled">
-            <button class="btn btn-lg welcome-button js-go">
-                {% for greeting in COPY.welcome_button %}
-                    <span data-greeting-index="{{ loop.index0 }}">
-                        {{ greeting }}
-                    </span>
-                {% endfor %}
-            </button>
             <p class="cast-try-chrome">{{ COPY.content.get_chrome }}</p>
             <p class="cast-get-extension">{{ COPY.content.get_chromecast }}</p>
         </div>
         <div class="cast-enabled">
-            <button class="cast-start btn btn-lg welcome-button">{% include '_chromecast-off.svg' %} {{ COPY.content.chromecast_button }}</button>
-            <p class="cast-enabled-but-whatev"><a href="#" class="js-go">{{ COPY.content.chromecast_alt_button }}</a></p>
+            <p class="chromecast-note">{{ COPY.content.chromecast_note }}</p>
+            <p class="chromecast-note-touch">{{ COPY.content.chromecast_note_touch }}</p>
+            <a href="#" class="cast-start">
+                {% include '_chromecast-off.svg' %} {{ COPY.content.chromecast_button }}
+            </a>
         </div>
     </div>
-
 </div>
 
 <div class="countdown">
@@ -43,18 +41,18 @@
 </div>
 
 <div class="cast-controls">
-    <a class="close-link" href="#">Back to the party <i class="icon ion-chevron-right"></i></a>
-    
+    <div class="close-link"><a href="#">Back to the party <i class="icon ion-chevron-right"></i></a></div>
+
     <div class="wrapper">
 		{% include '_legend.html' %}
-	
+
 		<div class="controls-feedback-wrapper">
 			{% include '_controls.html' %}
 			{% include '_feedback.html' %}
 		</div>
 	</div>
 
-    <a class="close-link" href="#">Back to the party <i class="icon ion-chevron-right"></i></a>
+    <div class="close-link"><a href="#">Back to the party <i class="icon ion-chevron-right"></i></a></div>
 </div>
 
 <div id="stack">
@@ -74,20 +72,13 @@
     </div>
 
     <div class="footer-container">
-        {% if bop %}
         <div class="leaderboard">
-            {% include 'bop.html' %}
         </div>
-        {% endif %}
-
-<!--         <div class="control-toggle">
-            <a href="#" class="js-toggle-controls">{% include '_icon-remote.svg' %} {{ COPY.chromecast.menu_hed }}</a>
-        </div> -->
 
         <div class="control-toggle">
             <a href="#" class="js-toggle-controls">
                 <span class="desktop-message">
-                    {% include '_icon-remote.svg' %} {{ COPY.chromecast.menu_hed }}
+                    {{ COPY.chromecast.menu_hed }}
                 </span>
                 <span class="touch-message">
                     {{ COPY.legend.touch_button }}
@@ -101,7 +92,7 @@
                 <a href="#" data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></a>
                 <a href="#" data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></a>
             </nav>
-            {% include '_logo.svg' %}
+            <a href="http://www.npr.org" target="_blank">{% include '_logo.svg' %}</a>
         </div>
     </div>
 </div>

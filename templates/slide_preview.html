@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {% include '_fonts.html' %}
-
     {# Unfortunante hack because we're deploying this to staging and it can't compile a less file on demand #}
 
     {% if DEPLOYMENT_TARGET %}
@@ -14,8 +12,10 @@
 
     {# ugly includes because slide js is inlined and can't pickup the stuff from the base template #}
     <script src="/js/lib/d3.v3.min.js"></script>
-    {{ JS.push('js/lib/modernizr.js') }}
+    {{ JS.push('js/lib/modernizr.custom.js') }}
     {{ JS.push('js/lib/jquery.js') }}
+    {{ JS.push('js/lib/webfont.js') }}
+    {{ JS.push('js/fonts.js') }}
     {{ JS.render('js/preview-header.min.js') }}
 </head>
 
@@ -48,40 +48,21 @@
 
     <script>
         var onWindowResize = function() {
-            var width = $(window).width();
-            var height = $(window).height();
+            var $stack = $('#stack');
+            var $currentSlideInner = $('.slide-inner');
 
-            var new_height = width * 9 / 16;
-            var padding = (height - new_height) / 2;
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            var aspect = w / h;
+            var new_aspect;
 
-            if (padding < 0) {
-                padding = 0;
+            if (aspect > 16/9) {
+                new_aspect = aspect;
+                document.documentElement.style.fontSize = ((16/9) / aspect) + 'vw';
+            } else {
+                new_aspect = 16/9;
+                document.documentElement.style.fontSize = '1vw';
             }
-
-            $('#stack').css({
-                'width': width + 'px',
-                'height': new_height + 'px',
-                'position': 'absolute',
-                'top': padding + 'px'
-            });
-
-            var thisSlide = $('.slide');
-            resizeSlide(thisSlide);
-        }
-
-        /*
-         * Resize a slide to fit the viewport.
-         */
-        var resizeSlide = function(slide) {
-            var $w = $('#stack').width();
-            var $h = $('#stack').height();
-            var headerHeight = 0;
-
-            slide.width($w);
-            slide.height($h - headerHeight);
-
-            slide.find('.slide-inner').width($w);
-            slide.find('.slide-inner').height($h - headerHeight);
         }
 
         $(document).ready(function() {

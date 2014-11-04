@@ -42,8 +42,6 @@ var reloadTimestamp = null;
 var state = null;
 var is_casting = false;
 var countdown = 5 + 1;
-var welcome_greeting_counter = 0;
-var welcome_greeting_timer = null;
 var inTransition = null;
 
 var slide_countdown_arc = null;
@@ -94,7 +92,7 @@ var invert = function(obj) {
 var onDocumentReady = function(e) {
     // Timestamp when page was loaded
     reloadTimestamp = Date.now();
-    
+
     // Cache jQuery references
     $body = $('body');
     $welcomeScreen = $('.welcome');
@@ -144,11 +142,13 @@ var onDocumentReady = function(e) {
 
     if (!IS_TOUCH) {
         $controlsToggle.on('click', onControlsToggleClick);
+        $controlsWrapper.on('click', onControlsWrapperClick);
     } else {
         $stack.on('click', onStackTap);
         $closeControlsLink.on('click', onCloseControlsLink);
     }
 
+    $statePicker.on('click', onStatePickerClick);
     $statePicker.on('change', onStatePickerChange);
 
     $body.on('keydown', onKeyboard);
@@ -176,7 +176,7 @@ var onDocumentReady = function(e) {
         is_casting = true;
         state = 'TX';
         onCastStarted();
-    
+
     // runs if we've triggered a reload, via fab reset_browsers!
     } else if ($.cookie('reload')) {
         $.removeCookie('reload');
@@ -186,8 +186,10 @@ var onDocumentReady = function(e) {
 
     // debugging with the ?skipcountdown flag, to go straight the stack
     } else if (SKIP_COUNTDOWN) {
+        state = 'CA';
+        $welcomeScreen.hide();
         STACK.start();
-    
+
     // running the app as usual, on your phone or laptop
     } else {
         $welcomeScreen.velocity('fadeIn');
@@ -205,6 +207,8 @@ var onDocumentReady = function(e) {
 
     create_slide_countdown();
 }
+
+$(onDocumentReady);
 
 /*
  * Create and configure UI elements.
@@ -227,39 +231,38 @@ var setupUI = function() {
 
     // Geolocate
     if (typeof geoip2 == 'object' && !($.cookie('state'))) {
-        geoip2.city(onLocateIP);
+        geoip2.city(onLocateIP, onLocateFail);
     }
 
     // GeoIP failed to load (adblocker)
     if (typeof geoip2 != 'object' && !($.cookie('state'))) {
-        // Default to CA
-        onLocateIP({ 'most_specific_subdivision': { 'iso_code': 'CA' } });
+        _setLocateDefault();
     }
-
-    welcomeOurGuests();
 }
 
 /*
  * Setup Chromecast if library is available.
  */
 window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
-    $chromecastIndexHeader = $('.welcome').find('.cast-header');
+    // We need the DOM here, so don't fire until it's ready.
+    $(function() {
+        $chromecastIndexHeader = $('.welcome').find('.cast-header');
 
-    // Don't init sender if in receiver mode
-    if (IS_CAST_RECEIVER || IS_FAKE_CASTER) {
-        return;
-    }
+        // Don't init sender if in receiver mode
+        if (IS_CAST_RECEIVER || IS_FAKE_CASTER) {
+            return;
+        }
 
-    if (loaded) {
-        CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
-    	$chromecastIndexHeader.find('.cast-enabled').show();
-    	$chromecastIndexHeader.find('.cast-disabled').hide();
-        $castStart.show();
-        window.clearTimeout(welcome_greeting_timer);
-    } else {
-        $chromecastIndexHeader.find('.cast-try-chrome').hide();
-        $chromecastIndexHeader.find('.cast-get-extension').show();
-    }
+        if (loaded) {
+            CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
+            $chromecastIndexHeader.find('.cast-enabled').show();
+            $chromecastIndexHeader.find('.cast-disabled').hide();
+            $castStart.show();
+        } else {
+            $chromecastIndexHeader.find('.cast-try-chrome').hide();
+            $chromecastIndexHeader.find('.cast-get-extension').show();
+        }
+    });
 }
 
 /*
@@ -295,10 +298,9 @@ var onCastStopped = function() {
     $chromecastScreen.hide();
 
     STACK.start();
-    
+
     if (!IS_TOUCH) {
         $fullscreenStart.show();
-        $fullscreenStop.show();
     }
 
     is_casting = false;
@@ -342,7 +344,7 @@ var onCastStartClick = function(e) {
     e.preventDefault();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'chromecast-initiated']);
-    
+
     CHROMECAST_SENDER.startCasting();
 }
 
@@ -364,32 +366,25 @@ var onCastStopClick = function(e) {
  * Resize stack and current slide.
  */
 var onWindowResize = function() {
-    var width = $(window).width();
-    var height = $(window).height();
-    var footerHeight = 0;
+    var $stack = $('#stack');
+    var $currentSlideInner = $('.slide-inner');
 
-    var new_height = width * 9 / 16;
-    var padding = (height - new_height) / 2;
-
-    if (padding < 0) {
-        padding = 0;
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var aspect = w / h;
+    var new_aspect;
+    
+    if (aspect > 16/9) {
+    	new_aspect = aspect;
+        document.documentElement.style.fontSize = ((16/9) / aspect) + 'vw';
+    } else {
+    	new_aspect = 16/9;
+        document.documentElement.style.fontSize = '1vw';
     }
 
-    $stack.css({
-        'width': width + 'px',
-        'height': new_height + 'px',
-        'position': 'absolute',
-        'top': padding + 'px'
-    });
-
     checkForPortrait();
-
-    var currentSlideInner = $('.slide-inner');
-
-    currentSlideInner.width(width);
-    currentSlideInner.height(new_height - footerHeight);
-
 }
+
 
 /*
  * Advance to state select screen.
@@ -398,8 +393,6 @@ var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
 
     enableRotatePrompt();
-
-    window.clearTimeout(welcome_greeting_timer);
 
     // Mobile devices require a click to start audio
     if (IS_TOUCH) {
@@ -412,7 +405,7 @@ var onWelcomeButtonClick = function() {
 /*
  * Fullscreen the app.
  */
-var onFullscreenButtonClick = function() {
+var onFullscreenButtonClick = function(event) {
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'fullscreen']);
     var elem = document.getElementById("stack");
 
@@ -449,6 +442,11 @@ var onFullscreenButtonClick = function() {
         $fullscreenStart.hide();
         $fullscreenStop.show();
     }
+    event.stopPropagation();
+}
+
+var onStatePickerClick = function(event) {
+    event.stopPropagation();
 }
 
 /*
@@ -471,8 +469,8 @@ var onStatePickerChange = function() {
 /*
  * Unmute the audio.
  */
-var onAudioPlayClick = function(e) {
-    e.preventDefault();
+var onAudioPlayClick = function(event) {
+    event.preventDefault();
 
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'false');
@@ -484,14 +482,16 @@ var onAudioPlayClick = function(e) {
     $audioPause.show();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+
+    event.stopPropagation();
 }
 
 /*
  * Mute the audio.
  */
-var onAudioPauseClick = function(e) {
-    e.preventDefault();
-    
+var onAudioPauseClick = function(event) {
+    event.preventDefault();
+
     if (is_casting) {
         CHROMECAST_SENDER.sendMessage('mute', 'true');
     } else {
@@ -502,13 +502,15 @@ var onAudioPauseClick = function(e) {
     $audioPlay.show();
 
     _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'audio-toggle']);
+
+    event.stopPropagation();
 }
 
 /*
  * Click left or right paddle
  */
-var onSlideControlClick = function(e) {
-    e.preventDefault();
+var onSlideControlClick = function(event) {
+    event.preventDefault();
 
     var $this = $(this);
     var direction = $this.data('slide');
@@ -546,35 +548,67 @@ var onSlideControlClick = function(e) {
 /*
  * Click control/legend toggle
  */
-var onControlsToggleClick = function(e) {
-    e.preventDefault();
+var onControlsToggleClick = function(event) {
+    event.preventDefault();
 
-    $controlsWrapper.fadeToggle();
+    $controlsWrapper.fadeToggle(400, function() {
+        // if we already have a handler, we need to remove it.
+
+        var htmlStack = document.getElementById('stack');
+        var ev = $._data(htmlStack, 'events');
+        if (ev && ev.click) {
+            $stack.off('click', onDesktopStackClick);
+        }
+        else {
+            $stack.on('click', onDesktopStackClick);
+        }
+    });
     $(this).parent('.control-toggle').toggleClass('active');
+
+    event.stopPropagation();
 }
 
 /*
  * Open mobile controls.
  */
-var onStackTap = function(e) {
-    e.preventDefault();
+var onStackTap = function(event) {
+    event.preventDefault();
 
     disableRotatePrompt();
     $castControls.show();
     $closeControlsLink.show();
     $stack.hide();
-    
+
     if (!hasTrackedMobileControls) {
         _gaq.push(['_trackEvent', APP_CONFIG.PROJECT_SLUG, 'mobile-controls']);
         hasTrackedMobileControls = true;
     }
 }
 
+var onDesktopStackClick = function(event) {
+    event.preventDefault();
+
+    if ($('.control-toggle').not('active')) {
+        $controlsWrapper.fadeToggle();
+        $('.control-toggle').removeClass('active');
+    }
+
+    $stack.off('click', onDesktopStackClick);
+
+}
+
+/*
+* Just to prevent click events from propagating through.
+*/
+var onControlsWrapperClick = function(event) {
+    event.stopPropagation();
+}
+
 /*
  * Close the mobile controls.
  */
-var onCloseControlsLink = function(e) {
-    e.preventDefault();
+var onCloseControlsLink = function(event) {
+    event.preventDefault();
 
     enableRotatePrompt();
     $castControls.hide();
@@ -599,28 +633,41 @@ var onKeyboard = function(e) {
     if (e.which == 37) {
         $('.slide-nav .nav-btn-left').eq(0).click();
     }
-    
+
     // Escape
     if (e.which == 27 && !IS_TOUCH && !is_casting) {
         $controlsToggle.click();
     }
 }
 
-
 /*
  * Set the geolocated state.
  */
 var onLocateIP = function(response) {
     var postal_code = response.most_specific_subdivision.iso_code;
+    if (has(window.APP_CONFIG.STATES, postal_code)) {
+        $('#option-' + postal_code).prop('selected', true);
+        state = postal_code;
+        $.cookie('state', state, { expires: 30 });
+        showState();
+    } else {
+        _setLocateDefault();
+        return;
+    }
+}
 
-    // TODO: handle geocodes outside US
-    
-    $('#option-' + postal_code).prop('selected', true);
+/*
+ * Default to CA when geoip fails.
+ */
+var _setLocateDefault = function() {
+    // Fake out CA response
+    onLocateIP({ 'most_specific_subdivision': { 'iso_code': 'CA' } });
+}
 
-    state = postal_code;
-    $.cookie('state', state, { expires: 30 });
-    
-    showState();
+var onLocateFail = function(error) {
+    // TODO: track error event?
+
+    setLocateDefault();
 }
 
 /*
@@ -703,13 +750,13 @@ var hideCountdown = function() {
         });
     $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
 }
-    
+
 /*
  * Update the current state everywhere it is displayed.
  */
 var showState = function() {
     $stateface.removeClass().addClass('stateface stateface-' + state.toLowerCase());
-    
+
     // Explicitly set state pickers because there could be more than one on the page
     $statePicker.val(state);
 }
@@ -718,8 +765,10 @@ var showState = function() {
  * Fetch and display the latest balance of power.
  */
 var checkBop = function() {
-    setInterval(function() {
-        $bop.load('/bop.html');
+    $bop.load('/bop.html');
+
+    setTimeout(function() {
+        checkBop();
     }, APP_CONFIG.CLIENT_BOP_INTERVAL * 1000);
 }
 
@@ -858,17 +907,3 @@ function tween_slide_arc(transition, arc_main, end) {
 		};
 	});
 }
-
-/*
- * Rotate welcome button greetings.
- */
-var welcomeOurGuests = function(){
-    greetings = $welcomeButton.find('span')
-    var count = greetings.length;
-    greetings.velocity({ opacity: 0 }, { display: "none" });
-    $welcomeButton.find('span[data-greeting-index="' + welcome_greeting_counter % count + '"]').velocity({opacity:1}, { display: "inline" })
-    welcome_greeting_counter++;
-    welcome_greeting_timer = window.setTimeout(welcomeOurGuests, 5000);
-}
-
-$(onDocumentReady);

@@ -75,7 +75,6 @@ def index():
     """
     races = Race.select().where(Race.office_name == 'U.S. Senate').order_by(Race.state_postal)
 
-    context['bop'] = app_utils.calculate_bop(races, app_utils.SENATE_INITIAL_BOP)
     context['not_called'] = app_utils.calculate_seats_left(races)
 
     if app_config.DEPLOY_PROMO:
@@ -283,11 +282,14 @@ def _state_house_slide(slug, page):
 
         context['page'] = page
 
-    context['time_on_screen'] = slide.time_on_screen
-    context['races'] = races
-    context['body'] = render_template('slides/state_house.html', **context)
+    if races.count():
+        context['time_on_screen'] = slide.time_on_screen
+        context['races'] = [race for race in races]
+        context['body'] = render_template('slides/state_house.html', **context)
 
-    return render_template('_slide.html', **context)
+        return render_template('_slide.html', **context)
+    else:
+        return "no races", 404
 
 @app.route('/slides/state-senate-results-<slug>.html')
 @app_utils.cors

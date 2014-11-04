@@ -5,6 +5,8 @@ from decimal import Decimal, InvalidOperation
 from functools import wraps
 from flask import make_response
 from math import ceil
+from datetime import datetime
+from pytz import timezone
 
 SENATE_INITIAL_BOP = {
     'dem': {
@@ -156,7 +158,13 @@ def calculate_state_bop(races):
     called_gop_number = 0
     called_dem_number = 0
     called_other_number = 0
+    not_called_number = 0
+    total_races = 0
+    bar_max = 0
+
     for race in races:
+        total_races += 1
+
         if race.previous_party == 'gop':
             current_gop_number += 1
         elif race.previous_party == 'dem':
@@ -172,15 +180,23 @@ def calculate_state_bop(races):
             elif race.get_winning_party() == 'other':
                 called_other_number += 1
 
-    current_total = current_gop_number + current_dem_number + current_other_number
-    current_gop_percent = _percent(current_gop_number, current_total)
-    current_dem_percent = _percent(current_dem_number, current_total)
-    current_other_percent = _percent(current_other_number, current_total)
+    not_called_number = calculate_seats_left(races)
+    not_called_percent = _percent(not_called_number, total_races)
 
-    called_total = called_gop_number + called_dem_number + called_other_number
-    called_gop_percent = _percent(called_gop_number, called_total)
-    called_dem_percent = _percent(called_dem_number, called_total)
-    called_other_percent = _percent(called_other_number, called_total)
+    current_total = current_gop_number + current_dem_number + current_other_number
+
+    if current_total > total_races:
+        bar_max = current_total
+    else:
+        bar_max = total_races
+
+    current_gop_percent = _percent(current_gop_number, bar_max)
+    current_dem_percent = _percent(current_dem_number, bar_max)
+    current_other_percent = _percent(current_other_number, bar_max)
+
+    called_gop_percent = _percent(called_gop_number, bar_max)
+    called_dem_percent = _percent(called_dem_number, bar_max)
+    called_other_percent = _percent(called_other_number, bar_max)
 
     return {
         'current_gop_number': current_gop_number,
@@ -195,6 +211,8 @@ def calculate_state_bop(races):
         'called_gop_percent': called_gop_percent,
         'called_dem_percent': called_dem_percent,
         'called_other_percent': called_other_percent,
+        'not_called_percent': not_called_percent,
+        'not_called_number': not_called_number,
     }
 
 def get_last_updated(races):
@@ -209,3 +227,16 @@ def get_last_updated(races):
         last = Race.select().order_by(Race.last_updated).limit(1).get()
 
     return last.last_updated
+
+def eastern_now():
+    """
+    Return converted datetime
+    """
+    now_utc = datetime.utcnow()
+    utc_tz = timezone('UTC')
+    now_aware = utc_tz.localize(now_utc)
+    est_tz = timezone('US/Eastern')
+    now_est = now_aware.astimezone(est_tz)
+    now = now_est.replace(tzinfo=None)
+    return now
+

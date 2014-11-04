@@ -18,14 +18,16 @@
         &.gop { background-color: @red; }
         &.dem { background-color: @blue; }
         &.other { background-color: @green; }
+        &.not-called { border: 2px solid @yellow; box-sizing: border-box; border-left: none; }
     }
 }
 
 .ballot-measures,
-.governor, 
-.house, 
+.governor,
+.house,
 .senate {
-    padding: 2vh 3% 0 4vw;
+    // padding: 2vh 2.25% 0 2.25%;
+
     height: 100%;
 
     table {
@@ -33,7 +35,7 @@
         font-weight: 400;
         color:@white;
         border-collapse: separate;
-        font-size: 1.1vw;
+        font-size: 1rem;
     }
 
     .results,
@@ -51,14 +53,14 @@
     }
 
     .results-header {
-        font-size: 1.1vw;
+        font-size: 1.1rem;
         overflow: hidden;
-        margin-bottom: 1%;
+        margin-bottom: 0.5rem;
 
         .results-title { float: left; }
 
         h1 {
-            font-size: 3vw;
+            font-size: 3rem;
             margin: 0;
             font-family: 'Gotham SSm', Helvetica, Arial, sans-serif;
             text-transform: uppercase;
@@ -66,23 +68,23 @@
             color: #eee;
 
             .page {
-                font-size: 1.3vw;
+                font-size: 1.3rem;
                 font-weight: 400;
                 color: #999;
-                line-height: 3vw;
+                line-height: 3rem;
                 vertical-align: top;
             }
         }
 
-//        h2 { font-size: 1.1vw; }
+//        h2 { font-size: 1.1rem; }
 
         h4 {
         	text-transform: uppercase;
         	font-weight: normal;
         	color: @grayMedium;
-        	font-size: 1.3vw;
+        	font-size: 1.3rem;
         	font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        	margin-bottom: .5vw;
+        	margin-bottom: .5rem;
         }
 
         .leaderboard {
@@ -92,7 +94,7 @@
     }
 
     .results  {
-        font-size: 0.9vw;
+        font-size: 0.9rem;
         height: 100%;
 
         .column {
@@ -111,15 +113,15 @@
         }
 
         .poll-closing-group {
-            font-size: 0.9vw;
+            font-size: 0.9rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.05rem;
             color: @gray-light;
             margin-bottom: 0;
 
             // Psuedo-border so it works with viewport units
             &:after {
-                height: 0.20vw;
+                height: 0.20rem;
                 width: 100%;
                 display: block;
                 background-color: @gray-light;
@@ -127,18 +129,17 @@
             }
 
             .time {
-                padding: 0.25vw 0;
+                padding: 0.25rem 0;
                 display: inline-block;
             }
         }
 
         .races {
             width: 100%;
-            border-spacing: 0 2px;
+            border-spacing: 0 0.2rem;
 
             td {
-                vertical-align: top;
-                padding: 0.2vw 0.4vw;
+                padding: 0.1rem 0.4rem;
             }
 
             .results-status {
@@ -151,7 +152,7 @@
                         content: "% in";
                         font-size: 80%;
                         vertical-align: top;
-                        margin-left:-.1vw;
+                        margin-left:-.1rem;
                     }
                 }
 
@@ -214,16 +215,16 @@
                 .party {
                     font-size: 75%;
                     font-weight: normal;
-                    letter-spacing: 0.05em;
-                    margin-left: 0.25vw;
+                    letter-spacing: 0.05rem;
+                    margin-left: 0.25rem;
                 }
 
                 &.incumbent {
                     img {
-                        width:.55vw;
+                        width:.55rem;
                         height: auto;
                         vertical-align: top;
-                        margin-left: 0.5vw;
+                        margin-left: 0.5rem;
                     }
                 }
             }
@@ -237,9 +238,8 @@
 
                 .candidate-total-wrapper {
                     display: block;
-                    padding: 0.2vw 0.4vw;
+                    padding: 0.2rem 0.4rem;
                     margin-right: 1px;
-                    position: absolute;
                     top: 0;
                     bottom: 0;
                     left: 0;
@@ -295,79 +295,27 @@
             }
 
             // .id-5083, .id-19638, .id-18556{
-            //     letter-spacing: -0.07em;
+            //     letter-spacing: -0.07rem;
             // }
         }
 
         td{
             &:nth-child(4){
-                border-radius: 0.5vw 0 0 0.5vw;
+                border-radius: 0.5rem 0 0 0.5rem;
             }
             &:nth-child(5){
                 .candidate-total-wrapper {
-                    border-radius: 0 0.5vw 0.5vw 0;
+                    border-radius: 0 0.5rem 0.5rem 0;
                 }
             }
             &:nth-child(6){
                 .candidate-total-wrapper {
-                    border-radius: 0.5vw 0 0 0.5vw;
+                    border-radius: 0.5rem 0 0 0.5rem;
                 }
             }
             &:nth-child(7){
-                border-radius: 0 0.5vw 0.5vw 0;
+                border-radius: 0 0.5rem 0.5rem 0;
             }
-        }
-    }
-
-    .key {
-        font-family: 'Cooper Hewitt';
-        font-size: 9px;
-        font-weight: 400;
-        color:@white;
-
-        margin-top:20px;
-        margin-bottom:20px;
-        overflow:hidden;
-        float:left;
-
-        .percent-ex {
-            color:@yellow;
-            display:inline-block;
-        }
-
-        .percent-called-ex {
-            display:inline-block;
-            color: @gray;
-        }
-
-        .name-ex {
-            background-color: @blue;
-            color: @white;
-            padding: 0 2px;
-            border-radius: 5px;
-        }
-
-        .state-ex {
-            background-color:@blue;
-            color:@white;
-            padding: 0 2px;
-        }
-
-        .state2-ex {
-            color:@red;
-        }
-
-        ul {
-            padding-left: 0;
-            float: left;
-            padding-right: 20px;
-            margin-bottom: 0;
-        }
-
-        li {
-            list-style-type: none;
-            text-indent: none;
-            padding-left: 0;
         }
     }
 
@@ -389,13 +337,13 @@
  */
 .results-header-group {
 	white-space: nowrap;
-	padding: 0 0.75vw;
+	padding: 0 0.75rem 0.07rem;
 	display: inline-block;
 	overflow: hidden;
 	box-sizing: border-box;
-	
-	.footer-container & { padding: 0 0.25vw; }
-	
+
+	.footer-container & { padding: 0 0.25rem 0.07rem; }
+
 	&:last-child {
 		margin-right: 0;
 		padding-right: 0;
@@ -411,19 +359,19 @@
 	p {
 		font-family: 'Cooper Hewitt';
 		margin: 0;
-		font-size: 1.4vw;
+		font-size: 1.4rem;
 	}
 
 	h2 { font-weight: 500; }
 
-	.change { 
-		font-size: 1.4vw;
+	.change {
+		font-size: 1.4rem;
 		font-weight: 500;
 	}
 
 	.count,
 	.percentage {
-		border: 1px solid transparent;
+		border: 0.1rem solid transparent;
 
 		@media screen and (min-width: @screen-sm){
 			border-width: 2px;
@@ -431,18 +379,18 @@
 
 		display: inline-block;
 		box-sizing: border-box;
-		min-width: 3vw;
-		height: 3vw;
-		border-radius: 2vw;
+		min-width: 3rem;
+		height: 3rem;
+		border-radius: 2rem;
 		margin-top: 0;
-		padding: 0 0.5vw;
+		padding: 0 0.5rem;
 		color: @white;
-		font-size: 1.5vw;
+		font-size: 1.5rem;
 		text-align: center;
-		line-height: 2.8vw;
+		line-height: 2.8rem;
 		text-shadow: rgba(0,0,0, 0.8) 0 0 2px;
 	}
-	
+
 	.seats-needed,
 	.total {
 		white-space: nowrap;
@@ -450,7 +398,7 @@
 	}
 
 	.seats-needed {
-		padding-left: 1vw;
+		padding-left: 1rem;
 
 		.count { display: inline-block; }
 	}
@@ -462,7 +410,7 @@
 		.percentage { background: fadeout(@blue, 25%); }
 	}
 
-	&.gop { 
+	&.gop {
 		color: fadeout(@red, 25%);
 
 		.count { background: fadeout(@redDim, 25%); }
@@ -481,8 +429,8 @@
 
 		h2 { display: inline; }
 
-		.count { 
-			border-color: fadeout(@yellow, 25%); 
+		.count {
+			border-color: fadeout(@yellow, 25%);
 			color: fadeout(@yellow, 25%);
 			text-shadow: none;
 		}
