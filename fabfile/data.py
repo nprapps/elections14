@@ -734,8 +734,7 @@ def play_fake_results(update_interval=60):
                 print "Races are called!"
                 for race in races:
                     race.ap_called = True
-                    race.accept_ap_call = True
-                    race.ap_called_time = datetime.now()
+                    race.ap_called_time = datetime.utcnow()
                     race.precincts_reporting = random.randint(race.precincts_total - 500, race.precincts_total)
                     _fake_results(race)
                     race.last_updated = eastern_now()
