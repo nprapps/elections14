@@ -73,6 +73,8 @@ var hasTrackedPrevSlide = null;
 var hasTrackedKeyboardNav = null;
 var hasTrackedMobileControls = null;
 
+var targetGraphicWidth = null;
+
 /*
  * _.has
  */
@@ -399,6 +401,11 @@ var onWindowResize = function() {
     }
 
     checkForPortrait();
+
+    if ($stack.is(':visible')) {
+        graphicTargetWidth = $stack.width() - (parseInt($stack.css('paddingLeft')) + parseInt($stack.css('paddingRight')));
+        console.log(graphicTargetWidth);
+    }
 }
 
 var stopVideo = function() {
