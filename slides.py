@@ -159,7 +159,7 @@ def _get_recently_called(office_name):
     """
     from models import Race
 
-    now = datetime.now()
+    now = datetime.utcnow()
     then = now - timedelta(minutes=15)
 
     recently_called = []
@@ -182,20 +182,32 @@ def recent_senate_calls():
     """
     Get the most recent called Senate races
     """
+    from models import Race
     context = make_context()
 
-    context['races'] = _get_recently_called('U.S. Senate')
+    races = Race.recently_called().where(Race.office_name == 'U.S. Senate')
+
+    if not races.count():
+        return None
+
+    context['races'] = races
     context['label'] = 'Senate'
 
     return render_template('slides/recent-calls.html', **context)
 
 def recent_governor_calls():
     """
-    Get the most recent called Senate races
+    Get the most recent called Governor races
     """
+    from models import Race
     context = make_context()
 
-    context['races'] = _get_recently_called('Governor')
+    races = Race.recently_called().where(Race.office_name == 'Governor')
+
+    if not races.count():
+        return None
+
+    context['races'] = races
     context['label'] = 'Governor'
 
     return render_template('slides/recent-calls.html', **context)
