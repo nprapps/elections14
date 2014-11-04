@@ -765,8 +765,10 @@ var showState = function() {
  * Fetch and display the latest balance of power.
  */
 var checkBop = function() {
-    setInterval(function() {
-        $bop.load('/bop.html');
+    $bop.load('/bop.html');
+
+    setTimeout(function() {
+        checkBop();
     }, APP_CONFIG.CLIENT_BOP_INTERVAL * 1000);
 }
 
