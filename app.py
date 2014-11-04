@@ -164,16 +164,6 @@ def _stack_json():
 
     return js, 200, { 'Content-Type': 'application/javascript' }
 
-@app.route('/live-data/timestamp.json')
-@app_utils.cors
-def _timestamp():
-    """
-    Return a dummy timestamp file.
-    """
-
-    with open('www/live-data/timestamp.json', 'r') as f:
-        return json.load(f), 200, { 'Content-Type': 'application/javascript' }
-
 @app.route('/preview/state-house-results/index.html')
 @app.route('/preview/state-senate-results/index.html')
 def _state_picker_preview():

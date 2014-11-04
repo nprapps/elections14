@@ -222,13 +222,33 @@ def reset_browsers():
     """
     require('settings', provided_by=[production, staging])
 
+    payload = {}
+
     now = datetime.now().strftime('%s')
+
+    payload['timestamp'] = now
+    payload['homepage'] = False
 
     with open('www/live-data/timestamp.json', 'w') as f:
         json.dump(now, f)
 
     utils.deploy_json('www/live-data/timestamp.json', 'live-data/timestamp.json')
 
+@task
+def reset_browsers_to_homepage():
+    require('settings', provided_by=[production, staging])
+
+    payload = {}
+
+    now = datetime.now().strftime('%s')
+
+    payload['timestamp'] = now
+    payload['homepage'] = True
+
+    with open('www/live-data/timestamp.json', 'w') as f:
+        json.dump(payload, f)
+
+    utils.deploy_json('www/live-data/timestamp.json', 'live-data/timestamp.json')
 """
 Destruction
 
