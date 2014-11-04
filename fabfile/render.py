@@ -206,23 +206,25 @@ def _render_results_slide(slug, output_path):
             path = url_for(view_name, slug=slug)
 
         with app.app.test_request_context(path=path):
-            #print 'Rendering %s' % path
 
             view = app.__dict__[view_name]
             content = view(slug)
 
-        path = '%s%s' % (output_path, path)
 
-        # Ensure path exists
-        head = os.path.split(path)[0]
+        if content.status_code == 200:
+            #print 'Rendering %s' % path
+            path = '%s%s' % (output_path, path)
 
-        try:
-            os.makedirs(head)
-        except OSError:
-            pass
+            # Ensure path exists
+            head = os.path.split(path)[0]
 
-        with open(path, 'w') as f:
-            f.write(content.data)
+            try:
+                os.makedirs(head)
+            except OSError:
+                pass
+
+            with open(path, 'w') as f:
+                f.write(content.data)
 
 @task
 def render_states(compiled_includes={}):
