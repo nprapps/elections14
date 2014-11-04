@@ -695,15 +695,20 @@ svg {
 		font-size: 3rem;
 		background: transparent;
 		border: none;
+        line-height: 100vh;
 
-		i { color: @grayMedium; }
+		i {
+            color: @grayMedium;
+            position: absolute;
+            .vertical-center;
+        }
 	}
 	.nav-btn-left {
-		left: 0;
+		left: 1rem;
 		text-align: left;
 	}
 	.nav-btn-right {
-		right: 0;
+		right: 1rem;
 		text-align: right;
 	}
 
