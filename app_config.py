@@ -127,7 +127,7 @@ DISQUS_UUID = '187d5a38-3768-11e4-8de3-14109fed4b76'
 DEPLOY_PROMO = False
 DEPLOY_BUTTONS = False
 
-CHROMECAST_APP_ID = '8408F716'
+CHROMECAST_APP_ID = None 
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
 TUMBLR_NAME = '' # See below
@@ -257,6 +257,7 @@ def configure_targets(deployment_target):
     global SERVER_LOG_PATH
     global DEBUG
     global DISQUS_SHORTNAME
+    global CHROMECASE_APP_ID
     global TUMBLR_NAME
     global TUMBLR_AUTO_REFRESH
     global TUMBLR_NOT_BEFORE
