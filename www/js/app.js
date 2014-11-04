@@ -35,6 +35,7 @@ var $closeControlsLink = null;
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 var SKIP_COUNTDOWN = (window.location.search.indexOf('skipcountdown') >= 0);
+var PAUSE_STACK = (window.location.search.indexOf('pausestack') >= 0);
 var NO_AUDIO = (window.location.search.indexOf('noaudio') >= 0);
 var IS_TOUCH = Modernizr.touch;
 var reloadTimestamp = null;

@@ -287,6 +287,10 @@ var STACK = (function () {
     }
 
     var setTimer = function() {
+        if (PAUSE_STACK){
+            return;
+        }
+
         _rotateTimer = setTimeout(rotateSlide, _timeOnScreen * 1000);
         start_arc_countdown('slide_countdown', _timeOnScreen);
         $(this).find('a').on('click', onSlideAnchorClick);
