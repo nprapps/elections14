@@ -1,28 +1,26 @@
-<div id="balance-of-power" class="graphic balance-of-power">
-    <div class="wrapper">
-        {% if COPY.graphic_slides.headline_bop %}<h1>{{ COPY.graphic_slides.headline_bop }}</h1>{% endif %}
-        {% if COPY.graphic_slides.subhed_bop %}<h2>{{ COPY.graphic_slides.subhed_bop }}</h2>{% endif %}
+<div id="balance-of-power" class="graphic wrapper">
+	{% if COPY.graphic_slides.headline_bop %}<h1>{{ COPY.graphic_slides.headline_bop }}</h1>{% endif %}
+	{% if COPY.graphic_slides.subhed_bop %}<h2>{{ COPY.graphic_slides.subhed_bop }}</h2>{% endif %}
 
-        <div id="graphic-bop"></div>
+	<div id="graphic-bop"></div>
 
-        {% if COPY.graphic_slides.footnote_bop %}
-        <div class="footnotes">
-            <h4>Notes</h4>
-            <p>{{ COPY.graphic_slides.footnote_bop }}</p>
-        </div>
-        {% endif %}
+	{% if COPY.graphic_slides.footnote_bop %}
+	<div class="footnotes">
+		<h4>Notes</h4>
+		<p>{{ COPY.graphic_slides.footnote_bop }}</p>
+	</div>
+	{% endif %}
 
-        <div class="ap-credit">
-            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
-        </div>
-    </div>
+	<div class="ap-credit">
+		Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
+	</div>
 </div>
 
 <script type="text/javascript">
 (function() {
 	var $container;
-	var $content;
 	var $graphic;
+	var $graphic_wrapper;
 	var $timestamp;
 
 	var data_house = [
@@ -73,10 +71,23 @@
 		$graphic.empty();
 
 		// compute dimensions
+		console.log('------------------------------');
 		container_width = Math.floor($container.width());
 		container_height = Math.floor((container_width * 9) / 16);
-		container_padding_sides = Math.ceil(parseFloat($content.css('paddingLeft'))) + Math.ceil(parseFloat($content.css('paddingRight')));
-		container_padding_top = container_padding_sides * 4.5;
+		
+		if ($graphic_wrapper.css('paddingLeft').slice(-1) == '%') {
+			console.log($graphic_wrapper.css('paddingLeft').slice(-1));
+			container_padding_sides = (parseFloat($graphic_wrapper.css('paddingLeft')) + parseFloat($graphic_wrapper.css('paddingRight'))) / 100;
+			console.log(container_padding_sides);
+			container_padding_sides = Math.ceil(container_padding_sides * container_width);
+			console.log(container_padding_sides);
+		} else {
+			console.log($graphic_wrapper.css('paddingLeft').slice(-1));
+			container_padding_sides = parseFloat($graphic_wrapper.css('paddingLeft')) + parseFloat($graphic_wrapper.css('paddingRight'));
+			console.log(container_padding_sides);
+		}
+
+		container_padding_top = container_padding_sides * 2;
 
 		content_height =
 			Math.floor(
@@ -90,7 +101,6 @@
 		var graphic_height = container_height - content_height - container_padding_top;
 		var graphic_width = Math.floor((container_width - container_padding_sides - gutter_width) / 2);
 
-		console.log('------------------------------');
 		console.log('container dimensions: ' + container_width + ' x ' + container_height);
 		console.log('container padding: ' + container_padding_top + ', ' + container_padding_sides);
 		console.log('gutter width: ' + gutter_width);
@@ -275,10 +285,10 @@
 
 	if (Modernizr.svg) {
 		console.log('modernizr!');
+		$container = $('.slide.balance-of-power');
+		$graphic_wrapper = $container.find('.graphic');
 		$graphic = $('#graphic-bop');
 		$timestamp = $('.ap-credit').find('.timestamp');
-		$container = $('#stack');
-		$content = $('#balance-of-power');
 		render();
 
 		$(window).on('resize', render);
