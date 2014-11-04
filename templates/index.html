@@ -9,7 +9,7 @@
     </video>
 </div>
 
-<div class="welcome">
+<div class="welcome {% if not DEPLOY_BUTTONS %} pre-message {% endif %}">
     <div class="logo-wrapper">
     {% include '_logo2.svg' %}
     </div>
@@ -19,6 +19,7 @@
     <h2>{{ COPY.content.welcome_subhead_1 }}</h2>
     <h2>{{ COPY.content.welcome_subhead_2 }}</h2>
 
+    {% if DEPLOY_BUTTONS %}
     <div class="cast-header">
         <button class="btn btn-lg welcome-button js-go">
                 Come on in!
@@ -35,6 +36,9 @@
             </a>
         </div>
     </div>
+    {% else %}
+    <h3>Tune in at 7 PM EST!</h3>
+    {% endif %}
 
     <p class="byline">{{ COPY.content.byline }}</p>
 </div>
