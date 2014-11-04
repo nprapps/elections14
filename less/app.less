@@ -318,7 +318,7 @@ svg {
  */
 
 .controls ul li,
-.feedback ul li {
+.feedback .social li {
 	background: fadeout(@grayMedium,60%);
 	line-height: 3.5rem;
 	margin-bottom: 1px;
@@ -360,7 +360,20 @@ svg {
 }
 
 .feedback {
-	ul {
+	.social {
+		display: table;
+		width: 100%;
+		.clearfix;
+		
+		li {
+			display: table-cell;
+			width: 50%;
+			vertical-align: middle;
+			
+			&.twitter { border-right: 1px solid fadeout(@blueDarker,2%); }
+			&.facebook { border-left: 1px solid fadeout(@blueDarker,2%); }
+		}
+
 		a { display: block; }
 	}
 }
@@ -542,7 +555,7 @@ svg {
 	.controls .slide-nav a,
 	.controls ul li,
 	.feedback p,
-	.feedback ul.social li {
+	.feedback .social li {
 		font-size: 11px;
 		.unselectable;
 		border-radius: 4px;
@@ -553,7 +566,7 @@ svg {
 	}
 
 	.controls ul,
-	.feedback ul {
+	.feedback .social {
 		margin: 0;
 
 		li {
@@ -572,6 +585,7 @@ svg {
 
 	.feedback {
 		margin-bottom: 33px;
+		li { border-color: #000; }
 
 		h3 { padding-top: 22px; }
 	}
