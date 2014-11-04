@@ -4,6 +4,7 @@ import re
 
 from peewee import fn, Model, PostgresqlDatabase, BooleanField, CharField, DateTimeField, ForeignKeyField, IntegerField, TextField
 from decimal import Decimal
+from datetime import datetime, timedelta
 
 import app_config
 
@@ -366,6 +367,21 @@ class Race(SlugModel):
         yes = self.candidates.where((self.candidates.model_class.last_name == 'Yes') | (self.candidates.model_class.last_name == 'For')).get()
         no = self.candidates.where((self.candidates.model_class.last_name == 'No') | (self.candidates.model_class.last_name == 'Against')).get()
         return (yes, no)
+
+    @classmethod
+    def recently_called(self, delta=15, limit=5):
+        """
+        Get recently called for last <delta> minutes, limited to <limit> results.
+        """
+        now = datetime.utcnow()
+        then = now - timedelta(minutes=delta)
+        recent = self.select().where(
+                ((self.npr_called == True) | (self.ap_called == True)) &
+                ((self.npr_called_time > then) | (self.ap_called_time > then))
+            )\
+            .order_by(self.npr_called_time.desc(), self.ap_called_time.desc())\
+            .limit(limit)
+        return recent
 
 class Candidate(SlugModel):
     """
