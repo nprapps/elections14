@@ -7,9 +7,9 @@ body {
 }
 
 .senate{
-	padding: 1rem;
+	padding: 0.5rem 1rem 1rem;
 	table{
-		font-size: 1.5rem;	
+		font-size: 1.4rem;
 	}
 	.results-header-group h2,
 	.results-header-group p,
@@ -23,11 +23,31 @@ body {
 		font-size:1.1rem;
 	}
 	.results .races{
+		.pickup {
+			width: 2%;
+			padding: 0;
+		}
+		.state {
+			width: 8%;
+		}
+		.results-status {
+			width: 12%;
+		}
 		.candidate-total{
-			width:8%;
+			width:9%;
+
+			&.reporting:after {
+				font-size: 0.9rem;
+				position: relative;
+				top: -0.1rem;
+			}
 		}
 		.candidate{
-			width:31%;
+			width:30%;
+
+			&.incumbent img {
+				height: 1.6rem;
+			}
 		}
 		td{
 			// padding-top:0;
