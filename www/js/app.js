@@ -168,6 +168,7 @@ var onDocumentReady = function(e) {
         $slide_countdown.hide();
         $slideControls.hide();
         $welcomeScreen.hide();
+        stopVideo();
 
         CHROMECAST_RECEIVER.setup();
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
@@ -179,6 +180,7 @@ var onDocumentReady = function(e) {
 
     // debugging with the ?fakecast flag, so it's easier to style the control panel
     } else if (IS_FAKE_CASTER) {
+        stopVideo();
         is_casting = true;
         state = 'TX';
         onCastStarted();
@@ -192,6 +194,7 @@ var onDocumentReady = function(e) {
 
     // debugging with the ?skipcountdown flag, to go straight the stack
     } else if (SKIP_COUNTDOWN) {
+        stopVideo();
         state = 'CA';
         $welcomeScreen.hide();
         STACK.start();
@@ -394,14 +397,17 @@ var onWindowResize = function() {
     checkForPortrait();
 }
 
+var stopVideo = function() {
+    $welcomeVideoWrapper.hide();
+    $welcomeVideo[0].pause();
+}
 
 /*
  * Advance to state select screen.
  */
 var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
-    $welcomeVideoWrapper.hide();
-    $welcomeVideo[0].pause();
+    stopVideo();
 
     enableRotatePrompt();
 
