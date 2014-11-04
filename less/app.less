@@ -317,8 +317,8 @@ svg {
  * CONTROLS AND FEEDBACK
  */
 
- .controls ul li,
- .feedback ul li {
+.controls ul li,
+.feedback ul li {
 	background: fadeout(@grayMedium,60%);
 	line-height: 3.5rem;
 	margin-bottom: 1px;
@@ -558,6 +558,7 @@ svg {
 		li {
 			line-height: 44px;
 			margin-bottom: 1px;
+			border-radius: 4px;
 		}
 
 		i { width: 33px; }
@@ -695,22 +696,30 @@ svg {
 		font-size: 6rem;
 		background: transparent;
 		border: none;
-        line-height: 100vh;
         display: block;
+        line-height: 100%;
 
 		i {
             color: @grayMedium;
-            position: absolute;
             .vertical-center;
+            position: absolute;
         }
 	}
 	.nav-btn-left {
-		left: 1rem;
+		left: 0;
 		text-align: left;
+
+        i {
+            left: 1rem;
+        }
 	}
 	.nav-btn-right {
-		right: 1rem;
+		right: 0;
 		text-align: right;
+
+        i {
+            right: 1rem;
+        }
 	}
 
 	.touch & { display: block; }
