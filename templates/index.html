@@ -1,6 +1,14 @@
 {% extends '_base.html' %}
 
 {% block outer_content %}
+
+<div id="video-bg">
+    <video id="bg-vid" autoplay loop>
+        <source type="video/mp4" src="assets/fireworks.mp4">
+        <source type="video/webm" src="assets/fireworks.webm">
+    </video>
+</div>
+
 <div class="welcome">
     <div class="logo-wrapper">
     {% include '_logo2.svg' %}

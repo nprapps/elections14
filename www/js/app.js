@@ -1,4 +1,6 @@
 // Global jQuery references
+var $welcomeVideoWrapper = null;
+var $welcomeVideo = null;
 var $welcomeScreen = null;
 var $welcomeButton = null;
 var $cast = null;
@@ -97,6 +99,9 @@ var onDocumentReady = function(e) {
 
     // Cache jQuery references
     $body = $('body');
+
+    $welcomeVideoWrapper = $("#video-bg");
+    $welcomeVideo = $("#bg-vid");
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.js-go')
     $rotate = $('.rotate-phone-wrapper');
@@ -396,6 +401,8 @@ var onWindowResize = function() {
  */
 var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
+    $welcomeVideoWrapper.hide();
+    $welcomeVideo[0].pause();
 
     enableRotatePrompt();
 
