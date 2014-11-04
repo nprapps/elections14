@@ -23,10 +23,6 @@ var STACK = (function () {
      * Setup the stack display.
      */
     obj.start = function() {
-        if (!NO_AUDIO && !IS_TOUCH) {
-            obj.startPrerollAudio();
-        }
-
         $stack.show();
 
         updateStack();
