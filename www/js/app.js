@@ -817,14 +817,21 @@ var checkTimestamp = function() {
         'url': '/live-data/timestamp.json',
         'cache': false,
         'success': function(data) {
-            var newTime = data;
+            var newTime = data['timestamp'];
+            var homepage = data['homepage'];
+            console.log(newTime, homepage);
+
             if (reloadTimestamp == null) {
                 reloadTimestamp = newTime;
             }
-
             if (reloadTimestamp != newTime) {
-                $.cookie('reload', true);
-                window.location.reload(true);
+                if (homepage) {
+                    window.location.reload(true);
+                } else {
+                    $.cookie('reload', true);
+                    window.location.reload(true);
+                }
+
             }
         }
     });
