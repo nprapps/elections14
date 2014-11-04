@@ -180,13 +180,13 @@ var onDocumentReady = function(e) {
 
     // debugging with the ?fakecast flag, so it's easier to style the control panel
     } else if (IS_FAKE_CASTER) {
-        stopVideo();
         is_casting = true;
         state = 'TX';
         onCastStarted();
 
     // runs if we've triggered a reload, via fab reset_browsers!
     } else if ($.cookie('reload')) {
+        stopVideo();
         $.removeCookie('reload');
         $welcomeScreen.hide();
         setupUI();
@@ -288,6 +288,7 @@ var onCastReady = function() {
  * A cast session started.
  */
 var onCastStarted = function() {
+    stopVideo();
     $welcomeScreen.hide();
     $stack.hide();
     $fullscreenStart.hide();
