@@ -87,7 +87,7 @@ var STACK = (function () {
          $audioPlayer.jPlayer({
             ready: function () {
                 $(this).jPlayer('setMedia', {
-                    mp3: 'http://www.springfieldfiles.com/sounds/homer/goons.mp3'
+                    mp3: '/assets/promo.mp3'
                 });
 
                 if (IS_CAST_RECEIVER || (SKIP_COUNTDOWN && !NO_AUDIO)) {
