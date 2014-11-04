@@ -271,6 +271,8 @@ def configure_targets(deployment_target):
         DEBUG = False
 
         DISQUS_SHORTNAME = 'npr-news'
+        
+        CHROMECAST_APP_ID = 'A6BCDD1E'
 
         TUMBLR_NAME = 'nprpolitics'
         TUMBLR_AUTO_REFRESH = True
@@ -287,6 +289,8 @@ def configure_targets(deployment_target):
 
         DISQUS_SHORTNAME = 'nprviz-test'
 
+        CHROMECAST_APP_ID = '8408F716'
+
         TUMBLR_NAME = 'stage-nprelections'
         TUMBLR_AUTO_REFRESH = True
         TUMBLR_NOT_BEFORE = datetime(2014, 10, 7, 11, 0, 0)
@@ -301,6 +305,8 @@ def configure_targets(deployment_target):
         DEBUG = True
 
         DISQUS_SHORTNAME = 'nprviz-test'
+        
+        CHROMECAST_APP_ID = '8408F716'
 
         TUMBLR_NAME = 'stage-nprelections'
         TUMBLR_AUTO_REFRESH = True
