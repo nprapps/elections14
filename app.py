@@ -353,9 +353,6 @@ def _slide(slug):
     else:
         context['body'] = slides.__dict__[view_name]()
 
-    if not context.get('body'):
-        return 'slide not found', 404
-
     context['slide_class'] = view_name.replace('_', '-')
     context['time_on_screen'] = slide.time_on_screen
 

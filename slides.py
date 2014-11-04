@@ -187,9 +187,6 @@ def recent_senate_calls():
 
     races = Race.recently_called().where(Race.office_name == 'U.S. Senate')
 
-    if not races.count():
-        return None
-
     context['races'] = races
     context['label'] = 'Senate'
 
@@ -203,9 +200,6 @@ def recent_governor_calls():
     context = make_context()
 
     races = Race.recently_called().where(Race.office_name == 'Governor')
-
-    if not races.count():
-        return None
 
     context['races'] = races
     context['label'] = 'Governor'

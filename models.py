@@ -369,7 +369,7 @@ class Race(SlugModel):
         return (yes, no)
 
     @classmethod
-    def recently_called(self, delta=15, limit=5):
+    def recently_called(self, delta=15):
         """
         Get recently called for last <delta> minutes, limited to <limit> results.
         """
@@ -379,8 +379,7 @@ class Race(SlugModel):
                 ((self.npr_called == True) | (self.ap_called == True)) &
                 ((self.npr_called_time > then) | (self.ap_called_time > then))
             )\
-            .order_by(self.npr_called_time.desc(), self.ap_called_time.desc())\
-            .limit(limit)
+            .order_by(self.npr_called_time.desc(), self.ap_called_time.desc())
         return recent
 
 class Candidate(SlugModel):

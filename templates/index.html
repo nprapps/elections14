@@ -12,23 +12,21 @@
     <p class="byline">{{ COPY.content.byline }}</p>
 
     <div class="cast-header">
+        <button class="btn btn-lg welcome-button js-go">
+                Come on in!
+        </button>
         <div class="cast-disabled">
-            <button class="btn btn-lg welcome-button js-go">
-                {% for greeting in COPY.welcome_button %}
-                    <span data-greeting-index="{{ loop.index0 }}">
-                        {{ greeting }}
-                    </span>
-                {% endfor %}
-            </button>
             <p class="cast-try-chrome">{{ COPY.content.get_chrome }}</p>
             <p class="cast-get-extension">{{ COPY.content.get_chromecast }}</p>
         </div>
         <div class="cast-enabled">
-            <button class="cast-start btn btn-lg welcome-button">{% include '_chromecast-off.svg' %} {{ COPY.content.chromecast_button }}</button>
-            <p class="cast-enabled-but-whatev"><a href="#" class="js-go">{{ COPY.content.chromecast_alt_button }}</a></p>
+            <p class="chromecast-note">{{ COPY.content.chromecast_note }}</p>
+            <p class="chromecast-note-touch">{{ COPY.content.chromecast_note_touch }}</p>
+            <a href="#" class="cast-start">
+                {% include '_chromecast-off.svg' %} {{ COPY.content.chromecast_button }}
+            </a>
         </div>
     </div>
-
 </div>
 
 <div class="countdown">

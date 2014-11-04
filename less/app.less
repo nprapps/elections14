@@ -27,14 +27,8 @@ svg {
 }
 
 .btn-lg {
-    font-size: 20px;
-    letter-spacing: .03rem;
     border-radius: 5px;
     text-transform: uppercase;
-
-    @media screen and (max-width: @screen-xs-max){
-        font-size: 16px;
-    }
 }
 
 #stack {
@@ -149,17 +143,44 @@ svg {
             }
         }
 
-        .cast-enabled-but-whatev {
-            font-size: 18px;
-            margin-top: 33px;
-            a {
-                color: white;
+        .cast-enabled {
+            .cast-start {
+                display: inline-block;
+                font-size: 16px;
+                padding: 10px 10px 9px;
+                border: 2px solid white;
+                border-radius: 5px;
+                height: 50px;
                 font-weight: bold;
+                text-transform: uppercase;
                 &:hover {
-                    color:@red;
-                    text-decoration: none;
+                    background-color: @red;
+                    color: white;
+                }
+                svg {
+                    height: 30px;
+                    vertical-align: middle;
+                    fill: white;
+                    margin-right:7px;
+                }
+                @media screen and (max-width: @screen-xs-max){
+                    svg { height: 22px; }
+                    padding: 12px 10px 9px;
+                    font-size: 12px;
                 }
             }
+        }
+
+        .chromecast-note-touch, .chromecast-note {
+            margin-top:44px;
+            font-size: 12px;
+        }
+
+        .chromecast-note-touch { display: none; }
+
+        .touch & {
+            .chromecast-note-touch{ display: block; }
+            .chromecast-note{ display: none; }
         }
 
         @media screen and (max-width: @screen-xs-max){
@@ -173,15 +194,9 @@ svg {
         color: black;
         fill: black;
 
-        width: 390px;
         height: 50px;
 
         span { display:none; }
-
-        svg {
-            height: 30px;
-            vertical-align: middle;
-        }
 
         &:hover {
             background-color: @red;
@@ -196,7 +211,6 @@ svg {
         @media screen and (max-width: @screen-xs-max){
             width: 260px;
             height: 50px;
-            font-size: 13px;
         }
     }
 
@@ -738,8 +752,8 @@ svg {
 		.senate-header {
 			text-transform: uppercase;
 			font-weight: bold;
-			font-size: 1.7rem;
-			line-height: 3rem;
+			font-size: 1.5rem;
+			line-height: 1.5rem;
 			vertical-align: middle;
 			font-family: "Gotham SSm", "Helvetica Neue", Helvetica, Arial, sans-serif;
 		}
@@ -863,16 +877,15 @@ html.touch-portrait {
         position: absolute;
         bottom: 0;
         width: 100%;
-        padding-bottom: 3rem;
+        padding-bottom: 2rem;
         font-size: 4rem;
         line-height: 1.3;
-        font-weight: 700;
 
         .rotate { text-align: center; }
 
         img {
         	display: block;
-        	margin: 0 auto 1.5rem auto;
+        	margin: 0 auto 4rem auto;
         	height: 10rem;
         	width: auto;
         }
