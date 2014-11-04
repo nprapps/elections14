@@ -24,7 +24,7 @@
     display: block;
     height: @footer-height;
     width: @viewport-width;
-    padding: 0 1%;
+    padding: 0 3%;
     position: absolute;
     bottom: 0;
 
@@ -54,14 +54,12 @@
 }
 
 .ap-credit {
+    float: right;
     text-align: right;
     z-index: 100;
-    right: 0;
-    bottom: -20px;
     font-size: 11px;
-
-    .governor & {
-        position: absolute;
-        top: auto;
-    }
+    vertical-align: baseline;
+    position: relative;
+    top: 50%;
+    width: 50%;
 }
