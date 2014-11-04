@@ -348,6 +348,15 @@ svg {
 .controls {
 	.play { display: none; }
 	.state-picker { margin: 0; }
+
+	.pause i,
+	.play i {
+		font-size: 2.4rem;
+		height: 2rem;
+		overflow: hidden;
+		line-height: 1;
+		padding-top: .3rem;
+	}
 }
 
 .feedback {
@@ -632,6 +641,15 @@ svg {
 			padding: 0 6px;
 		}
 	}
+	
+	.pause i,
+	.play i {
+		font-size: 30px;
+		height: 27px;
+		overflow: hidden;
+		padding-top: 0;
+		line-height: 44px;
+	}
 
 	.slide-nav {
 		display: table;
@@ -776,6 +794,10 @@ svg {
         }
     }
 
+    svg {
+        max-height: 2.5rem;
+    }
+
     .leaderboard {
     	float: left;
     	width: 40%;
@@ -857,6 +879,9 @@ svg {
 
             .nav-btn {
                 font-size: 2rem;
+                line-height: 3.5rem;
+                position: relative;
+                top: -0.25rem;
 
                 + .nav-btn {
                     padding-left: 0.5rem;
