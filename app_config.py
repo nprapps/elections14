@@ -257,7 +257,7 @@ def configure_targets(deployment_target):
     global SERVER_LOG_PATH
     global DEBUG
     global DISQUS_SHORTNAME
-    global CHROMECASE_APP_ID
+    global CHROMECAST_APP_ID
     global TUMBLR_NAME
     global TUMBLR_AUTO_REFRESH
     global TUMBLR_NOT_BEFORE
