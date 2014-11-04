@@ -4,10 +4,22 @@ body {
 
 .slide {
     display: block;
+
+    .results-header h1,
+    .results-header h4 {
+    	font-family: 'Cooper Hewitt',Helvetica,Arial,sans-serif;
+    }
+}
+
+.house,
+.governor,
+.ballot-measures {
+	padding: 0.5rem 1rem 1rem;
 }
 
 .senate{
 	padding: 0.5rem 1rem 1rem;
+
 	table{
 		font-size: 1.4rem;
 	}
@@ -26,6 +38,10 @@ body {
 		.pickup {
 			width: 2%;
 			padding: 0;
+
+			&.party-change:after {
+				font-size: 50%;
+			}
 		}
 		.state {
 			width: 8%;
@@ -42,6 +58,26 @@ body {
 				top: -0.1rem;
 			}
 		}
+
+		.candidate-total-spacer {
+			padding: 0;
+			position: absolute;
+			font-size: 0;
+			width: 0;
+			overflow: hidden;
+			white-space: nowrap;
+
+			&:after {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: -1px;
+				width: 2px;
+				content: ' ';
+				background: #141D24;
+			}
+		}
+
 		.candidate{
 			width:30%;
 
