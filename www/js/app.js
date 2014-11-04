@@ -95,9 +95,6 @@ var invert = function(obj) {
  * Run on page load.
  */
 var onDocumentReady = function(e) {
-    // Timestamp when page was loaded
-    reloadTimestamp = Date.now();
-
     // Cache jQuery references
     $body = $('body');
 
@@ -216,7 +213,7 @@ var onDocumentReady = function(e) {
 
     onWindowResize();
     checkBop();
-    checkTimestamp();
+    getTimestamp();
 
     create_slide_countdown();
 }
@@ -227,8 +224,6 @@ $(onDocumentReady);
  * Create and configure UI elements.
  */
 var setupUI = function() {
-    checkTimestamp();
-
     if (IS_TOUCH) {
         $desktopOnlyLeftRight.hide();
         $fullscreenStart.hide();
@@ -391,7 +386,7 @@ var onWindowResize = function() {
     var h = window.innerHeight;
     var aspect = w / h;
     var new_aspect;
-    
+
     if (aspect > 16/9) {
     	new_aspect = aspect;
         document.documentElement.style.fontSize = ((16/9) / aspect) + 'vw';
@@ -760,16 +755,16 @@ var hideCountdown = function() {
 
     big_width = big.width();
     little_width = little.width();
-    
+
     big_top = big.offset().top;
     little_top = little.offset().top;
     console.log(big_top, little_top);
-    
+
     big_left = big.offset().left;
     little_left = little.offset().left;
-    
+
     little_height = little.height();
-    
+
     big.velocity({
         height: little_height,
         translateX: little_left - big_left - big_width/2 + little_width/2,
@@ -810,20 +805,29 @@ var checkBop = function() {
 /*
  * Fetch the latest timestamp file and reload the if necessary.
  */
+var getTimestamp = function() {
+    if (reloadTimestamp == null) {
+        checkTimestamp();
+    }
+    setInterval(checkTimestamp, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
+}
+
 var checkTimestamp = function() {
-    setInterval(function() {
-        $.ajax({
-            'url': '/live-data/timestamp.json',
-            'cache': false,
-            'success': function(data) {
-                var newTime = data;
-                if (reloadTimestamp < newTime) {
-                    $.cookie('reload', true);
-                    window.location.reload(true);
-                }
+    $.ajax({
+        'url': '/live-data/timestamp.json',
+        'cache': false,
+        'success': function(data) {
+            var newTime = data;
+            if (reloadTimestamp == null) {
+                reloadTimestamp = newTime;
             }
-        })
-    }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
+
+            if (reloadTimestamp != newTime) {
+                $.cookie('reload', true);
+                window.location.reload(true);
+            }
+        }
+    });
 }
 
 /*

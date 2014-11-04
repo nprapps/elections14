@@ -222,10 +222,10 @@ def reset_browsers():
     """
     require('settings', provided_by=[production, staging])
 
-    now = datetime.now()
+    now = datetime.now().strftime('%s')
 
     with open('www/live-data/timestamp.json', 'w') as f:
-        json.dump(now.isoformat(), f)
+        json.dump(now, f)
 
     utils.deploy_json('www/live-data/timestamp.json', 'live-data/timestamp.json')
 
