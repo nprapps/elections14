@@ -68,28 +68,57 @@ svg {
 ** WELCOME SLIDES
 */
 
+.touch {
+    #bg-vid {
+       display: none;
+    }
+    #video-bg {
+        background: transparent url('../assets/fireworks.gif') center center no-repeat;
+        .background-size(cover);
+    }
+}
+
+#video-bg {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    overflow: hidden;
+}
+
+#video-bg > video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    visibility:hidden;
+    .no-touch & { visibility:visible; }
+}
+/* 1. No object-fit support: */
+@media (min-aspect-ratio: 16/9) {
+    #video-bg > video { height: 300%; top: -100%; }
+}
+@media (max-aspect-ratio: 16/9) {
+    #video-bg > video { width: 300%; left: -100%; }
+}
+/* 2. If supporting object-fit, overriding (1): */
+@supports (object-fit: cover) {
+    #video-bg > video {
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+    }
+}
+
 .welcome {
     display: block;
     opacity: 0;
     .transition(opacity 3s ease);
     text-align: center;
     padding:10px;
+    position:relative;
+    z-index:2;
     font-size: 14px;
-
-    &:after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-image: url('../assets/promo/background.jpg');
-        background-size: cover;
-        background-position: center center;
-        width: 100%;
-        height: 100%;
-        opacity : 0.6;
-        z-index: -1;
-    }
 
     .logo-wrapper {
         width: 100%;
@@ -112,16 +141,19 @@ svg {
 
     h2 {
         line-height: 1.4;
-        font-size: 22px;
-        width: 95%;
+        font-size: 20px;
+        max-width: 700px;
         margin: 22px auto 11px auto;
         @media screen and (max-width: @screen-xs-max){
             font-size:14px;
         }
     }
+    &.pre-message h2 {
+        color: @grayMedium;
+    }
 
     .cast-header {
-        margin: 33px 0;
+        margin: 33px 0 77px;
 //		font-size: 1.75rem;
 
     	.cast-enabled,
@@ -184,7 +216,7 @@ svg {
         }
 
         @media screen and (max-width: @screen-xs-max){
-            margin: 0;
+            margin: 0 0 22px 0;
         }
     }
 
@@ -214,13 +246,21 @@ svg {
         }
     }
 
+
+        &.pre-message h3 {
+            margin: 44px 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 36px;
+        }
+
     .byline {
         font-size:11px;
         color: @grayMedium;
-        width: 80%;
+        max-width:500px;
         margin: 0 auto;
         @media screen and (max-width: @screen-xs-max){
-            font-size:8px;
+            font-size:9px;
         }
     }
 }
@@ -291,8 +331,8 @@ svg {
  * CONTROLS AND FEEDBACK
  */
 
- .controls ul li,
- .feedback ul li {
+.controls ul li,
+.feedback .social li {
 	background: fadeout(@grayMedium,60%);
 	line-height: 3.5rem;
 	margin-bottom: 1px;
@@ -322,10 +362,32 @@ svg {
 .controls {
 	.play { display: none; }
 	.state-picker { margin: 0; }
+
+	.pause i,
+	.play i {
+		font-size: 2.4rem;
+		height: 2rem;
+		overflow: hidden;
+		line-height: 1;
+		padding-top: .3rem;
+	}
 }
 
 .feedback {
-	ul {
+	.social {
+		display: table;
+		width: 100%;
+		.clearfix;
+
+		li {
+			display: table-cell;
+			width: 50%;
+			vertical-align: middle;
+
+			&.twitter { border-right: 1px solid fadeout(@blueDarker,2%); }
+			&.facebook { border-left: 1px solid fadeout(@blueDarker,2%); }
+		}
+
 		a { display: block; }
 	}
 }
@@ -507,9 +569,10 @@ svg {
 	.controls .slide-nav a,
 	.controls ul li,
 	.feedback p,
-	.feedback ul.social li {
+	.feedback .social li {
 		font-size: 11px;
 		.unselectable;
+		border-radius: 4px;
 
 		@media screen and (min-width: @screen-sm){
 			font-size: 14px;
@@ -517,7 +580,7 @@ svg {
 	}
 
 	.controls ul,
-	.feedback ul {
+	.feedback .social {
 		margin: 0;
 
 		li {
@@ -536,6 +599,7 @@ svg {
 
 	.feedback {
 		margin-bottom: 33px;
+		li { border-color: #000; }
 
 		h3 { padding-top: 22px; }
 	}
@@ -607,6 +671,15 @@ svg {
 		}
 	}
 
+	.pause i,
+	.play i {
+		font-size: 30px;
+		height: 27px;
+		overflow: hidden;
+		padding-top: 0;
+		line-height: 44px;
+	}
+
 	.slide-nav {
 		display: table;
 		width: 100%;
@@ -615,13 +688,16 @@ svg {
 			display: table-cell;
 			width: 50%;
 
+			&.nav-btn-left { border-radius: 4px 0 0 4px; }
+
 			&.nav-btn-right {
 				text-align: right;
 				border-left: 1px solid #000;
+				border-radius: 0 4px 4px 0;
 			}
 
 			&.in-transition {
-				background-color: #444;
+				background: #444;
 				cursor: default;
 				color: #787878;
 			}
@@ -647,20 +723,34 @@ svg {
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		width: 6rem;
-		font-size: 3rem;
+		width: 15rem;
+		font-size: 6rem;
 		background: transparent;
 		border: none;
+        display: block;
+        line-height: 100%;
 
-		i { color: @grayMedium; }
+		i {
+            color: @grayMedium;
+            .vertical-center;
+            position: absolute;
+        }
 	}
 	.nav-btn-left {
 		left: 0;
 		text-align: left;
+
+        i {
+            left: 1rem;
+        }
 	}
 	.nav-btn-right {
 		right: 0;
 		text-align: right;
+
+        i {
+            right: 1rem;
+        }
 	}
 
 	.touch & { display: block; }
@@ -673,7 +763,7 @@ svg {
 .controls-wrapper {
     position: absolute;
     left: 0;
-    bottom: 5rem;
+    bottom: 7rem;
     width: 98%;
     z-index: 100;
     background: fadeout(@blueDarker,2%);
@@ -743,6 +833,10 @@ svg {
         }
     }
 
+    svg {
+        max-height: 2.5rem;
+    }
+
     .leaderboard {
     	float: left;
     	width: 40%;
@@ -773,13 +867,13 @@ svg {
 			border-radius: 0.5rem;
 			color: @grayMedium;
 			background: #333;
-			.unselectable;
         }
-        
+
 		a:hover,
         &.active a {
 			color: @white;
 			background: fadeout(@blueDarker,2%);
+			.unselectable;
         }
 
         svg {
@@ -824,6 +918,9 @@ svg {
 
             .nav-btn {
                 font-size: 2rem;
+                line-height: 3.5rem;
+                position: relative;
+                top: -0.25rem;
 
                 + .nav-btn {
                     padding-left: 0.5rem;

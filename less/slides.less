@@ -7,9 +7,9 @@
 .slide.tumblr-photo,
 .slide.tumblr-quote,
 .slide.tumblr-text {
-	width: 102%;
-    height: 102%;
-    margin: -1%;
+	width: 106rem;
+    height: 106rem;
+    margin: -2rem 0 0 -3rem;
 
     .slide-inner {
     	height: @stack_height;
@@ -44,16 +44,16 @@
 }
 
 .tumblr-text .slide-inner:after {
-    background-image: url('../assets/tumblr-text-background.jpg');
+    background-image: url('../assets/election100.jpg');
     opacity: 1;
 }
 
 .tumblr-photo .slide-inner:after {
-    background-image: url('../assets/tumblr-photo-background.jpg');
+    background-image: url('../assets/election0.jpg');
 }
 
 .tumblr-quote .slide-inner:after {
-    background-image: url('../assets/tumblr-quote-background.jpg');
+    background-image: url('../assets/election20.jpg');
 }
 
 .tumblr-text {
@@ -182,7 +182,11 @@
  .slide.incumbents-lost,
  .slide.obama-reps,
  .slide.romney-senate-dems,
- .slide.romney-dems {
+ .slide.romney-dems,
+ .slide.recent-senate-calls,
+ .slide.recent-governor-calls,
+ .slide.state-house,
+ .slide.state-senate {
  	position: relative;
 
     .slide-inner {
@@ -194,11 +198,23 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-			background: #000;
 			width: 100%;
 			height: 100%;
 			z-index: -1;
 		}
+    }
+
+    .wrapper {
+        .vertical-center;
+    }
+ }
+ .slide.house-freshmen,
+ .slide.incumbents-lost {
+    &.graphic, .wrapper {
+        position: static;
+        top: 0;
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
     }
  }
 
@@ -431,6 +447,14 @@
 /*
 ** STATE SLIDES
 */
+.state-house,
+.state-senate {
+    .slide-inner:after {
+        opacity : 0.5;
+        background-size: cover;
+        background-image: url('../assets/election30.jpg');
+    }
+}
 
 .results-sliced {
     color: #fff;
@@ -438,28 +462,6 @@
     margin-bottom: @line-height-computed;
     padding-top: 1vh;
     padding-bottom: 4rem;
-
-
-    &.recent-calls {
-        .wrapper {
-            .vertical-center;
-        }
-    }
-
-
-    &:after {
-        content : "";
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-size: cover;
-        background-image: url('../assets/elections-background-1.jpg');
-        width: 100%;
-        height: 100%;
-        opacity : 0.5;
-        z-index: -1;
-    }
 
     .results-sliced-wrapper {
         display: table;
@@ -603,7 +605,8 @@
                 color: #999;
             }
 
-            .candidate {
+            .candidate,
+            .candidate-total {
                 &.dem   { background: fadeout(@blueDim, 30%); }
                 &.gop   { background: fadeout(@redDim, 30%); }
                 &.other { background: fadeout(@greenDim, 30%); }
@@ -615,24 +618,24 @@
                 }
             }
 
-            .candidate-total {
-                &.dem .candidate-total-wrapper   { background: fadeout(@blueDim, 30%); }
-                &.gop .candidate-total-wrapper   { background: fadeout(@redDim, 30%); }
-                &.other .candidate-total-wrapper { background: fadeout(@greenDim, 30%); }
+            // .candidate-total {
+            //     &.dem .candidate-total-wrapper   { background: fadeout(@blueDim, 30%); }
+            //     &.gop .candidate-total-wrapper   { background: fadeout(@redDim, 30%); }
+            //     &.other .candidate-total-wrapper { background: fadeout(@greenDim, 30%); }
 
-                &.winner {
-                    &.dem .candidate-total-wrapper   { background: @blue; }
-                    &.gop .candidate-total-wrapper   { background: @red; }
-                    &.other .candidate-total-wrapper { background: @green; }
-                }
-            }
+            //     &.winner {
+            //         &.dem .candidate-total-wrapper   { background: @blue; }
+            //         &.gop .candidate-total-wrapper   { background: @red; }
+            //         &.other .candidate-total-wrapper { background: @green; }
+            //     }
+            // }
 
             .candidate {
-                width: 30%;
+                width: 28%;
 
                 &.incumbent img {
                     width: 0.8rem;
-                    height: auto;
+                    height: 1.6rem;
                 }
             }
 
@@ -658,6 +661,7 @@
     }
 
     .governor & {
-        margin-top: -1rem;
+        position: relative;
+        top: -4rem;
     }
 }

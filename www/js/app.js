@@ -1,4 +1,6 @@
 // Global jQuery references
+var $welcomeVideoWrapper = null;
+var $welcomeVideo = null;
 var $welcomeScreen = null;
 var $welcomeButton = null;
 var $cast = null;
@@ -35,6 +37,7 @@ var $closeControlsLink = null;
 var IS_CAST_RECEIVER = (window.location.search.indexOf('chromecast') >= 0);
 var IS_FAKE_CASTER = (window.location.search.indexOf('fakecast') >= 0);
 var SKIP_COUNTDOWN = (window.location.search.indexOf('skipcountdown') >= 0);
+var PAUSE_STACK = (window.location.search.indexOf('pausestack') >= 0);
 var NO_AUDIO = (window.location.search.indexOf('noaudio') >= 0);
 var IS_TOUCH = Modernizr.touch;
 var reloadTimestamp = null;
@@ -70,6 +73,8 @@ var hasTrackedPrevSlide = null;
 var hasTrackedKeyboardNav = null;
 var hasTrackedMobileControls = null;
 
+var graphicTargetWidth = null;
+
 /*
  * _.has
  */
@@ -95,6 +100,9 @@ var onDocumentReady = function(e) {
 
     // Cache jQuery references
     $body = $('body');
+
+    $welcomeVideoWrapper = $("#video-bg");
+    $welcomeVideo = $("#bg-vid");
     $welcomeScreen = $('.welcome');
     $welcomeButton = $('.js-go')
     $rotate = $('.rotate-phone-wrapper');
@@ -162,13 +170,16 @@ var onDocumentReady = function(e) {
         $slide_countdown.hide();
         $slideControls.hide();
         $welcomeScreen.hide();
+        stopVideo();
 
         CHROMECAST_RECEIVER.setup();
         CHROMECAST_RECEIVER.onMessage('mute', onCastReceiverMute);
         CHROMECAST_RECEIVER.onMessage('state', onCastStateChange);
         CHROMECAST_RECEIVER.onMessage('slide-change', onCastReceiverSlideChange);
 
+        STACK.startPrerollAudio();
         STACK.start();
+
         $desktopOnlyLeftRight.hide();
 
     // debugging with the ?fakecast flag, so it's easier to style the control panel
@@ -179,6 +190,7 @@ var onDocumentReady = function(e) {
 
     // runs if we've triggered a reload, via fab reset_browsers!
     } else if ($.cookie('reload')) {
+        stopVideo();
         $.removeCookie('reload');
         $welcomeScreen.hide();
         setupUI();
@@ -186,6 +198,7 @@ var onDocumentReady = function(e) {
 
     // debugging with the ?skipcountdown flag, to go straight the stack
     } else if (SKIP_COUNTDOWN) {
+        stopVideo();
         state = 'CA';
         $welcomeScreen.hide();
         STACK.start();
@@ -253,7 +266,10 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
             return;
         }
 
-        if (loaded) {
+        if (IS_TOUCH) {
+            $chromecastIndexHeader.find('.cast-get-extension').hide();
+            $chromecastIndexHeader.find('.cast-try-chrome').show();
+        } else if (loaded) {
             CHROMECAST_SENDER.setup(onCastReady, onCastStarted, onCastStopped);
             $chromecastIndexHeader.find('.cast-enabled').show();
             $chromecastIndexHeader.find('.cast-disabled').hide();
@@ -276,6 +292,7 @@ var onCastReady = function() {
  * A cast session started.
  */
 var onCastStarted = function() {
+    stopVideo();
     $welcomeScreen.hide();
     $stack.hide();
     $fullscreenStart.hide();
@@ -297,6 +314,7 @@ var onCastStarted = function() {
 var onCastStopped = function() {
     $chromecastScreen.hide();
 
+    STACK.startLivestream();
     STACK.start();
 
     if (!IS_TOUCH) {
@@ -383,23 +401,32 @@ var onWindowResize = function() {
     }
 
     checkForPortrait();
+
+    if ($stack.is(':visible')) {
+        graphicTargetWidth = $stack.width() - (parseInt($stack.css('paddingLeft')) + parseInt($stack.css('paddingRight')));
+        console.log(graphicTargetWidth);
+    }
 }
 
+var stopVideo = function() {
+    $welcomeVideoWrapper.hide();
+    $welcomeVideo[0].pause();
+}
 
 /*
  * Advance to state select screen.
  */
 var onWelcomeButtonClick = function() {
     $welcomeScreen.hide();
+    stopVideo();
 
     enableRotatePrompt();
 
-    // Mobile devices require a click to start audio
-    if (IS_TOUCH) {
+    if (!NO_AUDIO) {
         STACK.startPrerollAudio();
     }
 
-   showCountdown();
+    showCountdown();
 }
 
 /*
@@ -509,8 +536,9 @@ var onAudioPauseClick = function(event) {
 /*
  * Click left or right paddle
  */
-var onSlideControlClick = function(event) {
-    event.preventDefault();
+var onSlideControlClick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
     var $this = $(this);
     var direction = $this.data('slide');
@@ -532,7 +560,7 @@ var onSlideControlClick = function(event) {
             CHROMECAST_SENDER.sendMessage('slide-change', 'next');
         } else {
             STACK.next();
-            event.stopPropagation()
+            e.stopPropagation()
         }
     }
     else if (direction == "previous") {
@@ -540,7 +568,7 @@ var onSlideControlClick = function(event) {
             CHROMECAST_SENDER.sendMessage('slide-change', 'prev');
         } else {
             STACK.previous();
-            event.stopPropagation()
+            e.stopPropagation()
         }
     }
 }
@@ -571,8 +599,8 @@ var onControlsToggleClick = function(event) {
 /*
  * Open mobile controls.
  */
-var onStackTap = function(event) {
-    event.preventDefault();
+var onStackTap = function(e) {
+    e.preventDefault();
 
     disableRotatePrompt();
     $castControls.show();
@@ -729,25 +757,32 @@ var hideCountdown = function() {
     //hell yeah fade out
     var big = $countdownScreen.find('.countdown-arc svg');
     var little = $slide_countdown.find('svg');
-    big_width = big.width()
-    little_width = little.width()
-    big_top = big.offset().top
-    little_top = little.offset().top
-    big_left = big.offset().left
-    little_left = little.offset().left
-    little_height = little.height()
+
+    big_width = big.width();
+    little_width = little.width();
+    
+    big_top = big.offset().top;
+    little_top = little.offset().top;
+    console.log(big_top, little_top);
+    
+    big_left = big.offset().left;
+    little_left = little.offset().left;
+    
+    little_height = little.height();
+    
     big.velocity({
         height: little_height,
         translateX: little_left - big_left - big_width/2 + little_width/2,
         translateY: little_top - big_top
-        },
-        {
-            duration: 1000,
-            display:'none',
-            complete: function(){
-                $countdownScreen.hide();
-            }
-        });
+    },
+    {
+        duration: 1000,
+        display:'none',
+        complete: function(){
+            $countdownScreen.hide();
+        }
+    });
+
     $countdownScreen.find('h2, h3').velocity({opacity:0},{display: 'none'});
 }
 

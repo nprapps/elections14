@@ -35,7 +35,7 @@
         font-weight: 400;
         color:@white;
         border-collapse: separate;
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .results,
@@ -139,7 +139,8 @@
             border-spacing: 0 0.2rem;
 
             td {
-                padding: 0.1rem 0.4rem;
+                padding: 0.2rem 0.4rem;
+                line-height: 1.1;
             }
 
             .results-status {
@@ -182,7 +183,7 @@
             }
             .state {
                 text-align: center;
-                width: 6%;
+                width: 10%;
                 // &.party-change {
                 //     color: #fff;
                 //     &.dem { background-color: @blue; }
@@ -207,7 +208,7 @@
             }
 
             .candidate {
-                width: 32%;
+                width: 30%;
                 &.dem { background: @blueDim; }
                 &.gop { background: @redDim; }
                 &.other { background: @greenDim; }
@@ -222,36 +223,45 @@
                 &.incumbent {
                     img {
                         width:.55rem;
-                        height: auto;
+                        height: 1rem;
                         vertical-align: top;
                         margin-left: 0.5rem;
                     }
                 }
             }
 
+            .candidate-total-spacer {
+                width: 0;
+                padding: 1px;
+            }
+
             .candidate-total {
                 width: 7%;
                 text-align: right;
-                padding: 0;
+                // padding: 0;
                 background: transparent;
                 position: relative;
 
-                .candidate-total-wrapper {
-                    display: block;
-                    padding: 0.2rem 0.4rem;
-                    margin-right: 1px;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                }
+                // .candidate-total-wrapper {
+                //     // display: block;
+                //     padding: 0.2rem 0.4rem;
+                //     margin-right: 1px;
+                //     // top: 0;
+                //     // bottom: 0;
+                //     // left: 0;
+                //     // right: 0;
+                //     // position: absolute;
+                //     height: 100%;
+                //     width: 100%;
+                //     min-height: 100%;
+                // }
 
-                &.dem .candidate-total-wrapper { background: @blueDim; }
-                &.gop .candidate-total-wrapper,
-                &.no .candidate-total-wrapper { background: @redDim; }
-                &.other .candidate-total-wrapper,
-                &.yes .candidate-total-wrapper { background: @greenDim; }
-                &.reporting .candidate-total-wrapper {
+                &.dem { background: @blueDim; }
+                &.gop,
+                &.no { background: @redDim; }
+                &.other,
+                &.yes { background: @greenDim; }
+                &.reporting {
                     &:after{
                         content:"%";
                         font-size: 80%;
@@ -259,10 +269,10 @@
                     }
                 }
 
-                + .candidate-total .candidate-total-wrapper {
-                    margin-left: 1px;
-                    margin-right: 0;
-                }
+                // + .candidate-total .candidate-total-wrapper {
+                //     margin-left: 1px;
+                //     margin-right: 0;
+                // }
             }
 
             .candidate,
@@ -282,21 +292,26 @@
                 &.candidate-total {
                     background: transparent;
 
-                    &.dem .candidate-total-wrapper { background: @blue; }
-                    &.gop .candidate-total-wrapper,
-                    &.no .candidate-total-wrapper { background: @red; }
-                    &.other .candidate-total-wrapper,
-                    &.yes .candidate-total-wrapper { background: @green; }
+                    &.dem { background: @blue; }
+                    &.gop,
+                    &.no { background: @red; }
+                    &.other,
+                    &.yes { background: @green; }
                 }
             }
 
-            .candidate-total.gop{
+            .candidate-total-spacer + .candidate-total {
                 text-align: left;
             }
 
             // .id-5083, .id-19638, .id-18556{
             //     letter-spacing: -0.07rem;
             // }
+
+            .id-22097-IA,
+            .id-5083-KY {
+                letter-spacing: -0.05rem;
+            }
         }
 
         td{
@@ -304,16 +319,16 @@
                 border-radius: 0.5rem 0 0 0.5rem;
             }
             &:nth-child(5){
-                .candidate-total-wrapper {
+                // .candidate-total-wrapper {
                     border-radius: 0 0.5rem 0.5rem 0;
-                }
-            }
-            &:nth-child(6){
-                .candidate-total-wrapper {
-                    border-radius: 0.5rem 0 0 0.5rem;
-                }
+                // }
             }
             &:nth-child(7){
+                // .candidate-total-wrapper {
+                    border-radius: 0.5rem 0 0 0.5rem;
+                // }
+            }
+            &:nth-child(8){
                 border-radius: 0 0.5rem 0.5rem 0;
             }
         }
@@ -331,6 +346,24 @@
     }
 }
 
+.ballot-measures .results .races {
+    .description {
+        width: 46%;
+    }
+
+    .choice {
+        width: 11%;
+    }
+
+    .state {
+        width: 6%;
+    }
+
+    td {
+        vertical-align: top;
+        padding: 0.2rem 0.4rem;
+    }
+}
 
 /*
  * LEADERBOARD

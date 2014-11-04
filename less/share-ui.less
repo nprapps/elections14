@@ -11,8 +11,8 @@
 
 .slide-content {
     position: relative;
-    width: @viewport-width;
-    height: @viewport-height;
+    // width: @viewport-width;
+    // height: @viewport-height;
 }
 
 .post-footer {
@@ -24,7 +24,7 @@
     display: block;
     height: @footer-height;
     width: @viewport-width;
-    padding: 0 40px;
+    padding: 0 3%;
     position: absolute;
     bottom: 0;
 
@@ -54,9 +54,12 @@
 }
 
 .ap-credit {
+    float: right;
     text-align: right;
-    position: absolute;
-    right: 22px;
-    bottom: 10px;
+    z-index: 100;
     font-size: 11px;
+    vertical-align: baseline;
+    position: relative;
+    top: 50%;
+    width: 50%;
 }

@@ -74,6 +74,9 @@
 
             if (window.location.hash === '#share') {
                 $('body').prepend('<link rel="stylesheet" href="' + share_css + '">');
+                var credit = $('.ap-credit').clone();
+                $('.ap-credit').remove();
+                $('.share-footer').append(credit);
             } else {
                 $(window).on('resize', onWindowResize);
 

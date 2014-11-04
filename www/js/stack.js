@@ -23,11 +23,8 @@ var STACK = (function () {
      * Setup the stack display.
      */
     obj.start = function() {
-        if (!NO_AUDIO && !IS_TOUCH) {
-            obj.startPrerollAudio();
-        }
-
         $stack.show();
+        onWindowResize();
 
         updateStack();
     }
@@ -94,7 +91,7 @@ var STACK = (function () {
                     $(this).jPlayer('play');
                 }
             },
-            ended: startLivestream,
+            ended: obj.startLivestream,
             swfPath: 'js/lib',
             supplied: 'mp3',
             loop: false,
@@ -107,7 +104,7 @@ var STACK = (function () {
         $audioPlayer.jPlayer('play');
     }
 
-    var startLivestream = function() {
+    obj.startLivestream = function() {
         $audioPlayer.jPlayer('setMedia', {
             mp3: 'http://nprspecial.ic.llnwd.net/stream/nprspecial_live24'
         }).jPlayer('play');
@@ -237,7 +234,7 @@ var STACK = (function () {
                 _slideExitCallback = null;
             }
             if (IS_CAST_RECEIVER) {
-                $oldSlide.hide();
+                $oldSlide.remove();
                 addNewSlide();
             }
             else {
@@ -287,6 +284,10 @@ var STACK = (function () {
     }
 
     var setTimer = function() {
+        if (PAUSE_STACK){
+            return;
+        }
+
         _rotateTimer = setTimeout(rotateSlide, _timeOnScreen * 1000);
         start_arc_countdown('slide_countdown', _timeOnScreen);
         $(this).find('a').on('click', onSlideAnchorClick);

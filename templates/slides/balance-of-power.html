@@ -1,27 +1,23 @@
-<div id="balance-of-power" class="graphic balance-of-power">
-    <div class="wrapper">
-        {% if COPY.graphic_slides.headline_bop %}<h1>{{ COPY.graphic_slides.headline_bop }}</h1>{% endif %}
-        {% if COPY.graphic_slides.subhed_bop %}<h2>{{ COPY.graphic_slides.subhed_bop }}</h2>{% endif %}
+<div id="balance-of-power" class="graphic">
+	{% if COPY.graphic_slides.headline_bop %}<h1>{{ COPY.graphic_slides.headline_bop }}</h1>{% endif %}
+	{% if COPY.graphic_slides.subhed_bop %}<h2>{{ COPY.graphic_slides.subhed_bop }}</h2>{% endif %}
 
-        <div id="graphic-bop"></div>
+	<div id="graphic-bop"></div>
 
-        {% if COPY.graphic_slides.footnote_bop %}
-        <div class="footnotes">
-            <h4>Notes</h4>
-            <p>{{ COPY.graphic_slides.footnote_bop }}</p>
-        </div>
-        {% endif %}
+	{% if COPY.graphic_slides.footnote_bop %}
+	<div class="footnotes">
+		<h4>Notes</h4>
+		<p>{{ COPY.graphic_slides.footnote_bop }}</p>
+	</div>
+	{% endif %}
 
-        <div class="ap-credit">
-            Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
-        </div>
-    </div>
+	<div class="ap-credit">
+		Source: {{ COPY.content.data_source }}&nbsp;&nbsp;|&nbsp;&nbsp;As of <span class="timestamp"></span>.
+	</div>
 </div>
 
 <script type="text/javascript">
 (function() {
-	var $container;
-	var $content;
 	var $graphic;
 	var $timestamp;
 
@@ -49,7 +45,6 @@
 	var container_width;
 	var container_height;
 	var container_padding_top;
-	var container_padding_sides;
 	var content_height;
 	var gutter_width;
 	var label_width;
@@ -73,10 +68,11 @@
 		$graphic.empty();
 
 		// compute dimensions
-		container_width = Math.floor($container.width());
+		//console.log('------------------------------');
+        container_width = graphicTargetWidth;
+//        console.log('container_width:', graphicTargetWidth);
 		container_height = Math.floor((container_width * 9) / 16);
-		container_padding_sides = Math.ceil(parseFloat($content.css('paddingLeft'))) + Math.ceil(parseFloat($content.css('paddingRight')));
-		container_padding_top = container_padding_sides * 4.5;
+		container_padding_top = container_height * .25; // 25% top/bottom margins
 
 		content_height =
 			Math.floor(
@@ -85,29 +81,28 @@
 			  + (container_width * .015) + (container_width * .005) // footer height
 			);
 
-		gutter_width = Math.floor(container_width * .03) + 20; // 3vw, and offset the width of a possible scrollbar
+		gutter_width = Math.floor(container_width * .03) + 20; // 3%, and offset the width of a possible scrollbar
 
 		var graphic_height = container_height - content_height - container_padding_top;
-		var graphic_width = Math.floor((container_width - container_padding_sides - gutter_width) / 2);
+		var graphic_width = Math.floor((container_width - gutter_width) / 2);
 
-		console.log('------------------------------');
-		console.log('container dimensions: ' + container_width + ' x ' + container_height);
-		console.log('container padding: ' + container_padding_top + ', ' + container_padding_sides);
+		/*console.log('container dimensions: ' + container_width + ' x ' + container_height);
+		console.log('container padding: ' + container_padding_top);
 		console.log('gutter width: ' + gutter_width);
 		console.log('content_height: ' + content_height);
 		console.log('graphic dimensions: ' + graphic_width + ' x ' + graphic_height);
-		console.log('total_width: ' + (container_padding_sides + graphic_width + gutter_width + graphic_width));
-		console.log('total height: ' + (container_padding_top + content_height + graphic_height));
+		console.log('total_width: ' + (graphic_width + gutter_width + graphic_width));
+		console.log('total height: ' + (container_padding_top + content_height + graphic_height));*/
 
-		label_width = Math.floor(container_width * .09); // 6vw
+		label_width = Math.floor(container_width * .11); // 11%
 		margin = {
 			top: 0,
 			right: (Math.ceil(container_width * .01) + 6),
 			bottom: (Math.ceil(container_width * .01) + 10),
 			left: (label_width + 6)
 		};
-		value_height = Math.floor(container_width * .02); // 2vw
-		value_limit = Math.floor(container_width * .04); // 4vw
+		value_height = Math.floor(container_width * .02); // 2%
+		value_limit = Math.floor(container_width * .04); // 4%
 
 		// draw charts
 		draw_chart('senate', graphic_width, graphic_height);
@@ -274,12 +269,10 @@
 	}
 
 	if (Modernizr.svg) {
-		console.log('modernizr!');
 		$graphic = $('#graphic-bop');
 		$timestamp = $('.ap-credit').find('.timestamp');
-		$container = $('#stack');
-		$content = $('#balance-of-power');
-		render();
+
+        render();
 
 		$(window).on('resize', render);
 

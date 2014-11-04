@@ -376,8 +376,8 @@ class Race(SlugModel):
         now = datetime.utcnow()
         then = now - timedelta(minutes=delta)
         recent = self.select().where(
-                ((self.npr_called == True) | (self.ap_called == True)) &
-                ((self.npr_called_time > then) | (self.ap_called_time > then))
+                ((self.npr_called == True) & (self.npr_called_time > then)) |
+                ((self.accept_ap_call == True) & (self.ap_called == True) & (self.ap_called_time > then))
             )\
             .order_by(self.npr_called_time.desc(), self.ap_called_time.desc())
         return recent

@@ -1,7 +1,8 @@
 <div class="feedback">
+	<h3>Tell Your Friends</h3>
 	<ul class="list-unstyled social">
-        <li><a href="http://twitter.com/share?text={{ COPY.share.twitter_text|urlencode }}&amp;url={{ COPY.share.share_url|urlencode }}" target="_blank" onclick="_gaq.push(['_trackEvent', '{{ PROJECT_SLUG }}', 'tweet']);"><i class="icon ion-social-twitter"></i>Share on Twitter</a></li>
-        <li><a href="https://www.facebook.com/dialog/feed?app_id={{ COPY.share.facebook_app_id }}&amp;link={{ COPY.share.share_url|urlencode }}&amp;name={{ COPY.share.facebook_title|urlencode }}&amp;picture={{ COPY.share.facebook_image_url|urlencode }}&amp;redirect_uri={{ COPY.share.share_url|urlencode }}" target="_blank" onclick="_gaq.push(['_trackEvent', '{{ PROJECT_SLUG }}', 'facebook']);"><i class="icon ion-social-facebook"></i>Share on Facebook</a></li>
+        <li class="twitter"><a href="http://twitter.com/share?text={{ COPY.share.twitter_text|urlencode }}&amp;url={{ COPY.share.share_url|urlencode }}" target="_blank" onclick="_gaq.push(['_trackEvent', '{{ PROJECT_SLUG }}', 'tweet']);"><i class="icon ion-social-twitter"></i>Twitter</a></li>
+        <li class="facebook"><a href="https://www.facebook.com/dialog/feed?app_id={{ COPY.share.facebook_app_id }}&amp;link={{ COPY.share.share_url|urlencode }}&amp;name={{ COPY.share.facebook_title|urlencode }}&amp;picture={{ COPY.share.facebook_image_url|urlencode }}&amp;redirect_uri={{ COPY.share.share_url|urlencode }}" target="_blank" onclick="_gaq.push(['_trackEvent', '{{ PROJECT_SLUG }}', 'facebook']);"><i class="icon ion-social-facebook"></i>Facebook</a></li>
 	</ul>
     {{ COPY.content.feedback }}
 </div>

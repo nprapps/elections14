@@ -1,16 +1,25 @@
 {% extends '_base.html' %}
 
 {% block outer_content %}
-<div class="welcome">
+
+<div id="video-bg">
+    <video id="bg-vid" autoplay loop>
+        <source type="video/mp4" src="assets/fireworks.mp4">
+        <source type="video/webm" src="assets/fireworks.webm">
+    </video>
+</div>
+
+<div class="welcome {% if not DEPLOY_BUTTONS %} pre-message {% endif %}">
     <div class="logo-wrapper">
     {% include '_logo2.svg' %}
     </div>
 
     <h1>{{ COPY.content.welcome_header }}</h1>
 
-    <h2>{{ COPY.content.welcome_subhead }}</h2>
-    <p class="byline">{{ COPY.content.byline }}</p>
+    <h2>{{ COPY.content.welcome_subhead_1 }}</h2>
+    <h2>{{ COPY.content.welcome_subhead_2 }}</h2>
 
+    {% if DEPLOY_BUTTONS %}
     <div class="cast-header">
         <button class="btn btn-lg welcome-button js-go">
                 Come on in!
@@ -27,6 +36,11 @@
             </a>
         </div>
     </div>
+    {% else %}
+    <h3>Tune in at 7 PM EST!</h3>
+    {% endif %}
+
+    <p class="byline">{{ COPY.content.byline }}</p>
 </div>
 
 <div class="countdown">
@@ -59,8 +73,8 @@
 	<div class="mobile-controls">
 		<div class="slide-nav">
 			<nav>
-				<button type="button" data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></button>
-				<button type="button" data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></button>
+				<span data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></span>
+				<span data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></span>
 			</nav>
 		</div>
 	</div>
