@@ -26,7 +26,7 @@ SENATE_INITIAL_BOP = {
     },
 }
 
-HOUSE_PAGE_LIMIT = 36
+HOUSE_PAGE_LIMIT = 37
 HOUSE_INITIAL_BOP = {
     'dem': {
         'has': 0,
