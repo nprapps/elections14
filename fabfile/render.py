@@ -211,20 +211,19 @@ def _render_results_slide(slug, output_path):
             content = view(slug)
 
 
-        if content.status_code == 200:
-            #print 'Rendering %s' % path
-            path = '%s%s' % (output_path, path)
+        print 'Rendering %s' % path
+        path = '%s%s' % (output_path, path)
 
-            # Ensure path exists
-            head = os.path.split(path)[0]
+        # Ensure path exists
+        head = os.path.split(path)[0]
 
-            try:
-                os.makedirs(head)
-            except OSError:
-                pass
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
 
-            with open(path, 'w') as f:
-                f.write(content.data)
+        with open(path, 'w') as f:
+            f.write(content.data)
 
 @task
 def render_states(compiled_includes={}):
