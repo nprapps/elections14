@@ -320,8 +320,8 @@ svg {
  * CONTROLS AND FEEDBACK
  */
 
- .controls ul li,
- .feedback ul li {
+.controls ul li,
+.feedback .social li {
 	background: fadeout(@grayMedium,60%);
 	line-height: 3.5rem;
 	margin-bottom: 1px;
@@ -363,7 +363,20 @@ svg {
 }
 
 .feedback {
-	ul {
+	.social {
+		display: table;
+		width: 100%;
+		.clearfix;
+		
+		li {
+			display: table-cell;
+			width: 50%;
+			vertical-align: middle;
+			
+			&.twitter { border-right: 1px solid fadeout(@blueDarker,2%); }
+			&.facebook { border-left: 1px solid fadeout(@blueDarker,2%); }
+		}
+
 		a { display: block; }
 	}
 }
@@ -545,9 +558,10 @@ svg {
 	.controls .slide-nav a,
 	.controls ul li,
 	.feedback p,
-	.feedback ul.social li {
+	.feedback .social li {
 		font-size: 11px;
 		.unselectable;
+		border-radius: 4px;
 
 		@media screen and (min-width: @screen-sm){
 			font-size: 14px;
@@ -555,7 +569,7 @@ svg {
 	}
 
 	.controls ul,
-	.feedback ul {
+	.feedback .social {
 		margin: 0;
 
 		li {
@@ -574,6 +588,7 @@ svg {
 
 	.feedback {
 		margin-bottom: 33px;
+		li { border-color: #000; }
 
 		h3 { padding-top: 22px; }
 	}
@@ -662,13 +677,16 @@ svg {
 			display: table-cell;
 			width: 50%;
 
+			&.nav-btn-left { border-radius: 4px 0 0 4px; }
+
 			&.nav-btn-right {
 				text-align: right;
 				border-left: 1px solid #000;
+				border-radius: 0 4px 4px 0;
 			}
 
 			&.in-transition {
-				background-color: #444;
+				background: #444;
 				cursor: default;
 				color: #787878;
 			}
@@ -698,22 +716,30 @@ svg {
 		font-size: 6rem;
 		background: transparent;
 		border: none;
-        line-height: 100vh;
         display: block;
+        line-height: 100%;
 
 		i {
             color: @grayMedium;
-            position: absolute;
             .vertical-center;
+            position: absolute;
         }
 	}
 	.nav-btn-left {
-		left: 1rem;
+		left: 0;
 		text-align: left;
+
+        i {
+            left: 1rem;
+        }
 	}
 	.nav-btn-right {
-		right: 1rem;
+		right: 0;
 		text-align: right;
+
+        i {
+            right: 1rem;
+        }
 	}
 
 	.touch & { display: block; }
