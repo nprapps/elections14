@@ -125,9 +125,9 @@ DISQUS_API_KEY = 'tIbSzEhGBE9NIptbnQWn4wy1gZ546CsQ2IHHtxJiYAceyyPoAkDkVnQfCifmCa
 DISQUS_UUID = '187d5a38-3768-11e4-8de3-14109fed4b76'
 
 DEPLOY_PROMO = False
-DEPLOY_BUTTONS = False
+DEPLOY_BUTTONS = True
 
-CHROMECAST_APP_ID = None 
+CHROMECAST_APP_ID = None
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
 TUMBLR_NAME = '' # See below
@@ -272,7 +272,7 @@ def configure_targets(deployment_target):
         DEBUG = False
 
         DISQUS_SHORTNAME = 'npr-news'
-        
+
         CHROMECAST_APP_ID = 'A6BCDD1E'
 
         TUMBLR_NAME = 'nprpolitics'
@@ -306,7 +306,7 @@ def configure_targets(deployment_target):
         DEBUG = True
 
         DISQUS_SHORTNAME = 'nprviz-test'
-        
+
         CHROMECAST_APP_ID = '8408F716'
 
         TUMBLR_NAME = 'stage-nprelections'
