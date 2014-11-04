@@ -148,6 +148,9 @@ svg {
             font-size:14px;
         }
     }
+    &.pre-message h2 {
+        color: @grayMedium;
+    }
 
     .cast-header {
         margin: 33px 0 77px;
@@ -242,6 +245,14 @@ svg {
             height: 50px;
         }
     }
+
+
+        &.pre-message h3 {
+            margin: 44px 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 36px;
+        }
 
     .byline {
         font-size:11px;
@@ -367,12 +378,12 @@ svg {
 		display: table;
 		width: 100%;
 		.clearfix;
-		
+
 		li {
 			display: table-cell;
 			width: 50%;
 			vertical-align: middle;
-			
+
 			&.twitter { border-right: 1px solid fadeout(@blueDarker,2%); }
 			&.facebook { border-left: 1px solid fadeout(@blueDarker,2%); }
 		}
@@ -659,7 +670,7 @@ svg {
 			padding: 0 6px;
 		}
 	}
-	
+
 	.pause i,
 	.play i {
 		font-size: 30px;
@@ -858,7 +869,7 @@ svg {
 			background: #333;
 			.unselectable;
         }
-        
+
 		a:hover,
         &.active a {
 			color: @white;

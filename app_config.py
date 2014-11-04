@@ -125,6 +125,7 @@ DISQUS_API_KEY = 'tIbSzEhGBE9NIptbnQWn4wy1gZ546CsQ2IHHtxJiYAceyyPoAkDkVnQfCifmCa
 DISQUS_UUID = '187d5a38-3768-11e4-8de3-14109fed4b76'
 
 DEPLOY_PROMO = False
+DEPLOY_BUTTONS = False
 
 CHROMECAST_APP_ID = '8408F716'
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
@@ -133,14 +134,14 @@ TUMBLR_NAME = '' # See below
 TUMBLR_NOT_BEFORE = None # See below
 TUMBLR_AUTO_REFRESH = None # See below
 
-# How often the client checks for a new stack 
+# How often the client checks for a new stack
 STACK_UPDATE_INTERVAL = 60
 
 # How often the client checks for a new BOP
-CLIENT_BOP_INTERVAL = 30 
+CLIENT_BOP_INTERVAL = 30
 
 # How often the server polls Tumblr for new live blogs
-LIVEBLOG_DEPLOY_INTERVAL = 30 
+LIVEBLOG_DEPLOY_INTERVAL = 30
 
 # How often the servers polls for new AP results
 RESULTS_DEPLOY_INTERVAL = 60
