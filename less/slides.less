@@ -7,9 +7,9 @@
 .slide.tumblr-photo,
 .slide.tumblr-quote,
 .slide.tumblr-text {
-	width: 102%;
-    height: 102%;
-    margin: -1%;
+	width: 106rem;
+    height: 106rem;
+    margin: -2rem 0 0 -3rem;
 
     .slide-inner {
     	height: @stack_height;
@@ -206,6 +206,14 @@
 
     .wrapper {
         .vertical-center;
+    }
+ }
+ .slide.house-freshmen {
+    &.graphic, .wrapper {
+        position: static;
+        top: 0;
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
     }
  }
 
@@ -622,7 +630,7 @@
             // }
 
             .candidate {
-                width: 30%;
+                width: 28%;
 
                 &.incumbent img {
                     width: 0.8rem;
