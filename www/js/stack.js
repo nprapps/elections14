@@ -90,8 +90,7 @@ var STACK = (function () {
                 if (IS_CAST_RECEIVER || (SKIP_COUNTDOWN && !NO_AUDIO)) {
                     $(this).jPlayer('play');
                 }
-            },
-            ended: obj.startLivestream,
+            }
             swfPath: 'js/lib',
             supplied: 'mp3',
             loop: false,
@@ -102,12 +101,6 @@ var STACK = (function () {
 
     obj.startPrerollAudio = function() {
         $audioPlayer.jPlayer('play');
-    }
-
-    obj.startLivestream = function() {
-        $audioPlayer.jPlayer('setMedia', {
-            mp3: 'http://nprspecial.ic.llnwd.net/stream/nprspecial_live24'
-        }).jPlayer('play');
     }
 
     var onAudioFail = function() {
