@@ -225,7 +225,10 @@ class Race(SlugModel):
         """
         Get precent precincts reporting
         """
-        ratio = Decimal(self.precincts_reporting) / Decimal(self.precincts_total)
+        if self.precincts_total > 0:
+            ratio = Decimal(self.precincts_reporting) / Decimal(self.precincts_total)
+        else:
+            ratio = 0
         return ratio * 100
 
     def has_incumbent(self):
