@@ -209,10 +209,11 @@ def load_updates(path):
 
         if changed:
             race_model.last_updated = now
-            race_model.precincts_reporting = race['precincts_reporting']
-            race_model.precincts_total = race['precincts_total']
-            race_model.save()
             races_updated += 1
+
+        race_model.precincts_reporting = race['precincts_reporting']
+        race_model.precincts_total = race['precincts_total']
+        race_model.save()
 
     print 'Updated %i races' % races_updated
     print 'Updated %i candidates' % candidates_updated

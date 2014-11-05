@@ -102,9 +102,11 @@ def write_update(ticket, path):
         }
 
         for ru in race.reporting_units:
-            update['precincts_total'] += ru.precincts_total
-            if ru.precincts_reporting:
-                update['precincts_reporting'] += ru.precincts_reporting
+            if ru.is_state:
+                update['precincts_total'] = ru.precincts_total
+                if ru.precincts_reporting:
+                    update['precincts_reporting'] = ru.precincts_reporting
+                break
 
         for candidate in race.candidates:
             update['candidates'].append({
