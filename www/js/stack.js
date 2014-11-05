@@ -23,6 +23,10 @@ var STACK = (function () {
      * Setup the stack display.
      */
     obj.start = function() {
+    	if (IS_TOUCH) {
+    		$mobileSlideControls.show();
+    	}
+    
         $stack.show();
         onWindowResize();
 
@@ -56,6 +60,9 @@ var STACK = (function () {
         $audioPlayer.jPlayer('pause');
 
         $stack.hide();
+    	if (IS_TOUCH) {
+    		$mobileSlideControls.hide();
+    	}
     }
 
     obj.setSlideExitCallback = function(cb) {
