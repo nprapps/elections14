@@ -291,9 +291,10 @@ def incumbents_lost():
     context = make_context(timestamp=last_updated)
 
     for race in called_senate_races:
-        for candidate in race.candidates:
-            if candidate.incumbent and not candidate.is_winner():
-                senate_incumbents_lost.append(race)
+        if not race.is_runoff():
+            for candidate in race.candidates:
+                if candidate.incumbent and not candidate.is_winner():
+                    senate_incumbents_lost.append(race)
 
     for race in called_house_races:
         if not race.is_runoff():
