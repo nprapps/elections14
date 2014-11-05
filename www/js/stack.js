@@ -23,6 +23,10 @@ var STACK = (function () {
      * Setup the stack display.
      */
     obj.start = function() {
+    	if (IS_TOUCH) {
+    		$mobileSlideControls.show();
+    	}
+    
         $stack.show();
         onWindowResize();
 
@@ -56,6 +60,9 @@ var STACK = (function () {
         $audioPlayer.jPlayer('pause');
 
         $stack.hide();
+    	if (IS_TOUCH) {
+    		$mobileSlideControls.hide();
+    	}
     }
 
     obj.setSlideExitCallback = function(cb) {
@@ -91,7 +98,6 @@ var STACK = (function () {
                     $(this).jPlayer('play');
                 }
             },
-            ended: obj.startLivestream,
             swfPath: 'js/lib',
             supplied: 'mp3',
             loop: false,
@@ -102,12 +108,6 @@ var STACK = (function () {
 
     obj.startPrerollAudio = function() {
         $audioPlayer.jPlayer('play');
-    }
-
-    obj.startLivestream = function() {
-        $audioPlayer.jPlayer('setMedia', {
-            mp3: 'http://nprspecial.ic.llnwd.net/stream/nprspecial_live24'
-        }).jPlayer('play');
     }
 
     var onAudioFail = function() {

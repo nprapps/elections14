@@ -392,7 +392,6 @@ The Google Analytics events tracked in this application are:
 
 |Category|Action|Label|Value|Custom 1|Custom 2|
 |--------|------|-----|-----|--------|--------|
-|elections14|chromecast-muted|||||
 |elections14|chromecast-initiated||||
 |elections14|chromecast-stopped||||
 |elections14|fullscreen||||
@@ -407,3 +406,4 @@ The Google Analytics events tracked in this application are:
 |elections14|tweet|share-discuss|||
 |elections14|mobile-controls||||
 
+* The following events only fire once per session: `next-slide-clicked`, `prev-slide-clicked`, `keyboard-nav` and `mobile-controls`.

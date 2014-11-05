@@ -9,7 +9,7 @@
     </video>
 </div>
 
-<div class="welcome">
+<div class="welcome {% if not DEPLOY_BUTTONS %} pre-message {% endif %}">
     <div class="logo-wrapper">
     {% include '_logo2.svg' %}
     </div>
@@ -19,6 +19,7 @@
     <h2>{{ COPY.content.welcome_subhead_1 }}</h2>
     <h2>{{ COPY.content.welcome_subhead_2 }}</h2>
 
+    {% if DEPLOY_BUTTONS %}
     <div class="cast-header">
         <button class="btn btn-lg welcome-button js-go">
                 Come on in!
@@ -35,6 +36,9 @@
             </a>
         </div>
     </div>
+    {% else %}
+    <h3>{{ COPY.content.pre_message }}</h3>
+    {% endif %}
 
     <p class="byline">{{ COPY.content.byline }}</p>
 </div>
@@ -66,15 +70,6 @@
 </div>
 
 <div id="stack">
-	<div class="mobile-controls">
-		<div class="slide-nav">
-			<nav>
-				<span data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></span>
-				<span data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></span>
-			</nav>
-		</div>
-	</div>
-
     <div class="controls-wrapper">
         {% include '_legend.html' %}
         {% include '_controls.html' %}
@@ -105,6 +100,15 @@
             <a href="http://www.npr.org" target="_blank">{% include '_logo.svg' %}</a>
         </div>
     </div>
+</div>
+
+<div class="mobile-controls">
+	<div class="slide-nav">
+		<nav>
+			<span data-slide="previous" class="nav-btn nav-btn-left"><i class="icon ion-chevron-left"></i></span>
+			<span data-slide="next" class="nav-btn nav-btn-right"><i class="icon ion-chevron-right"></i></span>
+		</nav>
+	</div>
 </div>
 
 <div class="rotate-phone-wrapper">

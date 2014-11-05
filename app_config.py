@@ -125,25 +125,26 @@ DISQUS_API_KEY = 'tIbSzEhGBE9NIptbnQWn4wy1gZ546CsQ2IHHtxJiYAceyyPoAkDkVnQfCifmCa
 DISQUS_UUID = '187d5a38-3768-11e4-8de3-14109fed4b76'
 
 DEPLOY_PROMO = False
+DEPLOY_BUTTONS = True
 
-CHROMECAST_APP_ID = '8408F716'
+CHROMECAST_APP_ID = None
 CHROMECAST_NAMESPACE = 'urn:x-cast:nprviz.elections14'
 
 TUMBLR_NAME = '' # See below
 TUMBLR_NOT_BEFORE = None # See below
 TUMBLR_AUTO_REFRESH = None # See below
 
-# How often the client checks for a new stack 
+# How often the client checks for a new stack
 STACK_UPDATE_INTERVAL = 60
 
 # How often the client checks for a new BOP
-CLIENT_BOP_INTERVAL = 30 
+CLIENT_BOP_INTERVAL = 30
 
 # How often the server polls Tumblr for new live blogs
-LIVEBLOG_DEPLOY_INTERVAL = 30 
+LIVEBLOG_DEPLOY_INTERVAL = 30
 
 # How often the servers polls for new AP results
-RESULTS_DEPLOY_INTERVAL = 60
+RESULTS_DEPLOY_INTERVAL = 3600
 
 # How often the client polls to see if it should be reloaded
 RELOAD_CHECK_INTERVAL = 180
@@ -256,6 +257,7 @@ def configure_targets(deployment_target):
     global SERVER_LOG_PATH
     global DEBUG
     global DISQUS_SHORTNAME
+    global CHROMECAST_APP_ID
     global TUMBLR_NAME
     global TUMBLR_AUTO_REFRESH
     global TUMBLR_NOT_BEFORE
@@ -271,8 +273,10 @@ def configure_targets(deployment_target):
 
         DISQUS_SHORTNAME = 'npr-news'
 
+        CHROMECAST_APP_ID = 'A6BCDD1E'
+
         TUMBLR_NAME = 'nprpolitics'
-        TUMBLR_AUTO_REFRESH = False
+        TUMBLR_AUTO_REFRESH = True
         TUMBLR_NOT_BEFORE = datetime(2014, 11, 4, 20, 0, 0)  # 2014-11-4 5pm (+5 hours for UTC)
         TUMBLR_NOT_AFTER = datetime(2014, 11, 5, 9, 0, 0)    # 2014-11-5 4am (+5 hours for UTC)
 
@@ -285,6 +289,8 @@ def configure_targets(deployment_target):
         DEBUG = True
 
         DISQUS_SHORTNAME = 'nprviz-test'
+
+        CHROMECAST_APP_ID = '8408F716'
 
         TUMBLR_NAME = 'stage-nprelections'
         TUMBLR_AUTO_REFRESH = True
@@ -301,7 +307,9 @@ def configure_targets(deployment_target):
 
         DISQUS_SHORTNAME = 'nprviz-test'
 
-        TUMBLR_NAME = 'stage-nprelections'
+        CHROMECAST_APP_ID = '8408F716'
+
+        TUMBLR_NAME = 'nprpolitics'
         TUMBLR_AUTO_REFRESH = True
         TUMBLR_NOT_BEFORE = datetime(2014, 9, 26, 0, 0, 0)
         TUMBLR_NOT_AFTER = datetime(2014, 11, 5, 9, 0, 0)

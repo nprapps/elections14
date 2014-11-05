@@ -7,9 +7,9 @@
 .slide.tumblr-photo,
 .slide.tumblr-quote,
 .slide.tumblr-text {
-	width: 102%;
-    height: 102%;
-    margin: -1%;
+	width: @stack_width;;
+    height: @stack_height;
+    margin: -2rem 0 0 -3rem;
 
     .slide-inner {
     	height: @stack_height;
@@ -208,7 +208,8 @@
         .vertical-center;
     }
  }
- .slide.house-freshmen {
+ .slide.house-freshmen,
+ .slide.incumbents-lost {
     &.graphic, .wrapper {
         position: static;
         top: 0;
@@ -634,7 +635,7 @@
 
                 &.incumbent img {
                     width: 0.8rem;
-                    height: auto;
+                    height: 1.6rem;
                 }
             }
 

@@ -148,6 +148,9 @@ svg {
             font-size:14px;
         }
     }
+    &.pre-message h2 {
+        color: @grayMedium;
+    }
 
     .cast-header {
         margin: 33px 0 77px;
@@ -242,6 +245,14 @@ svg {
             height: 50px;
         }
     }
+
+
+        &.pre-message h3 {
+            margin: 44px 0;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 36px;
+        }
 
     .byline {
         font-size:11px;
@@ -369,12 +380,12 @@ svg {
 		display: table;
 		width: 100%;
 		.clearfix;
-		
+
 		li {
 			display: table-cell;
 			width: 50%;
 			vertical-align: middle;
-			
+
 			&.twitter { border-right: 1px solid fadeout(@blueDarker,2%); }
 			&.facebook { border-left: 1px solid fadeout(@blueDarker,2%); }
 		}
@@ -661,7 +672,7 @@ svg {
 			padding: 0 6px;
 		}
 	}
-	
+
 	.pause i,
 	.play i {
 		font-size: 30px;
@@ -720,6 +731,7 @@ svg {
 		border: none;
         display: block;
         line-height: 100%;
+        height: @stack_height;
 
 		i {
             color: @grayMedium;
@@ -743,8 +755,6 @@ svg {
             right: 1rem;
         }
 	}
-
-	.touch & { display: block; }
 }
 
 .fullscreen .stop {
@@ -754,7 +764,7 @@ svg {
 .controls-wrapper {
     position: absolute;
     left: 0;
-    bottom: 5rem;
+    bottom: 7rem;
     width: 98%;
     z-index: 100;
     background: fadeout(@blueDarker,2%);
@@ -858,13 +868,13 @@ svg {
 			border-radius: 0.5rem;
 			color: @grayMedium;
 			background: #333;
-			.unselectable;
         }
-        
+
 		a:hover,
         &.active a {
 			color: @white;
 			background: fadeout(@blueDarker,2%);
+			.unselectable;
         }
 
         svg {

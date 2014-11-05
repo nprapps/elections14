@@ -28,6 +28,7 @@ var $audioButtons = null;
 var $slide_countdown = null;
 var $desktopOnlyLeftRight = null;
 var $slideControls = null;
+var $mobileSlideControls = null;
 var $controlsWrapper = null;
 var $controlsToggle = null;
 var $castControls = null;
@@ -95,9 +96,6 @@ var invert = function(obj) {
  * Run on page load.
  */
 var onDocumentReady = function(e) {
-    // Timestamp when page was loaded
-    reloadTimestamp = Date.now();
-
     // Cache jQuery references
     $body = $('body');
 
@@ -128,6 +126,7 @@ var onDocumentReady = function(e) {
     $headerControls = $('.header-controls');
     $desktopOnlyLeftRight = $('.nav .slide-nav');
     $slideControls = $('.slide-nav .nav-btn');
+    $mobileSlideControls = $('.mobile-controls');
     $controlsWrapper = $('.controls-wrapper');
     $controlsToggle = $('.js-toggle-controls');
     $castControls = $('.cast-controls');
@@ -216,7 +215,7 @@ var onDocumentReady = function(e) {
 
     onWindowResize();
     checkBop();
-    checkTimestamp();
+    getTimestamp();
 
     create_slide_countdown();
 }
@@ -227,8 +226,6 @@ $(onDocumentReady);
  * Create and configure UI elements.
  */
 var setupUI = function() {
-    checkTimestamp();
-
     if (IS_TOUCH) {
         $desktopOnlyLeftRight.hide();
         $fullscreenStart.hide();
@@ -314,7 +311,6 @@ var onCastStarted = function() {
 var onCastStopped = function() {
     $chromecastScreen.hide();
 
-    STACK.startLivestream();
     STACK.start();
 
     if (!IS_TOUCH) {
@@ -391,7 +387,7 @@ var onWindowResize = function() {
     var h = window.innerHeight;
     var aspect = w / h;
     var new_aspect;
-    
+
     if (aspect > 16/9) {
     	new_aspect = aspect;
         document.documentElement.style.fontSize = ((16/9) / aspect) + 'vw';
@@ -604,6 +600,7 @@ var onStackTap = function(e) {
 
     disableRotatePrompt();
     $castControls.show();
+    $mobileSlideControls.hide();
     $closeControlsLink.show();
     $stack.hide();
 
@@ -640,6 +637,7 @@ var onCloseControlsLink = function(event) {
 
     enableRotatePrompt();
     $castControls.hide();
+    $mobileSlideControls.show();
     $stack.show();
 }
 
@@ -760,16 +758,16 @@ var hideCountdown = function() {
 
     big_width = big.width();
     little_width = little.width();
-    
+
     big_top = big.offset().top;
     little_top = little.offset().top;
     console.log(big_top, little_top);
-    
+
     big_left = big.offset().left;
     little_left = little.offset().left;
-    
+
     little_height = little.height();
-    
+
     big.velocity({
         height: little_height,
         translateX: little_left - big_left - big_width/2 + little_width/2,
@@ -810,20 +808,35 @@ var checkBop = function() {
 /*
  * Fetch the latest timestamp file and reload the if necessary.
  */
+var getTimestamp = function() {
+    if (reloadTimestamp == null) {
+        checkTimestamp();
+    }
+    setInterval(checkTimestamp, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
+}
+
 var checkTimestamp = function() {
-    setInterval(function() {
-        $.ajax({
-            'url': '/live-data/timestamp.json',
-            'cache': false,
-            'success': function(data) {
-                var newTime = data;
-                if (reloadTimestamp < newTime) {
+    $.ajax({
+        'url': '/live-data/timestamp.json',
+        'cache': false,
+        'success': function(data) {
+            var newTime = data['timestamp'];
+            var homepage = data['homepage'];
+
+            if (reloadTimestamp == null) {
+                reloadTimestamp = newTime;
+            }
+            if (reloadTimestamp != newTime) {
+                if (homepage) {
+                    window.location.reload(true);
+                } else {
                     $.cookie('reload', true);
                     window.location.reload(true);
                 }
+
             }
-        })
-    }, APP_CONFIG.RELOAD_CHECK_INTERVAL * 1000);
+        }
+    });
 }
 
 /*
