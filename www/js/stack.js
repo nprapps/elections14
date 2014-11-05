@@ -97,7 +97,7 @@ var STACK = (function () {
                 if (IS_CAST_RECEIVER || (SKIP_COUNTDOWN && !NO_AUDIO)) {
                     $(this).jPlayer('play');
                 }
-            }
+            },
             swfPath: 'js/lib',
             supplied: 'mp3',
             loop: false,
