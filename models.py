@@ -225,7 +225,10 @@ class Race(SlugModel):
         """
         Get precent precincts reporting
         """
-        ratio = Decimal(self.precincts_reporting) / Decimal(self.precincts_total)
+        if self.precincts_total > 0:
+            ratio = Decimal(self.precincts_reporting) / Decimal(self.precincts_total)
+        else:
+            ratio = 0
         return ratio * 100
 
     def has_incumbent(self):
@@ -463,7 +466,10 @@ class Candidate(SlugModel):
     def vote_percent(self):
         total_votes = self.race.count_votes()
 
-        ratio = Decimal(self.vote_count) / Decimal(total_votes)
+        if total_votes > 0:
+            ratio = Decimal(self.vote_count) / Decimal(total_votes)
+        else:
+            ratio = 0
 
         return ratio * 100
 

@@ -28,6 +28,7 @@ var $audioButtons = null;
 var $slide_countdown = null;
 var $desktopOnlyLeftRight = null;
 var $slideControls = null;
+var $mobileSlideControls = null;
 var $controlsWrapper = null;
 var $controlsToggle = null;
 var $castControls = null;
@@ -125,6 +126,7 @@ var onDocumentReady = function(e) {
     $headerControls = $('.header-controls');
     $desktopOnlyLeftRight = $('.nav .slide-nav');
     $slideControls = $('.slide-nav .nav-btn');
+    $mobileSlideControls = $('.mobile-controls');
     $controlsWrapper = $('.controls-wrapper');
     $controlsToggle = $('.js-toggle-controls');
     $castControls = $('.cast-controls');
@@ -598,6 +600,7 @@ var onStackTap = function(e) {
 
     disableRotatePrompt();
     $castControls.show();
+    $mobileSlideControls.hide();
     $closeControlsLink.show();
     $stack.hide();
 
@@ -634,6 +637,7 @@ var onCloseControlsLink = function(event) {
 
     enableRotatePrompt();
     $castControls.hide();
+    $mobileSlideControls.show();
     $stack.show();
 }
 
