@@ -11,6 +11,7 @@ from fabric.api import task
 from time import sleep
 
 SECRETS = app_config.get_secrets()
+AP.FTP_HOSTNAME = 'electionsonline2.ap.org'
 
 def _generate_candidate_id(candidate, race):
     """
