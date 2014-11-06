@@ -98,6 +98,7 @@ var STACK = (function () {
                     $(this).jPlayer('play');
                 }
             },
+            ended: obj.startArchiveStream,
             swfPath: 'js/lib',
             supplied: 'mp3',
             loop: false,
@@ -108,6 +109,12 @@ var STACK = (function () {
 
     obj.startPrerollAudio = function() {
         $audioPlayer.jPlayer('play');
+    }
+
+    obj.startArchiveStream = function() {
+        $audioPlayer.jPlayer('setMedia', {
+            mp3: 'assets/broadcast-2000-2300est.mp3'
+        }).jPlayer('play');
     }
 
     var onAudioFail = function() {

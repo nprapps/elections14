@@ -311,6 +311,7 @@ var onCastStarted = function() {
 var onCastStopped = function() {
     $chromecastScreen.hide();
 
+    STACK.startArchiveStream();
     STACK.start();
 
     if (!IS_TOUCH) {
