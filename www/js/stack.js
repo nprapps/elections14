@@ -91,7 +91,7 @@ var STACK = (function () {
          $audioPlayer.jPlayer({
             ready: function () {
                 $(this).jPlayer('setMedia', {
-                    mp3: '/assets/archive_intro.mp3'
+                    mp3: '/assets/combined_intro.mp3'
                 });
 
                 if (IS_CAST_RECEIVER || (SKIP_COUNTDOWN && !NO_AUDIO)) {
