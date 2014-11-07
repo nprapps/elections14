@@ -12,6 +12,9 @@ from time import sleep
 
 SECRETS = app_config.get_secrets()
 
+# If main FTP server goes down, uncomment the next line
+#AP.FTP_HOSTNAME = 'electionsonline2.ap.org'
+
 def _generate_candidate_id(candidate, race):
     """
     Makes an unique compound ID
