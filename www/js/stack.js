@@ -91,13 +91,14 @@ var STACK = (function () {
          $audioPlayer.jPlayer({
             ready: function () {
                 $(this).jPlayer('setMedia', {
-                    mp3: '/assets/promo_compressed.mp3'
+                    mp3: '/assets/archive_intro.mp3'
                 });
 
                 if (IS_CAST_RECEIVER || (SKIP_COUNTDOWN && !NO_AUDIO)) {
                     $(this).jPlayer('play');
                 }
             },
+            ended: obj.startArchiveStream,
             swfPath: 'js/lib',
             supplied: 'mp3',
             loop: false,
@@ -108,6 +109,12 @@ var STACK = (function () {
 
     obj.startPrerollAudio = function() {
         $audioPlayer.jPlayer('play');
+    }
+
+    obj.startArchiveStream = function() {
+        $audioPlayer.jPlayer('setMedia', {
+            mp3: 'assets/broadcast-2000-2300est.mp3'
+        }).jPlayer('play');
     }
 
     var onAudioFail = function() {

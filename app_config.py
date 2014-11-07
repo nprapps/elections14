@@ -144,7 +144,7 @@ CLIENT_BOP_INTERVAL = 30
 LIVEBLOG_DEPLOY_INTERVAL = 30
 
 # How often the servers polls for new AP results
-RESULTS_DEPLOY_INTERVAL = 60
+RESULTS_DEPLOY_INTERVAL = 3600
 
 # How often the client polls to see if it should be reloaded
 RELOAD_CHECK_INTERVAL = 180
