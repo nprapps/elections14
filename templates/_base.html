@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <!-- GDPR compliance -->
+    <script type="text/javascript" src="//{{ S3_BUCKETS[0]['bucket_name'] }}/gdpr/gdprCompliance.js"></script>
+
     <title>{% block title %}{{ COPY.content.project_name }}{% endblock %}</title>
 
     <!-- META TAGS -->

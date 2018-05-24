@@ -84,7 +84,7 @@ Then bootstrap the project:
 
 ```
 cd elections14
-mkvirtualenv --no-site-packages elections14
+mkvirtualenv elections14
 pip install -r requirements.txt
 npm install
 fab text
